@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,47 +15,90 @@ namespace PeParser
     /// </summary>
     public class PEHeader
     {
+        private static readonly string _tableFormat = "\t{0,-35}:\t{1,30}\n";
+        private static string ToStringReflection(object obj)
+        {
+            var properties = obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            var sb = new StringBuilder();
+            foreach (var p in properties)
+            {
+                if(p.PropertyType.IsArray)
+                    continue;
+                sb.AppendFormat(_tableFormat, p.Name, p.GetValue(obj, null));
+            }
+                
+            return sb.ToString();
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder("-- PE HEADER --\n");
+            sb.Append(MSDOSHeader.ToString());
+            sb.Append(PESignature.ToString());
+            sb.Append(COFFHeader.ToString());
+            sb.Append(StandardFields.ToString());
+            sb.Append(WindowsSpecificFields.ToString());
+            sb.Append(DataDirectories.ToString());
+            sb.Append(SectionTable.ToString());
+
+            return sb.ToString();
+        }
+
         public class MSDOSHEADER
         {
-            public ushort MZ;
-            public ushort lastSize;
-            public ushort PageInFiles;
-            public ushort relocations;
-            public ushort headerSizeInParagraph;
-            public ushort MinExtraParagraphNeeded;
-            public ushort MaxExtraParagraphNeeded;
-            public ushort InitialRelativeSS;
-            public ushort InitialRelativeSP;
-            public ushort checksum;
-            public ushort InitialIP;
-            public ushort InitialRelativeCS;
-            public ushort FileAddOfRelocTable;
-            public ushort OverlayNumber;
+            public ushort MZ { get; set; }
+            public ushort lastSize { get; set; }
+            public ushort PageInFiles { get; set; }
+            public ushort relocations { get; set; }
+            public ushort headerSizeInParagraph { get; set; }
+            public ushort MinExtraParagraphNeeded { get; set; }
+            public ushort MaxExtraParagraphNeeded { get; set; }
+            public ushort InitialRelativeSS { get; set; }
+            public ushort InitialRelativeSP { get; set; }
+            public ushort checksum { get; set; }
+            public ushort InitialIP { get; set; }
+            public ushort InitialRelativeCS { get; set; }
+            public ushort FileAddOfRelocTable { get; set; }
+            public ushort OverlayNumber { get; set; }
             /*
              * 4 * ushort reserved
              */
-            public ushort OEMIdentifier;
-            public ushort OEMInformation;
+            public ushort OEMIdentifier { get; set; }
+            public ushort OEMInformation { get; set; }
             /*
              * 10 * ushort reserved
              */
-            public UInt32 OffsetPEToSignature;
+            public UInt32 OffsetPEToSignature { get; set; }
+
+            public override string ToString()
+            {
+                var sb = new StringBuilder("MSDOS HEADER\n");
+                sb.Append(ToStringReflection(this));
+                return sb.ToString();
+            }
         }
 
         public class PESIGNATURE
         {
-            public UInt32 PESignature;
+            public UInt32 PESignature { get; set; }
+
+            public override string ToString()
+            {
+                var sb = new StringBuilder("PE Signature\n");
+                sb.Append(ToStringReflection(this));
+                return sb.ToString();
+            }
         }
 
         public class COFFHEADER
         {
-            public ushort TargetMachine;        // This field determines what machine the file was compiled for. 
-            public ushort NumberOfSections;     // The number of sections that are described at the end of the PE headers.
-            public UInt32 TimeDateStamp;        // 32 bit time at which this header was generated: is used in the process of "Binding".
-            public UInt32 PointerToSymbolTable;
-            public UInt32 NumberOfSymbols;
-            public ushort SizeOfOptionalHeaders;// This field shows how long the "PE Optional Header" is that follows the COFF header.
-            public ushort Characteristics;
+            public ushort TargetMachine { get; set; }        // This field determines what machine the file was compiled for. 
+            public ushort NumberOfSections { get; set; }     // The number of sections that are described at the end of the PE headers.
+            public UInt32 TimeDateStamp { get; set; }        // 32 bit time at which this header was generated: is used in the process of "Binding".
+            public UInt32 PointerToSymbolTable { get; set; }
+            public UInt32 NumberOfSymbols { get; set; }
+            public ushort SizeOfOptionalHeaders { get; set; } // This field shows how long the "PE Optional Header" is that follows the COFF header.
+            public ushort Characteristics { get; set; }
 
             /// <summary>
             /// Resolves the target machine number to a string containing
@@ -163,51 +207,67 @@ namespace PeParser
             {
                 var c = "unknown";
                 if ((characteristics & 0x02) == 0x02)
-                    c = "Executable file.";
+                    c = "EXE";
                 else if ((characteristics & 0x200) == 0x200)
                     c = "File is non-relocatable (addresses are absolute, not RVA).";
                 else if ((characteristics & 0x2000) == 0x2000)
-                    c = "File is a DLL Library, not an EXE.";
+                    c = "DLL";
                 return c;
+            }
+
+            public override string ToString()
+            {
+                var sb = new StringBuilder("COFF Header\n");
+                sb.Append(ToStringReflection(this));
+                sb.AppendFormat(_tableFormat, "Resolved TargetMachine", ResolveTargetMachine(TargetMachine));
+                sb.AppendFormat(_tableFormat, "Resolved Characteristic", ResolveCharacteristics(Characteristics));
+                return sb.ToString();
             }
         }
 
         public class STANDARDFIELDS
         {
-            public ushort Exe;                      // decimal number 267 for 32 bit, and 523 for 64 bit.
-            public byte lnMajVer;                   // The version, in x.y format of the linker used to create the PE.
-            public byte lnMnrVer;
-            public UInt32 SizeOfCode;               // Size of the .text (.code) section
-            public UInt32 SizeOfInitializedData;    // Size of .data section
-            public UInt32 SizeOfUninitializedData;
-            public UInt32 AddressOfEntryPoint;
-            public UInt32 BaseOfCode;               // RVA of the .text section
-            public UInt32 BaseOfData;               // RVA of .data section
+            public ushort Exe { get; set; }                      // decimal number 267 for 32 bit, and 523 for 64 bit.
+            public byte lnMajVer { get; set; }                   // The version, in x.y format of the linker used to create the PE.
+            public byte lnMnrVer { get; set; }
+            public UInt32 SizeOfCode { get; set; }               // Size of the .text (.code) section
+            public UInt32 SizeOfInitializedData { get; set; }    // Size of .data section
+            public UInt32 SizeOfUninitializedData { get; set; }
+            public UInt32 AddressOfEntryPoint { get; set; }
+            public UInt32 BaseOfCode { get; set; }               // RVA of the .text section
+            public UInt32 BaseOfData { get; set; }               // RVA of .data section
+
+            public override string ToString()
+            {
+                var sb = new StringBuilder("Standard Fields\n");
+                sb.Append(ToStringReflection(this));
+                return sb.ToString();
+            }
         }
 
         public class WINDOWSSPECIFICFIELDS
         {
-            public UInt32 ImageBase;            // Preferred location in memory for the module to be based at
-            public UInt32 SectionAlignment;
-            public UInt32 FileAlignment;
-            public ushort MajorOSVersion;
-            public ushort MinorOSVersion;
-            public ushort MajorImageVersion;
-            public ushort MinorImageVersion;
-            public ushort MajorSubSystemVersion;
-            public ushort MinorSubSystemVersion;
-            public UInt32 Win32VersionValue;
-            public UInt32 SizeOfImage;
-            public UInt32 SizeOfHeaders;
-            public UInt32 Checksum;            // Checksum of the file, only used to verify validity of modules being loaded into kernel space. The formula used to calculate PE file checksums is proprietary, although Microsoft provides API calls that can calculate the checksum for you.
-            public ushort Subsystem;            // The Windows subsystem that will be invoked to run the executable
-            public ushort DllCharacteristics;
-            public UInt32 SizeOfStackReverse;
-            public UInt32 SizeOfStackCommit;
-            public UInt32 SizeOfHeapReverse;
-            public UInt32 SizeOfHeapCommit;
-            public UInt32 LoaderFlags;
-            public UInt32 NumberOfRVAandSizes;
+            public UInt32 ImageBase { get; set; }   // Preferred location in memory for the module to be based at
+            public UInt32 SectionAlignment { get; set; }
+            public UInt32 FileAlignment { get; set; }
+            public ushort MajorOSVersion { get; set; }
+            public ushort MinorOSVersion { get; set; }
+            public ushort MajorImageVersion { get; set; }
+            public ushort MinorImageVersion { get; set; }
+            public ushort MajorSubSystemVersion { get; set; }
+            public ushort MinorSubSystemVersion { get; set; }
+            public UInt32 Win32VersionValue { get; set; }
+            public UInt32 SizeOfImage { get; set; }
+            public UInt32 SizeOfHeaders { get; set; }
+            public UInt32 Checksum { get; set; }        // Checksum of the file, only used to verify validity of modules being loaded into kernel space. The formula used to calculate PE file checksums is proprietary, although Microsoft provides API calls that can calculate the checksum for you.
+            public ushort Subsystem { get; set; }       // The Windows subsystem that will be invoked to run the executable
+            public ushort DllCharacteristics { get; set; }
+            public UInt32 SizeOfStackReverse { get; set; }
+            public UInt32 SizeOfStackCommit { get; set; }
+            public UInt32 SizeOfHeapReverse { get; set; }
+            public UInt32 SizeOfHeapCommit { get; set; }
+            public UInt32 LoaderFlags { get; set; }
+            public UInt32 NumberOfRVAandSizes { get; set; }
 
             /// <summary>
             /// Resolve the subsystem attribute to a human readable string.
@@ -258,43 +318,73 @@ namespace PeParser
                 }
                 return ss;
             }
+
+            public override string ToString()
+            {
+                var sb = new StringBuilder("Windows Specific Fields\n");
+                sb.Append(ToStringReflection(this));
+                sb.AppendFormat(_tableFormat, "Resolved Subsystem", ResolveSubsystem(Subsystem));
+                return sb.ToString();
+            }
         }
 
         public class DATADIRECTORIES
         {
-            public UInt32 edataOffset;
-            public UInt32 edataSize;
-            public UInt32 idataOffset;
-            public UInt32 idataSize;
-            public UInt32 rsrcOffset;
-            public UInt32 rsrcSize;
-            public UInt32 pdataOffset;
-            public UInt32 pdataSize;
-            public UInt32 AttributeCertificateOffsetImage;
-            public UInt32 AttributeCertificateSizeImage;
-            public UInt32 relocOffsetImage;
-            public UInt32 relocSizeImage;
-            public UInt32 debugOffset;
-            public UInt32 debugSize;
-            public UInt32 Architecture1;
-            public UInt32 Architecture2;
-            public UInt32 GlobalPtrOffset;
-            public UInt32 Zero;
-            public UInt32 tlsOffset;
-            public UInt32 tlsSize;
-            public UInt32 LoadConfigTableOffsetImage;
-            public UInt32 LoadConfigTableSizeImage;
-            public UInt32 BoundImportTableOffset;
-            public UInt32 BoundImportTableSize;
-            public UInt32 ImportAddressTableOffset;
-            public UInt32 ImportAddressTableSize;
-            public UInt32 DelayImportDescriptorOffsetImage;
-            public UInt32 DelayImportDescriptorSizeImage;
-            public UInt32 CLRRuntimeHeaderOffsetObject;
-            public UInt32 CLRRuntimeHeaderSizeObject;
-            public IMAGE_EXPORT_DIRECTORY ImageExportDirectory;
-            public ExportFunction[] ExportFunctions;
-            public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors;
+            public UInt32 edataOffset { get; set; }
+            public UInt32 edataSize { get; set; }
+            public UInt32 idataOffset { get; set; }
+            public UInt32 idataSize { get; set; }
+            public UInt32 rsrcOffset { get; set; }
+            public UInt32 rsrcSize { get; set; }
+            public UInt32 pdataOffset { get; set; }
+            public UInt32 pdataSize { get; set; }
+            public UInt32 AttributeCertificateOffsetImage { get; set; }
+            public UInt32 AttributeCertificateSizeImage { get; set; }
+            public UInt32 relocOffsetImage { get; set; }
+            public UInt32 relocSizeImage { get; set; }
+            public UInt32 debugOffset { get; set; }
+            public UInt32 debugSize { get; set; }
+            public UInt32 Architecture1 { get; set; }
+            public UInt32 Architecture2 { get; set; }
+            public UInt32 GlobalPtrOffset { get; set; }
+            public UInt32 Zero { get; set; }
+            public UInt32 tlsOffset { get; set; }
+            public UInt32 tlsSize { get; set; }
+            public UInt32 LoadConfigTableOffsetImage { get; set; }
+            public UInt32 LoadConfigTableSizeImage { get; set; }
+            public UInt32 BoundImportTableOffset { get; set; }
+            public UInt32 BoundImportTableSize { get; set; }
+            public UInt32 ImportAddressTableOffset { get; set; }
+            public UInt32 ImportAddressTableSize { get; set; }
+            public UInt32 DelayImportDescriptorOffsetImage { get; set; }
+            public UInt32 DelayImportDescriptorSizeImage { get; set; }
+            public UInt32 CLRRuntimeHeaderOffsetObject { get; set; }
+            public UInt32 CLRRuntimeHeaderSizeObject { get; set; }
+            public IMAGE_EXPORT_DIRECTORY ImageExportDirectory { get; set; }
+            public ExportFunction[] ExportFunctions { get; set; }
+            public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors { get; set; }
+
+            public override string ToString()
+            {
+                var sb = new StringBuilder("Data Directories\n");
+                sb.Append(ToStringReflection(this));
+                
+                if(ExportFunctions != null)
+                {
+                    sb.Append("Export Functions\n");
+                    foreach (var e in ExportFunctions)
+                        sb.Append(e.ToString());
+                }
+
+                if(ImageImportDescriptors != null)
+                {
+                    sb.Append("Image Import Descriptors");
+                    foreach (var i in ImageImportDescriptors)
+                        sb.Append(i.ToString());
+                }
+                
+                return sb.ToString();
+            }
 
             /*
              * 2 * UInt32 reserved
@@ -302,17 +392,24 @@ namespace PeParser
 
             public class IMAGE_EXPORT_DIRECTORY
             {
-                public UInt32 Characteristics;
-                public UInt32 TimeDateStamp;
-                public ushort MajorVersion;
-                public ushort MinorVersion;
-                public UInt32 Name;
-                public UInt32 Base;
-                public UInt32 NumberOfFuncions;
-                public UInt32 NumberOfNames;
-                public UInt32 AddressOfFunctions;
-                public UInt32 AddressOfNames;
-                public UInt32 AddressOfNameOrdinals;
+                public UInt32 Characteristics { get; set; }
+                public UInt32 TimeDateStamp { get; set; }
+                public ushort MajorVersion { get; set; }
+                public ushort MinorVersion { get; set; }
+                public UInt32 Name { get; set; }
+                public UInt32 Base { get; set; }
+                public UInt32 NumberOfFuncions { get; set; }
+                public UInt32 NumberOfNames { get; set; }
+                public UInt32 AddressOfFunctions { get; set; }
+                public UInt32 AddressOfNames { get; set; }
+                public UInt32 AddressOfNameOrdinals { get; set; }
+
+                public override string ToString()
+                {
+                    var sb = new StringBuilder("IMAGE_EXPORT_DIRECTORY\n");
+                    sb.Append(ToStringReflection(this));
+                    return sb.ToString();
+                }
             }
 
             public class ExportFunction
@@ -327,18 +424,32 @@ namespace PeParser
                     Name = name;
                     Ordinal = ordinal;
                 }
+
+                public override string ToString()
+                {
+                    var sb = new StringBuilder("Export Function\n");
+                    sb.Append(ToStringReflection(this));
+                    return sb.ToString();
+                }
             }
 
             public class IMAGE_IMPORT_DESCRIPTOR
             {
-                public UInt32 OriginalFirstThunk;
-                public UInt32 TimeDataStamp;
-                public UInt32 ForwarderChain;
-                public UInt32 Name;
-                public UInt32 FirstThunk;
+                public UInt32 OriginalFirstThunk { get; set; }
+                public UInt32 TimeDataStamp { get; set; }
+                public UInt32 ForwarderChain { get; set; }
+                public UInt32 Name { get; set; }
+                public UInt32 FirstThunk { get; set; }
 
-                public IMAGE_THUNK_DATA32 ImageThunkData32;
-                public String NameResolved;
+                public IMAGE_THUNK_DATA32 ImageThunkData32 { get; set; }
+                public String NameResolved { get; set; }
+
+                public override string ToString()
+                {
+                    var sb = new StringBuilder("IMAGE_IMPORT_DESCRIPTOR\n");
+                    sb.Append(ToStringReflection(this));
+                    return sb.ToString();
+                }
             }
 
             public class IMAGE_THUNK_DATA32
@@ -370,12 +481,34 @@ namespace PeParser
                 }
 
                 public DATADIRECTORIES.IMAGE_IMPORT_BY_NAME[] ImageImportByName;
+
+                public override string ToString()
+                {
+                    var sb = new StringBuilder("IMAGE_THUNK_DATA32\n");
+                    sb.Append(ToStringReflection(this));
+
+                    if(ImageImportByName != null)
+                    {
+                        sb.Append("Image Imports By Name\n");
+                        foreach (var i in ImageImportByName)
+                            sb.Append(i.ToString());
+                    }
+                    
+                    return sb.ToString();
+                }
             }
 
             public class IMAGE_IMPORT_BY_NAME
             {
-                public UInt16 Hint;
-                public String Name;
+                public UInt16 Hint { get; set; }
+                public String Name { get; set; }
+
+                public override string ToString()
+                {
+                    var sb = new StringBuilder("IMAGE_IMPORT_BY_NAME\n");
+                    sb.Append(ToStringReflection(this));
+                    return sb.ToString();
+                }
             }
         }
 
@@ -386,16 +519,29 @@ namespace PeParser
             /// </summary>
             public class SECTIONHEADER
             {
-                public byte[] SectionHeaderName; // 8 bytes
-                public UInt32 VirtualSize;
-                public UInt32 VirutalAddress;
-                public UInt32 SizeOfRawData;
-                public UInt32 PointerToRawData;
-                public UInt32 PointerToRelocations;
-                public UInt32 PointerToLineNumbers;
-                public UInt32 NumberOfRelocations;
-                public UInt32 NumberofLineNumbers;
-                public UInt32 SectionFlags;
+                public byte[] SectionHeaderName { get; set; } // 8 bytes
+                public UInt32 VirtualSize { get; set; }
+                public UInt32 VirutalAddress { get; set; }
+                public UInt32 SizeOfRawData { get; set; }
+                public UInt32 PointerToRawData { get; set; }
+                public UInt32 PointerToRelocations { get; set; }
+                public UInt32 PointerToLineNumbers { get; set; }
+                public UInt32 NumberOfRelocations { get; set; }
+                public UInt32 NumberofLineNumbers { get; set; }
+                public UInt32 SectionFlags { get; set; }
+
+                public override string ToString()
+                {
+                    var sb = new StringBuilder("Section Header\n");
+                    sb.Append(ToStringReflection(this));
+                    sb.Append("Resolved SectionFlags\n");
+                    var sf = ResolveSectionFlags(SectionFlags);
+                    foreach(var f in sf)
+                    {
+                        sb.AppendFormat(_tableFormat, "Flag", f.ToString());
+                    }
+                    return sb.ToString();
+                }
             }
 
             public SECTIONHEADER[] SectionHeaders
@@ -464,6 +610,19 @@ namespace PeParser
                 }
                 return st;
             }
+
+            public override string ToString()
+            {
+                var sb = new StringBuilder("Section Table\n");
+                sb.Append(ToStringReflection(this));
+                if(SectionHeaders != null)
+                {
+                    foreach (var s in SectionHeaders)
+                        sb.Append(s.ToString());
+                }
+
+                return sb.ToString();
+            }
         }
 
         public MSDOSHEADER MSDOSHeader
@@ -511,7 +670,7 @@ namespace PeParser
         /// <summary>
         /// Checks if the file starts with the "MZ" header.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if file starts with "MZ", else false.</returns>
         private bool IsPeFile()
         {
             if (MSDOSHeader.MZ == 0x5a4d)
