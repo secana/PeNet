@@ -49,6 +49,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PeNet2\PeNet2.csproj">
+      <Project>{fe67c8a3-b4b2-4429-a5ba-379580eee90c}</Project>
+      <Name>PeNet2</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PeNet\PeNet.csproj">
       <Project>{2e72ce9d-968b-485a-85af-ad865203abfa}</Project>
       <Name>PeNet</Name>

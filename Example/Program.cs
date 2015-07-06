@@ -1,4 +1,5 @@
-﻿using PeParser;
+﻿using PeNet2;
+using PeParser;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,10 +13,10 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            var peHeader = new PEHeader(@"C:\Windows\System32\kernel32.dll");
+            var peHeader = new PeFile(@"C:\Windows\System32\kernel32.dll");
 
-            File.WriteAllText("peheader.txt", peHeader.ToString());
-           
+            Console.WriteLine(peHeader.ImageDosHeader.ToString());
+            Console.WriteLine(peHeader.ImageNtHeaders.ToString());
             Console.ReadLine();
         }
     }
