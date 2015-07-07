@@ -9,7 +9,7 @@ namespace PeNet2
     public class IMAGE_IMPORT_BY_NAME
     {
         private byte[] _buff;
-        private UInt32 _offset;
+        private UInt64 _offset;
 
         public UInt16 Hint
         {
@@ -22,7 +22,7 @@ namespace PeNet2
             get { return Utility.GetName(_offset + 0x2, _buff); }
         }
 
-        public IMAGE_IMPORT_BY_NAME(byte[] buff, UInt32 offset)
+        public IMAGE_IMPORT_BY_NAME(byte[] buff, UInt64 offset)
         {
             _offset = offset;
             _buff = buff;

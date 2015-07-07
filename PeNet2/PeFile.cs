@@ -45,17 +45,26 @@ namespace PeNet2
         public ExportFunction[] ExportedFunctions { get; private set; }
         public ImportFunction[] ImportedFunctions { get; private set; }
 
+        public bool Is64Bit { get; private set; }
+        public bool Is32Bit { get { return !Is64Bit; } }
+
         public PeFile(string peFile)
         {
             var buff = File.ReadAllBytes(peFile);
+            UInt32 secHeaderOffset = 0;
 
             ImageDosHeader = new IMAGE_DOS_HEADER(buff);
-            ImageNtHeaders = new IMAGE_NT_HEADERS(buff, ImageDosHeader.e_lfanew);
+            // Check if the PE file is 64 bit.
+            Is64Bit = (Utility.BytesToUInt16(buff, ImageDosHeader.e_lfanew + 0x4) == 0x8664) ? true :false;
+
+            secHeaderOffset = (UInt32)(Is64Bit ? 0x108 : 0xF8);
+
+            ImageNtHeaders = new IMAGE_NT_HEADERS(buff, ImageDosHeader.e_lfanew, Is64Bit);
 
             ImageSectionHeaders = ParseImageSectionHeaders(
                 buff, 
-                ImageNtHeaders.FileHeader.NumberOfSections, 
-                ImageDosHeader.e_lfanew + 0xF8
+                ImageNtHeaders.FileHeader.NumberOfSections,
+                ImageDosHeader.e_lfanew + secHeaderOffset
                 );
             
             if (ImageNtHeaders.OptionalHeader.DataDirectory[0].VirtualAddress != 0)
@@ -96,17 +105,17 @@ namespace PeNet2
         private ImportFunction[] ParseImportedFunctions(byte[] buff, IMAGE_IMPORT_DESCRIPTOR[] idescs, IMAGE_SECTION_HEADER[] sh)
         {
             var impFuncs = new List<ImportFunction>();
-            UInt32 sizeOfThunk = 0x4; // Size of IMAGE_THUNK_DATA
+            UInt32 sizeOfThunk = (UInt32) (Is64Bit ? 0x8 : 0x4); // Size of IMAGE_THUNK_DATA
 
             foreach(var idesc in idescs)
             {
                 var dllAdr = Utility.RVAtoFileMapping(idesc.Name, sh);
                 var dll = Utility.GetName(dllAdr, buff);
-                var thunkAdr = Utility.RVAtoFileMapping(idesc.FirstThunk, sh);
+                var thunkAdr = Utility.RVAtoFileMapping(idesc.OriginalFirstThunk, sh);
                 UInt32 round = 0;
                 while(true)
                 {
-                    var t = new IMAGE_THUNK_DATA(buff, thunkAdr + round * sizeOfThunk);
+                    var t = new IMAGE_THUNK_DATA(buff, thunkAdr + round * sizeOfThunk, Is64Bit);
                     
                     if (t.AddressOfData == 0)
                         break;

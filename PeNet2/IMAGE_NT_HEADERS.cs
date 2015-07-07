@@ -10,6 +10,7 @@ namespace PeNet2
     {
         UInt32 _offset;
         byte[] _buff;
+        bool _is64Bit;
 
         public UInt32 Signature
         {
@@ -26,12 +27,13 @@ namespace PeNet2
         public readonly IMAGE_FILE_HEADER FileHeader;
         public readonly IMAGE_OPTIONAL_HEADER OptionalHeader;
         
-        public IMAGE_NT_HEADERS(byte[] buff, UInt32 offset)
+        public IMAGE_NT_HEADERS(byte[] buff, UInt32 offset, bool is64Bit)
         {
             _offset = offset;
             _buff = buff;
+            _is64Bit = is64Bit;
             FileHeader = new IMAGE_FILE_HEADER(buff, offset + 0x4);
-            OptionalHeader = new IMAGE_OPTIONAL_HEADER(buff, offset + 0x18);
+            OptionalHeader = new IMAGE_OPTIONAL_HEADER(buff, offset + 0x18, _is64Bit);
         }
 
         public override string ToString()

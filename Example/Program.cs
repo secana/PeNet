@@ -13,7 +13,7 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            var peHeader = new PeFile(@"C:\Windows\System32\kernel32.dll");
+            var peHeader = new PeFile(@"C:\Users\stefan.hausotte@gdata.de\Documents\tmp\kernel32.dll");
 
             Console.WriteLine(peHeader.ImageDosHeader.ToString());
             Console.WriteLine(peHeader.ImageNtHeaders.ToString());
