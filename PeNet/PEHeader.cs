@@ -831,6 +831,7 @@ namespace PeParser
                     ib.Append(imp[i]);
             }
             imports = ib.ToString();
+            System.IO.File.WriteAllLines("OldIH.txt", imp);
 
             var md5 = System.Security.Cryptography.MD5.Create();
             var inputBytes = System.Text.Encoding.ASCII.GetBytes(imports);

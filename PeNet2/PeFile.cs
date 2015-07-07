@@ -37,6 +37,7 @@ namespace PeNet2
             }
         }
 
+
         public IMAGE_DOS_HEADER ImageDosHeader { get; private set; }
         public IMAGE_NT_HEADERS ImageNtHeaders { get; private set; }
         public IMAGE_SECTION_HEADER[] ImageSectionHeaders { get; private set; }
@@ -48,38 +49,37 @@ namespace PeNet2
         public bool Is64Bit { get; private set; }
         public bool Is32Bit { get { return !Is64Bit; } }
 
-        public PeFile(string peFile)
+        public PeFile(byte [] buff)
         {
-            var buff = File.ReadAllBytes(peFile);
             UInt32 secHeaderOffset = 0;
 
             ImageDosHeader = new IMAGE_DOS_HEADER(buff);
             // Check if the PE file is 64 bit.
-            Is64Bit = (Utility.BytesToUInt16(buff, ImageDosHeader.e_lfanew + 0x4) == 0x8664) ? true :false;
+            Is64Bit = (Utility.BytesToUInt16(buff, ImageDosHeader.e_lfanew + 0x4) == 0x8664) ? true : false;
 
             secHeaderOffset = (UInt32)(Is64Bit ? 0x108 : 0xF8);
 
             ImageNtHeaders = new IMAGE_NT_HEADERS(buff, ImageDosHeader.e_lfanew, Is64Bit);
 
             ImageSectionHeaders = ParseImageSectionHeaders(
-                buff, 
+                buff,
                 ImageNtHeaders.FileHeader.NumberOfSections,
                 ImageDosHeader.e_lfanew + secHeaderOffset
                 );
-            
+
             if (ImageNtHeaders.OptionalHeader.DataDirectory[0].VirtualAddress != 0)
             {
                 try
                 {
                     ImageExportDirectory = new IMAGE_EXPORT_DIRECTORY(
-                        buff, 
-                        Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[0].VirtualAddress, 
+                        buff,
+                        Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[0].VirtualAddress,
                         ImageSectionHeaders)
                         );
 
                     ExportedFunctions = ParseExportedFunctions(
-                        buff, 
-                        ImageExportDirectory, 
+                        buff,
+                        ImageExportDirectory,
                         ImageSectionHeaders
                         );
                 }
@@ -89,11 +89,11 @@ namespace PeNet2
                 }
             }
 
-            if(ImageNtHeaders.OptionalHeader.DataDirectory[1].VirtualAddress != 0)
+            if (ImageNtHeaders.OptionalHeader.DataDirectory[1].VirtualAddress != 0)
             {
                 ImageImportDescriptors = ParseImportDescriptors(
-                    buff, 
-                    Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[1].VirtualAddress, ImageSectionHeaders), 
+                    buff,
+                    Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[1].VirtualAddress, ImageSectionHeaders),
                     ImageSectionHeaders
                     );
 
@@ -101,11 +101,16 @@ namespace PeNet2
             }
         }
 
+        public PeFile(string peFile)
+            : this(File.ReadAllBytes(peFile)) { }
+
         
         private ImportFunction[] ParseImportedFunctions(byte[] buff, IMAGE_IMPORT_DESCRIPTOR[] idescs, IMAGE_SECTION_HEADER[] sh)
         {
             var impFuncs = new List<ImportFunction>();
             UInt32 sizeOfThunk = (UInt32) (Is64Bit ? 0x8 : 0x4); // Size of IMAGE_THUNK_DATA
+            UInt64 ordinalBit = (UInt64)(Is64Bit ? 0x8000000000000000 : 0x80000000);
+            UInt64 ordinalMask = (UInt64)(Is64Bit ? 0x7FFFFFFFFFFFFFFF : 0x7FFFFFFF);
 
             foreach(var idesc in idescs)
             {
@@ -116,13 +121,25 @@ namespace PeNet2
                 while(true)
                 {
                     var t = new IMAGE_THUNK_DATA(buff, thunkAdr + round * sizeOfThunk, Is64Bit);
-                    
+
                     if (t.AddressOfData == 0)
                         break;
+                    
+                    // Check if import by name or by ordinal.
+                    // If it is an import by ordinal, the most significant bit of "Ordinal" is "1" and the ordinal can
+                    // be extracted from the least significant bits.
+                    // Else it is an import by name and the link to the IMAGE_IMPORT_BY_NAME has to be followed
+                    
+                    if((t.Ordinal & ordinalBit) == ordinalBit) // Import by ordinal
+                    {
+                        impFuncs.Add(new ImportFunction(null, dll, (UInt16)(t.Ordinal & ordinalMask))); 
+                    }
+                    else // Import by name
+                    {
+                        var ibn = new IMAGE_IMPORT_BY_NAME(buff, Utility.RVAtoFileMapping(t.AddressOfData, sh));
+                        impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint));
+                    }
 
-                    var ibn = new IMAGE_IMPORT_BY_NAME(buff, Utility.RVAtoFileMapping(t.AddressOfData, sh));
-
-                    impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint));
                     round++;
                 }
             }
@@ -192,6 +209,75 @@ namespace PeNet2
             }
 
             return sh;
+        }
+
+        /// <summary>
+        /// Mandiant’s imphash convention requires the following:
+        /// Resolving ordinals to function names when they appear.
+        /// Converting both DLL names and function names to all lowercase.
+        /// Removing the file extensions from imported module names.
+        /// Building and storing the lowercased strings in an ordered list.
+        /// Generating the MD5 hash of the ordered list.
+        /// 
+        /// oleaut32, ws2_32 and wsock32 can resolve ordinals to functions names.
+        /// The implementation is equal to the python module "pefile" 1.2.10-139
+        /// https://code.google.com/p/pefile/
+        /// </summary>
+        /// <returns>The ImpHash of the PE file.</returns>
+        public string GetImpHash()
+        {
+            if (ImportedFunctions == null || ImportedFunctions.Length == 0)
+                return null;
+
+            var list = new List<string>();
+            foreach(var impFunc in ImportedFunctions)
+            {
+                var tmp = impFunc.DLL.Split('.')[0];
+                tmp += ".";
+                if(impFunc.Name == null) // Import by ordinal
+                {
+                    if (impFunc.DLL == "oleaut32.dll")
+                    {
+                        tmp += OrdinalSymbolMapping.Lookup(OrdinalSymbolMapping.Modul.oleaut32, impFunc.Hint);
+                    }
+                    else if (impFunc.DLL == "ws2_32.dll")
+                    {
+                        tmp += OrdinalSymbolMapping.Lookup(OrdinalSymbolMapping.Modul.ws2_32, impFunc.Hint);
+                    }
+                    else if (impFunc.DLL == "wsock32.dll")
+                    {
+                        tmp += OrdinalSymbolMapping.Lookup(OrdinalSymbolMapping.Modul.wsock32, impFunc.Hint);
+                    }
+                    else // cannot resolve ordinal to a function name
+                    {
+                        tmp += "ord";
+                        tmp += impFunc.Hint.ToString();
+                    }
+                }
+                else // Import by name
+                {
+                    tmp += impFunc.Name;
+                }
+
+                list.Add(tmp.ToLower());
+            }
+
+            //list = list.OrderBy(n => n).ToList();
+
+            // Concatenate all imports to one string separated by ','.
+            var imports = string.Join(",", list);
+            File.WriteAllLines("newIH.txt", list);
+            
+
+            var md5 = System.Security.Cryptography.MD5.Create();
+            var inputBytes = System.Text.Encoding.ASCII.GetBytes(imports);
+            var hash = md5.ComputeHash(inputBytes);
+            var sb = new StringBuilder();
+            for(int i = 0; i<hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("x2"));
+            }
+            return sb.ToString();
         }
     }
 }
