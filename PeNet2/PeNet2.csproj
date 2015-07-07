@@ -43,9 +43,12 @@
     <Compile Include="IMAGE_DOS_HEADER.cs" />
     <Compile Include="IMAGE_EXPORT_DIRECTORY.cs" />
     <Compile Include="IMAGE_FILE_HEADER.cs" />
+    <Compile Include="IMAGE_IMPORT_BY_NAME.cs" />
+    <Compile Include="IMAGE_IMPORT_DESCRIPTOR.cs" />
     <Compile Include="IMAGE_NT_HEADERS.cs" />
     <Compile Include="IMAGE_OPTIONAL_HEADER.cs" />
     <Compile Include="IMAGE_SECTION_HEADER.cs" />
+    <Compile Include="IMAGE_THUNK_DATA.cs" />
     <Compile Include="PeFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility.cs" />

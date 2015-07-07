@@ -17,7 +17,6 @@ namespace Example
 
             Console.WriteLine(peHeader.ImageDosHeader.ToString());
             Console.WriteLine(peHeader.ImageNtHeaders.ToString());
-            Console.ReadLine();
         }
     }
 }
