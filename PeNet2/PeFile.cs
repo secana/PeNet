@@ -55,7 +55,7 @@ namespace PeNet
 
             ImageDosHeader = new IMAGE_DOS_HEADER(buff);
             // Check if the PE file is 64 bit.
-            Is64Bit = (Utility.BytesToUInt16(buff, ImageDosHeader.e_lfanew + 0x4) == 0x8664) ? true : false;
+            Is64Bit = (Utility.BytesToUInt16(buff, ImageDosHeader.e_lfanew + 0x4) == Constants.IMAGE_FILE_MACHINE_AMD64) ? true : false;
 
             secHeaderOffset = (UInt32)(Is64Bit ? 0x108 : 0xF8);
 

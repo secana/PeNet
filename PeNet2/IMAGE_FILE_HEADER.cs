@@ -11,6 +11,11 @@ namespace PeNet
         private UInt32 _offset;
         private byte[] _buff;
 
+        /// <summary>
+        /// I386: 0x014c
+        /// ARMv7: 0x1c4
+        /// AMD64: 0x8664
+        /// </summary>
         public UInt16 Machine
         {
             get

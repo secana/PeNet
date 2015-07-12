@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PeNet</RootNamespace>
-    <AssemblyName>PeNet2</AssemblyName>
+    <AssemblyName>PeNet</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="IMAGE_DATA_DIRECTORY.cs" />
     <Compile Include="IMAGE_DOS_HEADER.cs" />
     <Compile Include="IMAGE_EXPORT_DIRECTORY.cs" />
