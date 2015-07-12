@@ -7,7 +7,7 @@
     <ProjectGuid>{FE67C8A3-B4B2-4429-A5BA-379580EEE90C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PeNet2</RootNamespace>
+    <RootNamespace>PeNet</RootNamespace>
     <AssemblyName>PeNet2</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

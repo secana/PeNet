@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PeNet2
+namespace PeNet
 {
     public class PeFile
     {

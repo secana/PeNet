@@ -1,5 +1,4 @@
-﻿using PeParser;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,11 +11,9 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            var peHeader = new PeNet2.PeFile(@"C:\Windows\System32\oleaut32.dll");
-            var peOld = new PeParser.PEHeader(@"C:\Windows\System32\oleaut32.dll");
+            var peHeader = new PeNet.PeFile(@"C:\Windows\System32\oleaut32.dll");
 
-            Console.WriteLine("Old Hash:{0}", peOld.GetImpHash());
-            Console.WriteLine("New Hash:{0}", peHeader.GetImpHash());
+            Console.WriteLine("Import Hash:{0}", peHeader.GetImpHash());
             Console.ReadKey();
         }
     }
