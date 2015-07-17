@@ -212,6 +212,26 @@ namespace PeNet
         }
 
         /// <summary>
+        /// Tries to parse the PE file. If no exceptions are thrown, true
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns>True if the file could be parsed as a PE file, else false.</returns>
+        public static bool IsValidPEFile(string file)
+        {
+            PeNet.PeFile pe = null;
+            try
+            {
+                pe = new PeNet.PeFile(file);
+            }
+            catch
+            {
+                return false;
+            }
+
+            return (pe.ImageDosHeader.e_magic == 0x5a4d) ? true : false;
+        }
+
+        /// <summary>
         /// Mandiant’s imphash convention requires the following:
         /// Resolving ordinals to function names when they appear.
         /// Converting both DLL names and function names to all lowercase.
