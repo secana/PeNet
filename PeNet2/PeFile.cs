@@ -232,6 +232,44 @@ namespace PeNet
         }
 
         /// <summary>
+        /// Returns if the PE file is a EXE, DLL and which architecture
+        /// is used (32/64).
+        /// Architectures: "I386", "AMD64", "UNKNOWN"
+        /// DllOrExe: "DLL", "EXE", "UNKNOWN"
+        /// </summary>
+        /// <returns>
+        /// A string "architecture_dllOrExe".
+        /// E.g. "AMD64_DLL"
+        /// </returns>
+        public String GetFileType()
+        {
+            string fileType;
+
+            switch(ImageNtHeaders.FileHeader.Machine)
+            {
+                case Constants.IMAGE_FILE_MACHINE_I386:
+                    fileType = "I386";
+                    break;
+                case Constants.IMAGE_FILE_MACHINE_AMD64:
+                    fileType = "AMD64";
+                    break;
+                default:
+                    fileType = "UNKNOWN";
+                    break;
+            }
+
+            if ((ImageNtHeaders.FileHeader.Characteristics & Constants.IMAGE_FILE_DLL) != 0)
+                fileType += "_DLL";
+            else if ((ImageNtHeaders.FileHeader.Characteristics & Constants.IMAGE_FILE_EXECUTABLE_IMAGE) != 0)
+                fileType += "_EXE";
+            else
+                fileType += "_UNKNOWN";
+
+
+            return fileType;
+        }
+
+        /// <summary>
         /// Mandiant’s imphash convention requires the following:
         /// Resolving ordinals to function names when they appear.
         /// Converting both DLL names and function names to all lowercase.
