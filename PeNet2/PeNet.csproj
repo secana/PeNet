@@ -48,6 +48,8 @@
     <Compile Include="IMAGE_IMPORT_DESCRIPTOR.cs" />
     <Compile Include="IMAGE_NT_HEADERS.cs" />
     <Compile Include="IMAGE_OPTIONAL_HEADER.cs" />
+    <Compile Include="IMAGE_RESOURCE_DIRECTORY.cs" />
+    <Compile Include="IMAGE_RESOURCE_DIRECTORY_ENTRY.cs" />
     <Compile Include="IMAGE_SECTION_HEADER.cs" />
     <Compile Include="IMAGE_THUNK_DATA.cs" />
     <Compile Include="OrdinalSymbolMapping.cs" />
