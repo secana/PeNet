@@ -320,12 +320,8 @@ namespace PeNet
                 list.Add(tmp.ToLower());
             }
 
-            //list = list.OrderBy(n => n).ToList();
-
             // Concatenate all imports to one string separated by ','.
             var imports = string.Join(",", list);
-            File.WriteAllLines("newIH.txt", list);
-            
 
             var md5 = System.Security.Cryptography.MD5.Create();
             var inputBytes = System.Text.Encoding.ASCII.GetBytes(imports);
