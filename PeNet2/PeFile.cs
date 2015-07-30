@@ -45,6 +45,7 @@ namespace PeNet
         public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors { get; private set; }
         public ExportFunction[] ExportedFunctions { get; private set; }
         public ImportFunction[] ImportedFunctions { get; private set; }
+        public IMAGE_RESOURCE_DIRECTORY[] ImageResourceDirectory { get; private set; }
 
         public bool Is64Bit { get; private set; }
         public bool Is32Bit { get { return !Is64Bit; } }
@@ -67,7 +68,7 @@ namespace PeNet
                 ImageDosHeader.e_lfanew + secHeaderOffset
                 );
 
-            if (ImageNtHeaders.OptionalHeader.DataDirectory[0].VirtualAddress != 0)
+            if (ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Export].VirtualAddress != 0)
             {
                 try
                 {
@@ -93,11 +94,21 @@ namespace PeNet
             {
                 ImageImportDescriptors = ParseImportDescriptors(
                     buff,
-                    Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[1].VirtualAddress, ImageSectionHeaders),
+                    Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Import].VirtualAddress, ImageSectionHeaders),
                     ImageSectionHeaders
                     );
 
                 ImportedFunctions = ParseImportedFunctions(buff, ImageImportDescriptors, ImageSectionHeaders);
+            }
+
+            // Parse the resource directory.
+            if(ImageNtHeaders.OptionalHeader.DataDirectory[2].VirtualAddress != 0)
+            {
+                ImageResourceDirectory = ParseImageResourceDirectory(
+                    buff,
+                    Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Resource].VirtualAddress, ImageSectionHeaders),
+                    ImageSectionHeaders
+                    );
             }
         }
 
@@ -209,6 +220,36 @@ namespace PeNet
             }
 
             return sh;
+        }
+
+        /// <summary>
+        /// http://www.brokenthorn.com/Resources/OSDevPE.html
+        /// </summary>
+        /// <param name="buff">Byte buffer with the whole binary.</param>
+        /// <param name="offsetFirstRescDir">Offset to the first resource directory (= DataDirectory[2].VirtualAddress)</param>
+        /// <param name="sh">Image section headers of the binary.</param>
+        /// <returns>List with resource directories.</returns>
+        private IMAGE_RESOURCE_DIRECTORY[] ParseImageResourceDirectory(byte[] buff, UInt32 offsetFirstRescDir, IMAGE_SECTION_HEADER[] sh)
+        {
+            var sizeOfEntry = 0x8;
+            var sizeOfRescDir = 0x10;
+            var rescDirs = new List<IMAGE_RESOURCE_DIRECTORY>();
+            var firstDir = new IMAGE_RESOURCE_DIRECTORY(buff, offsetFirstRescDir);
+
+            var numOfDirs = firstDir.NumberOfIdEntries + firstDir.NumberOfNameEntries;
+
+            // Loop through the entire directory
+            for(int i = 0; i < numOfDirs; i++)
+            {
+                var entry = new IMAGE_RESOURCE_DIRECTORY_ENTRY(buff, (UInt32)(offsetFirstRescDir + sizeOfRescDir + i * sizeOfEntry));
+                if(entry.DataIsDirectory)
+                {
+                    var tmpResc = new IMAGE_RESOURCE_DIRECTORY(buff, offsetFirstRescDir + entry.OffsetToDirectory);
+                    rescDirs.Add(tmpResc);
+                }
+            }
+
+            return rescDirs.ToArray();
         }
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            var peHeader = new PeNet.PeFile(@"C:\Windows\System32\oleaut32.dll");
+            var peHeader = new PeNet.PeFile(@"C:\Windows\System32\calc.exe");
 
             Console.WriteLine("Import Hash:{0}", peHeader.GetImpHash());
             Console.ReadKey();

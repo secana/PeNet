@@ -88,5 +88,57 @@ namespace PeNet
         public const UInt32 IMAGE_SCN_MEM_WRITE                 = 0x80000000;
 
 
+        //////////////////////////////////
+        // IMAGE_RESOURCE_DIRECTORY_ENTRY
+        //////////////////////////////////
+
+        // Group IDs
+        public enum ResourceGroupIDs : ushort
+        {
+            Cursor = 1,
+            Bitmap = 2,
+            Icon = 3,
+            Menu = 4,
+            Dialog = 5,
+            String = 6,
+            FontDirectory = 7,
+            Fonst = 8,
+            Accelerator = 9,
+            RcData = 10,
+            MessageTable = 11,
+            Version = 16,
+            DlgInclude = 17,
+            PlugAndPlay = 19,
+            VXD = 20,
+            AnimatedCurser = 21,
+            AnimatedIcon = 22,
+            HTML = 23,
+            Manifest = 24
+        }
+
+        ////////////////////////
+        // IMAGE_DATA_DIRECTORY
+        ////////////////////////
+
+        // Different data directories indices
+        public enum DataDirectoryIndex : int
+        {
+            Export = 0,     // Export directory
+            Import = 1,     // Import directory
+            Resource = 2,   // Resource directory
+            Exception = 3,
+            Security = 4,
+            BaseReloc = 5,
+            Debug = 6,
+            Copyright = 7,  // Useless
+            Globalptr = 8,  // Only interesting for Itanium systems
+            TLS = 9,
+            LoadConfig = 0xA,
+            BoundImport = 0xB,
+            IAT = 0xC,
+            DelayImport = 0xD,
+            COM_Descriptor = 0xE, // .Net Header
+            Reserved = 0xF
+        }
     }
 }
