@@ -21,6 +21,13 @@ namespace PeNet
                 Address = address;
                 Ordinal = ordinal;
             }
+
+            public override string ToString()
+            {
+                var sb = new StringBuilder("ExportFunction\n");
+                sb.Append(Utility.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
+                return sb.ToString();
+            }
         }
 
         public class ImportFunction
@@ -46,13 +53,16 @@ namespace PeNet
         public ExportFunction[] ExportedFunctions { get; private set; }
         public ImportFunction[] ImportedFunctions { get; private set; }
         public IMAGE_RESOURCE_DIRECTORY[] ImageResourceDirectory { get; private set; }
+        public RUNTIME_FUNCTION[] RuntimeFunctions { get; private set; }
 
         public bool Is64Bit { get; private set; }
         public bool Is32Bit { get { return !Is64Bit; } }
+        private byte[] _buff;
 
         public PeFile(byte [] buff)
         {
             UInt32 secHeaderOffset = 0;
+            _buff = buff;
 
             ImageDosHeader = new IMAGE_DOS_HEADER(buff);
             // Check if the PE file is 64 bit.
@@ -110,12 +120,28 @@ namespace PeNet
                     ImageSectionHeaders
                     );
             }
+
+            // Parse x64 Exception directory
+            if(Is64Bit)
+            {
+                RuntimeFunctions = PareseExceptionDirectory(
+                    buff,
+                    Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[(UInt32)Constants.DataDirectoryIndex.Exception].VirtualAddress, ImageSectionHeaders),
+                    ImageNtHeaders.OptionalHeader.DataDirectory[(UInt32)Constants.DataDirectoryIndex.Exception].Size,
+                    ImageSectionHeaders
+                    );
+            }
         }
 
         public PeFile(string peFile)
             : this(File.ReadAllBytes(peFile)) { }
 
-        
+        public UNWIND_INFO GetUnwindInfo(RUNTIME_FUNCTION runtimeFunction)
+        {
+            var uw = new UNWIND_INFO(_buff, Utility.RVAtoFileMapping(runtimeFunction.UnwindInfo, ImageSectionHeaders));
+            return uw;
+        }
+
         private ImportFunction[] ParseImportedFunctions(byte[] buff, IMAGE_IMPORT_DESCRIPTOR[] idescs, IMAGE_SECTION_HEADER[] sh)
         {
             var impFuncs = new List<ImportFunction>();
@@ -250,6 +276,19 @@ namespace PeNet
             }
 
             return rescDirs.ToArray();
+        }
+
+        private RUNTIME_FUNCTION[] PareseExceptionDirectory(byte[] buff, UInt32 offset, UInt32 size, IMAGE_SECTION_HEADER[] sh)
+        {
+            var sizeOfRuntimeFunction = 0xC;
+            var rf = new RUNTIME_FUNCTION[size / sizeOfRuntimeFunction];
+           
+            for(int i = 0; i < rf.Count(); i++)
+            {
+                rf[i] = new RUNTIME_FUNCTION(buff, (UInt32) (offset + i * sizeOfRuntimeFunction));
+            }
+
+            return rf;
         }
 
         /// <summary>

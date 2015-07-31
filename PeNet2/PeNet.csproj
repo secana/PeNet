@@ -55,6 +55,9 @@
     <Compile Include="OrdinalSymbolMapping.cs" />
     <Compile Include="PeFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RUNTIME_FUNCTION.cs" />
+    <Compile Include="UNWIND_CODE.cs" />
+    <Compile Include="UNWIND_INFO.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
