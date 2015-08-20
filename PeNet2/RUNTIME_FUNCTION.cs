@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PeNet
 {
     public class RUNTIME_FUNCTION
     {
-        private byte[] _buff;
-        private UInt32 _offset;
+        byte[] _buff;
+        UInt32 _offset;
 
         public UInt32 FunctionStart
         {
@@ -38,7 +35,7 @@ namespace PeNet
         public override string ToString()
         {
             var sb = new StringBuilder("RUNTIME_FUNCTION\n");
-            sb.Append(Utility.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
+            sb.Append(Utility.PropertiesToString(this, "{0,-20}:\t{1,10:X}\n"));
             return sb.ToString();
         }
     }

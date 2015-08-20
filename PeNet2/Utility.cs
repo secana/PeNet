@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PeNet
 {
@@ -234,7 +233,7 @@ namespace PeNet
             return st;
         }
 
-        private static ushort BytesToUInt16(byte b1, byte b2)
+        static ushort BytesToUInt16(byte b1, byte b2)
         {
             return BitConverter.ToUInt16(new byte[2] { b1, b2 }, 0);
         }
@@ -244,7 +243,7 @@ namespace PeNet
             return BytesToUInt16(buff[i], buff[i + 1]);
         }
 
-        private static UInt32 BytesToUInt32(byte b1, byte b2, byte b3, byte b4)
+        static UInt32 BytesToUInt32(byte b1, byte b2, byte b3, byte b4)
         {
             return BitConverter.ToUInt32(new byte[4] { b1, b2, b3, b4 }, 0);
         }
@@ -252,9 +251,9 @@ namespace PeNet
         public static UInt32 BytesToUInt32(byte[] buff, UInt32 i)
         {
             return BytesToUInt32(buff[i], buff[i + 1], buff[i + 2], buff[i + 3]);
-        } 
+        }
 
-        private static UInt64 BytesToUInt64(byte b1, byte b2, byte b3, byte b4, byte b5, byte b6, byte b7, byte b8)
+        static UInt64 BytesToUInt64(byte b1, byte b2, byte b3, byte b4, byte b5, byte b6, byte b7, byte b8)
         {
             return BitConverter.ToUInt64(new byte[8] { b1, b2, b3, b4, b5, b6, b7, b8 }, 0);
         }
@@ -264,7 +263,7 @@ namespace PeNet
             return BytesToUInt64(buff[i], buff[i + 1], buff[i + 2], buff[i + 3], buff[i + 4], buff[i + 5], buff[i + 6], buff[i + 7]);
         }
 
-        private static byte[] UInt16ToBytes(UInt16 value)
+        static byte[] UInt16ToBytes(UInt16 value)
         {
             return BitConverter.GetBytes(value);
         }
@@ -276,12 +275,12 @@ namespace PeNet
             buff[offset + 1] = x[1];
         }
 
-        private static byte[] UInt32ToBytes(UInt32 value)
+        static byte[] UInt32ToBytes(UInt32 value)
         {
             return BitConverter.GetBytes(value);
         }
 
-        private static byte[] UInt64ToBytes(UInt64 value)
+        static byte[] UInt64ToBytes(UInt64 value)
         {
             return BitConverter.GetBytes(value);
         }

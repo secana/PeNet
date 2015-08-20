@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PeNet
 {
@@ -33,7 +30,7 @@ namespace PeNet
             return name;
         }
 
-        private static Dictionary<UInt32, string> oleaut32 = new Dictionary<UInt32, string>()
+        static Dictionary<UInt32, string> oleaut32 = new Dictionary<UInt32, string>()
         {
             { 2, "SysAllocString" },
             { 3, "SysReAllocString" },
@@ -435,7 +432,7 @@ namespace PeNet
             { 443, "UnRegisterTypeLibForUser" }
         };
 
-        private static Dictionary<UInt32, string> ws2_32 = new Dictionary<UInt32, string>()
+        static Dictionary<UInt32, string> ws2_32 = new Dictionary<UInt32, string>()
         {
             { 1, "accept" },
             { 2, "bind" },

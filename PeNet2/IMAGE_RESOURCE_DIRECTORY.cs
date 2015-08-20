@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PeNet
 {
     public class IMAGE_RESOURCE_DIRECTORY
     {
-        private UInt32 _offset;
-        private byte[] _buff;
+        UInt32 _offset;
+        byte[] _buff;
 
         public UInt32 Characteristics
         {

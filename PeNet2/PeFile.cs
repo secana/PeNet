@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PeNet
 {
@@ -25,7 +24,7 @@ namespace PeNet
             public override string ToString()
             {
                 var sb = new StringBuilder("ExportFunction\n");
-                sb.Append(Utility.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
+                sb.Append(Utility.PropertiesToString(this, "{0,-20}:\t{1,10:X}\n"));
                 return sb.ToString();
             }
         }
@@ -57,7 +56,7 @@ namespace PeNet
 
         public bool Is64Bit { get; private set; }
         public bool Is32Bit { get { return !Is64Bit; } }
-        private byte[] _buff;
+        byte[] _buff;
 
         public PeFile(byte [] buff)
         {
@@ -66,7 +65,7 @@ namespace PeNet
 
             ImageDosHeader = new IMAGE_DOS_HEADER(buff);
             // Check if the PE file is 64 bit.
-            Is64Bit = (Utility.BytesToUInt16(buff, ImageDosHeader.e_lfanew + 0x4) == Constants.IMAGE_FILE_MACHINE_AMD64) ? true : false;
+            Is64Bit = (Utility.BytesToUInt16(buff, ImageDosHeader.e_lfanew + 0x4) == Constants.IMAGE_FILE_MACHINE_AMD64);
 
             secHeaderOffset = (UInt32)(Is64Bit ? 0x108 : 0xF8);
 
@@ -138,38 +137,51 @@ namespace PeNet
 
         public UNWIND_INFO GetUnwindInfo(RUNTIME_FUNCTION runtimeFunction)
         {
-            var uw = new UNWIND_INFO(_buff, Utility.RVAtoFileMapping(runtimeFunction.UnwindInfo, ImageSectionHeaders));
+            UInt32 uwAddress = 0x00;
+
+            // Check if the last bit is set in the UnwindInfo. If so, it is a chained 
+            // information.
+            if((runtimeFunction.UnwindInfo & 0x1) == 0x1)
+            {
+                uwAddress = runtimeFunction.UnwindInfo & 0xFFFE;
+            }
+            else
+            {
+                uwAddress = runtimeFunction.UnwindInfo;
+            }
+
+            var uw = new UNWIND_INFO(_buff, Utility.RVAtoFileMapping(uwAddress, ImageSectionHeaders));
             return uw;
         }
 
-        private ImportFunction[] ParseImportedFunctions(byte[] buff, IMAGE_IMPORT_DESCRIPTOR[] idescs, IMAGE_SECTION_HEADER[] sh)
+        ImportFunction[] ParseImportedFunctions(byte[] buff, IMAGE_IMPORT_DESCRIPTOR[] idescs, IMAGE_SECTION_HEADER[] sh)
         {
             var impFuncs = new List<ImportFunction>();
-            UInt32 sizeOfThunk = (UInt32) (Is64Bit ? 0x8 : 0x4); // Size of IMAGE_THUNK_DATA
+            UInt32 sizeOfThunk = (UInt32)(Is64Bit ? 0x8 : 0x4); // Size of IMAGE_THUNK_DATA
             UInt64 ordinalBit = (UInt64)(Is64Bit ? 0x8000000000000000 : 0x80000000);
             UInt64 ordinalMask = (UInt64)(Is64Bit ? 0x7FFFFFFFFFFFFFFF : 0x7FFFFFFF);
 
-            foreach(var idesc in idescs)
+            foreach (var idesc in idescs)
             {
                 var dllAdr = Utility.RVAtoFileMapping(idesc.Name, sh);
                 var dll = Utility.GetName(dllAdr, buff);
                 var thunkAdr = Utility.RVAtoFileMapping(idesc.OriginalFirstThunk, sh);
                 UInt32 round = 0;
-                while(true)
+                while (true)
                 {
                     var t = new IMAGE_THUNK_DATA(buff, thunkAdr + round * sizeOfThunk, Is64Bit);
 
                     if (t.AddressOfData == 0)
                         break;
-                    
+
                     // Check if import by name or by ordinal.
                     // If it is an import by ordinal, the most significant bit of "Ordinal" is "1" and the ordinal can
                     // be extracted from the least significant bits.
                     // Else it is an import by name and the link to the IMAGE_IMPORT_BY_NAME has to be followed
-                    
-                    if((t.Ordinal & ordinalBit) == ordinalBit) // Import by ordinal
+
+                    if ((t.Ordinal & ordinalBit) == ordinalBit) // Import by ordinal
                     {
-                        impFuncs.Add(new ImportFunction(null, dll, (UInt16)(t.Ordinal & ordinalMask))); 
+                        impFuncs.Add(new ImportFunction(null, dll, (UInt16)(t.Ordinal & ordinalMask)));
                     }
                     else // Import by name
                     {
@@ -183,20 +195,20 @@ namespace PeNet
 
             return impFuncs.ToArray();
         }
-        
 
-        private IMAGE_IMPORT_DESCRIPTOR[] ParseImportDescriptors(byte[] buff, UInt32 offset, IMAGE_SECTION_HEADER[] sh)
+
+        IMAGE_IMPORT_DESCRIPTOR[] ParseImportDescriptors(byte[] buff, UInt32 offset, IMAGE_SECTION_HEADER[] sh)
         {
             var idescs = new List<IMAGE_IMPORT_DESCRIPTOR>();
             UInt32 idescSize = 20; // Size of IMAGE_IMPORT_DESCRIPTOR (5 * 4 Byte)
             UInt32 round = 0;
 
-            while(true)
+            while (true)
             {
                 var idesc = new IMAGE_IMPORT_DESCRIPTOR(buff, offset + idescSize * round);
-                
+
                 // Found the last IMAGE_IMPORT_DESCRIPTOR which is completely null.
-                if(idesc.OriginalFirstThunk == 0 
+                if (idesc.OriginalFirstThunk == 0
                     && idesc.TimeDateStamp == 0
                     && idesc.ForwarderChain == 0
                     && idesc.Name == 0
@@ -212,7 +224,7 @@ namespace PeNet
             return idescs.ToArray();
         }
 
-        private ExportFunction[] ParseExportedFunctions(byte[] buff, IMAGE_EXPORT_DIRECTORY ed, IMAGE_SECTION_HEADER[] sh)
+        ExportFunction[] ParseExportedFunctions(byte[] buff, IMAGE_EXPORT_DIRECTORY ed, IMAGE_SECTION_HEADER[] sh)
         {
             var expFuncs = new ExportFunction[ed.NumberOfNames];
             var funcOffsetPointer = Utility.RVAtoFileMapping(ed.AddressOfFunctions, sh);
@@ -221,7 +233,7 @@ namespace PeNet
 
             var funcOffset = Utility.BytesToUInt32(buff, funcOffsetPointer);
 
-            for(UInt32 i = 0; i < expFuncs.Length; i++)
+            for (UInt32 i = 0; i < expFuncs.Length; i++)
             {
                 var namePtr = Utility.BytesToUInt32(buff, nameOffsetPointer + sizeof(UInt32) * i);
                 var nameAdr = Utility.RVAtoFileMapping(namePtr, sh);
@@ -230,17 +242,17 @@ namespace PeNet
                 var ordinal = ordinalIndex + ed.Base;
                 var address = Utility.BytesToUInt32(buff, funcOffsetPointer + sizeof(UInt32) * ordinalIndex);
 
-                expFuncs[i] = new ExportFunction(name, address, (UInt16) ordinal);
+                expFuncs[i] = new ExportFunction(name, address, (UInt16)ordinal);
             }
 
             return expFuncs;
         }
 
-        private IMAGE_SECTION_HEADER[] ParseImageSectionHeaders(byte[] buff, UInt16 numOfSections, UInt32 offset)
+        IMAGE_SECTION_HEADER[] ParseImageSectionHeaders(byte[] buff, UInt16 numOfSections, UInt32 offset)
         {
             var sh = new IMAGE_SECTION_HEADER[numOfSections];
             UInt32 secSize = 0x28; // Every section header is 40 bytes in size.
-            for(UInt32 i = 0; i < numOfSections; i++)
+            for (UInt32 i = 0; i < numOfSections; i++)
             {
                 sh[i] = new IMAGE_SECTION_HEADER(buff, offset + i * secSize);
             }
@@ -255,7 +267,7 @@ namespace PeNet
         /// <param name="offsetFirstRescDir">Offset to the first resource directory (= DataDirectory[2].VirtualAddress)</param>
         /// <param name="sh">Image section headers of the binary.</param>
         /// <returns>List with resource directories.</returns>
-        private IMAGE_RESOURCE_DIRECTORY[] ParseImageResourceDirectory(byte[] buff, UInt32 offsetFirstRescDir, IMAGE_SECTION_HEADER[] sh)
+        IMAGE_RESOURCE_DIRECTORY[] ParseImageResourceDirectory(byte[] buff, UInt32 offsetFirstRescDir, IMAGE_SECTION_HEADER[] sh)
         {
             var sizeOfEntry = 0x8;
             var sizeOfRescDir = 0x10;
@@ -265,10 +277,10 @@ namespace PeNet
             var numOfDirs = firstDir.NumberOfIdEntries + firstDir.NumberOfNameEntries;
 
             // Loop through the entire directory
-            for(int i = 0; i < numOfDirs; i++)
+            for (int i = 0; i < numOfDirs; i++)
             {
                 var entry = new IMAGE_RESOURCE_DIRECTORY_ENTRY(buff, (UInt32)(offsetFirstRescDir + sizeOfRescDir + i * sizeOfEntry));
-                if(entry.DataIsDirectory)
+                if (entry.DataIsDirectory)
                 {
                     var tmpResc = new IMAGE_RESOURCE_DIRECTORY(buff, offsetFirstRescDir + entry.OffsetToDirectory);
                     rescDirs.Add(tmpResc);
@@ -278,14 +290,14 @@ namespace PeNet
             return rescDirs.ToArray();
         }
 
-        private RUNTIME_FUNCTION[] PareseExceptionDirectory(byte[] buff, UInt32 offset, UInt32 size, IMAGE_SECTION_HEADER[] sh)
+        RUNTIME_FUNCTION[] PareseExceptionDirectory(byte[] buff, UInt32 offset, UInt32 size, IMAGE_SECTION_HEADER[] sh)
         {
             var sizeOfRuntimeFunction = 0xC;
             var rf = new RUNTIME_FUNCTION[size / sizeOfRuntimeFunction];
-           
-            for(int i = 0; i < rf.Count(); i++)
+
+            for (int i = 0; i < rf.Count(); i++)
             {
-                rf[i] = new RUNTIME_FUNCTION(buff, (UInt32) (offset + i * sizeOfRuntimeFunction));
+                rf[i] = new RUNTIME_FUNCTION(buff, (UInt32)(offset + i * sizeOfRuntimeFunction));
             }
 
             return rf;
@@ -308,7 +320,7 @@ namespace PeNet
                 return false;
             }
 
-            return (pe.ImageDosHeader.e_magic == 0x5a4d) ? true : false;
+            return (pe.ImageDosHeader.e_magic == 0x5a4d);
         }
 
         /// <summary>

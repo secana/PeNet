@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PeNet
 {
     public class IMAGE_IMPORT_BY_NAME
     {
-        private byte[] _buff;
-        private UInt64 _offset;
+        byte[] _buff;
+        UInt64 _offset;
 
         public UInt16 Hint
         {

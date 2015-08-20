@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PeNet
 {
@@ -121,7 +117,7 @@ namespace PeNet
         ////////////////////////
 
         // Different data directories indices
-        public enum DataDirectoryIndex : int
+        public enum DataDirectoryIndex
         {
             Export = 0,     // Export directory
             Import = 1,     // Import directory
@@ -139,6 +135,24 @@ namespace PeNet
             DelayImport = 0xD,
             COM_Descriptor = 0xE, // .Net Header
             Reserved = 0xF
+        }
+
+        /////////////////
+        // UNWINDE_CODE
+        /////////////////
+
+        // UnwindOp Codes
+        public enum UnwindOpCodes : byte
+        {
+            UWOP_PUSH_NONVOL = 0,
+            UWOP_ALLOC_LARGE = 1,
+            UWOP_ALLOC_SMALL = 2,
+            UWOP_SET_FPREG = 3,
+            UWOP_SAVE_NONVOL = 4,
+            UWOP_SAVE_NONVOL_FAR = 5,
+            UWOP_SAVE_XMM128 = 8,
+            UWOP_SAVE_XMM128_FAR = 9,
+            UWOP_PUSH_MACHFRAME = 10,
         }
     }
 }

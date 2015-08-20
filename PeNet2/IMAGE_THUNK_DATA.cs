@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PeNet
 {
     public class IMAGE_THUNK_DATA
     {
-        private byte[] _buff;
-        private UInt32 _offset;
-        private bool _is64Bit;
+        byte[] _buff;
+        UInt32 _offset;
+        bool _is64Bit;
 
         public UInt64 AddressOfData
         {
