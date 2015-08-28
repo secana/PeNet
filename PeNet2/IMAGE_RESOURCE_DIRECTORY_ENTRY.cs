@@ -61,7 +61,7 @@ namespace PeNet
         /// <summary>
         /// True if the entry is a resource with an ID instead of a name.
         /// </summary>
-        public bool IsIdEnitry
+        public bool IsIdEntry
         {
             get { return !IsNamedEntry; }
         }
