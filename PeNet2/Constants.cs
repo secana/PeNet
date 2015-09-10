@@ -154,5 +154,15 @@ namespace PeNet
             UWOP_SAVE_XMM128_FAR = 9,
             UWOP_PUSH_MACHFRAME = 10,
         }
+
+        //////////////////////////////////////
+        // WIN_CERTIFICATE wCertificateType
+        //////////////////////////////////////
+
+        public const UInt16 WIN_CERT_TYPE_X509 = 0x0001;
+        public const UInt16 WIN_CERT_TYPE_PKCS_SIGNED_DATA = 0x0002;
+        public const UInt16 WIN_CERT_TYPE_RESERVED_1 = 0x0003;
+        public const UInt16 WIN_CERT_TYPE_PKCS1_SIGN = 0x0009;
+
     }
 }

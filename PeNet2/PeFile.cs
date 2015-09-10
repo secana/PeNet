@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace PeNet
@@ -53,6 +54,14 @@ namespace PeNet
         public ImportFunction[] ImportedFunctions { get; private set; }
         public IMAGE_RESOURCE_DIRECTORY[] ImageResourceDirectory { get; private set; }
         public RUNTIME_FUNCTION[] RuntimeFunctions { get; private set; }
+        public WIN_CERTIFICATE WinCertificate { get; private set; }
+
+        /// <summary>
+        /// A X509 PKCS7 signature if the PE file was digitally signed with such
+        /// a signature.
+        /// </summary>
+        public X509Certificate2 PKCS7 { get; private set; }
+
 
         public bool Is64Bit { get; private set; }
         public bool Is32Bit { get { return !Is64Bit; } }
@@ -123,12 +132,24 @@ namespace PeNet
             // Parse x64 Exception directory
             if(Is64Bit)
             {
-                RuntimeFunctions = PareseExceptionDirectory(
+                if(ImageNtHeaders.OptionalHeader.DataDirectory[(UInt32) Constants.DataDirectoryIndex.Exception].VirtualAddress != 0)
+                {
+                    RuntimeFunctions = PareseExceptionDirectory(
                     buff,
-                    Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[(UInt32)Constants.DataDirectoryIndex.Exception].VirtualAddress, ImageSectionHeaders),
-                    ImageNtHeaders.OptionalHeader.DataDirectory[(UInt32)Constants.DataDirectoryIndex.Exception].Size,
+                    Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[(UInt32) Constants.DataDirectoryIndex.Exception].VirtualAddress, ImageSectionHeaders),
+                    ImageNtHeaders.OptionalHeader.DataDirectory[(UInt32) Constants.DataDirectoryIndex.Exception].Size,
                     ImageSectionHeaders
                     );
+                }
+            }
+
+            // Parse the security directory for certificates
+            if(ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Security].VirtualAddress != 0)
+            {
+                WinCertificate = ParseImageSecurityDirectory(
+                    buff, 
+                   ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Security].VirtualAddress, 
+                    ImageSectionHeaders);
             }
         }
 
@@ -154,6 +175,19 @@ namespace PeNet
             return uw;
         }
 
+        public WIN_CERTIFICATE ParseImageSecurityDirectory(byte[] buff, UInt32 dirOffset, IMAGE_SECTION_HEADER[] sh)
+        {
+            var wc = new WIN_CERTIFICATE(buff, dirOffset);
+
+            if(wc.wCertificateType == Constants.WIN_CERT_TYPE_PKCS_SIGNED_DATA)
+            {
+                var cert = wc.bCertificate;
+                PKCS7 = new X509Certificate2(cert);
+            }
+
+            return wc;
+        }
+
         ImportFunction[] ParseImportedFunctions(byte[] buff, IMAGE_IMPORT_DESCRIPTOR[] idescs, IMAGE_SECTION_HEADER[] sh)
         {
             var impFuncs = new List<ImportFunction>();
@@ -165,7 +199,11 @@ namespace PeNet
             {
                 var dllAdr = Utility.RVAtoFileMapping(idesc.Name, sh);
                 var dll = Utility.GetName(dllAdr, buff);
-                var thunkAdr = Utility.RVAtoFileMapping(idesc.OriginalFirstThunk, sh);
+                var tmpAdr = (idesc.OriginalFirstThunk != 0) ? idesc.OriginalFirstThunk : idesc.FirstThunk;
+                if (tmpAdr == 0)
+                    continue;
+
+                var thunkAdr = Utility.RVAtoFileMapping(tmpAdr, sh);
                 UInt32 round = 0;
                 while (true)
                 {

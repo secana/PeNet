@@ -8,36 +8,28 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            if(args.Count() != 2)
-            {
-                Console.WriteLine("Usage: Program InputFile OutputFile");
-                return;
-            }
+            var files = Directory.GetFiles(@"E:\tmp\x64");
 
-            var peHeader = new PeNet.PeFile(args[0]);
-
-            if(!peHeader.Is64Bit)
+            foreach(var f in files)
             {
-                Console.WriteLine("Not a 64 bit binary.");
-                return;
-            }
-            
-            using(var file = new StreamWriter(args[1]))
-            {
-                foreach (var ef in peHeader.ExportedFunctions)
+                if (Path.GetExtension(f) == ".dll" || Path.GetExtension(f) == ".exe")
                 {
-                    var rf = peHeader.RuntimeFunctions.Where(r => r.FunctionStart == ef.Address).FirstOrDefault();
-                    if (rf == null)
-                        continue;
-
-                    var uw = peHeader.GetUnwindInfo(rf);
-                    if (uw == null)
-                        continue;
-
-                    file.WriteLine(ef.ToString());
-                    file.WriteLine(rf.ToString());
-                    file.WriteLine(uw.ToString());
-                    file.WriteLine("------------------------");
+                    var peHeader = new PeNet.PeFile(f);
+                    if(peHeader.WinCertificate != null)
+                    {
+                        if(peHeader.PKCS7 == null)
+                        {
+                            Console.WriteLine($"{f} has a WIN_CERTIFICATE but no PKCS7.");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{f} signed by {peHeader.PKCS7.Subject}.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{f} has no WIN_CERTIFICATE.");
+                    }
                 }
             }
         }
