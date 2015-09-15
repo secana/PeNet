@@ -44,6 +44,76 @@ namespace PeNet
             }
         }
 
+        public class CrlUrlList
+        {
+            public int TotalLength { get; set; }
+            public System.Collections.Generic.List<string> Urls { get; set; }
+
+            public CrlUrlList(byte[] rawData)
+            {
+                Urls = new System.Collections.Generic.List<string>();
+                Parse(rawData);
+            }
+
+            public CrlUrlList(X509Certificate2 cert)
+            {
+                Urls = new System.Collections.Generic.List<string>();
+                foreach (var ext in cert.Extensions)
+                {
+                    if (ext.Oid.Value == "2.5.29.31")
+                    {
+                        Parse(ext.RawData);
+                    }
+                }
+            }
+
+            void Parse(byte[] rawData)
+            {
+                TotalLength = rawData.Length;
+                int currentLength = 0;
+                int tmp = 0;
+
+                if (TotalLength - 10 - rawData[9] < 0)
+                {
+                    currentLength = rawData[10];
+                    tmp = 11;
+                }
+                else
+                {
+                    currentLength = rawData[9];
+                    tmp = 10;
+                }
+
+
+                while (true)
+                {
+                    var bytes = new System.Collections.Generic.List<byte>();
+                    for (int i = 0; i < currentLength; i++)
+                    {
+                        bytes.Add(rawData[tmp + i]);
+                    }
+                    Urls.Add(System.Text.Encoding.ASCII.GetString(bytes.ToArray()));
+
+                    tmp += currentLength;
+
+                    if (TotalLength - tmp == 0)
+                        break;
+
+                    currentLength = rawData[tmp + 7];
+                    tmp += 8;
+                }
+            }
+
+            public override string ToString()
+            {
+                var sb = new StringBuilder();
+                sb.AppendLine("CRL URLs:");
+                foreach(var url in Urls)
+                    sb.AppendFormat("\t{0}\n", url);
+                return sb.ToString();
+                
+            }
+        }
 
         public IMAGE_DOS_HEADER ImageDosHeader { get; private set; }
         public IMAGE_NT_HEADERS ImageNtHeaders { get; private set; }
@@ -155,6 +225,14 @@ namespace PeNet
 
         public PeFile(string peFile)
             : this(File.ReadAllBytes(peFile)) { }
+
+        public CrlUrlList GetCrlUrlList()
+        {
+            if (PKCS7 == null)
+                return null;
+            else
+                return new CrlUrlList(PKCS7);
+        }
 
         public UNWIND_INFO GetUnwindInfo(RUNTIME_FUNCTION runtimeFunction)
         {
