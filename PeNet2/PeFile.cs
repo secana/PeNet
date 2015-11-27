@@ -62,9 +62,76 @@ namespace PeNet
                 {
                     if (ext.Oid.Value == "2.5.29.31")
                     {
-                        Parse(ext.RawData);
+                        Parse2(ext.RawData);
                     }
                 }
+            }
+
+            void Parse2(byte[] rawData)
+            {
+                var rawLength = rawData.Length;
+                for (int i = 0; i < rawLength - 5; i++)
+                {
+                    // Find a HTTP(s) string.
+                    if ((rawData[i] == 'h'
+                        && rawData[i + 1] == 't'
+                        && rawData[i + 2] == 't'
+                        && rawData[i + 3] == 'p'
+                        && rawData[i + 4] == ':')
+                        || (rawData[i] == 'l'
+                        && rawData[i+1] == 'd'
+                        && rawData[i+2] == 'a'
+                        && rawData[i+3] == 'p'
+                        && rawData[i+4] == ':'))
+                    {
+                        var bytes = new System.Collections.Generic.List<byte>();
+                        for(int j = i; j < rawLength; j++)
+                        {
+                            if ((rawData[j-4] == '.'
+                                && rawData[j-3] == 'c'
+                                && rawData[j-2] == 'r'
+                                && rawData[j-1] == 'l') 
+                                || (rawData[j] == 'b'
+                                && rawData[j+1] == 'a'
+                                && rawData[j+2] == 's'
+                                && rawData[j+3] == 'e'
+                                ))
+                            {
+                                i = j;
+                                break;
+                            }
+                                
+
+                            if (rawData[j] < 0x20 || rawData[j] > 0x7E)
+                            {
+                                i = j;
+                                break;
+                            }
+
+                            bytes.Add(rawData[j]);
+                            
+                        }
+                        var uri = System.Text.Encoding.ASCII.GetString(bytes.ToArray());
+
+                        if (IsValidUri(uri))
+                            Urls.Add(uri);
+
+                        if (uri.StartsWith("ldap:", StringComparison.InvariantCulture))
+                        {
+                            uri = "ldap://" + uri.Split('/')[2];
+                            Urls.Add(uri);
+                        }
+                    }
+
+                }
+            }
+
+            bool IsValidUri(string uri)
+            {
+                Uri uriResult;
+                return Uri.TryCreate(uri, UriKind.Absolute, out uriResult)
+                    && (uriResult.Scheme == Uri.UriSchemeHttp
+                    || uriResult.Scheme == Uri.UriSchemeHttps);
             }
 
             void Parse(byte[] rawData)
