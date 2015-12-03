@@ -390,9 +390,9 @@ namespace PeNet
             {
                 var idesc = new IMAGE_IMPORT_DESCRIPTOR(buff, offset + idescSize * round);
 
-                // Found the last IMAGE_IMPORT_DESCRIPTOR which is completely null.
+                // Found the last IMAGE_IMPORT_DESCRIPTOR which is completely null (except TimeDateStamp).
                 if (idesc.OriginalFirstThunk == 0
-                    && idesc.TimeDateStamp == 0
+                    //&& idesc.TimeDateStamp == 0
                     && idesc.ForwarderChain == 0
                     && idesc.Name == 0
                     && idesc.FirstThunk == 0)
