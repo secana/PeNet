@@ -49,6 +49,7 @@ namespace PeNet
         {
             _offset = offset;
             _buff = buff;
+
             DirectoryEntries = new IMAGE_RESOURCE_DIRECTORY_ENTRY[NumberOfIdEntries + NumberOfNameEntries];
         }
     }

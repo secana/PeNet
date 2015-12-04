@@ -62,7 +62,9 @@ namespace PeNet
                 {
                     if (ext.Oid.Value == "2.5.29.31")
                     {
-                        Parse2(ext.RawData);
+                        var bytes = System.Text.Encoding.ASCII.GetBytes(@"0ò0ï ì é†.http://certserv.fnfis.com/CDP/SGAFISCERT02.crl†¶ldap:///CN=SGAFISCERT02,CN=sgafiscert02,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=FNFIS,DC=com?certificateRevocationList?base?objectClass=cRLDistributionPoint");
+                        //Parse2(ext.RawData);
+                        Parse2(bytes);
                     }
                 }
             }
@@ -465,8 +467,16 @@ namespace PeNet
                 var entry = new IMAGE_RESOURCE_DIRECTORY_ENTRY(buff, (UInt32)(offsetFirstRescDir + sizeOfRescDir + i * sizeOfEntry));
                 if (entry.DataIsDirectory)
                 {
-                    var tmpResc = new IMAGE_RESOURCE_DIRECTORY(buff, offsetFirstRescDir + entry.OffsetToDirectory);
-                    rescDirs.Add(tmpResc);
+                    // It can happen that the IMAGE_RESOURCE_DIRECTORY is not valid, but Windows will parse it anyways...
+                    try
+                    {
+                        var tmpResc = new IMAGE_RESOURCE_DIRECTORY(buff, offsetFirstRescDir + entry.OffsetToDirectory);
+                        rescDirs.Add(tmpResc);
+                    }
+                    catch(IndexOutOfRangeException)
+                    {
+                        rescDirs.Add(null);
+                    }
                 }
             }
 
