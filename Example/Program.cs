@@ -13,8 +13,13 @@ namespace Example
 
 
 
-          var file = new PeNet.PeFile(@"C:\Local Virus Copies\fee037edca215b6e2d8ec292ba3afa471027eaa84cd3a1a2b36527a31d1c7a97");
-            Console.WriteLine("FINISHED");
+          var file = new PeNet.PeFile(@"C:\Local Virus Copies\7c1dba942ca01313b5f4fbcf085d92ce65d1c0c69587fa64207c040179bf23fc");
+            Console.WriteLine($"IsValidPeFile: {file.IsValidPeFile.ToString()}");
+            Console.WriteLine($"HasValidExceptionDir.: {file.HasValidExceptionDir.ToString()}");
+            Console.WriteLine($"HasValidExportDir.: {file.HasValidExportDir.ToString()}");
+            Console.WriteLine($"HasValidImportDir.: {file.HasValidImportDir.ToString()}");
+            Console.WriteLine($"HasValidResourceDir.: {file.HasValidResourceDir.ToString()}");
+            Console.WriteLine($"HasValidSecurityDir.: {file.HasValidSecurityDir.ToString()}");
             Console.ReadKey();
         }
     }

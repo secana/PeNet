@@ -9,6 +9,24 @@ namespace PeNet
 {
     public class PeFile
     {
+        public bool IsValidPeFile
+        {
+            get
+            {
+                return (HasValidExceptionDir
+                    && HasValidExportDir
+                    && HasValidImportDir
+                    && HasValidResourceDir
+                    && HasValidSecurityDir
+                    && (ImageDosHeader.e_magic == 0x5a4d));
+            }
+        }
+        public bool HasValidExportDir { get; private set; } = true;
+        public bool HasValidImportDir { get; private set; } = true;
+        public bool HasValidResourceDir { get; private set; } = true;
+        public bool HasValidExceptionDir { get; private set; } = true;
+        public bool HasValidSecurityDir { get; private set; } = true;
+
         public class ExportFunction
         {
             public string Name { get; private set; }
@@ -244,28 +262,46 @@ namespace PeNet
                 catch
                 {
                     // No or invalid export directory.
+                    HasValidExportDir = false;
                 }
             }
 
             if (ImageNtHeaders.OptionalHeader.DataDirectory[1].VirtualAddress != 0)
             {
-                ImageImportDescriptors = ParseImportDescriptors(
+                try
+                {
+                    ImageImportDescriptors = ParseImportDescriptors(
                     buff,
                     Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Import].VirtualAddress, ImageSectionHeaders),
                     ImageSectionHeaders
                     );
 
-                ImportedFunctions = ParseImportedFunctions(buff, ImageImportDescriptors, ImageSectionHeaders);
+                    ImportedFunctions = ParseImportedFunctions(buff, ImageImportDescriptors, ImageSectionHeaders);
+                }
+                catch
+                {
+                    // No or invalid import directory.
+                    HasValidImportDir = false;
+                }
             }
 
             // Parse the resource directory.
             if(ImageNtHeaders.OptionalHeader.DataDirectory[2].VirtualAddress != 0)
             {
-                ImageResourceDirectory = ParseImageResourceDirectory(
-                    buff,
-                    Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Resource].VirtualAddress, ImageSectionHeaders),
-                    ImageSectionHeaders
-                    );
+                try
+                {
+                    ImageResourceDirectory = ParseImageResourceDirectory(
+                        buff,
+                        Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Resource].VirtualAddress, ImageSectionHeaders),
+                        ImageSectionHeaders
+                        );
+                }
+                catch
+                {
+                    // No or invalid resource directory.
+                    ImageResourceDirectory = null;
+                    HasValidResourceDir = false;
+                }
             }
 
             // Parse x64 Exception directory
@@ -273,12 +309,21 @@ namespace PeNet
             {
                 if(ImageNtHeaders.OptionalHeader.DataDirectory[(UInt32) Constants.DataDirectoryIndex.Exception].VirtualAddress != 0)
                 {
-                    RuntimeFunctions = PareseExceptionDirectory(
-                    buff,
-                    Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[(UInt32) Constants.DataDirectoryIndex.Exception].VirtualAddress, ImageSectionHeaders),
-                    ImageNtHeaders.OptionalHeader.DataDirectory[(UInt32) Constants.DataDirectoryIndex.Exception].Size,
-                    ImageSectionHeaders
-                    );
+                    try
+                    {
+                        RuntimeFunctions = PareseExceptionDirectory(
+                        buff,
+                        Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[(UInt32) Constants.DataDirectoryIndex.Exception].VirtualAddress, ImageSectionHeaders),
+                        ImageNtHeaders.OptionalHeader.DataDirectory[(UInt32) Constants.DataDirectoryIndex.Exception].Size,
+                        ImageSectionHeaders
+                        );
+                    }
+                    catch
+                    {
+                        // No or invalid Exception directory.
+                        RuntimeFunctions = null;
+                        HasValidExceptionDir = false;
+                    }
                 }
             }
 
@@ -296,6 +341,7 @@ namespace PeNet
                 {
                     // Invalid Security Directory
                     WinCertificate = null;
+                    HasValidSecurityDir = false;
                 }
             }
         }
@@ -520,8 +566,7 @@ namespace PeNet
             {
                 return false;
             }
-
-            return (pe.ImageDosHeader.e_magic == 0x5a4d);
+            return pe.IsValidPeFile;
         }
 
         /// <summary>
