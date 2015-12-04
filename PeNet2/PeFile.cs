@@ -285,10 +285,18 @@ namespace PeNet
             // Parse the security directory for certificates
             if(ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Security].VirtualAddress != 0)
             {
-                WinCertificate = ParseImageSecurityDirectory(
-                    buff, 
-                   ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Security].VirtualAddress, 
+                try
+                {
+                    WinCertificate = ParseImageSecurityDirectory(
+                    buff,
+                   ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Security].VirtualAddress,
                     ImageSectionHeaders);
+                }
+                catch(Exception)
+                {
+                    // Invalid Security Directory
+                    WinCertificate = null;
+                }
             }
         }
 
