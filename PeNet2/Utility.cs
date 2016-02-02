@@ -112,13 +112,15 @@ namespace PeNet
         /// <returns>Human readable characteristics string.</returns>
         public static string ResolveCharacteristics(ushort characteristics)
         {
-            var c = "unknown";
+            string c = "";
             if ((characteristics & 0x02) == 0x02)
-                c = "EXE";
-            else if ((characteristics & 0x200) == 0x200)
-                c = "File is non-relocatable (addresses are absolute, not RVA).";
-            else if ((characteristics & 0x2000) == 0x2000)
-                c = "DLL";
+                c += "EXE";
+
+            if ((characteristics & 0x200) == 0x200)
+                c += "File is non-relocatable (addresses are absolute, not RVA).";
+
+            if ((characteristics & 0x2000) == 0x2000)
+                c += "DLL";
             return c;
         }
 

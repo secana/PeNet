@@ -27,6 +27,9 @@ namespace PeNet
         public bool HasValidExceptionDir { get; private set; } = true;
         public bool HasValidSecurityDir { get; private set; } = true;
 
+        public bool IsDLL => ((ImageNtHeaders.FileHeader.Characteristics & 0x2000) == 0x2000);
+        public bool IsEXE => ((ImageNtHeaders.FileHeader.Characteristics & 0x02) == 0x02);
+
         public class ExportFunction
         {
             public string Name { get; private set; }
