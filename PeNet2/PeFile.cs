@@ -73,7 +73,7 @@ namespace PeNet
             public CrlUrlList(byte[] rawData)
             {
                 Urls = new System.Collections.Generic.List<string>();
-                Parse(rawData);
+                ParseCrls(rawData);
             }
 
             public CrlUrlList(X509Certificate2 cert)
@@ -83,14 +83,12 @@ namespace PeNet
                 {
                     if (ext.Oid.Value == "2.5.29.31")
                     {
-                        var bytes = System.Text.Encoding.ASCII.GetBytes(@"0ò0ï ì é†.http://certserv.fnfis.com/CDP/SGAFISCERT02.crl†¶ldap:///CN=SGAFISCERT02,CN=sgafiscert02,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=FNFIS,DC=com?certificateRevocationList?base?objectClass=cRLDistributionPoint");
-                        //Parse2(ext.RawData);
-                        Parse2(bytes);
+                        ParseCrls(ext.RawData);
                     }
                 }
             }
 
-            void Parse2(byte[] rawData)
+            void ParseCrls(byte[] rawData)
             {
                 var rawLength = rawData.Length;
                 for (int i = 0; i < rawLength - 5; i++)
@@ -136,7 +134,7 @@ namespace PeNet
                         }
                         var uri = System.Text.Encoding.ASCII.GetString(bytes.ToArray());
 
-                        if (IsValidUri(uri))
+                        if (IsValidUri(uri) && uri.StartsWith("http://") && uri.EndsWith(".crl"))
                             Urls.Add(uri);
 
                         if (uri.StartsWith("ldap:", StringComparison.InvariantCulture))
@@ -157,42 +155,6 @@ namespace PeNet
                     || uriResult.Scheme == Uri.UriSchemeHttps);
             }
 
-            void Parse(byte[] rawData)
-            {
-                TotalLength = rawData.Length;
-                int currentLength = 0;
-                int tmp = 0;
-
-                if (TotalLength - 10 - rawData[9] < 0)
-                {
-                    currentLength = rawData[10];
-                    tmp = 11;
-                }
-                else
-                {
-                    currentLength = rawData[9];
-                    tmp = 10;
-                }
-
-
-                while (true)
-                {
-                    var bytes = new System.Collections.Generic.List<byte>();
-                    for (int i = 0; i < currentLength; i++)
-                    {
-                        bytes.Add(rawData[tmp + i]);
-                    }
-                    Urls.Add(System.Text.Encoding.ASCII.GetString(bytes.ToArray()));
-
-                    tmp += currentLength;
-
-                    if (TotalLength - tmp == 0)
-                        break;
-
-                    currentLength = rawData[tmp + 7];
-                    tmp += 8;
-                }
-            }
 
             public override string ToString()
             {

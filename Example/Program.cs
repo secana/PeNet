@@ -8,35 +8,15 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            var dlls = Directory.GetFiles(@"c:\windows\system32\", "*.dll");
-            var exes = Directory.GetFiles(@"c:\windows\system32\", "*.exe");
+            var pe = new PeNet.PeFile(@"c:\local virus copies\19bf12dba089c11e491a5d995d94febfd72856bec01e133c4a47e680e9e23af7 ");
 
-            foreach (var exe in exes)
-            {
-                try
-                {
-                    var pe = new PeNet.PeFile(exe);
-                    var ch = PeNet.Utility.ResolveCharacteristics(pe.ImageNtHeaders.FileHeader.Characteristics);
-                    if(ch != "EXE")
-                        Console.WriteLine("Not an exe: " + exe);
-                }
-                catch(Exception)
-                { }
-            }
+            var bytes = pe.PKCS7.RawData;
+            var urls = new PeNet.PeFile.CrlUrlList(bytes).Urls;
 
-            foreach (var dll in dlls)
+            foreach (var url in urls)
             {
-                try
-                {
-                    var pe = new PeNet.PeFile(dll);
-                    var ch = PeNet.Utility.ResolveCharacteristics(pe.ImageNtHeaders.FileHeader.Characteristics);
-                    if (ch != "DLL")
-                        Console.WriteLine("Not an dll: " + dll);
-                }
-                catch (Exception)
-                { }
+                Console.WriteLine(url);
             }
-            Console.WriteLine("FINISH");
             Console.ReadKey(true);
         }
     }
