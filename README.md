@@ -6,7 +6,7 @@ It runs on Windows, Linux and OS X with the Microsoft or Mono .Net implementatio
 
 For help see the Wiki.
 
-# Licence Apache 2
+# License Apache 2
 Copyright 2016 Stefan Hausotte
 
 Licensed under the Apache License, Version 2.0 (the "License");
