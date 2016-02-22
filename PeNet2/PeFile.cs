@@ -26,6 +26,10 @@ namespace PeNet
 {
     public class PeFile
     {
+        /// <summary>
+        /// Returns true if all section are parseable
+        /// and the magic "MZ" header is set.
+        /// </summary>
         public bool IsValidPeFile
         {
             get
@@ -38,19 +42,61 @@ namespace PeNet
                     && (ImageDosHeader.e_magic == 0x5a4d));
             }
         }
+
+        /// <summary>
+        /// Returns true if the Export directory is valid.
+        /// </summary>
         public bool HasValidExportDir { get; private set; } = true;
+
+        /// <summary>
+        /// Returns true if the Import directory is valid.
+        /// </summary>
         public bool HasValidImportDir { get; private set; } = true;
+
+        /// <summary>
+        /// Returns true if the Resource directory is valid.
+        /// </summary>
         public bool HasValidResourceDir { get; private set; } = true;
+
+        /// <summary>
+        /// Returns true if the Exception directory in x64 applications
+        /// is valid.
+        /// </summary>
         public bool HasValidExceptionDir { get; private set; } = true;
+
+        /// <summary>
+        /// Returns true if the Security directory is valid.
+        /// </summary>
         public bool HasValidSecurityDir { get; private set; } = true;
 
+        /// <summary>
+        /// True if the PE file is a DLL
+        /// </summary>
         public bool IsDLL => ((ImageNtHeaders.FileHeader.Characteristics & 0x2000) == 0x2000);
+
+        /// <summary>
+        /// True if the PE file is a EXE
+        /// </summary>
         public bool IsEXE => ((ImageNtHeaders.FileHeader.Characteristics & 0x02) == 0x02);
 
+        /// <summary>
+        /// Represents an exported function from the export table.
+        /// </summary>
         public class ExportFunction
         {
+            /// <summary>
+            /// Exported function name.
+            /// </summary>
             public string Name { get; private set; }
+
+            /// <summary>
+            /// Exported function address.
+            /// </summary>
             public UInt32 Address { get; private set; }
+
+            /// <summary>
+            /// Exported function ordinal.
+            /// </summary>
             public UInt16 Ordinal { get; private set; }
 
             public ExportFunction(string name, UInt32 address, UInt16 ordinal)
@@ -68,10 +114,24 @@ namespace PeNet
             }
         }
 
+        /// <summary>
+        /// Represents an imported function from the import table.
+        /// </summary>
         public class ImportFunction
         {
+            /// <summary>
+            /// Name of the imported function.
+            /// </summary>
             public string Name { get; private set; }
+
+            /// <summary>
+            /// DLL top which the function belongs.
+            /// </summary>
             public string DLL { get; private set; }
+
+            /// <summary>
+            /// Hint for the imported function.
+            /// </summary>
             public UInt16 Hint { get; private set; }
 
             public ImportFunction(string name, string dll, UInt16 hint)
@@ -80,22 +140,35 @@ namespace PeNet
                 DLL = dll;
                 Hint = hint;
             }
+
+            public override string ToString()
+            {
+                var sb = new StringBuilder("ImportFunction\n");
+                sb.Append(Utility.PropertiesToString(this, "{0,-20}:\t{1,10:X}\n"));
+                return sb.ToString();
+            }
         }
 
+        /// <summary>
+        /// Information about the Certificate Revocation List,
+        /// if any is present in a signed binary. 
+        /// </summary>
         public class CrlUrlList
         {
-            public int TotalLength { get; set; }
-            public System.Collections.Generic.List<string> Urls { get; set; }
+            /// <summary>
+            /// List with Certificate Revocation Locations.
+            /// </summary>
+            public List<string> Urls { get; set; }
 
             public CrlUrlList(byte[] rawData)
             {
-                Urls = new System.Collections.Generic.List<string>();
+                Urls = new List<string>();
                 ParseCrls(rawData);
             }
 
             public CrlUrlList(X509Certificate2 cert)
             {
-                Urls = new System.Collections.Generic.List<string>();
+                Urls = new List<string>();
                 foreach (var ext in cert.Extensions)
                 {
                     if (ext.Oid.Value == "2.5.29.31")
@@ -105,7 +178,7 @@ namespace PeNet
                 }
             }
 
-            void ParseCrls(byte[] rawData)
+            private void ParseCrls(byte[] rawData)
             {
                 var rawLength = rawData.Length;
                 for (int i = 0; i < rawLength - 5; i++)
@@ -122,7 +195,7 @@ namespace PeNet
                         && rawData[i+3] == 'p'
                         && rawData[i+4] == ':'))
                     {
-                        var bytes = new System.Collections.Generic.List<byte>();
+                        var bytes = new List<byte>();
                         for(int j = i; j < rawLength; j++)
                         {
                             if ((rawData[j-4] == '.'
@@ -149,7 +222,7 @@ namespace PeNet
                             bytes.Add(rawData[j]);
                             
                         }
-                        var uri = System.Text.Encoding.ASCII.GetString(bytes.ToArray());
+                        var uri = Encoding.ASCII.GetString(bytes.ToArray());
 
                         if (IsValidUri(uri) && uri.StartsWith("http://") && uri.EndsWith(".crl"))
                             Urls.Add(uri);
@@ -164,7 +237,7 @@ namespace PeNet
                 }
             }
 
-            bool IsValidUri(string uri)
+            private bool IsValidUri(string uri)
             {
                 Uri uriResult;
                 return Uri.TryCreate(uri, UriKind.Absolute, out uriResult)
@@ -201,10 +274,17 @@ namespace PeNet
         /// </summary>
         public X509Certificate2 PKCS7 { get; private set; }
 
-
+        /// <summary>
+        /// True if the PE file is a x64 binary.
+        /// </summary>
         public bool Is64Bit { get; private set; }
+
+        /// <summary>
+        /// True if the PE file is a x32 binary.
+        /// </summary>
         public bool Is32Bit { get { return !Is64Bit; } }
-        byte[] _buff;
+
+        private byte[] _buff;
 
         public PeFile(byte [] buff)
         {
@@ -331,6 +411,12 @@ namespace PeNet
         public PeFile(string peFile)
             : this(File.ReadAllBytes(peFile)) { }
 
+        /// <summary>
+        /// Get an object which holds information about
+        /// the Certificate Revocation Lists of the signing
+        /// certificate if any is present.
+        /// </summary>
+        /// <returns>Certificate Revocation List information or null if binary is not signed.</returns>
         public CrlUrlList GetCrlUrlList()
         {
             if (PKCS7 == null)
@@ -488,7 +574,7 @@ namespace PeNet
         /// <param name="offsetFirstRescDir">Offset to the first resource directory (= DataDirectory[2].VirtualAddress)</param>
         /// <param name="sh">Image section headers of the binary.</param>
         /// <returns>List with resource directories.</returns>
-        IMAGE_RESOURCE_DIRECTORY[] ParseImageResourceDirectory(byte[] buff, UInt32 offsetFirstRescDir, IMAGE_SECTION_HEADER[] sh)
+        private IMAGE_RESOURCE_DIRECTORY[] ParseImageResourceDirectory(byte[] buff, UInt32 offsetFirstRescDir, IMAGE_SECTION_HEADER[] sh)
         {
             var sizeOfEntry = 0x8;
             var sizeOfRescDir = 0x10;
@@ -519,7 +605,7 @@ namespace PeNet
             return rescDirs.ToArray();
         }
 
-        RUNTIME_FUNCTION[] PareseExceptionDirectory(byte[] buff, UInt32 offset, UInt32 size, IMAGE_SECTION_HEADER[] sh)
+        private RUNTIME_FUNCTION[] PareseExceptionDirectory(byte[] buff, UInt32 offset, UInt32 size, IMAGE_SECTION_HEADER[] sh)
         {
             var sizeOfRuntimeFunction = 0xC;
             var rf = new RUNTIME_FUNCTION[size / sizeOfRuntimeFunction];
@@ -535,7 +621,7 @@ namespace PeNet
         /// <summary>
         /// Tries to parse the PE file. If no exceptions are thrown, true
         /// </summary>
-        /// <param name="file"></param>
+        /// <param name="file">Path to a possible PE file.</param>
         /// <returns>True if the file could be parsed as a PE file, else false.</returns>
         public static bool IsValidPEFile(string file)
         {
@@ -561,7 +647,7 @@ namespace PeNet
         /// A string "architecture_dllOrExe".
         /// E.g. "AMD64_DLL"
         /// </returns>
-        public String GetFileType()
+        public string GetFileType()
         {
             string fileType;
 
