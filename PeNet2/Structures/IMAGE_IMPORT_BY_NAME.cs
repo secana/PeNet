@@ -15,48 +15,36 @@ limitations under the License.
 
 *************************************************************************/
 
-using System;
 using System.Text;
 
 namespace PeNet
 {
-    public class IMAGE_NT_HEADERS
+    public class IMAGE_IMPORT_BY_NAME
     {
-        UInt32 _offset;
-        byte[] _buff;
-        bool _is64Bit;
+        private readonly byte[] _buff;
+        private readonly ulong _offset;
 
-        public UInt32 Signature
-        {
-            get
-            {
-                return Utility.BytesToUInt32(_buff, _offset);
-            }
-            set
-            {
-                Utility.SetUInt32(value, _offset, _buff);
-            }
-        }
-
-        public readonly IMAGE_FILE_HEADER FileHeader;
-        public readonly IMAGE_OPTIONAL_HEADER OptionalHeader;
-        
-        public IMAGE_NT_HEADERS(byte[] buff, UInt32 offset, bool is64Bit)
+        public IMAGE_IMPORT_BY_NAME(byte[] buff, ulong offset)
         {
             _offset = offset;
             _buff = buff;
-            _is64Bit = is64Bit;
-            FileHeader = new IMAGE_FILE_HEADER(buff, offset + 0x4);
-            OptionalHeader = new IMAGE_OPTIONAL_HEADER(buff, offset + 0x18, _is64Bit);
+        }
+
+        public ushort Hint
+        {
+            get { return Utility.BytesToUInt16(_buff, _offset); }
+            set { Utility.SetUInt16(value, _offset, _buff); }
+        }
+
+        public string Name
+        {
+            get { return Utility.GetName(_offset + 0x2, _buff); }
         }
 
         public override string ToString()
         {
-            var sb = new StringBuilder("IMAGE_NT_HEADERS\n");
+            var sb = new StringBuilder("IMAGE_IMPORT_BY_NAME\n");
             sb.Append(Utility.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
-            sb.Append(FileHeader.ToString());
-            sb.Append(OptionalHeader.ToString());
-
             return sb.ToString();
         }
     }

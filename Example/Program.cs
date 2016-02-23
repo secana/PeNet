@@ -8,14 +8,20 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            var pe = new PeNet.PeFile(@"c:\local virus copies\19bf12dba089c11e491a5d995d94febfd72856bec01e133c4a47e680e9e23af7 ");
+            var pe = new PeNet.PeFile(@"c:\windows\system32\calc.exe");
+            Console.WriteLine($"SHA-256: {pe.SHA256}");
+            Console.WriteLine($"ImpHash: {pe.ImpHash}");
+            Console.WriteLine($"SHA-1: {pe.SHA1}");
+            Console.WriteLine($"MD5: {pe.MD5}");
 
-            var bytes = pe.PKCS7.RawData;
-            var urls = new PeNet.PeFile.CrlUrlList(bytes).Urls;
-
-            foreach (var url in urls)
+            foreach (var resdir in pe.ImageResourceDirectory)
             {
-                Console.WriteLine(url);
+                Console.WriteLine(resdir.ToString());
+                foreach (var entry in resdir.DirectoryEntries)
+                {
+                    Console.WriteLine(entry.ToString());
+                }
+                Console.WriteLine("------------------------------------------");
             }
             Console.ReadKey(true);
         }

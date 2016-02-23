@@ -16,31 +16,34 @@ limitations under the License.
 *************************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PeNet
 {
     public class WIN_CERTIFICATE
     {
-        byte[] _buff;
-        UInt32 _offset;
+        private readonly byte[] _buff;
+        private readonly uint _offset;
 
-        public UInt32 dwLength
+        public WIN_CERTIFICATE(byte[] buff, uint offset)
+        {
+            _buff = buff;
+            _offset = offset;
+        }
+
+        public uint dwLength
         {
             get { return Utility.BytesToUInt32(_buff, _offset); }
             set { Utility.SetUInt32(value, _offset, _buff); }
         }
 
-        public UInt16 wRevision
+        public ushort wRevision
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x4); }
             set { Utility.SetUInt16(value, _offset + 0x4, _buff); }
         }
 
-        public UInt16 wCertificateType
+        public ushort wCertificateType
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x6); }
             set { Utility.SetUInt16(value, _offset + 0x6, _buff); }
@@ -50,20 +53,11 @@ namespace PeNet
         {
             get
             {
-                var cert = new byte[dwLength-8];
+                var cert = new byte[dwLength - 8];
                 Array.Copy(_buff, _offset + 0x8, cert, 0, dwLength - 8);
                 return cert;
             }
-            set
-            {
-                Array.Copy(value, 0, _buff, _offset + 0x8, value.Length);
-            }
-        }
-
-        public WIN_CERTIFICATE(byte[] buff, UInt32 offset)
-        {
-            _buff = buff;
-            _offset = offset;
+            set { Array.Copy(value, 0, _buff, _offset + 0x8, value.Length); }
         }
 
         public override string ToString()

@@ -15,21 +15,26 @@ limitations under the License.
 
 *************************************************************************/
 
-using System;
 using System.Text;
 
 namespace PeNet
 {
     public class IMAGE_SECTION_HEADER
     {
-        UInt32 _offset;
-        byte[] _buff;
+        private readonly byte[] _buff;
+        private readonly uint _offset;
+
+        public IMAGE_SECTION_HEADER(byte[] buff, uint offset)
+        {
+            _offset = offset;
+            _buff = buff;
+        }
 
         public byte[] Name
         {
             get
             {
-                return new byte[8] 
+                return new[]
                 {
                     _buff[_offset + 0],
                     _buff[_offset + 1],
@@ -44,81 +49,75 @@ namespace PeNet
 
             set
             {
-                    _buff[_offset + 0] = value[0];
-                    _buff[_offset + 1] = value[1];
-                    _buff[_offset + 2] = value[2];
-                    _buff[_offset + 3] = value[3];
-                    _buff[_offset + 4] = value[4];
-                    _buff[_offset + 5] = value[5];
-                    _buff[_offset + 6] = value[7];
-                    _buff[_offset + 7] = value[8];
+                _buff[_offset + 0] = value[0];
+                _buff[_offset + 1] = value[1];
+                _buff[_offset + 2] = value[2];
+                _buff[_offset + 3] = value[3];
+                _buff[_offset + 4] = value[4];
+                _buff[_offset + 5] = value[5];
+                _buff[_offset + 6] = value[7];
+                _buff[_offset + 7] = value[8];
             }
         }
 
-        public UInt32 PhysicalAddress
+        public uint PhysicalAddress
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x8); }
             set { Utility.SetUInt32(value, _offset + 0x8, _buff); }
         }
 
-        public UInt32 VirtualSize
+        public uint VirtualSize
         {
             get { return PhysicalAddress; }
             set { PhysicalAddress = value; }
         }
 
-        public UInt32 VirtualAddress
+        public uint VirtualAddress
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0xC); }
             set { Utility.SetUInt32(value, _offset + 0xC, _buff); }
         }
 
-        public UInt32 SizeOfRawData
+        public uint SizeOfRawData
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x10); }
             set { Utility.SetUInt32(value, _offset + 0x10, _buff); }
         }
 
-        public UInt32 PointerToRawData
+        public uint PointerToRawData
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x14); }
             set { Utility.SetUInt32(value, _offset + 0x14, _buff); }
         }
 
-        public UInt32 PointerToRelocations
+        public uint PointerToRelocations
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x18); }
             set { Utility.SetUInt32(value, _offset + 0x18, _buff); }
         }
 
-        public UInt32 PointerToLinenumbers
+        public uint PointerToLinenumbers
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x1C); }
             set { Utility.SetUInt32(value, _offset + 0x1C, _buff); }
         }
 
-        UInt16 NumberOfRelocations
+        private ushort NumberOfRelocations
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x20); }
             set { Utility.SetUInt16(value, _offset + 0x20, _buff); }
         }
 
-        UInt16 NumberOfLinenumbers
+        private ushort NumberOfLinenumbers
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x22); }
             set { Utility.SetUInt16(value, _offset + 0x22, _buff); }
         }
 
-        UInt32 Characteristics
+        private uint Characteristics
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x24); }
             set { Utility.SetUInt32(value, _offset + 0x24, _buff); }
-        }
-
-        public IMAGE_SECTION_HEADER(byte[] buff, UInt32 offset)
-        {
-            _offset = offset;
-            _buff = buff;
         }
 
         public override string ToString()

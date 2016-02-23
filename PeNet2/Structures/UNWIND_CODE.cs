@@ -15,15 +15,20 @@ limitations under the License.
 
 *************************************************************************/
 
-using System;
 using System.Text;
 
 namespace PeNet
 {
     public class UNWIND_CODE
     {
-        byte[] _buff;
-        UInt32 _offset;
+        private readonly byte[] _buff;
+        private readonly uint _offset;
+
+        public UNWIND_CODE(byte[] buff, uint offset)
+        {
+            _buff = buff;
+            _offset = offset;
+        }
 
         public byte CodeOffset
         {
@@ -33,24 +38,18 @@ namespace PeNet
 
         public byte UnwindOp
         {
-            get { return (byte)(_buff[_offset + 0x1] & 0xF); }
+            get { return (byte) (_buff[_offset + 0x1] & 0xF); }
         }
 
         public byte Opinfo
         {
-            get { return (byte)(_buff[_offset + 0x1] >> 0x4); }
+            get { return (byte) (_buff[_offset + 0x1] >> 0x4); }
         }
 
-        public UInt16 FrameOffset
+        public ushort FrameOffset
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x2); }
             set { Utility.SetUInt16(value, _offset + 0x2, _buff); }
-        }
-
-        public UNWIND_CODE(byte[] buff, UInt32 offset)
-        {
-            _buff = buff;
-            _offset = offset;
         }
 
         public override string ToString()

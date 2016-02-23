@@ -15,55 +15,51 @@ limitations under the License.
 
 *************************************************************************/
 
-using System;
 using System.Text;
 
 namespace PeNet
 {
     public class IMAGE_THUNK_DATA
     {
-        byte[] _buff;
-        UInt32 _offset;
-        bool _is64Bit;
+        private readonly byte[] _buff;
+        private readonly bool _is64Bit;
+        private readonly uint _offset;
 
-        public UInt64 AddressOfData
+        public IMAGE_THUNK_DATA(byte[] buff, uint offset, bool is64Bit)
         {
-            get 
-            { 
-                return _is64Bit ? Utility.BytesToUInt64(_buff, _offset) : Utility.BytesToUInt32(_buff, _offset); 
-            }
-            set 
+            _buff = buff;
+            _offset = offset;
+            _is64Bit = is64Bit;
+        }
+
+        public ulong AddressOfData
+        {
+            get { return _is64Bit ? Utility.BytesToUInt64(_buff, _offset) : Utility.BytesToUInt32(_buff, _offset); }
+            set
             {
                 if (!_is64Bit)
-                    Utility.SetUInt32((UInt32)value, _offset, _buff);
+                    Utility.SetUInt32((uint) value, _offset, _buff);
                 else
                     Utility.SetUInt64(value, _offset, _buff);
             }
         }
 
-        public UInt64 Ordinal
+        public ulong Ordinal
         {
             get { return AddressOfData; }
             set { AddressOfData = value; }
         }
 
-        public UInt64 ForwarderString
+        public ulong ForwarderString
         {
             get { return AddressOfData; }
             set { AddressOfData = value; }
         }
 
-        public UInt64 Function
+        public ulong Function
         {
             get { return AddressOfData; }
             set { AddressOfData = value; }
-        }
-
-        public IMAGE_THUNK_DATA(byte[] buff, UInt32 offset, bool is64Bit)
-        {
-            _buff = buff;
-            _offset = offset;
-            _is64Bit = is64Bit;
         }
 
         public override string ToString()

@@ -15,86 +15,85 @@ limitations under the License.
 
 *************************************************************************/
 
-using System;
 using System.Text;
 
 namespace PeNet
 {
     public class IMAGE_EXPORT_DIRECTORY
     {
-        byte[] _buff;
-        UInt32 _offset;
+        private readonly byte[] _buff;
+        private readonly uint _offset;
 
-        public UInt32 Characteristics
+        public IMAGE_EXPORT_DIRECTORY(byte[] buff, uint offset)
+        {
+            _offset = offset;
+            _buff = buff;
+        }
+
+        public uint Characteristics
         {
             get { return Utility.BytesToUInt32(_buff, _offset); }
             set { Utility.SetUInt32(value, _offset, _buff); }
         }
 
-        public UInt32 TimeDateStamp
+        public uint TimeDateStamp
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
             set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
         }
 
-        public UInt16 MajorVersion
+        public ushort MajorVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x8); }
             set { Utility.SetUInt16(value, _offset + 0x8, _buff); }
         }
 
-        public UInt16 MinorVersion
+        public ushort MinorVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0xA); }
             set { Utility.SetUInt16(value, _offset + 0xA, _buff); }
         }
 
-        public UInt32 Name
+        public uint Name
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0xC); }
             set { Utility.SetUInt32(value, _offset + 0xC, _buff); }
         }
 
-        public UInt32 Base
+        public uint Base
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x10); }
             set { Utility.SetUInt32(value, _offset + 0x10, _buff); }
         }
 
-        public UInt32 NumberOfFunctions
+        public uint NumberOfFunctions
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x14); }
             set { Utility.SetUInt32(value, _offset + 0x14, _buff); }
         }
 
-        public UInt32 NumberOfNames
+        public uint NumberOfNames
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x18); }
             set { Utility.SetUInt32(value, _offset + 0x18, _buff); }
         }
 
-        public UInt32 AddressOfFunctions
+        public uint AddressOfFunctions
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x1C); }
             set { Utility.SetUInt32(value, _offset + 0x1C, _buff); }
         }
 
-        public UInt32 AddressOfNames
+        public uint AddressOfNames
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x20); }
             set { Utility.SetUInt32(value, _offset + 0x20, _buff); }
         }
 
-        public UInt32 AddressOfNameOrdinals
+        public uint AddressOfNameOrdinals
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x24); }
             set { Utility.SetUInt32(value, _offset + 0x24, _buff); }
-        }
-
-        public IMAGE_EXPORT_DIRECTORY(byte [] buff, UInt32 offset)
-        {
-            _offset = offset;
-            _buff = buff;
         }
 
         public override string ToString()

@@ -17,16 +17,35 @@ limitations under the License.
 
 using System;
 using System.Text;
+using PeNet.Structures;
 
 namespace PeNet
 {
     public class IMAGE_OPTIONAL_HEADER
     {
-        byte[] _buff;
-        UInt32 _offset;
-        bool _is64Bit;
+        public readonly IMAGE_DATA_DIRECTORY[] DataDirectory;
+        private readonly byte[] _buff;
+        private readonly bool _is64Bit;
+        private readonly uint _offset;
 
-        public UInt16 Magic
+        public IMAGE_OPTIONAL_HEADER(byte[] buff, uint offset, bool is64Bit)
+        {
+            _buff = buff;
+            _offset = offset;
+            _is64Bit = is64Bit;
+
+            DataDirectory = new IMAGE_DATA_DIRECTORY[16];
+
+            for (uint i = 0; i < 16; i++)
+            {
+                if (!_is64Bit)
+                    DataDirectory[i] = new IMAGE_DATA_DIRECTORY(buff, offset + 0x60 + i*0x8);
+                else
+                    DataDirectory[i] = new IMAGE_DATA_DIRECTORY(buff, offset + 0x70 + i*0x8);
+            }
+        }
+
+        public ushort Magic
         {
             get { return Utility.BytesToUInt16(_buff, _offset); }
             set { Utility.SetUInt16(value, _offset, _buff); }
@@ -44,43 +63,40 @@ namespace PeNet
             set { _buff[_offset + 03] = value; }
         }
 
-        public UInt32 SizeOfCode
+        public uint SizeOfCode
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
             set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
         }
 
-        public UInt32 SizeOfInitializedData
+        public uint SizeOfInitializedData
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x8); }
             set { Utility.SetUInt32(value, _offset + 0x8, _buff); }
         }
 
-        public UInt32 SizeOfUninitializedData
+        public uint SizeOfUninitializedData
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0xC); }
             set { Utility.SetUInt32(value, _offset + 0xC, _buff); }
         }
 
-        public UInt32 AddressOfEntryPoint
+        public uint AddressOfEntryPoint
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x10); }
             set { Utility.SetUInt32(value, _offset + 0x10, _buff); }
         }
 
-        public UInt32 BaseOfCode
+        public uint BaseOfCode
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x14); }
             set { Utility.SetUInt32(value, _offset + 0x14, _buff); }
         }
 
-        public UInt32 BaseOfData
+        public uint BaseOfData
         {
-            get 
-            {
-                return _is64Bit ? 0 : Utility.BytesToUInt32(_buff, _offset + 0x18); 
-            }
-            set 
+            get { return _is64Bit ? 0 : Utility.BytesToUInt32(_buff, _offset + 0x18); }
+            set
             {
                 if (!_is64Bit)
                     Utility.SetUInt32(value, _offset + 0x18, _buff);
@@ -89,172 +105,184 @@ namespace PeNet
             }
         }
 
-        public UInt64 ImageBase
+        public ulong ImageBase
         {
-            get 
-            { 
-                return _is64Bit ? Utility.BytesToUInt64(_buff, _offset + 0x18) : Utility.BytesToUInt32(_buff, _offset + 0x1C); 
+            get
+            {
+                return _is64Bit
+                    ? Utility.BytesToUInt64(_buff, _offset + 0x18)
+                    : Utility.BytesToUInt32(_buff, _offset + 0x1C);
             }
-            set 
+            set
             {
                 if (!_is64Bit)
-                    Utility.SetUInt32((UInt32)value, _offset + 0x1C, _buff);
+                    Utility.SetUInt32((uint) value, _offset + 0x1C, _buff);
                 else
                     Utility.SetUInt64(value, _offset + 0x18, _buff);
             }
         }
 
-        public UInt32 SectionAlignment
+        public uint SectionAlignment
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x20); }
             set { Utility.SetUInt32(value, _offset + 0x20, _buff); }
         }
 
-        public UInt32 FileAlignment
+        public uint FileAlignment
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x24); }
             set { Utility.SetUInt32(value, _offset + 0x24, _buff); }
         }
 
-        public UInt16 MajorOperatingSystemVersion
+        public ushort MajorOperatingSystemVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x28); }
             set { Utility.SetUInt16(value, _offset + 0x28, _buff); }
         }
 
-        public UInt16 MinorOperatingSystemVersion
+        public ushort MinorOperatingSystemVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x2A); }
             set { Utility.SetUInt16(value, _offset + 0x2A, _buff); }
         }
 
-        public UInt16 MajorImageVersion
+        public ushort MajorImageVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x2C); }
             set { Utility.SetUInt16(value, _offset + 0x2C, _buff); }
         }
 
-        public UInt16 MinorImageVersion
+        public ushort MinorImageVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x2E); }
             set { Utility.SetUInt16(value, _offset + 0x2E, _buff); }
         }
 
-        public UInt16 MajorSubsystemVersion
+        public ushort MajorSubsystemVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x30); }
             set { Utility.SetUInt16(value, _offset + 0x30, _buff); }
         }
 
-        public UInt16 MinorSubsystemVersion
+        public ushort MinorSubsystemVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x32); }
             set { Utility.SetUInt16(value, _offset + 0x32, _buff); }
         }
 
-        public UInt32 Win32VersionValue
+        public uint Win32VersionValue
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x34); }
             set { Utility.SetUInt32(value, _offset + 0x34, _buff); }
         }
 
-        public UInt32 SizeOfImage
+        public uint SizeOfImage
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x38); }
             set { Utility.SetUInt32(value, _offset + 0x38, _buff); }
         }
 
-        public UInt32 SizeOfHeaders
+        public uint SizeOfHeaders
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x3C); }
             set { Utility.SetUInt32(value, _offset + 0x3C, _buff); }
         }
 
-        public UInt32 CheckSum
+        public uint CheckSum
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x40); }
             set { Utility.SetUInt32(value, _offset + 0x40, _buff); }
         }
 
-        public UInt16 Subsystem
+        public ushort Subsystem
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x44); }
             set { Utility.SetUInt16(value, _offset + 0x44, _buff); }
         }
 
-        public UInt16 DllCharacteristics
+        public ushort DllCharacteristics
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x46); }
             set { Utility.SetUInt16(value, _offset + 0x46, _buff); }
         }
 
-        public UInt64 SizeOfStackReserve
+        public ulong SizeOfStackReserve
         {
-            get 
+            get
             {
-                return _is64Bit ? Utility.BytesToUInt64(_buff, _offset + 0x48) : Utility.BytesToUInt32(_buff, _offset + 0x48);
+                return _is64Bit
+                    ? Utility.BytesToUInt64(_buff, _offset + 0x48)
+                    : Utility.BytesToUInt32(_buff, _offset + 0x48);
             }
-            set 
+            set
             {
                 if (!_is64Bit)
-                    Utility.SetUInt32((UInt32)value, _offset + 0x48, _buff);
+                    Utility.SetUInt32((uint) value, _offset + 0x48, _buff);
                 else
                     Utility.SetUInt64(value, _offset + 0x48, _buff);
             }
         }
 
-        public UInt64 SizeOfStackCommit
+        public ulong SizeOfStackCommit
         {
-            get 
-            { 
-                return _is64Bit ? Utility.BytesToUInt64(_buff, _offset + 0x50) : Utility.BytesToUInt32(_buff, _offset + 0x4C); 
+            get
+            {
+                return _is64Bit
+                    ? Utility.BytesToUInt64(_buff, _offset + 0x50)
+                    : Utility.BytesToUInt32(_buff, _offset + 0x4C);
             }
-            set 
+            set
             {
                 if (!_is64Bit)
-                    Utility.SetUInt32((UInt32)value, _offset + 0x4C, _buff);
+                    Utility.SetUInt32((uint) value, _offset + 0x4C, _buff);
                 else
                     Utility.SetUInt64(value, _offset + 0x50, _buff);
             }
         }
 
-        public UInt64 SizeOfHeapReserve
+        public ulong SizeOfHeapReserve
         {
-            get 
-            { 
-                return _is64Bit ? Utility.BytesToUInt64(_buff, _offset + 0x58) : Utility.BytesToUInt32(_buff, _offset + 0x50); 
+            get
+            {
+                return _is64Bit
+                    ? Utility.BytesToUInt64(_buff, _offset + 0x58)
+                    : Utility.BytesToUInt32(_buff, _offset + 0x50);
             }
-            set 
+            set
             {
                 if (!_is64Bit)
-                    Utility.SetUInt32((UInt32)value, _offset + 0x50, _buff);
+                    Utility.SetUInt32((uint) value, _offset + 0x50, _buff);
                 else
                     Utility.SetUInt64(value, _offset + 0x58, _buff);
             }
         }
 
-        public UInt64 SizeOfHeapCommit
+        public ulong SizeOfHeapCommit
         {
-            get 
-            { 
-                return _is64Bit ? Utility.BytesToUInt64(_buff, _offset + 0x60) : Utility.BytesToUInt32(_buff, _offset + 0x54); 
+            get
+            {
+                return _is64Bit
+                    ? Utility.BytesToUInt64(_buff, _offset + 0x60)
+                    : Utility.BytesToUInt32(_buff, _offset + 0x54);
             }
-            set 
+            set
             {
                 if (!_is64Bit)
-                    Utility.SetUInt32((UInt32)value, _offset + 0x54, _buff);
+                    Utility.SetUInt32((uint) value, _offset + 0x54, _buff);
                 else
                     Utility.SetUInt64(value, _offset + 0x60, _buff);
             }
         }
 
-        public UInt32 LoaderFlags
+        public uint LoaderFlags
         {
-            get 
-            { 
-                return _is64Bit ? Utility.BytesToUInt32(_buff, _offset + 0x68) : Utility.BytesToUInt32(_buff, _offset + 0x58); 
+            get
+            {
+                return _is64Bit
+                    ? Utility.BytesToUInt32(_buff, _offset + 0x68)
+                    : Utility.BytesToUInt32(_buff, _offset + 0x58);
             }
-            set 
+            set
             {
                 if (!_is64Bit)
                     Utility.SetUInt32(value, _offset + 0x58, _buff);
@@ -263,13 +291,15 @@ namespace PeNet
             }
         }
 
-        public UInt32 NumberOfRvaAndSizes
+        public uint NumberOfRvaAndSizes
         {
-            get 
-            { 
-                return _is64Bit ? Utility.BytesToUInt32(_buff, _offset + 0x6C) : Utility.BytesToUInt32(_buff, _offset + 0x5C); 
+            get
+            {
+                return _is64Bit
+                    ? Utility.BytesToUInt32(_buff, _offset + 0x6C)
+                    : Utility.BytesToUInt32(_buff, _offset + 0x5C);
             }
-            set 
+            set
             {
                 if (!_is64Bit)
                     Utility.SetUInt32(value, _offset + 0x5C, _buff);
@@ -278,31 +308,12 @@ namespace PeNet
             }
         }
 
-        public readonly IMAGE_DATA_DIRECTORY[] DataDirectory;
-
-        public IMAGE_OPTIONAL_HEADER(byte[] buff, UInt32 offset, bool is64Bit)
-        {
-            _buff = buff;
-            _offset = offset;
-            _is64Bit = is64Bit;
-
-            DataDirectory = new IMAGE_DATA_DIRECTORY[16];
-
-            for(UInt32 i = 0; i < 16; i++)
-            {
-                if(!_is64Bit)
-                    DataDirectory[i] = new IMAGE_DATA_DIRECTORY(buff, offset + 0x60 + i * 0x8);
-                else
-                    DataDirectory[i] = new IMAGE_DATA_DIRECTORY(buff, offset + 0x70 + i * 0x8);
-            }
-        }
-
         public override string ToString()
         {
             var sb = new StringBuilder("IMAGE_OPTIONAL_HEADER\n");
             sb.Append(Utility.PropertiesToString(this, "{0,-15}:\t{1,10:X}\n"));
-            foreach(var dd in DataDirectory)
-                sb.Append(dd.ToString());
+            foreach (var dd in DataDirectory)
+                sb.Append(dd);
             return sb.ToString();
         }
     }

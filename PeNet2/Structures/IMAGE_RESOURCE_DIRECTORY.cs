@@ -16,58 +16,91 @@ limitations under the License.
 *************************************************************************/
 
 using System;
+using System.Text;
 
 namespace PeNet
 {
     public class IMAGE_RESOURCE_DIRECTORY
     {
-        UInt32 _offset;
-        byte[] _buff;
+        private readonly byte[] _buff;
+        private readonly uint _offset;
 
-        public UInt32 Characteristics
+        public readonly IMAGE_RESOURCE_DIRECTORY_ENTRY[] DirectoryEntries;
+
+        public IMAGE_RESOURCE_DIRECTORY(byte[] buff, uint offset, uint resourceDirOffset)
+        {
+            _offset = offset;
+            _buff = buff;
+
+            DirectoryEntries = ParseDirectoryEntries(resourceDirOffset);
+        }
+
+        public uint Characteristics
         {
             get { return Utility.BytesToUInt32(_buff, _offset); }
             set { Utility.SetUInt32(value, _offset, _buff); }
         }
 
-        public UInt32 TimeDateStamp
+        public uint TimeDateStamp
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
             set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
         }
 
-        public UInt16 MajorVersion
+        public ushort MajorVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x8); }
             set { Utility.SetUInt16(value, _offset + 0x8, _buff); }
         }
 
-        public UInt16 MinorVersion
+        public ushort MinorVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0xa); }
             set { Utility.SetUInt16(value, _offset + 0xa, _buff); }
         }
 
-        public UInt16 NumberOfNameEntries
+        public ushort NumberOfNameEntries
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0xc); }
             set { Utility.SetUInt16(value, _offset + 0xc, _buff); }
         }
 
-        public UInt16 NumberOfIdEntries
+        public ushort NumberOfIdEntries
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0xe); }
             set { Utility.SetUInt16(value, _offset + 0xe, _buff); }
         }
 
-        public IMAGE_RESOURCE_DIRECTORY_ENTRY[] DirectoryEntries;
-
-        public IMAGE_RESOURCE_DIRECTORY(byte[] buff, UInt32 offset)
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>
+        /// A string that represents the current object.
+        /// </returns>
+        public override string ToString()
         {
-            _offset = offset;
-            _buff = buff;
+            var sb = new StringBuilder("IMAGE_RESOURCE_DIRECTORY\n");
+            sb.Append(Utility.PropertiesToString(this, "{0,-20}:\t{1,10:X}\n"));
+            return sb.ToString();
+        }
 
-            DirectoryEntries = new IMAGE_RESOURCE_DIRECTORY_ENTRY[NumberOfIdEntries + NumberOfNameEntries];
+        private IMAGE_RESOURCE_DIRECTORY_ENTRY[] ParseDirectoryEntries(uint resourceDirOffset)
+        {
+            var entries = new IMAGE_RESOURCE_DIRECTORY_ENTRY[NumberOfIdEntries + NumberOfNameEntries];
+
+            for (int index = 0; index < entries.Length; index++)
+            {
+                try
+                {
+                    entries[index] = new IMAGE_RESOURCE_DIRECTORY_ENTRY(_buff, (uint) index*8 + _offset + 16, resourceDirOffset);
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    entries[index] = null;
+                }
+            }
+
+            return entries;
         }
     }
 }
