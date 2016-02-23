@@ -62,7 +62,7 @@ namespace PeNet
                     ImageExportDirectory = new IMAGE_EXPORT_DIRECTORY(
                         buff,
                         Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[0].VirtualAddress,
-                            ImageSectionHeaders)
+                        ImageSectionHeaders)
                         );
 
                     ExportedFunctions = ParseExportedFunctions(
@@ -84,12 +84,12 @@ namespace PeNet
                 try
                 {
                     ImageImportDescriptors = ParseImportDescriptors(
-                        buff,
+                    buff,
                         Utility.RVAtoFileMapping(
                             ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Import]
                                 .VirtualAddress, ImageSectionHeaders),
-                        ImageSectionHeaders
-                        );
+                    ImageSectionHeaders
+                    );
 
                     ImportedFunctions = ParseImportedFunctions(buff, ImageImportDescriptors, ImageSectionHeaders);
                 }
@@ -133,14 +133,14 @@ namespace PeNet
                     try
                     {
                         RuntimeFunctions = PareseExceptionDirectory(
-                            buff,
+                        buff,
                             Utility.RVAtoFileMapping(
                                 ImageNtHeaders.OptionalHeader.DataDirectory[
                                     (uint) Constants.DataDirectoryIndex.Exception].VirtualAddress, ImageSectionHeaders),
                             ImageNtHeaders.OptionalHeader.DataDirectory[(uint) Constants.DataDirectoryIndex.Exception]
                                 .Size,
-                            ImageSectionHeaders
-                            );
+                        ImageSectionHeaders
+                        );
                     }
                     catch
                     {
@@ -159,10 +159,10 @@ namespace PeNet
                 try
                 {
                     WinCertificate = ParseImageSecurityDirectory(
-                        buff,
+                    buff,
                         ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Security]
                             .VirtualAddress,
-                        ImageSectionHeaders);
+                    ImageSectionHeaders);
                 }
                 catch (Exception)
                 {
@@ -234,11 +234,17 @@ namespace PeNet
         /// </summary>
         public string ImpHash { get; private set; }
 
+        /// <summary>
+        /// Get an object which holds information about
+        /// the Certificate Revocation Lists of the signing
+        /// certificate if any is present.
+        /// </summary>
+        /// <returns>Certificate Revocation List information or null if binary is not signed.</returns>
         public CrlUrlList GetCrlUrlList()
         {
             if (PKCS7 == null)
                 return null;
-            return new CrlUrlList(PKCS7);
+                return new CrlUrlList(PKCS7);
         }
 
         public UNWIND_INFO GetUnwindInfo(RUNTIME_FUNCTION runtimeFunction)
@@ -430,7 +436,7 @@ namespace PeNet
         /// <summary>
         ///     Tries to parse the PE file. If no exceptions are thrown, true
         /// </summary>
-        /// <param name="file"></param>
+        /// <param name="file">Path to a possible PE file.</param>
         /// <returns>True if the file could be parsed as a PE file, else false.</returns>
         public static bool IsValidPEFile(string file)
         {
@@ -678,8 +684,8 @@ namespace PeNet
                 sb.AppendLine("CRL URLs:");
                 foreach (var url in Urls)
                     sb.AppendFormat("\t{0}\n", url);
-                return sb.ToString();
-            }
+            return sb.ToString();
         }
     }
+}
 }

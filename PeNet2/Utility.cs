@@ -305,60 +305,132 @@ namespace PeNet
             return st;
         }
 
-        private static ushort BytesToUInt16(byte b1, byte b2)
+        /// <summary>
+        /// Convert to bytes to an 16 bit unsinged integer.
+        /// </summary>
+        /// <param name="b1">High byte.</param>
+        /// <param name="b2">Low byte.</param>
+        /// <returns>UInt16 of the input bytes.</returns>
+        static ushort BytesToUInt16(byte b1, byte b2)
         {
             return BitConverter.ToUInt16(new[] {b1, b2}, 0);
         }
 
-        public static ushort BytesToUInt16(byte[] buff, ulong i)
+        /// <summary>
+        /// Convert a two bytes in a byte array to an 16 bit unsigned integer.
+        /// </summary>
+        /// <param name="buff">Byte buffer.</param>
+        /// <param name="i">Position of the high byte. Low byte is i+1.</param>
+        /// <returns>UInt16 of the bytes in the buffer at position i and i+1.</returns>
+        public static ushort BytesToUInt16(byte[] buff, UInt64 i)
         {
             return BytesToUInt16(buff[i], buff[i + 1]);
         }
 
-        private static uint BytesToUInt32(byte b1, byte b2, byte b3, byte b4)
+        /// <summary>
+        /// Convert 4 bytes to an 32 bit unsigned integer.
+        /// </summary>
+        /// <param name="b1">Highest byte.</param>
+        /// <param name="b2">Second highest byte.</param>
+        /// <param name="b3">Second lowest byte.</param>
+        /// <param name="b4">Lowest byte.</param>
+        /// <returns>UInt32 representation of the input bytes.</returns>
+        static UInt32 BytesToUInt32(byte b1, byte b2, byte b3, byte b4)
         {
             return BitConverter.ToUInt32(new[] {b1, b2, b3, b4}, 0);
         }
 
-        public static uint BytesToUInt32(byte[] buff, uint i)
+        /// <summary>
+        /// Convert 4 consecutive bytes out of a buffer to an 32 bit unsigned integer.
+        /// </summary>
+        /// <param name="buff">Byte buffer.</param>
+        /// <param name="i">Offset of the highest byte.</param>
+        /// <returns>UInt32 of 4 bytes.</returns>
+        public static UInt32 BytesToUInt32(byte[] buff, UInt32 i)
         {
             return BytesToUInt32(buff[i], buff[i + 1], buff[i + 2], buff[i + 3]);
         }
 
-        private static ulong BytesToUInt64(byte b1, byte b2, byte b3, byte b4, byte b5, byte b6, byte b7, byte b8)
+        /// <summary>
+        /// Converts 8 bytes to an 64 bit unsigned integer.
+        /// </summary>
+        /// <param name="b1">Highest byte.</param>
+        /// <param name="b2">Second byte.</param>
+        /// <param name="b3">Third byte.</param>
+        /// <param name="b4">Fourth byte.</param>
+        /// <param name="b5">Fifth byte.</param>
+        /// <param name="b6">Sixth byte.</param>
+        /// <param name="b7">Seventh byte.</param>
+        /// <param name="b8">Lowest byte.</param>
+        /// <returns>UInt64 of the input bytes.</returns>
+        static UInt64 BytesToUInt64(byte b1, byte b2, byte b3, byte b4, byte b5, byte b6, byte b7, byte b8)
         {
             return BitConverter.ToUInt64(new[] {b1, b2, b3, b4, b5, b6, b7, b8}, 0);
         }
 
-        public static ulong BytesToUInt64(byte[] buff, ulong i)
+        /// <summary>
+        /// Convert 8 consecutive byte in a buffer to an 
+        /// 64 bit unsigned integer.
+        /// </summary>
+        /// <param name="buff">Byte buffer.</param>
+        /// <param name="i">Offset of the highest byte.</param>
+        /// <returns>UInt64 of the byte sequence at offset i.</returns>
+        public static UInt64 BytesToUInt64(byte[] buff, UInt64 i)
         {
             return BytesToUInt64(buff[i], buff[i + 1], buff[i + 2], buff[i + 3], buff[i + 4], buff[i + 5], buff[i + 6],
                 buff[i + 7]);
         }
 
-        private static byte[] UInt16ToBytes(ushort value)
+        /// <summary>
+        /// Convert an UIn16 to an byte array.
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Two byte array of the input value.</returns>
+        static byte[] UInt16ToBytes(UInt16 value)
         {
             return BitConverter.GetBytes(value);
         }
 
-        public static void SetUInt16(ushort value, ulong offset, byte[] buff)
+        /// <summary>
+        /// Set an UInt16 value at an offset in an byte array.
+        /// </summary>
+        /// <param name="value">The value to set.</param>
+        /// <param name="offset">Offset where the value is set.</param>
+        /// <param name="buff">Buffer in which the value is set.</param>
+        public static void SetUInt16(UInt16 value, UInt64 offset, byte[] buff)
         {
             var x = UInt16ToBytes(value);
             buff[offset] = x[0];
             buff[offset + 1] = x[1];
         }
 
-        private static byte[] UInt32ToBytes(uint value)
+        /// <summary>
+        /// Convert an UInt32 value into an byte array.
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>4 byte array of the value.</returns>
+        static byte[] UInt32ToBytes(UInt32 value)
         {
             return BitConverter.GetBytes(value);
         }
 
-        private static byte[] UInt64ToBytes(ulong value)
+        /// <summary>
+        /// Convert an UIn64 value into an byte array.
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>8 byte array of the value.</returns>
+        static byte[] UInt64ToBytes(UInt64 value)
         {
             return BitConverter.GetBytes(value);
         }
 
-        public static void SetUInt32(uint value, uint offset, byte[] buff)
+        /// <summary>
+        /// Sets an UInt32 value at an offset in a buffer.
+        /// </summary>
+        /// <param name="value">Value to set.</param>
+        /// <param name="offset">Offset in the array for the value.</param>
+        /// <param name="buff">Buffer to set the value in.</param>
+        public static void SetUInt32(UInt32 value, UInt32 offset, byte[] buff)
         {
             var x = UInt32ToBytes(value);
             buff[offset] = x[0];
@@ -367,7 +439,13 @@ namespace PeNet
             buff[offset + 3] = x[3];
         }
 
-        public static void SetUInt64(ulong value, ulong offset, byte[] buff)
+        /// <summary>
+        /// Sets an UInt64 value at an offset in a buffer.
+        /// </summary>
+        /// <param name="value">Value to set.</param>
+        /// <param name="offset">Offset in the array for the value.</param>
+        /// <param name="buff">Buffer to set the value in.</param>
+        public static void SetUInt64(UInt64 value, UInt64 offset, byte[] buff)
         {
             var x = UInt64ToBytes(value);
             buff[offset] = x[0];
@@ -380,7 +458,7 @@ namespace PeNet
             buff[offset + 7] = x[7];
         }
 
-        public static string PropertiesToString(object obj, string format)
+        internal static string PropertiesToString(object obj, string format)
         {
             var properties = obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
             var sb = new StringBuilder();
@@ -395,7 +473,13 @@ namespace PeNet
             return sb.ToString();
         }
 
-        public static uint RVAtoFileMapping(uint RVA, IMAGE_SECTION_HEADER[] sh)
+        /// <summary>
+        /// Map an relative virtual address to the raw file address.
+        /// </summary>
+        /// <param name="RVA">Relative Virutal Address</param>
+        /// <param name="sh">Section Headers</param>
+        /// <returns>Raw file address.</returns>
+        public static UInt32 RVAtoFileMapping(UInt32 RVA, IMAGE_SECTION_HEADER[] sh)
         {
             var sortedSt = sh.OrderBy(x => x.VirtualAddress).ToList();
             uint vOffset = 0, rOffset = 0;
@@ -429,7 +513,13 @@ namespace PeNet
             return RVA - vOffset + rOffset;
         }
 
-        public static ulong RVAtoFileMapping(ulong RVA, IMAGE_SECTION_HEADER[] sh)
+        /// <summary>
+        /// Map an relative virtual address to the raw file address.
+        /// </summary>
+        /// <param name="RVA">Relative Virutal Address</param>
+        /// <param name="sh">Section Headers</param>
+        /// <returns>Raw file address.</returns>
+        public static UInt64 RVAtoFileMapping(UInt64 RVA, IMAGE_SECTION_HEADER[] sh)
         {
             var sortedSt = sh.OrderBy(x => x.VirtualAddress).ToList();
             uint vOffset = 0, rOffset = 0;
@@ -468,7 +558,13 @@ namespace PeNet
             return BitConverter.ToUInt16(new[] {buff[ordinal], buff[ordinal + 1]}, 0);
         }
 
-        public static string GetName(ulong name, byte[] buff)
+        /// <summary>
+        /// Get a name (C string) at a specific position in a buffer.
+        /// </summary>
+        /// <param name="name">Offset of the string.</param>
+        /// <param name="buff">Containing buffer.</param>
+        /// <returns>The parsed C string.</returns>
+        public static string GetName(UInt64 name, byte[] buff)
         {
             var length = GetNameLength(name, buff);
             var tmp = new char[length];
@@ -480,7 +576,14 @@ namespace PeNet
             return new string(tmp);
         }
 
-        public static ulong GetNameLength(ulong name, byte[] buff)
+        /// <summary>
+        /// For a given offset in an byte array, find the next
+        /// null value which terminates a C string.
+        /// </summary>
+        /// <param name="name">Offset of the string.</param>
+        /// <param name="buff">Buffer which contains the string.</param>
+        /// <returns>Length of the string in bytes.</returns>
+        public static UInt64 GetNameLength(UInt64 name, byte[] buff)
         {
             var offset = name;
             ulong length = 0;
