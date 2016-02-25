@@ -27,15 +27,14 @@ namespace PeNet
     public class PeFile
     {
         private readonly byte[] _buff;
+        private string _sha256 = null;
+        private string _sha1 = null;
+        private string _md5 = null;
+        private string _impHash = null;
 
         public PeFile(byte[] buff)
         {
             _buff = buff;
-
-            // Compute the different file hashes.
-            SHA256 = Utility.Sha256(_buff);
-            SHA1 = Utility.Sha1(_buff);
-            MD5 = Utility.MD5(_buff);
 
             // Parse the Image DOS Header
             ImageDosHeader = new IMAGE_DOS_HEADER(buff);
@@ -99,9 +98,6 @@ namespace PeNet
                     HasValidImportDir = false;
                 }
             }
-
-            // Compute the Import Hash
-            ImpHash = GetImpHash();
 
             // Parse the resource directory.
             if (ImageNtHeaders.OptionalHeader.DataDirectory[2].VirtualAddress != 0)
@@ -216,23 +212,28 @@ namespace PeNet
         /// <summary>
         /// The SHA-256 hash sum of the binary.
         /// </summary>
-        public string SHA256 { get; private set; }
+        public string SHA256 => _sha256 ?? (_sha256 = Utility.Sha256(_buff));
 
         /// <summary>
         /// The SHA-1 hash sum of the binary.
         /// </summary>
-        public string SHA1 { get; private set; }
+        public string SHA1 => _sha1 ?? (_sha256 = Utility.Sha1(_buff));
 
         /// <summary>
         /// The MD5 of hash sum of the binary.
         /// </summary>
-        public string MD5 { get; private set; }
+        public string MD5 => _md5 ?? (_md5 = Utility.MD5(_buff));
 
         /// <summary>
         /// The Import Hash of the binary if any imports are
-        /// givenm esle null;
+        /// given esle null;
         /// </summary>
-        public string ImpHash { get; private set; }
+        public string ImpHash => _impHash ?? (_impHash = GetImpHash());
+
+        /// <summary>
+        /// Returns the file size in bytes.
+        /// </summary>
+        public int FileSize => _buff.Length;
 
         /// <summary>
         /// Get an object which holds information about

@@ -13,6 +13,7 @@ namespace Example
             Console.WriteLine($"ImpHash: {pe.ImpHash}");
             Console.WriteLine($"SHA-1: {pe.SHA1}");
             Console.WriteLine($"MD5: {pe.MD5}");
+            Console.WriteLine($"File Size {pe.FileSize}");
 
             foreach (var resdir in pe.ImageResourceDirectory)
             {
