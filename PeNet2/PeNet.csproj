@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="PatternMatching\AhoCorasick.cs" />
     <Compile Include="Structures\IMAGE_DATA_DIRECTORY.cs" />
     <Compile Include="Structures\IMAGE_DOS_HEADER.cs" />
     <Compile Include="Structures\IMAGE_EXPORT_DIRECTORY.cs" />

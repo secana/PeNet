@@ -26,7 +26,7 @@ namespace PeNet
 {
     public class PeFile
     {
-        private readonly byte[] _buff;
+        public readonly byte[] Buff;
         private string _sha256 = null;
         private string _sha1 = null;
         private string _md5 = null;
@@ -34,7 +34,7 @@ namespace PeNet
 
         public PeFile(byte[] buff)
         {
-            _buff = buff;
+            Buff = buff;
 
             // Parse the Image DOS Header
             ImageDosHeader = new IMAGE_DOS_HEADER(buff);
@@ -212,17 +212,17 @@ namespace PeNet
         /// <summary>
         /// The SHA-256 hash sum of the binary.
         /// </summary>
-        public string SHA256 => _sha256 ?? (_sha256 = Utility.Sha256(_buff));
+        public string SHA256 => _sha256 ?? (_sha256 = Utility.Sha256(Buff));
 
         /// <summary>
         /// The SHA-1 hash sum of the binary.
         /// </summary>
-        public string SHA1 => _sha1 ?? (_sha256 = Utility.Sha1(_buff));
+        public string SHA1 => _sha1 ?? (_sha256 = Utility.Sha1(Buff));
 
         /// <summary>
         /// The MD5 of hash sum of the binary.
         /// </summary>
-        public string MD5 => _md5 ?? (_md5 = Utility.MD5(_buff));
+        public string MD5 => _md5 ?? (_md5 = Utility.MD5(Buff));
 
         /// <summary>
         /// The Import Hash of the binary if any imports are
@@ -233,7 +233,7 @@ namespace PeNet
         /// <summary>
         /// Returns the file size in bytes.
         /// </summary>
-        public int FileSize => _buff.Length;
+        public int FileSize => Buff.Length;
 
         /// <summary>
         /// Get an object which holds information about
@@ -256,7 +256,7 @@ namespace PeNet
                 ? runtimeFunction.UnwindInfo & 0xFFFE
                 : runtimeFunction.UnwindInfo;
 
-            var uw = new UNWIND_INFO(_buff, Utility.RVAtoFileMapping(uwAddress, ImageSectionHeaders));
+            var uw = new UNWIND_INFO(Buff, Utility.RVAtoFileMapping(uwAddress, ImageSectionHeaders));
             return uw;
         }
 

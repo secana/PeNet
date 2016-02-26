@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace Example
 {
@@ -9,20 +10,18 @@ namespace Example
         static void Main(string[] args)
         {
             var pe = new PeNet.PeFile(@"c:\windows\system32\calc.exe");
-            Console.WriteLine($"SHA-256: {pe.SHA256}");
-            Console.WriteLine($"ImpHash: {pe.ImpHash}");
-            Console.WriteLine($"SHA-1: {pe.SHA1}");
-            Console.WriteLine($"MD5: {pe.MD5}");
-            Console.WriteLine($"File Size {pe.FileSize}");
 
-            foreach (var resdir in pe.ImageResourceDirectory)
+            var trie = new PeNet.PatternMatching.Trie();
+            trie.Add("MicrosoftCalculator", Encoding.ASCII, "pattern1");
+            trie.Add("<assemblyIdentity", Encoding.ASCII, "pattern2");
+            trie.Add("not in the binary", Encoding.ASCII, "pattern3");
+            trie.Add(new byte[] {0x54, 0x40, 0x00, 0x00, 0xe0, 0x41}, "pattern4");
+            trie.Build();
+
+            var matches = trie.Find(pe.Buff);
+            foreach (var match in matches)
             {
-                Console.WriteLine(resdir.ToString());
-                foreach (var entry in resdir.DirectoryEntries)
-                {
-                    Console.WriteLine(entry.ToString());
-                }
-                Console.WriteLine("------------------------------------------");
+                Console.WriteLine($"Pattern {match.Item1} at offset {match.Item2}");
             }
             Console.ReadKey(true);
         }
