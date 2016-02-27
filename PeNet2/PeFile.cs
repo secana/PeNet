@@ -24,6 +24,10 @@ using System.Text;
 
 namespace PeNet
 {
+    /// <summary>
+    /// This class represents a Portable Executable (PE) file and makes the different
+    /// header and properites accessable.
+    /// </summary>
     public class PeFile
     {
         public readonly byte[] Buff;
@@ -172,6 +176,7 @@ namespace PeNet
         public PeFile(string peFile)
             : this(File.ReadAllBytes(peFile))
         {
+            Location = peFile;
         }
 
         public bool IsValidPeFile => HasValidExceptionDir
@@ -217,7 +222,7 @@ namespace PeNet
         /// <summary>
         /// The SHA-1 hash sum of the binary.
         /// </summary>
-        public string SHA1 => _sha1 ?? (_sha256 = Utility.Sha1(Buff));
+        public string SHA1 => _sha1 ?? (_sha1 = Utility.Sha1(Buff));
 
         /// <summary>
         /// The MD5 of hash sum of the binary.
@@ -234,6 +239,11 @@ namespace PeNet
         /// Returns the file size in bytes.
         /// </summary>
         public int FileSize => Buff.Length;
+
+        /// <summary>
+        /// Location of the PE file if it was opened by location.
+        /// </summary>
+        public string Location { get; private set; }
 
         /// <summary>
         /// Get an object which holds information about

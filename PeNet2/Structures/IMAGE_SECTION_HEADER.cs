@@ -102,19 +102,19 @@ namespace PeNet
             set { Utility.SetUInt32(value, _offset + 0x1C, _buff); }
         }
 
-        private ushort NumberOfRelocations
+        public ushort NumberOfRelocations
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x20); }
             set { Utility.SetUInt16(value, _offset + 0x20, _buff); }
         }
 
-        private ushort NumberOfLinenumbers
+        public ushort NumberOfLinenumbers
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x22); }
             set { Utility.SetUInt16(value, _offset + 0x22, _buff); }
         }
 
-        private uint Characteristics
+        public uint Characteristics
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x24); }
             set { Utility.SetUInt32(value, _offset + 0x24, _buff); }

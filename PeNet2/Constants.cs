@@ -15,10 +15,178 @@ limitations under the License.
 
 *************************************************************************/
 
+using System;
+
 namespace PeNet
 {
+    /// <summary>
+    /// This class contains constants and flags which are used in a PE file.
+    /// The constants can be used to map a numeric value to an understanable string.
+    /// </summary>
     public static class Constants
     {
+        /// <summary>
+        /// The SectionFlags enumeration lists all possible flags which can 
+        /// be set in the section characteristics.
+        /// </summary>
+        [Flags]
+        public enum SectionFlags : uint
+        {
+            /// <summary>
+            /// Reserved.
+            /// </summary>
+            IMAGE_SCN_TYPE_NO_PAD = 0x00000008,
+            /// <summary>
+            /// Section contains code.
+            /// </summary>
+            IMAGE_SCN_CNT_CODE = 0x00000020,
+            /// <summary>
+            /// Section contains initialized data.
+            /// </summary>
+            IMAGE_SCN_CNT_INITIALIZED_DATA = 0x00000040,
+            /// <summary>
+            /// Section contains uninitialized data.
+            /// </summary>
+            IMAGE_SCN_CNT_UNINITIALIZED_DATA = 0x00000080,
+            /// <summary>
+            /// Reserved.
+            /// </summary>
+            IMAGE_SCN_LNK_OTHER = 0x00000100,
+            /// <summary>
+            /// Section contains comments or some  other type of information.
+            /// </summary>
+            IMAGE_SCN_LNK_INFO = 0x00000200,
+            /// <summary>
+            /// Section contents will not become part of image.
+            /// </summary>
+            IMAGE_SCN_LNK_REMOVE = 0x00000800,
+            /// <summary>
+            /// Section contents comdat.
+            /// </summary>
+            IMAGE_SCN_LNK_COMDAT = 0x00001000,
+            /// <summary>
+            /// Reset speculative exceptions handling bits in the TLB entries for this section.
+            /// </summary>
+            IMAGE_SCN_NO_DEFER_SPEC_EXC = 0x00004000,
+            /// <summary>
+            /// Section content can be accessed relative to GP.
+            /// </summary>
+            IMAGE_SCN_GPREL = 0x00008000,
+            /// <summary>
+            /// Unknown.
+            /// </summary>
+            IMAGE_SCN_MEM_FARDATA = 0x00008000,
+            /// <summary>
+            /// Unknown.
+            /// </summary>
+            IMAGE_SCN_MEM_PURGEABLE = 0x00020000,
+            /// <summary>
+            /// Unknown.
+            /// </summary>
+            IMAGE_SCN_MEM_16BIT = 0x00020000,
+            /// <summary>
+            /// Unknown.
+            /// </summary>
+            IMAGE_SCN_MEM_LOCKED = 0x00040000,
+            /// <summary>
+            /// Unknown.
+            /// </summary>
+            IMAGE_SCN_MEM_PRELOAD = 0x00080000,
+            /// <summary>
+            /// Section alignment.
+            /// </summary>
+            IMAGE_SCN_ALIGN_1BYTES = 0x00100000, 
+            /// <summary>
+            /// Section alignment.
+            /// </summary>
+            IMAGE_SCN_ALIGN_2BYTES = 0x00200000,
+            /// <summary>
+            /// Section alignment.
+            /// </summary>
+            IMAGE_SCN_ALIGN_4BYTES = 0x00300000,
+            /// <summary>
+            /// Section alignment.
+            /// </summary>
+            IMAGE_SCN_ALIGN_8BYTES = 0x00400000,
+            /// <summary>
+            /// Default alignment if no others are specified.
+            /// </summary>
+            IMAGE_SCN_ALIGN_16BYTES = 0x00500000,
+            /// <summary>
+            /// Section alignment.
+            /// </summary>
+            IMAGE_SCN_ALIGN_32BYTES = 0x00600000,
+            /// <summary>
+            /// Section alignment.
+            /// </summary>
+            IMAGE_SCN_ALIGN_64BYTES = 0x00700000,
+            /// <summary>
+            /// Section alignment.
+            /// </summary>
+            IMAGE_SCN_ALIGN_128BYTES = 0x00800000,
+            /// <summary>
+            /// Section alignment.
+            /// </summary>
+            IMAGE_SCN_ALIGN_256BYTES = 0x00900000,
+            /// <summary>
+            /// Section alignment.
+            /// </summary>
+            IMAGE_SCN_ALIGN_512BYTES = 0x00A00000,
+            /// <summary>
+            /// Section alignment.
+            /// </summary>
+            IMAGE_SCN_ALIGN_1024BYTES = 0x00B00000,
+            /// <summary>
+            /// Section alignment.
+            /// </summary>
+            IMAGE_SCN_ALIGN_2048BYTES = 0x00C00000,
+            /// <summary>
+            /// Section alignment.
+            /// </summary>
+            IMAGE_SCN_ALIGN_4096BYTES = 0x00D00000,
+            /// <summary>
+            /// Section alignment.
+            /// </summary>
+            IMAGE_SCN_ALIGN_8192BYTES = 0x00E00000,
+            /// <summary>
+            /// Alingment mask.
+            /// </summary>
+            IMAGE_SCN_ALIGN_MASK = 0x00F00000,
+            /// <summary>
+            /// Section contains extended relocations.
+            /// </summary>
+            IMAGE_SCN_LNK_NRELOC_OVFL = 0x01000000,
+            /// <summary>
+            /// Section can be discarded.
+            /// </summary>
+            IMAGE_SCN_MEM_DISCARDABLE = 0x02000000,
+            /// <summary>
+            /// Section is not cache-able.
+            /// </summary>
+            IMAGE_SCN_MEM_NOT_CACHED = 0x04000000,
+            /// <summary>
+            /// Section is not page-able.
+            /// </summary>
+            IMAGE_SCN_MEM_NOT_PAGED = 0x08000000,
+            /// <summary>
+            /// Section is shareable.
+            /// </summary>
+            IMAGE_SCN_MEM_SHARED = 0x10000000,
+            /// <summary>
+            /// Section is executable.
+            /// </summary>
+            IMAGE_SCN_MEM_EXECUTE = 0x20000000,
+            /// <summary>
+            /// Section is readable.
+            /// </summary>
+            IMAGE_SCN_MEM_READ = 0x40000000,
+            /// <summary>
+            /// Section is write-able.
+            /// </summary>
+            IMAGE_SCN_MEM_WRITE = 0x80000000
+        }
+
+
         ////////////////////////
         // IMAGE_DATA_DIRECTORY
         ////////////////////////
