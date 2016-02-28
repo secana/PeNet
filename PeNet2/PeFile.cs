@@ -45,7 +45,7 @@ namespace PeNet
             ImageDosHeader = new IMAGE_DOS_HEADER(buff);
 
             // Check if the PE file is 64 bit.
-            Is64Bit = Utility.BytesToUInt16(buff, ImageDosHeader.e_lfanew + 0x4) == Constants.IMAGE_FILE_MACHINE_AMD64;
+            Is64Bit = Utility.BytesToUInt16(buff, ImageDosHeader.e_lfanew + 0x4) == (ushort) Constants.Machine.IMAGE_FILE_MACHINE_AMD64;
 
             var secHeaderOffset = (uint) (Is64Bit ? 0x108 : 0xF8);
 
@@ -480,10 +480,10 @@ namespace PeNet
 
             switch (ImageNtHeaders.FileHeader.Machine)
             {
-                case Constants.IMAGE_FILE_MACHINE_I386:
+                case (ushort) Constants.Machine.IMAGE_FILE_MACHINE_I386:
                     fileType = "I386";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_AMD64:
+                case (ushort) Constants.Machine.IMAGE_FILE_MACHINE_AMD64:
                     fileType = "AMD64";
                     break;
                 default:
@@ -491,9 +491,9 @@ namespace PeNet
                     break;
             }
 
-            if ((ImageNtHeaders.FileHeader.Characteristics & Constants.IMAGE_FILE_DLL) != 0)
+            if ((ImageNtHeaders.FileHeader.Characteristics & (ushort) Constants.FileCharacteristics.IMAGE_FILE_DLL) != 0)
                 fileType += "_DLL";
-            else if ((ImageNtHeaders.FileHeader.Characteristics & Constants.IMAGE_FILE_EXECUTABLE_IMAGE) != 0)
+            else if ((ImageNtHeaders.FileHeader.Characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) != 0)
                 fileType += "_EXE";
             else
                 fileType += "_UNKNOWN";

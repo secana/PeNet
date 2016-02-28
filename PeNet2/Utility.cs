@@ -41,85 +41,85 @@ namespace PeNet
             var tm = "unknown";
             switch (targetMachine)
             {
-                case Constants.IMAGE_FILE_MACHINE_I386:
+                case (ushort) Constants.Machine.IMAGE_FILE_MACHINE_I386:
                     tm = "Intel 386";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_I860:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_I860:
                     tm = "Intel i860";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_R3000:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_R3000:
                     tm = "MIPS R3000";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_R4000:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_R4000:
                     tm = "MIPS little endian (R4000)";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_R10000:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_R10000:
                     tm = "MIPS R10000";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_WCEMIPSV2:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_WCEMIPSV2:
                     tm = "MIPS little endian WCI v2";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_OLDALPHA:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_OLDALPHA:
                     tm = "old Alpha AXP";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_ALPHA:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_ALPHA:
                     tm = "Alpha AXP";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_SH3:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_SH3:
                     tm = "Hitachi SH3";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_SH3DSP:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_SH3DSP:
                     tm = "Hitachi SH3 DSP";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_SH4:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_SH4:
                     tm = "Hitachi SH4";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_SH5:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_SH5:
                     tm = "Hitachi SH5";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_ARM:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_ARM:
                     tm = "ARM little endian";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_THUMB:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_THUMB:
                     tm = "Thumb";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_AM33:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_AM33:
                     tm = "Matsushita AM33";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_POWERPC:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_POWERPC:
                     tm = "PowerPC little endian";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_POWERPCFP:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_POWERPCFP:
                     tm = "PowerPC with floating point support";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_IA64:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_IA64:
                     tm = "Intel IA64";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_MIPS16:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_MIPS16:
                     tm = "MIPS16";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_M68K:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_M68K:
                     tm = "Motorola 68000 series";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_ALPHA64:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_ALPHA64:
                     tm = "Alpha AXP 64-bit";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_MIPSFPU:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_MIPSFPU:
                     tm = "MIPS with FPU";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_MIPSFPU16:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_MIPSFPU16:
                     tm = "MIPS16 with FPU";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_EBC:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_EBC:
                     tm = "EFI Byte Code";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_AMD64:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_AMD64:
                     tm = "AMD AMD64";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_M32R:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_M32R:
                     tm = "Mitsubishi M32R little endian";
                     break;
-                case Constants.IMAGE_FILE_MACHINE_CEE:
+                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_CEE:
                     tm = "clr pure MSIL";
                     break;
             }
@@ -218,43 +218,43 @@ namespace PeNet
             /// <param name="characteristics">Characteristics from the file header.</param>
             public FileCharacteristics(ushort characteristics)
             {
-                if ((characteristics & Constants.IMAGE_FILE_RELOCS_STRIPPED) == Constants.IMAGE_FILE_RELOCS_STRIPPED)
+                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_RELOCS_STRIPPED) > 0)
                     RelocStripped = true;
 
-                if ((characteristics & Constants.IMAGE_FILE_EXECUTABLE_IMAGE) == Constants.IMAGE_FILE_EXECUTABLE_IMAGE)
+                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) > 0)
                     ExecutableImage = true;
 
-                if ((characteristics & Constants.IMAGE_FILE_LINE_NUMS_STRIPPED) == Constants.IMAGE_FILE_LINE_NUMS_STRIPPED)
+                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_LINE_NUMS_STRIPPED) > 0)
                     LineNumbersStripped = true;
 
-                if ((characteristics & Constants.IMAGE_FILE_LOCAL_SYMS_STRIPPED) == Constants.IMAGE_FILE_LOCAL_SYMS_STRIPPED)
+                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_LOCAL_SYMS_STRIPPED) > 0)
                     LocalSymbolsStripped = true;
 
-                if ((characteristics & Constants.IMAGE_FILE_AGGRESIVE_WS_TRIM) == Constants.IMAGE_FILE_AGGRESIVE_WS_TRIM)
+                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_AGGRESIVE_WS_TRIM) > 0)
                     AggressiveWsTrim = true;
 
-                if ((characteristics & Constants.IMAGE_FILE_LARGE_ADDRESS_AWARE) == Constants.IMAGE_FILE_LARGE_ADDRESS_AWARE)
+                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_LARGE_ADDRESS_AWARE) > 0)
                     LargeAddressAware = true;
 
-                if ((characteristics & Constants.IMAGE_FILE_BYTES_REVERSED_LO) == Constants.IMAGE_FILE_BYTES_REVERSED_LO)
+                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_BYTES_REVERSED_LO) > 0)
                     BytesReversedLo = true;
 
-                if ((characteristics & Constants.IMAGE_FILE_32BIT_MACHINE) == Constants.IMAGE_FILE_32BIT_MACHINE)
+                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_32BIT_MACHINE) > 0)
                     Machine32Bit = true;
 
-                if ((characteristics & Constants.IMAGE_FILE_DEBUG_STRIPPED) == Constants.IMAGE_FILE_DEBUG_STRIPPED)
+                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_DEBUG_STRIPPED) > 0)
                     DebugStripped = true;
 
-                if ((characteristics & Constants.IMAGE_FILE_NET_RUN_FROM_SWAP) == Constants.IMAGE_FILE_NET_RUN_FROM_SWAP)
+                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_NET_RUN_FROM_SWAP) > 0)
                     NetRunFroMSwap = true;
 
-                if ((characteristics & Constants.IMAGE_FILE_SYSTEM) == Constants.IMAGE_FILE_SYSTEM)
+                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_SYSTEM) > 0)
                     System = true;
 
-                if ((characteristics & Constants.IMAGE_FILE_UP_SYSTEM_ONLY) == Constants.IMAGE_FILE_UP_SYSTEM_ONLY)
+                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_UP_SYSTEM_ONLY) > 0)
                     UpSystemOnly = true;
 
-                if ((characteristics & Constants.IMAGE_FILE_BYTES_REVERSED_HI) == Constants.IMAGE_FILE_BYTES_REVERSED_HI)
+                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_BYTES_REVERSED_HI) > 0)
                     BytesReversedHi = true;
             }
 

@@ -110,7 +110,7 @@ namespace PeNet
             /// <summary>
             /// Section alignment.
             /// </summary>
-            IMAGE_SCN_ALIGN_1BYTES = 0x00100000, 
+            IMAGE_SCN_ALIGN_1BYTES = 0x00100000,
 
             /// <summary>
             /// Section alignment.
@@ -238,64 +238,79 @@ namespace PeNet
             /// Export directory.
             /// </summary>
             Export = 0,
+
             /// <summary>
             /// Import directory.
             /// </summary>
             Import = 1,
+
             /// <summary>
             /// Resource directory.
             /// </summary>
             Resource = 2,
+
             /// <summary>
             /// Exception directory for x64.
             /// </summary>
             Exception = 3,
+
             /// <summary>
             /// Security directory.
             /// </summary>
             Security = 4,
+
             /// <summary>
             /// Relocation directory.
             /// </summary>
             BaseReloc = 5,
+
             /// <summary>
             /// Debug directory.
             /// </summary>
             Debug = 6,
+
             /// <summary>
             /// Copyright directory (useless).
             /// </summary>
             Copyright = 7,
+
             /// <summary>
             /// Global Pointer directory. Only interesting for Itanium systems.
             /// </summary>
             Globalptr = 8,
+
             /// <summary>
             /// Thread Local Storage directory.
             /// </summary>
             TLS = 9,
+
             /// <summary>
             /// Load Config directory.
             /// </summary>
             LoadConfig = 0xA,
+
             /// <summary>
             /// Bound Import directory. Precomputed import addresses
             /// to speed up module loading.
             /// </summary>
             BoundImport = 0xB,
+
             /// <summary>
             /// Import Address Table directory.
             /// </summary>
             IAT = 0xC,
+
             /// <summary>
             /// Delayed Importd directory. Imports which are loaded
             /// with a delay for performance reasons.
             /// </summary>
             DelayImport = 0xD,
+
             /// <summary>
             /// COM Descriptor directory. For the .Net Header
             /// </summary>
             COM_Descriptor = 0xE,
+
             /// <summary>
             /// Reserved for future use.
             /// </summary>
@@ -317,78 +332,97 @@ namespace PeNet
             /// Cursor resource.
             /// </summary>
             Cursor = 1,
+
             /// <summary>
             /// Bitmap resource.
             /// </summary>
             Bitmap = 2,
+
             /// <summary>
             /// Icon resource.
             /// </summary>
             Icon = 3,
+
             /// <summary>
             /// Menu resource.
             /// </summary>
             Menu = 4,
+
             /// <summary>
             /// Dialog resource.
             /// </summary>
             Dialog = 5,
+
             /// <summary>
             /// String resource.
             /// </summary>
             String = 6,
+
             /// <summary>
             /// Font Directory resource.
             /// </summary>
             FontDirectory = 7,
+
             /// <summary>
             /// Fonst resource.
             /// </summary>
             Fonst = 8,
+
             /// <summary>
             /// Accelerator resource.
             /// </summary>
             Accelerator = 9,
+
             /// <summary>
             /// RC Data resource.
             /// </summary>
             RcData = 10,
+
             /// <summary>
             /// Message Table resource.
             /// </summary>
             MessageTable = 11,
+
             /// <summary>
             /// Group Icon resource.
             /// </summary>
             GroupIcon = 14,
+
             /// <summary>
             /// Version resource.
             /// </summary>
             Version = 16,
+
             /// <summary>
             /// Dlg Include resource.
             /// </summary>
             DlgInclude = 17,
+
             /// <summary>
             /// Plug and Play resource.
             /// </summary>
             PlugAndPlay = 19,
+
             /// <summary>
             /// VXD resource.
             /// </summary>
             VXD = 20,
+
             /// <summary>
             /// Animated Curser resource.
             /// </summary>
             AnimatedCurser = 21,
+
             /// <summary>
             /// Animated Icon resource.
             /// </summary>
             AnimatedIcon = 22,
+
             /// <summary>
             /// HTML resource.
             /// </summary>
             HTML = 23,
+
             /// <summary>
             /// Manifest resource.
             /// </summary>
@@ -409,36 +443,44 @@ namespace PeNet
             /// Push a non volatile integer.
             /// </summary>
             UWOP_PUSH_NONVOL = 0,
+
             /// <summary>
             /// Allocate large size on stack.
             /// </summary>
             UWOP_ALLOC_LARGE = 1,
+
             /// <summary>
             /// Allocate small size on stack.
             /// </summary>
             UWOP_ALLOC_SMALL = 2,
+
             /// <summary>
             /// Establish frame pointer register.
             /// </summary>
             UWOP_SET_FPREG = 3,
+
             /// <summary>
             /// Save non volatile register to stack by a MOV.
             /// </summary>
             UWOP_SAVE_NONVOL = 4,
+
             /// <summary>
             /// Save non volatile register to stack with 
             /// a long offset by a MOV.
             /// </summary>
             UWOP_SAVE_NONVOL_FAR = 5,
+
             /// <summary>
             /// Save a XMM (128 bit) register to the stack.
             /// </summary>
             UWOP_SAVE_XMM128 = 8,
+
             /// <summary>
             /// Save a XMM (128 bit) register to the stack
             /// with a long offset.
             /// </summary>
             UWOP_SAVE_XMM128_FAR = 9,
+
             /// <summary>
             /// Push a machine frame, which is used to record the effect 
             /// of a hardware interrupt.
@@ -451,246 +493,261 @@ namespace PeNet
         //////////////////////////////
 
         /// <summary>
+        /// IMAGE_FILE_HEADER machine constants which define
+        /// for which CPU type the PE file is.
+        /// </summary>
+        [Flags]
+        public enum Machine : ushort
+        {
+
+        /// <summary>
         /// File header -> machine (CPU): unknown
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_UNKNOWN = 0x0;
+        IMAGE_FILE_MACHINE_UNKNOWN = 0x0,
 
         /// <summary>
         /// File header -> machine (CPU): Intel 386
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_I386 = 0x14c;
+        IMAGE_FILE_MACHINE_I386 = 0x14c,
 
         /// <summary>
         /// File header -> machine (CPU): Intel i860
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_I860 = 0x14d;
+        IMAGE_FILE_MACHINE_I860 = 0x14d,
 
         /// <summary>
         /// File header -> machine (CPU): MIPS R3000
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_R3000 = 0x162;
+        IMAGE_FILE_MACHINE_R3000 = 0x162,
 
         /// <summary>
         /// File header -> machine (CPU): MIPS little endian (R4000)
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_R4000 = 0x166;
+        IMAGE_FILE_MACHINE_R4000 = 0x166,
 
         /// <summary>
         /// File header -> machine (CPU): MIPS R10000
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_R10000 = 0x168;
+        IMAGE_FILE_MACHINE_R10000 = 0x168,
 
         /// <summary>
         /// File header -> machine (CPU): MIPS little endian WCI v2
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_WCEMIPSV2 = 0x169;
+        IMAGE_FILE_MACHINE_WCEMIPSV2 = 0x169,
 
         /// <summary>
         /// File header -> machine (CPU): old Alpha AXP
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_OLDALPHA = 0x183;
+        IMAGE_FILE_MACHINE_OLDALPHA = 0x183,
 
         /// <summary>
         /// File header -> machine (CPU): Alpha AXP
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_ALPHA = 0x184;
+        IMAGE_FILE_MACHINE_ALPHA = 0x184,
 
         /// <summary>
         /// File header -> machine (CPU): Hitachi SH3
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_SH3 = 0x1a2;
+        IMAGE_FILE_MACHINE_SH3 = 0x1a2,
 
         /// <summary>
         /// File header -> machine (CPU): Hitachi SH3 DSP
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_SH3DSP = 0x1a3;
+        IMAGE_FILE_MACHINE_SH3DSP = 0x1a3,
 
         /// <summary>
         /// File header -> machine (CPU): unknown
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_SH3E = 0x1a4;
+        IMAGE_FILE_MACHINE_SH3E = 0x1a4,
 
         /// <summary>
         /// File header -> machine (CPU): Hitachi SH4
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_SH4 = 0x1a6;
+        IMAGE_FILE_MACHINE_SH4 = 0x1a6,
 
         /// <summary>
         /// File header -> machine (CPU): Hitachi SH5
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_SH5 = 0x1a8;
+        IMAGE_FILE_MACHINE_SH5 = 0x1a8,
 
         /// <summary>
         /// File header -> machine (CPU): ARM little endian
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_ARM = 0x1c0;
+        IMAGE_FILE_MACHINE_ARM = 0x1c0,
 
         /// <summary>
         /// File header -> machine (CPU): Thumb
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_THUMB = 0x1c2;
+        IMAGE_FILE_MACHINE_THUMB = 0x1c2,
 
         /// <summary>
         /// File header -> machine (CPU): Matsushita AM33
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_AM33 = 0x1d3;
+        IMAGE_FILE_MACHINE_AM33 = 0x1d3,
 
         /// <summary>
         /// File header -> machine (CPU): PowerPC little endian
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_POWERPC = 0x1f0;
+        IMAGE_FILE_MACHINE_POWERPC = 0x1f0,
 
         /// <summary>
         /// File header -> machine (CPU): PowerPC with floating point support
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_POWERPCFP = 0x1f1;
+        IMAGE_FILE_MACHINE_POWERPCFP = 0x1f1,
 
         /// <summary>
         /// File header -> machine (CPU): Intel IA64
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_IA64 = 0x200;
+        IMAGE_FILE_MACHINE_IA64 = 0x200,
 
         /// <summary>
         /// File header -> machine (CPU): MIPS16
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_MIPS16 = 0x266;
+        IMAGE_FILE_MACHINE_MIPS16 = 0x266,
 
         /// <summary>
         /// File header -> machine (CPU): Motorola 68000 series
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_M68K = 0x268;
+        IMAGE_FILE_MACHINE_M68K = 0x268,
 
         /// <summary>
         /// File header -> machine (CPU): Alpha AXP 64-bit
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_ALPHA64 = 0x284;
+        IMAGE_FILE_MACHINE_ALPHA64 = 0x284,
 
         /// <summary>
         /// File header -> machine (CPU): MIPS with FPU
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_MIPSFPU = 0x366;
+        IMAGE_FILE_MACHINE_MIPSFPU = 0x366,
 
         /// <summary>
         /// File header -> machine (CPU): MIPS16 with FPU
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_MIPSFPU16 = 0x466;
+        IMAGE_FILE_MACHINE_MIPSFPU16 = 0x466,
 
         /// <summary>
         /// File header -> machine (CPU): Alpha AXP 64-bit
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_AXP64 = IMAGE_FILE_MACHINE_ALPHA64;
+        IMAGE_FILE_MACHINE_AXP64 = IMAGE_FILE_MACHINE_ALPHA64,
 
         /// <summary>
         /// File header -> machine (CPU): unknown
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_TRICORE = 0x520;
+        IMAGE_FILE_MACHINE_TRICORE = 0x520,
 
         /// <summary>
         /// File header -> machine (CPU): unknown
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_CEF = 0xcef;
+        IMAGE_FILE_MACHINE_CEF = 0xcef,
 
         /// <summary>
         /// File header -> machine (CPU): EFI Byte Code
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_EBC = 0xebc;
+        IMAGE_FILE_MACHINE_EBC = 0xebc,
 
         /// <summary>
         /// File header -> machine (CPU): AMD AMD64 (Used for Intel x64, too)
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_AMD64 = 0x8664;
+        IMAGE_FILE_MACHINE_AMD64 = 0x8664,
 
         /// <summary>
         /// File header -> machine (CPU): Mitsubishi M32R little endian
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_M32R = 0x9041;
+        IMAGE_FILE_MACHINE_M32R = 0x9041,
 
         /// <summary>
         /// File header -> machine (CPU): clr pure MSIL (.Net)
         /// </summary>
-        public const ushort IMAGE_FILE_MACHINE_CEE = 0xc0ee;
-
-
+        IMAGE_FILE_MACHINE_CEE = 0xc0ee
+        }
 
         /////////////////////////////
         // PE File characteristics
         /////////////////////////////
 
         /// <summary>
-        /// Relocation stripped.
+        /// File characteristics from the file header.
         /// </summary>
-        public const ushort IMAGE_FILE_RELOCS_STRIPPED = 0x01;
+        [Flags]
+        public enum FileCharacteristics : ushort
+        {
+            /// <summary>
+            /// Relocation stripped.
+            /// </summary>
+            IMAGE_FILE_RELOCS_STRIPPED = 0x01,
 
-        /// <summary>
-        /// Executable image.
-        /// </summary>
-        public const ushort IMAGE_FILE_EXECUTABLE_IMAGE = 0x02;
+            /// <summary>
+            /// Executable image.
+            /// </summary>
+            IMAGE_FILE_EXECUTABLE_IMAGE = 0x02,
 
-        /// <summary>
-        /// Line numbers stripped.
-        /// </summary>
-        public const ushort IMAGE_FILE_LINE_NUMS_STRIPPED = 0x04;
+            /// <summary>
+            /// Line numbers stripped.
+            /// </summary>
+            IMAGE_FILE_LINE_NUMS_STRIPPED = 0x04,
 
-        /// <summary>
-        /// Local symbols stripped.
-        /// </summary>
-        public const ushort IMAGE_FILE_LOCAL_SYMS_STRIPPED = 0x08;
+            /// <summary>
+            /// Local symbols stripped.
+            /// </summary>
+            IMAGE_FILE_LOCAL_SYMS_STRIPPED = 0x08,
 
-        /// <summary>
-        /// (OBSOLTETE) Aggressively trim the working set. 
-        /// </summary>
-        public const ushort IMAGE_FILE_AGGRESIVE_WS_TRIM = 0x10;
+            /// <summary>
+            /// (OBSOLTETE) Aggressively trim the working set. 
+            /// </summary>
+            IMAGE_FILE_AGGRESIVE_WS_TRIM = 0x10,
 
-        /// <summary>
-        /// Application can handle addresses larger than 2 GB.
-        /// </summary>
-        public const ushort IMAGE_FILE_LARGE_ADDRESS_AWARE = 0x20;
+            /// <summary>
+            /// Application can handle addresses larger than 2 GB.
+            /// </summary>
+            IMAGE_FILE_LARGE_ADDRESS_AWARE = 0x20,
 
-        /// <summary>
-        /// (OBSOLTETE) Bytes of word are reversed.
-        /// </summary>
-        public const ushort IMAGE_FILE_BYTES_REVERSED_LO = 0x80;
+            /// <summary>
+            /// (OBSOLTETE) Bytes of word are reversed.
+            /// </summary>
+            IMAGE_FILE_BYTES_REVERSED_LO = 0x80,
 
-        /// <summary>
-        /// Supports 32 Bit words.
-        /// </summary>
-        public const ushort IMAGE_FILE_32BIT_MACHINE = 0x100;
+            /// <summary>
+            /// Supports 32 Bit words.
+            /// </summary>
+            IMAGE_FILE_32BIT_MACHINE = 0x100,
 
-        /// <summary>
-        /// Debug stripped and stored in a separate file.
-        /// </summary>
-        public const ushort IMAGE_FILE_DEBUG_STRIPPED = 0x200;
+            /// <summary>
+            /// Debug stripped and stored in a separate file.
+            /// </summary>
+            IMAGE_FILE_DEBUG_STRIPPED = 0x200,
 
-        /// <summary>
-        /// If the image is on a removable media, copy and run it from the swap file.
-        /// </summary>
-        public const ushort IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP = 0x400;
+            /// <summary>
+            /// If the image is on a removable media, copy and run it from the swap file.
+            /// </summary>
+            IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP = 0x400,
 
-        /// <summary>
-        /// If the image is on the network, copy and run it from the swap file.
-        /// </summary>
-        public const ushort IMAGE_FILE_NET_RUN_FROM_SWAP = 0x800;
+            /// <summary>
+            /// If the image is on the network, copy and run it from the swap file.
+            /// </summary>
+            IMAGE_FILE_NET_RUN_FROM_SWAP = 0x800,
 
-        /// <summary>
-        /// The image is a system file.
-        /// </summary>
-        public const ushort IMAGE_FILE_SYSTEM = 0x1000;
+            /// <summary>
+            /// The image is a system file.
+            /// </summary>
+            IMAGE_FILE_SYSTEM = 0x1000,
 
-        /// <summary>
-        /// Is a dynamic loaded library and exetuable but cannot
-        /// be run on its own.
-        /// </summary>
-        public const ushort IMAGE_FILE_DLL = 0x2000;
+            /// <summary>
+            /// Is a dynamic loaded library and exetuable but cannot
+            /// be run on its own.
+            /// </summary>
+            IMAGE_FILE_DLL = 0x2000,
 
-        /// <summary>
-        /// Image should be run only on uniprocessor.
-        /// </summary>
-        public const ushort IMAGE_FILE_UP_SYSTEM_ONLY = 0x4000;
+            /// <summary>
+            /// Image should be run only on uniprocessor.
+            /// </summary>
+            IMAGE_FILE_UP_SYSTEM_ONLY = 0x4000,
 
-        /// <summary>
-        /// (OBSOLETE) Reserved.
-        /// </summary>
-        public const ushort IMAGE_FILE_BYTES_REVERSED_HI = 0x8000;
+            /// <summary>
+            /// (OBSOLETE) Reserved.
+            /// </summary>
+            IMAGE_FILE_BYTES_REVERSED_HI = 0x8000
+        }
+        
 
         //////////////////////////
         // IMAGE_OPTIONAL_HEADER
