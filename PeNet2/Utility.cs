@@ -15,6 +15,7 @@ limitations under the License.
 
 *************************************************************************/
 
+using PeNet.Structures;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -40,85 +41,85 @@ namespace PeNet
             var tm = "unknown";
             switch (targetMachine)
             {
-                case 0x14c:
+                case Constants.IMAGE_FILE_MACHINE_I386:
                     tm = "Intel 386";
                     break;
-                case 0x14d:
+                case Constants.IMAGE_FILE_MACHINE_I860:
                     tm = "Intel i860";
                     break;
-                case 0x162:
+                case Constants.IMAGE_FILE_MACHINE_R3000:
                     tm = "MIPS R3000";
                     break;
-                case 0x166:
+                case Constants.IMAGE_FILE_MACHINE_R4000:
                     tm = "MIPS little endian (R4000)";
                     break;
-                case 0x168:
+                case Constants.IMAGE_FILE_MACHINE_R10000:
                     tm = "MIPS R10000";
                     break;
-                case 0x169:
+                case Constants.IMAGE_FILE_MACHINE_WCEMIPSV2:
                     tm = "MIPS little endian WCI v2";
                     break;
-                case 0x183:
+                case Constants.IMAGE_FILE_MACHINE_OLDALPHA:
                     tm = "old Alpha AXP";
                     break;
-                case 0x184:
+                case Constants.IMAGE_FILE_MACHINE_ALPHA:
                     tm = "Alpha AXP";
                     break;
-                case 0x1a2:
+                case Constants.IMAGE_FILE_MACHINE_SH3:
                     tm = "Hitachi SH3";
                     break;
-                case 0x1a3:
+                case Constants.IMAGE_FILE_MACHINE_SH3DSP:
                     tm = "Hitachi SH3 DSP";
                     break;
-                case 0x1a6:
+                case Constants.IMAGE_FILE_MACHINE_SH4:
                     tm = "Hitachi SH4";
                     break;
-                case 0x1a8:
+                case Constants.IMAGE_FILE_MACHINE_SH5:
                     tm = "Hitachi SH5";
                     break;
-                case 0x1c0:
+                case Constants.IMAGE_FILE_MACHINE_ARM:
                     tm = "ARM little endian";
                     break;
-                case 0x1c2:
+                case Constants.IMAGE_FILE_MACHINE_THUMB:
                     tm = "Thumb";
                     break;
-                case 0x1d3:
+                case Constants.IMAGE_FILE_MACHINE_AM33:
                     tm = "Matsushita AM33";
                     break;
-                case 0x1f0:
+                case Constants.IMAGE_FILE_MACHINE_POWERPC:
                     tm = "PowerPC little endian";
                     break;
-                case 0x1f1:
+                case Constants.IMAGE_FILE_MACHINE_POWERPCFP:
                     tm = "PowerPC with floating point support";
                     break;
-                case 0x200:
+                case Constants.IMAGE_FILE_MACHINE_IA64:
                     tm = "Intel IA64";
                     break;
-                case 0x266:
+                case Constants.IMAGE_FILE_MACHINE_MIPS16:
                     tm = "MIPS16";
                     break;
-                case 0x268:
+                case Constants.IMAGE_FILE_MACHINE_M68K:
                     tm = "Motorola 68000 series";
                     break;
-                case 0x284:
+                case Constants.IMAGE_FILE_MACHINE_ALPHA64:
                     tm = "Alpha AXP 64-bit";
                     break;
-                case 0x366:
+                case Constants.IMAGE_FILE_MACHINE_MIPSFPU:
                     tm = "MIPS with FPU";
                     break;
-                case 0x466:
+                case Constants.IMAGE_FILE_MACHINE_MIPSFPU16:
                     tm = "MIPS16 with FPU";
                     break;
-                case 0xebc:
+                case Constants.IMAGE_FILE_MACHINE_EBC:
                     tm = "EFI Byte Code";
                     break;
-                case 0x8664:
+                case Constants.IMAGE_FILE_MACHINE_AMD64:
                     tm = "AMD AMD64";
                     break;
-                case 0x9041:
+                case Constants.IMAGE_FILE_MACHINE_M32R:
                     tm = "Mitsubishi M32R little endian";
                     break;
-                case 0xc0ee:
+                case Constants.IMAGE_FILE_MACHINE_CEE:
                     tm = "clr pure MSIL";
                     break;
             }
@@ -127,23 +128,157 @@ namespace PeNet
         }
 
         /// <summary>
-        ///     Resolves the characteristics attribute from the COFF header to a human
-        ///     readable string.
+        /// Describes which file characteristics based on the
+        /// file header are set.
+        /// The ToString Method creates a readable string containing
+        /// all the information.
         /// </summary>
-        /// <param name="characteristics">COFF header characteristics.</param>
-        /// <returns>Human readable characteristics string.</returns>
-        public static string ResolveCharacteristics(ushort characteristics)
+        public class FileCharacteristics
         {
-            var c = "";
-            if ((characteristics & 0x02) == 0x02)
-                c += "EXE";
+            /// <summary>
+            /// Relocation stripped,
+            /// </summary>
+            public bool RelocStripped { get; private set; } = false;
 
-            if ((characteristics & 0x200) == 0x200)
-                c += "File is non-relocatable (addresses are absolute, not RVA).";
+            /// <summary>
+            /// Is an executable image.
+            /// </summary>
+            public bool ExecutableImage { get; private set; } = false;
 
-            if ((characteristics & 0x2000) == 0x2000)
-                c += "DLL";
-            return c;
+            /// <summary>
+            /// Line numbers stripped.
+            /// </summary>
+            public bool LineNumbersStripped { get; private set; } = false;
+
+            /// <summary>
+            /// Local symbols stripped.
+            /// </summary>
+            public bool LocalSymbolsStripped { get; private set; } = false;
+
+            /// <summary>
+            /// (OBSOLTETE) Aggressively trim the working set. 
+            /// </summary>
+            public bool AggressiveWsTrim { get; private set; } = false;
+
+            /// <summary>
+            /// Application can handle addresses larger than 2 GB.
+            /// </summary>
+            public bool LargeAddressAware { get; private set; } = false;
+
+            /// <summary>
+            /// (OBSOLTETE) Bytes of word are reversed.
+            /// </summary>
+            public bool BytesReversedLo { get; private set; } = false;
+
+            /// <summary>
+            /// Supports 32 Bit words.
+            /// </summary>
+            public bool Machine32Bit { get; private set; } = false;
+
+            /// <summary>
+            /// Debug stripped and stored in a separate file.
+            /// </summary>
+            public bool DebugStripped { get; private set; } = false;
+
+            /// <summary>
+            /// If the image is on a removable media, copy and run it from the swap file.
+            /// </summary>
+            public bool RemovableRunFromSwap { get; private set; } = false;
+
+            /// <summary>
+            /// If the image is on the network, copy and run it from the swap file.
+            /// </summary>
+            public bool NetRunFroMSwap { get; private set; } = false;
+
+            /// <summary>
+            /// The image is a system file.
+            /// </summary>
+            public bool System { get; private set; } = false;
+
+            /// <summary>
+            /// Is a dynamic loaded library and exetuable but cannot
+            /// be run on its own.
+            /// </summary>
+            public bool DLL { get; private set; } = false;
+
+            /// <summary>
+            /// Image should be run only on uniprocessor.
+            /// </summary>
+            public bool UpSystemOnly { get; private set; } = false;
+
+            /// <summary>
+            /// (OBSOLETE) Reserved.
+            /// </summary>
+            public bool BytesReversedHi { get; private set; } = false;
+
+            /// <summary>
+            /// Create an object that contains all possible file characteristics
+            /// flags resolve to boolean properties.
+            /// </summary>
+            /// <param name="characteristics">Characteristics from the file header.</param>
+            public FileCharacteristics(ushort characteristics)
+            {
+                if ((characteristics & Constants.IMAGE_FILE_RELOCS_STRIPPED) == Constants.IMAGE_FILE_RELOCS_STRIPPED)
+                    RelocStripped = true;
+
+                if ((characteristics & Constants.IMAGE_FILE_EXECUTABLE_IMAGE) == Constants.IMAGE_FILE_EXECUTABLE_IMAGE)
+                    ExecutableImage = true;
+
+                if ((characteristics & Constants.IMAGE_FILE_LINE_NUMS_STRIPPED) == Constants.IMAGE_FILE_LINE_NUMS_STRIPPED)
+                    LineNumbersStripped = true;
+
+                if ((characteristics & Constants.IMAGE_FILE_LOCAL_SYMS_STRIPPED) == Constants.IMAGE_FILE_LOCAL_SYMS_STRIPPED)
+                    LocalSymbolsStripped = true;
+
+                if ((characteristics & Constants.IMAGE_FILE_AGGRESIVE_WS_TRIM) == Constants.IMAGE_FILE_AGGRESIVE_WS_TRIM)
+                    AggressiveWsTrim = true;
+
+                if ((characteristics & Constants.IMAGE_FILE_LARGE_ADDRESS_AWARE) == Constants.IMAGE_FILE_LARGE_ADDRESS_AWARE)
+                    LargeAddressAware = true;
+
+                if ((characteristics & Constants.IMAGE_FILE_BYTES_REVERSED_LO) == Constants.IMAGE_FILE_BYTES_REVERSED_LO)
+                    BytesReversedLo = true;
+
+                if ((characteristics & Constants.IMAGE_FILE_32BIT_MACHINE) == Constants.IMAGE_FILE_32BIT_MACHINE)
+                    Machine32Bit = true;
+
+                if ((characteristics & Constants.IMAGE_FILE_DEBUG_STRIPPED) == Constants.IMAGE_FILE_DEBUG_STRIPPED)
+                    DebugStripped = true;
+
+                if ((characteristics & Constants.IMAGE_FILE_NET_RUN_FROM_SWAP) == Constants.IMAGE_FILE_NET_RUN_FROM_SWAP)
+                    NetRunFroMSwap = true;
+
+                if ((characteristics & Constants.IMAGE_FILE_SYSTEM) == Constants.IMAGE_FILE_SYSTEM)
+                    System = true;
+
+                if ((characteristics & Constants.IMAGE_FILE_UP_SYSTEM_ONLY) == Constants.IMAGE_FILE_UP_SYSTEM_ONLY)
+                    UpSystemOnly = true;
+
+                if ((characteristics & Constants.IMAGE_FILE_BYTES_REVERSED_HI) == Constants.IMAGE_FILE_BYTES_REVERSED_HI)
+                    BytesReversedHi = true;
+            }
+
+            /// <summary>
+            /// Return string representation of all characteristics.
+            /// </summary>
+            /// <returns>Return string representation of all characteristics.</returns>
+            public override string ToString()
+            {
+                var sb = new StringBuilder("File Characteristics\n");
+                sb.Append(PropertiesToString(this, "{0,-30}:{1,10:X}\n"));
+                return sb.ToString();
+            }
+        }
+
+        /// <summary>
+        ///     Resolves the characteristics attribute from the COFF header to an
+        ///     object which holds all the characteristics a boolean properties.
+        /// </summary>
+        /// <param name="characteristics">File header characteristics.</param>
+        /// <returns>Object with all characteristics as boolean properties.</returns>
+        public static FileCharacteristics ResolveCharacteristics(ushort characteristics)
+        {
+            return new FileCharacteristics(characteristics);
         }
 
         public static string ResolveResourceId(uint id)

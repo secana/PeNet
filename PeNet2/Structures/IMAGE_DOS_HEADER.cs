@@ -17,7 +17,7 @@ limitations under the License.
 
 using System.Text;
 
-namespace PeNet
+namespace PeNet.Structures
 {
     public class IMAGE_DOS_HEADER
     {

@@ -19,7 +19,7 @@ using System;
 using System.Text;
 using PeNet.Structures;
 
-namespace PeNet
+namespace PeNet.Structures
 {
     public class IMAGE_RESOURCE_DIRECTORY_ENTRY
     {

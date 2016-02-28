@@ -15,6 +15,7 @@ limitations under the License.
 
 *************************************************************************/
 
+using PeNet.Structures;
 using System;
 using System.Collections.Generic;
 using System.IO;

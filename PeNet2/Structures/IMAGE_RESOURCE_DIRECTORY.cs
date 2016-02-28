@@ -18,7 +18,7 @@ limitations under the License.
 using System;
 using System.Text;
 
-namespace PeNet
+namespace PeNet.Structures
 {
     public class IMAGE_RESOURCE_DIRECTORY
     {

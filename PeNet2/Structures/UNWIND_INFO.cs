@@ -18,7 +18,7 @@ limitations under the License.
 using System.Collections.Generic;
 using System.Text;
 
-namespace PeNet
+namespace PeNet.Structures
 {
     public class UNWIND_INFO
     {
