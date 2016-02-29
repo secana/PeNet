@@ -14,7 +14,7 @@ namespace PeNet.Structures
             _offset = offset;
         }
 
-        public UInt16 Length
+        public ushort Length
         {
             get { return Utility.BytesToUInt16(_buff, _offset); }
             set { Utility.SetUInt16(value, _offset, _buff); }

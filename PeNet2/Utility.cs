@@ -15,7 +15,6 @@ limitations under the License.
 
 *************************************************************************/
 
-using PeNet.Structures;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,13 +22,12 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using PeNet.Structures;
 
 namespace PeNet
 {
     public static class Utility
     {
-        
-
         /// <summary>
         ///     Resolves the target machine number to a string containing
         ///     the name of the target machine.
@@ -41,85 +39,94 @@ namespace PeNet
             var tm = "unknown";
             switch (targetMachine)
             {
-                case (ushort) Constants.Machine.IMAGE_FILE_MACHINE_I386:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386:
                     tm = "Intel 386";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_I860:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I860:
                     tm = "Intel i860";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_R3000:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_R3000:
                     tm = "MIPS R3000";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_R4000:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_R4000:
                     tm = "MIPS little endian (R4000)";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_R10000:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_R10000:
                     tm = "MIPS R10000";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_WCEMIPSV2:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_WCEMIPSV2:
                     tm = "MIPS little endian WCI v2";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_OLDALPHA:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_OLDALPHA:
                     tm = "old Alpha AXP";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_ALPHA:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ALPHA:
                     tm = "Alpha AXP";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_SH3:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH3:
                     tm = "Hitachi SH3";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_SH3DSP:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH3DSP:
                     tm = "Hitachi SH3 DSP";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_SH4:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH3E:
+                    tm = "Hitachi SH3E";
+                    break;
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH4:
                     tm = "Hitachi SH4";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_SH5:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH5:
                     tm = "Hitachi SH5";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_ARM:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARM:
                     tm = "ARM little endian";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_THUMB:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_THUMB:
                     tm = "Thumb";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_AM33:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AM33:
                     tm = "Matsushita AM33";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_POWERPC:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_POWERPC:
                     tm = "PowerPC little endian";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_POWERPCFP:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_POWERPCFP:
                     tm = "PowerPC with floating point support";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_IA64:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_IA64:
                     tm = "Intel IA64";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_MIPS16:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_MIPS16:
                     tm = "MIPS16";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_M68K:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_M68K:
                     tm = "Motorola 68000 series";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_ALPHA64:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ALPHA64:
                     tm = "Alpha AXP 64-bit";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_MIPSFPU:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_MIPSFPU:
                     tm = "MIPS with FPU";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_MIPSFPU16:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_TRICORE:
+                    tm = "Tricore";
+                    break;
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_CEF:
+                    tm = "CEF";
+                    break;
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_MIPSFPU16:
                     tm = "MIPS16 with FPU";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_EBC:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_EBC:
                     tm = "EFI Byte Code";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_AMD64:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64:
                     tm = "AMD AMD64";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_M32R:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_M32R:
                     tm = "Mitsubishi M32R little endian";
                     break;
-                case (ushort)Constants.Machine.IMAGE_FILE_MACHINE_CEE:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_CEE:
                     tm = "clr pure MSIL";
                     break;
             }
@@ -128,155 +135,12 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Describes which file characteristics based on the
-        /// file header are set.
-        /// The ToString Method creates a readable string containing
-        /// all the information.
-        /// </summary>
-        public class FileCharacteristics
-        {
-            /// <summary>
-            /// Relocation stripped,
-            /// </summary>
-            public bool RelocStripped { get; private set; } = false;
-
-            /// <summary>
-            /// Is an executable image.
-            /// </summary>
-            public bool ExecutableImage { get; private set; } = false;
-
-            /// <summary>
-            /// Line numbers stripped.
-            /// </summary>
-            public bool LineNumbersStripped { get; private set; } = false;
-
-            /// <summary>
-            /// Local symbols stripped.
-            /// </summary>
-            public bool LocalSymbolsStripped { get; private set; } = false;
-
-            /// <summary>
-            /// (OBSOLTETE) Aggressively trim the working set. 
-            /// </summary>
-            public bool AggressiveWsTrim { get; private set; } = false;
-
-            /// <summary>
-            /// Application can handle addresses larger than 2 GB.
-            /// </summary>
-            public bool LargeAddressAware { get; private set; } = false;
-
-            /// <summary>
-            /// (OBSOLTETE) Bytes of word are reversed.
-            /// </summary>
-            public bool BytesReversedLo { get; private set; } = false;
-
-            /// <summary>
-            /// Supports 32 Bit words.
-            /// </summary>
-            public bool Machine32Bit { get; private set; } = false;
-
-            /// <summary>
-            /// Debug stripped and stored in a separate file.
-            /// </summary>
-            public bool DebugStripped { get; private set; } = false;
-
-            /// <summary>
-            /// If the image is on a removable media, copy and run it from the swap file.
-            /// </summary>
-            public bool RemovableRunFromSwap { get; private set; } = false;
-
-            /// <summary>
-            /// If the image is on the network, copy and run it from the swap file.
-            /// </summary>
-            public bool NetRunFroMSwap { get; private set; } = false;
-
-            /// <summary>
-            /// The image is a system file.
-            /// </summary>
-            public bool System { get; private set; } = false;
-
-            /// <summary>
-            /// Is a dynamic loaded library and exetuable but cannot
-            /// be run on its own.
-            /// </summary>
-            public bool DLL { get; private set; } = false;
-
-            /// <summary>
-            /// Image should be run only on uniprocessor.
-            /// </summary>
-            public bool UpSystemOnly { get; private set; } = false;
-
-            /// <summary>
-            /// (OBSOLETE) Reserved.
-            /// </summary>
-            public bool BytesReversedHi { get; private set; } = false;
-
-            /// <summary>
-            /// Create an object that contains all possible file characteristics
-            /// flags resolve to boolean properties.
-            /// </summary>
-            /// <param name="characteristics">Characteristics from the file header.</param>
-            public FileCharacteristics(ushort characteristics)
-            {
-                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_RELOCS_STRIPPED) > 0)
-                    RelocStripped = true;
-
-                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) > 0)
-                    ExecutableImage = true;
-
-                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_LINE_NUMS_STRIPPED) > 0)
-                    LineNumbersStripped = true;
-
-                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_LOCAL_SYMS_STRIPPED) > 0)
-                    LocalSymbolsStripped = true;
-
-                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_AGGRESIVE_WS_TRIM) > 0)
-                    AggressiveWsTrim = true;
-
-                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_LARGE_ADDRESS_AWARE) > 0)
-                    LargeAddressAware = true;
-
-                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_BYTES_REVERSED_LO) > 0)
-                    BytesReversedLo = true;
-
-                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_32BIT_MACHINE) > 0)
-                    Machine32Bit = true;
-
-                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_DEBUG_STRIPPED) > 0)
-                    DebugStripped = true;
-
-                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_NET_RUN_FROM_SWAP) > 0)
-                    NetRunFroMSwap = true;
-
-                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_SYSTEM) > 0)
-                    System = true;
-
-                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_UP_SYSTEM_ONLY) > 0)
-                    UpSystemOnly = true;
-
-                if ((characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_BYTES_REVERSED_HI) > 0)
-                    BytesReversedHi = true;
-            }
-
-            /// <summary>
-            /// Return string representation of all characteristics.
-            /// </summary>
-            /// <returns>Return string representation of all characteristics.</returns>
-            public override string ToString()
-            {
-                var sb = new StringBuilder("File Characteristics\n");
-                sb.Append(PropertiesToString(this, "{0,-30}:{1,10:X}\n"));
-                return sb.ToString();
-            }
-        }
-
-        /// <summary>
         ///     Resolves the characteristics attribute from the COFF header to an
         ///     object which holds all the characteristics a boolean properties.
         /// </summary>
         /// <param name="characteristics">File header characteristics.</param>
         /// <returns>Object with all characteristics as boolean properties.</returns>
-        public static FileCharacteristics ResolveCharacteristics(ushort characteristics)
+        public static FileCharacteristics ResolveFileCharacteristics(ushort characteristics)
         {
             return new FileCharacteristics(characteristics);
         }
@@ -399,53 +263,53 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Convert to bytes to an 16 bit unsinged integer.
+        ///     Convert to bytes to an 16 bit unsinged integer.
         /// </summary>
         /// <param name="b1">High byte.</param>
         /// <param name="b2">Low byte.</param>
         /// <returns>UInt16 of the input bytes.</returns>
-        static ushort BytesToUInt16(byte b1, byte b2)
+        private static ushort BytesToUInt16(byte b1, byte b2)
         {
             return BitConverter.ToUInt16(new[] {b1, b2}, 0);
         }
 
         /// <summary>
-        /// Convert a two bytes in a byte array to an 16 bit unsigned integer.
+        ///     Convert a two bytes in a byte array to an 16 bit unsigned integer.
         /// </summary>
         /// <param name="buff">Byte buffer.</param>
         /// <param name="i">Position of the high byte. Low byte is i+1.</param>
         /// <returns>UInt16 of the bytes in the buffer at position i and i+1.</returns>
-        public static ushort BytesToUInt16(byte[] buff, UInt64 i)
+        public static ushort BytesToUInt16(byte[] buff, ulong i)
         {
             return BytesToUInt16(buff[i], buff[i + 1]);
         }
 
         /// <summary>
-        /// Convert 4 bytes to an 32 bit unsigned integer.
+        ///     Convert 4 bytes to an 32 bit unsigned integer.
         /// </summary>
         /// <param name="b1">Highest byte.</param>
         /// <param name="b2">Second highest byte.</param>
         /// <param name="b3">Second lowest byte.</param>
         /// <param name="b4">Lowest byte.</param>
         /// <returns>UInt32 representation of the input bytes.</returns>
-        static UInt32 BytesToUInt32(byte b1, byte b2, byte b3, byte b4)
+        private static uint BytesToUInt32(byte b1, byte b2, byte b3, byte b4)
         {
             return BitConverter.ToUInt32(new[] {b1, b2, b3, b4}, 0);
         }
 
         /// <summary>
-        /// Convert 4 consecutive bytes out of a buffer to an 32 bit unsigned integer.
+        ///     Convert 4 consecutive bytes out of a buffer to an 32 bit unsigned integer.
         /// </summary>
         /// <param name="buff">Byte buffer.</param>
         /// <param name="i">Offset of the highest byte.</param>
         /// <returns>UInt32 of 4 bytes.</returns>
-        public static UInt32 BytesToUInt32(byte[] buff, UInt32 i)
+        public static uint BytesToUInt32(byte[] buff, uint i)
         {
             return BytesToUInt32(buff[i], buff[i + 1], buff[i + 2], buff[i + 3]);
         }
 
         /// <summary>
-        /// Converts 8 bytes to an 64 bit unsigned integer.
+        ///     Converts 8 bytes to an 64 bit unsigned integer.
         /// </summary>
         /// <param name="b1">Highest byte.</param>
         /// <param name="b2">Second byte.</param>
@@ -456,41 +320,41 @@ namespace PeNet
         /// <param name="b7">Seventh byte.</param>
         /// <param name="b8">Lowest byte.</param>
         /// <returns>UInt64 of the input bytes.</returns>
-        static UInt64 BytesToUInt64(byte b1, byte b2, byte b3, byte b4, byte b5, byte b6, byte b7, byte b8)
+        private static ulong BytesToUInt64(byte b1, byte b2, byte b3, byte b4, byte b5, byte b6, byte b7, byte b8)
         {
             return BitConverter.ToUInt64(new[] {b1, b2, b3, b4, b5, b6, b7, b8}, 0);
         }
 
         /// <summary>
-        /// Convert 8 consecutive byte in a buffer to an 
-        /// 64 bit unsigned integer.
+        ///     Convert 8 consecutive byte in a buffer to an
+        ///     64 bit unsigned integer.
         /// </summary>
         /// <param name="buff">Byte buffer.</param>
         /// <param name="i">Offset of the highest byte.</param>
         /// <returns>UInt64 of the byte sequence at offset i.</returns>
-        public static UInt64 BytesToUInt64(byte[] buff, UInt64 i)
+        public static ulong BytesToUInt64(byte[] buff, ulong i)
         {
             return BytesToUInt64(buff[i], buff[i + 1], buff[i + 2], buff[i + 3], buff[i + 4], buff[i + 5], buff[i + 6],
                 buff[i + 7]);
         }
 
         /// <summary>
-        /// Convert an UIn16 to an byte array.
+        ///     Convert an UIn16 to an byte array.
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Two byte array of the input value.</returns>
-        static byte[] UInt16ToBytes(UInt16 value)
+        private static byte[] UInt16ToBytes(ushort value)
         {
             return BitConverter.GetBytes(value);
         }
 
         /// <summary>
-        /// Set an UInt16 value at an offset in an byte array.
+        ///     Set an UInt16 value at an offset in an byte array.
         /// </summary>
         /// <param name="value">The value to set.</param>
         /// <param name="offset">Offset where the value is set.</param>
         /// <param name="buff">Buffer in which the value is set.</param>
-        public static void SetUInt16(UInt16 value, UInt64 offset, byte[] buff)
+        public static void SetUInt16(ushort value, ulong offset, byte[] buff)
         {
             var x = UInt16ToBytes(value);
             buff[offset] = x[0];
@@ -498,32 +362,32 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Convert an UInt32 value into an byte array.
+        ///     Convert an UInt32 value into an byte array.
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>4 byte array of the value.</returns>
-        static byte[] UInt32ToBytes(UInt32 value)
+        private static byte[] UInt32ToBytes(uint value)
         {
             return BitConverter.GetBytes(value);
         }
 
         /// <summary>
-        /// Convert an UIn64 value into an byte array.
+        ///     Convert an UIn64 value into an byte array.
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>8 byte array of the value.</returns>
-        static byte[] UInt64ToBytes(UInt64 value)
+        private static byte[] UInt64ToBytes(ulong value)
         {
             return BitConverter.GetBytes(value);
         }
 
         /// <summary>
-        /// Sets an UInt32 value at an offset in a buffer.
+        ///     Sets an UInt32 value at an offset in a buffer.
         /// </summary>
         /// <param name="value">Value to set.</param>
         /// <param name="offset">Offset in the array for the value.</param>
         /// <param name="buff">Buffer to set the value in.</param>
-        public static void SetUInt32(UInt32 value, UInt32 offset, byte[] buff)
+        public static void SetUInt32(uint value, uint offset, byte[] buff)
         {
             var x = UInt32ToBytes(value);
             buff[offset] = x[0];
@@ -533,12 +397,12 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Sets an UInt64 value at an offset in a buffer.
+        ///     Sets an UInt64 value at an offset in a buffer.
         /// </summary>
         /// <param name="value">Value to set.</param>
         /// <param name="offset">Offset in the array for the value.</param>
         /// <param name="buff">Buffer to set the value in.</param>
-        public static void SetUInt64(UInt64 value, UInt64 offset, byte[] buff)
+        public static void SetUInt64(ulong value, ulong offset, byte[] buff)
         {
             var x = UInt64ToBytes(value);
             buff[offset] = x[0];
@@ -567,12 +431,12 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Map an relative virtual address to the raw file address.
+        ///     Map an relative virtual address to the raw file address.
         /// </summary>
         /// <param name="RVA">Relative Virutal Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static UInt32 RVAtoFileMapping(UInt32 RVA, IMAGE_SECTION_HEADER[] sh)
+        public static uint RVAtoFileMapping(uint RVA, IMAGE_SECTION_HEADER[] sh)
         {
             var sortedSt = sh.OrderBy(x => x.VirtualAddress).ToList();
             uint vOffset = 0, rOffset = 0;
@@ -607,12 +471,12 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Map an relative virtual address to the raw file address.
+        ///     Map an relative virtual address to the raw file address.
         /// </summary>
         /// <param name="RVA">Relative Virutal Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static UInt64 RVAtoFileMapping(UInt64 RVA, IMAGE_SECTION_HEADER[] sh)
+        public static ulong RVAtoFileMapping(ulong RVA, IMAGE_SECTION_HEADER[] sh)
         {
             var sortedSt = sh.OrderBy(x => x.VirtualAddress).ToList();
             uint vOffset = 0, rOffset = 0;
@@ -652,12 +516,12 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Get a name (C string) at a specific position in a buffer.
+        ///     Get a name (C string) at a specific position in a buffer.
         /// </summary>
         /// <param name="name">Offset of the string.</param>
         /// <param name="buff">Containing buffer.</param>
         /// <returns>The parsed C string.</returns>
-        public static string GetName(UInt64 name, byte[] buff)
+        public static string GetName(ulong name, byte[] buff)
         {
             var length = GetNameLength(name, buff);
             var tmp = new char[length];
@@ -670,13 +534,13 @@ namespace PeNet
         }
 
         /// <summary>
-        /// For a given offset in an byte array, find the next
-        /// null value which terminates a C string.
+        ///     For a given offset in an byte array, find the next
+        ///     null value which terminates a C string.
         /// </summary>
         /// <param name="name">Offset of the string.</param>
         /// <param name="buff">Buffer which contains the string.</param>
         /// <returns>Length of the string in bytes.</returns>
-        public static UInt64 GetNameLength(UInt64 name, byte[] buff)
+        public static ulong GetNameLength(ulong name, byte[] buff)
         {
             var offset = name;
             ulong length = 0;
@@ -689,7 +553,7 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Compute the SHA-256 from a file.
+        ///     Compute the SHA-256 from a file.
         /// </summary>
         /// <param name="file">Path to the file</param>
         /// <returns>SHA-256 as 64 characters long hex-string</returns>
@@ -704,14 +568,14 @@ namespace PeNet
                 hash = sha.ComputeHash(sr.BaseStream);
             }
 
-            foreach (byte t in hash)
+            foreach (var t in hash)
                 sBuilder.Append(t.ToString("x2"));
 
             return sBuilder.ToString();
         }
 
         /// <summary>
-        /// Compute the SHA-256 from a byte array.
+        ///     Compute the SHA-256 from a byte array.
         /// </summary>
         /// <param name="buff">Binary as a byte buffer.</param>
         /// <returns>SHA-256 as 64 characters long hex-string</returns>
@@ -723,14 +587,14 @@ namespace PeNet
             var sha = new SHA256Managed();
             hash = sha.ComputeHash(buff);
 
-            foreach (byte t in hash)
+            foreach (var t in hash)
                 sBuilder.Append(t.ToString("x2"));
 
             return sBuilder.ToString();
         }
 
         /// <summary>
-        /// Compute the SHA-1 from a file.
+        ///     Compute the SHA-1 from a file.
         /// </summary>
         /// <param name="file">Path to the file</param>
         /// <returns>SHA-1 as 40 characters long hex-string</returns>
@@ -745,14 +609,14 @@ namespace PeNet
                 hash = sha.ComputeHash(sr.BaseStream);
             }
 
-            foreach (byte t in hash)
+            foreach (var t in hash)
                 sBuilder.Append(t.ToString("x2"));
 
             return sBuilder.ToString();
         }
 
         /// <summary>
-        /// Compute the SHA-1 from a byte array.
+        ///     Compute the SHA-1 from a byte array.
         /// </summary>
         /// <param name="buff">Binary as a byte buffer.</param>
         /// <returns>SHA-1 as 40 characters long hex-string</returns>
@@ -764,14 +628,14 @@ namespace PeNet
             var sha = new SHA1Managed();
             hash = sha.ComputeHash(buff);
 
-            foreach (byte t in hash)
+            foreach (var t in hash)
                 sBuilder.Append(t.ToString("x2"));
 
             return sBuilder.ToString();
         }
 
         /// <summary>
-        /// Compute the MD5 from a file.
+        ///     Compute the MD5 from a file.
         /// </summary>
         /// <param name="file">Path to the file</param>
         /// <returns>MD5 as 32 characters long hex-string</returns>
@@ -786,14 +650,14 @@ namespace PeNet
                 hash = sha.ComputeHash(sr.BaseStream);
             }
 
-            foreach (byte t in hash)
+            foreach (var t in hash)
                 sBuilder.Append(t.ToString("x2"));
 
             return sBuilder.ToString();
         }
 
         /// <summary>
-        /// Compute the MD5 from a byte array.
+        ///     Compute the MD5 from a byte array.
         /// </summary>
         /// <param name="buff">Binary as a byte buffer.</param>
         /// <returns>MD5 as 32 characters long hex-string</returns>
@@ -805,40 +669,40 @@ namespace PeNet
             var sha = new MD5Cng();
             hash = sha.ComputeHash(buff);
 
-            foreach (byte t in hash)
+            foreach (var t in hash)
                 sBuilder.Append(t.ToString("x2"));
 
             return sBuilder.ToString();
         }
 
         /// <summary>
-        /// Convert a sequence of bytes into a hexadecimal string.
+        ///     Convert a sequence of bytes into a hexadecimal string.
         /// </summary>
         /// <param name="bytes">Byte sequence.</param>
         /// <returns>Hex-String</returns>
         public static string ToHexString(IEnumerable<byte> bytes)
         {
-            StringBuilder hex = new StringBuilder(bytes.Count() * 2);
-            foreach (byte b in bytes)
+            var hex = new StringBuilder(bytes.Count()*2);
+            foreach (var b in bytes)
                 hex.AppendFormat("{0:x2}", b);
-            return $"0x{hex.ToString()}";
+            return $"0x{hex}";
         }
 
         /// <summary>
-        /// Convert a sequence of ushorts into a hexadecimal string.
+        ///     Convert a sequence of ushorts into a hexadecimal string.
         /// </summary>
         /// <param name="values">Value sequence.</param>
         /// <returns>Hex-String</returns>
         public static string ToHexString(IEnumerable<ushort> values)
         {
-            StringBuilder hex = new StringBuilder(values.Count() * 2);
+            var hex = new StringBuilder(values.Count()*2);
             foreach (var b in values)
                 hex.AppendFormat("{0:X4}", b);
-            return $"0x{hex.ToString()}";
+            return $"0x{hex}";
         }
 
         /// <summary>
-        /// Convert ushort into a hexadecimal string.
+        ///     Convert ushort into a hexadecimal string.
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Hex-String</returns>
@@ -848,7 +712,7 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Convert uint into a hexadecimal string.
+        ///     Convert uint into a hexadecimal string.
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Hex-String</returns>
@@ -858,13 +722,163 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Convert ulong into a hexadecimal string.
+        ///     Convert ulong into a hexadecimal string.
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Hex-String</returns>
         public static string ToHexString(ulong value)
         {
             return $"0x{value.ToString("X16")}";
+        }
+
+        /// <summary>
+        ///     Describes which file characteristics based on the
+        ///     file header are set.
+        ///     The ToString Method creates a readable string containing
+        ///     all the information.
+        /// </summary>
+        public class FileCharacteristics
+        {
+            /// <summary>
+            ///     Create an object that contains all possible file characteristics
+            ///     flags resolve to boolean properties.
+            /// </summary>
+            /// <param name="characteristics">Characteristics from the file header.</param>
+            public FileCharacteristics(ushort characteristics)
+            {
+                if ((characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_RELOCS_STRIPPED) > 0)
+                    RelocStripped = true;
+
+                if ((characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) > 0)
+                    ExecutableImage = true;
+
+                if ((characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_LINE_NUMS_STRIPPED) > 0)
+                    LineNumbersStripped = true;
+
+                if ((characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_LOCAL_SYMS_STRIPPED) > 0)
+                    LocalSymbolsStripped = true;
+
+                if ((characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_AGGRESIVE_WS_TRIM) > 0)
+                    AggressiveWsTrim = true;
+
+                if ((characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_LARGE_ADDRESS_AWARE) > 0)
+                    LargeAddressAware = true;
+
+                if ((characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_BYTES_REVERSED_LO) > 0)
+                    BytesReversedLo = true;
+
+                if ((characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_32BIT_MACHINE) > 0)
+                    Machine32Bit = true;
+
+                if ((characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_DEBUG_STRIPPED) > 0)
+                    DebugStripped = true;
+
+                if ((characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP) >
+                    0)
+                    RemovableRunFromSwap = true;
+
+                if ((characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_NET_RUN_FROM_SWAP) > 0)
+                    NetRunFroMSwap = true;
+
+                if ((characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_SYSTEM) > 0)
+                    System = true;
+
+                if ((characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_DLL) > 0)
+                    DLL = true;
+
+                if ((characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_UP_SYSTEM_ONLY) > 0)
+                    UpSystemOnly = true;
+
+                if ((characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_BYTES_REVERSED_HI) > 0)
+                    BytesReversedHi = true;
+            }
+
+            /// <summary>
+            ///     Relocation stripped,
+            /// </summary>
+            public bool RelocStripped { get; private set; }
+
+            /// <summary>
+            ///     Is an executable image.
+            /// </summary>
+            public bool ExecutableImage { get; private set; }
+
+            /// <summary>
+            ///     Line numbers stripped.
+            /// </summary>
+            public bool LineNumbersStripped { get; private set; }
+
+            /// <summary>
+            ///     Local symbols stripped.
+            /// </summary>
+            public bool LocalSymbolsStripped { get; private set; }
+
+            /// <summary>
+            ///     (OBSOLTETE) Aggressively trim the working set.
+            /// </summary>
+            public bool AggressiveWsTrim { get; private set; }
+
+            /// <summary>
+            ///     Application can handle addresses larger than 2 GB.
+            /// </summary>
+            public bool LargeAddressAware { get; private set; }
+
+            /// <summary>
+            ///     (OBSOLTETE) Bytes of word are reversed.
+            /// </summary>
+            public bool BytesReversedLo { get; private set; }
+
+            /// <summary>
+            ///     Supports 32 Bit words.
+            /// </summary>
+            public bool Machine32Bit { get; private set; }
+
+            /// <summary>
+            ///     Debug stripped and stored in a separate file.
+            /// </summary>
+            public bool DebugStripped { get; private set; }
+
+            /// <summary>
+            ///     If the image is on a removable media, copy and run it from the swap file.
+            /// </summary>
+            public bool RemovableRunFromSwap { get; private set; }
+
+            /// <summary>
+            ///     If the image is on the network, copy and run it from the swap file.
+            /// </summary>
+            public bool NetRunFroMSwap { get; private set; }
+
+            /// <summary>
+            ///     The image is a system file.
+            /// </summary>
+            public bool System { get; private set; }
+
+            /// <summary>
+            ///     Is a dynamic loaded library and exetuable but cannot
+            ///     be run on its own.
+            /// </summary>
+            public bool DLL { get; private set; }
+
+            /// <summary>
+            ///     Image should be run only on uniprocessor.
+            /// </summary>
+            public bool UpSystemOnly { get; private set; }
+
+            /// <summary>
+            ///     (OBSOLETE) Reserved.
+            /// </summary>
+            public bool BytesReversedHi { get; private set; }
+
+            /// <summary>
+            ///     Return string representation of all characteristics.
+            /// </summary>
+            /// <returns>Return string representation of all characteristics.</returns>
+            public override string ToString()
+            {
+                var sb = new StringBuilder("File Characteristics\n");
+                sb.Append(PropertiesToString(this, "{0,-30}:{1,10:X}\n"));
+                return sb.ToString();
+            }
         }
     }
 }

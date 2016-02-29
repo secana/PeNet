@@ -19,47 +19,76 @@ using System.Text;
 
 namespace PeNet.Structures
 {
+    /// <summary>
+    ///     The IMAGE_IMPORT_DESCRIPTORs are contained in the Import Directory
+    ///     and holds all the information about function and symbol imports.
+    /// </summary>
     public class IMAGE_IMPORT_DESCRIPTOR
     {
         private readonly byte[] _buff;
         private readonly uint _offset;
 
+        /// <summary>
+        ///     Create a new IMAGE_IMPORT_DESCRIPTOR object.
+        /// </summary>
+        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="offset">Raw offset of the descriptor.</param>
         public IMAGE_IMPORT_DESCRIPTOR(byte[] buff, uint offset)
         {
             _buff = buff;
             _offset = offset;
         }
 
+        /// <summary>
+        ///     Points to the first IMAGE_IMPORT_BY_NAME struct.
+        /// </summary>
         public uint OriginalFirstThunk
         {
             get { return Utility.BytesToUInt32(_buff, _offset); }
             set { Utility.SetUInt32(value, _offset, _buff); }
         }
 
+        /// <summary>
+        ///     Time and date stamp.
+        /// </summary>
         public uint TimeDateStamp
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
             set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
         }
 
+        /// <summary>
+        ///     Forwarder Chain.
+        /// </summary>
         public uint ForwarderChain
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x8); }
             set { Utility.SetUInt32(value, _offset + 0x8, _buff); }
         }
 
+        /// <summary>
+        ///     RVA to the name of the DLL.
+        /// </summary>
         public uint Name
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0xC); }
             set { Utility.SetUInt32(value, _offset + 0xC, _buff); }
         }
 
+        /// <summary>
+        ///     Points to an IMAGE_IMPORT_BY_NAME struct or
+        ///     to the address of the first function.
+        /// </summary>
         public uint FirstThunk
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x10); }
             set { Utility.SetUInt32(value, _offset + 0x10, _buff); }
         }
 
+        /// <summary>
+        ///     Creates a string representation of the objects porperties.
+        /// </summary>
+        /// <returns>The import decscriptors properties as a string.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("IMAGE_IMPORT_DESCRIPTOR\n");

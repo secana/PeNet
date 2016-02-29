@@ -17,15 +17,24 @@ limitations under the License.
 
 using System;
 using System.Text;
-using PeNet.Structures;
 
 namespace PeNet.Structures
 {
+    /// <summary>
+    ///     The resource directory entry represents one entry (e.g. icon)
+    ///     in a resource directory.
+    /// </summary>
     public class IMAGE_RESOURCE_DIRECTORY_ENTRY
     {
         private readonly byte[] _buff;
         private readonly uint _offset;
 
+        /// <summary>
+        ///     Create a new instance of the IMAGE_RESOURCE_DIRECTORY_ENTRY.
+        /// </summary>
+        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="offset">Raw offset to the entry.</param>
+        /// <param name="resourceDirOffset">Raw offset to the resource dir.</param>
         public IMAGE_RESOURCE_DIRECTORY_ENTRY(byte[] buff, uint offset, uint resourceDirOffset)
         {
             _offset = offset;
@@ -51,26 +60,42 @@ namespace PeNet.Structures
             }
         }
 
+        /// <summary>
+        ///     Address of the name if its a named resource.
+        /// </summary>
         public uint Name
         {
             get { return Utility.BytesToUInt32(_buff, _offset); }
             set { Utility.SetUInt32(value, _offset, _buff); }
         }
 
+        /// <summary>
+        ///     The resolved name as a string if its a named resource.
+        /// </summary>
         public string ResolvedName { get; private set; }
 
+        /// <summary>
+        ///     The ID if its a ID resource.
+        ///     You can resolve the ID to a string with Utility.ResolveResourceId(id)
+        /// </summary>
         public uint ID
         {
             get { return Name & 0xFFFF; }
             set { Name = value & 0xFFFF; }
         }
 
+        /// <summary>
+        ///     Offset to the data.
+        /// </summary>
         public uint OffsetToData
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
             set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
         }
 
+        /// <summary>
+        ///     Offset to the next directory.
+        /// </summary>
         public uint OffsetToDirectory => OffsetToData & 0x7FFFFFFF;
 
         /// <summary>
@@ -105,10 +130,10 @@ namespace PeNet.Structures
         public bool IsIdEntry => !IsNamedEntry;
 
         /// <summary>
-        /// Returns a string that represents the current object.
+        ///     Returns a string that represents the current object.
         /// </summary>
         /// <returns>
-        /// A string that represents the current object.
+        ///     A string that represents the current object.
         /// </returns>
         public override string ToString()
         {

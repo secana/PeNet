@@ -19,99 +19,151 @@ using System.Text;
 
 namespace PeNet.Structures
 {
+    /// <summary>
+    ///     The IMAGE_DOS_HEADER with which every PE file starts.
+    /// </summary>
     public class IMAGE_DOS_HEADER
     {
         private readonly byte[] _buff;
 
+        /// <summary>
+        ///     Create a new IMAGE_DOS_HEADER object.
+        /// </summary>
+        /// <param name="buff">Byte buffer containing a PE file.</param>
         public IMAGE_DOS_HEADER(byte[] buff)
         {
             _buff = buff;
         }
 
+        /// <summary>
+        ///     Magic "MZ" header.
+        /// </summary>
         public ushort e_magic
         {
             get { return Utility.BytesToUInt16(_buff, 0x00); }
             set { Utility.SetUInt16(value, 0x00, _buff); }
         }
 
+        /// <summary>
+        ///     Bytes on the last page of the file.
+        /// </summary>
         public ushort e_cblp
         {
             get { return Utility.BytesToUInt16(_buff, 0x02); }
             set { Utility.SetUInt16(value, 0x02, _buff); }
         }
 
+        /// <summary>
+        ///     Pages in the file.
+        /// </summary>
         public ushort e_cp
         {
             get { return Utility.BytesToUInt16(_buff, 0x04); }
             set { Utility.SetUInt16(value, 0x04, _buff); }
         }
 
+        /// <summary>
+        ///     Relocations.
+        /// </summary>
         public ushort e_crlc
         {
             get { return Utility.BytesToUInt16(_buff, 0x06); }
             set { Utility.SetUInt16(value, 0x06, _buff); }
         }
 
+        /// <summary>
+        ///     Size of the header in paragraphs.
+        /// </summary>
         public ushort e_cparhdr
         {
             get { return Utility.BytesToUInt16(_buff, 0x08); }
             set { Utility.SetUInt16(value, 0x08, _buff); }
         }
 
+        /// <summary>
+        ///     Minimum extra paragraphs needed.
+        /// </summary>
         public ushort e_minalloc
         {
             get { return Utility.BytesToUInt16(_buff, 0x0A); }
             set { Utility.SetUInt16(value, 0x0A, _buff); }
         }
 
+        /// <summary>
+        ///     Maximum extra paragraphs needed.
+        /// </summary>
         public ushort e_maxalloc
         {
             get { return Utility.BytesToUInt16(_buff, 0x0C); }
             set { Utility.SetUInt16(value, 0x0C, _buff); }
         }
 
+        /// <summary>
+        ///     Initial (relative) SS value.
+        /// </summary>
         public ushort e_ss
         {
             get { return Utility.BytesToUInt16(_buff, 0x0E); }
             set { Utility.SetUInt16(value, 0x0E, _buff); }
         }
 
+        /// <summary>
+        ///     Initial SP value.
+        /// </summary>
         public ushort e_sp
         {
             get { return Utility.BytesToUInt16(_buff, 0x10); }
             set { Utility.SetUInt16(value, 0x10, _buff); }
         }
 
+        /// <summary>
+        ///     Checksum
+        /// </summary>
         public ushort e_csum
         {
             get { return Utility.BytesToUInt16(_buff, 0x12); }
             set { Utility.SetUInt16(value, 0x12, _buff); }
         }
 
+        /// <summary>
+        ///     Initial IP value.
+        /// </summary>
         public ushort e_ip
         {
             get { return Utility.BytesToUInt16(_buff, 0x14); }
             set { Utility.SetUInt16(value, 0x14, _buff); }
         }
 
+        /// <summary>
+        ///     Initial (relative) CS value.
+        /// </summary>
         public ushort e_cs
         {
             get { return Utility.BytesToUInt16(_buff, 0x16); }
             set { Utility.SetUInt16(value, 0x16, _buff); }
         }
 
+        /// <summary>
+        ///     Raw address of the relocation table.
+        /// </summary>
         public ushort e_lfarlc
         {
             get { return Utility.BytesToUInt16(_buff, 0x18); }
             set { Utility.SetUInt16(value, 0x18, _buff); }
         }
 
+        /// <summary>
+        ///     Overlay number.
+        /// </summary>
         public ushort e_ovno
         {
             get { return Utility.BytesToUInt16(_buff, 0x1A); }
             set { Utility.SetUInt16(value, 0x1A, _buff); }
         }
 
+        /// <summary>
+        ///     Reserved.
+        /// </summary>
         public ushort[] e_res // 4 * UInt16
         {
             get
@@ -133,18 +185,27 @@ namespace PeNet.Structures
             }
         }
 
+        /// <summary>
+        ///     OEM identifier.
+        /// </summary>
         public ushort e_oemid
         {
             get { return Utility.BytesToUInt16(_buff, 0x24); }
             set { Utility.SetUInt16(value, 0x24, _buff); }
         }
 
+        /// <summary>
+        ///     OEM information.
+        /// </summary>
         public ushort e_oeminfo
         {
             get { return Utility.BytesToUInt16(_buff, 0x26); }
             set { Utility.SetUInt16(value, 0x26, _buff); }
         }
 
+        /// <summary>
+        ///     Reserved.
+        /// </summary>
         public ushort[] e_res2 // 10 * UInt16
         {
             get
@@ -178,12 +239,19 @@ namespace PeNet.Structures
             }
         }
 
+        /// <summary>
+        ///     Raw address of the NT header.
+        /// </summary>
         public uint e_lfanew
         {
             get { return Utility.BytesToUInt32(_buff, 0x3C); }
             set { Utility.SetUInt32(value, 0x3C, _buff); }
         }
 
+        /// <summary>
+        ///     Creates a string representation of all properties.
+        /// </summary>
+        /// <returns>The header properties as a string.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("IMAGE_DOS_HEADER\n");

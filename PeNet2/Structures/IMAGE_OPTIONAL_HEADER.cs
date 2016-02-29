@@ -17,16 +17,21 @@ limitations under the License.
 
 using System;
 using System.Text;
-using PeNet.Structures;
 
 namespace PeNet.Structures
 {
+    /// <summary>
+    /// </summary>
     public class IMAGE_OPTIONAL_HEADER
     {
-        public readonly IMAGE_DATA_DIRECTORY[] DataDirectory;
         private readonly byte[] _buff;
         private readonly bool _is64Bit;
         private readonly uint _offset;
+
+        /// <summary>
+        ///     The Data Directories.
+        /// </summary>
+        public readonly IMAGE_DATA_DIRECTORY[] DataDirectory;
 
         public IMAGE_OPTIONAL_HEADER(byte[] buff, uint offset, bool is64Bit)
         {
@@ -45,54 +50,81 @@ namespace PeNet.Structures
             }
         }
 
+        /// <summary>
+        ///     Flag if the file is x32, x64 or a ROM image.
+        /// </summary>
         public ushort Magic
         {
             get { return Utility.BytesToUInt16(_buff, _offset); }
             set { Utility.SetUInt16(value, _offset, _buff); }
         }
 
+        /// <summary>
+        ///     Major linker version.
+        /// </summary>
         public byte MajorLinkerVersion
         {
             get { return _buff[_offset + 0x2]; }
             set { _buff[_offset + 0x2] = value; }
         }
 
+        /// <summary>
+        ///     Minor linker version.
+        /// </summary>
         public byte MinorLinkerVersion
         {
             get { return _buff[_offset + 0x3]; }
             set { _buff[_offset + 03] = value; }
         }
 
+        /// <summary>
+        ///     Size of all code sections together.
+        /// </summary>
         public uint SizeOfCode
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
             set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
         }
 
+        /// <summary>
+        ///     Size of all initialized data sections together.
+        /// </summary>
         public uint SizeOfInitializedData
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x8); }
             set { Utility.SetUInt32(value, _offset + 0x8, _buff); }
         }
 
+        /// <summary>
+        ///     Size of all unitialized data sections together.
+        /// </summary>
         public uint SizeOfUninitializedData
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0xC); }
             set { Utility.SetUInt32(value, _offset + 0xC, _buff); }
         }
 
+        /// <summary>
+        ///     RVA of the entry point function.
+        /// </summary>
         public uint AddressOfEntryPoint
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x10); }
             set { Utility.SetUInt32(value, _offset + 0x10, _buff); }
         }
 
+        /// <summary>
+        ///     RVA to the beginning of the code section.
+        /// </summary>
         public uint BaseOfCode
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x14); }
             set { Utility.SetUInt32(value, _offset + 0x14, _buff); }
         }
 
+        /// <summary>
+        ///     RVA to the beginning of the data section.
+        /// </summary>
         public uint BaseOfData
         {
             get { return _is64Bit ? 0 : Utility.BytesToUInt32(_buff, _offset + 0x18); }
@@ -105,6 +137,9 @@ namespace PeNet.Structures
             }
         }
 
+        /// <summary>
+        ///     Preferred address of the image when it's loaded to memory.
+        /// </summary>
         public ulong ImageBase
         {
             get
@@ -122,90 +157,140 @@ namespace PeNet.Structures
             }
         }
 
+        /// <summary>
+        ///     Section aligment in memory in bytes. Must be greater or equal to the file alignment.
+        /// </summary>
         public uint SectionAlignment
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x20); }
             set { Utility.SetUInt32(value, _offset + 0x20, _buff); }
         }
 
+        /// <summary>
+        ///     File alignment of the raw data of the sections in bytes.
+        /// </summary>
         public uint FileAlignment
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x24); }
             set { Utility.SetUInt32(value, _offset + 0x24, _buff); }
         }
 
+        /// <summary>
+        ///     Major operation system version to run the file.
+        /// </summary>
         public ushort MajorOperatingSystemVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x28); }
             set { Utility.SetUInt16(value, _offset + 0x28, _buff); }
         }
 
+        /// <summary>
+        ///     Minor operation system version to run the file.
+        /// </summary>
         public ushort MinorOperatingSystemVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x2A); }
             set { Utility.SetUInt16(value, _offset + 0x2A, _buff); }
         }
 
+        /// <summary>
+        ///     Major image version.
+        /// </summary>
         public ushort MajorImageVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x2C); }
             set { Utility.SetUInt16(value, _offset + 0x2C, _buff); }
         }
 
+        /// <summary>
+        ///     Minor image version.
+        /// </summary>
         public ushort MinorImageVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x2E); }
             set { Utility.SetUInt16(value, _offset + 0x2E, _buff); }
         }
 
+        /// <summary>
+        ///     Major version of the sybsystem.
+        /// </summary>
         public ushort MajorSubsystemVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x30); }
             set { Utility.SetUInt16(value, _offset + 0x30, _buff); }
         }
 
+        /// <summary>
+        ///     Minor version of the subsystem.
+        /// </summary>
         public ushort MinorSubsystemVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x32); }
             set { Utility.SetUInt16(value, _offset + 0x32, _buff); }
         }
 
+        /// <summary>
+        ///     Reserved and must be 0.
+        /// </summary>
         public uint Win32VersionValue
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x34); }
             set { Utility.SetUInt32(value, _offset + 0x34, _buff); }
         }
 
+        /// <summary>
+        ///     Size of the image including all headers in bytes. Muste be a multiple of
+        ///     the section alignment.
+        /// </summary>
         public uint SizeOfImage
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x38); }
             set { Utility.SetUInt32(value, _offset + 0x38, _buff); }
         }
 
+        /// <summary>
+        ///     Sum of the e_lfanwe from the DOS header, the 4 byte signature, size of
+        ///     the file header, size of the optional header and size of all section.
+        ///     Rounded to the next file alignment.
+        /// </summary>
         public uint SizeOfHeaders
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x3C); }
             set { Utility.SetUInt32(value, _offset + 0x3C, _buff); }
         }
 
+        /// <summary>
+        ///     Image checksum validated at runtime for drivers, DLLs loaded at boot time and
+        ///     DLLs loaded into a critical system.
+        /// </summary>
         public uint CheckSum
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x40); }
             set { Utility.SetUInt32(value, _offset + 0x40, _buff); }
         }
 
+        /// <summary>
+        ///     The subsystem required to run the image e.g., Windows GUI, XBOX etc.
+        ///     Can be resoved to a string with Utility.ResolveSubsystem(subsystem=
+        /// </summary>
         public ushort Subsystem
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x44); }
             set { Utility.SetUInt16(value, _offset + 0x44, _buff); }
         }
 
+        /// <summary>
+        ///     Dll characteristics of the image.
+        /// </summary>
         public ushort DllCharacteristics
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x46); }
             set { Utility.SetUInt16(value, _offset + 0x46, _buff); }
         }
 
+        /// <summary>
+        ///     Size of stack reserve in bytes.
+        /// </summary>
         public ulong SizeOfStackReserve
         {
             get
@@ -223,6 +308,9 @@ namespace PeNet.Structures
             }
         }
 
+        /// <summary>
+        ///     Size of bytes committed for the stack in bytes.
+        /// </summary>
         public ulong SizeOfStackCommit
         {
             get
@@ -240,6 +328,9 @@ namespace PeNet.Structures
             }
         }
 
+        /// <summary>
+        ///     Size of the heap to reserve in bytes.
+        /// </summary>
         public ulong SizeOfHeapReserve
         {
             get
@@ -257,6 +348,9 @@ namespace PeNet.Structures
             }
         }
 
+        /// <summary>
+        ///     Size of the heap commit in bytes.
+        /// </summary>
         public ulong SizeOfHeapCommit
         {
             get
@@ -274,6 +368,9 @@ namespace PeNet.Structures
             }
         }
 
+        /// <summary>
+        ///     Obsolete
+        /// </summary>
         public uint LoaderFlags
         {
             get
@@ -291,6 +388,9 @@ namespace PeNet.Structures
             }
         }
 
+        /// <summary>
+        ///     Number of directory entries in the remainder of the optional header.
+        /// </summary>
         public uint NumberOfRvaAndSizes
         {
             get
@@ -308,6 +408,11 @@ namespace PeNet.Structures
             }
         }
 
+        /// <summary>
+        ///     Creates a string representation of the objects
+        ///     properties.
+        /// </summary>
+        /// <returns>Optional header propteries as a string.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("IMAGE_OPTIONAL_HEADER\n");

@@ -19,29 +19,47 @@ using System.Text;
 
 namespace PeNet.Structures
 {
+    /// <summary>
+    ///     The IMAGE_DATA_DIRECTORY struct represents the data directory,
+    /// </summary>
     public class IMAGE_DATA_DIRECTORY
     {
         private readonly byte[] _buff;
         private readonly uint _offset;
 
+        /// <summary>
+        ///     Create a new IMAGE_DATA_DIRECTORY object.
+        /// </summary>
+        /// <param name="buff">PE binary as byte array.</param>
+        /// <param name="offset">Raw offset to the data directory in the binary.</param>
         public IMAGE_DATA_DIRECTORY(byte[] buff, uint offset)
         {
             _buff = buff;
             _offset = offset;
         }
 
+        /// <summary>
+        ///     RVA of the table.
+        /// </summary>
         public uint VirtualAddress
         {
             get { return Utility.BytesToUInt32(_buff, _offset); }
             set { Utility.SetUInt32(value, _offset, _buff); }
         }
 
+        /// <summary>
+        ///     Table size in bytes.
+        /// </summary>
         public uint Size
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
             set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
         }
 
+        /// <summary>
+        ///     Convert all object properties to strings.
+        /// </summary>
+        /// <returns>String representation of the object</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("IMAGE_DATA_DIRECTORY\n");

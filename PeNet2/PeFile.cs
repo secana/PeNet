@@ -15,28 +15,36 @@ limitations under the License.
 
 *************************************************************************/
 
-using PeNet.Structures;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using PeNet.Structures;
 
 namespace PeNet
 {
     /// <summary>
-    /// This class represents a Portable Executable (PE) file and makes the different
-    /// header and properites accessable.
+    ///     This class represents a Portable Executable (PE) file and makes the different
+    ///     header and properites accessable.
     /// </summary>
     public class PeFile
     {
+        /// <summary>
+        ///     The PE binary as a byte array.
+        /// </summary>
         public readonly byte[] Buff;
-        private string _sha256 = null;
-        private string _sha1 = null;
-        private string _md5 = null;
-        private string _impHash = null;
 
+        private string _impHash;
+        private string _md5;
+        private string _sha1;
+
+        private string _sha256;
+
+        /// <summary>
+        ///     Create a new PeFile object.
+        /// </summary>
+        /// <param name="buff">A PE file a byte array.</param>
         public PeFile(byte[] buff)
         {
             Buff = buff;
@@ -45,7 +53,8 @@ namespace PeNet
             ImageDosHeader = new IMAGE_DOS_HEADER(buff);
 
             // Check if the PE file is 64 bit.
-            Is64Bit = Utility.BytesToUInt16(buff, ImageDosHeader.e_lfanew + 0x4) == (ushort) Constants.Machine.IMAGE_FILE_MACHINE_AMD64;
+            Is64Bit = Utility.BytesToUInt16(buff, ImageDosHeader.e_lfanew + 0x4) ==
+                      (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
 
             var secHeaderOffset = (uint) (Is64Bit ? 0x108 : 0xF8);
 
@@ -66,7 +75,7 @@ namespace PeNet
                     ImageExportDirectory = new IMAGE_EXPORT_DIRECTORY(
                         buff,
                         Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[0].VirtualAddress,
-                        ImageSectionHeaders)
+                            ImageSectionHeaders)
                         );
 
                     ExportedFunctions = ParseExportedFunctions(
@@ -88,12 +97,12 @@ namespace PeNet
                 try
                 {
                     ImageImportDescriptors = ParseImportDescriptors(
-                    buff,
+                        buff,
                         Utility.RVAtoFileMapping(
                             ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Import]
                                 .VirtualAddress, ImageSectionHeaders),
-                    ImageSectionHeaders
-                    );
+                        ImageSectionHeaders
+                        );
 
                     ImportedFunctions = ParseImportedFunctions(buff, ImageImportDescriptors, ImageSectionHeaders);
                 }
@@ -134,14 +143,14 @@ namespace PeNet
                     try
                     {
                         RuntimeFunctions = PareseExceptionDirectory(
-                        buff,
+                            buff,
                             Utility.RVAtoFileMapping(
                                 ImageNtHeaders.OptionalHeader.DataDirectory[
                                     (uint) Constants.DataDirectoryIndex.Exception].VirtualAddress, ImageSectionHeaders),
                             ImageNtHeaders.OptionalHeader.DataDirectory[(uint) Constants.DataDirectoryIndex.Exception]
                                 .Size,
-                        ImageSectionHeaders
-                        );
+                            ImageSectionHeaders
+                            );
                     }
                     catch
                     {
@@ -160,10 +169,10 @@ namespace PeNet
                 try
                 {
                     WinCertificate = ParseImageSecurityDirectory(
-                    buff,
+                        buff,
                         ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Security]
                             .VirtualAddress,
-                    ImageSectionHeaders);
+                        ImageSectionHeaders);
                 }
                 catch (Exception)
                 {
@@ -174,12 +183,20 @@ namespace PeNet
             }
         }
 
+        /// <summary>
+        ///     Create a new PeFile object.
+        /// </summary>
+        /// <param name="peFile">Path to a PE file.</param>
         public PeFile(string peFile)
             : this(File.ReadAllBytes(peFile))
         {
             Location = peFile;
         }
 
+        /// <summary>
+        ///     Returns true if the Excetion Dir, Export Dir, Import Dir,
+        ///     Resource Dir and Security Dir are valid and the MZ header is set.
+        /// </summary>
         public bool IsValidPeFile => HasValidExceptionDir
                                      && HasValidExportDir
                                      && HasValidImportDir
@@ -187,26 +204,107 @@ namespace PeNet
                                      && HasValidSecurityDir
                                      && (ImageDosHeader.e_magic == 0x5a4d);
 
+        /// <summary>
+        ///     Returns true if the Export directory is valid.
+        /// </summary>
         public bool HasValidExportDir { get; } = true;
+
+        /// <summary>
+        ///     Returns true if the Import directory is valid.
+        /// </summary>
         public bool HasValidImportDir { get; } = true;
+
+        /// <summary>
+        ///     Returns true if the Resource directory is valid.
+        /// </summary>
         public bool HasValidResourceDir { get; } = true;
+
+        /// <summary>
+        ///     Returns true if the Exception directory is valid.
+        /// </summary>
         public bool HasValidExceptionDir { get; } = true;
+
+        /// <summary>
+        ///     Returns true if the Security directory is valid.
+        /// </summary>
         public bool HasValidSecurityDir { get; } = true;
 
-        public bool IsDLL => (ImageNtHeaders.FileHeader.Characteristics & 0x2000) == 0x2000;
-        public bool IsEXE => (ImageNtHeaders.FileHeader.Characteristics & 0x02) == 0x02;
+        /// <summary>
+        ///     Returns true if the DLL flag in the
+        ///     File Header is set.
+        /// </summary>
+        public bool IsDLL
+            =>
+                (ImageNtHeaders.FileHeader.Characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_DLL) >
+                0;
+
+        /// <summary>
+        ///     Returns true if the Executable flag in the
+        ///     File Header is set.
+        /// </summary>
+        public bool IsEXE
+            =>
+                (ImageNtHeaders.FileHeader.Characteristics &
+                 (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) > 0;
+
+        /// <summary>
+        ///     Returns true if the PE file is x64.
+        /// </summary>
         public bool Is64Bit { get; }
+
+        /// <summary>
+        ///     Returns true if the PE file is x32.
+        /// </summary>
         public bool Is32Bit => !Is64Bit;
 
+        /// <summary>
+        ///     Access the IMAGE_DOS_HEADER of the PE file.
+        /// </summary>
         public IMAGE_DOS_HEADER ImageDosHeader { get; }
+
+        /// <summary>
+        ///     Access the IMAGE_NT_HEADERS of the PE file.
+        /// </summary>
         public IMAGE_NT_HEADERS ImageNtHeaders { get; }
+
+        /// <summary>
+        ///     Access the IMAGE_SECTION_HEADERS of the PE file.
+        /// </summary>
         public IMAGE_SECTION_HEADER[] ImageSectionHeaders { get; }
+
+        /// <summary>
+        ///     Access the IMAGE_EXPORT_DIRECTORY of the PE file.
+        /// </summary>
         public IMAGE_EXPORT_DIRECTORY ImageExportDirectory { get; }
+
+        /// <summary>
+        ///     Access the IMAGE_IMPORT_DESCRIPTOR array of the PE file.
+        /// </summary>
         public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors { get; }
+
+        /// <summary>
+        ///     Access the exported functions as an array of parsed objects.
+        /// </summary>
         public ExportFunction[] ExportedFunctions { get; private set; }
+
+        /// <summary>
+        ///     Access the imported functions as an array of parsed objects.
+        /// </summary>
         public ImportFunction[] ImportedFunctions { get; }
+
+        /// <summary>
+        ///     Access the IMAGE_RESOURCE_DIRECTORY of the PE file.
+        /// </summary>
         public IMAGE_RESOURCE_DIRECTORY[] ImageResourceDirectory { get; private set; }
+
+        /// <summary>
+        ///     Access the array of RUNTIME_FUNCTION from the Exception header.
+        /// </summary>
         public RUNTIME_FUNCTION[] RuntimeFunctions { get; private set; }
+
+        /// <summary>
+        ///     Access the WIN_CERTIFICATE from the Security header.
+        /// </summary>
         public WIN_CERTIFICATE WinCertificate { get; private set; }
 
         /// <summary>
@@ -216,49 +314,55 @@ namespace PeNet
         public X509Certificate2 PKCS7 { get; private set; }
 
         /// <summary>
-        /// The SHA-256 hash sum of the binary.
+        ///     The SHA-256 hash sum of the binary.
         /// </summary>
         public string SHA256 => _sha256 ?? (_sha256 = Utility.Sha256(Buff));
 
         /// <summary>
-        /// The SHA-1 hash sum of the binary.
+        ///     The SHA-1 hash sum of the binary.
         /// </summary>
         public string SHA1 => _sha1 ?? (_sha1 = Utility.Sha1(Buff));
 
         /// <summary>
-        /// The MD5 of hash sum of the binary.
+        ///     The MD5 of hash sum of the binary.
         /// </summary>
         public string MD5 => _md5 ?? (_md5 = Utility.MD5(Buff));
 
         /// <summary>
-        /// The Import Hash of the binary if any imports are
-        /// given esle null;
+        ///     The Import Hash of the binary if any imports are
+        ///     given esle null;
         /// </summary>
         public string ImpHash => _impHash ?? (_impHash = GetImpHash());
 
         /// <summary>
-        /// Returns the file size in bytes.
+        ///     Returns the file size in bytes.
         /// </summary>
         public int FileSize => Buff.Length;
 
         /// <summary>
-        /// Location of the PE file if it was opened by location.
+        ///     Location of the PE file if it was opened by location.
         /// </summary>
         public string Location { get; private set; }
 
         /// <summary>
-        /// Get an object which holds information about
-        /// the Certificate Revocation Lists of the signing
-        /// certificate if any is present.
+        ///     Get an object which holds information about
+        ///     the Certificate Revocation Lists of the signing
+        ///     certificate if any is present.
         /// </summary>
         /// <returns>Certificate Revocation List information or null if binary is not signed.</returns>
         public CrlUrlList GetCrlUrlList()
         {
             if (PKCS7 == null)
                 return null;
-                return new CrlUrlList(PKCS7);
+            return new CrlUrlList(PKCS7);
         }
 
+        /// <summary>
+        ///     Get the UNWIND_INFO from a runtime function form the
+        ///     Exception header in x64 applications.
+        /// </summary>
+        /// <param name="runtimeFunction">A runtime function.</param>
+        /// <returns>UNWIND_INFO for the runtime function.</returns>
         public UNWIND_INFO GetUnwindInfo(RUNTIME_FUNCTION runtimeFunction)
         {
             // Check if the last bit is set in the UnwindInfo. If so, it is a chained 
@@ -271,11 +375,11 @@ namespace PeNet
             return uw;
         }
 
-        public WIN_CERTIFICATE ParseImageSecurityDirectory(byte[] buff, uint dirOffset, IMAGE_SECTION_HEADER[] sh)
+        private WIN_CERTIFICATE ParseImageSecurityDirectory(byte[] buff, uint dirOffset, IMAGE_SECTION_HEADER[] sh)
         {
             var wc = new WIN_CERTIFICATE(buff, dirOffset);
 
-            if (wc.wCertificateType == Constants.WIN_CERT_TYPE_PKCS_SIGNED_DATA)
+            if (wc.wCertificateType == (ushort) Constants.WinCertificateType.WIN_CERT_TYPE_PKCS_SIGNED_DATA)
             {
                 var cert = wc.bCertificate;
                 PKCS7 = new X509Certificate2(cert);
@@ -401,7 +505,6 @@ namespace PeNet
         /// </summary>
         /// <param name="buff">Byte buffer with the whole binary.</param>
         /// <param name="offsetFirstRescDir">Offset to the first resource directory (= DataDirectory[2].VirtualAddress)</param>
-        /// <param name="sh">Image section headers of the binary.</param>
         /// <returns>List with resource directories.</returns>
         private IMAGE_RESOURCE_DIRECTORY[] ParseImageResourceDirectory(byte[] buff, uint offsetFirstRescDir)
         {
@@ -480,10 +583,10 @@ namespace PeNet
 
             switch (ImageNtHeaders.FileHeader.Machine)
             {
-                case (ushort) Constants.Machine.IMAGE_FILE_MACHINE_I386:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386:
                     fileType = "I386";
                     break;
-                case (ushort) Constants.Machine.IMAGE_FILE_MACHINE_AMD64:
+                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64:
                     fileType = "AMD64";
                     break;
                 default:
@@ -491,9 +594,11 @@ namespace PeNet
                     break;
             }
 
-            if ((ImageNtHeaders.FileHeader.Characteristics & (ushort) Constants.FileCharacteristics.IMAGE_FILE_DLL) != 0)
+            if ((ImageNtHeaders.FileHeader.Characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_DLL) !=
+                0)
                 fileType += "_DLL";
-            else if ((ImageNtHeaders.FileHeader.Characteristics & (ushort)Constants.FileCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) != 0)
+            else if ((ImageNtHeaders.FileHeader.Characteristics &
+                      (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) != 0)
                 fileType += "_EXE";
             else
                 fileType += "_UNKNOWN";
@@ -566,8 +671,17 @@ namespace PeNet
             return sb.ToString();
         }
 
+        /// <summary>
+        ///     Represents an exported function.
+        /// </summary>
         public class ExportFunction
         {
+            /// <summary>
+            ///     Create a new ExportFunction object.
+            /// </summary>
+            /// <param name="name">Name of the function.</param>
+            /// <param name="address">Address of function.</param>
+            /// <param name="ordinal">Ordinal of the function.</param>
             public ExportFunction(string name, uint address, ushort ordinal)
             {
                 Name = name;
@@ -575,10 +689,26 @@ namespace PeNet
                 Ordinal = ordinal;
             }
 
+            /// <summary>
+            ///     Function name.
+            /// </summary>
             public string Name { get; private set; }
+
+            /// <summary>
+            ///     Function RVA.
+            /// </summary>
             public uint Address { get; private set; }
+
+            /// <summary>
+            ///     Function Ordinal.
+            /// </summary>
             public ushort Ordinal { get; private set; }
 
+            /// <summary>
+            ///     Creates a string representation of all
+            ///     properties of the object.
+            /// </summary>
+            /// <returns>The exported function as a string.</returns>
             public override string ToString()
             {
                 var sb = new StringBuilder("ExportFunction\n");
@@ -587,8 +717,17 @@ namespace PeNet
             }
         }
 
+        /// <summary>
+        ///     Represents an imported function.
+        /// </summary>
         public class ImportFunction
         {
+            /// <summary>
+            ///     Create a new ImportFunction object.
+            /// </summary>
+            /// <param name="name">Function name.</param>
+            /// <param name="dll">DLL where the function comes from.</param>
+            /// <param name="hint">Function hint.</param>
             public ImportFunction(string name, string dll, ushort hint)
             {
                 Name = name;
@@ -596,19 +735,43 @@ namespace PeNet
                 Hint = hint;
             }
 
+            /// <summary>
+            ///     Function name.
+            /// </summary>
             public string Name { get; }
+
+            /// <summary>
+            ///     DLL where the function comes from.
+            /// </summary>
             public string DLL { get; }
+
+            /// <summary>
+            ///     Function hint.
+            /// </summary>
             public ushort Hint { get; }
         }
 
+        /// <summary>
+        ///     This class parses the Certificate Revocation Lists
+        ///     of a signing certificate. It provides access to all
+        ///     CRL URLs in the certificate.
+        /// </summary>
         public class CrlUrlList
         {
+            /// <summary>
+            ///     Create a new CrlUrlList object.
+            /// </summary>
+            /// <param name="rawData">A byte array containing a X509 certificate</param>
             public CrlUrlList(byte[] rawData)
             {
                 Urls = new List<string>();
                 ParseCrls(rawData);
             }
 
+            /// <summary>
+            ///     Create a new CrlUrlList object.
+            /// </summary>
+            /// <param name="cert">A X509 certificate object.</param>
             public CrlUrlList(X509Certificate2 cert)
             {
                 Urls = new List<string>();
@@ -621,8 +784,10 @@ namespace PeNet
                 }
             }
 
-            public int TotalLength { get; set; }
-            public List<string> Urls { get; set; }
+            /// <summary>
+            ///     List with all CRL URLs.
+            /// </summary>
+            public List<string> Urls { get; }
 
             private void ParseCrls(byte[] rawData)
             {
@@ -690,14 +855,19 @@ namespace PeNet
             }
 
 
+            /// <summary>
+            ///     Create a string representation of all CRL in
+            ///     the list.
+            /// </summary>
+            /// <returns>CRL URLs.</returns>
             public override string ToString()
             {
                 var sb = new StringBuilder();
                 sb.AppendLine("CRL URLs:");
                 foreach (var url in Urls)
                     sb.AppendFormat("\t{0}\n", url);
-            return sb.ToString();
+                return sb.ToString();
+            }
         }
     }
-}
 }

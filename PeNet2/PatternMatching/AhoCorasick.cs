@@ -30,25 +30,25 @@ using System.Text;
 namespace PeNet.PatternMatching
 {
     /// <summary>
-    /// This trie consists of bytes (for binary files) and uses strings as values
-    /// to identify the different patterns.
+    ///     This trie consists of bytes (for binary files) and uses strings as values
+    ///     to identify the different patterns.
     /// </summary>
     public class Trie : Trie<byte, string>
     {
         /// <summary>
-        /// Add a string to the tries pattern.
+        ///     Add a string to the tries pattern.
         /// </summary>
         /// <param name="pattern">Pattern to search for.</param>
         /// <param name="encoding">Encoding of the string to search for.</param>
         /// <param name="name">Name of the pattern</param>
-        public void Add(string pattern, System.Text.Encoding encoding, string name)
+        public void Add(string pattern, Encoding encoding, string name)
         {
             var bytes = encoding.GetBytes(pattern);
             base.Add(bytes, name);
         }
 
         /// <summary>
-        /// Add a byte pattern to the tries pattern.
+        ///     Add a byte pattern to the tries pattern.
         /// </summary>
         /// <param name="pattern">Pattern to search for.</param>
         /// <param name="name">Name of the pattern.</param>
@@ -59,30 +59,30 @@ namespace PeNet.PatternMatching
     }
 
     /// <summary>
-    /// Trie that will find strings or phrases and return values of type <typeparamref name="T"/>
-    /// for each string or phrase found.
+    ///     Trie that will find strings or phrases and return values of type <typeparamref name="T" />
+    ///     for each string or phrase found.
     /// </summary>
     /// <remarks>
-    /// <typeparamref name="T"/> will typically be a char for finding strings
-    /// or a string for finding phrases or whole words.
+    ///     <typeparamref name="T" /> will typically be a char for finding strings
+    ///     or a string for finding phrases or whole words.
     /// </remarks>
     /// <typeparam name="T">The type of a letter in a word.</typeparam>
     /// <typeparam name="TValue">The type of the value that will be returned when the word is found.</typeparam>
     public class Trie<T, TValue>
     {
         /// <summary>
-        /// Root of the trie. It has no value and no parent.
+        ///     Root of the trie. It has no value and no parent.
         /// </summary>
         private readonly Node<T, TValue> root = new Node<T, TValue>();
 
         /// <summary>
-        /// Adds a word to the tree.
+        ///     Adds a word to the tree.
         /// </summary>
         /// <remarks>
-        /// A word consists of letters. A node is built for each letter.
-        /// If the letter type is char, then the word will be a string, since it consists of letters.
-        /// But a letter could also be a string which means that a node will be added
-        /// for each word and so the word is actually a phrase.
+        ///     A word consists of letters. A node is built for each letter.
+        ///     If the letter type is char, then the word will be a string, since it consists of letters.
+        ///     But a letter could also be a string which means that a node will be added
+        ///     for each word and so the word is actually a phrase.
         /// </remarks>
         /// <param name="word">The word that will be searched.</param>
         /// <param name="value">The value that will be returned when the word is found.</param>
@@ -105,7 +105,7 @@ namespace PeNet.PatternMatching
 
 
         /// <summary>
-        /// Constructs fail or fall links.
+        ///     Constructs fail or fall links.
         /// </summary>
         public void Build()
         {
@@ -140,11 +140,13 @@ namespace PeNet.PatternMatching
         }
 
         /// <summary>
-        /// Finds all added words in a text.
+        ///     Finds all added words in a text.
         /// </summary>
         /// <param name="text">The text to search in.</param>
-        /// <returns>The values that were added for the found words and the position of the 
-        /// last matching character in the word.</returns>
+        /// <returns>
+        ///     The values that were added for the found words and the position of the
+        ///     last matching character in the word.
+        /// </returns>
         public IEnumerable<Tuple<TValue, int>> Find(IEnumerable<T> text)
         {
             var node = root;
@@ -158,7 +160,7 @@ namespace PeNet.PatternMatching
 
                 for (var t = node; t != root; t = t.Fail)
                 {
-                    foreach (TValue value in t.Values)
+                    foreach (var value in t.Values)
                         yield return new Tuple<TValue, int>(value, pos);
                 }
                 pos++;
@@ -166,62 +168,50 @@ namespace PeNet.PatternMatching
         }
 
         /// <summary>
-        /// Node in a trie.
+        ///     Node in a trie.
         /// </summary>
         /// <typeparam name="TNode">The same as the parent type.</typeparam>
         /// <typeparam name="TNodeValue">The same as the parent value type.</typeparam>
         private class Node<TNode, TNodeValue> : IEnumerable<Node<TNode, TNodeValue>>
         {
-            private readonly TNode word;
-            private readonly Node<TNode, TNodeValue> parent;
-            private readonly Dictionary<TNode, Node<TNode, TNodeValue>> children = new Dictionary<TNode, Node<TNode, TNodeValue>>();
-            private readonly List<TNodeValue> values = new List<TNodeValue>();
+            private readonly Dictionary<TNode, Node<TNode, TNodeValue>> children =
+                new Dictionary<TNode, Node<TNode, TNodeValue>>();
 
             /// <summary>
-            /// Constructor for the root node.
+            ///     Constructor for the root node.
             /// </summary>
             public Node()
             {
             }
 
             /// <summary>
-            /// Constructor for a node with a word
+            ///     Constructor for a node with a word
             /// </summary>
             /// <param name="word"></param>
             /// <param name="parent"></param>
             public Node(TNode word, Node<TNode, TNodeValue> parent)
             {
-                this.word = word;
-                this.parent = parent;
+                Word = word;
+                Parent = parent;
             }
 
             /// <summary>
-            /// Word (or letter) for this node.
+            ///     Word (or letter) for this node.
             /// </summary>
-            public TNode Word
-            {
-                get { return word; }
-            }
+            public TNode Word { get; }
 
             /// <summary>
-            /// Parent node.
+            ///     Parent node.
             /// </summary>
-            public Node<TNode, TNodeValue> Parent
-            {
-                get { return parent; }
-            }
+            public Node<TNode, TNodeValue> Parent { get; }
 
             /// <summary>
-            /// Fail or fall node.
+            ///     Fail or fall node.
             /// </summary>
-            public Node<TNode, TNodeValue> Fail
-            {
-                get;
-                set;
-            }
+            public Node<TNode, TNodeValue> Fail { get; set; }
 
             /// <summary>
-            /// Children for this node.
+            ///     Children for this node.
             /// </summary>
             /// <param name="c">Child word.</param>
             /// <returns>Child node.</returns>
@@ -232,26 +222,23 @@ namespace PeNet.PatternMatching
             }
 
             /// <summary>
-            /// Values for words that end at this node.
+            ///     Values for words that end at this node.
             /// </summary>
-            public List<TNodeValue> Values
-            {
-                get { return values; }
-            }
+            public List<TNodeValue> Values { get; } = new List<TNodeValue>();
 
-            /// <inherit/>
+            /// <inherit />
             public IEnumerator<Node<TNode, TNodeValue>> GetEnumerator()
             {
                 return children.Values.GetEnumerator();
             }
 
-            /// <inherit/>
+            /// <inherit />
             IEnumerator IEnumerable.GetEnumerator()
             {
                 return GetEnumerator();
             }
 
-            /// <inherit/>
+            /// <inherit />
             public override string ToString()
             {
                 return Word.ToString();

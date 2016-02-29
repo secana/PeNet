@@ -21,11 +21,10 @@ using System.Collections.Generic;
 namespace PeNet
 {
     /// <summary>
-    /// This class is used by the ImpHash implementation to lookup
-    /// some names for functions where only an ordinal is given.
-    /// 
-    /// This is the case in the original ImpHash implementation so we 
-    /// do the same here.
+    ///     This class is used by the ImpHash implementation to lookup
+    ///     some names for functions where only an ordinal is given.
+    ///     This is the case in the original ImpHash implementation so we
+    ///     do the same here.
     /// </summary>
     internal static class OrdinalSymbolMapping
     {

@@ -19,83 +19,130 @@ using System.Text;
 
 namespace PeNet.Structures
 {
+    /// <summary>
+    ///     The export directory contains all exported function, symbols etc.
+    ///     which can be used by other module.
+    /// </summary>
     public class IMAGE_EXPORT_DIRECTORY
     {
         private readonly byte[] _buff;
         private readonly uint _offset;
 
+        /// <summary>
+        ///     Create a new IMAGE_EXPORT_DIRECTORY object.
+        /// </summary>
+        /// <param name="buff">PE file as a byte array.</param>
+        /// <param name="offset">Raw offset of the export directory in the PE file.</param>
         public IMAGE_EXPORT_DIRECTORY(byte[] buff, uint offset)
         {
             _offset = offset;
             _buff = buff;
         }
 
+        /// <summary>
+        ///     The characterisitcs of the export directory.
+        /// </summary>
         public uint Characteristics
         {
             get { return Utility.BytesToUInt32(_buff, _offset); }
             set { Utility.SetUInt32(value, _offset, _buff); }
         }
 
+        /// <summary>
+        ///     Time and date stamp.
+        /// </summary>
         public uint TimeDateStamp
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
             set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
         }
 
+        /// <summary>
+        ///     Major Version.
+        /// </summary>
         public ushort MajorVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x8); }
             set { Utility.SetUInt16(value, _offset + 0x8, _buff); }
         }
 
+        /// <summary>
+        ///     Minor Version.
+        /// </summary>
         public ushort MinorVersion
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0xA); }
             set { Utility.SetUInt16(value, _offset + 0xA, _buff); }
         }
 
+        /// <summary>
+        ///     Name.
+        /// </summary>
         public uint Name
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0xC); }
             set { Utility.SetUInt32(value, _offset + 0xC, _buff); }
         }
 
+        /// <summary>
+        ///     Base.
+        /// </summary>
         public uint Base
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x10); }
             set { Utility.SetUInt32(value, _offset + 0x10, _buff); }
         }
 
+        /// <summary>
+        ///     Number of exported functions.
+        /// </summary>
         public uint NumberOfFunctions
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x14); }
             set { Utility.SetUInt32(value, _offset + 0x14, _buff); }
         }
 
+        /// <summary>
+        ///     Number of exported names.
+        /// </summary>
         public uint NumberOfNames
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x18); }
             set { Utility.SetUInt32(value, _offset + 0x18, _buff); }
         }
 
+        /// <summary>
+        ///     RVA to the addresses of the functions.
+        /// </summary>
         public uint AddressOfFunctions
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x1C); }
             set { Utility.SetUInt32(value, _offset + 0x1C, _buff); }
         }
 
+        /// <summary>
+        ///     RVA to the addresses of the names.
+        /// </summary>
         public uint AddressOfNames
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x20); }
             set { Utility.SetUInt32(value, _offset + 0x20, _buff); }
         }
 
+        /// <summary>
+        ///     RVA to the name ordinals.
+        /// </summary>
         public uint AddressOfNameOrdinals
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x24); }
             set { Utility.SetUInt32(value, _offset + 0x24, _buff); }
         }
 
+        /// <summary>
+        ///     Creates a string representation of all object
+        ///     properties.
+        /// </summary>
+        /// <returns>The export directory properties as a string.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("IMAGE_EXPORT_DIRECTORY\n");
