@@ -4,8 +4,6 @@ Furthermore it supports the creation of ImpHashs, which is a feature often used 
 
 For help see the Wiki.
 
-You can find an API reference here: http://secana.github.io/PeNet/
-
 # License Apache 2
 Copyright 2016 Stefan Hausotte
 
