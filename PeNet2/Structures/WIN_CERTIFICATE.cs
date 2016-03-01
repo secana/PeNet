@@ -20,35 +20,58 @@ using System.Text;
 
 namespace PeNet.Structures
 {
+    /// <summary>
+    ///     The WIN_CERTIFICATE the information
+    ///     in the security directory of the PE file.
+    ///     It contains information about any certificates
+    ///     used to sign the binary.
+    /// </summary>
     public class WIN_CERTIFICATE
     {
         private readonly byte[] _buff;
         private readonly uint _offset;
 
+        /// <summary>
+        ///     Create a new WIN_CERTIFICATE object.
+        /// </summary>
+        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="offset">Raw offset to the structure.</param>
         public WIN_CERTIFICATE(byte[] buff, uint offset)
         {
             _buff = buff;
             _offset = offset;
         }
 
+        /// <summary>
+        ///     Length of the certificate.
+        /// </summary>
         public uint dwLength
         {
             get { return Utility.BytesToUInt32(_buff, _offset); }
             set { Utility.SetUInt32(value, _offset, _buff); }
         }
 
+        /// <summary>
+        ///     Revision.
+        /// </summary>
         public ushort wRevision
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x4); }
             set { Utility.SetUInt16(value, _offset + 0x4, _buff); }
         }
 
+        /// <summary>
+        ///     The certificate type.
+        /// </summary>
         public ushort wCertificateType
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x6); }
             set { Utility.SetUInt16(value, _offset + 0x6, _buff); }
         }
 
+        /// <summary>
+        ///     The certificate as a byte array.
+        /// </summary>
         public byte[] bCertificate
         {
             get
@@ -60,6 +83,11 @@ namespace PeNet.Structures
             set { Array.Copy(value, 0, _buff, _offset + 0x8, value.Length); }
         }
 
+        /// <summary>
+        ///     Create a string representation of the objects
+        ///     properties.
+        /// </summary>
+        /// <returns>The WIN_CERTIFICATE properties as a string.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("WIN_CERTIFICATE\n");

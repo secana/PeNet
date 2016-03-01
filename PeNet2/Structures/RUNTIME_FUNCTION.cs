@@ -19,35 +19,59 @@ using System.Text;
 
 namespace PeNet.Structures
 {
+    /// <summary>
+    ///     The runtime function struct is represents
+    ///     a function in the exception header for x64
+    ///     applications.
+    /// </summary>
     public class RUNTIME_FUNCTION
     {
         private readonly byte[] _buff;
         private readonly uint _offset;
 
+        /// <summary>
+        ///     Create a new RUNTIME_FUNCTION object.
+        /// </summary>
+        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="offset">Raw offset of the runtime function struct.</param>
         public RUNTIME_FUNCTION(byte[] buff, uint offset)
         {
             _buff = buff;
             _offset = offset;
         }
 
+        /// <summary>
+        ///     RVA Start of the function in code.
+        /// </summary>
         public uint FunctionStart
         {
             get { return Utility.BytesToUInt32(_buff, _offset); }
             set { Utility.SetUInt32(value, _offset, _buff); }
         }
 
+        /// <summary>
+        ///     RVA End of the function in code.
+        /// </summary>
         public uint FunctionEnd
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
             set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
         }
 
+        /// <summary>
+        ///     Pointer to the unwind information.
+        /// </summary>
         public uint UnwindInfo
         {
             get { return Utility.BytesToUInt32(_buff, _offset + 0x8); }
             set { Utility.SetUInt32(value, _offset + 0x8, _buff); }
         }
 
+        /// <summary>
+        ///     Creates a string representation of the objects
+        ///     properties.
+        /// </summary>
+        /// <returns>The runtime function properties as a string.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("RUNTIME_FUNCTION\n");

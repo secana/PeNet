@@ -19,39 +19,67 @@ using System.Text;
 
 namespace PeNet.Structures
 {
+    /// <summary>
+    ///     The UNWIND_CODE is a struct in
+    ///     the UNWIND_INFO used to describe
+    ///     exception handling in x64 applications
+    ///     and to walk the stack.
+    /// </summary>
     public class UNWIND_CODE
     {
         private readonly byte[] _buff;
         private readonly uint _offset;
 
+        /// <summary>
+        ///     Create a new UNWIND_INFO object.
+        /// </summary>
+        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="offset">Raw offset of the UNWIND_INFO.</param>
         public UNWIND_CODE(byte[] buff, uint offset)
         {
             _buff = buff;
             _offset = offset;
         }
 
+        /// <summary>
+        ///     Code offset.
+        /// </summary>
         public byte CodeOffset
         {
             get { return _buff[_offset]; }
             set { _buff[_offset] = value; }
         }
 
+        /// <summary>
+        ///     Unwind operation.
+        /// </summary>
         public byte UnwindOp
         {
             get { return (byte) (_buff[_offset + 0x1] & 0xF); }
         }
 
+        /// <summary>
+        ///     Operation information.
+        /// </summary>
         public byte Opinfo
         {
             get { return (byte) (_buff[_offset + 0x1] >> 0x4); }
         }
 
+        /// <summary>
+        ///     Frame offset.
+        /// </summary>
         public ushort FrameOffset
         {
             get { return Utility.BytesToUInt16(_buff, _offset + 0x2); }
             set { Utility.SetUInt16(value, _offset + 0x2, _buff); }
         }
 
+        /// <summary>
+        ///     Creates a string representation of the objects
+        ///     properties.
+        /// </summary>
+        /// <returns>UNWIND_CODE properties as a string.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("UNWIND_CODE\n");

@@ -26,6 +26,9 @@ using PeNet.Structures;
 
 namespace PeNet
 {
+    /// <summary>
+    ///     This class provides useful functions to work with PE files.
+    /// </summary>
     public static class Utility
     {
         /// <summary>
@@ -145,6 +148,12 @@ namespace PeNet
             return new FileCharacteristics(characteristics);
         }
 
+        /// <summary>
+        ///     Resolve the resource identifier of resource entries
+        ///     to a human readable string with a meaning.
+        /// </summary>
+        /// <param name="id">Resource identifier.</param>
+        /// <returns>String repesentation of the ID.</returns>
         public static string ResolveResourceId(uint id)
         {
             switch (id)
@@ -510,7 +519,7 @@ namespace PeNet
             return RVA - vOffset + rOffset;
         }
 
-        public static ushort GetOrdinal(uint ordinal, byte[] buff)
+        internal static ushort GetOrdinal(uint ordinal, byte[] buff)
         {
             return BitConverter.ToUInt16(new[] {buff[ordinal], buff[ordinal + 1]}, 0);
         }

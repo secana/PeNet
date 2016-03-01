@@ -21,6 +21,8 @@ using System.Text;
 namespace PeNet.Structures
 {
     /// <summary>
+    ///     Represents the optional header in
+    ///     the NT header.
     /// </summary>
     public class IMAGE_OPTIONAL_HEADER
     {
@@ -33,6 +35,12 @@ namespace PeNet.Structures
         /// </summary>
         public readonly IMAGE_DATA_DIRECTORY[] DataDirectory;
 
+        /// <summary>
+        ///     Create a new IMAGE_OPTIONAL_HEADER object.
+        /// </summary>
+        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="offset">Raw offset to the optional header.</param>
+        /// <param name="is64Bit">Set to true, if header is for a x64 application.</param>
         public IMAGE_OPTIONAL_HEADER(byte[] buff, uint offset, bool is64Bit)
         {
             _buff = buff;

@@ -20,22 +20,41 @@ using System.Text;
 
 namespace PeNet.Structures
 {
+    /// <summary>
+    ///     The UNWIND_INFO is used for x64 exception
+    ///     handling and to unwind the stack. It is
+    ///     pointed to by the RUNTIME_FUNCTION struct.
+    /// </summary>
     public class UNWIND_INFO
     {
         private readonly byte[] _buff;
         private readonly uint _offset;
         private readonly int sizeOfUnwindeCode = 0x4;
 
+        /// <summary>
+        ///     Create a new UNWIND_INFO object.
+        /// </summary>
+        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="offset">Raw offset of the UNWIND_INFO struct.</param>
         public UNWIND_INFO(byte[] buff, uint offset)
         {
             _buff = buff;
             _offset = offset;
         }
 
+        /// <summary>
+        ///     Version
+        /// </summary>
         public byte Version => (byte) (_buff[_offset] & 0x7);
 
+        /// <summary>
+        ///     Flags
+        /// </summary>
         public byte Flags => (byte) (_buff[_offset] >> 3);
 
+        /// <summary>
+        ///     Size of prolog.
+        /// </summary>
         public byte SizeOfProlog
         {
             get { return _buff[_offset + 0x1]; }
@@ -54,11 +73,17 @@ namespace PeNet.Structures
             set { _buff[_offset + 0x2] = value; }
         }
 
+        /// <summary>
+        ///     Frame register.
+        /// </summary>
         public byte FrameRegister
         {
             get { return (byte) (_buff[_offset + 0x3] & 0xF); }
         }
 
+        /// <summary>
+        ///     UnwindCode structure.
+        /// </summary>
         public UNWIND_CODE[] UnwindCode
         {
             get
@@ -68,6 +93,9 @@ namespace PeNet.Structures
             }
         }
 
+        /// <summary>
+        ///     The exception handler for the function.
+        /// </summary>
         public uint ExceptionHandler
         {
             get
@@ -82,6 +110,9 @@ namespace PeNet.Structures
             }
         }
 
+        /// <summary>
+        ///     Function entry.
+        /// </summary>
         public uint FunctionEntry
         {
             get { return ExceptionHandler; }
@@ -90,6 +121,9 @@ namespace PeNet.Structures
 
         // DONT KNOW HOW BIG
         // TODO: Implement ExceptionData
+        /// <summary>
+        ///     Exception Data
+        /// </summary>
         public uint[] ExceptionData
         {
             get { return null; }
@@ -160,6 +194,11 @@ namespace PeNet.Structures
             return ucList.ToArray();
         }
 
+        /// <summary>
+        ///     Creates a string representation if the of the
+        ///     objects properties.
+        /// </summary>
+        /// <returns>The unwind information properties as a string.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("UNWIND_INFO\n");
