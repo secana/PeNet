@@ -76,6 +76,11 @@ namespace PeNet.PatternMatching
         private readonly Node<T, TValue> root = new Node<T, TValue>();
 
         /// <summary>
+        /// Set if the tree was build.
+        /// </summary>
+        private bool _isBuild = false;
+
+        /// <summary>
         ///     Adds a word to the tree.
         /// </summary>
         /// <remarks>
@@ -88,6 +93,8 @@ namespace PeNet.PatternMatching
         /// <param name="value">The value that will be returned when the word is found.</param>
         public void Add(IEnumerable<T> word, TValue value)
         {
+            _isBuild = false;
+
             // start at the root
             Node<T, TValue>[] node = {root};
 
@@ -107,7 +114,7 @@ namespace PeNet.PatternMatching
         /// <summary>
         ///     Constructs fail or fall links.
         /// </summary>
-        public void Build()
+        private void Build()
         {
             // construction is done using breadth-first-search
             var queue = new Queue<Node<T, TValue>>();
@@ -149,6 +156,12 @@ namespace PeNet.PatternMatching
         /// </returns>
         public IEnumerable<Tuple<TValue, int>> Find(IEnumerable<T> text)
         {
+            if (!_isBuild)
+            {
+                Build();
+                _isBuild = true;
+            }
+
             var node = root;
             var pos = 0;
             foreach (var c in text)
