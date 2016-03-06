@@ -16,7 +16,6 @@ namespace Example
             trie.Add("<assemblyIdentity", Encoding.ASCII, "pattern2");
             trie.Add("not in the binary", Encoding.ASCII, "pattern3");
             trie.Add(new byte[] {0x54, 0x40, 0x00, 0x00, 0xe0, 0x41}, "pattern4");
-            trie.Build();
 
             var matches = trie.Find(pe.Buff);
             foreach (var match in matches)
