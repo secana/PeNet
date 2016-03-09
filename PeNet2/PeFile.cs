@@ -16,6 +16,7 @@ limitations under the License.
 *************************************************************************/
 
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
@@ -549,10 +550,11 @@ namespace PeNet
         }
 
         /// <summary>
-        ///     Tries to parse the PE file. If no exceptions are thrown, true
+        ///     Tries to parse the PE file and checks all directories.
         /// </summary>
         /// <param name="file">Path to a possible PE file.</param>
-        /// <returns>True if the file could be parsed as a PE file, else false.</returns>
+        /// <returns>True if the file could be parsed as a PE file and
+        /// all directories are valid.</returns>
         public static bool IsValidPEFile(string file)
         {
             PeFile pe;
@@ -565,6 +567,76 @@ namespace PeNet
                 return false;
             }
             return pe.IsValidPeFile;
+        }
+
+        /// <summary>
+        /// Tests is a file is a PE file based on the MZ
+        /// header. It is not checked if the PE file is correct
+        /// in all other parts.
+        /// </summary>
+        /// <param name="file">Path to a possible PE file.</param>
+        /// <returns>True if the MZ header is set.</returns>
+        public static bool IsPEFile(string file)
+        {
+            var buff = File.ReadAllBytes(file);
+            IMAGE_DOS_HEADER dosHeader = null;
+            try
+            {
+                dosHeader = new IMAGE_DOS_HEADER(buff);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return dosHeader.e_magic == 0x5a4d;
+        }
+
+        /// <summary>
+        /// Returns if the file is a PE file and 64 Bit.
+        /// </summary>
+        /// <param name="file">Path to a possible PE file.</param>
+        /// <returns>True if file is PE and x64.</returns>
+        public static bool Is64BitPeFile(string file)
+        {
+            var buff = File.ReadAllBytes(file);
+            IMAGE_DOS_HEADER dosHeader;
+            bool is64;
+            try
+            {
+                dosHeader = new IMAGE_DOS_HEADER(buff);
+                is64 = Utility.BytesToUInt16(buff, dosHeader.e_lfanew + 0x4) ==
+                      (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return (dosHeader.e_magic == 0x5a4d) && is64;
+        }
+
+        /// <summary>
+        /// Returns if the file is a PE file and 32 Bit.
+        /// </summary>
+        /// <param name="file">Path to a possible PE file.</param>
+        /// <returns>True if file is PE and x32.</returns>
+        public static bool Is32BitPeFile(string file)
+        {
+            var buff = File.ReadAllBytes(file);
+            IMAGE_DOS_HEADER dosHeader;
+            bool is32;
+            try
+            {
+                dosHeader = new IMAGE_DOS_HEADER(buff);
+                is32 = Utility.BytesToUInt16(buff, dosHeader.e_lfanew + 0x4) ==
+                      (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return (dosHeader.e_magic == 0x5a4d) && is32;
         }
 
         /// <summary>
