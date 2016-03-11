@@ -9,19 +9,13 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            var pe = new PeNet.PeFile(@"c:\windows\system32\calc.exe");
-
-            var trie = new PeNet.PatternMatching.Trie();
-            trie.Add("MicrosoftCalculator", Encoding.ASCII, "pattern1");
-            trie.Add("<assemblyIdentity", Encoding.ASCII, "pattern2");
-            trie.Add("not in the binary", Encoding.ASCII, "pattern3");
-            trie.Add(new byte[] {0x54, 0x40, 0x00, 0x00, 0xe0, 0x41}, "pattern4");
-
-            var matches = trie.Find(pe.Buff);
-            foreach (var match in matches)
-            {
-                Console.WriteLine($"Pattern {match.Item1} at offset {match.Item2}");
-            }
+            var file = @"C:\Windows\System32\calc.exe";
+            var pe = new PeNet.PeFile(file);
+            Console.WriteLine(PeNet.Utility.IsSigned(file));
+            Console.WriteLine(PeNet.Utility.IsValidCertChain(file, true));
+            Console.WriteLine(pe.IsSigned);
+            Console.WriteLine(pe.IsValidCertChain(true));
+            Console.WriteLine(PeNet.Utility.IsSignatureValid(file));
             Console.ReadKey(true);
         }
     }

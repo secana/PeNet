@@ -16,7 +16,6 @@ limitations under the License.
 *************************************************************************/
 
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
@@ -247,6 +246,31 @@ namespace PeNet
             =>
                 (ImageNtHeaders.FileHeader.Characteristics &
                  (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) > 0;
+
+        /// <summary>
+        /// Returns true if the PE file is signed. It
+        /// does not check if the signature is valid!
+        /// </summary>
+        public bool IsSigned
+        {
+            get
+            {
+                return PKCS7 != null;
+            }
+        }
+
+        /// <summary>
+        /// Checks if cert is from a trusted CA with a valid certificate chain.
+        /// </summary>
+        /// <param name="online">Check certificate chain online or offline.</param>
+        /// <returns>True of cert chain is valid and from a trusted CA.</returns>
+        public bool IsValidCertChain(bool online)
+        {
+                if (!IsSigned)
+                    return false;
+
+            return Utility.IsValidCertChain(PKCS7, online);
+        }
 
         /// <summary>
         ///     Returns true if the PE file is x64.
