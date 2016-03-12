@@ -491,23 +491,31 @@ namespace PeNet
         private ExportFunction[] ParseExportedFunctions(byte[] buff, IMAGE_EXPORT_DIRECTORY ed,
             IMAGE_SECTION_HEADER[] sh)
         {
-            var expFuncs = new ExportFunction[ed.NumberOfNames];
+            var expFuncs = new PeFile.ExportFunction[ed.NumberOfFunctions];
             var funcOffsetPointer = Utility.RVAtoFileMapping(ed.AddressOfFunctions, sh);
             var ordOffset = Utility.RVAtoFileMapping(ed.AddressOfNameOrdinals, sh);
             var nameOffsetPointer = Utility.RVAtoFileMapping(ed.AddressOfNames, sh);
 
             var funcOffset = Utility.BytesToUInt32(buff, funcOffsetPointer);
 
+            //Get addresses
             for (uint i = 0; i < expFuncs.Length; i++)
             {
-                var namePtr = Utility.BytesToUInt32(buff, nameOffsetPointer + sizeof (uint)*i);
+                var ordinal = i + ed.Base;
+                var address = Utility.BytesToUInt32(buff, funcOffsetPointer + sizeof(uint) * i);
+
+                expFuncs[i] = new PeFile.ExportFunction(null, address, (ushort)ordinal);
+            }
+
+            //Associate names
+            for (uint i = 0; i < ed.NumberOfNames; i++)
+            {
+                var namePtr = Utility.BytesToUInt32(buff, nameOffsetPointer + sizeof(uint) * i);
                 var nameAdr = Utility.RVAtoFileMapping(namePtr, sh);
                 var name = Utility.GetName(nameAdr, buff);
-                var ordinalIndex = (uint) Utility.GetOrdinal(ordOffset + sizeof (ushort)*i, buff);
-                var ordinal = ordinalIndex + ed.Base;
-                var address = Utility.BytesToUInt32(buff, funcOffsetPointer + sizeof (uint)*ordinalIndex);
+                var ordinalIndex = (uint)Utility.GetOrdinal(ordOffset + sizeof(ushort) * i, buff);
 
-                expFuncs[i] = new ExportFunction(name, address, (ushort) ordinal);
+                expFuncs[ordinalIndex] = new PeFile.ExportFunction(name, expFuncs[ordinalIndex].Address, expFuncs[ordinalIndex].Ordinal);
             }
 
             return expFuncs;

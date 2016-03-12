@@ -9,7 +9,7 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            var file = @"C:\Windows\System32\calc.exe";
+            var file = @"C:\Windows\System32\kernel32.dll";
             var pe = new PeNet.PeFile(file);
             Console.WriteLine(PeNet.Utility.IsSigned(file));
             Console.WriteLine(PeNet.Utility.IsValidCertChain(file, true));
