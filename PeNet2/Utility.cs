@@ -21,9 +21,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using PeNet.Structures;
-using System.Security.Cryptography.X509Certificates;
 
 namespace PeNet
 {
@@ -591,11 +591,10 @@ namespace PeNet
         /// <returns>SHA-256 as 64 characters long hex-string</returns>
         public static string Sha256(byte[] buff)
         {
-            byte[] hash;
             var sBuilder = new StringBuilder();
 
             var sha = new SHA256Managed();
-            hash = sha.ComputeHash(buff);
+            var hash = sha.ComputeHash(buff);
 
             foreach (var t in hash)
                 sBuilder.Append(t.ToString("x2"));
@@ -632,11 +631,10 @@ namespace PeNet
         /// <returns>SHA-1 as 40 characters long hex-string</returns>
         public static string Sha1(byte[] buff)
         {
-            byte[] hash;
             var sBuilder = new StringBuilder();
 
             var sha = new SHA1Managed();
-            hash = sha.ComputeHash(buff);
+            var hash = sha.ComputeHash(buff);
 
             foreach (var t in hash)
                 sBuilder.Append(t.ToString("x2"));
@@ -673,11 +671,10 @@ namespace PeNet
         /// <returns>MD5 as 32 characters long hex-string</returns>
         public static string MD5(byte[] buff)
         {
-            byte[] hash;
             var sBuilder = new StringBuilder();
 
             var sha = new MD5Cng();
-            hash = sha.ComputeHash(buff);
+            var hash = sha.ComputeHash(buff);
 
             foreach (var t in hash)
                 sBuilder.Append(t.ToString("x2"));
@@ -739,6 +736,82 @@ namespace PeNet
         public static string ToHexString(ulong value)
         {
             return $"0x{value.ToString("X16")}";
+        }
+
+        /// <summary>
+        ///     Checks is a PE file is digitally signed. It does not
+        ///     verify the signature!
+        /// </summary>
+        /// <param name="filePath">Path to a PE file.</param>
+        /// <returns>True if signed, false if not. </returns>
+        public static bool IsSigned(string filePath)
+        {
+            try
+            {
+                var signer = X509Certificate.CreateFromSignedFile(filePath);
+                var cert = new X509Certificate2(signer);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        ///     Checks if cert is from a trusted CA with a valid certificate chain.
+        /// </summary>
+        /// <param name="filePath">Path to a PE file.</param>
+        /// <param name="online">Check certificate chain online or offline.</param>
+        /// <returns>True of cert chain is valid and from a trusted CA.</returns>
+        public static bool IsValidCertChain(string filePath, bool online)
+        {
+            X509Certificate2 cert;
+
+            try
+            {
+                var signer = X509Certificate.CreateFromSignedFile(filePath);
+                cert = new X509Certificate2(signer);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return IsValidCertChain(cert, online);
+        }
+
+        /// <summary>
+        ///     Checks if the digital signature of a PE file is valid.
+        ///     Since .Net has not function for it, PInvoke is used to query
+        ///     the native API like here http://geekswithblogs.net/robp/archive/2007/05/04/112250.aspx
+        /// </summary>
+        /// <param name="filePath">Path to a PE file.</param>
+        /// <returns>True if the signature is valid, else false.</returns>
+        public static bool IsSignatureValid(string filePath)
+        {
+            return WinVerifyTrustWrapper.IsTrusted(filePath);
+        }
+
+        /// <summary>
+        ///     Checks if cert is from a trusted CA with a valid certificate chain.
+        /// </summary>
+        /// <param name="cert">X509 Certificate</param>
+        /// <param name="online">Check certificate chain online or offline.</param>
+        /// <returns>True of cert chain is valid and from a trusted CA.</returns>
+        public static bool IsValidCertChain(X509Certificate2 cert, bool online)
+        {
+            var chain = new X509Chain
+            {
+                ChainPolicy =
+                {
+                    RevocationFlag = X509RevocationFlag.ExcludeRoot,
+                    RevocationMode = online ? X509RevocationMode.Online : X509RevocationMode.Offline,
+                    UrlRetrievalTimeout = new TimeSpan(0, 1, 0),
+                    VerificationFlags = X509VerificationFlags.NoFlag
+                }
+            };
+            return chain.Build(cert);
         }
 
         /// <summary>
@@ -889,83 +962,6 @@ namespace PeNet
                 sb.Append(PropertiesToString(this, "{0,-30}:{1,10:X}\n"));
                 return sb.ToString();
             }
-        }
-
-        /// <summary>
-        /// Checks is a PE file is digitally signed. It does not
-        /// verify the signature!
-        /// </summary>
-        /// <param name="filePath">Path to a PE file.</param>
-        /// <returns>True if signed, false if not. </returns>
-        public static bool IsSigned(string filePath)
-        {
-            try
-            {
-                var signer = X509Certificate.CreateFromSignedFile(filePath);
-                var cert = new X509Certificate2(signer);
-            }
-            catch(Exception)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Checks if cert is from a trusted CA with a valid certificate chain.
-        /// </summary>
-        /// <param name="filePath">Path to a PE file.</param>
-        /// <param name="online">Check certificate chain online or offline.</param>
-        /// <returns>True of cert chain is valid and from a trusted CA.</returns>
-        public static bool IsValidCertChain(string filePath, bool online)
-        {
-            X509Certificate2 cert;
-
-            try
-            {
-                var signer = X509Certificate.CreateFromSignedFile(filePath);
-                cert = new X509Certificate2(signer);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return IsValidCertChain(cert, online);
-        }
-
-        /// <summary>
-        /// Checks if the digital signature of a PE file is valid.
-        /// Since .Net has not function for it, PInvoke is used to query
-        /// the native API like here http://geekswithblogs.net/robp/archive/2007/05/04/112250.aspx
-        /// </summary>
-        /// <param name="filePath">Path to a PE file.</param>
-        /// <returns>True if the signature is valid, else false.</returns>
-        public static bool IsSignatureValid(string filePath)
-        {
-            return AuthenticodeTools.IsTrusted(filePath);
-        }
-
-        /// <summary>
-        /// Checks if cert is from a trusted CA with a valid certificate chain.
-        /// </summary>
-        /// <param name="cert">X509 Certificate</param>
-        /// <param name="online">Check certificate chain online or offline.</param>
-        /// <returns>True of cert chain is valid and from a trusted CA.</returns>
-        public static bool IsValidCertChain(X509Certificate2 cert, bool online)
-        {
-            var chain = new X509Chain();
-            chain.ChainPolicy.RevocationFlag = X509RevocationFlag.ExcludeRoot;
-
-            // Set the mode to check online or offline
-            chain.ChainPolicy.RevocationMode = online ? X509RevocationMode.Online : X509RevocationMode.Offline;
-
-            // One minute time out to check the signature chain online
-            chain.ChainPolicy.UrlRetrievalTimeout = new TimeSpan(0, 1, 0);
-
-            chain.ChainPolicy.VerificationFlags = X509VerificationFlags.NoFlag;
-
-            return chain.Build(cert);
         }
     }
 }

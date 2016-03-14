@@ -6,14 +6,14 @@ namespace PeNet
     // Code taken from
     // http://geekswithblogs.net/robp/archive/2007/05/04/112250.aspx
     //
-    internal static class AuthenticodeTools
+    internal static class WinVerifyTrustWrapper
     {
         [DllImport("Wintrust.dll", PreserveSig = true, SetLastError = false)]
         private static extern uint WinVerifyTrust(IntPtr hWnd, IntPtr pgActionID, IntPtr pWinTrustData);
         private static uint WinVerifyTrust(string fileName)
         {
             Guid wintrust_action_generic_verify_v2 = new Guid("{00AAC56B-CD44-11d0-8CC2-00C04FC295EE}");
-            uint result = 0;
+            uint result;
             using (WINTRUST_FILE_INFO fileInfo = new WINTRUST_FILE_INFO(fileName, Guid.Empty))
 
             using (UnmanagedPointer guidPtr = new UnmanagedPointer(
@@ -75,16 +75,9 @@ namespace PeNet
 
         public void Dispose()
         {
-            Dispose(true);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (pgKnownSubject != IntPtr.Zero)
-            {
-                Marshal.DestroyStructure(pgKnownSubject, typeof(Guid));
-                Marshal.FreeHGlobal(pgKnownSubject);
-            }
+            if (pgKnownSubject == IntPtr.Zero) return;
+            Marshal.DestroyStructure(pgKnownSubject, typeof(Guid));
+            Marshal.FreeHGlobal(pgKnownSubject);
         }
         #endregion
     }
@@ -199,11 +192,6 @@ namespace PeNet
         #region IDisposable Members
 
         public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        private void Dispose(bool disposing)
         {
             if (dwUnionChoice == UnionChoice.File)
             {
