@@ -225,6 +225,22 @@
                 </GroupBox>
             </TabItem>
 
+            <TabItem Header="Sections">
+                <GroupBox Header="Sections">
+                    <DataGrid Name="dgSections" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeColumns="True" CanUserAddRows="False" CanUserSortColumns="False" ItemsSource="{Binding}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="#" Binding="{Binding Number}"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Virtual Size" Binding="{Binding VSize}"/>
+                            <DataGridTextColumn Header="Virtual Address" Binding="{Binding VAddress}"/>
+                            <DataGridTextColumn Header="Physical Size" Binding="{Binding PSize}"/>
+                            <DataGridTextColumn Header="Physical Address" Binding="{Binding PAddress}"/>
+                            <DataGridTextColumn Header="Flags" Binding="{Binding Flags}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+            </TabItem>
+
             <TabItem Header="Optional Header">
                     <!-- IMAGE_SECTION_HEADER -->
                 <GroupBox Header="Optional Header">

@@ -33,6 +33,16 @@ namespace PeNet
     public static class Utility
     {
         /// <summary>
+        /// Converts the section name (UTF-8 byte array) to a string.
+        /// </summary>
+        /// <param name="name">Section name byte array.</param>
+        /// <returns>String representation of the section name.</returns>
+        public static string ResolveSectionName(byte[] name)
+        {
+            return Encoding.UTF8.GetString(name).TrimEnd((Char)0);
+        }
+
+        /// <summary>
         ///     Resolves the target machine number to a string containing
         ///     the name of the target machine.
         /// </summary>

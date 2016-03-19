@@ -1,19 +1,12 @@
 ﻿using Microsoft.Win32;
 using PeNet;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace PEditor
 {
@@ -86,6 +79,28 @@ namespace PEditor
 
             // Set the resources.
             SetResources(peFile);
+
+            // Set the sections.
+            SetSections(peFile);
+        }
+
+        private void SetSections(PeFile peFile)
+        {
+            var num = 1;
+            foreach(var sec in peFile.ImageSectionHeaders)
+            {
+                var flags = string.Join(", ", Utility.ResolveSectionFlags(sec.Characteristics));
+                dgSections.Items.Add(new {
+                    Number      = num,
+                    Name        = Utility.ResolveSectionName(sec.Name),
+                    VSize       = $"0x{sec.VirtualSize.ToString("X4")}",
+                    VAddress    = $"0x{sec.VirtualAddress.ToString("X4")}",
+                    PSize       = $"0x{sec.SizeOfRawData.ToString("X4")}",
+                    PAddress    = $"0x{sec.PhysicalAddress.ToString("X4")}",
+                    Flags       = $"0x{sec.Characteristics.ToString("X4")} {flags}"
+                });
+                num++;
+            }
         }
 
         private void SetResources(PeFile peFile)
