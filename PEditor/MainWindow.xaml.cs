@@ -105,25 +105,23 @@ namespace PEditor
 
         private void SetResources(PeFile peFile)
         {
-            var rds = peFile.ImageResourceDirectory;
+            var rd = peFile.ImageResourceDirectory;
 
             var root = new TreeViewItem()
             {
                 Header = "Resource Directory",
             };
 
-            foreach (var rd in rds)
+
+            foreach (var de in rd.DirectoryEntries)
             {
-                foreach(var de in rd.DirectoryEntries)
+                if (de.IsIdEntry)
                 {
-                    if(de.IsIdEntry)
-                    {
-                        root.Items.Add(new TreeViewItem() { Header = Utility.ResolveResourceId(de.ID) });
-                    }
-                    else if(de.IsNamedEntry)
-                    {
-                        root.Items.Add(new TreeViewItem() { Header = de.ResolvedName });
-                    }
+                    root.Items.Add(new TreeViewItem() {Header = Utility.ResolveResourceId(de.ID)});
+                }
+                else if (de.IsNamedEntry)
+                {
+                    root.Items.Add(new TreeViewItem() {Header = de.ResolvedName});
                 }
             }
 

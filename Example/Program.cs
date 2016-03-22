@@ -11,11 +11,7 @@ namespace Example
         {
             var file = @"C:\Windows\System32\kernel32.dll";
             var pe = new PeNet.PeFile(file);
-            Console.WriteLine(PeNet.Utility.IsSigned(file));
-            Console.WriteLine(PeNet.Utility.IsValidCertChain(file, true));
-            Console.WriteLine(pe.IsSigned);
-            Console.WriteLine(pe.IsValidCertChain(true));
-            Console.WriteLine(PeNet.Utility.IsSignatureValid(file));
+            Console.WriteLine(pe.ImageResourceDirectory);
             Console.ReadKey(true);
         }
     }

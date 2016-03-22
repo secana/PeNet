@@ -320,7 +320,7 @@ namespace PeNet
         /// <summary>
         ///     Access the IMAGE_RESOURCE_DIRECTORY of the PE file.
         /// </summary>
-        public IMAGE_RESOURCE_DIRECTORY[] ImageResourceDirectory { get; private set; }
+        public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory { get; private set; }
 
         /// <summary>
         ///     Access the array of RUNTIME_FUNCTION from the Exception header.
@@ -538,33 +538,10 @@ namespace PeNet
         /// </summary>
         /// <param name="buff">Byte buffer with the whole binary.</param>
         /// <param name="offsetFirstRescDir">Offset to the first resource directory (= DataDirectory[2].VirtualAddress)</param>
-        /// <returns>List with resource directories.</returns>
-        private IMAGE_RESOURCE_DIRECTORY[] ParseImageResourceDirectory(byte[] buff, uint offsetFirstRescDir)
+        /// <returns>The image resource directory.</returns>
+        private IMAGE_RESOURCE_DIRECTORY ParseImageResourceDirectory(byte[] buff, uint offsetFirstRescDir)
         {
-            var rescDirs = new List<IMAGE_RESOURCE_DIRECTORY>();
-            var firstDir = new IMAGE_RESOURCE_DIRECTORY(buff, offsetFirstRescDir, offsetFirstRescDir);
-            rescDirs.Add(firstDir);
-
-            // Loop through the entire directory
-            for (var i = 0; i < firstDir.DirectoryEntries.Length; i++)
-            {
-                if (firstDir.DirectoryEntries[i].DataIsDirectory)
-                {
-                    // It can happen that the IMAGE_RESOURCE_DIRECTORY is not valid, but Windows will parse it anyways...
-                    try
-                    {
-                        var tmpResc = new IMAGE_RESOURCE_DIRECTORY(buff,
-                            offsetFirstRescDir + firstDir.DirectoryEntries[i].OffsetToDirectory, offsetFirstRescDir);
-                        rescDirs.Add(tmpResc);
-                    }
-                    catch (IndexOutOfRangeException)
-                    {
-                        rescDirs.Add(null);
-                    }
-                }
-            }
-
-            return rescDirs.ToArray();
+            return new IMAGE_RESOURCE_DIRECTORY(buff, offsetFirstRescDir, offsetFirstRescDir);
         }
 
         private RUNTIME_FUNCTION[] PareseExceptionDirectory(byte[] buff, uint offset, uint size,

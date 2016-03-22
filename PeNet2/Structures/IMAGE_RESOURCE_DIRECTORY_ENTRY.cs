@@ -58,7 +58,30 @@ namespace PeNet.Structures
             {
                 ResolvedName = null;
             }
+
+            if (DataIsDirectory)
+            {
+                // It can happen that the IMAGE_RESOURCE_DIRECTORY is not valid, but Windows will parse it anyways...
+                try
+                {
+                    ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
+                        buff,
+                        resourceDirOffset + OffsetToDirectory,
+                        resourceDirOffset
+                        );
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    ResourceDirectory = null;
+                }
+            }
         }
+
+        /// <summary>
+        /// Get the Resource Directory which the Directory Entry points
+        /// to if the Directory Entriy has DataIsDirectory set.
+        /// </summary>
+        public IMAGE_RESOURCE_DIRECTORY ResourceDirectory { get; private set; }
 
         /// <summary>
         ///     Address of the name if its a named resource.
@@ -139,6 +162,8 @@ namespace PeNet.Structures
         {
             var sb = new StringBuilder("IMAGE_RESOURCE_DIRECTORY_ENTRY\n");
             sb.Append(Utility.PropertiesToString(this, "{0,-20}:\t{1,10:X}\n"));
+            if (ResourceDirectory != null)
+                sb.Append(ResourceDirectory);
             return sb.ToString();
         }
     }
