@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PEditor"
         mc:Ignorable="d"
-        Title="PEditor" Height="600" Width="800" MinHeight="532" MinWidth="800">
+        Title="PEditor" Height="600" Width="800" MinHeight="532" MinWidth="800"
+        Icon="Icons/Pen4.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -15,8 +16,16 @@
 
         <Menu Grid.Row="0" FontSize="14">
             <MenuItem Header="_File">
-                <MenuItem Header="_Open" Click="MenuOpen_Click"/>
-                <MenuItem Header="_Exit" Click="MenuExit_Click"></MenuItem>
+                <MenuItem Header="_Open" Click="MenuOpen_Click">
+                    <MenuItem.Icon>
+                        <Image Source="Icons/OpenFolder.ico"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Exit" Click="MenuExit_Click">
+                    <MenuItem.Icon>
+                        <Image Source="Icons/Close_16x.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
         <TabControl Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
@@ -471,3 +480,4 @@
         </StatusBar>
     </Grid>
 </Window>
+
