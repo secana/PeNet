@@ -24,18 +24,21 @@ namespace PEditor
 
         private void MenuOpen_Click(object sender, RoutedEventArgs e)
         {
-            string file = null;
             var openFileDialog = new OpenFileDialog()
             {
                 Multiselect = false
             };
 
-            if(openFileDialog.ShowDialog() == true)
-            {
-                file = openFileDialog.FileName;
-            }
+            if (openFileDialog.ShowDialog() != true)
+                return;
 
+            var file = openFileDialog.FileName;
             FileOpen(file);
+        }
+
+        private void MenuExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
 
         private void FileOpen(string file)

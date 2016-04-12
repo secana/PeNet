@@ -16,6 +16,7 @@
         <Menu Grid.Row="0" FontSize="14">
             <MenuItem Header="_File">
                 <MenuItem Header="_Open" Click="MenuOpen_Click"/>
+                <MenuItem Header="_Exit" Click="MenuExit_Click"></MenuItem>
             </MenuItem>
         </Menu>
         <TabControl Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
