@@ -187,10 +187,7 @@ namespace PEditor
         {
             var magic = peFile.ImageDosHeader.e_magic;
 
-            if (magic == 0x5A4D)
-                tbe_magic.Text = $"{Utility.ToHexString(magic)} <-> {"MZ"}";
-            else
-                tbe_magic.Text = Utility.ToHexString(magic);
+            tbe_magic.Text = magic == 0x5A4D ? $"{Utility.ToHexString(magic)} <-> {"MZ"}" : Utility.ToHexString(magic);
             tbe_cblp.Text = Utility.ToHexString(peFile.ImageDosHeader.e_cblp);
             tbe_cp.Text = Utility.ToHexString(peFile.ImageDosHeader.e_cp);
             tbe_crlc.Text = Utility.ToHexString(peFile.ImageDosHeader.e_crlc);
