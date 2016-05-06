@@ -6,7 +6,7 @@ namespace PeNet
     // Code taken from
     // http://geekswithblogs.net/robp/archive/2007/05/04/112250.aspx
     //
-    internal static class WinVerifyTrustWrapper
+    internal static class NativeMethods
     {
         [DllImport("Wintrust.dll", PreserveSig = true, SetLastError = false)]
         private static extern uint WinVerifyTrust(IntPtr hWnd, IntPtr pgActionID, IntPtr pWinTrustData);

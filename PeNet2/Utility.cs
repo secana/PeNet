@@ -800,7 +800,7 @@ namespace PeNet
         /// <returns>True if the signature is valid, else false.</returns>
         public static bool IsSignatureValid(string filePath)
         {
-            return WinVerifyTrustWrapper.IsTrusted(filePath);
+            return NativeMethods.IsTrusted(filePath);
         }
 
         /// <summary>
