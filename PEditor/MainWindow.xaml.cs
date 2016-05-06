@@ -1,12 +1,10 @@
 ﻿using Microsoft.Win32;
 using PeNet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System;
-using System.Windows.Data;
-using System.Collections.ObjectModel;
 
 namespace PEditor
 {
@@ -108,27 +106,97 @@ namespace PEditor
 
         private void SetResources(PeFile peFile)
         {
+            // ROOT
             var rd = peFile.ImageResourceDirectory;
 
-            var root = new TreeViewItem()
+            var root = new MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>(null)
             {
                 Header = "Resource Directory",
             };
 
-
+            // Type
             foreach (var de in rd.DirectoryEntries)
             {
+                MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY> item = null;
                 if (de.IsIdEntry)
                 {
-                    root.Items.Add(new TreeViewItem() {Header = Utility.ResolveResourceId(de.ID)});
+                    item = new MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>(de)
+                    {
+                        Header = Utility.ResolveResourceId(de.ID)
+                    };
                 }
                 else if (de.IsNamedEntry)
                 {
-                    root.Items.Add(new TreeViewItem() {Header = de.ResolvedName});
+                    item = new MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>(de)
+                    {
+                        Header = de.ResolvedName
+                    };
                 }
+
+                // name/IDs
+                foreach(var de2 in de.ResourceDirectory.DirectoryEntries)
+                {
+                    MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY> item2 = null;
+                    item2 = new MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>(de2)
+                    {
+                        Header = de2.ID.ToString()
+                    };
+
+                    foreach(var de3 in de2.ResourceDirectory.DirectoryEntries)
+                    {
+                        item2.Items.Add(new MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>(de3)
+                        {
+                            Header = string.Format("0x{0:X4}", de3.ID)
+                        });
+                    }
+
+                    item.Items.Add(item2);
+                }
+
+                root.Items.Add(item);
             }
 
-            tvResources.Items.Add(root);
+            tbResources.Items.Add(root);
+        }
+
+        private void Resources_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            // Clear all fields.
+            tbOffsetToData.Clear();
+            tbSize1.Clear();
+            tbCodePage.Clear();
+            tbReserved.Clear();
+            tbResource.Clear();
+
+            // Get the resource data entry. If no data entry is give, return.
+            var tree = sender as TreeView;
+            var directoryEntry = (tree.SelectedItem as MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>).MyItem;
+            if (directoryEntry?.ResourceDataEntry == null)
+                return;
+
+            // Set all values.
+            tbOffsetToData.Text = string.Format("0x{0:X4}", directoryEntry.ResourceDataEntry.OffsetToData);
+            tbSize1.Text = string.Format("0x{0:X4}", directoryEntry.ResourceDataEntry.Size1);
+            tbCodePage.Text = string.Format("0x{0:X4}", directoryEntry.ResourceDataEntry.CodePage);
+            tbReserved.Text = string.Format("0x{0:X4}", directoryEntry.ResourceDataEntry.Reserved);
+
+            // Build the hex output
+            var rawOffset = Utility.RVAtoFileMapping(
+                directoryEntry.ResourceDataEntry.OffsetToData, 
+                _peFile.ImageSectionHeaders
+                );
+            
+            tbResource.Text = string.Join(" ", ToHex(_peFile.Buff, rawOffset, directoryEntry.ResourceDataEntry.Size1));
+        }
+
+        private List<string> ToHex(byte[] input, UInt64 from, UInt64 length)
+        {
+            var hexList = new List<string>();
+            for(UInt64 i = from; i < from + length; i++)
+            {
+                hexList.Add(input[i].ToString("X2"));
+            }
+            return hexList;
         }
 
         private void SetSignature(PeFile peFile)

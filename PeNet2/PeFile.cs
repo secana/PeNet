@@ -541,7 +541,36 @@ namespace PeNet
         /// <returns>The image resource directory.</returns>
         private IMAGE_RESOURCE_DIRECTORY ParseImageResourceDirectory(byte[] buff, uint offsetFirstRescDir)
         {
-            return new IMAGE_RESOURCE_DIRECTORY(buff, offsetFirstRescDir, offsetFirstRescDir);
+            // Parse the root directory.
+            var root = new IMAGE_RESOURCE_DIRECTORY(buff, offsetFirstRescDir, offsetFirstRescDir);
+
+            // Parse the second stage (type)
+            foreach(var de in root.DirectoryEntries)
+            {
+                de.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
+                    buff, 
+                    offsetFirstRescDir + de.OffsetToDirectory, 
+                    offsetFirstRescDir
+                    );
+
+                // Parse the third stage (name/IDs)
+                foreach(var de2 in de.ResourceDirectory.DirectoryEntries)
+                {
+                    de2.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
+                        buff,
+                        offsetFirstRescDir + de2.OffsetToDirectory,
+                        offsetFirstRescDir
+                        );
+
+                    // Parse the forth stage (language) with the data.
+                    foreach(var de3 in de2.ResourceDirectory.DirectoryEntries)
+                    {
+                        de3.ResourceDataEntry = new IMAGE_RESOURCE_DATA_ENTRY(buff, offsetFirstRescDir + de3.OffsetToData);
+                    }
+                }
+            }
+
+            return root;
         }
 
         private RUNTIME_FUNCTION[] PareseExceptionDirectory(byte[] buff, uint offset, uint size,

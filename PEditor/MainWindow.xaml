@@ -462,14 +462,46 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TreeView Name="tvResources" Grid.Row="0" Grid.Column="0">
+                    <TreeView Name="tbResources" Grid.Row="0" Grid.Column="0" SelectedItemChanged="Resources_SelectedItemChanged">
                         <TreeView.ItemTemplate>
                             <HierarchicalDataTemplate ItemsSource="{Binding Items}">
                                 <TextBlock Text="{Binding Title}"/>
                             </HierarchicalDataTemplate>
                         </TreeView.ItemTemplate>
                     </TreeView>
-                    
+
+                    <Grid Grid.Row="0" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Label Grid.Row="0" Grid.Column="0">OffsetToData</Label>
+                            <TextBox Grid.Row="0" Grid.Column="1" Name="tbOffsetToData"/>
+
+                            <Label Grid.Row="0" Grid.Column="2">Size1</Label>
+                            <TextBox Grid.Row="0" Grid.Column="3" Name="tbSize1"/>
+
+                            <Label Grid.Row="1" Grid.Column="0">CodePage</Label>
+                            <TextBox Grid.Row="1" Grid.Column="1" Name="tbCodePage"/>
+
+                            <Label Grid.Row="1" Grid.Column="2">Reserved</Label>
+                            <TextBox Grid.Row="1" Grid.Column="3" Name="tbReserved"/>
+                        </Grid>
+                        <TextBox Name="tbResource" Grid.Row="1" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" FontFamily="Consolas"/>
+                    </Grid>
                 </Grid>    
             </TabItem>
         </TabControl>

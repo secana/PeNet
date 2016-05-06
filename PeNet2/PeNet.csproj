@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Structures\IMAGE_RESOURCE_DATA_ENTRY.cs" />
     <Compile Include="WinVerifyTrustWrapper.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="PatternMatching\AhoCorasick.cs" />
