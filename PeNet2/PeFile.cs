@@ -382,23 +382,7 @@ namespace PeNet
             return new CrlUrlList(PKCS7);
         }
 
-        /// <summary>
-        ///     Get the UNWIND_INFO from a runtime function form the
-        ///     Exception header in x64 applications.
-        /// </summary>
-        /// <param name="runtimeFunction">A runtime function.</param>
-        /// <returns>UNWIND_INFO for the runtime function.</returns>
-        public UNWIND_INFO GetUnwindInfo(RUNTIME_FUNCTION runtimeFunction)
-        {
-            // Check if the last bit is set in the UnwindInfo. If so, it is a chained 
-            // information.
-            var uwAddress = (runtimeFunction.UnwindInfo & 0x1) == 0x1
-                ? runtimeFunction.UnwindInfo & 0xFFFE
-                : runtimeFunction.UnwindInfo;
-
-            var uw = new UNWIND_INFO(Buff, Utility.RVAtoFileMapping(uwAddress, ImageSectionHeaders));
-            return uw;
-        }
+        
 
         private WIN_CERTIFICATE ParseImageSecurityDirectory(byte[] buff, uint dirOffset, IMAGE_SECTION_HEADER[] sh)
         {
@@ -581,7 +565,7 @@ namespace PeNet
 
             for (var i = 0; i < rf.Length; i++)
             {
-                rf[i] = new RUNTIME_FUNCTION(buff, (uint) (offset + i*sizeOfRuntimeFunction));
+                rf[i] = new RUNTIME_FUNCTION(buff, (uint) (offset + i*sizeOfRuntimeFunction), ImageSectionHeaders);
             }
 
             return rf;

@@ -397,6 +397,7 @@
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
@@ -406,6 +407,7 @@
                                         <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
                                         <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Hint:</Label>
                                         <TextBlock Text="{Binding Hint}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+                                        <Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -433,6 +435,7 @@
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
@@ -444,6 +447,7 @@
                                         <TextBlock Text="{Binding Ordinal}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
                                         <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">RVA:</Label>
                                         <TextBlock Text="{Binding RVA}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
+                                        <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"/>
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -504,6 +508,91 @@
                     </Grid>
                 </Grid>    
             </TabItem>
+
+            <TabItem Header="Exception">
+                <GroupBox Header="Exception Directory (x64)">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox Header="RUNTIME__FUNCTION" Grid.Column="0">
+                            <ListBox Name="lbRuntimeFunctions" SelectionMode="Single" SelectionChanged="lbRuntimeFunctions_SelectionChanged">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <Label Grid.Row="0" Grid.Column="0">FunctionStart</Label>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding FunctionStart}" VerticalAlignment="Center"/>
+
+                                            <Label Grid.Row="1" Grid.Column="0">FunctionEnd</Label>
+                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding FunctionEnd}" VerticalAlignment="Center"/>
+
+                                            <Label Grid.Row="2" Grid.Column="0">UnwindInfo</Label>
+                                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding UnwindInfo}" VerticalAlignment="Center"/>
+                                            
+                                            <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                        </Grid>
+                                        
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </GroupBox>
+                        
+                        <GroupBox Header="UNWIND__INFO" Grid.Column="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0" Grid.Column="0">Version/Flags</Label>
+                                <TextBox Grid.Row="0" Grid.Column="1" Name="tbUIVersionFlags"/>
+
+                                <Label Grid.Row="1" Grid.Column="0">SizeOfProlog</Label>
+                                <TextBox Grid.Row="1" Grid.Column="1" Name="tbUISizeOfProlog"/>
+
+                                <Label Grid.Row="2" Grid.Column="0">CountOfCodes</Label>
+                                <TextBox Grid.Row="2" Grid.Column="1" Name="tbUICountOfCodes"/>
+
+                                <Label Grid.Row="3" Grid.Column="0">FrameRegister/Offset</Label>
+                                <TextBox Grid.Row="3" Grid.Column="1" Name="tbFrameRegisterOffset"/>
+
+                                <Label Grid.Row="4" Grid.Column="0">ExceptionHandler</Label>
+                                <TextBox Grid.Row="4" Grid.Column="1" Name="tbUIExHandlerFuncEntry"/>
+
+                                <Label Grid.Row="5" Grid.Column="0">ExceptionData</Label>
+                                <TextBox Grid.Row="5" Grid.Column="1" Name="tbUIExData"/>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Header="UNWIND__CODE" Grid.Column="2">
+                            <ListBox Name="lbUnwindCode" SelectionMode="Single"/>
+                        </GroupBox>
+                    </Grid>
+                </GroupBox>
+            </TabItem>
+            
         </TabControl>
         <StatusBar Grid.Row="3" Height="20">
             <StatusBarItem>

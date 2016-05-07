@@ -34,10 +34,31 @@ namespace PeNet.Structures
         /// </summary>
         /// <param name="buff">A PE file as a byte array.</param>
         /// <param name="offset">Raw offset of the runtime function struct.</param>
-        public RUNTIME_FUNCTION(byte[] buff, uint offset)
+        /// <param name="sh">Section Headers of the PE file.</param>
+        public RUNTIME_FUNCTION(byte[] buff, uint offset, IMAGE_SECTION_HEADER[] sh)
         {
             _buff = buff;
             _offset = offset;
+
+            ResolvedUnwindInfo = GetUnwindInfo(sh);
+        }
+
+        /// <summary>
+        ///     Get the UNWIND_INFO from a runtime function form the
+        ///     Exception header in x64 applications.
+        /// </summary>
+        /// <param name="sh">Sectuion Headers of the PE file.</param>
+        /// <returns>UNWIND_INFO for the runtime function.</returns>
+        private UNWIND_INFO GetUnwindInfo(IMAGE_SECTION_HEADER[] sh)
+        {
+            // Check if the last bit is set in the UnwindInfo. If so, it is a chained 
+            // information.
+            var uwAddress = (UnwindInfo & 0x1) == 0x1
+                ? UnwindInfo & 0xFFFE
+                : UnwindInfo;
+
+            var uw = new UNWIND_INFO(_buff, Utility.RVAtoFileMapping(uwAddress, sh));
+            return uw;
         }
 
         /// <summary>
@@ -66,6 +87,11 @@ namespace PeNet.Structures
             get { return Utility.BytesToUInt32(_buff, _offset + 0x8); }
             set { Utility.SetUInt32(value, _offset + 0x8, _buff); }
         }
+
+        /// <summary>
+        /// Unwind Info object belonging to this Runtime Function.
+        /// </summary>
+        public UNWIND_INFO ResolvedUnwindInfo { get; private set; }
 
         /// <summary>
         ///     Creates a string representation of the objects

@@ -83,6 +83,9 @@ namespace PEditor
 
             // Set the sections.
             SetSections(peFile);
+
+            // Set the Exception (only for x64)
+            SetException(peFile);
         }
 
         private void SetSections(PeFile peFile)
@@ -332,6 +335,24 @@ namespace PEditor
             tbNumberOfRvaAndSizes.Text = Utility.ToHexString(oh.NumberOfRvaAndSizes);
         }
 
+        private void SetException(PeFile peFile)
+        {
+            lbRuntimeFunctions.Items.Clear();
+
+            if (peFile.Is32Bit)
+                return;
+
+            foreach(var rt in peFile.RuntimeFunctions)
+            {
+                lbRuntimeFunctions.Items.Add(new
+                {
+                    FunctionStart = string.Format("0x{0:X4}", rt.FunctionStart),
+                    FunctionEnd = string.Format("0x{0:X4}", rt.FunctionEnd),
+                    UnwindInfo = string.Format("0x{0:X4}", rt.UnwindInfo),
+                });
+            }
+        }
+
         private void lbImportDlls_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             lbImportFunctions.Items.Clear();
@@ -343,6 +364,11 @@ namespace PEditor
             {
                 lbImportFunctions.Items.Add(new { Name = function.Name, Hint = function.Hint });
             }
+        }
+
+        private void lbRuntimeFunctions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // TODO: Add code if the selection in the x64 Exceptions is changed.
         }
     }
 }
