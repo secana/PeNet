@@ -457,56 +457,65 @@
             </TabItem>
 
             <TabItem Header="Resources">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TreeView Name="tbResources" Grid.Row="0" Grid.Column="0" SelectedItemChanged="Resources_SelectedItemChanged">
-                        <TreeView.ItemTemplate>
-                            <HierarchicalDataTemplate ItemsSource="{Binding Items}">
-                                <TextBlock Text="{Binding Title}"/>
-                            </HierarchicalDataTemplate>
-                        </TreeView.ItemTemplate>
-                    </TreeView>
-
-                    <Grid Grid.Row="0" Grid.Column="1">
+                <GroupBox Header="Resources">
+                    <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                        <Grid Grid.Row="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            
-                            <Label Grid.Row="0" Grid.Column="0">OffsetToData</Label>
-                            <TextBox Grid.Row="0" Grid.Column="1" Name="tbOffsetToData"/>
+                        <GroupBox Header="Resource Directories" Grid.Row="0" Grid.Column="0">
+                            <TreeView Name="tbResources" SelectedItemChanged="Resources_SelectedItemChanged">
+                                <TreeView.ItemTemplate>
+                                    <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                                        <TextBlock Text="{Binding Title}"/>
+                                    </HierarchicalDataTemplate>
+                                </TreeView.ItemTemplate>
+                            </TreeView>
+                        </GroupBox>
 
-                            <Label Grid.Row="0" Grid.Column="2">Size1</Label>
-                            <TextBox Grid.Row="0" Grid.Column="3" Name="tbSize1"/>
+                        <GroupBox Header="Data Entry" Grid.Row="0" Grid.Column="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
 
-                            <Label Grid.Row="1" Grid.Column="0">CodePage</Label>
-                            <TextBox Grid.Row="1" Grid.Column="1" Name="tbCodePage"/>
+                                <Grid Grid.Row="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                            <Label Grid.Row="1" Grid.Column="2">Reserved</Label>
-                            <TextBox Grid.Row="1" Grid.Column="3" Name="tbReserved"/>
-                        </Grid>
-                        <TextBox Name="tbResource" Grid.Row="1" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" FontFamily="Consolas"/>
+                                    <Label Grid.Row="0" Grid.Column="0">OffsetToData</Label>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Name="tbOffsetToData"/>
+
+                                    <Label Grid.Row="0" Grid.Column="2">Size1</Label>
+                                    <TextBox Grid.Row="0" Grid.Column="3" Name="tbSize1"/>
+
+                                    <Label Grid.Row="1" Grid.Column="0">CodePage</Label>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Name="tbCodePage"/>
+
+                                    <Label Grid.Row="1" Grid.Column="2">Reserved</Label>
+                                    <TextBox Grid.Row="1" Grid.Column="3" Name="tbReserved"/>
+                                </Grid>
+
+                                <GroupBox Header="Hex View" Grid.Row="1">
+                                <TextBox Name="tbResource"  IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" FontFamily="Consolas"/>
+                                </GroupBox>
+                            </Grid>
+                        </GroupBox>
                     </Grid>
-                </Grid>    
+                </GroupBox>
             </TabItem>
 
             <TabItem Header="Exception">
@@ -560,34 +569,67 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Label Grid.Row="0" Grid.Column="0">Version/Flags</Label>
-                                <TextBox Grid.Row="0" Grid.Column="1" Name="tbUIVersionFlags"/>
+                                <Label Grid.Row="0" Grid.Column="0">Version</Label>
+                                <TextBox Grid.Row="0" Grid.Column="1" Name="tbUIVersion"/>
 
-                                <Label Grid.Row="1" Grid.Column="0">SizeOfProlog</Label>
-                                <TextBox Grid.Row="1" Grid.Column="1" Name="tbUISizeOfProlog"/>
+                                <Label Grid.Row="1" Grid.Column="0">Flags</Label>
+                                <TextBox Grid.Row="1" Grid.Column="1" Name="tbUIFlags"/>
 
-                                <Label Grid.Row="2" Grid.Column="0">CountOfCodes</Label>
-                                <TextBox Grid.Row="2" Grid.Column="1" Name="tbUICountOfCodes"/>
+                                <Label Grid.Row="2" Grid.Column="0">SizeOfProlog</Label>
+                                <TextBox Grid.Row="2" Grid.Column="1" Name="tbUISizeOfProlog"/>
 
-                                <Label Grid.Row="3" Grid.Column="0">FrameRegister/Offset</Label>
-                                <TextBox Grid.Row="3" Grid.Column="1" Name="tbFrameRegisterOffset"/>
+                                <Label Grid.Row="3" Grid.Column="0">CountOfCodes</Label>
+                                <TextBox Grid.Row="3" Grid.Column="1" Name="tbUICountOfCodes"/>
 
-                                <Label Grid.Row="4" Grid.Column="0">ExceptionHandler</Label>
-                                <TextBox Grid.Row="4" Grid.Column="1" Name="tbUIExHandlerFuncEntry"/>
+                                <Label Grid.Row="4" Grid.Column="0">FrameRegister/Offset</Label>
+                                <TextBox Grid.Row="4" Grid.Column="1" Name="tbUIFrameRegisterOffset"/>
 
-                                <Label Grid.Row="5" Grid.Column="0">ExceptionData</Label>
-                                <TextBox Grid.Row="5" Grid.Column="1" Name="tbUIExData"/>
+                                <Label Grid.Row="5" Grid.Column="0">ExceptionHandler</Label>
+                                <TextBox Grid.Row="5" Grid.Column="1" Name="tbUIExHandlerFuncEntry"/>
+
+                                <Label Grid.Row="6" Grid.Column="0">ExceptionData</Label>
+                                <TextBox Grid.Row="6" Grid.Column="1" Name="tbUIExData"/>
                             </Grid>
                         </GroupBox>
 
                         <GroupBox Header="UNWIND__CODE" Grid.Column="2">
-                            <ListBox Name="lbUnwindCode" SelectionMode="Single"/>
+                            <ListBox Name="lbUnwindCode" SelectionMode="Single">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Row="0" Grid.Column="0">CodeOffset</Label>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CodeOffset}" VerticalAlignment="Center"/>
+
+                                            <Label Grid.Row="1" Grid.Column="0">UnwindOp/OpInfo</Label>
+                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding UnwindOp}" VerticalAlignment="Center"/>
+
+                                            <Label Grid.Row="2" Grid.Column="0">FrameOffset</Label>
+                                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding FrameOffset}" VerticalAlignment="Center"/>
+
+                                            <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                        </Grid>
+
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </GroupBox>
                     </Grid>
                 </GroupBox>

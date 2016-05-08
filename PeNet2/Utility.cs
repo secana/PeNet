@@ -749,6 +749,24 @@ namespace PeNet
         }
 
         /// <summary>
+        /// Convert a sub array of an byte array to an hex string where
+        /// every byte is seperated by an whitespace.
+        /// </summary>
+        /// <param name="input">Byte array.</param>
+        /// <param name="from">Index in the byte array where the hex string starts.</param>
+        /// <param name="length">Length of the hex string in the byte array.</param>
+        /// <returns></returns>
+        public static List<string> ToHexString(byte[] input, UInt64 from, UInt64 length)
+        {
+            var hexList = new List<string>();
+            for (UInt64 i = from; i < from + length; i++)
+            {
+                hexList.Add(input[i].ToString("X2"));
+            }
+            return hexList;
+        }
+
+        /// <summary>
         ///     Checks is a PE file is digitally signed. It does not
         ///     verify the signature!
         /// </summary>

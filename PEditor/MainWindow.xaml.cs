@@ -97,11 +97,11 @@ namespace PEditor
                 dgSections.Items.Add(new {
                     Number      = num,
                     Name        = Utility.ResolveSectionName(sec.Name),
-                    VSize       = $"0x{sec.VirtualSize.ToString("X4")}",
-                    VAddress    = $"0x{sec.VirtualAddress.ToString("X4")}",
-                    PSize       = $"0x{sec.SizeOfRawData.ToString("X4")}",
-                    PAddress    = $"0x{sec.PhysicalAddress.ToString("X4")}",
-                    Flags       = $"0x{sec.Characteristics.ToString("X4")} {flags}"
+                    VSize       = Utility.ToHexString(sec.VirtualSize),
+                    VAddress    = Utility.ToHexString(sec.VirtualAddress),
+                    PSize       = Utility.ToHexString(sec.SizeOfRawData),
+                    PAddress    = Utility.ToHexString(sec.PhysicalAddress),
+                    Flags       = Utility.ToHexString(sec.Characteristics)
                 });
                 num++;
             }
@@ -149,7 +149,7 @@ namespace PEditor
                     {
                         item2.Items.Add(new MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>(de3)
                         {
-                            Header = string.Format("0x{0:X4}", de3.ID)
+                            Header = Utility.ToHexString(de3.ID)
                         });
                     }
 
@@ -178,10 +178,10 @@ namespace PEditor
                 return;
 
             // Set all values.
-            tbOffsetToData.Text = string.Format("0x{0:X4}", directoryEntry.ResourceDataEntry.OffsetToData);
-            tbSize1.Text = string.Format("0x{0:X4}", directoryEntry.ResourceDataEntry.Size1);
-            tbCodePage.Text = string.Format("0x{0:X4}", directoryEntry.ResourceDataEntry.CodePage);
-            tbReserved.Text = string.Format("0x{0:X4}", directoryEntry.ResourceDataEntry.Reserved);
+            tbOffsetToData.Text = Utility.ToHexString(directoryEntry.ResourceDataEntry.OffsetToData);
+            tbSize1.Text = Utility.ToHexString(directoryEntry.ResourceDataEntry.Size1);
+            tbCodePage.Text = Utility.ToHexString(directoryEntry.ResourceDataEntry.CodePage);
+            tbReserved.Text = Utility.ToHexString(directoryEntry.ResourceDataEntry.Reserved);
 
             // Build the hex output
             var rawOffset = Utility.RVAtoFileMapping(
@@ -189,18 +189,10 @@ namespace PEditor
                 _peFile.ImageSectionHeaders
                 );
             
-            tbResource.Text = string.Join(" ", ToHex(_peFile.Buff, rawOffset, directoryEntry.ResourceDataEntry.Size1));
+            tbResource.Text = string.Join(" ", Utility.ToHexString(_peFile.Buff, rawOffset, directoryEntry.ResourceDataEntry.Size1));
         }
 
-        private List<string> ToHex(byte[] input, UInt64 from, UInt64 length)
-        {
-            var hexList = new List<string>();
-            for(UInt64 i = from; i < from + length; i++)
-            {
-                hexList.Add(input[i].ToString("X2"));
-            }
-            return hexList;
-        }
+        
 
         private void SetSignature(PeFile peFile)
         {
@@ -346,9 +338,9 @@ namespace PEditor
             {
                 lbRuntimeFunctions.Items.Add(new
                 {
-                    FunctionStart = string.Format("0x{0:X4}", rt.FunctionStart),
-                    FunctionEnd = string.Format("0x{0:X4}", rt.FunctionEnd),
-                    UnwindInfo = string.Format("0x{0:X4}", rt.UnwindInfo),
+                    FunctionStart = Utility.ToHexString(rt.FunctionStart),
+                    FunctionEnd = Utility.ToHexString(rt.FunctionEnd),
+                    UnwindInfo = Utility.ToHexString(rt.UnwindInfo),
                 });
             }
         }
@@ -368,7 +360,40 @@ namespace PEditor
 
         private void lbRuntimeFunctions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // TODO: Add code if the selection in the x64 Exceptions is changed.
+            dynamic selected = (sender as ListBox).SelectedItem;
+
+            // Convert string of format 0x... to an integer.
+            var funcStart = (int)new System.ComponentModel.Int32Converter().ConvertFromString(selected.FunctionStart);
+            var funcEnd = (int)new System.ComponentModel.Int32Converter().ConvertFromString(selected.FunctionEnd);
+            var uw = (int)new System.ComponentModel.Int32Converter().ConvertFromString(selected.UnwindInfo);
+
+            // Find the RUNTIME_FUNCTION which was selected.
+            var rt = _peFile.RuntimeFunctions.First(x => x.FunctionStart == funcStart
+            && x.FunctionEnd == funcEnd
+            && x.UnwindInfo == uw
+            );
+
+            // Set the UNWIND_INFO properties.
+            tbUIVersion.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.Version);
+            tbUIFlags.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.Flags);
+            tbUISizeOfProlog.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.SizeOfProlog);
+            tbUICountOfCodes.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.CountOfCodes);
+            tbUIFrameRegisterOffset.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.FrameRegister);
+            tbUIExHandlerFuncEntry.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.ExceptionHandler);
+            // TODO: display excetption data as a hex array.
+            //tbUIExData.Text = string.Format("", rt.ResolvedUnwindInfo.ExceptionData);
+
+            // Set the UNWIND_CODE structures for the UNWIND_INFO
+            lbUnwindCode.Items.Clear();
+            foreach(var uc in rt.ResolvedUnwindInfo.UnwindCode)
+            {
+                lbUnwindCode.Items.Add(new
+                {
+                    CodeOffset = Utility.ToHexString(uc.CodeOffset),
+                    UnwindOp = Utility.ToHexString(uc.UnwindOp),
+                    FrameOffset = Utility.ToHexString(uc.FrameOffset)
+                });
+            }
         }
     }
 }

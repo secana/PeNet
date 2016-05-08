@@ -88,8 +88,7 @@ namespace PeNet.Structures
         {
             get
             {
-                var uws = ParseUnwindCodes(_buff, _offset + 0x4);
-                return uws;
+                return ParseUnwindCodes(_buff, _offset + 0x4);
             }
         }
 
