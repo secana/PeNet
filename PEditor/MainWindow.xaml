@@ -519,7 +519,7 @@
             </TabItem>
 
             <TabItem Header="Exception">
-                <GroupBox Header="Exception Directory (x64)">
+                <GroupBox Header="Exception Directory (x64)  -- NOT SURE ABOUT THIS --">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -570,6 +570,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -588,14 +589,17 @@
                                 <Label Grid.Row="3" Grid.Column="0">CountOfCodes</Label>
                                 <TextBox Grid.Row="3" Grid.Column="1" Name="tbUICountOfCodes"/>
 
-                                <Label Grid.Row="4" Grid.Column="0">FrameRegister/Offset</Label>
-                                <TextBox Grid.Row="4" Grid.Column="1" Name="tbUIFrameRegisterOffset"/>
+                                <Label Grid.Row="4" Grid.Column="0">FrameRegister</Label>
+                                <TextBox Grid.Row="4" Grid.Column="1" Name="tbUIFrameRegister"/>
 
-                                <Label Grid.Row="5" Grid.Column="0">ExceptionHandler</Label>
-                                <TextBox Grid.Row="5" Grid.Column="1" Name="tbUIExHandlerFuncEntry"/>
+                                <Label Grid.Row="5" Grid.Column="0">FrameOffset</Label>
+                                <TextBox Grid.Row="5" Grid.Column="1" Name="tbUIFrameOffset"/>
 
-                                <Label Grid.Row="6" Grid.Column="0">ExceptionData</Label>
-                                <TextBox Grid.Row="6" Grid.Column="1" Name="tbUIExData"/>
+                                <Label Grid.Row="6" Grid.Column="0">ExceptionHandler</Label>
+                                <TextBox Grid.Row="6" Grid.Column="1" Name="tbUIExHandlerFuncEntry"/>
+
+                                <Label Grid.Row="7" Grid.Column="0">ExceptionData</Label>
+                                <TextBox Grid.Row="7" Grid.Column="1" Name="tbUIExData"/>
                             </Grid>
                         </GroupBox>
 

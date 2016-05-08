@@ -109,6 +109,9 @@ namespace PEditor
 
         private void SetResources(PeFile peFile)
         {
+            // Clear the tree.
+            tbResources.Items.Clear();
+
             // ROOT
             var rd = peFile.ImageResourceDirectory;
 
@@ -173,6 +176,8 @@ namespace PEditor
 
             // Get the resource data entry. If no data entry is give, return.
             var tree = sender as TreeView;
+            if (tree.SelectedItem == null)
+                return;
             var directoryEntry = (tree.SelectedItem as MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>).MyItem;
             if (directoryEntry?.ResourceDataEntry == null)
                 return;
@@ -331,7 +336,7 @@ namespace PEditor
         {
             lbRuntimeFunctions.Items.Clear();
 
-            if (peFile.Is32Bit)
+            if (peFile.Is32Bit || peFile.RuntimeFunctions == null)
                 return;
 
             foreach(var rt in peFile.RuntimeFunctions)
@@ -348,6 +353,9 @@ namespace PEditor
         private void lbImportDlls_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             lbImportFunctions.Items.Clear();
+
+            if (e.AddedItems.Count == 0)
+                return;
 
             dynamic selected = e.AddedItems[0];
             var functions = _peFile.ImportedFunctions.Where(x => x.DLL == selected.DLL);
@@ -378,7 +386,8 @@ namespace PEditor
             tbUIFlags.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.Flags);
             tbUISizeOfProlog.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.SizeOfProlog);
             tbUICountOfCodes.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.CountOfCodes);
-            tbUIFrameRegisterOffset.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.FrameRegister);
+            tbUIFrameRegister.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.FrameRegister);
+            tbUIFrameOffset.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.FrameOffset);
             tbUIExHandlerFuncEntry.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.ExceptionHandler);
             // TODO: display excetption data as a hex array.
             //tbUIExData.Text = string.Format("", rt.ResolvedUnwindInfo.ExceptionData);
