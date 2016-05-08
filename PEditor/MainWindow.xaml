@@ -27,6 +27,9 @@
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About" Click="MenuHelp_Click"/>
+            </MenuItem>
         </Menu>
         <TabControl Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <TabItem Header="File Info">

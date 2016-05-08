@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Deployment.Application;
 
 namespace PEditor
 {
@@ -403,6 +404,17 @@ namespace PEditor
                     FrameOffset = Utility.ToHexString(uc.FrameOffset)
                 });
             }
+        }
+
+        private void MenuHelp_Click(object sender, RoutedEventArgs e)
+        {
+            var version = "DEBUG";
+            if (ApplicationDeployment.IsNetworkDeployed)
+            {
+                version = string.Format("Your application name - v{0}", ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString(4));
+            }
+            
+            MessageBox.Show($"PEditor\nVersion {version}\nCopyright by Secana 2016", "About");
         }
     }
 }
