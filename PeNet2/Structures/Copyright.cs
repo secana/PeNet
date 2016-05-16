@@ -45,9 +45,7 @@ namespace PeNet.Structures
 
         private string ParseCopyrightString(byte[] buff, uint offset, uint size)
         {
-            var array = new byte[size];
-            Array.Copy(buff, offset, array, 0, size);
-            return Encoding.ASCII.GetString(array);
+            return Encoding.ASCII.GetString(buff, (int) offset, (int) size);
         }
 
         /// <summary>
