@@ -767,6 +767,16 @@ namespace PeNet
         }
 
         /// <summary>
+        /// Converts a hex string of the form 0x435A4DE3 to a long value.
+        /// </summary>
+        /// <param name="hexString"></param>
+        /// <returns>The hex string value as a long.</returns>
+        public static long ToIntFromHexString(string hexString)
+        {
+            return (long)new System.ComponentModel.Int64Converter().ConvertFromString(hexString);
+        }
+
+        /// <summary>
         ///     Checks is a PE file is digitally signed. It does not
         ///     verify the signature!
         /// </summary>

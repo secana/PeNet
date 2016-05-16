@@ -641,6 +641,71 @@
                     </Grid>
                 </GroupBox>
             </TabItem>
+
+            <TabItem Header="Relocation">
+                <GroupBox Header="Relocation Directory">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Grid.Column="0" Header="Relocation Entry" MinWidth="150">
+                            <ListBox Name="lbRelocationEntries" SelectionMode="Single" SelectionChanged="lbRelocationEntries_SelectionChanged">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Row="0" Grid.Column="0">VirtualAddress</Label>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding VirtualAddress}" VerticalAlignment="Center"/>
+
+                                            <Label Grid.Row="1" Grid.Column="0">SizeOfBlock</Label>
+                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SizeOfBlock}" VerticalAlignment="Center"/>
+
+                                            <Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </GroupBox>
+                        <GroupBox Grid.Column="1" Header="Type and Offsets" MinWidth="150">
+                            <ListBox Name="lbRelocTypeOffsets">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Row="0" Grid.Column="0">Type</Label>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Type}" VerticalAlignment="Center"/>
+
+                                            <Label Grid.Row="1" Grid.Column="0">Offset</Label>
+                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Offset}" VerticalAlignment="Center"/>
+
+                                            <Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </GroupBox>
+                    </Grid>
+                </GroupBox>
+            </TabItem>
             
         </TabControl>
         <StatusBar Grid.Row="3" Height="20">

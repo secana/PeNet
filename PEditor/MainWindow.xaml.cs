@@ -87,6 +87,27 @@ namespace PEditor
 
             // Set the Exception (only for x64)
             SetException(peFile);
+
+            // Set the Relocations.
+            SetRelocations(peFile);
+        }
+
+        private void SetRelocations(PeFile peFile)
+        {
+            lbRelocationEntries.Items.Clear();
+            lbRelocTypeOffsets.Items.Clear();
+
+            if (!peFile.HasValidRelocDir)
+                return;
+
+            foreach(var reloc in peFile.ImageRelocationDirectory)
+            {
+                lbRelocationEntries.Items.Add(new
+                {
+                    VirtualAddress = Utility.ToHexString(reloc.VirtualAddress),
+                    SizeOfBlock = Utility.ToHexString(reloc.SizeOfBlock)
+                });
+            }
         }
 
         private void SetSections(PeFile peFile)
@@ -372,9 +393,9 @@ namespace PEditor
             dynamic selected = (sender as ListBox).SelectedItem;
 
             // Convert string of format 0x... to an integer.
-            var funcStart = (int)new System.ComponentModel.Int32Converter().ConvertFromString(selected.FunctionStart);
-            var funcEnd = (int)new System.ComponentModel.Int32Converter().ConvertFromString(selected.FunctionEnd);
-            var uw = (int)new System.ComponentModel.Int32Converter().ConvertFromString(selected.UnwindInfo);
+            var funcStart = Utility.ToIntFromHexString(selected.FunctionStart);
+            var funcEnd = Utility.ToIntFromHexString(selected.FunctionEnd);
+            var uw = Utility.ToIntFromHexString(selected.UnwindInfo);
 
             // Find the RUNTIME_FUNCTION which was selected.
             var rt = _peFile.RuntimeFunctions.First(x => x.FunctionStart == funcStart
@@ -415,6 +436,25 @@ namespace PEditor
             }
             
             MessageBox.Show($"PEditor\nVersion {version}\nCopyright by Secana 2016", "About");
+        }
+
+        private void lbRelocationEntries_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lbRelocTypeOffsets.Items.Clear();
+            dynamic selected = (sender as ListBox).SelectedItem;
+            if (selected == null)
+                return;
+
+            var reloc = _peFile.ImageRelocationDirectory.First(x => x.VirtualAddress == Utility.ToIntFromHexString(selected.VirtualAddress));
+
+            foreach(var to in reloc.TypeOffsets)
+            {
+                lbRelocTypeOffsets.Items.Add(new
+                {
+                    Type = Utility.ToHexString(to.Type),
+                    Offset = Utility.ToHexString(to.Offset)
+                });
+            }
         }
     }
 }
