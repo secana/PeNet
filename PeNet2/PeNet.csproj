@@ -61,7 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Structures\Copyright.cs" />
     <Compile Include="Structures\IMAGE_BASE_RELOCATION.cs" />
+    <Compile Include="Structures\IMAGE_DEBUG_DIRECTORY.cs" />
     <Compile Include="Structures\IMAGE_RESOURCE_DATA_ENTRY.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Constants.cs" />
