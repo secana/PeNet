@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 namespace PeNet.Structures
 {
@@ -44,7 +45,7 @@ namespace PeNet.Structures
         /// <summary>
         /// List with the TypeOffsets for the relocation block.
         /// </summary>
-        public List<TypeOffset> TypeOffsets { get; private set; }
+        public List<TypeOffset> TypeOffsets { get; private set; } = new List<TypeOffset>();
 
         private void ParseTypeOffsets()
         {
@@ -52,6 +53,19 @@ namespace PeNet.Structures
             {
                 TypeOffsets.Add(new TypeOffset(_buff, _offset + 8 + i * 2));
             }
+        }
+
+        /// <summary>
+        ///     Convert all object properties to strings.
+        /// </summary>
+        /// <returns>String representation of the object</returns>
+        public override string ToString()
+        {
+            var sb = new StringBuilder("IMAGE_BASE_RELOCATION\n");
+            sb.Append(Utility.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
+            TypeOffsets.ForEach(to => sb.AppendLine(to.ToString()));
+
+            return sb.ToString();
         }
 
         /// <summary>
@@ -98,6 +112,18 @@ namespace PeNet.Structures
                     var to = Utility.BytesToUInt16(_buff, _offset);
                     return (ushort)(to >> 4);
                 }
+            }
+
+            /// <summary>
+            ///     Convert all object properties to strings.
+            /// </summary>
+            /// <returns>String representation of the object</returns>
+            public override string ToString()
+            {
+                var sb = new StringBuilder("TypeOffset\n");
+                sb.Append(Utility.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
+
+                return sb.ToString();
             }
         }
     }
