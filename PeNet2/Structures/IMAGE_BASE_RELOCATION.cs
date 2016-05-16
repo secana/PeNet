@@ -16,6 +16,7 @@ limitations under the License.
 *************************************************************************/
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace PeNet.Structures
@@ -60,16 +61,18 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// List with the TypeOffsets for the relocation block.
+        /// Array with the TypeOffsets for the relocation block.
         /// </summary>
-        public List<TypeOffset> TypeOffsets { get; private set; } = new List<TypeOffset>();
+        public TypeOffset[] TypeOffsets { get; private set; }
 
         private void ParseTypeOffsets()
         {
-            for(uint i = 0; i < SizeOfBlock-8; i++)
+            var list = new List<TypeOffset>();
+            for(uint i = 0; i < (SizeOfBlock-8)/2; i++)
             {
-                TypeOffsets.Add(new TypeOffset(_buff, _offset + 8 + i * 2));
+                list.Add(new TypeOffset(_buff, _offset + 8 + i * 2));
             }
+            TypeOffsets = list.ToArray();
         }
 
         /// <summary>
@@ -80,7 +83,7 @@ namespace PeNet.Structures
         {
             var sb = new StringBuilder("IMAGE_BASE_RELOCATION\n");
             sb.Append(Utility.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
-            TypeOffsets.ForEach(to => sb.AppendLine(to.ToString()));
+            TypeOffsets.ToList().ForEach(to => sb.AppendLine(to.ToString()));
 
             return sb.ToString();
         }

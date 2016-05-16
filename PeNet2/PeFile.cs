@@ -21,6 +21,7 @@ using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using PeNet.Structures;
+using System.Linq;
 
 namespace PeNet
 {
@@ -142,7 +143,7 @@ namespace PeNet
                 {
                     try
                     {
-                        RuntimeFunctions = PareseExceptionDirectory(
+                        RuntimeFunctions = ParseExceptionDirectory(
                             buff,
                             Utility.RVAtoFileMapping(
                                 ImageNtHeaders.OptionalHeader.DataDirectory[
@@ -179,6 +180,26 @@ namespace PeNet
                     // Invalid Security Directory
                     WinCertificate = null;
                     HasValidSecurityDir = false;
+                }
+            }
+
+            // Parse the relocation directory
+            if(ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.BaseReloc].VirtualAddress != 0)
+            {
+                try
+                {
+                    ImageRelocationDirectory = ParseRelocationDirectory(
+                        buff,
+                        ImageNtHeaders.OptionalHeader.DataDirectory[(int)Constants.DataDirectoryIndex.BaseReloc].VirtualAddress,
+                        ImageNtHeaders.OptionalHeader.DataDirectory[(int)Constants.DataDirectoryIndex.BaseReloc].Size,
+                        ImageSectionHeaders
+                        );
+                }
+                catch(Exception)
+                {
+                    // Invalid relocation directory.
+                    ImageRelocationDirectory = null;
+                    HasValidRelocDir = false;
                 }
             }
         }
@@ -228,6 +249,11 @@ namespace PeNet
         ///     Returns true if the Security directory is valid.
         /// </summary>
         public bool HasValidSecurityDir { get; } = true;
+
+        /// <summary>
+        /// Returns true if the Relocation Directory is valid.
+        /// </summary>
+        public bool HasValidRelocDir { get; } = true;
 
         /// <summary>
         ///     Returns true if the DLL flag in the
@@ -306,6 +332,11 @@ namespace PeNet
         ///     Access the IMAGE_IMPORT_DESCRIPTOR array of the PE file.
         /// </summary>
         public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors { get; }
+
+        /// <summary>
+        /// Access the IMAGE_BASE_RELOCATION array of the PE file.
+        /// </summary>
+        public IMAGE_BASE_RELOCATION[] ImageRelocationDirectory { get; }
 
         /// <summary>
         ///     Access the exported functions as an array of parsed objects.
@@ -557,7 +588,7 @@ namespace PeNet
             return root;
         }
 
-        private RUNTIME_FUNCTION[] PareseExceptionDirectory(byte[] buff, uint offset, uint size,
+        private RUNTIME_FUNCTION[] ParseExceptionDirectory(byte[] buff, uint offset, uint size,
             IMAGE_SECTION_HEADER[] sh)
         {
             var sizeOfRuntimeFunction = 0xC;
@@ -569,6 +600,24 @@ namespace PeNet
             }
 
             return rf;
+        }
+
+        private IMAGE_BASE_RELOCATION[] ParseRelocationDirectory(byte[] buff, uint offset, uint size, IMAGE_SECTION_HEADER[] sh)
+        {
+            var imageBaseRelocations = new List<IMAGE_BASE_RELOCATION>();
+            var rvaOffset = Utility.RVAtoFileMapping(offset, sh);
+            var currentBlock = rvaOffset;
+
+            while(true)
+            {
+                if (currentBlock >= rvaOffset + size)
+                    break;
+
+                imageBaseRelocations.Add(new IMAGE_BASE_RELOCATION(buff, currentBlock));
+                currentBlock += imageBaseRelocations.Last().SizeOfBlock;
+            }
+
+            return imageBaseRelocations.ToArray();
         }
 
         /// <summary>
