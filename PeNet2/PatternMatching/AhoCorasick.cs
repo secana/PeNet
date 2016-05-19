@@ -78,7 +78,7 @@ namespace PeNet.PatternMatching
         /// <summary>
         /// Set if the tree was build.
         /// </summary>
-        private bool _isBuild = false;
+        private bool _isBuild;
 
         /// <summary>
         ///     Adds a word to the tree.

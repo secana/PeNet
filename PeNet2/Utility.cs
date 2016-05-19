@@ -697,9 +697,9 @@ namespace PeNet
         /// </summary>
         /// <param name="bytes">Byte sequence.</param>
         /// <returns>Hex-String</returns>
-        public static string ToHexString(IEnumerable<byte> bytes)
+        public static string ToHexString(ICollection<byte> bytes)
         {
-            var hex = new StringBuilder(bytes.Count()*2);
+            var hex = new StringBuilder(bytes.Count*2);
             foreach (var b in bytes)
                 hex.AppendFormat("{0:x2}", b);
             return $"0x{hex}";
@@ -710,9 +710,9 @@ namespace PeNet
         /// </summary>
         /// <param name="values">Value sequence.</param>
         /// <returns>Hex-String</returns>
-        public static string ToHexString(IEnumerable<ushort> values)
+        public static string ToHexString(ICollection<ushort> values)
         {
-            var hex = new StringBuilder(values.Count()*2);
+            var hex = new StringBuilder(values.Count*2);
             foreach (var b in values)
                 hex.AppendFormat("{0:X4}", b);
             return $"0x{hex}";

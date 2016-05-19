@@ -249,6 +249,7 @@
                             <DataGridTextColumn Header="Physical Size" Binding="{Binding PSize}"/>
                             <DataGridTextColumn Header="Physical Address" Binding="{Binding PAddress}"/>
                             <DataGridTextColumn Header="Flags" Binding="{Binding Flags}"/>
+                            <DataGridTextColumn Header="Resolved Flags" Binding="{Binding RFlags}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </GroupBox>
@@ -708,7 +709,7 @@
             </TabItem>
             
         </TabControl>
-        <StatusBar Grid.Row="3" Height="20">
+        <StatusBar Grid.Row="2" Height="20">
             <StatusBarItem>
                 <TextBlock Name="tbStatusBarLocation"  Width="750" />
             </StatusBarItem>

@@ -53,18 +53,12 @@ namespace PeNet.Structures
         /// <summary>
         ///     Unwind operation.
         /// </summary>
-        public byte UnwindOp
-        {
-            get { return (byte) (_buff[_offset + 0x1] & 0xF); }
-        }
+        public byte UnwindOp => (byte) (_buff[_offset + 0x1] & 0xF);
 
         /// <summary>
         ///     Operation information.
         /// </summary>
-        public byte Opinfo
-        {
-            get { return (byte) (_buff[_offset + 0x1] >> 0x4); }
-        }
+        public byte Opinfo => (byte) (_buff[_offset + 0x1] >> 0x4);
 
         /// <summary>
         ///     Frame offset.

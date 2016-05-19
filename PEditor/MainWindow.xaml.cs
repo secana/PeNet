@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Deployment.Application;
+using System.Runtime.InteropServices;
 
 namespace PEditor
 {
@@ -123,7 +124,8 @@ namespace PEditor
                     VAddress    = Utility.ToHexString(sec.VirtualAddress),
                     PSize       = Utility.ToHexString(sec.SizeOfRawData),
                     PAddress    = Utility.ToHexString(sec.PhysicalAddress),
-                    Flags       = Utility.ToHexString(sec.Characteristics)
+                    Flags       = Utility.ToHexString(sec.Characteristics),
+                    RFlags      = flags
                 });
                 num++;
             }
@@ -178,7 +180,7 @@ namespace PEditor
                         });
                     }
 
-                    item.Items.Add(item2);
+                    item?.Items.Add(item2);
                 }
 
                 root.Items.Add(item);
@@ -198,9 +200,7 @@ namespace PEditor
 
             // Get the resource data entry. If no data entry is give, return.
             var tree = sender as TreeView;
-            if (tree.SelectedItem == null)
-                return;
-            var directoryEntry = (tree.SelectedItem as MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>).MyItem;
+            var directoryEntry = (tree?.SelectedItem as MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>)?.MyItem;
             if (directoryEntry?.ResourceDataEntry == null)
                 return;
 
@@ -277,7 +277,7 @@ namespace PEditor
         {
             var magic = peFile.ImageDosHeader.e_magic;
 
-            tbe_magic.Text = magic == 0x5A4D ? $"{Utility.ToHexString(magic)} <-> {"MZ"}" : Utility.ToHexString(magic);
+            tbe_magic.Text = magic == 0x5A4D ? $"{Utility.ToHexString(magic)} <-> MZ" : Utility.ToHexString(magic);
             tbe_cblp.Text = Utility.ToHexString(peFile.ImageDosHeader.e_cblp);
             tbe_cp.Text = Utility.ToHexString(peFile.ImageDosHeader.e_cp);
             tbe_crlc.Text = Utility.ToHexString(peFile.ImageDosHeader.e_crlc);
@@ -390,7 +390,9 @@ namespace PEditor
 
         private void lbRuntimeFunctions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            dynamic selected = (sender as ListBox).SelectedItem;
+            var listBox = sender as ListBox;
+            if (listBox == null) return;
+            dynamic selected = listBox.SelectedItem;
 
             // Convert string of format 0x... to an integer.
             var funcStart = Utility.ToIntFromHexString(selected.FunctionStart);
@@ -399,9 +401,9 @@ namespace PEditor
 
             // Find the RUNTIME_FUNCTION which was selected.
             var rt = _peFile.RuntimeFunctions.First(x => x.FunctionStart == funcStart
-            && x.FunctionEnd == funcEnd
-            && x.UnwindInfo == uw
-            );
+                                                         && x.FunctionEnd == funcEnd
+                                                         && x.UnwindInfo == uw
+                );
 
             // Set the UNWIND_INFO properties.
             tbUIVersion.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.Version);
@@ -432,7 +434,8 @@ namespace PEditor
             var version = "DEBUG";
             if (ApplicationDeployment.IsNetworkDeployed)
             {
-                version = string.Format("Your application name - v{0}", ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString(4));
+                version =
+                    $"Your application name - v{ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString(4)}";
             }
             
             MessageBox.Show($"PEditor\nVersion {version}\nCopyright by Secana 2016", "About");
@@ -441,7 +444,9 @@ namespace PEditor
         private void lbRelocationEntries_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             lbRelocTypeOffsets.Items.Clear();
-            dynamic selected = (sender as ListBox).SelectedItem;
+            var listBox = sender as ListBox;
+            if (listBox == null) return;
+            dynamic selected = listBox.SelectedItem;
             if (selected == null)
                 return;
 

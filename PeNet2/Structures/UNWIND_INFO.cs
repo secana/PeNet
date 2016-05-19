@@ -76,29 +76,17 @@ namespace PeNet.Structures
         /// <summary>
         ///     Frame register.
         /// </summary>
-        public byte FrameRegister
-        {
-            get { return (byte) (_buff[_offset + 0x3] & 0xF); }
-        }
+        public byte FrameRegister => (byte) (_buff[_offset + 0x3] & 0xF);
 
         /// <summary>
         ///     Frame offset.
         /// </summary>
-        public byte FrameOffset
-        {
-            get { return (byte)(_buff[_offset + 0x3] >> 4); }
-        }
+        public byte FrameOffset => (byte)(_buff[_offset + 0x3] >> 4);
 
         /// <summary>
         ///     UnwindCode structure.
         /// </summary>
-        public UNWIND_CODE[] UnwindCode
-        {
-            get
-            {
-                return ParseUnwindCodes(_buff, _offset + 0x4);
-            }
-        }
+        public UNWIND_CODE[] UnwindCode => ParseUnwindCodes(_buff, _offset + 0x4);
 
         /// <summary>
         ///     The exception handler for the function.
@@ -131,10 +119,7 @@ namespace PeNet.Structures
         /// <summary>
         ///     Exception Data
         /// </summary>
-        public uint[] ExceptionData
-        {
-            get { return null; }
-        }
+        public uint[] ExceptionData => null;
 
         private UNWIND_CODE[] ParseUnwindCodes(byte[] buff, uint offset)
         {

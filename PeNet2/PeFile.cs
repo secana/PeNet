@@ -27,7 +27,7 @@ namespace PeNet
 {
     /// <summary>
     ///     This class represents a Portable Executable (PE) file and makes the different
-    ///     header and properites accessable.
+    ///     header and properties accessable.
     /// </summary>
     public class PeFile
     {
@@ -101,8 +101,7 @@ namespace PeNet
                         buff,
                         Utility.RVAtoFileMapping(
                             ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Import]
-                                .VirtualAddress, ImageSectionHeaders),
-                        ImageSectionHeaders
+                                .VirtualAddress, ImageSectionHeaders)
                         );
 
                     ImportedFunctions = ParseImportedFunctions(buff, ImageImportDescriptors, ImageSectionHeaders);
@@ -149,8 +148,7 @@ namespace PeNet
                                 ImageNtHeaders.OptionalHeader.DataDirectory[
                                     (uint) Constants.DataDirectoryIndex.Exception].VirtualAddress, ImageSectionHeaders),
                             ImageNtHeaders.OptionalHeader.DataDirectory[(uint) Constants.DataDirectoryIndex.Exception]
-                                .Size,
-                            ImageSectionHeaders
+                                .Size
                             );
                     }
                     catch
@@ -172,8 +170,7 @@ namespace PeNet
                     WinCertificate = ParseImageSecurityDirectory(
                         buff,
                         ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Security]
-                            .VirtualAddress,
-                        ImageSectionHeaders);
+                            .VirtualAddress);
                 }
                 catch (Exception)
                 {
@@ -215,7 +212,7 @@ namespace PeNet
         }
 
         /// <summary>
-        ///     Returns true if the Excetion Dir, Export Dir, Import Dir,
+        ///     Returns true if the Exception Dir, Export Dir, Import Dir,
         ///     Resource Dir and Security Dir are valid and the MZ header is set.
         /// </summary>
         public bool IsValidPeFile => HasValidExceptionDir
@@ -277,13 +274,7 @@ namespace PeNet
         /// Returns true if the PE file is signed. It
         /// does not check if the signature is valid!
         /// </summary>
-        public bool IsSigned
-        {
-            get
-            {
-                return PKCS7 != null;
-            }
-        }
+        public bool IsSigned => PKCS7 != null;
 
         /// <summary>
         /// Checks if cert is from a trusted CA with a valid certificate chain.
@@ -415,7 +406,7 @@ namespace PeNet
 
         
 
-        private WIN_CERTIFICATE ParseImageSecurityDirectory(byte[] buff, uint dirOffset, IMAGE_SECTION_HEADER[] sh)
+        private WIN_CERTIFICATE ParseImageSecurityDirectory(byte[] buff, uint dirOffset)
         {
             var wc = new WIN_CERTIFICATE(buff, dirOffset);
 
@@ -476,7 +467,7 @@ namespace PeNet
         }
 
 
-        private IMAGE_IMPORT_DESCRIPTOR[] ParseImportDescriptors(byte[] buff, uint offset, IMAGE_SECTION_HEADER[] sh)
+        private IMAGE_IMPORT_DESCRIPTOR[] ParseImportDescriptors(byte[] buff, uint offset)
         {
             var idescs = new List<IMAGE_IMPORT_DESCRIPTOR>();
             uint idescSize = 20; // Size of IMAGE_IMPORT_DESCRIPTOR (5 * 4 Byte)
@@ -510,8 +501,6 @@ namespace PeNet
             var funcOffsetPointer = Utility.RVAtoFileMapping(ed.AddressOfFunctions, sh);
             var ordOffset = Utility.RVAtoFileMapping(ed.AddressOfNameOrdinals, sh);
             var nameOffsetPointer = Utility.RVAtoFileMapping(ed.AddressOfNames, sh);
-
-            var funcOffset = Utility.BytesToUInt32(buff, funcOffsetPointer);
 
             //Get addresses
             for (uint i = 0; i < expFuncs.Length; i++)
@@ -588,8 +577,7 @@ namespace PeNet
             return root;
         }
 
-        private RUNTIME_FUNCTION[] ParseExceptionDirectory(byte[] buff, uint offset, uint size,
-            IMAGE_SECTION_HEADER[] sh)
+        private RUNTIME_FUNCTION[] ParseExceptionDirectory(byte[] buff, uint offset, uint size)
         {
             var sizeOfRuntimeFunction = 0xC;
             var rf = new RUNTIME_FUNCTION[size/sizeOfRuntimeFunction];
@@ -807,9 +795,9 @@ namespace PeNet
             var inputBytes = Encoding.ASCII.GetBytes(imports);
             var hash = md5.ComputeHash(inputBytes);
             var sb = new StringBuilder();
-            for (var i = 0; i < hash.Length; i++)
+            foreach (var t in hash)
             {
-                sb.Append(hash[i].ToString("x2"));
+                sb.Append(t.ToString("x2"));
             }
             return sb.ToString();
         }
@@ -840,12 +828,12 @@ namespace PeNet
             /// <summary>
             ///     Function RVA.
             /// </summary>
-            public uint Address { get; private set; }
+            public uint Address { get; }
 
             /// <summary>
             ///     Function Ordinal.
             /// </summary>
-            public ushort Ordinal { get; private set; }
+            public ushort Ordinal { get; }
 
             /// <summary>
             ///     Creates a string representation of all

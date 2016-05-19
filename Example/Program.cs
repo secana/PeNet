@@ -11,8 +11,7 @@ namespace Example
         {
             var pe = new PeNet.PeFile(@"c:\windows\system32\calc.exe");
 
-            if (pe.ImageRelocationDirectory != null)
-                pe.ImageRelocationDirectory.ToList().ForEach(r => Console.WriteLine(r.TypeOffsets.Count()));
+            pe.ImageRelocationDirectory?.ToList().ForEach(r => Console.WriteLine(r.TypeOffsets.Length));
 
             Console.ReadKey();
         }
