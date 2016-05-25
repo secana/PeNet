@@ -596,9 +596,10 @@ namespace PeNet
             var rvaOffset = Utility.RVAtoFileMapping(offset, sh);
             var currentBlock = rvaOffset;
 
+            int i = 0;
             while(true)
             {
-                if (currentBlock >= rvaOffset + size)
+                if (currentBlock >= rvaOffset + size - 8)
                     break;
 
                 imageBaseRelocations.Add(new IMAGE_BASE_RELOCATION(buff, currentBlock));
