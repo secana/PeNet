@@ -601,7 +601,7 @@ namespace PeNet
                 if (currentBlock >= rvaOffset + size - 8)
                     break;
 
-                imageBaseRelocations.Add(new IMAGE_BASE_RELOCATION(buff, currentBlock));
+                imageBaseRelocations.Add(new IMAGE_BASE_RELOCATION(buff, currentBlock, size));
                 currentBlock += imageBaseRelocations.Last().SizeOfBlock;
             }
 

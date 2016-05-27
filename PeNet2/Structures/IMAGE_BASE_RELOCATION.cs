@@ -15,6 +15,7 @@ limitations under the License.
 
 *************************************************************************/
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,10 +36,17 @@ namespace PeNet.Structures
         /// </summary>
         /// <param name="buff">PE binary as byte array.</param>
         /// <param name="offset">Offset to the relocation struct in the binary.</param>
-        public IMAGE_BASE_RELOCATION(byte[] buff, uint offset)
+        /// <param name="relocSize">Size of the complete relocation directory.</param>
+        /// <exception cref="ArgumentOutOfRangeException">If the SizeOfBlock is bigger than the size
+        /// of the Relocation Directory.</exception>
+        public IMAGE_BASE_RELOCATION(byte[] buff, uint offset, uint relocSize)
         {
             _buff = buff;
             _offset = offset;
+
+            if(SizeOfBlock > relocSize)
+                throw new ArgumentOutOfRangeException(nameof(relocSize), "SizeOfBlock cannot be bigger than size of the Relocation Directory.");
+
             ParseTypeOffsets();
         }
 
@@ -68,9 +76,9 @@ namespace PeNet.Structures
         private void ParseTypeOffsets()
         {
             var list = new List<TypeOffset>();
-            for(uint i = 0; i < (SizeOfBlock-8)/2; i++)
+            for(uint i = 0; i < (SizeOfBlock-8)/2; i += 2)
             {
-                list.Add(new TypeOffset(_buff, _offset + 8 + i * 2));
+                list.Add(new TypeOffset(_buff, _offset + 8 + i));
             }
             TypeOffsets = list.ToArray();
         }
