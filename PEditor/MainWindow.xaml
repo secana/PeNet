@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PEditor"
         mc:Ignorable="d"
-        Title="PEditor" Height="600" Width="800" MinHeight="532" MinWidth="800"
+        Title="PEditor" Height="768" Width="1024" MinHeight="532" MinWidth="800"
         Icon="Icons/Pen4.ico">
     <Grid>
         <Grid.RowDefinitions>
@@ -67,28 +67,6 @@
                             <Label Grid.Column="0" Grid.Row="5">Import-Hash:</Label>
                             <TextBox Name="tbImpHash" Grid.Column="1" Grid.Row="5" IsReadOnly="True" HorizontalAlignment="Stretch" />
                         </Grid>
-                    </GroupBox>
-                    <GroupBox Header="Signature">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            
-                            <Label Grid.Row="0" Grid.Column="0">Is Signed:</Label>
-                            <CheckBox Grid.Row="0" Grid.Column="1" Name="cbIsSigned" VerticalAlignment="Center" IsEnabled="False" />
-
-                            <Label Grid.Row="1" Grid.Column="0">Signature Valid:</Label>
-                            <CheckBox Grid.Row="1" Grid.Column="1" Name="cbSigValid" VerticalAlignment="Center" IsEnabled="False" />
-
-                            <Label Grid.Row="2" Grid.Column="0">Chain Valid:</Label>
-                            <CheckBox Grid.Row="2" Grid.Column="1" Name="cbChainValid" VerticalAlignment="Center" IsEnabled="False" />
-                        </Grid>        
                     </GroupBox>
                 </StackPanel>
             </TabItem>
@@ -650,7 +628,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <GroupBox Grid.Column="0" Header="Relocation Entry" MinWidth="150">
+                        <GroupBox Grid.Column="0" Header="Relocation Entry" MinWidth="200">
                             <ListBox Name="lbRelocationEntries" SelectionMode="Single" SelectionChanged="lbRelocationEntries_SelectionChanged">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
@@ -677,7 +655,7 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </GroupBox>
-                        <GroupBox Grid.Column="1" Header="Type and Offsets" MinWidth="150">
+                        <GroupBox Grid.Column="1" Header="Type and Offsets" MinWidth="200">
                             <ListBox Name="lbRelocTypeOffsets">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
@@ -704,6 +682,135 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </GroupBox>
+                    </Grid>
+                </GroupBox>
+            </TabItem>
+            <TabItem Header="Signature">
+                <GroupBox Header="Digital Signature">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <GroupBox Header="Info" Grid.Column="0">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0">Is Signed</Label>
+                                    <CheckBox Grid.Row="0" Grid.Column="1" IsEnabled="False" Name="cbCertIsSigned" VerticalAlignment="Center"/>
+                                    
+                                    <Label Grid.Row="1" Grid.Column="0">Valid Signature</Label>
+                                    <CheckBox Grid.Row="1" Grid.Column="1" IsEnabled="False" Name="cbCertIsValid" VerticalAlignment="Center"/>
+
+                                    <Label Grid.Row="2" Grid.Column="0">Valid Chain</Label>
+                                    <CheckBox Grid.Row="2" Grid.Column="1" IsEnabled="False" Name="cbCertIsValidChain" VerticalAlignment="Center"/>
+
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Grid.Column="1" Header="WIN__CERTIFICATE">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <Label Grid.Row="0" Grid.Column="0">dwLength</Label>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Name="tbCertLength"/>
+                                    
+                                    <Label Grid.Row="1" Grid.Column="0">wRevision</Label>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Name="tbCertRevision"/>
+                                    
+                                    <Label Grid.Row="2" Grid.Column="0">wCertificateType</Label>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Name="tbCertType"/>
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <GroupBox Header="X509 Certificate">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <Label Grid.Row="0" Grid.Column="0">Archived</Label>
+                                    <CheckBox Grid.Row="0" Grid.Column="1" IsEnabled="False" Name="cbX509Archived" VerticalAlignment="Center"/>
+
+                                    <Label Grid.Row="1" Grid.Column="0">HasPrivateKey</Label>
+                                    <CheckBox Grid.Row="1" Grid.Column="1" IsEnabled="False" Name="cbX509HasPrivateKey" VerticalAlignment="Center"/>
+
+                                    <Label Grid.Row="2" Grid.Column="0">FriendlyName</Label>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Name="tbX509FriendlyName"/>
+
+                                    <Label Grid.Row="3" Grid.Column="0">Issuer</Label>
+                                    <TextBox Grid.Row="3" Grid.Column="1" Name="tbX509Issuer" TextWrapping="Wrap" AcceptsReturn="True"/>
+
+                                    <Label Grid.Row="4" Grid.Column="0">Thumbprint</Label>
+                                    <TextBox Grid.Row="4" Grid.Column="1" Name="tbX509Thumbprint" />
+
+                                    <Label Grid.Row="6" Grid.Column="0">Version</Label>
+                                    <TextBox Grid.Row="6" Grid.Column="1" Name="tbX509Version"/>
+
+                                    <Label Grid.Row="7" Grid.Column="0">Extensions</Label>
+                                    <TextBox Grid.Row="7" Grid.Column="1" Name="tbX509Extensions" MaxHeight="150" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+
+                                    <Label Grid.Row="5" Grid.Column="0">Public Key</Label>
+                                    <TextBox Grid.Row="5" Grid.Column="1" Name="tbX509PublicKey" TextWrapping="Wrap" AcceptsReturn="True" MaxHeight="150" VerticalScrollBarVisibility="Auto" FontFamily="Consolas"/>
+
+                                    <Label Grid.Row="0" Grid.Column="2">NotAfter</Label>
+                                    <TextBox Grid.Row="0" Grid.Column="3" Name="tbX509NotAfter"/>
+
+                                    <Label Grid.Row="1" Grid.Column="2">NotBefore</Label>
+                                    <TextBox Grid.Row="1" Grid.Column="3" Name="tbX509NotBefore"/>
+
+                                    <Label Grid.Row="2" Grid.Column="2">SerialNumber</Label>
+                                    <TextBox Grid.Row="2" Grid.Column="3" Name="tbX509SerialNumber"/>
+
+                                    <Label Grid.Row="3" Grid.Column="2">Subject</Label>
+                                    <TextBox Grid.Row="3" Grid.Column="3" Name="tbX509Subject" TextWrapping="Wrap" AcceptsReturn="True"/>
+
+                                    <Label Grid.Row="4" Grid.Column="2">SignatureAlgorithm</Label>
+                                    <TextBox Grid.Row="4" Grid.Column="3" Name="tbX509SignatureAlgorithm"/>
+
+                                    <Label Grid.Row="5" Grid.Column="2">Private Key</Label>
+                                    <TextBox Grid.Row="5" Grid.Column="3" Name="tbX509PrivateKey" TextWrapping="Wrap" AcceptsReturn="True" MaxHeight="150" VerticalScrollBarVisibility="Auto" FontFamily="Consolas"/>
+
+                                    <Label Grid.Row="7" Grid.Column="2">CRL URLs</Label>
+                                    <TextBox Grid.Row="7" Grid.Column="3" Name="tbX509CrlUrls" AcceptsReturn="True" MaxHeight="150" HorizontalScrollBarVisibility="Auto"/>
+
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
                     </Grid>
                 </GroupBox>
             </TabItem>
