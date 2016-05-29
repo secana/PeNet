@@ -39,8 +39,14 @@ namespace PeNet
         private string _impHash;
         private string _md5;
         private string _sha1;
-
         private string _sha256;
+        private bool _alreadyParsedSectionHeaders;
+        private bool _alreadyParsedExportDirectory;
+        private bool _alreadyParsedImportDirectory;
+        private bool _alreadyParsedResourceDirectory;
+        private bool _alreadyParsedExceptionDirectory;
+        private bool _alreadyParsedSecurityDirectory;
+        private bool _alreadyParsedRelocationDirectory;
 
         /// <summary>
         ///     Create a new PeFile object.
