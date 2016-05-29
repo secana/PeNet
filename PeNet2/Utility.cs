@@ -453,7 +453,7 @@ namespace PeNet
         /// <summary>
         ///     Map an relative virtual address to the raw file address.
         /// </summary>
-        /// <param name="RVA">Relative Virutal Address</param>
+        /// <param name="RVA">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
         public static uint RVAtoFileMapping(uint RVA, IMAGE_SECTION_HEADER[] sh)
@@ -483,7 +483,7 @@ namespace PeNet
                 }
                 else
                 {
-                    throw new Exception("Cannot find corresponding section.");
+                    throw new IndexOutOfRangeException("Cannot find corresponding section.");
                 }
             }
 
