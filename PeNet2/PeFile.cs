@@ -497,7 +497,7 @@ namespace PeNet
         private ExportFunction[] ParseExportedFunctions(byte[] buff, IMAGE_EXPORT_DIRECTORY ed,
             IMAGE_SECTION_HEADER[] sh)
         {
-            var expFuncs = new PeFile.ExportFunction[ed.NumberOfFunctions];
+            var expFuncs = new ExportFunction[ed.NumberOfFunctions];
             var funcOffsetPointer = Utility.RVAtoFileMapping(ed.AddressOfFunctions, sh);
             var ordOffset = Utility.RVAtoFileMapping(ed.AddressOfNameOrdinals, sh);
             var nameOffsetPointer = Utility.RVAtoFileMapping(ed.AddressOfNames, sh);
@@ -508,7 +508,7 @@ namespace PeNet
                 var ordinal = i + ed.Base;
                 var address = Utility.BytesToUInt32(buff, funcOffsetPointer + sizeof(uint) * i);
 
-                expFuncs[i] = new PeFile.ExportFunction(null, address, (ushort)ordinal);
+                expFuncs[i] = new ExportFunction(null, address, (ushort)ordinal);
             }
 
             //Associate names
@@ -519,7 +519,7 @@ namespace PeNet
                 var name = Utility.GetName(nameAdr, buff);
                 var ordinalIndex = (uint)Utility.GetOrdinal(ordOffset + sizeof(ushort) * i, buff);
 
-                expFuncs[ordinalIndex] = new PeFile.ExportFunction(name, expFuncs[ordinalIndex].Address, expFuncs[ordinalIndex].Ordinal);
+                expFuncs[ordinalIndex] = new ExportFunction(name, expFuncs[ordinalIndex].Address, expFuncs[ordinalIndex].Ordinal);
             }
 
             return expFuncs;
