@@ -18,10 +18,11 @@ limitations under the License.
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using PeNet.Structures;
-using System.Linq;
 
 namespace PeNet
 {
@@ -36,17 +37,38 @@ namespace PeNet
         /// </summary>
         public readonly byte[] Buff;
 
+        private bool _alreadyParsedExceptionDirectory;
+        private bool _alreadyParsedExportDirectory;
+        private bool _alreadyParsedExportedFuntions;
+        private bool _alreadyParsedImportDirectory;
+        private bool _alreadyParsedImportedFunctions;
+        private bool _alreadyParsedRelocationDirectory;
+        private bool _alreadyParsedResourceDirectory;
+        private bool _alreadyParsedSectionHeaders;
+        private bool _alreadyParsedSecurityDirectory;
+        private bool _alreadyParsedDosHeader;
+        private bool _alreadyParsedNtHeaders;
+        private bool _alreadyParsedPKCS7;
+
+        private readonly List<Exception> _exceptions = new List<Exception>();
+        private readonly uint _secHeaderOffset;
         private string _impHash;
         private string _md5;
         private string _sha1;
         private string _sha256;
-        private bool _alreadyParsedSectionHeaders;
-        private bool _alreadyParsedExportDirectory;
-        private bool _alreadyParsedImportDirectory;
-        private bool _alreadyParsedResourceDirectory;
-        private bool _alreadyParsedExceptionDirectory;
-        private bool _alreadyParsedSecurityDirectory;
-        private bool _alreadyParsedRelocationDirectory;
+        private IMAGE_EXPORT_DIRECTORY _imageExportDirectory;
+        private ExportFunction[] _exportedFunctions;
+        private IMAGE_DOS_HEADER _imageDosHeader;
+        private IMAGE_NT_HEADERS _imageNtHeaders;
+        private IMAGE_SECTION_HEADER[] _imageSectionHeaders;
+        private IMAGE_IMPORT_DESCRIPTOR[] _imageImportDescriptors;
+        private ImportFunction[] _importedFunctions;
+        private IMAGE_RESOURCE_DIRECTORY _imageResourceDirectory;
+        private RUNTIME_FUNCTION[] _runtimeFunctions;
+        private WIN_CERTIFICATE _winCertificate;
+        private IMAGE_BASE_RELOCATION[] _imagerRelocationDirectory;
+        private X509Certificate2 _pkcs7;
+
 
         /// <summary>
         ///     Create a new PeFile object.
@@ -55,156 +77,7 @@ namespace PeNet
         public PeFile(byte[] buff)
         {
             Buff = buff;
-
-            // Parse the Image DOS Header
-            ImageDosHeader = new IMAGE_DOS_HEADER(buff);
-
-            // Check if the PE file is 64 bit.
-            Is64Bit = Utility.BytesToUInt16(buff, ImageDosHeader.e_lfanew + 0x4) ==
-                      (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
-
-            var secHeaderOffset = (uint) (Is64Bit ? 0x108 : 0xF8);
-
-            ImageNtHeaders = new IMAGE_NT_HEADERS(buff, ImageDosHeader.e_lfanew, Is64Bit);
-
-            ImageSectionHeaders = ParseImageSectionHeaders(
-                buff,
-                ImageNtHeaders.FileHeader.NumberOfSections,
-                ImageDosHeader.e_lfanew + secHeaderOffset
-                );
-
-            // Parse the export section.
-            if (ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Export].VirtualAddress !=
-                0)
-            {
-                try
-                {
-                    ImageExportDirectory = new IMAGE_EXPORT_DIRECTORY(
-                        buff,
-                        Utility.RVAtoFileMapping(ImageNtHeaders.OptionalHeader.DataDirectory[0].VirtualAddress,
-                            ImageSectionHeaders)
-                        );
-
-                    ExportedFunctions = ParseExportedFunctions(
-                        buff,
-                        ImageExportDirectory,
-                        ImageSectionHeaders
-                        );
-                }
-                catch
-                {
-                    // No or invalid export directory.
-                    HasValidExportDir = false;
-                }
-            }
-
-            // Parse the Import section
-            if (ImageNtHeaders.OptionalHeader.DataDirectory[1].VirtualAddress != 0)
-            {
-                try
-                {
-                    ImageImportDescriptors = ParseImportDescriptors(
-                        buff,
-                        Utility.RVAtoFileMapping(
-                            ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Import]
-                                .VirtualAddress, ImageSectionHeaders)
-                        );
-
-                    ImportedFunctions = ParseImportedFunctions(buff, ImageImportDescriptors, ImageSectionHeaders);
-                }
-                catch
-                {
-                    // No or invalid import directory.
-                    HasValidImportDir = false;
-                }
-            }
-
-            // Parse the resource directory.
-            if (ImageNtHeaders.OptionalHeader.DataDirectory[2].VirtualAddress != 0)
-            {
-                try
-                {
-                    ImageResourceDirectory = ParseImageResourceDirectory(
-                        buff,
-                        Utility.RVAtoFileMapping(
-                            ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Resource]
-                                .VirtualAddress, ImageSectionHeaders)
-                        );
-                }
-                catch
-                {
-                    // No or invalid resource directory.
-                    ImageResourceDirectory = null;
-                    HasValidResourceDir = false;
-                }
-            }
-
-            // Parse x64 Exception directory
-            if (Is64Bit)
-            {
-                if (
-                    ImageNtHeaders.OptionalHeader.DataDirectory[(uint) Constants.DataDirectoryIndex.Exception]
-                        .VirtualAddress != 0)
-                {
-                    try
-                    {
-                        RuntimeFunctions = ParseExceptionDirectory(
-                            buff,
-                            Utility.RVAtoFileMapping(
-                                ImageNtHeaders.OptionalHeader.DataDirectory[
-                                    (uint) Constants.DataDirectoryIndex.Exception].VirtualAddress, ImageSectionHeaders),
-                            ImageNtHeaders.OptionalHeader.DataDirectory[(uint) Constants.DataDirectoryIndex.Exception]
-                                .Size
-                            );
-                    }
-                    catch
-                    {
-                        // No or invalid Exception directory.
-                        RuntimeFunctions = null;
-                        HasValidExceptionDir = false;
-                    }
-                }
-            }
-
-            // Parse the security directory for certificates
-            if (
-                ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Security].VirtualAddress !=
-                0)
-            {
-                try
-                {
-                    WinCertificate = ParseImageSecurityDirectory(
-                        buff,
-                        ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Security]
-                            .VirtualAddress);
-                }
-                catch (Exception)
-                {
-                    // Invalid Security Directory
-                    WinCertificate = null;
-                    HasValidSecurityDir = false;
-                }
-            }
-
-            // Parse the relocation directory
-            if(ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.BaseReloc].VirtualAddress != 0)
-            {
-                try
-                {
-                    ImageRelocationDirectory = ParseRelocationDirectory(
-                        buff,
-                        ImageNtHeaders.OptionalHeader.DataDirectory[(int)Constants.DataDirectoryIndex.BaseReloc].VirtualAddress,
-                        ImageNtHeaders.OptionalHeader.DataDirectory[(int)Constants.DataDirectoryIndex.BaseReloc].Size,
-                        ImageSectionHeaders
-                        );
-                }
-                catch(Exception)
-                {
-                    // Invalid relocation directory.
-                    ImageRelocationDirectory = null;
-                    HasValidRelocDir = false;
-                }
-            }
+            _secHeaderOffset = (uint) (Is64Bit ? 0x108 : 0xF8);
         }
 
         /// <summary>
@@ -231,32 +104,32 @@ namespace PeNet
         /// <summary>
         ///     Returns true if the Export directory is valid.
         /// </summary>
-        public bool HasValidExportDir { get; } = true;
+        public bool HasValidExportDir { get; private set; } = true;
 
         /// <summary>
         ///     Returns true if the Import directory is valid.
         /// </summary>
-        public bool HasValidImportDir { get; } = true;
+        public bool HasValidImportDir { get; private set; } = true;
 
         /// <summary>
         ///     Returns true if the Resource directory is valid.
         /// </summary>
-        public bool HasValidResourceDir { get; } = true;
+        public bool HasValidResourceDir { get; private set; } = true;
 
         /// <summary>
         ///     Returns true if the Exception directory is valid.
         /// </summary>
-        public bool HasValidExceptionDir { get; } = true;
+        public bool HasValidExceptionDir { get; private set; } = true;
 
         /// <summary>
         ///     Returns true if the Security directory is valid.
         /// </summary>
-        public bool HasValidSecurityDir { get; } = true;
+        public bool HasValidSecurityDir { get; private set; } = true;
 
         /// <summary>
-        /// Returns true if the Relocation Directory is valid.
+        ///     Returns true if the Relocation Directory is valid.
         /// </summary>
-        public bool HasValidRelocDir { get; } = true;
+        public bool HasValidRelocDir { get; private set; } = true;
 
         /// <summary>
         ///     Returns true if the DLL flag in the
@@ -277,28 +150,16 @@ namespace PeNet
                  (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) > 0;
 
         /// <summary>
-        /// Returns true if the PE file is signed. It
-        /// does not check if the signature is valid!
+        ///     Returns true if the PE file is signed. It
+        ///     does not check if the signature is valid!
         /// </summary>
         public bool IsSigned => PKCS7 != null;
 
         /// <summary>
-        /// Checks if cert is from a trusted CA with a valid certificate chain.
-        /// </summary>
-        /// <param name="online">Check certificate chain online or offline.</param>
-        /// <returns>True of cert chain is valid and from a trusted CA.</returns>
-        public bool IsValidCertChain(bool online)
-        {
-                if (!IsSigned)
-                    return false;
-
-            return Utility.IsValidCertChain(PKCS7, online);
-        }
-
-        /// <summary>
         ///     Returns true if the PE file is x64.
         /// </summary>
-        public bool Is64Bit { get; }
+        public bool Is64Bit => Utility.BytesToUInt16(Buff, ImageDosHeader.e_lfanew + 0x4) ==
+                               (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
 
         /// <summary>
         ///     Returns true if the PE file is x32.
@@ -308,63 +169,254 @@ namespace PeNet
         /// <summary>
         ///     Access the IMAGE_DOS_HEADER of the PE file.
         /// </summary>
-        public IMAGE_DOS_HEADER ImageDosHeader { get; }
+        public IMAGE_DOS_HEADER ImageDosHeader
+        {
+            get
+            {
+                if (_alreadyParsedDosHeader)
+                    return _imageDosHeader;
+
+                _alreadyParsedDosHeader = true;
+                _imageDosHeader = new IMAGE_DOS_HEADER(Buff);
+                return _imageDosHeader;
+            } 
+            
+        }
 
         /// <summary>
         ///     Access the IMAGE_NT_HEADERS of the PE file.
         /// </summary>
-        public IMAGE_NT_HEADERS ImageNtHeaders { get; }
+        public IMAGE_NT_HEADERS ImageNtHeaders
+        {
+            get
+            {
+                if (_alreadyParsedNtHeaders)
+                    return _imageNtHeaders;
+
+                _alreadyParsedNtHeaders = true;
+                _imageNtHeaders = new IMAGE_NT_HEADERS(Buff, ImageDosHeader.e_lfanew, Is64Bit);
+                return _imageNtHeaders;
+            } 
+            
+        }
 
         /// <summary>
         ///     Access the IMAGE_SECTION_HEADERS of the PE file.
         /// </summary>
-        public IMAGE_SECTION_HEADER[] ImageSectionHeaders { get; }
+        public IMAGE_SECTION_HEADER[] ImageSectionHeaders
+        {
+            get
+            {
+                if (_alreadyParsedSectionHeaders)
+                    return _imageSectionHeaders;
+
+                _alreadyParsedSectionHeaders = true;
+
+                _imageSectionHeaders = ParseImageSectionHeaders(
+                    Buff,
+                    ImageNtHeaders.FileHeader.NumberOfSections,
+                    ImageDosHeader.e_lfanew + _secHeaderOffset
+                    );
+
+                return _imageSectionHeaders;
+            }
+        }
 
         /// <summary>
         ///     Access the IMAGE_EXPORT_DIRECTORY of the PE file.
         /// </summary>
-        public IMAGE_EXPORT_DIRECTORY ImageExportDirectory { get; }
+        public IMAGE_EXPORT_DIRECTORY ImageExportDirectory
+        {
+            get
+            {
+                if (_alreadyParsedExceptionDirectory)
+                    return _imageExportDirectory;
+
+                _alreadyParsedExceptionDirectory = true;
+                _imageExportDirectory = ParseImageExportDirectory(
+                    Buff,
+                    Utility.RVAtoFileMapping(
+                        ImageNtHeaders.OptionalHeader.DataDirectory[(int)Constants.DataDirectoryIndex.Export].VirtualAddress,
+                        ImageSectionHeaders
+                        )
+                    );
+                return _imageExportDirectory;
+            }
+        }
 
         /// <summary>
         ///     Access the IMAGE_IMPORT_DESCRIPTOR array of the PE file.
         /// </summary>
-        public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors { get; }
+        public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors
+        {
+            get
+            {
+                if (_alreadyParsedImportDirectory)
+                    return _imageImportDescriptors;
+
+                _alreadyParsedImportDirectory = true;
+                _imageImportDescriptors = ParseImportDescriptors(
+                        Buff,
+                        Utility.RVAtoFileMapping(
+                            ImageNtHeaders.OptionalHeader.DataDirectory[(int)Constants.DataDirectoryIndex.Import].VirtualAddress, 
+                            ImageSectionHeaders)
+                        );
+                return _imageImportDescriptors;
+            } 
+            
+        }
 
         /// <summary>
-        /// Access the IMAGE_BASE_RELOCATION array of the PE file.
+        ///     Access the IMAGE_BASE_RELOCATION array of the PE file.
         /// </summary>
-        public IMAGE_BASE_RELOCATION[] ImageRelocationDirectory { get; }
+        public IMAGE_BASE_RELOCATION[] ImageRelocationDirectory
+        {
+            get
+            {
+                if (_alreadyParsedRelocationDirectory)
+                    return _imagerRelocationDirectory;
+
+
+                _alreadyParsedRelocationDirectory = true;
+                _imagerRelocationDirectory = ParseRelocationDirectory(
+                        Buff,
+                        ImageNtHeaders.OptionalHeader.DataDirectory[(int)Constants.DataDirectoryIndex.BaseReloc]
+                            .VirtualAddress,
+                        ImageNtHeaders.OptionalHeader.DataDirectory[(int)Constants.DataDirectoryIndex.BaseReloc].Size,
+                        ImageSectionHeaders
+                        );
+
+                return _imagerRelocationDirectory;
+            }
+        }
 
         /// <summary>
         ///     Access the exported functions as an array of parsed objects.
         /// </summary>
-        public ExportFunction[] ExportedFunctions { get; private set; }
+        public ExportFunction[] ExportedFunctions
+        {
+            get
+            {
+                if (_alreadyParsedExportedFuntions)
+                    return _exportedFunctions;
+
+                _alreadyParsedExportedFuntions = true;
+                _exportedFunctions = ParseExportedFunctions(Buff, ImageExportDirectory, ImageSectionHeaders);
+
+                return _exportedFunctions;
+            }
+        }
 
         /// <summary>
         ///     Access the imported functions as an array of parsed objects.
         /// </summary>
-        public ImportFunction[] ImportedFunctions { get; }
+        public ImportFunction[] ImportedFunctions
+        {
+            get
+            {
+                if (_alreadyParsedImportedFunctions)
+                    return _importedFunctions;
+
+                _alreadyParsedImportedFunctions = true;
+                _importedFunctions = ParseImportedFunctions(Buff, ImageImportDescriptors, ImageSectionHeaders);
+                return _importedFunctions;
+            }
+            
+        }
 
         /// <summary>
         ///     Access the IMAGE_RESOURCE_DIRECTORY of the PE file.
         /// </summary>
-        public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory { get; private set; }
+        public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory
+        {
+            get
+            {
+                if (_alreadyParsedResourceDirectory)
+                    return _imageResourceDirectory;
+
+                _alreadyParsedResourceDirectory = true;
+                _imageResourceDirectory= ParseImageResourceDirectory(
+                        Buff,
+                        Utility.RVAtoFileMapping(
+                            ImageNtHeaders.OptionalHeader.DataDirectory[(int)Constants.DataDirectoryIndex.Resource].VirtualAddress, 
+                            ImageSectionHeaders)
+                        );
+                return _imageResourceDirectory;
+            }
+            
+        }
 
         /// <summary>
         ///     Access the array of RUNTIME_FUNCTION from the Exception header.
         /// </summary>
-        public RUNTIME_FUNCTION[] RuntimeFunctions { get; private set; }
+        public RUNTIME_FUNCTION[] RuntimeFunctions
+        {
+            get
+            {
+                if (_alreadyParsedExceptionDirectory)
+                    return _runtimeFunctions;
+
+                _alreadyParsedExceptionDirectory = true;
+
+                _runtimeFunctions = ParseExceptionDirectory(
+                    Buff,
+                    Utility.RVAtoFileMapping(
+                        ImageNtHeaders.OptionalHeader.DataDirectory[(uint) Constants.DataDirectoryIndex.Exception].VirtualAddress,
+                        ImageSectionHeaders
+                        ),
+                    ImageNtHeaders.OptionalHeader.DataDirectory[(uint) Constants.DataDirectoryIndex.Exception].Size
+                    );
+
+                return _runtimeFunctions;
+            }
+        }
 
         /// <summary>
         ///     Access the WIN_CERTIFICATE from the Security header.
         /// </summary>
-        public WIN_CERTIFICATE WinCertificate { get; private set; }
+        public WIN_CERTIFICATE WinCertificate
+        {
+            get
+            {
+                if (_alreadyParsedSecurityDirectory)
+                    return _winCertificate;
+
+                _alreadyParsedSecurityDirectory = true;
+                _winCertificate = ParseImageSecurityDirectory(
+                    Buff,
+                    ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Security]
+                        .VirtualAddress
+                    );
+
+                return _winCertificate;
+            }
+        }
 
         /// <summary>
         ///     A X509 PKCS7 signature if the PE file was digitally signed with such
         ///     a signature.
         /// </summary>
-        public X509Certificate2 PKCS7 { get; private set; }
+        public X509Certificate2 PKCS7
+        {
+            get
+            {
+                if (_alreadyParsedPKCS7)
+                    return _pkcs7;
+
+                _alreadyParsedPKCS7 = true;
+
+                if (WinCertificate == null)
+                    _pkcs7 = null;
+
+                if (WinCertificate.wCertificateType == (ushort)Constants.WinCertificateType.WIN_CERT_TYPE_PKCS_SIGNED_DATA)
+                {
+                    var cert = WinCertificate.bCertificate;
+                    _pkcs7 = new X509Certificate2(cert);
+                }
+
+                return _pkcs7;
+            }
+        }
 
         /// <summary>
         ///     The SHA-256 hash sum of the binary.
@@ -398,6 +450,39 @@ namespace PeNet
         public string Location { get; private set; }
 
         /// <summary>
+        ///     Checks if cert is from a trusted CA with a valid certificate chain.
+        /// </summary>
+        /// <param name="online">Check certificate chain online or offline.</param>
+        /// <returns>True of cert chain is valid and from a trusted CA.</returns>
+        public bool IsValidCertChain(bool online)
+        {
+            if (!IsSigned)
+                return false;
+
+            return Utility.IsValidCertChain(PKCS7, online);
+        }
+
+        private IMAGE_EXPORT_DIRECTORY ParseImageExportDirectory(byte[] buff, uint offset)
+        {
+            if (offset == 0)
+                return null;
+
+            IMAGE_EXPORT_DIRECTORY imageExportDirectory = null;
+
+            try
+            {
+                imageExportDirectory = new IMAGE_EXPORT_DIRECTORY(buff, offset);
+            }
+            catch (Exception exception)
+            {
+                _exceptions.Add(exception);
+                HasValidExportDir = false;
+            }
+
+            return imageExportDirectory;
+        }
+
+        /// <summary>
         ///     Get an object which holds information about
         ///     the Certificate Revocation Lists of the signing
         ///     certificate if any is present.
@@ -410,16 +495,22 @@ namespace PeNet
             return new CrlUrlList(PKCS7);
         }
 
-        
 
         private WIN_CERTIFICATE ParseImageSecurityDirectory(byte[] buff, uint dirOffset)
         {
-            var wc = new WIN_CERTIFICATE(buff, dirOffset);
+            if (dirOffset == 0)
+                return null;
 
-            if (wc.wCertificateType == (ushort) Constants.WinCertificateType.WIN_CERT_TYPE_PKCS_SIGNED_DATA)
+            WIN_CERTIFICATE wc = null;
+
+            try
             {
-                var cert = wc.bCertificate;
-                PKCS7 = new X509Certificate2(cert);
+                wc = new WIN_CERTIFICATE(buff, dirOffset);
+            }
+            catch (Exception exception)
+            {
+                _exceptions.Add(exception);
+                HasValidSecurityDir = false;
             }
 
             return wc;
@@ -428,45 +519,56 @@ namespace PeNet
         private ImportFunction[] ParseImportedFunctions(byte[] buff, IMAGE_IMPORT_DESCRIPTOR[] idescs,
             IMAGE_SECTION_HEADER[] sh)
         {
+            if (idescs == null)
+                return null;
+
             var impFuncs = new List<ImportFunction>();
             var sizeOfThunk = (uint) (Is64Bit ? 0x8 : 0x4); // Size of IMAGE_THUNK_DATA
             var ordinalBit = Is64Bit ? 0x8000000000000000 : 0x80000000;
             var ordinalMask = (ulong) (Is64Bit ? 0x7FFFFFFFFFFFFFFF : 0x7FFFFFFF);
 
-            foreach (var idesc in idescs)
+            try
             {
-                var dllAdr = Utility.RVAtoFileMapping(idesc.Name, sh);
-                var dll = Utility.GetName(dllAdr, buff);
-                var tmpAdr = idesc.OriginalFirstThunk != 0 ? idesc.OriginalFirstThunk : idesc.FirstThunk;
-                if (tmpAdr == 0)
-                    continue;
-
-                var thunkAdr = Utility.RVAtoFileMapping(tmpAdr, sh);
-                uint round = 0;
-                while (true)
+                foreach (var idesc in idescs)
                 {
-                    var t = new IMAGE_THUNK_DATA(buff, thunkAdr + round*sizeOfThunk, Is64Bit);
+                    var dllAdr = Utility.RVAtoFileMapping(idesc.Name, sh);
+                    var dll = Utility.GetName(dllAdr, buff);
+                    var tmpAdr = idesc.OriginalFirstThunk != 0 ? idesc.OriginalFirstThunk : idesc.FirstThunk;
+                    if (tmpAdr == 0)
+                        continue;
 
-                    if (t.AddressOfData == 0)
-                        break;
-
-                    // Check if import by name or by ordinal.
-                    // If it is an import by ordinal, the most significant bit of "Ordinal" is "1" and the ordinal can
-                    // be extracted from the least significant bits.
-                    // Else it is an import by name and the link to the IMAGE_IMPORT_BY_NAME has to be followed
-
-                    if ((t.Ordinal & ordinalBit) == ordinalBit) // Import by ordinal
+                    var thunkAdr = Utility.RVAtoFileMapping(tmpAdr, sh);
+                    uint round = 0;
+                    while (true)
                     {
-                        impFuncs.Add(new ImportFunction(null, dll, (ushort) (t.Ordinal & ordinalMask)));
-                    }
-                    else // Import by name
-                    {
-                        var ibn = new IMAGE_IMPORT_BY_NAME(buff, Utility.RVAtoFileMapping(t.AddressOfData, sh));
-                        impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint));
-                    }
+                        var t = new IMAGE_THUNK_DATA(buff, thunkAdr + round*sizeOfThunk, Is64Bit);
 
-                    round++;
+                        if (t.AddressOfData == 0)
+                            break;
+
+                        // Check if import by name or by ordinal.
+                        // If it is an import by ordinal, the most significant bit of "Ordinal" is "1" and the ordinal can
+                        // be extracted from the least significant bits.
+                        // Else it is an import by name and the link to the IMAGE_IMPORT_BY_NAME has to be followed
+
+                        if ((t.Ordinal & ordinalBit) == ordinalBit) // Import by ordinal
+                        {
+                            impFuncs.Add(new ImportFunction(null, dll, (ushort) (t.Ordinal & ordinalMask)));
+                        }
+                        else // Import by name
+                        {
+                            var ibn = new IMAGE_IMPORT_BY_NAME(buff, Utility.RVAtoFileMapping(t.AddressOfData, sh));
+                            impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint));
+                        }
+
+                        round++;
+                    }
                 }
+            }
+            catch (Exception exception)
+            {
+                _exceptions.Add(exception);
+                HasValidImportDir = false;
             }
 
             return impFuncs.ToArray();
@@ -475,59 +577,85 @@ namespace PeNet
 
         private IMAGE_IMPORT_DESCRIPTOR[] ParseImportDescriptors(byte[] buff, uint offset)
         {
+            if (offset == 0)
+                return null;
+
             var idescs = new List<IMAGE_IMPORT_DESCRIPTOR>();
             uint idescSize = 20; // Size of IMAGE_IMPORT_DESCRIPTOR (5 * 4 Byte)
             uint round = 0;
 
-            while (true)
+            try
             {
-                var idesc = new IMAGE_IMPORT_DESCRIPTOR(buff, offset + idescSize*round);
-
-                // Found the last IMAGE_IMPORT_DESCRIPTOR which is completely null (except TimeDateStamp).
-                if (idesc.OriginalFirstThunk == 0
-                    //&& idesc.TimeDateStamp == 0
-                    && idesc.ForwarderChain == 0
-                    && idesc.Name == 0
-                    && idesc.FirstThunk == 0)
+                while (true)
                 {
-                    break;
-                }
+                    var idesc = new IMAGE_IMPORT_DESCRIPTOR(buff, offset + idescSize*round);
 
-                idescs.Add(idesc);
-                round++;
+                    // Found the last IMAGE_IMPORT_DESCRIPTOR which is completely null (except TimeDateStamp).
+                    if (idesc.OriginalFirstThunk == 0
+                        //&& idesc.TimeDateStamp == 0
+                        && idesc.ForwarderChain == 0
+                        && idesc.Name == 0
+                        && idesc.FirstThunk == 0)
+                    {
+                        break;
+                    }
+
+                    idescs.Add(idesc);
+                    round++;
+                }
             }
+            catch (Exception exception)
+            {
+                _exceptions.Add(exception);
+                HasValidImportDir = false;
+            }
+            
 
             return idescs.ToArray();
         }
 
-        private ExportFunction[] ParseExportedFunctions(byte[] buff, IMAGE_EXPORT_DIRECTORY ed,
-            IMAGE_SECTION_HEADER[] sh)
+        private ExportFunction[] ParseExportedFunctions(
+            byte[] buff, 
+            IMAGE_EXPORT_DIRECTORY ed,
+            IMAGE_SECTION_HEADER[] sh
+            )
         {
+            if (ed == null)
+                return null;
+
             var expFuncs = new ExportFunction[ed.NumberOfFunctions];
             var funcOffsetPointer = Utility.RVAtoFileMapping(ed.AddressOfFunctions, sh);
             var ordOffset = Utility.RVAtoFileMapping(ed.AddressOfNameOrdinals, sh);
             var nameOffsetPointer = Utility.RVAtoFileMapping(ed.AddressOfNames, sh);
 
-            //Get addresses
-            for (uint i = 0; i < expFuncs.Length; i++)
+            try
             {
-                var ordinal = i + ed.Base;
-                var address = Utility.BytesToUInt32(buff, funcOffsetPointer + sizeof(uint) * i);
+                //Get addresses
+                for (uint i = 0; i < expFuncs.Length; i++)
+                {
+                    var ordinal = i + ed.Base;
+                    var address = Utility.BytesToUInt32(buff, funcOffsetPointer + sizeof(uint)*i);
 
-                expFuncs[i] = new ExportFunction(null, address, (ushort)ordinal);
+                    expFuncs[i] = new ExportFunction(null, address, (ushort) ordinal);
+                }
+
+                //Associate names
+                for (uint i = 0; i < ed.NumberOfNames; i++)
+                {
+                    var namePtr = Utility.BytesToUInt32(buff, nameOffsetPointer + sizeof(uint)*i);
+                    var nameAdr = Utility.RVAtoFileMapping(namePtr, sh);
+                    var name = Utility.GetName(nameAdr, buff);
+                    var ordinalIndex = (uint) Utility.GetOrdinal(ordOffset + sizeof(ushort)*i, buff);
+
+                    expFuncs[ordinalIndex] = new ExportFunction(name, expFuncs[ordinalIndex].Address,
+                        expFuncs[ordinalIndex].Ordinal);
+                }
             }
-
-            //Associate names
-            for (uint i = 0; i < ed.NumberOfNames; i++)
+            catch (Exception exception)
             {
-                var namePtr = Utility.BytesToUInt32(buff, nameOffsetPointer + sizeof(uint) * i);
-                var nameAdr = Utility.RVAtoFileMapping(namePtr, sh);
-                var name = Utility.GetName(nameAdr, buff);
-                var ordinalIndex = (uint)Utility.GetOrdinal(ordOffset + sizeof(ushort) * i, buff);
-
-                expFuncs[ordinalIndex] = new ExportFunction(name, expFuncs[ordinalIndex].Address, expFuncs[ordinalIndex].Ordinal);
+                _exceptions.Add(exception);
             }
-
+            
             return expFuncs;
         }
 
@@ -551,64 +679,103 @@ namespace PeNet
         /// <returns>The image resource directory.</returns>
         private IMAGE_RESOURCE_DIRECTORY ParseImageResourceDirectory(byte[] buff, uint offsetFirstRescDir)
         {
+            if (offsetFirstRescDir == 0)
+                return null;
+
             // Parse the root directory.
             var root = new IMAGE_RESOURCE_DIRECTORY(buff, offsetFirstRescDir, offsetFirstRescDir);
 
-            // Parse the second stage (type)
-            foreach(var de in root.DirectoryEntries)
+            try
             {
-                de.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
-                    buff, 
-                    offsetFirstRescDir + de.OffsetToDirectory, 
-                    offsetFirstRescDir
-                    );
-
-                // Parse the third stage (name/IDs)
-                foreach(var de2 in de.ResourceDirectory.DirectoryEntries)
+                // Parse the second stage (type)
+                foreach (var de in root.DirectoryEntries)
                 {
-                    de2.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
+                    de.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
                         buff,
-                        offsetFirstRescDir + de2.OffsetToDirectory,
+                        offsetFirstRescDir + de.OffsetToDirectory,
                         offsetFirstRescDir
                         );
 
-                    // Parse the forth stage (language) with the data.
-                    foreach(var de3 in de2.ResourceDirectory.DirectoryEntries)
+                    // Parse the third stage (name/IDs)
+                    foreach (var de2 in de.ResourceDirectory.DirectoryEntries)
                     {
-                        de3.ResourceDataEntry = new IMAGE_RESOURCE_DATA_ENTRY(buff, offsetFirstRescDir + de3.OffsetToData);
+                        de2.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
+                            buff,
+                            offsetFirstRescDir + de2.OffsetToDirectory,
+                            offsetFirstRescDir
+                            );
+
+                        // Parse the forth stage (language) with the data.
+                        foreach (var de3 in de2.ResourceDirectory.DirectoryEntries)
+                        {
+                            de3.ResourceDataEntry = new IMAGE_RESOURCE_DATA_ENTRY(buff,
+                                offsetFirstRescDir + de3.OffsetToData);
+                        }
                     }
                 }
             }
+            catch (Exception exception)
+            {
+                _exceptions.Add(exception);
+                HasValidResourceDir = false;
+            }
+            
 
             return root;
         }
 
         private RUNTIME_FUNCTION[] ParseExceptionDirectory(byte[] buff, uint offset, uint size)
         {
+            if (Is32Bit || offset == 0)
+                return null;
+
             var sizeOfRuntimeFunction = 0xC;
             var rf = new RUNTIME_FUNCTION[size/sizeOfRuntimeFunction];
 
-            for (var i = 0; i < rf.Length; i++)
+            try
             {
-                rf[i] = new RUNTIME_FUNCTION(buff, (uint) (offset + i*sizeOfRuntimeFunction), ImageSectionHeaders);
+                for (var i = 0; i < rf.Length; i++)
+                {
+                    rf[i] = new RUNTIME_FUNCTION(buff, (uint) (offset + i*sizeOfRuntimeFunction), ImageSectionHeaders);
+                }
+            }
+            catch (Exception exception)
+            {
+                _exceptions.Add(exception);
+                HasValidExceptionDir = false;
             }
 
             return rf;
         }
 
-        private IMAGE_BASE_RELOCATION[] ParseRelocationDirectory(byte[] buff, uint offset, uint size, IMAGE_SECTION_HEADER[] sh)
+        private IMAGE_BASE_RELOCATION[] ParseRelocationDirectory(
+            byte[] buff, 
+            uint offset, 
+            uint size,
+            IMAGE_SECTION_HEADER[] sh)
         {
+            if (offset == 0)
+                return null;
+
             var imageBaseRelocations = new List<IMAGE_BASE_RELOCATION>();
             var rvaOffset = Utility.RVAtoFileMapping(offset, sh);
             var currentBlock = rvaOffset;
 
-            while(true)
+            try
             {
-                if (currentBlock >= rvaOffset + size - 8)
-                    break;
+                while (true)
+                {
+                    if (currentBlock >= rvaOffset + size - 8)
+                        break;
 
-                imageBaseRelocations.Add(new IMAGE_BASE_RELOCATION(buff, currentBlock, size));
-                currentBlock += imageBaseRelocations.Last().SizeOfBlock;
+                    imageBaseRelocations.Add(new IMAGE_BASE_RELOCATION(buff, currentBlock, size));
+                    currentBlock += imageBaseRelocations.Last().SizeOfBlock;
+                }
+            }
+            catch (Exception exception)
+            {
+                _exceptions.Add(exception);
+                HasValidRelocDir = false;
             }
 
             return imageBaseRelocations.ToArray();
@@ -618,8 +785,10 @@ namespace PeNet
         ///     Tries to parse the PE file and checks all directories.
         /// </summary>
         /// <param name="file">Path to a possible PE file.</param>
-        /// <returns>True if the file could be parsed as a PE file and
-        /// all directories are valid.</returns>
+        /// <returns>
+        ///     True if the file could be parsed as a PE file and
+        ///     all directories are valid.
+        /// </returns>
         public static bool IsValidPEFile(string file)
         {
             PeFile pe;
@@ -635,9 +804,9 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Tests is a file is a PE file based on the MZ
-        /// header. It is not checked if the PE file is correct
-        /// in all other parts.
+        ///     Tests is a file is a PE file based on the MZ
+        ///     header. It is not checked if the PE file is correct
+        ///     in all other parts.
         /// </summary>
         /// <param name="file">Path to a possible PE file.</param>
         /// <returns>True if the MZ header is set.</returns>
@@ -657,7 +826,7 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Returns if the file is a PE file and 64 Bit.
+        ///     Returns if the file is a PE file and 64 Bit.
         /// </summary>
         /// <param name="file">Path to a possible PE file.</param>
         /// <returns>True if file is PE and x64.</returns>
@@ -670,7 +839,7 @@ namespace PeNet
             {
                 dosHeader = new IMAGE_DOS_HEADER(buff);
                 is64 = Utility.BytesToUInt16(buff, dosHeader.e_lfanew + 0x4) ==
-                      (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
+                       (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
             }
             catch (Exception)
             {
@@ -681,7 +850,7 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Returns if the file is a PE file and 32 Bit.
+        ///     Returns if the file is a PE file and 32 Bit.
         /// </summary>
         /// <param name="file">Path to a possible PE file.</param>
         /// <returns>True if file is PE and x32.</returns>
@@ -694,7 +863,7 @@ namespace PeNet
             {
                 dosHeader = new IMAGE_DOS_HEADER(buff);
                 is32 = Utility.BytesToUInt16(buff, dosHeader.e_lfanew + 0x4) ==
-                      (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386;
+                       (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386;
             }
             catch (Exception)
             {
