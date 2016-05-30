@@ -108,32 +108,32 @@ namespace PeNet
         /// <summary>
         ///     Returns true if the Export directory is valid.
         /// </summary>
-        public bool HasValidExportDir { get; private set; } = true;
+        public bool HasValidExportDir => ImageExportDirectory != null;
 
         /// <summary>
         ///     Returns true if the Import directory is valid.
         /// </summary>
-        public bool HasValidImportDir { get; private set; } = true;
+        public bool HasValidImportDir => ImageImportDescriptors != null;
 
         /// <summary>
         ///     Returns true if the Resource directory is valid.
         /// </summary>
-        public bool HasValidResourceDir { get; private set; } = true;
+        public bool HasValidResourceDir => ImageResourceDirectory != null;
 
         /// <summary>
         ///     Returns true if the Exception directory is valid.
         /// </summary>
-        public bool HasValidExceptionDir { get; private set; } = true;
+        public bool HasValidExceptionDir => Exceptions != null;
 
         /// <summary>
         ///     Returns true if the Security directory is valid.
         /// </summary>
-        public bool HasValidSecurityDir { get; private set; } = true;
+        public bool HasValidSecurityDir => WinCertificate != null;
 
         /// <summary>
         ///     Returns true if the Relocation Directory is valid.
         /// </summary>
-        public bool HasValidRelocDir { get; private set; } = true;
+        public bool HasValidRelocDir => ImageRelocationDirectory != null;
 
         /// <summary>
         ///     Returns true if the DLL flag in the
@@ -493,7 +493,6 @@ namespace PeNet
             catch (Exception exception)
             {
                 Exceptions.Add(exception);
-                HasValidExportDir = false;
             }
 
             return imageExportDirectory;
@@ -527,7 +526,6 @@ namespace PeNet
             catch (Exception exception)
             {
                 Exceptions.Add(exception);
-                HasValidSecurityDir = false;
             }
 
             return wc;
@@ -585,7 +583,7 @@ namespace PeNet
             catch (Exception exception)
             {
                 Exceptions.Add(exception);
-                HasValidImportDir = false;
+                return null;
             }
 
             return impFuncs.ToArray();
@@ -624,7 +622,7 @@ namespace PeNet
             catch (Exception exception)
             {
                 Exceptions.Add(exception);
-                HasValidImportDir = false;
+                return null;
             }
 
 
@@ -637,16 +635,18 @@ namespace PeNet
             IMAGE_SECTION_HEADER[] sh
             )
         {
-            if (ed == null)
+            if (ed == null || ed.AddressOfFunctions == 0)
                 return null;
 
             var expFuncs = new ExportFunction[ed.NumberOfFunctions];
-            var funcOffsetPointer = Utility.RVAtoFileMapping(ed.AddressOfFunctions, sh);
-            var ordOffset = Utility.RVAtoFileMapping(ed.AddressOfNameOrdinals, sh);
-            var nameOffsetPointer = Utility.RVAtoFileMapping(ed.AddressOfNames, sh);
 
             try
             {
+                
+                var funcOffsetPointer = Utility.RVAtoFileMapping(ed.AddressOfFunctions, sh);
+                var ordOffset = Utility.RVAtoFileMapping(ed.AddressOfNameOrdinals, sh);
+                var nameOffsetPointer = Utility.RVAtoFileMapping(ed.AddressOfNames, sh);
+
                 //Get addresses
                 for (uint i = 0; i < expFuncs.Length; i++)
                 {
@@ -734,7 +734,7 @@ namespace PeNet
             catch (Exception exception)
             {
                 Exceptions.Add(exception);
-                HasValidResourceDir = false;
+                return null;
             }
 
 
@@ -759,7 +759,7 @@ namespace PeNet
             catch (Exception exception)
             {
                 Exceptions.Add(exception);
-                HasValidExceptionDir = false;
+                return null;
             }
 
             return rf;
@@ -792,7 +792,7 @@ namespace PeNet
             catch (Exception exception)
             {
                 Exceptions.Add(exception);
-                HasValidRelocDir = false;
+                return null;
             }
 
             return imageBaseRelocations.ToArray();

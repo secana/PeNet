@@ -47,9 +47,9 @@ namespace PEditor
             tbStatusBarLocation.Text = file;
 
             // Parse the PE file
-            if(!PeFile.IsValidPEFile(file))
+            if(!PeFile.IsPEFile(file))
             {
-                MessageBox.Show("Not a valid PE file.");
+                MessageBox.Show("Not a PE file.");
                 return;
             }
 

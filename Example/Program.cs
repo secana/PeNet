@@ -9,21 +9,8 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            var files = Directory.GetFiles(@"C:\windows\system32", "*.dll");
-
-            foreach (var file in files)
-            {
-                Console.WriteLine(file);
-                var pe = new PeNet.PeFile(file);
-                Console.WriteLine(pe.ToString());
-
-                foreach (var exception in pe.Exceptions)
-                {
-                    Console.WriteLine(exception.Message);
-                }
-                Console.WriteLine("\n\n");
-            }
-
+            var file = @"C:\Local Virus Copies\a0aa14a840157acf5109f9a6a3018ed895d56fc5690d71415a5fbccc3e6795b7";
+            var pe = new PeNet.PeFile(file);
 
             Console.WriteLine("Finished");
             Console.ReadKey();
