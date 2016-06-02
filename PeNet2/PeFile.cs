@@ -419,16 +419,25 @@ namespace PeNet
 
                 _alreadyParsedPKCS7 = true;
 
-                if (WinCertificate == null)
+                try
                 {
-                    return null;
-                }
 
-                if (WinCertificate.wCertificateType ==
-                    (ushort) Constants.WinCertificateType.WIN_CERT_TYPE_PKCS_SIGNED_DATA)
+                    if (WinCertificate == null)
+                    {
+                        return null;
+                    }
+
+                    if (WinCertificate.wCertificateType ==
+                        (ushort) Constants.WinCertificateType.WIN_CERT_TYPE_PKCS_SIGNED_DATA)
+                    {
+                        var cert = WinCertificate.bCertificate;
+                        _pkcs7 = new X509Certificate2(cert);
+                    }
+                }
+                catch (Exception exception)
                 {
-                    var cert = WinCertificate.bCertificate;
-                    _pkcs7 = new X509Certificate2(cert);
+                    Exceptions.Add(exception);
+                    return null;
                 }
 
                 return _pkcs7;
