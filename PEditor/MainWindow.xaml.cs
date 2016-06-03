@@ -197,8 +197,12 @@ namespace PEditor
             // Clear the tree.
             tbResources.Items.Clear();
 
+
             // ROOT
             var rd = peFile.ImageResourceDirectory;
+
+            if (rd == null)
+                return;
 
             var root = new MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>(null)
             {

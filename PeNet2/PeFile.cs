@@ -181,7 +181,16 @@ namespace PeNet
                     return _imageDosHeader;
 
                 _alreadyParsedDosHeader = true;
-                _imageDosHeader = new IMAGE_DOS_HEADER(Buff);
+
+                try
+                {
+                    _imageDosHeader = new IMAGE_DOS_HEADER(Buff);
+                }
+                catch (Exception exception)
+                {
+                    Exceptions.Add(exception);
+                }
+                
                 return _imageDosHeader;
             }
         }
@@ -197,7 +206,15 @@ namespace PeNet
                     return _imageNtHeaders;
 
                 _alreadyParsedNtHeaders = true;
-                _imageNtHeaders = new IMAGE_NT_HEADERS(Buff, ImageDosHeader.e_lfanew, Is64Bit);
+                try
+                {
+                    _imageNtHeaders = new IMAGE_NT_HEADERS(Buff, ImageDosHeader.e_lfanew, Is64Bit);
+                }
+                catch (Exception exception)
+                {
+                    Exceptions.Add(exception);
+                }
+                
                 return _imageNtHeaders;
             }
         }
@@ -214,11 +231,19 @@ namespace PeNet
 
                 _alreadyParsedSectionHeaders = true;
 
-                _imageSectionHeaders = ParseImageSectionHeaders(
-                    Buff,
-                    ImageNtHeaders.FileHeader.NumberOfSections,
-                    ImageDosHeader.e_lfanew + _secHeaderOffset
-                    );
+                try
+                {
+                    _imageSectionHeaders = ParseImageSectionHeaders(
+                        Buff,
+                        ImageNtHeaders.FileHeader.NumberOfSections,
+                        ImageDosHeader.e_lfanew + _secHeaderOffset
+                        );
+                }
+                catch (Exception exception)
+                {
+                    Exceptions.Add(exception);
+                }
+
 
                 return _imageSectionHeaders;
             }
@@ -236,19 +261,27 @@ namespace PeNet
 
                 _alreadyParsedExportDirectory = true;
 
-                if (
-                    ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Export]
-                        .VirtualAddress == 0)
-                    return _imageExportDirectory;
-
-                _imageExportDirectory = ParseImageExportDirectory(
-                    Buff,
-                    Utility.RVAtoFileMapping(
+                try
+                {
+                    if (
                         ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Export]
-                            .VirtualAddress,
-                        ImageSectionHeaders
-                        )
-                    );
+                            .VirtualAddress == 0)
+                        return _imageExportDirectory;
+
+                    _imageExportDirectory = ParseImageExportDirectory(
+                        Buff,
+                        Utility.RVAtoFileMapping(
+                            ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Export]
+                                .VirtualAddress,
+                            ImageSectionHeaders
+                            )
+                        );
+                }
+                catch (Exception exception)
+                {
+                    Exceptions.Add(exception);
+                }
+                
                 return _imageExportDirectory;
             }
         }
@@ -265,17 +298,25 @@ namespace PeNet
 
                 _alreadyParsedImportDirectory = true;
 
-                if (ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Import]
-                    .VirtualAddress == 0)
-                    return null;
+                try
+                {
+                    if (ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Import]
+                        .VirtualAddress == 0)
+                        return null;
 
-                _imageImportDescriptors = ParseImportDescriptors(
-                    Buff,
-                    Utility.RVAtoFileMapping(
-                        ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Import]
-                            .VirtualAddress,
-                        ImageSectionHeaders)
-                    );
+                    _imageImportDescriptors = ParseImportDescriptors(
+                        Buff,
+                        Utility.RVAtoFileMapping(
+                            ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Import]
+                                .VirtualAddress,
+                            ImageSectionHeaders)
+                        );
+                }
+                catch (Exception exception)
+                {
+                    Exceptions.Add(exception);
+                }
+                
                 return _imageImportDescriptors;
             }
         }
@@ -292,13 +333,22 @@ namespace PeNet
 
 
                 _alreadyParsedRelocationDirectory = true;
-                _imagerRelocationDirectory = ParseRelocationDirectory(
+
+                try
+                {
+                    _imagerRelocationDirectory = ParseRelocationDirectory(
                     Buff,
                     ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.BaseReloc]
                         .VirtualAddress,
                     ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.BaseReloc].Size,
                     ImageSectionHeaders
                     );
+                }
+                catch (Exception exception)
+                {
+                    Exceptions.Add(exception);
+                }
+                
 
                 return _imagerRelocationDirectory;
             }
@@ -315,7 +365,15 @@ namespace PeNet
                     return _exportedFunctions;
 
                 _alreadyParsedExportedFuntions = true;
-                _exportedFunctions = ParseExportedFunctions(Buff, ImageExportDirectory, ImageSectionHeaders);
+
+                try
+                {
+                    _exportedFunctions = ParseExportedFunctions(Buff, ImageExportDirectory, ImageSectionHeaders);
+                }
+                catch (Exception exception)
+                {
+                    Exceptions.Add(exception);
+                }
 
                 return _exportedFunctions;
             }
@@ -332,7 +390,16 @@ namespace PeNet
                     return _importedFunctions;
 
                 _alreadyParsedImportedFunctions = true;
-                _importedFunctions = ParseImportedFunctions(Buff, ImageImportDescriptors, ImageSectionHeaders);
+
+                try
+                {
+                    _importedFunctions = ParseImportedFunctions(Buff, ImageImportDescriptors, ImageSectionHeaders);
+                }
+                catch (Exception exception)
+                {
+                    Exceptions.Add(exception);
+                }
+                
                 return _importedFunctions;
             }
         }
@@ -348,13 +415,23 @@ namespace PeNet
                     return _imageResourceDirectory;
 
                 _alreadyParsedResourceDirectory = true;
-                _imageResourceDirectory = ParseImageResourceDirectory(
-                    Buff,
-                    Utility.RVAtoFileMapping(
-                        ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Resource]
-                            .VirtualAddress,
-                        ImageSectionHeaders)
-                    );
+
+                try
+                {
+                    _imageResourceDirectory = ParseImageResourceDirectory(
+                        Buff,
+                        Utility.RVAtoFileMapping(
+                            ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Resource]
+                                .VirtualAddress,
+                            ImageSectionHeaders)
+                        );
+
+                }
+                catch (Exception exception)
+                {
+                    Exceptions.Add(exception);
+                }
+
                 return _imageResourceDirectory;
             }
         }
@@ -371,15 +448,23 @@ namespace PeNet
 
                 _alreadyParsedExceptionDirectory = true;
 
-                _runtimeFunctions = ParseExceptionDirectory(
-                    Buff,
-                    Utility.RVAtoFileMapping(
-                        ImageNtHeaders.OptionalHeader.DataDirectory[(uint) Constants.DataDirectoryIndex.Exception]
-                            .VirtualAddress,
-                        ImageSectionHeaders
-                        ),
-                    ImageNtHeaders.OptionalHeader.DataDirectory[(uint) Constants.DataDirectoryIndex.Exception].Size
-                    );
+                try
+                {
+                    _runtimeFunctions = ParseExceptionDirectory(
+                        Buff,
+                        Utility.RVAtoFileMapping(
+                            ImageNtHeaders.OptionalHeader.DataDirectory[(uint) Constants.DataDirectoryIndex.Exception]
+                                .VirtualAddress,
+                            ImageSectionHeaders
+                            ),
+                        ImageNtHeaders.OptionalHeader.DataDirectory[(uint) Constants.DataDirectoryIndex.Exception].Size
+                        );
+                }
+                catch (Exception exception)
+                {
+                    Exceptions.Add(exception);
+                }
+                
 
                 return _runtimeFunctions;
             }
@@ -396,11 +481,20 @@ namespace PeNet
                     return _winCertificate;
 
                 _alreadyParsedSecurityDirectory = true;
-                _winCertificate = ParseImageSecurityDirectory(
-                    Buff,
-                    ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Security]
-                        .VirtualAddress
-                    );
+
+                try
+                {
+                    _winCertificate = ParseImageSecurityDirectory(
+                        Buff,
+                        ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Security]
+                            .VirtualAddress
+                        );
+                }
+                catch (Exception exception)
+                {
+                    Exceptions.Add(exception);
+                }
+                
 
                 return _winCertificate;
             }
@@ -517,7 +611,18 @@ namespace PeNet
         {
             if (PKCS7 == null)
                 return null;
-            return new CrlUrlList(PKCS7);
+
+            CrlUrlList list = null;
+            try
+            {
+                list = new CrlUrlList(PKCS7);
+            }
+            catch (Exception exception)
+            {
+                Exceptions.Add(exception);
+            }
+
+            return list;
         }
 
 
