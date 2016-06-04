@@ -76,9 +76,9 @@ namespace PeNet.Structures
         private void ParseTypeOffsets()
         {
             var list = new List<TypeOffset>();
-            for(uint i = 0; i < (SizeOfBlock-8)/2; i += 2)
+            for(uint i = 0; i < (SizeOfBlock-8)/2; i++)
             {
-                list.Add(new TypeOffset(_buff, _offset + 8 + i));
+                list.Add(new TypeOffset(_buff, _offset + 8 + i*2));
             }
             TypeOffsets = list.ToArray();
         }
