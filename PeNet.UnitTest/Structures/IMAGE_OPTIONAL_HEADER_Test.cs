@@ -632,7 +632,7 @@ namespace PeNet.UnitTest.Structures
 #endregion
 
         [TestMethod]
-        public void Constructor64BitWorks_Test()
+        public void OptionalHeaderConstructor64BitWorks_Test()
         {
             var optHeader = new IMAGE_OPTIONAL_HEADER(_rawImageOptionalHeader64Bit, 2, true);
 
@@ -648,7 +648,7 @@ namespace PeNet.UnitTest.Structures
         }
 
         [TestMethod]
-        public void Constructor32BitWorks_Test()
+        public void OptionalHeaderConstructor32BitWorks_Test()
         {
             var optHeader = new IMAGE_OPTIONAL_HEADER(_rawImageOptionalHeader32Bit, 2, false);
 

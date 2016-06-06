@@ -42,7 +42,7 @@ namespace PeNet.UnitTest.Structures
         }
 
         [TestMethod]
-        public void ConstructorWorks_Test()
+        public void ImageBaseRelocationConstructorWorks_Test()
         {
             var ibr = new IMAGE_BASE_RELOCATION(_rawImageBaseRelocCorrect, 2, 12);
 
