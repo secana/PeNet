@@ -25,14 +25,17 @@ namespace PeNet.Structures
     public class IMAGE_DOS_HEADER
     {
         private readonly byte[] _buff;
+        private readonly uint _offset;
 
         /// <summary>
         ///     Create a new IMAGE_DOS_HEADER object.
         /// </summary>
         /// <param name="buff">Byte buffer containing a PE file.</param>
-        public IMAGE_DOS_HEADER(byte[] buff)
+        /// <param name="offset">Offset in the buffer to the DOS header.</param>
+        public IMAGE_DOS_HEADER(byte[] buff, uint offset)
         {
             _buff = buff;
+            _offset = offset;
         }
 
         /// <summary>
@@ -40,8 +43,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_magic
         {
-            get { return Utility.BytesToUInt16(_buff, 0x00); }
-            set { Utility.SetUInt16(value, 0x00, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x00); }
+            set { Utility.SetUInt16(value, _offset + 0x00, _buff); }
         }
 
         /// <summary>
@@ -49,8 +52,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_cblp
         {
-            get { return Utility.BytesToUInt16(_buff, 0x02); }
-            set { Utility.SetUInt16(value, 0x02, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x02); }
+            set { Utility.SetUInt16(value, _offset + 0x02, _buff); }
         }
 
         /// <summary>
@@ -58,8 +61,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_cp
         {
-            get { return Utility.BytesToUInt16(_buff, 0x04); }
-            set { Utility.SetUInt16(value, 0x04, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x04); }
+            set { Utility.SetUInt16(value, _offset + 0x04, _buff); }
         }
 
         /// <summary>
@@ -67,8 +70,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_crlc
         {
-            get { return Utility.BytesToUInt16(_buff, 0x06); }
-            set { Utility.SetUInt16(value, 0x06, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x06); }
+            set { Utility.SetUInt16(value, _offset + 0x06, _buff); }
         }
 
         /// <summary>
@@ -76,8 +79,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_cparhdr
         {
-            get { return Utility.BytesToUInt16(_buff, 0x08); }
-            set { Utility.SetUInt16(value, 0x08, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x08); }
+            set { Utility.SetUInt16(value, _offset + 0x08, _buff); }
         }
 
         /// <summary>
@@ -85,8 +88,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_minalloc
         {
-            get { return Utility.BytesToUInt16(_buff, 0x0A); }
-            set { Utility.SetUInt16(value, 0x0A, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x0A); }
+            set { Utility.SetUInt16(value, _offset + 0x0A, _buff); }
         }
 
         /// <summary>
@@ -94,8 +97,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_maxalloc
         {
-            get { return Utility.BytesToUInt16(_buff, 0x0C); }
-            set { Utility.SetUInt16(value, 0x0C, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x0C); }
+            set { Utility.SetUInt16(value, _offset + 0x0C, _buff); }
         }
 
         /// <summary>
@@ -103,8 +106,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_ss
         {
-            get { return Utility.BytesToUInt16(_buff, 0x0E); }
-            set { Utility.SetUInt16(value, 0x0E, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x0E); }
+            set { Utility.SetUInt16(value, _offset + 0x0E, _buff); }
         }
 
         /// <summary>
@@ -112,8 +115,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_sp
         {
-            get { return Utility.BytesToUInt16(_buff, 0x10); }
-            set { Utility.SetUInt16(value, 0x10, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x10); }
+            set { Utility.SetUInt16(value, _offset + 0x10, _buff); }
         }
 
         /// <summary>
@@ -121,8 +124,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_csum
         {
-            get { return Utility.BytesToUInt16(_buff, 0x12); }
-            set { Utility.SetUInt16(value, 0x12, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x12); }
+            set { Utility.SetUInt16(value, _offset + 0x12, _buff); }
         }
 
         /// <summary>
@@ -130,8 +133,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_ip
         {
-            get { return Utility.BytesToUInt16(_buff, 0x14); }
-            set { Utility.SetUInt16(value, 0x14, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x14); }
+            set { Utility.SetUInt16(value, _offset + 0x14, _buff); }
         }
 
         /// <summary>
@@ -139,8 +142,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_cs
         {
-            get { return Utility.BytesToUInt16(_buff, 0x16); }
-            set { Utility.SetUInt16(value, 0x16, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x16); }
+            set { Utility.SetUInt16(value, _offset + 0x16, _buff); }
         }
 
         /// <summary>
@@ -148,8 +151,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_lfarlc
         {
-            get { return Utility.BytesToUInt16(_buff, 0x18); }
-            set { Utility.SetUInt16(value, 0x18, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x18); }
+            set { Utility.SetUInt16(value, _offset + 0x18, _buff); }
         }
 
         /// <summary>
@@ -157,8 +160,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_ovno
         {
-            get { return Utility.BytesToUInt16(_buff, 0x1A); }
-            set { Utility.SetUInt16(value, 0x1A, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x1A); }
+            set { Utility.SetUInt16(value, _offset + 0x1A, _buff); }
         }
 
         /// <summary>
@@ -170,18 +173,18 @@ namespace PeNet.Structures
             {
                 return new[]
                 {
-                    Utility.BytesToUInt16(_buff, 0x1C),
-                    Utility.BytesToUInt16(_buff, 0x1E),
-                    Utility.BytesToUInt16(_buff, 0x20),
-                    Utility.BytesToUInt16(_buff, 0x22)
+                    Utility.BytesToUInt16(_buff, _offset + 0x1C),
+                    Utility.BytesToUInt16(_buff, _offset + 0x1E),
+                    Utility.BytesToUInt16(_buff, _offset + 0x20),
+                    Utility.BytesToUInt16(_buff, _offset + 0x22)
                 };
             }
             set
             {
-                Utility.SetUInt16(value[0], 0x1C, _buff);
-                Utility.SetUInt16(value[1], 0x1E, _buff);
-                Utility.SetUInt16(value[2], 0x20, _buff);
-                Utility.SetUInt16(value[3], 0x22, _buff);
+                Utility.SetUInt16(value[0], _offset + 0x1C, _buff);
+                Utility.SetUInt16(value[1], _offset + 0x1E, _buff);
+                Utility.SetUInt16(value[2], _offset + 0x20, _buff);
+                Utility.SetUInt16(value[3], _offset + 0x22, _buff);
             }
         }
 
@@ -190,8 +193,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_oemid
         {
-            get { return Utility.BytesToUInt16(_buff, 0x24); }
-            set { Utility.SetUInt16(value, 0x24, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x24); }
+            set { Utility.SetUInt16(value, _offset + 0x24, _buff); }
         }
 
         /// <summary>
@@ -199,8 +202,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_oeminfo
         {
-            get { return Utility.BytesToUInt16(_buff, 0x26); }
-            set { Utility.SetUInt16(value, 0x26, _buff); }
+            get { return Utility.BytesToUInt16(_buff, _offset + 0x26); }
+            set { Utility.SetUInt16(value, _offset + 0x26, _buff); }
         }
 
         /// <summary>
@@ -212,30 +215,30 @@ namespace PeNet.Structures
             {
                 return new[]
                 {
-                    Utility.BytesToUInt16(_buff, 0x28),
-                    Utility.BytesToUInt16(_buff, 0x2A),
-                    Utility.BytesToUInt16(_buff, 0x2C),
-                    Utility.BytesToUInt16(_buff, 0x2E),
-                    Utility.BytesToUInt16(_buff, 0x30),
-                    Utility.BytesToUInt16(_buff, 0x32),
-                    Utility.BytesToUInt16(_buff, 0x34),
-                    Utility.BytesToUInt16(_buff, 0x36),
-                    Utility.BytesToUInt16(_buff, 0x38),
-                    Utility.BytesToUInt16(_buff, 0x3A)
+                    Utility.BytesToUInt16(_buff, _offset + 0x28),
+                    Utility.BytesToUInt16(_buff, _offset + 0x2A),
+                    Utility.BytesToUInt16(_buff, _offset + 0x2C),
+                    Utility.BytesToUInt16(_buff, _offset + 0x2E),
+                    Utility.BytesToUInt16(_buff, _offset + 0x30),
+                    Utility.BytesToUInt16(_buff, _offset + 0x32),
+                    Utility.BytesToUInt16(_buff, _offset + 0x34),
+                    Utility.BytesToUInt16(_buff, _offset + 0x36),
+                    Utility.BytesToUInt16(_buff, _offset + 0x38),
+                    Utility.BytesToUInt16(_buff, _offset + 0x3A)
                 };
             }
             set
             {
-                Utility.SetUInt16(value[0], 0x28, _buff);
-                Utility.SetUInt16(value[1], 0x2A, _buff);
-                Utility.SetUInt16(value[2], 0x2C, _buff);
-                Utility.SetUInt16(value[3], 0x2E, _buff);
-                Utility.SetUInt16(value[4], 0x30, _buff);
-                Utility.SetUInt16(value[5], 0x32, _buff);
-                Utility.SetUInt16(value[6], 0x34, _buff);
-                Utility.SetUInt16(value[7], 0x36, _buff);
-                Utility.SetUInt16(value[8], 0x38, _buff);
-                Utility.SetUInt16(value[9], 0x3A, _buff);
+                Utility.SetUInt16(value[0], _offset + 0x28, _buff);
+                Utility.SetUInt16(value[1], _offset + 0x2A, _buff);
+                Utility.SetUInt16(value[2], _offset + 0x2C, _buff);
+                Utility.SetUInt16(value[3], _offset + 0x2E, _buff);
+                Utility.SetUInt16(value[4], _offset + 0x30, _buff);
+                Utility.SetUInt16(value[5], _offset + 0x32, _buff);
+                Utility.SetUInt16(value[6], _offset + 0x34, _buff);
+                Utility.SetUInt16(value[7], _offset + 0x36, _buff);
+                Utility.SetUInt16(value[8], _offset + 0x38, _buff);
+                Utility.SetUInt16(value[9], _offset + 0x3A, _buff);
             }
         }
 
@@ -244,8 +247,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint e_lfanew
         {
-            get { return Utility.BytesToUInt32(_buff, 0x3C); }
-            set { Utility.SetUInt32(value, 0x3C, _buff); }
+            get { return Utility.BytesToUInt32(_buff, _offset + 0x3C); }
+            set { Utility.SetUInt32(value, _offset + 0x3C, _buff); }
         }
 
         /// <summary>
