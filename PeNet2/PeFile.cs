@@ -185,7 +185,7 @@ namespace PeNet
 
                 try
                 {
-                    _imageDosHeader = new IMAGE_DOS_HEADER(Buff);
+                    _imageDosHeader = new IMAGE_DOS_HEADER(Buff, 0);
                 }
                 catch (Exception exception)
                 {
@@ -948,7 +948,7 @@ namespace PeNet
             IMAGE_DOS_HEADER dosHeader = null;
             try
             {
-                dosHeader = new IMAGE_DOS_HEADER(buff);
+                dosHeader = new IMAGE_DOS_HEADER(buff, 0);
             }
             catch (Exception)
             {
@@ -969,7 +969,7 @@ namespace PeNet
             bool is64;
             try
             {
-                dosHeader = new IMAGE_DOS_HEADER(buff);
+                dosHeader = new IMAGE_DOS_HEADER(buff, 0);
                 is64 = Utility.BytesToUInt16(buff, dosHeader.e_lfanew + 0x4) ==
                        (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
             }
@@ -993,7 +993,7 @@ namespace PeNet
             bool is32;
             try
             {
-                dosHeader = new IMAGE_DOS_HEADER(buff);
+                dosHeader = new IMAGE_DOS_HEADER(buff, 0);
                 is32 = Utility.BytesToUInt16(buff, dosHeader.e_lfanew + 0x4) ==
                        (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386;
             }

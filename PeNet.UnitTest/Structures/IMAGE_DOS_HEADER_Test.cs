@@ -106,7 +106,7 @@ namespace PeNet.UnitTest.Structures
         [TestMethod]
         public void ImageDosHeaderConstructorWorks_Test()
         {
-            var idh = new IMAGE_DOS_HEADER(_rawDosHeader);
+            var idh = new IMAGE_DOS_HEADER(_rawDosHeader, 0);
             Assert.AreEqual((uint) 0x1100, idh.e_magic);
             Assert.AreEqual((uint) 0x3322, idh.e_cblp);
             Assert.AreEqual((uint) 0x5544, idh.e_cp);
