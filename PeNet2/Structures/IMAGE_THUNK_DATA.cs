@@ -23,11 +23,9 @@ namespace PeNet.Structures
     ///     The thunk data is used by for the imports
     ///     in the import section.
     /// </summary>
-    public class IMAGE_THUNK_DATA
+    public class IMAGE_THUNK_DATA : AbstractStructure
     {
-        private readonly byte[] _buff;
         private readonly bool _is64Bit;
-        private readonly uint _offset;
 
         /// <summary>
         ///     Create a new IMAGE_THUNK_DATA object.
@@ -36,9 +34,8 @@ namespace PeNet.Structures
         /// <param name="offset">Raw offset of the thunk data.</param>
         /// <param name="is64Bit">Set to true if the PE file is a x64 application.</param>
         public IMAGE_THUNK_DATA(byte[] buff, uint offset, bool is64Bit)
+            : base(buff, offset)
         {
-            _buff = buff;
-            _offset = offset;
             _is64Bit = is64Bit;
         }
 
@@ -48,13 +45,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong AddressOfData
         {
-            get { return _is64Bit ? Utility.BytesToUInt64(_buff, _offset) : Utility.BytesToUInt32(_buff, _offset); }
+            get { return _is64Bit ? Utility.BytesToUInt64(Buff, Offset) : Utility.BytesToUInt32(Buff, Offset); }
             set
             {
                 if (!_is64Bit)
-                    Utility.SetUInt32((uint) value, _offset, _buff);
+                    Utility.SetUInt32((uint) value, Offset, Buff);
                 else
-                    Utility.SetUInt64(value, _offset, _buff);
+                    Utility.SetUInt64(value, Offset, Buff);
             }
         }
 

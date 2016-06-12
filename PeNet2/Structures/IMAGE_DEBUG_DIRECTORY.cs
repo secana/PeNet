@@ -23,10 +23,8 @@ namespace PeNet.Structures
     /// The IMAGE_DEBUG_DIRECTORY hold debug information
     /// about the PE file.
     /// </summary>
-    public class IMAGE_DEBUG_DIRECTORY
+    public class IMAGE_DEBUG_DIRECTORY : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly uint _offset;
 
         /// <summary>
         /// Create a new IMAGE_DEBUG_DIRECTORY object.
@@ -34,9 +32,8 @@ namespace PeNet.Structures
         /// <param name="buff">PE binary as byte array.</param>
         /// <param name="offset">Offset to the debug struct in the binary.</param>
         public IMAGE_DEBUG_DIRECTORY(byte[] buff, uint offset)
+            : base(buff, offset)
         {
-            _buff = buff;
-            _offset = offset;
         }
 
         /// <summary>
@@ -44,8 +41,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Characteristics
         {
-            get { return Utility.BytesToUInt32(_buff, _offset); }
-            set { Utility.SetUInt32(value, _offset, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset); }
+            set { Utility.SetUInt32(value, Offset, Buff); }
         }
 
         /// <summary>
@@ -53,8 +50,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
-            set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
+            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
         }
 
         /// <summary>
@@ -62,8 +59,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorVersion
         {
-            get { return Utility.BytesToUInt16(_buff, _offset + 0x8); }
-            set { Utility.SetUInt16(value, _offset + 0x8, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset + 0x8); }
+            set { Utility.SetUInt16(value, Offset + 0x8, Buff); }
         }
 
         /// <summary>
@@ -71,8 +68,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorVersion
         {
-            get { return Utility.BytesToUInt16(_buff, _offset + 0xa); }
-            set { Utility.SetUInt16(value, _offset + 0xa, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset + 0xa); }
+            set { Utility.SetUInt16(value, Offset + 0xa, Buff); }
         }
 
         /// <summary>
@@ -83,8 +80,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Type
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0xc); }
-            set { Utility.SetUInt32(value, _offset + 0xc, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0xc); }
+            set { Utility.SetUInt32(value, Offset + 0xc, Buff); }
         }
 
         /// <summary>
@@ -92,8 +89,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint SizeOfData
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x10); }
-            set { Utility.SetUInt32(value, _offset + 0x10, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x10); }
+            set { Utility.SetUInt32(value, Offset + 0x10, Buff); }
         }
 
         /// <summary>
@@ -101,8 +98,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint AddressOfRawData
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x14); }
-            set { Utility.SetUInt32(value, _offset + 0x14, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x14); }
+            set { Utility.SetUInt32(value, Offset + 0x14, Buff); }
         }
 
         /// <summary>
@@ -110,8 +107,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint PointerToRawData
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x18); }
-            set { Utility.SetUInt32(value, _offset + 0x18, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x18); }
+            set { Utility.SetUInt32(value, Offset + 0x18, Buff); }
         }
 
         /// <summary>

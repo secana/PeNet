@@ -26,11 +26,8 @@ namespace PeNet.Structures
     /// The IMAGE_BASE_RELOCATION structure holds information needed to relocate
     /// the image to another virtual address.
     /// </summary>
-    public class IMAGE_BASE_RELOCATION
+    public class IMAGE_BASE_RELOCATION : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly uint _offset;
-
         /// <summary>
         /// Create a new IMAGE_BASE_RELOCATION object.
         /// </summary>
@@ -40,10 +37,8 @@ namespace PeNet.Structures
         /// <exception cref="ArgumentOutOfRangeException">If the SizeOfBlock is bigger than the size
         /// of the Relocation Directory.</exception>
         public IMAGE_BASE_RELOCATION(byte[] buff, uint offset, uint relocSize)
+            : base(buff, offset)
         {
-            _buff = buff;
-            _offset = offset;
-
             if(SizeOfBlock > relocSize)
                 throw new ArgumentOutOfRangeException(nameof(relocSize), "SizeOfBlock cannot be bigger than size of the Relocation Directory.");
 
@@ -55,8 +50,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint VirtualAddress
         {
-            get { return Utility.BytesToUInt32(_buff, _offset); }
-            set { Utility.SetUInt32(value, _offset, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset); }
+            set { Utility.SetUInt32(value, Offset, Buff); }
         }
 
         /// <summary>
@@ -64,8 +59,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint SizeOfBlock
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
-            set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
+            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
         }
 
         /// <summary>
@@ -78,7 +73,7 @@ namespace PeNet.Structures
             var list = new List<TypeOffset>();
             for(uint i = 0; i < (SizeOfBlock-8)/2; i++)
             {
-                list.Add(new TypeOffset(_buff, _offset + 8 + i*2));
+                list.Add(new TypeOffset(Buff, Offset + 8 + i*2));
             }
             TypeOffsets = list.ToArray();
         }

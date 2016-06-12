@@ -122,7 +122,7 @@ namespace PEditor
             if (!peFile.IsSigned)
                 return;
 
-            cbCertIsValid.IsChecked = Utility.IsSignatureValid(peFile.Location);
+            cbCertIsValid.IsChecked = Utility.IsSignatureValid(peFile.FileLocation);
             cbCertIsSigned.IsChecked = peFile.IsSigned;
             cbCertIsValidChain.IsChecked = peFile.IsValidCertChain(true);
             tbCertLength.Text = Utility.ToHexString(peFile.WinCertificate.dwLength);
@@ -321,7 +321,7 @@ namespace PEditor
 
         private void SetFileInfo(PeFile peFile)
         {
-            tbLocation.Text = peFile.Location;
+            tbLocation.Text = peFile.FileLocation;
             tbSize.Text = $"{peFile.FileSize} Bytes";
             tbMD5.Text = peFile.MD5;
             tbSHA1.Text = peFile.SHA1;

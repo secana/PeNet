@@ -22,20 +22,16 @@ namespace PeNet.Structures
     /// <summary>
     ///     The IMAGE_DATA_DIRECTORY struct represents the data directory,
     /// </summary>
-    public class IMAGE_DATA_DIRECTORY
+    public class IMAGE_DATA_DIRECTORY : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly uint _offset;
-
         /// <summary>
         ///     Create a new IMAGE_DATA_DIRECTORY object.
         /// </summary>
         /// <param name="buff">PE binary as byte array.</param>
         /// <param name="offset">Raw offset to the data directory in the binary.</param>
         public IMAGE_DATA_DIRECTORY(byte[] buff, uint offset)
+            : base(buff, offset)
         {
-            _buff = buff;
-            _offset = offset;
         }
 
         /// <summary>
@@ -43,8 +39,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint VirtualAddress
         {
-            get { return Utility.BytesToUInt32(_buff, _offset); }
-            set { Utility.SetUInt32(value, _offset, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset); }
+            set { Utility.SetUInt32(value, Offset, Buff); }
         }
 
         /// <summary>
@@ -52,8 +48,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Size
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
-            set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
+            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
         }
 
         /// <summary>

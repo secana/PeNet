@@ -87,7 +87,7 @@ namespace PeNet
         public PeFile(string peFile)
             : this(File.ReadAllBytes(peFile))
         {
-            Location = peFile;
+            FileLocation = peFile;
         }
 
         /// <summary>
@@ -566,9 +566,9 @@ namespace PeNet
         public int FileSize => Buff.Length;
 
         /// <summary>
-        ///     Location of the PE file if it was opened by location.
+        ///     FileLocation of the PE file if it was opened by location.
         /// </summary>
-        public string Location { get; private set; }
+        public string FileLocation { get; private set; }
 
         /// <summary>
         ///     Checks if cert is from a trusted CA with a valid certificate chain.
@@ -687,7 +687,7 @@ namespace PeNet
                         }
                         else // Import by name
                         {
-                            var ibn = new IMAGE_IMPORT_BY_NAME(buff, Utility.RVAtoFileMapping(t.AddressOfData, sh));
+                            var ibn = new IMAGE_IMPORT_BY_NAME(buff, Utility.RVAtoFileMapping((uint) t.AddressOfData, sh));
                             impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint));
                         }
 

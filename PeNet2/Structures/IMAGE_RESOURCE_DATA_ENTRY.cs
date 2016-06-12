@@ -6,20 +6,16 @@ namespace PeNet.Structures
     /// The IMAGE_RESOURCE_DATA_ENTRY points to the data of
     /// the resources in the PE file like version info, strings etc.
     /// </summary>
-    public class IMAGE_RESOURCE_DATA_ENTRY
+    public class IMAGE_RESOURCE_DATA_ENTRY : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly uint _offset;
-
         /// <summary>
         /// Construct a IMAGE_RESOURCE_DATA_ENTRY at a given offset.
         /// </summary>
         /// <param name="buff">PE file as a byte array.</param>
         /// <param name="offset">Offset to the structure in the file.</param>
         public IMAGE_RESOURCE_DATA_ENTRY(byte[] buff, uint offset)
+            : base(buff, offset)
         {
-            _buff = buff;
-            _offset = offset;
         }
 
         /// <summary>
@@ -27,8 +23,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint OffsetToData
         {
-            get { return Utility.BytesToUInt32(_buff, _offset); }
-            set { Utility.SetUInt32(value, _offset, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset); }
+            set { Utility.SetUInt32(value, Offset, Buff); }
         }
 
         /// <summary>
@@ -36,8 +32,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Size1
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
-            set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
+            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
         }
 
         /// <summary>
@@ -45,8 +41,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint CodePage
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x8); }
-            set { Utility.SetUInt32(value, _offset + 0x8, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x8); }
+            set { Utility.SetUInt32(value, Offset + 0x8, Buff); }
         }
 
         /// <summary>
@@ -54,8 +50,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Reserved
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0xC); }
-            set { Utility.SetUInt32(value, _offset + 0xC, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0xC); }
+            set { Utility.SetUInt32(value, Offset + 0xC, Buff); }
         }
 
         /// <summary>

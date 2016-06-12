@@ -25,20 +25,16 @@ namespace PeNet.Structures
     ///     exception handling in x64 applications
     ///     and to walk the stack.
     /// </summary>
-    public class UNWIND_CODE
+    public class UNWIND_CODE : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly uint _offset;
-
         /// <summary>
         ///     Create a new UNWIND_INFO object.
         /// </summary>
         /// <param name="buff">A PE file as a byte array.</param>
         /// <param name="offset">Raw offset of the UNWIND_INFO.</param>
         public UNWIND_CODE(byte[] buff, uint offset)
+            : base(buff, offset)
         {
-            _buff = buff;
-            _offset = offset;
         }
 
         /// <summary>
@@ -46,27 +42,27 @@ namespace PeNet.Structures
         /// </summary>
         public byte CodeOffset
         {
-            get { return _buff[_offset]; }
-            set { _buff[_offset] = value; }
+            get { return Buff[Offset]; }
+            set { Buff[Offset] = value; }
         }
 
         /// <summary>
         ///     Unwind operation.
         /// </summary>
-        public byte UnwindOp => (byte) (_buff[_offset + 0x1] & 0xF);
+        public byte UnwindOp => (byte) (Buff[Offset + 0x1] & 0xF);
 
         /// <summary>
         ///     Operation information.
         /// </summary>
-        public byte Opinfo => (byte) (_buff[_offset + 0x1] >> 0x4);
+        public byte Opinfo => (byte) (Buff[Offset + 0x1] >> 0x4);
 
         /// <summary>
         ///     Frame offset.
         /// </summary>
         public ushort FrameOffset
         {
-            get { return Utility.BytesToUInt16(_buff, _offset + 0x2); }
-            set { Utility.SetUInt16(value, _offset + 0x2, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset + 0x2); }
+            set { Utility.SetUInt16(value, Offset + 0x2, Buff); }
         }
 
         /// <summary>

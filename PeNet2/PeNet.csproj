@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ImpHash\ImportHash.cs" />
+    <Compile Include="Structures\AbstractStructure.cs" />
     <Compile Include="Structures\Copyright.cs" />
     <Compile Include="Structures\IMAGE_BASE_RELOCATION.cs" />
     <Compile Include="Structures\IMAGE_DEBUG_DIRECTORY.cs" />

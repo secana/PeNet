@@ -24,11 +24,8 @@ namespace PeNet.Structures
     ///     The resource directory entry represents one entry (e.g. icon)
     ///     in a resource directory.
     /// </summary>
-    public class IMAGE_RESOURCE_DIRECTORY_ENTRY
+    public class IMAGE_RESOURCE_DIRECTORY_ENTRY : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly uint _offset;
-
         /// <summary>
         ///     Create a new instance of the IMAGE_RESOURCE_DIRECTORY_ENTRY.
         /// </summary>
@@ -36,10 +33,8 @@ namespace PeNet.Structures
         /// <param name="offset">Raw offset to the entry.</param>
         /// <param name="resourceDirOffset">Raw offset to the resource dir.</param>
         public IMAGE_RESOURCE_DIRECTORY_ENTRY(byte[] buff, uint offset, uint resourceDirOffset)
+            : base(buff, offset)
         {
-            _offset = offset;
-            _buff = buff;
-
             // Resolve the Name
             try
             {
@@ -50,7 +45,7 @@ namespace PeNet.Structures
                 else if (IsNamedEntry)
                 {
                     var nameAddress = resourceDirOffset + (Name & 0x7FFFFFFF);
-                    var unicodeName = new IMAGE_RESOURCE_DIR_STRING_U(_buff, nameAddress);
+                    var unicodeName = new IMAGE_RESOURCE_DIR_STRING_U(Buff, nameAddress);
                     ResolvedName = unicodeName.NameString;
                 }
             }
@@ -76,8 +71,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Name
         {
-            get { return Utility.BytesToUInt32(_buff, _offset); }
-            set { Utility.SetUInt32(value, _offset, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset); }
+            set { Utility.SetUInt32(value, Offset, Buff); }
         }
 
         /// <summary>
@@ -100,8 +95,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint OffsetToData
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
-            set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
+            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
         }
 
         /// <summary>

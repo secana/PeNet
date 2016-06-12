@@ -49,7 +49,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Column="0" Grid.Row="0">Location:</Label>
+                            <Label Grid.Column="0" Grid.Row="0">FileLocation:</Label>
                             <TextBox Name="tbLocation" Grid.Column="1" Grid.Row="0" IsReadOnly="True" HorizontalAlignment="Stretch" />
 
                             <Label Grid.Column="0" Grid.Row="1">Size:</Label>

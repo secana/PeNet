@@ -24,11 +24,8 @@ namespace PeNet.Structures
     ///     a function in the exception header for x64
     ///     applications.
     /// </summary>
-    public class RUNTIME_FUNCTION
+    public class RUNTIME_FUNCTION : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly uint _offset;
-
         /// <summary>
         ///     Create a new RUNTIME_FUNCTION object.
         /// </summary>
@@ -36,10 +33,8 @@ namespace PeNet.Structures
         /// <param name="offset">Raw offset of the runtime function struct.</param>
         /// <param name="sh">Section Headers of the PE file.</param>
         public RUNTIME_FUNCTION(byte[] buff, uint offset, IMAGE_SECTION_HEADER[] sh)
+            : base(buff, offset)
         {
-            _buff = buff;
-            _offset = offset;
-
             ResolvedUnwindInfo = GetUnwindInfo(sh);
         }
 
@@ -57,7 +52,7 @@ namespace PeNet.Structures
                 ? UnwindInfo & 0xFFFE
                 : UnwindInfo;
 
-            var uw = new UNWIND_INFO(_buff, Utility.RVAtoFileMapping(uwAddress, sh));
+            var uw = new UNWIND_INFO(Buff, Utility.RVAtoFileMapping(uwAddress, sh));
             return uw;
         }
 
@@ -66,8 +61,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint FunctionStart
         {
-            get { return Utility.BytesToUInt32(_buff, _offset); }
-            set { Utility.SetUInt32(value, _offset, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset); }
+            set { Utility.SetUInt32(value, Offset, Buff); }
         }
 
         /// <summary>
@@ -75,8 +70,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint FunctionEnd
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
-            set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
+            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
         }
 
         /// <summary>
@@ -84,8 +79,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint UnwindInfo
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x8); }
-            set { Utility.SetUInt32(value, _offset + 0x8, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x8); }
+            set { Utility.SetUInt32(value, Offset + 0x8, Buff); }
         }
 
         /// <summary>

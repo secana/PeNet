@@ -24,11 +24,8 @@ namespace PeNet.Structures
     /// The copyright ASCII (not 0-terminated) string of the PE file
     /// if any is given.
     /// </summary>
-    public class Copyright
+    public class Copyright : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly uint _offset;
-
         /// <summary>
         /// Create a new copyright object.
         /// </summary>
@@ -36,10 +33,8 @@ namespace PeNet.Structures
         /// <param name="offset">Offset to the copyright string in the binary.</param>
         /// <param name="size">Size of the copyright string.</param>
         public Copyright(byte[] buff, uint offset, uint size)
+            : base(buff, offset)
         {
-            _buff = buff;
-            _offset = offset;
-
             CopyrightString = ParseCopyrightString(buff, offset, size);
         }
 
