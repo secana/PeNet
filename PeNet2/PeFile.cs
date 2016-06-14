@@ -42,7 +42,6 @@ namespace PeNet
         private bool _alreadyParsedDosHeader;
 
         private bool _alreadyParsedExportedFuntions;
-        private bool _alreadyParsedImportDirectory;
         private bool _alreadyParsedImportedFunctions;
         private bool _alreadyParsedNtHeaders;
         private bool _alreadyParsedPKCS7;
@@ -52,7 +51,6 @@ namespace PeNet
         private bool _alreadyParsedSecurityDirectory;
         private ExportFunction[] _exportedFunctions;
         private IMAGE_DOS_HEADER _imageDosHeader;
-        private IMAGE_IMPORT_DESCRIPTOR[] _imageImportDescriptors;
         private IMAGE_NT_HEADERS _imageNtHeaders;
         private IMAGE_RESOURCE_DIRECTORY _imageResourceDirectory;
         private IMAGE_BASE_RELOCATION[] _imagerRelocationDirectory;
@@ -61,12 +59,11 @@ namespace PeNet
         private ImportFunction[] _importedFunctions;
         private string _md5;
         private X509Certificate2 _pkcs7;
-        private RUNTIME_FUNCTION[] _runtimeFunctions;
         private string _sha1;
         private string _sha256;
         private WIN_CERTIFICATE _winCertificate;
 
-        private DataDirectories _dataDirectories;
+        private readonly DataDirectories _dataDirectories;
 
         /// <summary>
         ///     Create a new PeFile object.
@@ -259,42 +256,12 @@ namespace PeNet
         ///     Access the IMAGE_EXPORT_DIRECTORY of the PE file.
         /// </summary>
         public IMAGE_EXPORT_DIRECTORY ImageExportDirectory => _dataDirectories.ImageExportDirectories;
-        
+
 
         /// <summary>
         ///     Access the IMAGE_IMPORT_DESCRIPTOR array of the PE file.
         /// </summary>
-        public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors
-        {
-            get
-            {
-                if (_alreadyParsedImportDirectory)
-                    return _imageImportDescriptors;
-
-                _alreadyParsedImportDirectory = true;
-
-                try
-                {
-                    if (ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Import]
-                        .VirtualAddress == 0)
-                        return null;
-
-                    _imageImportDescriptors = ParseImportDescriptors(
-                        Buff,
-                        Utility.RVAtoFileMapping(
-                            ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Import]
-                                .VirtualAddress,
-                            ImageSectionHeaders)
-                        );
-                }
-                catch (Exception exception)
-                {
-                    Exceptions.Add(exception);
-                }
-                
-                return _imageImportDescriptors;
-            }
-        }
+        public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors => _dataDirectories.ImageImportDescriptors;
 
         /// <summary>
         ///     Access the IMAGE_BASE_RELOCATION array of the PE file.

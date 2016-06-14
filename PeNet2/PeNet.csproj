@@ -64,6 +64,7 @@
     <Compile Include="DataDirectories.cs" />
     <Compile Include="ImpHash\ImportHash.cs" />
     <Compile Include="Parser\ImageExportDirectoriesParser.cs" />
+    <Compile Include="Parser\ImageImportDescriptorsParser.cs" />
     <Compile Include="Parser\RuntimeFunctionsParser.cs" />
     <Compile Include="Parser\SafeParser.cs" />
     <Compile Include="Structures\AbstractStructure.cs" />
