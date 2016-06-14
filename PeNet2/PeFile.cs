@@ -38,14 +38,12 @@ namespace PeNet
         /// </summary>
         public readonly byte[] Buff;
 
-        private bool _alreadyParsedDosHeader;
         private bool _alreadyParsedExportedFuntions;
         private bool _alreadyParsedImportedFunctions;
         private bool _alreadyParsedNtHeaders;
         private bool _alreadyParsedPKCS7;
         private bool _alreadyParsedSectionHeaders;
         private ExportFunction[] _exportedFunctions;
-        private IMAGE_DOS_HEADER _imageDosHeader;
         private IMAGE_NT_HEADERS _imageNtHeaders;
         private IMAGE_SECTION_HEADER[] _imageSectionHeaders;
         private string _impHash;
@@ -55,6 +53,7 @@ namespace PeNet
         private string _sha1;
         private string _sha256;
 
+        private readonly StructureParser _structureParser;
         private readonly DataDirectories _dataDirectories;
 
         /// <summary>
@@ -64,6 +63,8 @@ namespace PeNet
         public PeFile(byte[] buff)
         {
             Buff = buff;
+            _structureParser = new StructureParser(Buff);
+
             _secHeaderOffset = (uint) (Is64Bit ? 0x108 : 0xF8);
 
             _dataDirectories = new DataDirectories(
@@ -85,7 +86,7 @@ namespace PeNet
         }
 
         /// <summary>
-        ///     List with all exceptions that have occured during the PE header parsing.
+        ///     List with all exceptions that have occurred during the PE header parsing.
         /// </summary>
         public List<Exception> Exceptions { get; } = new List<Exception>();
 
@@ -168,27 +169,7 @@ namespace PeNet
         /// <summary>
         ///     Access the IMAGE_DOS_HEADER of the PE file.
         /// </summary>
-        public IMAGE_DOS_HEADER ImageDosHeader
-        {
-            get
-            {
-                if (_alreadyParsedDosHeader)
-                    return _imageDosHeader;
-
-                _alreadyParsedDosHeader = true;
-
-                try
-                {
-                    _imageDosHeader = new IMAGE_DOS_HEADER(Buff, 0);
-                }
-                catch (Exception exception)
-                {
-                    Exceptions.Add(exception);
-                }
-                
-                return _imageDosHeader;
-            }
-        }
+        public IMAGE_DOS_HEADER ImageDosHeader => _structureParser.ImageDosHeader;
 
         /// <summary>
         ///     Access the IMAGE_NT_HEADERS of the PE file.
@@ -384,7 +365,7 @@ namespace PeNet
 
         /// <summary>
         ///     The Import Hash of the binary if any imports are
-        ///     given esle null;
+        ///     given else null;
         /// </summary>
         public string ImpHash => _impHash ?? (_impHash = new ImportHash(ImportedFunctions).ImpHash);
 
@@ -401,7 +382,7 @@ namespace PeNet
         /// <summary>
         ///     Checks if cert is from a trusted CA with a valid certificate chain.
         /// </summary>
-        /// <param name="online">Check certificate chain online or offline.</param>
+        /// <param name="online">Check certificate chain online or off-line.</param>
         /// <returns>True of cert chain is valid and from a trusted CA.</returns>
         public bool IsValidCertChain(bool online)
         {
@@ -810,7 +791,7 @@ namespace PeNet
         ///     Creates a string representation of the objects
         ///     properties.
         /// </summary>
-        /// <returns>PE Header propteries as a string.</returns>
+        /// <returns>PE Header properties as a string.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("PE HEADER:\n");

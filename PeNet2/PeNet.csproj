@@ -65,12 +65,14 @@
     <Compile Include="ImpHash\ImportHash.cs" />
     <Compile Include="Parser\ImageBaseRelocationsParser.cs" />
     <Compile Include="Parser\ImageDebugDirectoryParser.cs" />
+    <Compile Include="Parser\ImageDosHeaderParser.cs" />
     <Compile Include="Parser\ImageExportDirectoriesParser.cs" />
     <Compile Include="Parser\ImageImportDescriptorsParser.cs" />
     <Compile Include="Parser\ImageResourceDirectoryParser.cs" />
     <Compile Include="Parser\RuntimeFunctionsParser.cs" />
     <Compile Include="Parser\SafeParser.cs" />
     <Compile Include="Parser\WinCertificateParser.cs" />
+    <Compile Include="StructureParser.cs" />
     <Compile Include="Structures\AbstractStructure.cs" />
     <Compile Include="Structures\Copyright.cs" />
     <Compile Include="Structures\IMAGE_BASE_RELOCATION.cs" />

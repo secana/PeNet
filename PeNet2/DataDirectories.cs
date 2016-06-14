@@ -33,6 +33,8 @@ namespace PeNet
         public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory => _imageDebugDirectoryParser?.GetParserTarget();
         public RUNTIME_FUNCTION[] RuntimeFunctions => _runtimeFunctionsParser?.GetParserTarget();
 
+        public List<Exception> RvaToFileMappingExceptions = new List<Exception>();
+
         private ImageExportDirectoriesParser _imageExportDirectoriesParser;
         private RuntimeFunctionsParser _runtimeFunctionsParser;
         private ImageImportDescriptorsParser _imageImportDescriptorsParser;
@@ -44,7 +46,7 @@ namespace PeNet
         private readonly byte[] _buff;
         private readonly IMAGE_DATA_DIRECTORY[] _dataDirectories;
         private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
-        private List<Exception> _rvaToFileMappingExceptions = new List<Exception>();
+       
         private readonly bool _is32Bit;
 
         public DataDirectories(
@@ -169,7 +171,7 @@ namespace PeNet
             }
             catch (Exception exception)
             {
-                _rvaToFileMappingExceptions.Add(exception);
+                RvaToFileMappingExceptions.Add(exception);
             }
 
             return rawAddress;
