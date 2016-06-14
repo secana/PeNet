@@ -23,43 +23,10 @@ namespace PeNet.UnitTest.Structures
     [TestClass]
     public class IMAGE_FILE_HEADER_Test
     {
-        private readonly byte[] _rawFileHeader =
-        {
-            0xff, // Junk
-            0xff,
-
-            0x00, // Machine
-            0x11,
-
-            0x22, // NumberOfSections
-            0x33,
-
-            0x44, // TimeDateStamp
-            0x55,
-            0x66,
-            0x77,
-
-            0x88, // PointerToSymbolTable
-            0x99,
-            0xaa,
-            0xbb,
-
-            0xcc, // NumberOfSymbols
-            0xdd,
-            0xee,
-            0xff,
-
-            0x11, // SizeOfOptionalHeader
-            0x22,
-
-            0x33, // Characteristics
-            0x44
-        };
-
         [TestMethod]
         public void ImageFileHeaderConstructorWorks_Test()
         {
-            var fileHeader = new IMAGE_FILE_HEADER(_rawFileHeader, 2);
+            var fileHeader = new IMAGE_FILE_HEADER(RawStructures.RawFileHeader, 2);
             Assert.AreEqual((ushort) 0x1100, fileHeader.Machine);
             Assert.AreEqual((ushort) 0x3322, fileHeader.NumberOfSections);
             Assert.AreEqual((uint) 0x77665544, fileHeader.TimeDateStamp);

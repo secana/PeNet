@@ -16,19 +16,12 @@ limitations under the License.
 *************************************************************************/
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
     [TestClass]
-    public class IMAGE_IMPORT_BY_NAME_Test
+    public class IMAGE_NT_HEADERS_Test
     {
-        [TestMethod]
-        public void ImageImportByNameConstructorWorks_Test()
-        {
-            var importByName = new IMAGE_IMPORT_BY_NAME(RawStructures.RawImportByName, 2);
-            Assert.AreEqual((ushort) 0x1100, importByName.Hint);
-            Assert.AreEqual("Hello World", importByName.Name);
-        }
+        
     }
 }

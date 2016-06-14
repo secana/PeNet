@@ -23,36 +23,10 @@ namespace PeNet.UnitTest.Structures
     [TestClass]
     public class IMAGE_RESOURCE_DATA_ENTRY_Test
     {
-        private readonly byte[] _rawResourceDataEntry =
-        {
-            0xff, // Junk
-            0xff,
-
-            0x00, // OffsetToData
-            0x11,
-            0x22,
-            0x33,
-
-            0x44, // Size1
-            0x55,
-            0x66,
-            0x77,
-
-            0x88, // CodePage
-            0x99,
-            0xaa,
-            0xbb,
-
-            0xcc, // Reserved
-            0xdd,
-            0xee,
-            0xff
-        };
-
         [TestMethod]
         public void ImageResourceDataEntryConstructorWorks_Test()
         {
-            var resourceDataEntry = new IMAGE_RESOURCE_DATA_ENTRY(_rawResourceDataEntry, 2);
+            var resourceDataEntry = new IMAGE_RESOURCE_DATA_ENTRY(RawStructures.RawResourceDataEntry, 2);
 
             Assert.AreEqual((uint) 0x33221100, resourceDataEntry.OffsetToData);
             Assert.AreEqual((uint) 0x77665544, resourceDataEntry.Size1);

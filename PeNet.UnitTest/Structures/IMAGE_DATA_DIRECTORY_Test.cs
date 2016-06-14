@@ -23,29 +23,10 @@ namespace PeNet.UnitTest.Structures
     [TestClass]
     public class IMAGE_DATA_DIRECTORY_Test
     {
-        private readonly byte[] _rawDataDirectory =
-        {
-            0xff, // Junk
-            0xff,
-
-            0x11, // VirtualAddress
-            0x22,
-            0x33,
-            0x44,
-
-            0x55, // Size
-            0x66,
-            0x77,
-            0x88,
-
-            0xff, // Junk
-            0xff
-        };
-
         [TestMethod]
         public void ImageDataDirectoryConstructorWorks_Test()
         {
-            var dataDirectory = new IMAGE_DATA_DIRECTORY(_rawDataDirectory, 2);
+            var dataDirectory = new IMAGE_DATA_DIRECTORY(RawStructures.RawDataDirectory, 2);
 
             Assert.AreEqual((uint) 0x44332211, dataDirectory.VirtualAddress);
             Assert.AreEqual((uint) 0x88776655, dataDirectory.Size);

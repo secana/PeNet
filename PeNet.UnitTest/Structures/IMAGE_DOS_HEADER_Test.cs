@@ -23,90 +23,10 @@ namespace PeNet.UnitTest.Structures
     [TestClass]
     public class IMAGE_DOS_HEADER_Test
     {
-        private readonly byte[] _rawDosHeader = {
-            0x00, // e_magic
-            0x11,
-
-            0x22, // e_cblp
-            0x33,
-
-            0x44, // e_cp
-            0x55,
-
-            0x66, // e_crlc
-            0x77,
-
-            0x88, // e_cparhdr
-            0x99,
-
-            0xaa, // e_minalloc
-            0xbb,
-
-            0xcc, // e_maxalloc
-            0xdd,
-
-            0xff, // e_ss
-            0x00,
-
-            0x11, // e_sp
-            0x22, 
-
-            0x33, // e_csum
-            0x44,
-
-            0x55, // e_ip
-            0x66,
-
-            0x77, // e_cs
-            0x88,
-
-            0x99, // e_lfalc
-            0xaa,
-
-            0xbb, // e_ovno
-            0xcc,
-
-            0xdd, // e_res
-            0xee,
-            0xff,
-            0x00,
-            0x11,
-            0x22,
-            0x33,
-            0x44,
-
-            0x55, // e_oemid
-            0x66,
-
-            0x77, // e_oeminfo
-            0x88,
-
-            0x99, // e_res2
-            0xaa,
-            0xbb,
-            0xcc,
-            0xdd,
-            0xee,
-            0xff,
-            0x11,
-            0x22,
-            0x33,
-            0x44,
-            0x55,
-            0x66,
-            0x77,
-            0x88,
-            0x99,
-            0xaa,
-            0xbb,
-            0xcc,
-            0xbb
-        };
-
         [TestMethod]
         public void ImageDosHeaderConstructorWorks_Test()
         {
-            var idh = new IMAGE_DOS_HEADER(_rawDosHeader, 0);
+            var idh = new IMAGE_DOS_HEADER(RawStructures.RawDosHeader, 0);
             Assert.AreEqual((uint) 0x1100, idh.e_magic);
             Assert.AreEqual((uint) 0x3322, idh.e_cblp);
             Assert.AreEqual((uint) 0x5544, idh.e_cp);

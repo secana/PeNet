@@ -23,43 +23,10 @@ namespace PeNet.UnitTest.Structures
     [TestClass]
     public class IMAGE_RESOURCE_DIR_STRING_U_Test
     {
-        private readonly byte[] _rawResourceDirStringU =
-        {
-            0xff, // Junk
-            0xff,
-
-            0x0b, // Length
-            0x00,
-
-            // Resource name
-            72, // H
-            0,
-            101, // e
-            0,
-            108, // l
-            0,
-            108, // l
-            0,
-            111, // o
-            0,
-            32, // ' '
-            0,
-            87, // W
-            0,
-            111, // o
-            0,
-            114, // r
-            0,
-            108, // l
-            0,
-            100, // d
-            0
-        };
-
         [TestMethod]
         public void ImageResourceDirStringUConstructorWorks_Test()
         {
-            var resourceDirStringU = new IMAGE_RESOURCE_DIR_STRING_U(_rawResourceDirStringU, 2);
+            var resourceDirStringU = new IMAGE_RESOURCE_DIR_STRING_U(RawStructures.RawResourceDirStringU, 2);
             Assert.AreEqual((uint) 0x000b, resourceDirStringU.Length);
             Assert.AreEqual("Hello World", resourceDirStringU.NameString);
         }

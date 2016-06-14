@@ -23,51 +23,10 @@ namespace PeNet.UnitTest.Structures
     [TestClass]
     public class IMAGE_DEBUG_DIRECTORY_Test
     {
-        private readonly byte[] _rawDebugDirectory = {
-            0xff, // Foo for offset test
-            0xff,
-
-            0x11, // Characteristics
-            0x22,
-            0x33,
-            0x44,
-
-            0x55, // TimeDateStamp
-            0x66,
-            0x77,
-            0x88,
-
-            0x99, // MajorVersion
-            0xaa,
-
-            0xbb, // MinorVersion
-            0xcc,
-
-            0xdd, // Type
-            0xee,
-            0xff,
-            0x11,
-
-            0x22, // SizeOfData
-            0x33,
-            0x44,
-            0x55,
-
-            0x66, // AddressOfRawData
-            0x77,
-            0x88,
-            0x99,
-
-            0xaa, // PointerToRawData
-            0xbb,
-            0xcc,
-            0xdd
-        };
-
         [TestMethod]
         public void ImageDebugDirectoryConstructorWorks_Test()
         {
-            var idd = new IMAGE_DEBUG_DIRECTORY(_rawDebugDirectory, 2);
+            var idd = new IMAGE_DEBUG_DIRECTORY(RawStructures.RawDebugDirectory, 2);
 
             Assert.AreEqual((uint) 0x44332211, idd.Characteristics);
             Assert.AreEqual((uint) 0x88776655, idd.TimeDateStamp);

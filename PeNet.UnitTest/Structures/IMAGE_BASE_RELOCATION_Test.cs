@@ -24,8 +24,6 @@ namespace PeNet.UnitTest.Structures
     [TestClass]
     public class IMAGE_BASE_RELOCATION_Test
     {
-        readonly byte[] _rawImageBaseRelocCorrect = { 0xff, 0xff, 0x00, 0x00, 0x01, 0x00, 0x0c, 0x00, 0x00, 0x00, 0x11, 0x22, 0x33, 0x44 };
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void SizeOfBlockIsBiggerThanRelocDirSize_Test()
@@ -38,13 +36,13 @@ namespace PeNet.UnitTest.Structures
         [ExpectedException(typeof(IndexOutOfRangeException))]
         public void OffsetIsBiggerThanBuffer_Test()
         {
-            var ibr = new IMAGE_BASE_RELOCATION(_rawImageBaseRelocCorrect, 1234, 12);
+            var ibr = new IMAGE_BASE_RELOCATION(RawStructures.RawImageBaseRelocation, 1234, 12);
         }
 
         [TestMethod]
         public void ImageBaseRelocationConstructorWorks_Test()
         {
-            var ibr = new IMAGE_BASE_RELOCATION(_rawImageBaseRelocCorrect, 2, 12);
+            var ibr = new IMAGE_BASE_RELOCATION(RawStructures.RawImageBaseRelocation, 2, 12);
 
             Assert.AreEqual((uint) 0x10000, ibr.VirtualAddress);
             Assert.AreEqual((uint) 0xc, ibr.SizeOfBlock);

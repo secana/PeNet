@@ -23,41 +23,12 @@ namespace PeNet.UnitTest.Structures
     [TestClass]
     public class IMAGE_IMPORT_DESCRIPTOR_Test
     {
-        private readonly byte[] _rawImportDescriptor =
-        {
-            0xff, // Junk
-            0xff,
-
-            0x00, // OriginalFirstThunk / Characteristics
-            0x11,
-            0x22,
-            0x33,
-
-            0x44, // TimeDateStamp
-            0x55,
-            0x66,
-            0x77,
-
-            0x88, // ForwarderChain
-            0x99,
-            0xaa,
-            0xbb,
-
-            0xcc, // Name
-            0xdd,
-            0xee,
-            0xff,
-
-            0x11, // FirstThunk
-            0x22,
-            0x33,
-            0x44
-        };
+        
 
         [TestMethod]
         public void ImageImportDescriptorConstructorWorks_Test()
         {
-            var importDescriptor = new IMAGE_IMPORT_DESCRIPTOR(_rawImportDescriptor, 2);
+            var importDescriptor = new IMAGE_IMPORT_DESCRIPTOR(RawStructures.RawImportDescriptor, 2);
             Assert.AreEqual((uint) 0x33221100, importDescriptor.OriginalFirstThunk);
             Assert.AreEqual((uint) 0x77665544, importDescriptor.TimeDateStamp);
             Assert.AreEqual((uint) 0xbbaa9988, importDescriptor.ForwarderChain);

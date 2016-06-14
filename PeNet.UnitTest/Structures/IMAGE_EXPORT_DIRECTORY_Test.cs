@@ -23,67 +23,10 @@ namespace PeNet.UnitTest.Structures
     [TestClass]
     public class IMAGE_EXPORT_DIRECTORY_Test
     {
-        private readonly byte[] _rawExportDirectory =
-        {
-            0xff, // Junk
-            0xff,
-
-            0x00, // Characteristics
-            0x11,
-            0x22,
-            0x33,
-
-            0x44, // TimeDataStamp
-            0x55,
-            0x66,
-            0x77,
-
-            0x88, // MajorVersion
-            0x99,
-
-            0xaa, // MinorVersion
-            0xbb,
-
-            0xcc, // Name
-            0xdd,
-            0xee,
-            0xff,
-
-            0x22, // Base
-            0x33,
-            0x44,
-            0x55,
-
-            0x11, // NumberOfFunctions
-            0x22,
-            0x33,
-            0x44,
-
-            0x55, // NumberOfNames
-            0x66,
-            0x77,
-            0x88,
-
-            0x99, // AddressOfFunctions
-            0xaa,
-            0xbb,
-            0xcc,
-
-            0xdd, // AddressOfNames
-            0xee,
-            0xff,
-            0x00,
-
-            0x22, // AddressOfNameOrdinals
-            0x33,
-            0x44,
-            0x55
-        };
-
         [TestMethod]
         public void ImageExportDirectoryConstructorWorks_Test()
         {
-            var exportDirectory = new IMAGE_EXPORT_DIRECTORY(_rawExportDirectory, 2);
+            var exportDirectory = new IMAGE_EXPORT_DIRECTORY(RawStructures.RawExportDirectory, 2);
 
             Assert.AreEqual((uint) 0x33221100, exportDirectory.Characteristics);
             Assert.AreEqual((uint) 0x77665544, exportDirectory.TimeDateStamp);
