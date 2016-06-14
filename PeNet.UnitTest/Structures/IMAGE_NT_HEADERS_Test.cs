@@ -16,12 +16,18 @@ limitations under the License.
 *************************************************************************/
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
     [TestClass]
     public class IMAGE_NT_HEADERS_Test
     {
-        
+        [TestMethod]
+        public void ImageNtHeadersConstructorWorks_Test()
+        {
+            var ntHeaders = new IMAGE_NT_HEADERS(RawStructures.RawImageNtHeaders64, 2, true);
+            Assert.AreEqual((uint) 0x33221100, ntHeaders.Signature);
+        }
     }
 }

@@ -1,7 +1,39 @@
-﻿namespace PeNet.UnitTest.Structures
+﻿using System;
+using System.Dynamic;
+
+namespace PeNet.UnitTest.Structures
 {
     public static class RawStructures
     {
+        public static byte[] RawImageNtHeaders64
+        {
+            get
+            {
+                var signature = new byte[]
+                {
+                    0xff, // Junk,
+                    0xff,
+
+                    0x00, // Signature
+                    0x11,
+                    0x22,
+                    0x33
+                };
+
+                var bytes = new byte[6 + 0x70 + 0x14];
+
+                signature.CopyTo(bytes, 0);
+
+                // File Header
+                new byte[0x14].CopyTo(bytes, 6);
+
+                // Optional Header
+                new byte[0x70].CopyTo(bytes ,0x1a);
+
+                return bytes;
+            }
+        }
+
         public static readonly byte[] RawResourceDirStringU =
         {
             0xff, // Junk
