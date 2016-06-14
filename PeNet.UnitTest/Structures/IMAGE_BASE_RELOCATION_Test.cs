@@ -49,10 +49,10 @@ namespace PeNet.UnitTest.Structures
             Assert.AreEqual((uint) 0x10000, ibr.VirtualAddress);
             Assert.AreEqual((uint) 0xc, ibr.SizeOfBlock);
             Assert.AreEqual(2, ibr.TypeOffsets.Length);
-            Assert.AreEqual(0x2211 & 0xF, ibr.TypeOffsets[0].Type);
-            Assert.AreEqual(0x2211 >> 4, ibr.TypeOffsets[0].Offset);
-            Assert.AreEqual(0x4433 & 0xF, ibr.TypeOffsets[1].Type);
-            Assert.AreEqual(0x4433 >> 4, ibr.TypeOffsets[1].Offset);
+            Assert.AreEqual(0x2211 >> 12, ibr.TypeOffsets[0].Type);
+            Assert.AreEqual(0x2211 & 0xfff, ibr.TypeOffsets[0].Offset);
+            Assert.AreEqual(0x4433 >> 12, ibr.TypeOffsets[1].Type);
+            Assert.AreEqual(0x4433 & 0xfff, ibr.TypeOffsets[1].Offset);
         }
     }
 }
