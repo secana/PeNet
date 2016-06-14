@@ -65,7 +65,7 @@ namespace PeNet.UnitTest.Structures
         };
 
         [TestMethod]
-        public void ConstructorWorks_Test()
+        public void ImageDebugDirectoryConstructorWorks_Test()
         {
             var idd = new IMAGE_DEBUG_DIRECTORY(_rawDebugDirectory, 2);
 

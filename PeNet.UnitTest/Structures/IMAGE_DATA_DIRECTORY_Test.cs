@@ -43,7 +43,7 @@ namespace PeNet.UnitTest.Structures
         };
 
         [TestMethod]
-        public void ConstructorWorks_Test()
+        public void ImageDataDirectoryConstructorWorks_Test()
         {
             var dataDirectory = new IMAGE_DATA_DIRECTORY(_rawDataDirectory, 2);
 
