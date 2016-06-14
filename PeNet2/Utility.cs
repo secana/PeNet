@@ -456,7 +456,7 @@ namespace PeNet
         /// <param name="RVA">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static uint RVAtoFileMapping(uint RVA, IMAGE_SECTION_HEADER[] sh)
+        public static uint RVAtoFileMapping(uint RVA, ICollection<IMAGE_SECTION_HEADER> sh)
         {
             var sortedSt = sh.OrderBy(x => x.VirtualAddress).ToList();
             uint vOffset = 0, rOffset = 0;
@@ -496,7 +496,7 @@ namespace PeNet
         /// <param name="RVA">Relative Virutal Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static ulong RVAtoFileMapping(ulong RVA, IMAGE_SECTION_HEADER[] sh)
+        public static ulong RVAtoFileMapping(ulong RVA, ICollection<IMAGE_SECTION_HEADER> sh)
         {
             var sortedSt = sh.OrderBy(x => x.VirtualAddress).ToList();
             uint vOffset = 0, rOffset = 0;

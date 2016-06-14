@@ -61,7 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataDirectories.cs" />
     <Compile Include="ImpHash\ImportHash.cs" />
+    <Compile Include="Parser\ImageExportDirectoriesParser.cs" />
+    <Compile Include="Parser\RuntimeFunctionsParser.cs" />
+    <Compile Include="Parser\SafeParser.cs" />
     <Compile Include="Structures\AbstractStructure.cs" />
     <Compile Include="Structures\Copyright.cs" />
     <Compile Include="Structures\IMAGE_BASE_RELOCATION.cs" />

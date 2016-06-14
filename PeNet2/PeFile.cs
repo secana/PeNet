@@ -28,7 +28,7 @@ namespace PeNet
 {
     /// <summary>
     ///     This class represents a Portable Executable (PE) file and makes the different
-    ///     header and properties accessable.
+    ///     header and properties accessible.
     /// </summary>
     public class PeFile
     {
@@ -41,8 +41,6 @@ namespace PeNet
 
         private bool _alreadyParsedDosHeader;
 
-        private bool _alreadyParsedExceptionDirectory;
-        private bool _alreadyParsedExportDirectory;
         private bool _alreadyParsedExportedFuntions;
         private bool _alreadyParsedImportDirectory;
         private bool _alreadyParsedImportedFunctions;
@@ -54,7 +52,6 @@ namespace PeNet
         private bool _alreadyParsedSecurityDirectory;
         private ExportFunction[] _exportedFunctions;
         private IMAGE_DOS_HEADER _imageDosHeader;
-        private IMAGE_EXPORT_DIRECTORY _imageExportDirectory;
         private IMAGE_IMPORT_DESCRIPTOR[] _imageImportDescriptors;
         private IMAGE_NT_HEADERS _imageNtHeaders;
         private IMAGE_RESOURCE_DIRECTORY _imageResourceDirectory;
@@ -69,6 +66,7 @@ namespace PeNet
         private string _sha256;
         private WIN_CERTIFICATE _winCertificate;
 
+        private DataDirectories _dataDirectories;
 
         /// <summary>
         ///     Create a new PeFile object.
@@ -78,6 +76,13 @@ namespace PeNet
         {
             Buff = buff;
             _secHeaderOffset = (uint) (Is64Bit ? 0x108 : 0xF8);
+
+            _dataDirectories = new DataDirectories(
+                Buff, 
+                ImageNtHeaders?.OptionalHeader?.DataDirectory, 
+                ImageSectionHeaders,
+                Is32Bit
+                );
         }
 
         /// <summary>
@@ -253,39 +258,8 @@ namespace PeNet
         /// <summary>
         ///     Access the IMAGE_EXPORT_DIRECTORY of the PE file.
         /// </summary>
-        public IMAGE_EXPORT_DIRECTORY ImageExportDirectory
-        {
-            get
-            {
-                if (_alreadyParsedExportDirectory)
-                    return _imageExportDirectory;
-
-                _alreadyParsedExportDirectory = true;
-
-                try
-                {
-                    if (
-                        ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Export]
-                            .VirtualAddress == 0)
-                        return _imageExportDirectory;
-
-                    _imageExportDirectory = ParseImageExportDirectory(
-                        Buff,
-                        Utility.RVAtoFileMapping(
-                            ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Export]
-                                .VirtualAddress,
-                            ImageSectionHeaders
-                            )
-                        );
-                }
-                catch (Exception exception)
-                {
-                    Exceptions.Add(exception);
-                }
-                
-                return _imageExportDirectory;
-            }
-        }
+        public IMAGE_EXPORT_DIRECTORY ImageExportDirectory => _dataDirectories.ImageExportDirectories;
+        
 
         /// <summary>
         ///     Access the IMAGE_IMPORT_DESCRIPTOR array of the PE file.
@@ -440,36 +414,7 @@ namespace PeNet
         /// <summary>
         ///     Access the array of RUNTIME_FUNCTION from the Exception header.
         /// </summary>
-        public RUNTIME_FUNCTION[] RuntimeFunctions
-        {
-            get
-            {
-                if (_alreadyParsedExceptionDirectory)
-                    return _runtimeFunctions;
-
-                _alreadyParsedExceptionDirectory = true;
-
-                try
-                {
-                    _runtimeFunctions = ParseExceptionDirectory(
-                        Buff,
-                        Utility.RVAtoFileMapping(
-                            ImageNtHeaders.OptionalHeader.DataDirectory[(uint) Constants.DataDirectoryIndex.Exception]
-                                .VirtualAddress,
-                            ImageSectionHeaders
-                            ),
-                        ImageNtHeaders.OptionalHeader.DataDirectory[(uint) Constants.DataDirectoryIndex.Exception].Size
-                        );
-                }
-                catch (Exception exception)
-                {
-                    Exceptions.Add(exception);
-                }
-                
-
-                return _runtimeFunctions;
-            }
-        }
+        public RUNTIME_FUNCTION[] RuntimeFunctions => _dataDirectories.RuntimeFunctions;
 
         /// <summary>
         ///     Access the WIN_CERTIFICATE from the Security header.
@@ -581,25 +526,6 @@ namespace PeNet
                 return false;
 
             return Utility.IsValidCertChain(PKCS7, online);
-        }
-
-        private IMAGE_EXPORT_DIRECTORY ParseImageExportDirectory(byte[] buff, uint offset)
-        {
-            if (offset == 0)
-                return null;
-
-            IMAGE_EXPORT_DIRECTORY imageExportDirectory = null;
-
-            try
-            {
-                imageExportDirectory = new IMAGE_EXPORT_DIRECTORY(buff, offset);
-            }
-            catch (Exception exception)
-            {
-                Exceptions.Add(exception);
-            }
-
-            return imageExportDirectory;
         }
 
         /// <summary>
@@ -854,30 +780,6 @@ namespace PeNet
 
 
             return root;
-        }
-
-        private RUNTIME_FUNCTION[] ParseExceptionDirectory(byte[] buff, uint offset, uint size)
-        {
-            if (Is32Bit || offset == 0)
-                return null;
-
-            var sizeOfRuntimeFunction = 0xC;
-            var rf = new RUNTIME_FUNCTION[size/sizeOfRuntimeFunction];
-
-            try
-            {
-                for (var i = 0; i < rf.Length; i++)
-                {
-                    rf[i] = new RUNTIME_FUNCTION(buff, (uint) (offset + i*sizeOfRuntimeFunction), ImageSectionHeaders);
-                }
-            }
-            catch (Exception exception)
-            {
-                Exceptions.Add(exception);
-                return null;
-            }
-
-            return rf;
         }
 
         private IMAGE_BASE_RELOCATION[] ParseRelocationDirectory(
