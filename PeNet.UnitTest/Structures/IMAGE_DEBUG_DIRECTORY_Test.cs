@@ -23,7 +23,7 @@ namespace PeNet.UnitTest.Structures
     [TestClass]
     public class IMAGE_DEBUG_DIRECTORY_Test
     {
-        private byte[] _rawDebugDirectory = {
+        private readonly byte[] _rawDebugDirectory = {
             0xff, // Foo for offset test
             0xff,
 
