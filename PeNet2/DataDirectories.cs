@@ -30,7 +30,7 @@ namespace PeNet
         public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory => _imageResourceDirectoryParser?.GetParserTarget();
         public IMAGE_BASE_RELOCATION[] ImageBaseRelocations => _imageBaseRelocationsParser?.GetParserTarget();
         public WIN_CERTIFICATE WinCertificate { get; private set; }
-        public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory { get; private set; }
+        public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory => _imageDebugDirectoryParser?.GetParserTarget();
         public RUNTIME_FUNCTION[] RuntimeFunctions => _runtimeFunctionsParser?.GetParserTarget();
 
         private ImageExportDirectoriesParser _imageExportDirectoriesParser;
@@ -38,6 +38,7 @@ namespace PeNet
         private ImageImportDescriptorsParser _imageImportDescriptorsParser;
         private ImageBaseRelocationsParser _imageBaseRelocationsParser;
         private ImageResourceDirectoryParser _imageResourceDirectoryParser;
+        private ImageDebugDirectoryParser _imageDebugDirectoryParser;
 
         private readonly byte[] _buff;
         private readonly IMAGE_DATA_DIRECTORY[] _dataDirectories;
@@ -67,6 +68,18 @@ namespace PeNet
             _imageImportDescriptorsParser = InitImageImportDescriptorsParser();
             _imageBaseRelocationsParser = InitImageBaseRelocationsParser();
             _imageResourceDirectoryParser = InitImageResourceDirectoryParser();
+            _imageDebugDirectoryParser = InitImageDebugDirectoryParser();
+        }
+
+        private ImageDebugDirectoryParser InitImageDebugDirectoryParser()
+        {
+            var rawAddress =
+                SafeRVAtoFileMapping(_dataDirectories[(int) Constants.DataDirectoryIndex.Debug].VirtualAddress);
+
+            if (rawAddress == null)
+                return null;
+
+            return new ImageDebugDirectoryParser(_buff, rawAddress.Value);
         }
 
         private ImageResourceDirectoryParser InitImageResourceDirectoryParser()

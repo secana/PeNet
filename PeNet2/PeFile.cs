@@ -18,7 +18,6 @@ limitations under the License.
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using PeNet.ImpHash;
@@ -252,7 +251,6 @@ namespace PeNet
         /// </summary>
         public IMAGE_EXPORT_DIRECTORY ImageExportDirectory => _dataDirectories.ImageExportDirectories;
 
-
         /// <summary>
         ///     Access the IMAGE_IMPORT_DESCRIPTOR array of the PE file.
         /// </summary>
@@ -262,6 +260,11 @@ namespace PeNet
         ///     Access the IMAGE_BASE_RELOCATION array of the PE file.
         /// </summary>
         public IMAGE_BASE_RELOCATION[] ImageRelocationDirectory => _dataDirectories.ImageBaseRelocations;
+
+        /// <summary>
+        ///     Access the IMAGE_DEBUG_DIRECTORY of the PE file.
+        /// </summary>
+        public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory => _dataDirectories.ImageDebugDirectory;
 
         /// <summary>
         ///     Access the exported functions as an array of parsed objects.
