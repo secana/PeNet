@@ -19,7 +19,7 @@ using System;
 
 namespace PeNet.Parser
 {
-    public abstract class SafeParser<T>
+    internal abstract class SafeParser<T>
     {
         public SafeParser(byte[] buff, uint offset)
         {

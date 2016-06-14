@@ -42,6 +42,9 @@ namespace PeNet.Structures
             if(SizeOfBlock > relocSize)
                 throw new ArgumentOutOfRangeException(nameof(relocSize), "SizeOfBlock cannot be bigger than size of the Relocation Directory.");
 
+            if(SizeOfBlock == 0)
+                throw new Exception("SizeOfBlock cannot be 0.");
+
             ParseTypeOffsets();
         }
 
@@ -120,7 +123,7 @@ namespace PeNet.Structures
                 get
                 {
                     var to = Utility.BytesToUInt16(_buff, _offset);
-                    return (byte)(to & 0xF);
+                    return (byte)(to >> 12);
                 }
             }
 
@@ -133,7 +136,7 @@ namespace PeNet.Structures
                 get
                 {
                     var to = Utility.BytesToUInt16(_buff, _offset);
-                    return (ushort)(to >> 4);
+                    return (ushort)(to & 0xFFF);
                 }
             }
 

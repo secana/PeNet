@@ -23,12 +23,12 @@ using PeNet.Structures;
 
 namespace PeNet
 {
-    public class DataDirectories
+    internal class DataDirectories
     {
         public IMAGE_EXPORT_DIRECTORY ImageExportDirectories => _imageExportDirectoriesParser?.GetParserTarget();
         public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors => _imageImportDescriptorsParser?.GetParserTarget();
         public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory { get; private set; }
-        public IMAGE_BASE_RELOCATION[] ImageBaseRelocations { get; private set; }
+        public IMAGE_BASE_RELOCATION[] ImageBaseRelocations => _imageBaseRelocationsParser?.GetParserTarget();
         public WIN_CERTIFICATE WinCertificate { get; private set; }
         public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory { get; private set; }
         public RUNTIME_FUNCTION[] RuntimeFunctions => _runtimeFunctionsParser?.GetParserTarget();
@@ -36,6 +36,7 @@ namespace PeNet
         private ImageExportDirectoriesParser _imageExportDirectoriesParser;
         private RuntimeFunctionsParser _runtimeFunctionsParser;
         private ImageImportDescriptorsParser _imageImportDescriptorsParser;
+        private ImageBaseRelocationsParser _imageBaseRelocationsParser;
 
         private readonly byte[] _buff;
         private readonly IMAGE_DATA_DIRECTORY[] _dataDirectories;
@@ -63,6 +64,23 @@ namespace PeNet
             _imageExportDirectoriesParser = InitImageExportDirectoryParser();
             _runtimeFunctionsParser = InitRuntimeFunctionsParser();
             _imageImportDescriptorsParser = InitImageImportDescriptorsParser();
+            _imageBaseRelocationsParser = InitImageBaseRelocationsParser();
+        }
+
+        private ImageBaseRelocationsParser InitImageBaseRelocationsParser()
+        {
+            var rawAddress =
+                SafeRVAtoFileMapping(_dataDirectories[(int) Constants.DataDirectoryIndex.BaseReloc].VirtualAddress);
+
+            if (rawAddress == null)
+                return null;
+
+            return new ImageBaseRelocationsParser(
+                _buff,
+                rawAddress.Value,
+                _dataDirectories[(int) Constants.DataDirectoryIndex.BaseReloc].Size,
+                _sectionHeaders
+                );
         }
 
         private ImageExportDirectoriesParser InitImageExportDirectoryParser()

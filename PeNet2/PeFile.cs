@@ -40,12 +40,10 @@ namespace PeNet
         public readonly byte[] Buff;
 
         private bool _alreadyParsedDosHeader;
-
         private bool _alreadyParsedExportedFuntions;
         private bool _alreadyParsedImportedFunctions;
         private bool _alreadyParsedNtHeaders;
         private bool _alreadyParsedPKCS7;
-        private bool _alreadyParsedRelocationDirectory;
         private bool _alreadyParsedResourceDirectory;
         private bool _alreadyParsedSectionHeaders;
         private bool _alreadyParsedSecurityDirectory;
@@ -53,7 +51,6 @@ namespace PeNet
         private IMAGE_DOS_HEADER _imageDosHeader;
         private IMAGE_NT_HEADERS _imageNtHeaders;
         private IMAGE_RESOURCE_DIRECTORY _imageResourceDirectory;
-        private IMAGE_BASE_RELOCATION[] _imagerRelocationDirectory;
         private IMAGE_SECTION_HEADER[] _imageSectionHeaders;
         private string _impHash;
         private ImportFunction[] _importedFunctions;
@@ -266,35 +263,7 @@ namespace PeNet
         /// <summary>
         ///     Access the IMAGE_BASE_RELOCATION array of the PE file.
         /// </summary>
-        public IMAGE_BASE_RELOCATION[] ImageRelocationDirectory
-        {
-            get
-            {
-                if (_alreadyParsedRelocationDirectory)
-                    return _imagerRelocationDirectory;
-
-
-                _alreadyParsedRelocationDirectory = true;
-
-                try
-                {
-                    _imagerRelocationDirectory = ParseRelocationDirectory(
-                    Buff,
-                    ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.BaseReloc]
-                        .VirtualAddress,
-                    ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.BaseReloc].Size,
-                    ImageSectionHeaders
-                    );
-                }
-                catch (Exception exception)
-                {
-                    Exceptions.Add(exception);
-                }
-                
-
-                return _imagerRelocationDirectory;
-            }
-        }
+        public IMAGE_BASE_RELOCATION[] ImageRelocationDirectory => _dataDirectories.ImageBaseRelocations;
 
         /// <summary>
         ///     Access the exported functions as an array of parsed objects.
@@ -747,39 +716,6 @@ namespace PeNet
 
 
             return root;
-        }
-
-        private IMAGE_BASE_RELOCATION[] ParseRelocationDirectory(
-            byte[] buff,
-            uint offset,
-            uint size,
-            IMAGE_SECTION_HEADER[] sh)
-        {
-            if (offset == 0)
-                return null;
-
-            var imageBaseRelocations = new List<IMAGE_BASE_RELOCATION>();
-            var rvaOffset = Utility.RVAtoFileMapping(offset, sh);
-            var currentBlock = rvaOffset;
-
-            try
-            {
-                while (true)
-                {
-                    if (currentBlock >= rvaOffset + size - 8)
-                        break;
-
-                    imageBaseRelocations.Add(new IMAGE_BASE_RELOCATION(buff, currentBlock, size));
-                    currentBlock += imageBaseRelocations.Last().SizeOfBlock;
-                }
-            }
-            catch (Exception exception)
-            {
-                Exceptions.Add(exception);
-                return null;
-            }
-
-            return imageBaseRelocations.ToArray();
         }
 
         /// <summary>

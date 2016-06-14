@@ -19,7 +19,7 @@ using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    public class ImageExportDirectoriesParser : SafeParser<IMAGE_EXPORT_DIRECTORY>
+    internal class ImageExportDirectoriesParser : SafeParser<IMAGE_EXPORT_DIRECTORY>
     {
         public ImageExportDirectoriesParser(byte[] buff, uint offset)
             : base(buff, offset)

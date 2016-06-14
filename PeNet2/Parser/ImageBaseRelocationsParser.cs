@@ -16,46 +16,47 @@ limitations under the License.
 *************************************************************************/
 
 using System.Collections.Generic;
+using System.Linq;
 using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class ImageImportDescriptorsParser : SafeParser<IMAGE_IMPORT_DESCRIPTOR[]>
+    internal class ImageBaseRelocationsParser : SafeParser<IMAGE_BASE_RELOCATION[]>
     {
-        public ImageImportDescriptorsParser(byte[] buff, uint offset) 
+        private readonly uint _directorySize;
+        private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
+
+        public ImageBaseRelocationsParser(
+            byte[] buff, 
+            uint offset,
+            uint directorySize,
+            IMAGE_SECTION_HEADER[] sectionHeaders
+            ) 
             : base(buff, offset)
         {
+            _directorySize = directorySize;
+            _sectionHeaders = sectionHeaders;
         }
 
-        protected override IMAGE_IMPORT_DESCRIPTOR[] ParseTarget()
+        protected override IMAGE_BASE_RELOCATION[] ParseTarget()
         {
             if (_offset == 0)
                 return null;
 
-            var idescs = new List<IMAGE_IMPORT_DESCRIPTOR>();
-            uint idescSize = 20; // Size of IMAGE_IMPORT_DESCRIPTOR (5 * 4 Byte)
-            uint round = 0;
+            var imageBaseRelocations = new List<IMAGE_BASE_RELOCATION>();
+            var currentBlock = _offset;
+
 
             while (true)
             {
-                var idesc = new IMAGE_IMPORT_DESCRIPTOR(_buff, _offset + idescSize*round);
-
-                // Found the last IMAGE_IMPORT_DESCRIPTOR which is completely null (except TimeDateStamp).
-                if (idesc.OriginalFirstThunk == 0
-                    //&& idesc.TimeDateStamp == 0
-                    && idesc.ForwarderChain == 0
-                    && idesc.Name == 0
-                    && idesc.FirstThunk == 0)
-                {
+                if (currentBlock >= _offset + _directorySize - 8)
                     break;
-                }
 
-                idescs.Add(idesc);
-                round++;
+                imageBaseRelocations.Add(new IMAGE_BASE_RELOCATION(_buff, currentBlock, _directorySize));
+                currentBlock += imageBaseRelocations.Last().SizeOfBlock;
             }
 
-
-            return idescs.ToArray();
+            return imageBaseRelocations.ToArray();
         }
     }
 }

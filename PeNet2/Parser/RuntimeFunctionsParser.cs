@@ -19,7 +19,7 @@ using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    public class RuntimeFunctionsParser : SafeParser<RUNTIME_FUNCTION[]>
+    internal class RuntimeFunctionsParser : SafeParser<RUNTIME_FUNCTION[]>
     {
         private readonly bool _is32Bit;
         private readonly uint _directorySize;
