@@ -44,7 +44,6 @@ namespace PeNet
         private bool _alreadyParsedNtHeaders;
         private bool _alreadyParsedPKCS7;
         private bool _alreadyParsedSectionHeaders;
-        private bool _alreadyParsedSecurityDirectory;
         private ExportFunction[] _exportedFunctions;
         private IMAGE_DOS_HEADER _imageDosHeader;
         private IMAGE_NT_HEADERS _imageNtHeaders;
@@ -55,7 +54,6 @@ namespace PeNet
         private X509Certificate2 _pkcs7;
         private string _sha1;
         private string _sha256;
-        private WIN_CERTIFICATE _winCertificate;
 
         private readonly DataDirectories _dataDirectories;
 
@@ -329,32 +327,7 @@ namespace PeNet
         /// <summary>
         ///     Access the WIN_CERTIFICATE from the Security header.
         /// </summary>
-        public WIN_CERTIFICATE WinCertificate
-        {
-            get
-            {
-                if (_alreadyParsedSecurityDirectory)
-                    return _winCertificate;
-
-                _alreadyParsedSecurityDirectory = true;
-
-                try
-                {
-                    _winCertificate = ParseImageSecurityDirectory(
-                        Buff,
-                        ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Security]
-                            .VirtualAddress
-                        );
-                }
-                catch (Exception exception)
-                {
-                    Exceptions.Add(exception);
-                }
-                
-
-                return _winCertificate;
-            }
-        }
+        public WIN_CERTIFICATE WinCertificate => _dataDirectories.WinCertificate;
 
         /// <summary>
         ///     A X509 PKCS7 signature if the PE file was digitally signed with such
@@ -460,26 +433,6 @@ namespace PeNet
             }
 
             return list;
-        }
-
-
-        private WIN_CERTIFICATE ParseImageSecurityDirectory(byte[] buff, uint dirOffset)
-        {
-            if (dirOffset == 0)
-                return null;
-
-            WIN_CERTIFICATE wc = null;
-
-            try
-            {
-                wc = new WIN_CERTIFICATE(buff, dirOffset);
-            }
-            catch (Exception exception)
-            {
-                Exceptions.Add(exception);
-            }
-
-            return wc;
         }
 
         private ImportFunction[] ParseImportedFunctions(byte[] buff, IMAGE_IMPORT_DESCRIPTOR[] idescs,

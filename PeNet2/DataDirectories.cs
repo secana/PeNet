@@ -29,7 +29,7 @@ namespace PeNet
         public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors => _imageImportDescriptorsParser?.GetParserTarget();
         public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory => _imageResourceDirectoryParser?.GetParserTarget();
         public IMAGE_BASE_RELOCATION[] ImageBaseRelocations => _imageBaseRelocationsParser?.GetParserTarget();
-        public WIN_CERTIFICATE WinCertificate { get; private set; }
+        public WIN_CERTIFICATE WinCertificate => _winCertificateParser?.GetParserTarget();
         public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory => _imageDebugDirectoryParser?.GetParserTarget();
         public RUNTIME_FUNCTION[] RuntimeFunctions => _runtimeFunctionsParser?.GetParserTarget();
 
@@ -39,6 +39,7 @@ namespace PeNet
         private ImageBaseRelocationsParser _imageBaseRelocationsParser;
         private ImageResourceDirectoryParser _imageResourceDirectoryParser;
         private ImageDebugDirectoryParser _imageDebugDirectoryParser;
+        private WinCertificateParser _winCertificateParser;
 
         private readonly byte[] _buff;
         private readonly IMAGE_DATA_DIRECTORY[] _dataDirectories;
@@ -69,6 +70,19 @@ namespace PeNet
             _imageBaseRelocationsParser = InitImageBaseRelocationsParser();
             _imageResourceDirectoryParser = InitImageResourceDirectoryParser();
             _imageDebugDirectoryParser = InitImageDebugDirectoryParser();
+            _winCertificateParser = InitWinCertificateParser();
+        }
+
+        private WinCertificateParser InitWinCertificateParser()
+        {
+            // The security directory is the only one where the DATA_DIRECTORY VirtualAddress
+            // is not an RVA but an raw offset.
+            var rawAddress = _dataDirectories[(int) Constants.DataDirectoryIndex.Security].VirtualAddress;
+
+            if (rawAddress == 0)
+                return null;
+
+            return new WinCertificateParser(_buff, rawAddress);
         }
 
         private ImageDebugDirectoryParser InitImageDebugDirectoryParser()
