@@ -40,11 +40,9 @@ namespace PeNet
 
         private bool _alreadyParsedExportedFuntions;
         private bool _alreadyParsedImportedFunctions;
-        private bool _alreadyParsedNtHeaders;
         private bool _alreadyParsedPKCS7;
         private bool _alreadyParsedSectionHeaders;
         private ExportFunction[] _exportedFunctions;
-        private IMAGE_NT_HEADERS _imageNtHeaders;
         private IMAGE_SECTION_HEADER[] _imageSectionHeaders;
         private string _impHash;
         private ImportFunction[] _importedFunctions;
@@ -174,26 +172,7 @@ namespace PeNet
         /// <summary>
         ///     Access the IMAGE_NT_HEADERS of the PE file.
         /// </summary>
-        public IMAGE_NT_HEADERS ImageNtHeaders
-        {
-            get
-            {
-                if (_alreadyParsedNtHeaders)
-                    return _imageNtHeaders;
-
-                _alreadyParsedNtHeaders = true;
-                try
-                {
-                    _imageNtHeaders = new IMAGE_NT_HEADERS(Buff, ImageDosHeader.e_lfanew, Is64Bit);
-                }
-                catch (Exception exception)
-                {
-                    Exceptions.Add(exception);
-                }
-                
-                return _imageNtHeaders;
-            }
-        }
+        public IMAGE_NT_HEADERS ImageNtHeaders => _structureParser.ImageNtHeaders;
 
         /// <summary>
         ///     Access the IMAGE_SECTION_HEADERS of the PE file.
