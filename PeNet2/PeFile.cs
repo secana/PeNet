@@ -31,8 +31,6 @@ namespace PeNet
     /// </summary>
     public class PeFile
     {
-        private readonly uint _secHeaderOffset;
-
         /// <summary>
         ///     The PE binary as a byte array.
         /// </summary>
@@ -60,8 +58,6 @@ namespace PeNet
         {
             Buff = buff;
             _structureParser = new StructureParser(Buff);
-
-            _secHeaderOffset = (uint) (Is64Bit ? 0x108 : 0xF8);
 
             _dataDirectories = new DataDirectories(
                 Buff, 
