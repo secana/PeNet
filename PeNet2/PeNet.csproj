@@ -66,6 +66,7 @@
     <Compile Include="Parser\ImageBaseRelocationsParser.cs" />
     <Compile Include="Parser\ImageExportDirectoriesParser.cs" />
     <Compile Include="Parser\ImageImportDescriptorsParser.cs" />
+    <Compile Include="Parser\ImageResourceDirectoryParser.cs" />
     <Compile Include="Parser\RuntimeFunctionsParser.cs" />
     <Compile Include="Parser\SafeParser.cs" />
     <Compile Include="Structures\AbstractStructure.cs" />

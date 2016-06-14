@@ -44,13 +44,11 @@ namespace PeNet
         private bool _alreadyParsedImportedFunctions;
         private bool _alreadyParsedNtHeaders;
         private bool _alreadyParsedPKCS7;
-        private bool _alreadyParsedResourceDirectory;
         private bool _alreadyParsedSectionHeaders;
         private bool _alreadyParsedSecurityDirectory;
         private ExportFunction[] _exportedFunctions;
         private IMAGE_DOS_HEADER _imageDosHeader;
         private IMAGE_NT_HEADERS _imageNtHeaders;
-        private IMAGE_RESOURCE_DIRECTORY _imageResourceDirectory;
         private IMAGE_SECTION_HEADER[] _imageSectionHeaders;
         private string _impHash;
         private ImportFunction[] _importedFunctions;
@@ -318,34 +316,7 @@ namespace PeNet
         /// <summary>
         ///     Access the IMAGE_RESOURCE_DIRECTORY of the PE file.
         /// </summary>
-        public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory
-        {
-            get
-            {
-                if (_alreadyParsedResourceDirectory)
-                    return _imageResourceDirectory;
-
-                _alreadyParsedResourceDirectory = true;
-
-                try
-                {
-                    _imageResourceDirectory = ParseImageResourceDirectory(
-                        Buff,
-                        Utility.RVAtoFileMapping(
-                            ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.Resource]
-                                .VirtualAddress,
-                            ImageSectionHeaders)
-                        );
-
-                }
-                catch (Exception exception)
-                {
-                    Exceptions.Add(exception);
-                }
-
-                return _imageResourceDirectory;
-            }
-        }
+        public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory => _dataDirectories.ImageResourceDirectory;
 
         /// <summary>
         ///     Access the array of RUNTIME_FUNCTION from the Exception header.
@@ -665,58 +636,6 @@ namespace PeNet
             return sh;
         }
 
-        /// <summary>
-        ///     http://www.brokenthorn.com/Resources/OSDevPE.html
-        /// </summary>
-        /// <param name="buff">Byte buffer with the whole binary.</param>
-        /// <param name="offsetFirstRescDir">Offset to the first resource directory (= DataDirectory[2].VirtualAddress)</param>
-        /// <returns>The image resource directory.</returns>
-        private IMAGE_RESOURCE_DIRECTORY ParseImageResourceDirectory(byte[] buff, uint offsetFirstRescDir)
-        {
-            if (offsetFirstRescDir == 0)
-                return null;
-
-            // Parse the root directory.
-            var root = new IMAGE_RESOURCE_DIRECTORY(buff, offsetFirstRescDir, offsetFirstRescDir);
-
-            try
-            {
-                // Parse the second stage (type)
-                foreach (var de in root.DirectoryEntries)
-                {
-                    de.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
-                        buff,
-                        offsetFirstRescDir + de.OffsetToDirectory,
-                        offsetFirstRescDir
-                        );
-
-                    // Parse the third stage (name/IDs)
-                    foreach (var de2 in de.ResourceDirectory.DirectoryEntries)
-                    {
-                        de2.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
-                            buff,
-                            offsetFirstRescDir + de2.OffsetToDirectory,
-                            offsetFirstRescDir
-                            );
-
-                        // Parse the forth stage (language) with the data.
-                        foreach (var de3 in de2.ResourceDirectory.DirectoryEntries)
-                        {
-                            de3.ResourceDataEntry = new IMAGE_RESOURCE_DATA_ENTRY(buff,
-                                offsetFirstRescDir + de3.OffsetToData);
-                        }
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                Exceptions.Add(exception);
-                return null;
-            }
-
-
-            return root;
-        }
 
         /// <summary>
         ///     Tries to parse the PE file and checks all directories.

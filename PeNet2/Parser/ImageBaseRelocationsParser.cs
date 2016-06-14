@@ -24,7 +24,6 @@ namespace PeNet.Parser
     internal class ImageBaseRelocationsParser : SafeParser<IMAGE_BASE_RELOCATION[]>
     {
         private readonly uint _directorySize;
-        private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
 
         public ImageBaseRelocationsParser(
             byte[] buff, 
@@ -35,7 +34,6 @@ namespace PeNet.Parser
             : base(buff, offset)
         {
             _directorySize = directorySize;
-            _sectionHeaders = sectionHeaders;
         }
 
         protected override IMAGE_BASE_RELOCATION[] ParseTarget()
