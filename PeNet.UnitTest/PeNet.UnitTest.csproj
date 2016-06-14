@@ -68,6 +68,7 @@
     <Compile Include="Structures\IMAGE_DATA_DIRECTORY_Test.cs" />
     <Compile Include="Structures\IMAGE_DEBUG_DIRECTORY_Test.cs" />
     <Compile Include="Structures\IMAGE_DOS_HEADER_Test.cs" />
+    <Compile Include="Structures\IMAGE_FILE_HEADER_Test.cs" />
     <Compile Include="Structures\IMAGE_OPTIONAL_HEADER_Test.cs" />
   </ItemGroup>
   <ItemGroup>
