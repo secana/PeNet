@@ -71,6 +71,7 @@
     <Compile Include="Structures\IMAGE_FILE_HEADER_Test.cs" />
     <Compile Include="Structures\IMAGE_IMPORT_BY_NAME_Test.cs" />
     <Compile Include="Structures\IMAGE_OPTIONAL_HEADER_Test.cs" />
+    <Compile Include="Structures\IMAGE_RESOURCE_DATA_ENTRY_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PeNet2\PeNet.csproj">
