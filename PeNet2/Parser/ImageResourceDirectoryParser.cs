@@ -19,9 +19,9 @@ using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    public class ImageResourceDirectoryParser : SafeParser<IMAGE_RESOURCE_DIRECTORY>
+    internal class ImageResourceDirectoryParser : SafeParser<IMAGE_RESOURCE_DIRECTORY>
     {
-        public ImageResourceDirectoryParser(byte[] buff, uint offset) 
+        internal ImageResourceDirectoryParser(byte[] buff, uint offset) 
             : base(buff, offset)
         {
         }
