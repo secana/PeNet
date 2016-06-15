@@ -320,58 +320,6 @@ namespace PeNet
             return list;
         }
 
-        private IMAGE_IMPORT_DESCRIPTOR[] ParseImportDescriptors(byte[] buff, uint offset)
-        {
-            if (offset == 0)
-                return null;
-
-            var idescs = new List<IMAGE_IMPORT_DESCRIPTOR>();
-            uint idescSize = 20; // Size of IMAGE_IMPORT_DESCRIPTOR (5 * 4 Byte)
-            uint round = 0;
-
-            try
-            {
-                while (true)
-                {
-                    var idesc = new IMAGE_IMPORT_DESCRIPTOR(buff, offset + idescSize*round);
-
-                    // Found the last IMAGE_IMPORT_DESCRIPTOR which is completely null (except TimeDateStamp).
-                    if (idesc.OriginalFirstThunk == 0
-                        //&& idesc.TimeDateStamp == 0
-                        && idesc.ForwarderChain == 0
-                        && idesc.Name == 0
-                        && idesc.FirstThunk == 0)
-                    {
-                        break;
-                    }
-
-                    idescs.Add(idesc);
-                    round++;
-                }
-            }
-            catch (Exception exception)
-            {
-                Exceptions.Add(exception);
-                return null;
-            }
-
-
-            return idescs.ToArray();
-        }
-
-        private IMAGE_SECTION_HEADER[] ParseImageSectionHeaders(byte[] buff, ushort numOfSections, uint offset)
-        {
-            var sh = new IMAGE_SECTION_HEADER[numOfSections];
-            uint secSize = 0x28; // Every section header is 40 bytes in size.
-            for (uint i = 0; i < numOfSections; i++)
-            {
-                sh[i] = new IMAGE_SECTION_HEADER(buff, offset + i*secSize);
-            }
-
-            return sh;
-        }
-
-
         /// <summary>
         ///     Tries to parse the PE file and checks all directories.
         /// </summary>
