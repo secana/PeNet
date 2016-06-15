@@ -1,12 +1,10 @@
 ﻿using Microsoft.Win32;
 using PeNet;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Deployment.Application;
-using System.Runtime.InteropServices;
 
 namespace PEditor
 {

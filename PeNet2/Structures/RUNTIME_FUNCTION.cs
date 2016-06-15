@@ -42,7 +42,7 @@ namespace PeNet.Structures
         ///     Get the UNWIND_INFO from a runtime function form the
         ///     Exception header in x64 applications.
         /// </summary>
-        /// <param name="sh">Sectuion Headers of the PE file.</param>
+        /// <param name="sh">Section Headers of the PE file.</param>
         /// <returns>UNWIND_INFO for the runtime function.</returns>
         private UNWIND_INFO GetUnwindInfo(IMAGE_SECTION_HEADER[] sh)
         {

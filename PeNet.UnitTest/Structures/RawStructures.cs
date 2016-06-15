@@ -2,6 +2,27 @@
 {
     public static class RawStructures
     {
+        public static readonly byte[] RawRuntimeFunction =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // FunctionStart
+            0x11,
+            0x22,
+            0x33,
+
+            0x44, // FunctionEnd
+            0x55,
+            0x66,
+            0x77,
+
+            0x88, // UnwindInfo
+            0x99,
+            0xaa,
+            0xbb
+        };
+
         public static readonly byte[] RawThunkData32 =
         {
             0xff, // Junk
