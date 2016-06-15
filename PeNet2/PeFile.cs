@@ -36,10 +36,8 @@ namespace PeNet
         /// </summary>
         public readonly byte[] Buff;
 
-        private bool _alreadyParsedExportedFuntions;
         private bool _alreadyParsedImportedFunctions;
         private bool _alreadyParsedPKCS7;
-        private ExportFunction[] _exportedFunctions;
         private string _impHash;
         private ImportFunction[] _importedFunctions;
         private string _md5;
@@ -196,27 +194,7 @@ namespace PeNet
         /// <summary>
         ///     Access the exported functions as an array of parsed objects.
         /// </summary>
-        public ExportFunction[] ExportedFunctions
-        {
-            get
-            {
-                if (_alreadyParsedExportedFuntions)
-                    return _exportedFunctions;
-
-                _alreadyParsedExportedFuntions = true;
-
-                try
-                {
-                    _exportedFunctions = ParseExportedFunctions(Buff, ImageExportDirectory, ImageSectionHeaders);
-                }
-                catch (Exception exception)
-                {
-                    Exceptions.Add(exception);
-                }
-
-                return _exportedFunctions;
-            }
-        }
+        public ExportFunction[] ExportedFunctions => _dataDirectories.ExportFunctions;
 
         /// <summary>
         ///     Access the imported functions as an array of parsed objects.
@@ -460,53 +438,6 @@ namespace PeNet
 
 
             return idescs.ToArray();
-        }
-
-        private ExportFunction[] ParseExportedFunctions(
-            byte[] buff,
-            IMAGE_EXPORT_DIRECTORY ed,
-            IMAGE_SECTION_HEADER[] sh
-            )
-        {
-            if (ed == null || ed.AddressOfFunctions == 0)
-                return null;
-
-            var expFuncs = new ExportFunction[ed.NumberOfFunctions];
-
-            try
-            {
-                
-                var funcOffsetPointer = Utility.RVAtoFileMapping(ed.AddressOfFunctions, sh);
-                var ordOffset = Utility.RVAtoFileMapping(ed.AddressOfNameOrdinals, sh);
-                var nameOffsetPointer = Utility.RVAtoFileMapping(ed.AddressOfNames, sh);
-
-                //Get addresses
-                for (uint i = 0; i < expFuncs.Length; i++)
-                {
-                    var ordinal = i + ed.Base;
-                    var address = Utility.BytesToUInt32(buff, funcOffsetPointer + sizeof(uint)*i);
-
-                    expFuncs[i] = new ExportFunction(null, address, (ushort) ordinal);
-                }
-
-                //Associate names
-                for (uint i = 0; i < ed.NumberOfNames; i++)
-                {
-                    var namePtr = Utility.BytesToUInt32(buff, nameOffsetPointer + sizeof(uint)*i);
-                    var nameAdr = Utility.RVAtoFileMapping(namePtr, sh);
-                    var name = Utility.GetName(nameAdr, buff);
-                    var ordinalIndex = (uint) Utility.GetOrdinal(ordOffset + sizeof(ushort)*i, buff);
-
-                    expFuncs[ordinalIndex] = new ExportFunction(name, expFuncs[ordinalIndex].Address,
-                        expFuncs[ordinalIndex].Ordinal);
-                }
-            }
-            catch (Exception exception)
-            {
-                Exceptions.Add(exception);
-            }
-
-            return expFuncs;
         }
 
         private IMAGE_SECTION_HEADER[] ParseImageSectionHeaders(byte[] buff, ushort numOfSections, uint offset)

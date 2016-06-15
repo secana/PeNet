@@ -30,6 +30,7 @@ namespace PeNet
         private ImageDosHeaderParser _imageDosHeaderParser;
         private ImageNtHeadersParser _imageNtHeadersParser;
         private ImageSectionHeadersParser _imageSectionHeadersParser;
+        
 
         internal StructureParser(byte[] buff)
         {

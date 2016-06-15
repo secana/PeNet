@@ -32,6 +32,7 @@ namespace PeNet
         public WIN_CERTIFICATE WinCertificate => _winCertificateParser?.GetParserTarget();
         public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory => _imageDebugDirectoryParser?.GetParserTarget();
         public RUNTIME_FUNCTION[] RuntimeFunctions => _runtimeFunctionsParser?.GetParserTarget();
+        public PeFile.ExportFunction[] ExportFunctions => _exportedFunctionsParser?.GetParserTarget();
 
         public List<Exception> RvaToFileMappingExceptions = new List<Exception>();
 
@@ -42,6 +43,7 @@ namespace PeNet
         private ImageResourceDirectoryParser _imageResourceDirectoryParser;
         private ImageDebugDirectoryParser _imageDebugDirectoryParser;
         private WinCertificateParser _winCertificateParser;
+        private ExportedFunctionsParser _exportedFunctionsParser;
 
         private readonly byte[] _buff;
         private readonly IMAGE_DATA_DIRECTORY[] _dataDirectories;
@@ -73,6 +75,12 @@ namespace PeNet
             _imageResourceDirectoryParser = InitImageResourceDirectoryParser();
             _imageDebugDirectoryParser = InitImageDebugDirectoryParser();
             _winCertificateParser = InitWinCertificateParser();
+            _exportedFunctionsParser = InitExportFunctionParser();
+        }
+
+        private ExportedFunctionsParser InitExportFunctionParser()
+        {
+            return new ExportedFunctionsParser(_buff, ImageExportDirectories, _sectionHeaders);
         }
 
         private WinCertificateParser InitWinCertificateParser()

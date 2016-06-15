@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="DataDirectories.cs" />
     <Compile Include="ImpHash\ImportHash.cs" />
+    <Compile Include="Parser\ExportedFunctionsParser.cs" />
     <Compile Include="Parser\ImageBaseRelocationsParser.cs" />
     <Compile Include="Parser\ImageDebugDirectoryParser.cs" />
     <Compile Include="Parser\ImageDosHeaderParser.cs" />
