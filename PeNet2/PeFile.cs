@@ -36,10 +36,8 @@ namespace PeNet
         /// </summary>
         public readonly byte[] Buff;
 
-        private bool _alreadyParsedImportedFunctions;
         private bool _alreadyParsedPKCS7;
         private string _impHash;
-        private ImportFunction[] _importedFunctions;
         private string _md5;
         private X509Certificate2 _pkcs7;
         private string _sha1;
@@ -199,27 +197,7 @@ namespace PeNet
         /// <summary>
         ///     Access the imported functions as an array of parsed objects.
         /// </summary>
-        public ImportFunction[] ImportedFunctions
-        {
-            get
-            {
-                if (_alreadyParsedImportedFunctions)
-                    return _importedFunctions;
-
-                _alreadyParsedImportedFunctions = true;
-
-                try
-                {
-                    _importedFunctions = ParseImportedFunctions(Buff, ImageImportDescriptors, ImageSectionHeaders);
-                }
-                catch (Exception exception)
-                {
-                    Exceptions.Add(exception);
-                }
-                
-                return _importedFunctions;
-            }
-        }
+        public ImportFunction[] ImportedFunctions => _dataDirectories.ImportFunctions;
 
         /// <summary>
         ///     Access the IMAGE_RESOURCE_DIRECTORY of the PE file.
@@ -341,65 +319,6 @@ namespace PeNet
 
             return list;
         }
-
-        private ImportFunction[] ParseImportedFunctions(byte[] buff, IMAGE_IMPORT_DESCRIPTOR[] idescs,
-            IMAGE_SECTION_HEADER[] sh)
-        {
-            if (idescs == null)
-                return null;
-
-            var impFuncs = new List<ImportFunction>();
-            var sizeOfThunk = (uint) (Is64Bit ? 0x8 : 0x4); // Size of IMAGE_THUNK_DATA
-            var ordinalBit = Is64Bit ? 0x8000000000000000 : 0x80000000;
-            var ordinalMask = (ulong) (Is64Bit ? 0x7FFFFFFFFFFFFFFF : 0x7FFFFFFF);
-
-            try
-            {
-                foreach (var idesc in idescs)
-                {
-                    var dllAdr = Utility.RVAtoFileMapping(idesc.Name, sh);
-                    var dll = Utility.GetName(dllAdr, buff);
-                    var tmpAdr = idesc.OriginalFirstThunk != 0 ? idesc.OriginalFirstThunk : idesc.FirstThunk;
-                    if (tmpAdr == 0)
-                        continue;
-
-                    var thunkAdr = Utility.RVAtoFileMapping(tmpAdr, sh);
-                    uint round = 0;
-                    while (true)
-                    {
-                        var t = new IMAGE_THUNK_DATA(buff, thunkAdr + round*sizeOfThunk, Is64Bit);
-
-                        if (t.AddressOfData == 0)
-                            break;
-
-                        // Check if import by name or by ordinal.
-                        // If it is an import by ordinal, the most significant bit of "Ordinal" is "1" and the ordinal can
-                        // be extracted from the least significant bits.
-                        // Else it is an import by name and the link to the IMAGE_IMPORT_BY_NAME has to be followed
-
-                        if ((t.Ordinal & ordinalBit) == ordinalBit) // Import by ordinal
-                        {
-                            impFuncs.Add(new ImportFunction(null, dll, (ushort) (t.Ordinal & ordinalMask)));
-                        }
-                        else // Import by name
-                        {
-                            var ibn = new IMAGE_IMPORT_BY_NAME(buff, Utility.RVAtoFileMapping((uint) t.AddressOfData, sh));
-                            impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint));
-                        }
-
-                        round++;
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                Exceptions.Add(exception);
-                return null;
-            }
-
-            return impFuncs.ToArray();
-        }
-
 
         private IMAGE_IMPORT_DESCRIPTOR[] ParseImportDescriptors(byte[] buff, uint offset)
         {

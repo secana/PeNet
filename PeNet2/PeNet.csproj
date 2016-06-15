@@ -72,6 +72,7 @@
     <Compile Include="Parser\ImageNtHeadersParser.cs" />
     <Compile Include="Parser\ImageResourceDirectoryParser.cs" />
     <Compile Include="Parser\ImageSectionHeadersParser.cs" />
+    <Compile Include="Parser\ImportedFunctionsParser.cs" />
     <Compile Include="Parser\RuntimeFunctionsParser.cs" />
     <Compile Include="Parser\SafeParser.cs" />
     <Compile Include="Parser\WinCertificateParser.cs" />
