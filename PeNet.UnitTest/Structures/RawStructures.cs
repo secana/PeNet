@@ -2,6 +2,28 @@
 {
     public static class RawStructures
     {
+        public static readonly byte[] RawWinCertificate =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x0b, // dwLenth
+            0x00,
+            0x00,
+            0x00,
+
+            0x44, // wRevision
+            0x55,
+
+            0x66, // wCertificateType
+            0x77,
+
+            // bCertificate (dwLength - 8 = 3)
+            0x11,
+            0x22,
+            0x33
+        };
+
         public static readonly byte[] RawUnwindInfo =
         {
             0xff, // Junk
