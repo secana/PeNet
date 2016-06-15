@@ -57,7 +57,7 @@ namespace PeNet.Structures
 
         /// <summary>
         /// Get the Resource Directory which the Directory Entry points
-        /// to if the Directory Entriy has DataIsDirectory set.
+        /// to if the Directory Entry has DataIsDirectory set.
         /// </summary>
         public IMAGE_RESOURCE_DIRECTORY ResourceDirectory { get; internal set; }
 

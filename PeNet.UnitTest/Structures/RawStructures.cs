@@ -2,6 +2,38 @@
 {
     public static class RawStructures
     {
+        public static readonly byte[] RawResourceDirectoryEntryByName =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x11, // Name
+            0x22,
+            0x33,
+            0x80,
+
+            0x22, // OffsetToData
+            0x33,
+            0x44,
+            0x55
+        };
+
+        public static readonly byte[] RawResourceDirectoryEntryById =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x11, // Id
+            0x22,
+            0x33,
+            0x00,
+
+            0x22, // OffsetToData
+            0x33,
+            0x44,
+            0x55
+        };
+
         public static readonly byte[] RawResourceDirectory =
         {
             0xff, // Junk
