@@ -74,6 +74,7 @@
     <Compile Include="Structures\IMAGE_NT_HEADERS_Test.cs" />
     <Compile Include="Structures\IMAGE_OPTIONAL_HEADER_Test.cs" />
     <Compile Include="Structures\IMAGE_RESOURCE_DATA_ENTRY_Test.cs" />
+    <Compile Include="Structures\IMAGE_RESOURCE_DIRECTORY_Test.cs" />
     <Compile Include="Structures\IMAGE_RESOURCE_DIR_STRING_U_Test.cs" />
     <Compile Include="Structures\RawStructures.cs" />
   </ItemGroup>

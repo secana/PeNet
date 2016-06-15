@@ -1,10 +1,58 @@
-﻿using System;
-using System.Dynamic;
-
-namespace PeNet.UnitTest.Structures
+﻿namespace PeNet.UnitTest.Structures
 {
     public static class RawStructures
     {
+        public static readonly byte[] RawResourceDirectory =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // Characteristics
+            0x11,
+            0x22,
+            0x33,
+            
+            0x44, // TimeDateStamp
+            0x55,
+            0x66,
+            0x77,
+
+            0x88, // MajorVersion
+            0x99,
+
+            0xaa, // MinorVersion
+            0xbb,
+
+            0x01, // NumberOfNamedEntries
+            0x00,
+
+            0x01, // NumberOfIdEntries
+            0x00,
+
+            // Named entry
+            0x11, // Name/Id
+            0x22,
+            0x33,
+            0x44,
+
+            0x55, // OffsetToData
+            0x66,
+            0x77,
+            0x88,
+
+            // Id entry
+            0x22, // Name/Id
+            0x22,
+            0x33,
+            0x44,
+
+            0x22, // OffsetToData
+            0x66,
+            0x77,
+            0x88,
+
+        };
+
         public static byte[] RawImageNtHeaders64
         {
             get

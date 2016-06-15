@@ -501,7 +501,7 @@
             </TabItem>
 
             <TabItem Header="Exception">
-                <GroupBox Header="Exception Directory (x64)  -- NOT SURE ABOUT THIS --">
+                <GroupBox Header="Exception Directory (x64 only)">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
