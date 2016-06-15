@@ -2,6 +2,63 @@
 {
     public static class RawStructures
     {
+        public static readonly byte[] RawSectionHeader =
+        {
+            0xff, // Junk
+            0xff,
+
+            // Name [8]
+            46,  // .
+            100, // d
+            97,  // a
+            116, // t
+            97,  // a
+            00,
+            00,
+            00,
+
+            0x00, // VirtualSize
+            0x11,
+            0x22,
+            0x33,
+            
+            0x44, // VirtualAddress
+            0x55,
+            0x66,
+            0x77,
+
+            0x88, // SizeOfRawData
+            0x99,
+            0xaa,
+            0xbb,
+
+            0xcc, // PointerToRawData
+            0xdd,
+            0xee,
+            0xff,
+
+            0x11, // PointerToRelocations
+            0x22,
+            0x33,
+            0x44,
+
+            0x55, // PointerToLinenumbers
+            0x66,
+            0x77,
+            0x88,
+
+            0x99, // NumberOfRelocations
+            0xaa,
+
+            0xbb, // NumberOfLinenumbers
+            0xcc,
+
+            0xdd, // Characteristics
+            0xee,
+            0xff,
+            0x00
+        };
+
         public static readonly byte[] RawResourceDirectoryEntryByName =
         {
             0xff, // Junk

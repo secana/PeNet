@@ -17,9 +17,8 @@ limitations under the License.
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PeNet.Structures;
-using PeNet.UnitTest.Structures;
 
-namespace PeNet.UnitTest
+namespace PeNet.UnitTest.Structures
 {
     [TestClass]
     public class IMAGE_RESOURCE_DIRECTORY_ENTRY_Test
