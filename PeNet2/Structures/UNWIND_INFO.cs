@@ -42,12 +42,12 @@ namespace PeNet.Structures
         /// <summary>
         ///     Version
         /// </summary>
-        public byte Version => (byte) (Buff[Offset] & 0x7);
+        public byte Version => (byte) (Buff[Offset] >> 5);
 
         /// <summary>
         ///     Flags
         /// </summary>
-        public byte Flags => (byte) (Buff[Offset] >> 3);
+        public byte Flags => (byte) (Buff[Offset] & 0x1F);
 
         /// <summary>
         ///     Size of prolog.
@@ -73,12 +73,12 @@ namespace PeNet.Structures
         /// <summary>
         ///     Frame register.
         /// </summary>
-        public byte FrameRegister => (byte) (Buff[Offset + 0x3] & 0xF);
+        public byte FrameRegister => (byte) (Buff[Offset + 0x3] >> 4);
 
         /// <summary>
         ///     Frame offset.
         /// </summary>
-        public byte FrameOffset => (byte)(Buff[Offset + 0x3] >> 4);
+        public byte FrameOffset => (byte)(Buff[Offset + 0x3] & 0xF);
 
         /// <summary>
         ///     UnwindCode structure.

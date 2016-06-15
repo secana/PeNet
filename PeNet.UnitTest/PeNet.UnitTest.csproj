@@ -82,6 +82,7 @@
     <Compile Include="Structures\RawStructures.cs" />
     <Compile Include="Structures\RUNTIME_FUNCTION_Test.cs" />
     <Compile Include="Structures\UNWIND_CODE_Test.cs" />
+    <Compile Include="Structures\UNWIND_INFO_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PeNet2\PeNet.csproj">

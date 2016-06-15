@@ -2,6 +2,37 @@
 {
     public static class RawStructures
     {
+        public static readonly byte[] RawUnwindInfo =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x32, // Version/Flags 3:5
+
+            0x33, // SizeOfProlog
+
+            0x01, // CountOfCodes
+
+            0x56, // FrameRegister/Offset 4:4
+
+            // UNWIND_CODE
+            0x77, // CodeOffset
+
+            0x89, // UnwindOp/Opinfo 4:4
+
+            0xaa, // FrameOffset
+            0xbb,
+            //////
+            
+            0xcc, // ExceptionHandler/FunctionEntry
+            0xdd,
+            0xee,
+            0xff,
+
+            // Exception data
+            // ??
+        };
+
         public static readonly byte[] RawUnwindCode =
         {
             0xff, // Junk
