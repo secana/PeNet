@@ -2,6 +2,32 @@
 {
     public static class RawStructures
     {
+        public static readonly byte[] RawThunkData32 =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // AddressOfData
+            0x11,
+            0x22,
+            0x33
+        };
+
+        public static readonly byte[] RawThunkData64 =
+        {
+            0xff, // Junk
+            0xff,
+            
+            0x00, // AddressOfData
+            0x11,
+            0x22,
+            0x33,
+            0x44,
+            0x55,
+            0x66,
+            0x77
+        };
+
         public static readonly byte[] RawSectionHeader =
         {
             0xff, // Junk
