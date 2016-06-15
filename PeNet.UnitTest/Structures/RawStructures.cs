@@ -2,6 +2,18 @@
 {
     public static class RawStructures
     {
+        public static readonly byte[] RawUnwindCode =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x11, // CodeOffset
+            0x23, // UnwindOp/Opinfo 4:4
+
+            0x44, // FrameOffset
+            0x55
+        };
+
         public static readonly byte[] RawRuntimeFunction =
         {
             0xff, // Junk
