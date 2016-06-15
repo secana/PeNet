@@ -4,13 +4,13 @@ using System.Text;
 namespace PeNet.Structures
 {
     /// <summary>
-    ///     Represents a unicode string used for resource names
+    ///     Represents a Unicode string used for resource names
     ///     in the resource section.
     /// </summary>
     public class IMAGE_RESOURCE_DIR_STRING_U : AbstractStructure
     {
         /// <summary>
-        ///     Create a new IMAGE_RESOURCE_DIR_STRING_U unicode string.
+        ///     Create a new IMAGE_RESOURCE_DIR_STRING_U Unicode string.
         /// </summary>
         /// <param name="buff">A PE file as a byte array.</param>
         /// <param name="offset">Raw offset of the string.</param>
@@ -20,8 +20,8 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     Length of the string in unicode characters, *not* in bytes.
-        ///     1 unicode char = 2 bytes.
+        ///     Length of the string in Unicode characters, *not* in bytes.
+        ///     1 Unicode char = 2 bytes.
         /// </summary>
         public ushort Length
         {
@@ -30,7 +30,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     The unicode string as a .Net string.
+        ///     The Unicode string as a .Net string.
         /// </summary>
         public string NameString
         {

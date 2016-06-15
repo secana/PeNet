@@ -62,6 +62,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Structures\Copyright_Test.cs" />
     <Compile Include="Structures\IMAGE_RESOURCE_DIRECTORY_ENTRY_Test.cs" />
     <Compile Include="Structures\IMAGE_EXPORT_DIRECTORY_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

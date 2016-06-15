@@ -2,6 +2,14 @@
 {
     public static class RawStructures
     {
+        public static readonly byte[] RawCopyright =
+        {
+            0xff, // Junk
+            0xff,
+
+            99, 111, 112, 121, 114, 105, 103, 104, 116 // "copyright"
+        };
+
         public static readonly byte[] RawWinCertificate =
         {
             0xff, // Junk
