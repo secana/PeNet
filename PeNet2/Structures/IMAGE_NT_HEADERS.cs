@@ -21,13 +21,10 @@ namespace PeNet.Structures
 {
     /// <summary>
     ///     The NT header is the main header for modern Windows applications.
-    ///     It conaints the file header and the optional header.
+    ///     It contains the file header and the optional header.
     /// </summary>
-    public class IMAGE_NT_HEADERS
+    public class IMAGE_NT_HEADERS : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly uint _offset;
-
         /// <summary>
         ///     Access to the File header.
         /// </summary>
@@ -45,9 +42,8 @@ namespace PeNet.Structures
         /// <param name="offset">Raw offset of the NT header.</param>
         /// <param name="is64Bit">Flag if the header is for a x64 application.</param>
         public IMAGE_NT_HEADERS(byte[] buff, uint offset, bool is64Bit)
+            : base(buff, offset)
         {
-            _offset = offset;
-            _buff = buff;
             FileHeader = new IMAGE_FILE_HEADER(buff, offset + 0x4);
             OptionalHeader = new IMAGE_OPTIONAL_HEADER(buff, offset + 0x18, is64Bit);
         }
@@ -57,8 +53,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Signature
         {
-            get { return Utility.BytesToUInt32(_buff, _offset); }
-            set { Utility.SetUInt32(value, _offset, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset); }
+            set { Utility.SetUInt32(value, Offset, Buff); }
         }
 
         /// <summary>

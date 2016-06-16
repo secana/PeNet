@@ -76,7 +76,7 @@ namespace PeNet.PatternMatching
         private readonly Node<T, TValue> root = new Node<T, TValue>();
 
         /// <summary>
-        /// Set if the tree was build.
+        ///     Set if the tree was build.
         /// </summary>
         private bool _isBuild;
 

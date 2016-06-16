@@ -25,20 +25,16 @@ namespace PeNet.Structures
     ///     The AddressOfData in the IMAGE_THUNK_DATA from the
     ///     IMAGE_IMPORT_DESCRIPTOR points to it.
     /// </summary>
-    public class IMAGE_IMPORT_BY_NAME
+    public class IMAGE_IMPORT_BY_NAME : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly ulong _offset;
-
         /// <summary>
         ///     Create new IMAGE_IMPORT_BY_NAME object.
         /// </summary>
         /// <param name="buff">A PE file as a byte array.</param>
         /// <param name="offset">Raw offset of the IMAGE_IMPORT_BY_NAME.</param>
-        public IMAGE_IMPORT_BY_NAME(byte[] buff, ulong offset)
+        public IMAGE_IMPORT_BY_NAME(byte[] buff, uint offset)
+            : base(buff, offset)
         {
-            _offset = offset;
-            _buff = buff;
         }
 
         /// <summary>
@@ -46,14 +42,14 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Hint
         {
-            get { return Utility.BytesToUInt16(_buff, _offset); }
-            set { Utility.SetUInt16(value, _offset, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset); }
+            set { Utility.SetUInt16(value, Offset, Buff); }
         }
 
         /// <summary>
         ///     Name of the function to import as a C-string (null terminated).
         /// </summary>
-        public string Name => Utility.GetName(_offset + 0x2, _buff);
+        public string Name => Utility.GetName(Offset + 0x2, Buff);
 
         /// <summary>
         ///     Creates a string representation of the objects properties.

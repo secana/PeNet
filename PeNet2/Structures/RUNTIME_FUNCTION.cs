@@ -24,11 +24,8 @@ namespace PeNet.Structures
     ///     a function in the exception header for x64
     ///     applications.
     /// </summary>
-    public class RUNTIME_FUNCTION
+    public class RUNTIME_FUNCTION : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly uint _offset;
-
         /// <summary>
         ///     Create a new RUNTIME_FUNCTION object.
         /// </summary>
@@ -36,18 +33,48 @@ namespace PeNet.Structures
         /// <param name="offset">Raw offset of the runtime function struct.</param>
         /// <param name="sh">Section Headers of the PE file.</param>
         public RUNTIME_FUNCTION(byte[] buff, uint offset, IMAGE_SECTION_HEADER[] sh)
+            : base(buff, offset)
         {
-            _buff = buff;
-            _offset = offset;
-
             ResolvedUnwindInfo = GetUnwindInfo(sh);
         }
+
+        /// <summary>
+        ///     RVA Start of the function in code.
+        /// </summary>
+        public uint FunctionStart
+        {
+            get { return Utility.BytesToUInt32(Buff, Offset); }
+            set { Utility.SetUInt32(value, Offset, Buff); }
+        }
+
+        /// <summary>
+        ///     RVA End of the function in code.
+        /// </summary>
+        public uint FunctionEnd
+        {
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
+            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
+        }
+
+        /// <summary>
+        ///     Pointer to the unwind information.
+        /// </summary>
+        public uint UnwindInfo
+        {
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x8); }
+            set { Utility.SetUInt32(value, Offset + 0x8, Buff); }
+        }
+
+        /// <summary>
+        ///     Unwind Info object belonging to this Runtime Function.
+        /// </summary>
+        public UNWIND_INFO ResolvedUnwindInfo { get; private set; }
 
         /// <summary>
         ///     Get the UNWIND_INFO from a runtime function form the
         ///     Exception header in x64 applications.
         /// </summary>
-        /// <param name="sh">Sectuion Headers of the PE file.</param>
+        /// <param name="sh">Section Headers of the PE file.</param>
         /// <returns>UNWIND_INFO for the runtime function.</returns>
         private UNWIND_INFO GetUnwindInfo(IMAGE_SECTION_HEADER[] sh)
         {
@@ -57,41 +84,9 @@ namespace PeNet.Structures
                 ? UnwindInfo & 0xFFFE
                 : UnwindInfo;
 
-            var uw = new UNWIND_INFO(_buff, Utility.RVAtoFileMapping(uwAddress, sh));
+            var uw = new UNWIND_INFO(Buff, Utility.RVAtoFileMapping(uwAddress, sh));
             return uw;
         }
-
-        /// <summary>
-        ///     RVA Start of the function in code.
-        /// </summary>
-        public uint FunctionStart
-        {
-            get { return Utility.BytesToUInt32(_buff, _offset); }
-            set { Utility.SetUInt32(value, _offset, _buff); }
-        }
-
-        /// <summary>
-        ///     RVA End of the function in code.
-        /// </summary>
-        public uint FunctionEnd
-        {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
-            set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
-        }
-
-        /// <summary>
-        ///     Pointer to the unwind information.
-        /// </summary>
-        public uint UnwindInfo
-        {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x8); }
-            set { Utility.SetUInt32(value, _offset + 0x8, _buff); }
-        }
-
-        /// <summary>
-        /// Unwind Info object belonging to this Runtime Function.
-        /// </summary>
-        public UNWIND_INFO ResolvedUnwindInfo { get; private set; }
 
         /// <summary>
         ///     Creates a string representation of the objects

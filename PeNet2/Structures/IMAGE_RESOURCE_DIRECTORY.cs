@@ -21,14 +21,11 @@ using System.Text;
 namespace PeNet.Structures
 {
     /// <summary>
-    ///     The resouce directory contains icons, mouse pointer, string
+    ///     The resource directory contains icons, mouse pointer, string
     ///     language files etc. which are used by the application.
     /// </summary>
-    public class IMAGE_RESOURCE_DIRECTORY
+    public class IMAGE_RESOURCE_DIRECTORY : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly uint _offset;
-
         /// <summary>
         ///     Array with the different directory entries.
         /// </summary>
@@ -41,10 +38,8 @@ namespace PeNet.Structures
         /// <param name="offset">Raw offset to the resource directory.</param>
         /// <param name="resourceDirOffset">Raw offset to the resource directory entries.</param>
         public IMAGE_RESOURCE_DIRECTORY(byte[] buff, uint offset, uint resourceDirOffset)
+            : base(buff, offset)
         {
-            _offset = offset;
-            _buff = buff;
-
             DirectoryEntries = ParseDirectoryEntries(resourceDirOffset);
         }
 
@@ -53,8 +48,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Characteristics
         {
-            get { return Utility.BytesToUInt32(_buff, _offset); }
-            set { Utility.SetUInt32(value, _offset, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset); }
+            set { Utility.SetUInt32(value, Offset, Buff); }
         }
 
         /// <summary>
@@ -62,8 +57,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
-            set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
+            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
         }
 
         /// <summary>
@@ -71,8 +66,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorVersion
         {
-            get { return Utility.BytesToUInt16(_buff, _offset + 0x8); }
-            set { Utility.SetUInt16(value, _offset + 0x8, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset + 0x8); }
+            set { Utility.SetUInt16(value, Offset + 0x8, Buff); }
         }
 
         /// <summary>
@@ -80,8 +75,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorVersion
         {
-            get { return Utility.BytesToUInt16(_buff, _offset + 0xa); }
-            set { Utility.SetUInt16(value, _offset + 0xa, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset + 0xa); }
+            set { Utility.SetUInt16(value, Offset + 0xa, Buff); }
         }
 
         /// <summary>
@@ -89,8 +84,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfNameEntries
         {
-            get { return Utility.BytesToUInt16(_buff, _offset + 0xc); }
-            set { Utility.SetUInt16(value, _offset + 0xc, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset + 0xc); }
+            set { Utility.SetUInt16(value, Offset + 0xc, Buff); }
         }
 
         /// <summary>
@@ -98,8 +93,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfIdEntries
         {
-            get { return Utility.BytesToUInt16(_buff, _offset + 0xe); }
-            set { Utility.SetUInt16(value, _offset + 0xe, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset + 0xe); }
+            set { Utility.SetUInt16(value, Offset + 0xe, Buff); }
         }
 
         /// <summary>
@@ -112,7 +107,7 @@ namespace PeNet.Structures
         {
             var sb = new StringBuilder("IMAGE_RESOURCE_DIRECTORY\n");
             sb.Append(Utility.PropertiesToString(this, "{0,-20}:\t{1,10:X}\n"));
-            if(DirectoryEntries != null)
+            if (DirectoryEntries != null)
                 foreach (var de in DirectoryEntries)
                     sb.Append($"{de}");
             return sb.ToString();
@@ -126,7 +121,7 @@ namespace PeNet.Structures
             {
                 try
                 {
-                    entries[index] = new IMAGE_RESOURCE_DIRECTORY_ENTRY(_buff, (uint) index*8 + _offset + 16,
+                    entries[index] = new IMAGE_RESOURCE_DIRECTORY_ENTRY(Buff, (uint) index*8 + Offset + 16,
                         resourceDirOffset);
                 }
                 catch (IndexOutOfRangeException)

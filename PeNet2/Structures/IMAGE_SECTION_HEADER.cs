@@ -22,20 +22,16 @@ namespace PeNet.Structures
     /// <summary>
     ///     Represents the section header for one section.
     /// </summary>
-    public class IMAGE_SECTION_HEADER
+    public class IMAGE_SECTION_HEADER : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly uint _offset;
-
         /// <summary>
         ///     Create a new IMAGE_SECTION_HEADER object.
         /// </summary>
         /// <param name="buff">A PE file as a byte array.</param>
         /// <param name="offset">Raw offset to the section header.</param>
         public IMAGE_SECTION_HEADER(byte[] buff, uint offset)
+            : base(buff, offset)
         {
-            _offset = offset;
-            _buff = buff;
         }
 
         /// <summary>
@@ -48,27 +44,27 @@ namespace PeNet.Structures
             {
                 return new[]
                 {
-                    _buff[_offset + 0],
-                    _buff[_offset + 1],
-                    _buff[_offset + 2],
-                    _buff[_offset + 3],
-                    _buff[_offset + 4],
-                    _buff[_offset + 5],
-                    _buff[_offset + 6],
-                    _buff[_offset + 7]
+                    Buff[Offset + 0],
+                    Buff[Offset + 1],
+                    Buff[Offset + 2],
+                    Buff[Offset + 3],
+                    Buff[Offset + 4],
+                    Buff[Offset + 5],
+                    Buff[Offset + 6],
+                    Buff[Offset + 7]
                 };
             }
 
             set
             {
-                _buff[_offset + 0] = value[0];
-                _buff[_offset + 1] = value[1];
-                _buff[_offset + 2] = value[2];
-                _buff[_offset + 3] = value[3];
-                _buff[_offset + 4] = value[4];
-                _buff[_offset + 5] = value[5];
-                _buff[_offset + 6] = value[7];
-                _buff[_offset + 7] = value[8];
+                Buff[Offset + 0] = value[0];
+                Buff[Offset + 1] = value[1];
+                Buff[Offset + 2] = value[2];
+                Buff[Offset + 3] = value[3];
+                Buff[Offset + 4] = value[4];
+                Buff[Offset + 5] = value[5];
+                Buff[Offset + 6] = value[7];
+                Buff[Offset + 7] = value[8];
             }
         }
 
@@ -77,13 +73,13 @@ namespace PeNet.Structures
         /// </summary>
         public uint PhysicalAddress
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x8); }
-            set { Utility.SetUInt32(value, _offset + 0x8, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x8); }
+            set { Utility.SetUInt32(value, Offset + 0x8, Buff); }
         }
 
         /// <summary>
         ///     Size of the section when loaded into memory. If it's bigger than
-        ///     the raw data size, the rest of the section is filled with zeroes.
+        ///     the raw data size, the rest of the section is filled with zeros.
         /// </summary>
         public uint VirtualSize
         {
@@ -96,19 +92,19 @@ namespace PeNet.Structures
         /// </summary>
         public uint VirtualAddress
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0xC); }
-            set { Utility.SetUInt32(value, _offset + 0xC, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0xC); }
+            set { Utility.SetUInt32(value, Offset + 0xC, Buff); }
         }
 
         /// <summary>
         ///     Size of the section in raw on disk. Must be a multiple of the file alignment
         ///     specified in the optional header. If its less than the virtual size, the rest
-        ///     is filled with zeroes.
+        ///     is filled with zeros.
         /// </summary>
         public uint SizeOfRawData
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x10); }
-            set { Utility.SetUInt32(value, _offset + 0x10, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x10); }
+            set { Utility.SetUInt32(value, Offset + 0x10, Buff); }
         }
 
         /// <summary>
@@ -116,8 +112,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint PointerToRawData
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x14); }
-            set { Utility.SetUInt32(value, _offset + 0x14, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x14); }
+            set { Utility.SetUInt32(value, Offset + 0x14, Buff); }
         }
 
         /// <summary>
@@ -126,8 +122,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint PointerToRelocations
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x18); }
-            set { Utility.SetUInt32(value, _offset + 0x18, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x18); }
+            set { Utility.SetUInt32(value, Offset + 0x18, Buff); }
         }
 
         /// <summary>
@@ -136,8 +132,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint PointerToLinenumbers
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x1C); }
-            set { Utility.SetUInt32(value, _offset + 0x1C, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x1C); }
+            set { Utility.SetUInt32(value, Offset + 0x1C, Buff); }
         }
 
         /// <summary>
@@ -145,8 +141,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfRelocations
         {
-            get { return Utility.BytesToUInt16(_buff, _offset + 0x20); }
-            set { Utility.SetUInt16(value, _offset + 0x20, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset + 0x20); }
+            set { Utility.SetUInt16(value, Offset + 0x20, Buff); }
         }
 
         /// <summary>
@@ -154,8 +150,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfLinenumbers
         {
-            get { return Utility.BytesToUInt16(_buff, _offset + 0x22); }
-            set { Utility.SetUInt16(value, _offset + 0x22, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset + 0x22); }
+            set { Utility.SetUInt16(value, Offset + 0x22, Buff); }
         }
 
         /// <summary>
@@ -163,8 +159,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Characteristics
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x24); }
-            set { Utility.SetUInt32(value, _offset + 0x24, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x24); }
+            set { Utility.SetUInt32(value, Offset + 0x24, Buff); }
         }
 
         /// <summary>

@@ -18,12 +18,12 @@ limitations under the License.
 using System;
 using System.Collections.Generic;
 
-namespace PeNet
+namespace PeNet.ImpHash
 {
     /// <summary>
-    ///     This class is used by the ImpHash implementation to lookup
+    ///     This class is used by the ImportHash implementation to lookup
     ///     some names for functions where only an ordinal is given.
-    ///     This is the case in the original ImpHash implementation so we
+    ///     This is the case in the original ImportHash implementation so we
     ///     do the same here.
     /// </summary>
     internal static class OrdinalSymbolMapping

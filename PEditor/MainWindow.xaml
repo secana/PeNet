@@ -5,30 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PEditor"
         mc:Ignorable="d"
-        Title="PEditor" Height="600" Width="800" MinHeight="532" MinWidth="800"
+        Title="PEditor" Height="768" Width="1024" MinHeight="532" MinWidth="800"
         Icon="Icons/Pen4.ico">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0" FontSize="14">
             <MenuItem Header="_File">
                 <MenuItem Header="_Open" Click="MenuOpen_Click">
                     <MenuItem.Icon>
-                        <Image Source="Icons/OpenFolder.ico"></Image>
+                        <Image Source="Icons/OpenFolder.ico" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Exit" Click="MenuExit_Click">
                     <MenuItem.Icon>
-                        <Image Source="Icons/Close_16x.png"></Image>
+                        <Image Source="Icons/Close_16x.png" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Help">
-                <MenuItem Header="_About" Click="MenuHelp_Click"/>
+                <MenuItem Header="_About" Click="MenuHelp_Click" />
             </MenuItem>
         </Menu>
         <TabControl Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
@@ -37,58 +37,42 @@
                     <GroupBox Header="File Info">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Column="0" Grid.Row="0">Location:</Label>
-                            <TextBox Name="tbLocation" Grid.Column="1" Grid.Row="0" IsReadOnly="True" HorizontalAlignment="Stretch" />
+                            <Label Grid.Column="0" Grid.Row="0">FileLocation:</Label>
+                            <TextBox Name="tbLocation" Grid.Column="1" Grid.Row="0" IsReadOnly="True"
+                                     HorizontalAlignment="Stretch" />
 
                             <Label Grid.Column="0" Grid.Row="1">Size:</Label>
-                            <TextBox Name="tbSize" Grid.Column="1" Grid.Row="1" IsReadOnly="True" HorizontalAlignment="Stretch" />
+                            <TextBox Name="tbSize" Grid.Column="1" Grid.Row="1" IsReadOnly="True"
+                                     HorizontalAlignment="Stretch" />
 
                             <Label Grid.Column="0" Grid.Row="2">MD5:</Label>
-                            <TextBox Name="tbMD5" Grid.Column="1" Grid.Row="2" IsReadOnly="True" HorizontalAlignment="Stretch" />
+                            <TextBox Name="tbMD5" Grid.Column="1" Grid.Row="2" IsReadOnly="True"
+                                     HorizontalAlignment="Stretch" />
 
                             <Label Grid.Column="0" Grid.Row="3">SHA-1:</Label>
-                            <TextBox Name="tbSHA1" Grid.Column="1" Grid.Row="3" IsReadOnly="True" HorizontalAlignment="Stretch" />
+                            <TextBox Name="tbSHA1" Grid.Column="1" Grid.Row="3" IsReadOnly="True"
+                                     HorizontalAlignment="Stretch" />
 
                             <Label Grid.Column="0" Grid.Row="4">SHA-256:</Label>
-                            <TextBox Name="tbSHA256" Grid.Column="1" Grid.Row="4" IsReadOnly="True" HorizontalAlignment="Stretch" />
+                            <TextBox Name="tbSHA256" Grid.Column="1" Grid.Row="4" IsReadOnly="True"
+                                     HorizontalAlignment="Stretch" />
 
                             <Label Grid.Column="0" Grid.Row="5">Import-Hash:</Label>
-                            <TextBox Name="tbImpHash" Grid.Column="1" Grid.Row="5" IsReadOnly="True" HorizontalAlignment="Stretch" />
+                            <TextBox Name="tbImpHash" Grid.Column="1" Grid.Row="5" IsReadOnly="True"
+                                     HorizontalAlignment="Stretch" />
                         </Grid>
-                    </GroupBox>
-                    <GroupBox Header="Signature">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            
-                            <Label Grid.Row="0" Grid.Column="0">Is Signed:</Label>
-                            <CheckBox Grid.Row="0" Grid.Column="1" Name="cbIsSigned" VerticalAlignment="Center" IsEnabled="False" />
-
-                            <Label Grid.Row="1" Grid.Column="0">Signature Valid:</Label>
-                            <CheckBox Grid.Row="1" Grid.Column="1" Name="cbSigValid" VerticalAlignment="Center" IsEnabled="False" />
-
-                            <Label Grid.Row="2" Grid.Column="0">Chain Valid:</Label>
-                            <CheckBox Grid.Row="2" Grid.Column="1" Name="cbChainValid" VerticalAlignment="Center" IsEnabled="False" />
-                        </Grid>        
                     </GroupBox>
                 </StackPanel>
             </TabItem>
@@ -96,30 +80,30 @@
             <TabItem Header="DOS/NT Header">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <GroupBox Header="Dos Header" Grid.Row="0">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
                             <Label Grid.Column="0" Grid.Row="0">e__magic:</Label>
@@ -183,15 +167,15 @@
                     <GroupBox Header="NT Header" Grid.Row="1">
                         <Grid Grid.Row="0" Grid.Column="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Label Grid.Row="0" Grid.Column="0">Signature:</Label>
-                            <TextBox Name="tbSignature" Grid.Row="0" Grid.Column="1"/>
+                            <TextBox Name="tbSignature" Grid.Row="0" Grid.Column="1" />
                         </Grid>
                     </GroupBox>
                 </Grid>
@@ -201,177 +185,179 @@
                 <GroupBox Header="File Header">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Row="0" Grid.Column="0">Machine:</Label>
-                        <TextBox Name="tbMachine" Grid.Row="0" Grid.Column="1"/>
+                        <TextBox Name="tbMachine" Grid.Row="0" Grid.Column="1" />
 
                         <Label Grid.Row="1" Grid.Column="0">NumberOfSections:</Label>
-                        <TextBox Name="tbNumberOfSections" Grid.Row="1" Grid.Column="1"/>
+                        <TextBox Name="tbNumberOfSections" Grid.Row="1" Grid.Column="1" />
 
                         <Label Grid.Row="2" Grid.Column="0">TimeDateStamp:</Label>
-                        <TextBox Name="tbTimeDateStamp" Grid.Row="2" Grid.Column="1"/>
+                        <TextBox Name="tbTimeDateStamp" Grid.Row="2" Grid.Column="1" />
 
                         <Label Grid.Row="3" Grid.Column="0">PointerToSymbolTable:</Label>
-                        <TextBox Name="tbPointerToSymbolTable" Grid.Row="3" Grid.Column="1"/>
+                        <TextBox Name="tbPointerToSymbolTable" Grid.Row="3" Grid.Column="1" />
 
                         <Label Grid.Row="4" Grid.Column="0">NumberOfSymbols:</Label>
-                        <TextBox Name="tbNumberOfSymbols" Grid.Row="4" Grid.Column="1"/>
+                        <TextBox Name="tbNumberOfSymbols" Grid.Row="4" Grid.Column="1" />
 
                         <Label Grid.Row="5" Grid.Column="0">SizeOfOptionalHeader:</Label>
-                        <TextBox Name="tbSizeOfOptionalHeader" Grid.Row="5" Grid.Column="1"/>
+                        <TextBox Name="tbSizeOfOptionalHeader" Grid.Row="5" Grid.Column="1" />
 
                         <Label Grid.Row="6" Grid.Column="0">Characteristics:</Label>
-                        <TextBox Name="tbCharacteristics" Grid.Row="6" Grid.Column="1"/>
+                        <TextBox Name="tbCharacteristics" Grid.Row="6" Grid.Column="1" />
                     </Grid>
                 </GroupBox>
             </TabItem>
 
             <TabItem Header="Sections">
                 <GroupBox Header="Sections">
-                    <DataGrid Name="dgSections" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeColumns="True" CanUserAddRows="False" CanUserSortColumns="False" ItemsSource="{Binding}">
+                    <DataGrid Name="dgSections" AutoGenerateColumns="False" IsReadOnly="True"
+                              CanUserResizeColumns="True" CanUserAddRows="False" CanUserSortColumns="False"
+                              ItemsSource="{Binding}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="#" Binding="{Binding Number}"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Virtual Size" Binding="{Binding VSize}"/>
-                            <DataGridTextColumn Header="Virtual Address" Binding="{Binding VAddress}"/>
-                            <DataGridTextColumn Header="Physical Size" Binding="{Binding PSize}"/>
-                            <DataGridTextColumn Header="Physical Address" Binding="{Binding PAddress}"/>
-                            <DataGridTextColumn Header="Flags" Binding="{Binding Flags}"/>
-                            <DataGridTextColumn Header="Resolved Flags" Binding="{Binding RFlags}"/>
+                            <DataGridTextColumn Header="#" Binding="{Binding Number}" />
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Virtual Size" Binding="{Binding VSize}" />
+                            <DataGridTextColumn Header="Virtual Address" Binding="{Binding VAddress}" />
+                            <DataGridTextColumn Header="Physical Size" Binding="{Binding PSize}" />
+                            <DataGridTextColumn Header="Physical Address" Binding="{Binding PAddress}" />
+                            <DataGridTextColumn Header="Flags" Binding="{Binding Flags}" />
+                            <DataGridTextColumn Header="Resolved Flags" Binding="{Binding RFlags}" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </GroupBox>
             </TabItem>
 
             <TabItem Header="Optional Header">
-                    <!-- IMAGE_SECTION_HEADER -->
+                <!-- IMAGE_SECTION_HEADER -->
                 <GroupBox Header="Optional Header">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Row="0" Grid.Column="0">Magic:</Label>
-                        <TextBox Name="tbMagic" Grid.Row="0" Grid.Column="1"/>
+                        <TextBox Name="tbMagic" Grid.Row="0" Grid.Column="1" />
 
                         <Label Grid.Row="1" Grid.Column="0">MajorLinkerVersion:</Label>
-                        <TextBox Name="tbMajorLinkerVersion" Grid.Row="1" Grid.Column="1"/>
+                        <TextBox Name="tbMajorLinkerVersion" Grid.Row="1" Grid.Column="1" />
 
                         <Label Grid.Row="2" Grid.Column="0">MinorLinkerVersion:</Label>
-                        <TextBox Name="tbMinorLinkerVersion" Grid.Row="2" Grid.Column="1"/>
+                        <TextBox Name="tbMinorLinkerVersion" Grid.Row="2" Grid.Column="1" />
 
                         <Label Grid.Row="3" Grid.Column="0">SizeOfCode:</Label>
-                        <TextBox Name="tbSizeOfCode" Grid.Row="3" Grid.Column="1"/>
+                        <TextBox Name="tbSizeOfCode" Grid.Row="3" Grid.Column="1" />
 
                         <Label Grid.Row="4" Grid.Column="0">SizeOfInitializedData:</Label>
-                        <TextBox Name="tbSizeOfInitializedData" Grid.Row="4" Grid.Column="1"/>
+                        <TextBox Name="tbSizeOfInitializedData" Grid.Row="4" Grid.Column="1" />
 
                         <Label Grid.Row="5" Grid.Column="0">SizeOfUninitializedData:</Label>
-                        <TextBox Name="tbSizeOfUninitializedData" Grid.Row="5" Grid.Column="1"/>
+                        <TextBox Name="tbSizeOfUninitializedData" Grid.Row="5" Grid.Column="1" />
 
                         <Label Grid.Row="6" Grid.Column="0">AddressOfEntryPoint:</Label>
-                        <TextBox Name="tbAddressOfEntryPoint" Grid.Row="6" Grid.Column="1"/>
+                        <TextBox Name="tbAddressOfEntryPoint" Grid.Row="6" Grid.Column="1" />
 
                         <Label Grid.Row="7" Grid.Column="0">BaseOfCode:</Label>
-                        <TextBox Name="tbBaseOfCode" Grid.Row="7" Grid.Column="1"/>
+                        <TextBox Name="tbBaseOfCode" Grid.Row="7" Grid.Column="1" />
 
                         <Label Grid.Row="8" Grid.Column="0">BaseOfData:</Label>
-                        <TextBox Name="tbBaseOfData" Grid.Row="8" Grid.Column="1"/>
+                        <TextBox Name="tbBaseOfData" Grid.Row="8" Grid.Column="1" />
 
                         <Label Grid.Row="9" Grid.Column="0">ImageBase:</Label>
-                        <TextBox Name="tbImageBase" Grid.Row="9" Grid.Column="1"/>
+                        <TextBox Name="tbImageBase" Grid.Row="9" Grid.Column="1" />
 
                         <Label Grid.Row="10" Grid.Column="0">SectionAlignment:</Label>
-                        <TextBox Name="tbSectionAlignment" Grid.Row="10" Grid.Column="1"/>
+                        <TextBox Name="tbSectionAlignment" Grid.Row="10" Grid.Column="1" />
 
                         <Label Grid.Row="11" Grid.Column="0">FileAlignment:</Label>
-                        <TextBox Name="tbFileAlignment" Grid.Row="11" Grid.Column="1"/>
+                        <TextBox Name="tbFileAlignment" Grid.Row="11" Grid.Column="1" />
 
                         <Label Grid.Row="12" Grid.Column="0">MajorOperatingSystemVersion:</Label>
-                        <TextBox Name="tbMajorOperatingSystemVersion" Grid.Row="12" Grid.Column="1"/>
+                        <TextBox Name="tbMajorOperatingSystemVersion" Grid.Row="12" Grid.Column="1" />
 
                         <Label Grid.Row="13" Grid.Column="0">MinorOperatingSystemVersion:</Label>
-                        <TextBox Name="tbMinorOperatingSystemVersion" Grid.Row="13" Grid.Column="1"/>
+                        <TextBox Name="tbMinorOperatingSystemVersion" Grid.Row="13" Grid.Column="1" />
 
                         <Label Grid.Row="14" Grid.Column="0">MajorImageVersion:</Label>
-                        <TextBox Name="tbMajorImageVersion" Grid.Row="14" Grid.Column="1"/>
+                        <TextBox Name="tbMajorImageVersion" Grid.Row="14" Grid.Column="1" />
 
                         <Label Grid.Row="0" Grid.Column="2">MinorImageVersion:</Label>
-                        <TextBox Name="tbMinorImageVersion" Grid.Row="0" Grid.Column="3"/>
+                        <TextBox Name="tbMinorImageVersion" Grid.Row="0" Grid.Column="3" />
 
                         <Label Grid.Row="1" Grid.Column="2">MajorSubsystemVersion:</Label>
-                        <TextBox Name="tbMajorSubsystemVersion" Grid.Row="1" Grid.Column="3"/>
+                        <TextBox Name="tbMajorSubsystemVersion" Grid.Row="1" Grid.Column="3" />
 
                         <Label Grid.Row="2" Grid.Column="2">MinorSubsystemVersion:</Label>
-                        <TextBox Name="tbMinorSubsystemVersion" Grid.Row="2" Grid.Column="3"/>
+                        <TextBox Name="tbMinorSubsystemVersion" Grid.Row="2" Grid.Column="3" />
 
                         <Label Grid.Row="3" Grid.Column="2">Win32VersionValue:</Label>
-                        <TextBox Name="tbWin32VersionValue" Grid.Row="3" Grid.Column="3"/>
+                        <TextBox Name="tbWin32VersionValue" Grid.Row="3" Grid.Column="3" />
 
                         <Label Grid.Row="4" Grid.Column="2">SizeOfImage:</Label>
-                        <TextBox Name="tbSizeOfImage" Grid.Row="4" Grid.Column="3"/>
+                        <TextBox Name="tbSizeOfImage" Grid.Row="4" Grid.Column="3" />
 
                         <Label Grid.Row="5" Grid.Column="2">SizeOfHeaders:</Label>
-                        <TextBox Name="tbSizeOfHeaders" Grid.Row="5" Grid.Column="3"/>
+                        <TextBox Name="tbSizeOfHeaders" Grid.Row="5" Grid.Column="3" />
 
                         <Label Grid.Row="6" Grid.Column="2">CheckSum:</Label>
-                        <TextBox Name="tbCheckSum" Grid.Row="6" Grid.Column="3"/>
+                        <TextBox Name="tbCheckSum" Grid.Row="6" Grid.Column="3" />
 
                         <Label Grid.Row="7" Grid.Column="2">Subsystem:</Label>
-                        <TextBox Name="tbSubsystem" Grid.Row="7" Grid.Column="3"/>
+                        <TextBox Name="tbSubsystem" Grid.Row="7" Grid.Column="3" />
 
                         <Label Grid.Row="8" Grid.Column="2">DllCharacteristics:</Label>
-                        <TextBox Name="tbDllCharacteristics" Grid.Row="8" Grid.Column="3"/>
+                        <TextBox Name="tbDllCharacteristics" Grid.Row="8" Grid.Column="3" />
 
                         <Label Grid.Row="9" Grid.Column="2">SizeOfStackReserve:</Label>
-                        <TextBox Name="tbSizeOfStackReserve" Grid.Row="9" Grid.Column="3"/>
+                        <TextBox Name="tbSizeOfStackReserve" Grid.Row="9" Grid.Column="3" />
 
                         <Label Grid.Row="10" Grid.Column="2">SizeOfStackCommit:</Label>
-                        <TextBox Name="tbSizeOfStackCommit" Grid.Row="10" Grid.Column="3"/>
+                        <TextBox Name="tbSizeOfStackCommit" Grid.Row="10" Grid.Column="3" />
 
                         <Label Grid.Row="11" Grid.Column="2">SizeOfHeapReserve:</Label>
-                        <TextBox Name="tbSizeOfHeapReserve" Grid.Row="11" Grid.Column="3"/>
+                        <TextBox Name="tbSizeOfHeapReserve" Grid.Row="11" Grid.Column="3" />
 
                         <Label Grid.Row="12" Grid.Column="2">SizeOfHeapCommit:</Label>
-                        <TextBox Name="tbSizeOfHeapCommit" Grid.Row="12" Grid.Column="3"/>
+                        <TextBox Name="tbSizeOfHeapCommit" Grid.Row="12" Grid.Column="3" />
 
                         <Label Grid.Row="13" Grid.Column="2">LoaderFlags:</Label>
-                        <TextBox Name="tbLoaderFlags" Grid.Row="13" Grid.Column="3"/>
+                        <TextBox Name="tbLoaderFlags" Grid.Row="13" Grid.Column="3" />
 
                         <Label Grid.Row="14" Grid.Column="2">NumberOfRvaAndSizes:</Label>
-                        <TextBox Name="tbNumberOfRvaAndSizes" Grid.Row="14" Grid.Column="3"/>
+                        <TextBox Name="tbNumberOfRvaAndSizes" Grid.Row="14" Grid.Column="3" />
                     </Grid>
                 </GroupBox>
             </TabItem>
@@ -380,17 +366,18 @@
                 <GroupBox Header="Imports">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <ListBox Name="lbImportDlls" Grid.Row="0" Grid.Column="0" SelectionChanged="lbImportDlls_SelectionChanged" SelectionMode="Single">
+                        <ListBox Name="lbImportDlls" Grid.Row="0" Grid.Column="0"
+                                 SelectionChanged="lbImportDlls_SelectionChanged" SelectionMode="Single">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding DLL}"/>
+                                    <TextBlock Text="{Binding DLL}" />
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
@@ -399,19 +386,21 @@
                                 <DataTemplate>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
                                         <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Name:</Label>
-                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="1"
+                                                   VerticalAlignment="Center" />
                                         <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Hint:</Label>
-                                        <TextBlock Text="{Binding Hint}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
-                                        <Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                        <TextBlock Text="{Binding Hint}" Grid.Row="1" Grid.Column="1"
+                                                   VerticalAlignment="Center" />
+                                        <Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" />
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -425,10 +414,10 @@
                 <GroupBox Header="Exports">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <ListBox Name="lbExports" Grid.Row="0" Grid.Column="0">
@@ -436,22 +425,25 @@
                                 <DataTemplate>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
                                         <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Name:</Label>
-                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="1"
+                                                   VerticalAlignment="Center" />
                                         <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Ordinal:</Label>
-                                        <TextBlock Text="{Binding Ordinal}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Ordinal}" Grid.Row="1" Grid.Column="1"
+                                                   VerticalAlignment="Center" />
                                         <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">RVA:</Label>
-                                        <TextBlock Text="{Binding RVA}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
-                                        <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                        <TextBlock Text="{Binding RVA}" Grid.Row="2" Grid.Column="1"
+                                                   VerticalAlignment="Center" />
+                                        <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -464,18 +456,18 @@
                 <GroupBox Header="Resources">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <GroupBox Header="Resource Directories" Grid.Row="0" Grid.Column="0">
                             <TreeView Name="tbResources" SelectedItemChanged="Resources_SelectedItemChanged">
                                 <TreeView.ItemTemplate>
                                     <HierarchicalDataTemplate ItemsSource="{Binding Items}">
-                                        <TextBlock Text="{Binding Title}"/>
+                                        <TextBlock Text="{Binding Title}" />
                                     </HierarchicalDataTemplate>
                                 </TreeView.ItemTemplate>
                             </TreeView>
@@ -484,37 +476,39 @@
                         <GroupBox Header="Data Entry" Grid.Row="0" Grid.Column="1">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
                                 <Grid Grid.Row="0">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
                                     <Label Grid.Row="0" Grid.Column="0">OffsetToData</Label>
-                                    <TextBox Grid.Row="0" Grid.Column="1" Name="tbOffsetToData"/>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Name="tbOffsetToData" />
 
                                     <Label Grid.Row="0" Grid.Column="2">Size1</Label>
-                                    <TextBox Grid.Row="0" Grid.Column="3" Name="tbSize1"/>
+                                    <TextBox Grid.Row="0" Grid.Column="3" Name="tbSize1" />
 
                                     <Label Grid.Row="1" Grid.Column="0">CodePage</Label>
-                                    <TextBox Grid.Row="1" Grid.Column="1" Name="tbCodePage"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Name="tbCodePage" />
 
                                     <Label Grid.Row="1" Grid.Column="2">Reserved</Label>
-                                    <TextBox Grid.Row="1" Grid.Column="3" Name="tbReserved"/>
+                                    <TextBox Grid.Row="1" Grid.Column="3" Name="tbReserved" />
                                 </Grid>
 
                                 <GroupBox Header="Hex View" Grid.Row="1">
-                                <TextBox Name="tbResource"  IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" FontFamily="Consolas"/>
+                                    <TextBox Name="tbResource" IsReadOnly="True" TextWrapping="Wrap"
+                                             VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
+                                             FontFamily="Consolas" />
                                 </GroupBox>
                             </Grid>
                         </GroupBox>
@@ -523,87 +517,91 @@
             </TabItem>
 
             <TabItem Header="Exception">
-                <GroupBox Header="Exception Directory (x64)  -- NOT SURE ABOUT THIS --">
+                <GroupBox Header="Exception Directory (x64 only)">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <GroupBox Header="RUNTIME__FUNCTION" Grid.Column="0">
-                            <ListBox Name="lbRuntimeFunctions" SelectionMode="Single" SelectionChanged="lbRuntimeFunctions_SelectionChanged">
+                            <ListBox Name="lbRuntimeFunctions" SelectionMode="Single"
+                                     SelectionChanged="lbRuntimeFunctions_SelectionChanged">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
-                                            
+
                                             <Label Grid.Row="0" Grid.Column="0">FunctionStart</Label>
-                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding FunctionStart}" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding FunctionStart}"
+                                                       VerticalAlignment="Center" />
 
                                             <Label Grid.Row="1" Grid.Column="0">FunctionEnd</Label>
-                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding FunctionEnd}" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding FunctionEnd}"
+                                                       VerticalAlignment="Center" />
 
                                             <Label Grid.Row="2" Grid.Column="0">UnwindInfo</Label>
-                                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding UnwindInfo}" VerticalAlignment="Center"/>
-                                            
-                                            <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding UnwindInfo}"
+                                                       VerticalAlignment="Center" />
+
+                                            <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
                                         </Grid>
-                                        
+
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </GroupBox>
-                        
+
                         <GroupBox Header="UNWIND__INFO" Grid.Column="1">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
                                 <Label Grid.Row="0" Grid.Column="0">Version</Label>
-                                <TextBox Grid.Row="0" Grid.Column="1" Name="tbUIVersion"/>
+                                <TextBox Grid.Row="0" Grid.Column="1" Name="tbUIVersion" />
 
                                 <Label Grid.Row="1" Grid.Column="0">Flags</Label>
-                                <TextBox Grid.Row="1" Grid.Column="1" Name="tbUIFlags"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Name="tbUIFlags" />
 
                                 <Label Grid.Row="2" Grid.Column="0">SizeOfProlog</Label>
-                                <TextBox Grid.Row="2" Grid.Column="1" Name="tbUISizeOfProlog"/>
+                                <TextBox Grid.Row="2" Grid.Column="1" Name="tbUISizeOfProlog" />
 
                                 <Label Grid.Row="3" Grid.Column="0">CountOfCodes</Label>
-                                <TextBox Grid.Row="3" Grid.Column="1" Name="tbUICountOfCodes"/>
+                                <TextBox Grid.Row="3" Grid.Column="1" Name="tbUICountOfCodes" />
 
                                 <Label Grid.Row="4" Grid.Column="0">FrameRegister</Label>
-                                <TextBox Grid.Row="4" Grid.Column="1" Name="tbUIFrameRegister"/>
+                                <TextBox Grid.Row="4" Grid.Column="1" Name="tbUIFrameRegister" />
 
                                 <Label Grid.Row="5" Grid.Column="0">FrameOffset</Label>
-                                <TextBox Grid.Row="5" Grid.Column="1" Name="tbUIFrameOffset"/>
+                                <TextBox Grid.Row="5" Grid.Column="1" Name="tbUIFrameOffset" />
 
                                 <Label Grid.Row="6" Grid.Column="0">ExceptionHandler</Label>
-                                <TextBox Grid.Row="6" Grid.Column="1" Name="tbUIExHandlerFuncEntry"/>
+                                <TextBox Grid.Row="6" Grid.Column="1" Name="tbUIExHandlerFuncEntry" />
 
                                 <Label Grid.Row="7" Grid.Column="0">ExceptionData</Label>
-                                <TextBox Grid.Row="7" Grid.Column="1" Name="tbUIExData"/>
+                                <TextBox Grid.Row="7" Grid.Column="1" Name="tbUIExData" />
                             </Grid>
                         </GroupBox>
 
@@ -613,26 +611,29 @@
                                     <DataTemplate>
                                         <Grid>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
 
                                             <Label Grid.Row="0" Grid.Column="0">CodeOffset</Label>
-                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CodeOffset}" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CodeOffset}"
+                                                       VerticalAlignment="Center" />
 
                                             <Label Grid.Row="1" Grid.Column="0">UnwindOp/OpInfo</Label>
-                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding UnwindOp}" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding UnwindOp}"
+                                                       VerticalAlignment="Center" />
 
                                             <Label Grid.Row="2" Grid.Column="0">FrameOffset</Label>
-                                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding FrameOffset}" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding FrameOffset}"
+                                                       VerticalAlignment="Center" />
 
-                                            <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                            <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
                                         </Grid>
 
                                     </DataTemplate>
@@ -647,58 +648,63 @@
                 <GroupBox Header="Relocation Directory">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <GroupBox Grid.Column="0" Header="Relocation Entry" MinWidth="150">
-                            <ListBox Name="lbRelocationEntries" SelectionMode="Single" SelectionChanged="lbRelocationEntries_SelectionChanged">
+                        <GroupBox Grid.Column="0" Header="Relocation Entry" MinWidth="200">
+                            <ListBox Name="lbRelocationEntries" SelectionMode="Single"
+                                     SelectionChanged="lbRelocationEntries_SelectionChanged">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
 
                                             <Label Grid.Row="0" Grid.Column="0">VirtualAddress</Label>
-                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding VirtualAddress}" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding VirtualAddress}"
+                                                       VerticalAlignment="Center" />
 
                                             <Label Grid.Row="1" Grid.Column="0">SizeOfBlock</Label>
-                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SizeOfBlock}" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SizeOfBlock}"
+                                                       VerticalAlignment="Center" />
 
-                                            <Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                            <Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" />
                                         </Grid>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </GroupBox>
-                        <GroupBox Grid.Column="1" Header="Type and Offsets" MinWidth="150">
+                        <GroupBox Grid.Column="1" Header="Type and Offsets" MinWidth="200">
                             <ListBox Name="lbRelocTypeOffsets">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
 
                                             <Label Grid.Row="0" Grid.Column="0">Type</Label>
-                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Type}" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Type}"
+                                                       VerticalAlignment="Center" />
 
                                             <Label Grid.Row="1" Grid.Column="0">Offset</Label>
-                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Offset}" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Offset}"
+                                                       VerticalAlignment="Center" />
 
-                                            <Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                            <Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" />
                                         </Grid>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
@@ -707,13 +713,154 @@
                     </Grid>
                 </GroupBox>
             </TabItem>
-            
+            <TabItem Header="Signature">
+                <GroupBox Header="Digital Signature">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <GroupBox Header="Info" Grid.Column="0">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0">Is Signed</Label>
+                                    <CheckBox Grid.Row="0" Grid.Column="1" IsEnabled="False" Name="cbCertIsSigned"
+                                              VerticalAlignment="Center" />
+
+                                    <Label Grid.Row="1" Grid.Column="0">Valid Signature</Label>
+                                    <CheckBox Grid.Row="1" Grid.Column="1" IsEnabled="False" Name="cbCertIsValid"
+                                              VerticalAlignment="Center" />
+
+                                    <Label Grid.Row="2" Grid.Column="0">Valid Chain</Label>
+                                    <CheckBox Grid.Row="2" Grid.Column="1" IsEnabled="False" Name="cbCertIsValidChain"
+                                              VerticalAlignment="Center" />
+
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Grid.Column="1" Header="WIN__CERTIFICATE">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0">dwLength</Label>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Name="tbCertLength" />
+
+                                    <Label Grid.Row="1" Grid.Column="0">wRevision</Label>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Name="tbCertRevision" />
+
+                                    <Label Grid.Row="2" Grid.Column="0">wCertificateType</Label>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Name="tbCertType" />
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <GroupBox Header="X509 Certificate">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0">Archived</Label>
+                                    <CheckBox Grid.Row="0" Grid.Column="1" IsEnabled="False" Name="cbX509Archived"
+                                              VerticalAlignment="Center" />
+
+                                    <Label Grid.Row="1" Grid.Column="0">HasPrivateKey</Label>
+                                    <CheckBox Grid.Row="1" Grid.Column="1" IsEnabled="False" Name="cbX509HasPrivateKey"
+                                              VerticalAlignment="Center" />
+
+                                    <Label Grid.Row="2" Grid.Column="0">FriendlyName</Label>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Name="tbX509FriendlyName" />
+
+                                    <Label Grid.Row="3" Grid.Column="0">Issuer</Label>
+                                    <TextBox Grid.Row="3" Grid.Column="1" Name="tbX509Issuer" TextWrapping="Wrap"
+                                             AcceptsReturn="True" />
+
+                                    <Label Grid.Row="4" Grid.Column="0">Thumbprint</Label>
+                                    <TextBox Grid.Row="4" Grid.Column="1" Name="tbX509Thumbprint" />
+
+                                    <Label Grid.Row="6" Grid.Column="0">Version</Label>
+                                    <TextBox Grid.Row="6" Grid.Column="1" Name="tbX509Version" />
+
+                                    <Label Grid.Row="7" Grid.Column="0">Extensions</Label>
+                                    <TextBox Grid.Row="7" Grid.Column="1" Name="tbX509Extensions" MaxHeight="150"
+                                             VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+
+                                    <Label Grid.Row="5" Grid.Column="0">Public Key</Label>
+                                    <TextBox Grid.Row="5" Grid.Column="1" Name="tbX509PublicKey" TextWrapping="Wrap"
+                                             AcceptsReturn="True" MaxHeight="150" VerticalScrollBarVisibility="Auto"
+                                             FontFamily="Consolas" />
+
+                                    <Label Grid.Row="0" Grid.Column="2">NotAfter</Label>
+                                    <TextBox Grid.Row="0" Grid.Column="3" Name="tbX509NotAfter" />
+
+                                    <Label Grid.Row="1" Grid.Column="2">NotBefore</Label>
+                                    <TextBox Grid.Row="1" Grid.Column="3" Name="tbX509NotBefore" />
+
+                                    <Label Grid.Row="2" Grid.Column="2">SerialNumber</Label>
+                                    <TextBox Grid.Row="2" Grid.Column="3" Name="tbX509SerialNumber" />
+
+                                    <Label Grid.Row="3" Grid.Column="2">Subject</Label>
+                                    <TextBox Grid.Row="3" Grid.Column="3" Name="tbX509Subject" TextWrapping="Wrap"
+                                             AcceptsReturn="True" />
+
+                                    <Label Grid.Row="4" Grid.Column="2">SignatureAlgorithm</Label>
+                                    <TextBox Grid.Row="4" Grid.Column="3" Name="tbX509SignatureAlgorithm" />
+
+                                    <Label Grid.Row="5" Grid.Column="2">Private Key</Label>
+                                    <TextBox Grid.Row="5" Grid.Column="3" Name="tbX509PrivateKey" TextWrapping="Wrap"
+                                             AcceptsReturn="True" MaxHeight="150" VerticalScrollBarVisibility="Auto"
+                                             FontFamily="Consolas" />
+
+                                    <Label Grid.Row="7" Grid.Column="2">CRL URLs</Label>
+                                    <TextBox Grid.Row="7" Grid.Column="3" Name="tbX509CrlUrls" AcceptsReturn="True"
+                                             MaxHeight="150" HorizontalScrollBarVisibility="Auto" />
+
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+                    </Grid>
+                </GroupBox>
+            </TabItem>
+
         </TabControl>
         <StatusBar Grid.Row="2" Height="20">
             <StatusBarItem>
-                <TextBlock Name="tbStatusBarLocation"  Width="750" />
+                <TextBlock Name="tbStatusBarLocation" Width="750" />
             </StatusBarItem>
         </StatusBar>
     </Grid>
 </Window>
-

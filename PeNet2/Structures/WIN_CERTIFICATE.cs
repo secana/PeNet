@@ -26,20 +26,16 @@ namespace PeNet.Structures
     ///     It contains information about any certificates
     ///     used to sign the binary.
     /// </summary>
-    public class WIN_CERTIFICATE
+    public class WIN_CERTIFICATE : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly uint _offset;
-
         /// <summary>
         ///     Create a new WIN_CERTIFICATE object.
         /// </summary>
         /// <param name="buff">A PE file as a byte array.</param>
         /// <param name="offset">Raw offset to the structure.</param>
         public WIN_CERTIFICATE(byte[] buff, uint offset)
+            : base(buff, offset)
         {
-            _buff = buff;
-            _offset = offset;
         }
 
         /// <summary>
@@ -47,8 +43,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint dwLength
         {
-            get { return Utility.BytesToUInt32(_buff, _offset); }
-            set { Utility.SetUInt32(value, _offset, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset); }
+            set { Utility.SetUInt32(value, Offset, Buff); }
         }
 
         /// <summary>
@@ -56,8 +52,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wRevision
         {
-            get { return Utility.BytesToUInt16(_buff, _offset + 0x4); }
-            set { Utility.SetUInt16(value, _offset + 0x4, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset + 0x4); }
+            set { Utility.SetUInt16(value, Offset + 0x4, Buff); }
         }
 
         /// <summary>
@@ -65,8 +61,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wCertificateType
         {
-            get { return Utility.BytesToUInt16(_buff, _offset + 0x6); }
-            set { Utility.SetUInt16(value, _offset + 0x6, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset + 0x6); }
+            set { Utility.SetUInt16(value, Offset + 0x6, Buff); }
         }
 
         /// <summary>
@@ -77,10 +73,10 @@ namespace PeNet.Structures
             get
             {
                 var cert = new byte[dwLength - 8];
-                Array.Copy(_buff, _offset + 0x8, cert, 0, dwLength - 8);
+                Array.Copy(Buff, Offset + 0x8, cert, 0, dwLength - 8);
                 return cert;
             }
-            set { Array.Copy(value, 0, _buff, _offset + 0x8, value.Length); }
+            set { Array.Copy(value, 0, Buff, Offset + 0x8, value.Length); }
         }
 
         /// <summary>

@@ -25,10 +25,8 @@ namespace PeNet.Structures
     ///     handling and to unwind the stack. It is
     ///     pointed to by the RUNTIME_FUNCTION struct.
     /// </summary>
-    public class UNWIND_INFO
+    public class UNWIND_INFO : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly uint _offset;
         private readonly int sizeOfUnwindeCode = 0x4;
 
         /// <summary>
@@ -37,28 +35,27 @@ namespace PeNet.Structures
         /// <param name="buff">A PE file as a byte array.</param>
         /// <param name="offset">Raw offset of the UNWIND_INFO struct.</param>
         public UNWIND_INFO(byte[] buff, uint offset)
+            : base(buff, offset)
         {
-            _buff = buff;
-            _offset = offset;
         }
 
         /// <summary>
         ///     Version
         /// </summary>
-        public byte Version => (byte) (_buff[_offset] & 0x7);
+        public byte Version => (byte) (Buff[Offset] >> 5);
 
         /// <summary>
         ///     Flags
         /// </summary>
-        public byte Flags => (byte) (_buff[_offset] >> 3);
+        public byte Flags => (byte) (Buff[Offset] & 0x1F);
 
         /// <summary>
         ///     Size of prolog.
         /// </summary>
         public byte SizeOfProlog
         {
-            get { return _buff[_offset + 0x1]; }
-            set { _buff[_offset + 0x1] = value; }
+            get { return Buff[Offset + 0x1]; }
+            set { Buff[Offset + 0x1] = value; }
         }
 
         /// <summary>
@@ -69,24 +66,24 @@ namespace PeNet.Structures
         /// </summary>
         public byte CountOfCodes
         {
-            get { return _buff[_offset + 0x2]; }
-            set { _buff[_offset + 0x2] = value; }
+            get { return Buff[Offset + 0x2]; }
+            set { Buff[Offset + 0x2] = value; }
         }
 
         /// <summary>
         ///     Frame register.
         /// </summary>
-        public byte FrameRegister => (byte) (_buff[_offset + 0x3] & 0xF);
+        public byte FrameRegister => (byte) (Buff[Offset + 0x3] >> 4);
 
         /// <summary>
         ///     Frame offset.
         /// </summary>
-        public byte FrameOffset => (byte)(_buff[_offset + 0x3] >> 4);
+        public byte FrameOffset => (byte) (Buff[Offset + 0x3] & 0xF);
 
         /// <summary>
         ///     UnwindCode structure.
         /// </summary>
-        public UNWIND_CODE[] UnwindCode => ParseUnwindCodes(_buff, _offset + 0x4);
+        public UNWIND_CODE[] UnwindCode => ParseUnwindCodes(Buff, Offset + 0x4);
 
         /// <summary>
         ///     The exception handler for the function.
@@ -95,13 +92,13 @@ namespace PeNet.Structures
         {
             get
             {
-                var off = (uint) (_offset + 0x4 + sizeOfUnwindeCode*CountOfCodes);
-                return Utility.BytesToUInt32(_buff, off);
+                var off = (uint) (Offset + 0x4 + sizeOfUnwindeCode*CountOfCodes);
+                return Utility.BytesToUInt32(Buff, off);
             }
             set
             {
-                var off = (uint) (_offset + 0x4 + sizeOfUnwindeCode*CountOfCodes);
-                Utility.SetUInt32(value, off, _buff);
+                var off = (uint) (Offset + 0x4 + sizeOfUnwindeCode*CountOfCodes);
+                Utility.SetUInt32(value, off, Buff);
             }
         }
 

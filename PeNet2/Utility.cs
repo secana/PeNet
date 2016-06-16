@@ -17,6 +17,7 @@ limitations under the License.
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -33,13 +34,13 @@ namespace PeNet
     public static class Utility
     {
         /// <summary>
-        /// Converts the section name (UTF-8 byte array) to a string.
+        ///     Converts the section name (UTF-8 byte array) to a string.
         /// </summary>
         /// <param name="name">Section name byte array.</param>
         /// <returns>String representation of the section name.</returns>
         public static string ResolveSectionName(byte[] name)
         {
-            return Encoding.UTF8.GetString(name).TrimEnd((Char)0);
+            return Encoding.UTF8.GetString(name).TrimEnd((char) 0);
         }
 
         /// <summary>
@@ -164,13 +165,13 @@ namespace PeNet
         ///     to a human readable string with a meaning.
         /// </summary>
         /// <param name="id">Resource identifier.</param>
-        /// <returns>String repesentation of the ID.</returns>
+        /// <returns>String representation of the ID.</returns>
         public static string ResolveResourceId(uint id)
         {
             switch (id)
             {
                 case (uint) Constants.ResourceGroupIDs.Cursor:
-                    return "Curser";
+                    return "Cursor";
                 case (uint) Constants.ResourceGroupIDs.Bitmap:
                     return "Bitmap";
                 case (uint) Constants.ResourceGroupIDs.Icon:
@@ -272,7 +273,7 @@ namespace PeNet
         public static List<string> ResolveSectionFlags(uint sectionFlags)
         {
             var st = new List<string>();
-            foreach (var flag in (Constants.SectionFlags[]) Enum.GetValues(typeof (Constants.SectionFlags)))
+            foreach (var flag in (Constants.SectionFlags[]) Enum.GetValues(typeof(Constants.SectionFlags)))
             {
                 if ((sectionFlags & (uint) flag) == (uint) flag)
                 {
@@ -283,7 +284,7 @@ namespace PeNet
         }
 
         /// <summary>
-        ///     Convert to bytes to an 16 bit unsinged integer.
+        ///     Convert to bytes to an 16 bit unsigned integer.
         /// </summary>
         /// <param name="b1">High byte.</param>
         /// <param name="b2">Low byte.</param>
@@ -450,13 +451,14 @@ namespace PeNet
             return sb.ToString();
         }
 
+
         /// <summary>
         ///     Map an relative virtual address to the raw file address.
         /// </summary>
-        /// <param name="RVA">Relative Virutal Address</param>
+        /// <param name="RVA">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static uint RVAtoFileMapping(uint RVA, IMAGE_SECTION_HEADER[] sh)
+        public static ulong RVAtoFileMapping(ulong RVA, ICollection<IMAGE_SECTION_HEADER> sh)
         {
             var sortedSt = sh.OrderBy(x => x.VirtualAddress).ToList();
             uint vOffset = 0, rOffset = 0;
@@ -493,41 +495,12 @@ namespace PeNet
         /// <summary>
         ///     Map an relative virtual address to the raw file address.
         /// </summary>
-        /// <param name="RVA">Relative Virutal Address</param>
+        /// <param name="RVA">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static ulong RVAtoFileMapping(ulong RVA, IMAGE_SECTION_HEADER[] sh)
+        public static uint RVAtoFileMapping(uint RVA, ICollection<IMAGE_SECTION_HEADER> sh)
         {
-            var sortedSt = sh.OrderBy(x => x.VirtualAddress).ToList();
-            uint vOffset = 0, rOffset = 0;
-            var secFound = false;
-            for (var i = 0; i < sortedSt.Count - 1; i++)
-            {
-                if (sortedSt[i].VirtualAddress <= RVA && sortedSt[i + 1].VirtualAddress > RVA)
-                {
-                    vOffset = sortedSt[i].VirtualAddress;
-                    rOffset = sortedSt[i].PointerToRawData;
-                    secFound = true;
-                    break;
-                }
-            }
-
-            // try last section
-            if (secFound == false)
-            {
-                if (RVA >= sortedSt.Last().VirtualAddress &&
-                    RVA <= sortedSt.Last().VirtualSize + sortedSt.Last().VirtualAddress)
-                {
-                    vOffset = sortedSt.Last().VirtualAddress;
-                    rOffset = sortedSt.Last().PointerToRawData;
-                }
-                else
-                {
-                    throw new Exception("Cannot find corresponding section.");
-                }
-            }
-
-            return RVA - vOffset + rOffset;
+            return (uint) RVAtoFileMapping((ulong) RVA, sh);
         }
 
         internal static ushort GetOrdinal(uint ordinal, byte[] buff)
@@ -699,6 +672,8 @@ namespace PeNet
         /// <returns>Hex-String</returns>
         public static string ToHexString(ICollection<byte> bytes)
         {
+            if (bytes == null) return null;
+
             var hex = new StringBuilder(bytes.Count*2);
             foreach (var b in bytes)
                 hex.AppendFormat("{0:x2}", b);
@@ -712,6 +687,8 @@ namespace PeNet
         /// <returns>Hex-String</returns>
         public static string ToHexString(ICollection<ushort> values)
         {
+            if (values == null) return null;
+
             var hex = new StringBuilder(values.Count*2);
             foreach (var b in values)
                 hex.AppendFormat("{0:X4}", b);
@@ -749,17 +726,19 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Convert a sub array of an byte array to an hex string where
-        /// every byte is seperated by an whitespace.
+        ///     Convert a sub array of an byte array to an hex string where
+        ///     every byte is separated by an whitespace.
         /// </summary>
         /// <param name="input">Byte array.</param>
         /// <param name="from">Index in the byte array where the hex string starts.</param>
         /// <param name="length">Length of the hex string in the byte array.</param>
         /// <returns></returns>
-        public static List<string> ToHexString(byte[] input, UInt64 from, UInt64 length)
+        public static List<string> ToHexString(byte[] input, ulong from, ulong length)
         {
+            if (input == null) return null;
+
             var hexList = new List<string>();
-            for (UInt64 i = from; i < from + length; i++)
+            for (var i = from; i < from + length; i++)
             {
                 hexList.Add(input[i].ToString("X2"));
             }
@@ -767,13 +746,13 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Converts a hex string of the form 0x435A4DE3 to a long value.
+        ///     Converts a hex string of the form 0x435A4DE3 to a long value.
         /// </summary>
         /// <param name="hexString"></param>
         /// <returns>The hex string value as a long.</returns>
         public static long ToIntFromHexString(string hexString)
         {
-            return (long)new System.ComponentModel.Int64Converter().ConvertFromString(hexString);
+            return (long) new Int64Converter().ConvertFromString(hexString);
         }
 
         /// <summary>
@@ -975,7 +954,7 @@ namespace PeNet
             public bool System { get; private set; }
 
             /// <summary>
-            ///     Is a dynamic loaded library and exetuable but cannot
+            ///     Is a dynamic loaded library and executable but cannot
             ///     be run on its own.
             /// </summary>
             public bool DLL { get; private set; }

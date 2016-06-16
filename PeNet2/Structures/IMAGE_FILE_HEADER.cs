@@ -23,20 +23,16 @@ namespace PeNet.Structures
     ///     The File header contains information about the structure
     ///     and properties of the PE file.
     /// </summary>
-    public class IMAGE_FILE_HEADER
+    public class IMAGE_FILE_HEADER : AbstractStructure
     {
-        private readonly byte[] _buff;
-        private readonly uint _offset;
-
         /// <summary>
         ///     Create a new IMAGE_FILE_HEADER object.
         /// </summary>
         /// <param name="buff">A PE file as byte array.</param>
         /// <param name="offset">Raw offset to the file header.</param>
         public IMAGE_FILE_HEADER(byte[] buff, uint offset)
+            : base(buff, offset)
         {
-            _buff = buff;
-            _offset = offset;
         }
 
         /// <summary>
@@ -45,8 +41,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Machine
         {
-            get { return Utility.BytesToUInt16(_buff, _offset); }
-            set { Utility.SetUInt16(value, _offset, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset); }
+            set { Utility.SetUInt16(value, Offset, Buff); }
         }
 
         /// <summary>
@@ -54,8 +50,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfSections
         {
-            get { return Utility.BytesToUInt16(_buff, _offset + 0x2); }
-            set { Utility.SetUInt16(value, _offset + 0x2, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset + 0x2); }
+            set { Utility.SetUInt16(value, Offset + 0x2, Buff); }
         }
 
         /// <summary>
@@ -63,8 +59,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x4); }
-            set { Utility.SetUInt32(value, _offset + 0x4, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
+            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
         }
 
         /// <summary>
@@ -73,8 +69,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint PointerToSymbolTable
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0x8); }
-            set { Utility.SetUInt32(value, _offset + 0x8, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0x8); }
+            set { Utility.SetUInt32(value, Offset + 0x8, Buff); }
         }
 
         /// <summary>
@@ -82,8 +78,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint NumberOfSymbols
         {
-            get { return Utility.BytesToUInt32(_buff, _offset + 0xC); }
-            set { Utility.SetUInt32(value, _offset + 0xC, _buff); }
+            get { return Utility.BytesToUInt32(Buff, Offset + 0xC); }
+            set { Utility.SetUInt32(value, Offset + 0xC, Buff); }
         }
 
         /// <summary>
@@ -91,8 +87,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort SizeOfOptionalHeader
         {
-            get { return Utility.BytesToUInt16(_buff, _offset + 0x10); }
-            set { Utility.SetUInt16(value, _offset + 0x10, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset + 0x10); }
+            set { Utility.SetUInt16(value, Offset + 0x10, Buff); }
         }
 
         /// <summary>
@@ -101,8 +97,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Characteristics
         {
-            get { return Utility.BytesToUInt16(_buff, _offset + 0x12); }
-            set { Utility.SetUInt16(value, _offset + 0x12, _buff); }
+            get { return Utility.BytesToUInt16(Buff, Offset + 0x12); }
+            set { Utility.SetUInt16(value, Offset + 0x12, Buff); }
         }
 
         /// <summary>

@@ -21,7 +21,7 @@ namespace PeNet
 {
     /// <summary>
     ///     This class contains constants and flags which are used in a PE file.
-    ///     The constants can be used to map a numeric value to an understanable string.
+    ///     The constants can be used to map a numeric value to an understandable string.
     /// </summary>
     public static class Constants
     {
@@ -102,7 +102,7 @@ namespace PeNet
             IAT = 0xC,
 
             /// <summary>
-            ///     Delayed Importd directory. Imports which are loaded
+            ///     Delayed Import directory. Imports which are loaded
             ///     with a delay for performance reasons.
             /// </summary>
             DelayImport = 0xD,
@@ -189,7 +189,7 @@ namespace PeNet
             IMAGE_FILE_SYSTEM = 0x1000,
 
             /// <summary>
-            ///     Is a dynamic loaded library and exetuable but cannot
+            ///     Is a dynamic loaded library and executable but cannot
             ///     be run on its own.
             /// </summary>
             IMAGE_FILE_DLL = 0x2000,
@@ -480,7 +480,7 @@ namespace PeNet
         //////////////////////////////////
 
         /// <summary>
-        ///     Mapping from Resources Group ID to a meaninful
+        ///     Mapping from Resources Group ID to a meaningful
         ///     string. Used for ID resources (opposite to named resource).
         /// </summary>
         public enum ResourceGroupIDs : uint
@@ -566,7 +566,7 @@ namespace PeNet
             VXD = 20,
 
             /// <summary>
-            ///     Animated Curser resource.
+            ///     Animated Cursor resource.
             /// </summary>
             AnimatedCurser = 21,
 
@@ -743,7 +743,7 @@ namespace PeNet
             IMAGE_SCN_ALIGN_8192BYTES = 0x00E00000,
 
             /// <summary>
-            ///     Alingment mask.
+            ///     Alignment mask.
             /// </summary>
             IMAGE_SCN_ALIGN_MASK = 0x00F00000,
 
