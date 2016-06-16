@@ -18,6 +18,7 @@ limitations under the License.
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using PeNet.Parser;
 using PeNet.Structures;
 
@@ -32,8 +33,9 @@ namespace PeNet
         public WIN_CERTIFICATE WinCertificate => _winCertificateParser?.GetParserTarget();
         public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory => _imageDebugDirectoryParser?.GetParserTarget();
         public RUNTIME_FUNCTION[] RuntimeFunctions => _runtimeFunctionsParser?.GetParserTarget();
-        public PeFile.ExportFunction[] ExportFunctions => _exportedFunctionsParser?.GetParserTarget();
-        public PeFile.ImportFunction[] ImportFunctions => _importedFunctionsParser.GetParserTarget();
+        public ExportFunction[] ExportFunctions => _exportedFunctionsParser?.GetParserTarget();
+        public ImportFunction[] ImportFunctions => _importedFunctionsParser.GetParserTarget();
+        public X509Certificate2 PKCS7 => _pkcs7Parser.GetParserTarget();
 
         public List<Exception> RvaToFileMappingExceptions = new List<Exception>();
 
@@ -46,6 +48,7 @@ namespace PeNet
         private WinCertificateParser _winCertificateParser;
         private ExportedFunctionsParser _exportedFunctionsParser;
         private ImportedFunctionsParser _importedFunctionsParser;
+        private PKCS7Parser _pkcs7Parser;
 
         private readonly byte[] _buff;
         private readonly IMAGE_DATA_DIRECTORY[] _dataDirectories;
@@ -79,6 +82,7 @@ namespace PeNet
             _winCertificateParser = InitWinCertificateParser();
             _exportedFunctionsParser = InitExportFunctionParser();
             _importedFunctionsParser = InitImportedFunctionsParser();
+            _pkcs7Parser = InitPKCS7Parser();
         }
 
         private ImportedFunctionsParser InitImportedFunctionsParser()
@@ -89,6 +93,11 @@ namespace PeNet
                 _sectionHeaders,
                 !_is32Bit
                 );
+        }
+
+        private PKCS7Parser InitPKCS7Parser()
+        {
+            return new PKCS7Parser(WinCertificate);
         }
 
         private ExportedFunctionsParser InitExportFunctionParser()

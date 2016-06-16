@@ -21,7 +21,7 @@ using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class ImportedFunctionsParser : SafeParser<PeFile.ImportFunction[]>
+    internal class ImportedFunctionsParser : SafeParser<ImportFunction[]>
     {
         private IMAGE_IMPORT_DESCRIPTOR[] _importDescriptors;
         private IMAGE_SECTION_HEADER[] _sectionHeaders;
@@ -39,12 +39,12 @@ namespace PeNet.Parser
             _is64Bit = is64Bit;
         }
 
-        protected override PeFile.ImportFunction[] ParseTarget()
+        protected override ImportFunction[] ParseTarget()
         {
             if (_importDescriptors == null)
                 return null;
 
-            var impFuncs = new List<PeFile.ImportFunction>();
+            var impFuncs = new List<ImportFunction>();
             var sizeOfThunk = (uint)(_is64Bit ? 0x8 : 0x4); // Size of IMAGE_THUNK_DATA
             var ordinalBit = _is64Bit ? 0x8000000000000000 : 0x80000000;
             var ordinalMask = (ulong)(_is64Bit ? 0x7FFFFFFFFFFFFFFF : 0x7FFFFFFF);
@@ -73,12 +73,12 @@ namespace PeNet.Parser
 
                     if ((t.Ordinal & ordinalBit) == ordinalBit) // Import by ordinal
                     {
-                        impFuncs.Add(new PeFile.ImportFunction(null, dll, (ushort) (t.Ordinal & ordinalMask)));
+                        impFuncs.Add(new ImportFunction(null, dll, (ushort) (t.Ordinal & ordinalMask)));
                     }
                     else // Import by name
                     {
                         var ibn = new IMAGE_IMPORT_BY_NAME(_buff, Utility.RVAtoFileMapping((uint) t.AddressOfData, _sectionHeaders));
-                        impFuncs.Add(new PeFile.ImportFunction(ibn.Name, dll, ibn.Hint));
+                        impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint));
                     }
 
                     round++;

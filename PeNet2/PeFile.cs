@@ -36,10 +36,8 @@ namespace PeNet
         /// </summary>
         public readonly byte[] Buff;
 
-        private bool _alreadyParsedPKCS7;
         private string _impHash;
         private string _md5;
-        private X509Certificate2 _pkcs7;
         private string _sha1;
         private string _sha256;
 
@@ -218,39 +216,7 @@ namespace PeNet
         ///     A X509 PKCS7 signature if the PE file was digitally signed with such
         ///     a signature.
         /// </summary>
-        public X509Certificate2 PKCS7
-        {
-            get
-            {
-                if (_alreadyParsedPKCS7)
-                    return _pkcs7;
-
-                _alreadyParsedPKCS7 = true;
-
-                try
-                {
-
-                    if (WinCertificate == null)
-                    {
-                        return null;
-                    }
-
-                    if (WinCertificate.wCertificateType ==
-                        (ushort) Constants.WinCertificateType.WIN_CERT_TYPE_PKCS_SIGNED_DATA)
-                    {
-                        var cert = WinCertificate.bCertificate;
-                        _pkcs7 = new X509Certificate2(cert);
-                    }
-                }
-                catch (Exception exception)
-                {
-                    Exceptions.Add(exception);
-                    return null;
-                }
-
-                return _pkcs7;
-            }
-        }
+        public X509Certificate2 PKCS7 => _dataDirectories.PKCS7;
 
         /// <summary>
         ///     The SHA-256 hash sum of the binary.
@@ -451,87 +417,7 @@ namespace PeNet
 
             return fileType;
         }
-       
 
-        /// <summary>
-        ///     Represents an exported function.
-        /// </summary>
-        public class ExportFunction
-        {
-            /// <summary>
-            ///     Create a new ExportFunction object.
-            /// </summary>
-            /// <param name="name">Name of the function.</param>
-            /// <param name="address">Address of function.</param>
-            /// <param name="ordinal">Ordinal of the function.</param>
-            public ExportFunction(string name, uint address, ushort ordinal)
-            {
-                Name = name;
-                Address = address;
-                Ordinal = ordinal;
-            }
-
-            /// <summary>
-            ///     Function name.
-            /// </summary>
-            public string Name { get; private set; }
-
-            /// <summary>
-            ///     Function RVA.
-            /// </summary>
-            public uint Address { get; }
-
-            /// <summary>
-            ///     Function Ordinal.
-            /// </summary>
-            public ushort Ordinal { get; }
-
-            /// <summary>
-            ///     Creates a string representation of all
-            ///     properties of the object.
-            /// </summary>
-            /// <returns>The exported function as a string.</returns>
-            public override string ToString()
-            {
-                var sb = new StringBuilder("ExportFunction\n");
-                sb.Append(Utility.PropertiesToString(this, "{0,-20}:\t{1,10:X}\n"));
-                return sb.ToString();
-            }
-        }
-
-        /// <summary>
-        ///     Represents an imported function.
-        /// </summary>
-        public class ImportFunction
-        {
-            /// <summary>
-            ///     Create a new ImportFunction object.
-            /// </summary>
-            /// <param name="name">Function name.</param>
-            /// <param name="dll">DLL where the function comes from.</param>
-            /// <param name="hint">Function hint.</param>
-            public ImportFunction(string name, string dll, ushort hint)
-            {
-                Name = name;
-                DLL = dll;
-                Hint = hint;
-            }
-
-            /// <summary>
-            ///     Function name.
-            /// </summary>
-            public string Name { get; }
-
-            /// <summary>
-            ///     DLL where the function comes from.
-            /// </summary>
-            public string DLL { get; }
-
-            /// <summary>
-            ///     Function hint.
-            /// </summary>
-            public ushort Hint { get; }
-        }
 
         /// <summary>
         ///     Creates a string representation of the objects
@@ -543,125 +429,6 @@ namespace PeNet
             var sb = new StringBuilder("PE HEADER:\n");
             sb.Append(Utility.PropertiesToString(this, "{0,-15}:\t{1,10:X}\n"));
             return sb.ToString();
-        }
-
-        /// <summary>
-        ///     This class parses the Certificate Revocation Lists
-        ///     of a signing certificate. It provides access to all
-        ///     CRL URLs in the certificate.
-        /// </summary>
-        public class CrlUrlList
-        {
-            /// <summary>
-            ///     Create a new CrlUrlList object.
-            /// </summary>
-            /// <param name="rawData">A byte array containing a X509 certificate</param>
-            public CrlUrlList(byte[] rawData)
-            {
-                Urls = new List<string>();
-                ParseCrls(rawData);
-            }
-
-            /// <summary>
-            ///     Create a new CrlUrlList object.
-            /// </summary>
-            /// <param name="cert">A X509 certificate object.</param>
-            public CrlUrlList(X509Certificate2 cert)
-            {
-                Urls = new List<string>();
-                foreach (var ext in cert.Extensions)
-                {
-                    if (ext.Oid.Value == "2.5.29.31")
-                    {
-                        ParseCrls(ext.RawData);
-                    }
-                }
-            }
-
-            /// <summary>
-            ///     List with all CRL URLs.
-            /// </summary>
-            public List<string> Urls { get; }
-
-            private void ParseCrls(byte[] rawData)
-            {
-                var rawLength = rawData.Length;
-                for (var i = 0; i < rawLength - 5; i++)
-                {
-                    // Find a HTTP(s) string.
-                    if ((rawData[i] == 'h'
-                         && rawData[i + 1] == 't'
-                         && rawData[i + 2] == 't'
-                         && rawData[i + 3] == 'p'
-                         && rawData[i + 4] == ':')
-                        || (rawData[i] == 'l'
-                            && rawData[i + 1] == 'd'
-                            && rawData[i + 2] == 'a'
-                            && rawData[i + 3] == 'p'
-                            && rawData[i + 4] == ':'))
-                    {
-                        var bytes = new List<byte>();
-                        for (var j = i; j < rawLength; j++)
-                        {
-                            if ((rawData[j - 4] == '.'
-                                 && rawData[j - 3] == 'c'
-                                 && rawData[j - 2] == 'r'
-                                 && rawData[j - 1] == 'l')
-                                || (rawData[j] == 'b'
-                                    && rawData[j + 1] == 'a'
-                                    && rawData[j + 2] == 's'
-                                    && rawData[j + 3] == 'e'
-                                    ))
-                            {
-                                i = j;
-                                break;
-                            }
-
-
-                            if (rawData[j] < 0x20 || rawData[j] > 0x7E)
-                            {
-                                i = j;
-                                break;
-                            }
-
-                            bytes.Add(rawData[j]);
-                        }
-                        var uri = Encoding.ASCII.GetString(bytes.ToArray());
-
-                        if (IsValidUri(uri) && uri.StartsWith("http://") && uri.EndsWith(".crl"))
-                            Urls.Add(uri);
-
-                        if (uri.StartsWith("ldap:", StringComparison.InvariantCulture))
-                        {
-                            uri = "ldap://" + uri.Split('/')[2];
-                            Urls.Add(uri);
-                        }
-                    }
-                }
-            }
-
-            private bool IsValidUri(string uri)
-            {
-                Uri uriResult;
-                return Uri.TryCreate(uri, UriKind.Absolute, out uriResult)
-                       && (uriResult.Scheme == Uri.UriSchemeHttp
-                           || uriResult.Scheme == Uri.UriSchemeHttps);
-            }
-
-
-            /// <summary>
-            ///     Create a string representation of all CRL in
-            ///     the list.
-            /// </summary>
-            /// <returns>CRL URLs.</returns>
-            public override string ToString()
-            {
-                var sb = new StringBuilder();
-                sb.AppendLine("CRL URLs:");
-                foreach (var url in Urls)
-                    sb.AppendFormat("\t{0}\n", url);
-                return sb.ToString();
-            }
         }
     }
 }

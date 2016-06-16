@@ -19,7 +19,7 @@ using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class ExportedFunctionsParser : SafeParser<PeFile.ExportFunction[]>
+    internal class ExportedFunctionsParser : SafeParser<ExportFunction[]>
     {
         private readonly IMAGE_EXPORT_DIRECTORY _exportDirectory;
         private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
@@ -35,12 +35,12 @@ namespace PeNet.Parser
             _sectionHeaders = sectionHeaders;
         }
 
-        protected override PeFile.ExportFunction[] ParseTarget()
+        protected override ExportFunction[] ParseTarget()
         {
             if (_exportDirectory == null || _exportDirectory.AddressOfFunctions == 0)
                 return null;
 
-            var expFuncs = new PeFile.ExportFunction[_exportDirectory.NumberOfFunctions];
+            var expFuncs = new ExportFunction[_exportDirectory.NumberOfFunctions];
 
             var funcOffsetPointer = Utility.RVAtoFileMapping(_exportDirectory.AddressOfFunctions, _sectionHeaders);
             var ordOffset = Utility.RVAtoFileMapping(_exportDirectory.AddressOfNameOrdinals, _sectionHeaders);
@@ -52,7 +52,7 @@ namespace PeNet.Parser
                 var ordinal = i + _exportDirectory.Base;
                 var address = Utility.BytesToUInt32(_buff, funcOffsetPointer + sizeof(uint)*i);
 
-                expFuncs[i] = new PeFile.ExportFunction(null, address, (ushort) ordinal);
+                expFuncs[i] = new ExportFunction(null, address, (ushort) ordinal);
             }
 
             //Associate names
@@ -63,7 +63,7 @@ namespace PeNet.Parser
                 var name = Utility.GetName(nameAdr, _buff);
                 var ordinalIndex = (uint) Utility.GetOrdinal(ordOffset + sizeof(ushort)*i, _buff);
 
-                expFuncs[ordinalIndex] = new PeFile.ExportFunction(name, expFuncs[ordinalIndex].Address,
+                expFuncs[ordinalIndex] = new ExportFunction(name, expFuncs[ordinalIndex].Address,
                     expFuncs[ordinalIndex].Ordinal);
             }
 

@@ -303,7 +303,7 @@ namespace PEditor
                 return;
 
             var dllNames = peFile.ImportedFunctions?.Select(x => x.DLL).Distinct();
-            var dllFunctions = new Dictionary<string, IEnumerable<PeFile.ImportFunction>>();
+            var dllFunctions = new Dictionary<string, IEnumerable<ImportFunction>>();
 
             foreach(var dllName in dllNames)
             {

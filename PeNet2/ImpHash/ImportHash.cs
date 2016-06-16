@@ -38,7 +38,7 @@ namespace PeNet.ImpHash
         /// PE file.
         /// </summary>
         /// <param name="importedFunctions"></param>
-        public ImportHash(ICollection<PeFile.ImportFunction> importedFunctions)
+        public ImportHash(ICollection<ImportFunction> importedFunctions)
         {
             ImpHash = ComputeImpHash(importedFunctions);
         }
@@ -48,7 +48,7 @@ namespace PeNet.ImpHash
         /// </summary>
         public string ImpHash { get; private set; }
 
-        private string ComputeImpHash(ICollection<PeFile.ImportFunction> importedFunctions)
+        private string ComputeImpHash(ICollection<ImportFunction> importedFunctions)
         {
             if (importedFunctions == null || importedFunctions.Count == 0)
                 return null;
