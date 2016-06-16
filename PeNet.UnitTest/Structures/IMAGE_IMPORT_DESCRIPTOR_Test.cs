@@ -23,16 +23,14 @@ namespace PeNet.UnitTest.Structures
     [TestClass]
     public class IMAGE_IMPORT_DESCRIPTOR_Test
     {
-        
-
         [TestMethod]
         public void ImageImportDescriptorConstructorWorks_Test()
         {
             var importDescriptor = new IMAGE_IMPORT_DESCRIPTOR(RawStructures.RawImportDescriptor, 2);
             Assert.AreEqual((uint) 0x33221100, importDescriptor.OriginalFirstThunk);
             Assert.AreEqual((uint) 0x77665544, importDescriptor.TimeDateStamp);
-            Assert.AreEqual((uint) 0xbbaa9988, importDescriptor.ForwarderChain);
-            Assert.AreEqual((uint) 0xffeeddcc, importDescriptor.Name);
+            Assert.AreEqual(0xbbaa9988, importDescriptor.ForwarderChain);
+            Assert.AreEqual(0xffeeddcc, importDescriptor.Name);
             Assert.AreEqual((uint) 0x44332211, importDescriptor.FirstThunk);
         }
     }

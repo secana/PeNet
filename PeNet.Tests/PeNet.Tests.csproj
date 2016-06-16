@@ -54,6 +54,10 @@
       <DependentUpon>CrlUrlListTest.cs</DependentUpon>
     </Compile>
     <Compile Include="CrlUrlListTest.cs" />
+    <Compile Include="ExportedFunctionsParserTest.Constructor.g.cs">
+      <DependentUpon>ExportedFunctionsParserTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExportedFunctionsParserTest.cs" />
     <Compile Include="ExportFunctionTest.Constructor.g.cs">
       <DependentUpon>ExportFunctionTest.cs</DependentUpon>
     </Compile>
@@ -61,6 +65,42 @@
     <Compile Include="ExportFunctionTest.ToString01.g.cs">
       <DependentUpon>ExportFunctionTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageBaseRelocationsParserTest.Constructor.g.cs">
+      <DependentUpon>ImageBaseRelocationsParserTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageBaseRelocationsParserTest.cs" />
+    <Compile Include="ImageDebugDirectoryParserTest.Constructor.g.cs">
+      <DependentUpon>ImageDebugDirectoryParserTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageDebugDirectoryParserTest.cs" />
+    <Compile Include="ImageDosHeaderParserTest.Constructor.g.cs">
+      <DependentUpon>ImageDosHeaderParserTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageDosHeaderParserTest.cs" />
+    <Compile Include="ImageExportDirectoriesParserTest.Constructor.g.cs">
+      <DependentUpon>ImageExportDirectoriesParserTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageExportDirectoriesParserTest.cs" />
+    <Compile Include="ImageImportDescriptorsParserTest.Constructor.g.cs">
+      <DependentUpon>ImageImportDescriptorsParserTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageImportDescriptorsParserTest.cs" />
+    <Compile Include="ImageNtHeadersParserTest.Constructor.g.cs">
+      <DependentUpon>ImageNtHeadersParserTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageNtHeadersParserTest.cs" />
+    <Compile Include="ImageResourceDirectoryParserTest.Constructor.g.cs">
+      <DependentUpon>ImageResourceDirectoryParserTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageResourceDirectoryParserTest.cs" />
+    <Compile Include="ImageSectionHeadersParserTest.Constructor.g.cs">
+      <DependentUpon>ImageSectionHeadersParserTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageSectionHeadersParserTest.cs" />
+    <Compile Include="ImportedFunctionsParserTest.Constructor.g.cs">
+      <DependentUpon>ImportedFunctionsParserTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportedFunctionsParserTest.cs" />
     <Compile Include="ImportFunctionTest.Constructor.g.cs">
       <DependentUpon>ImportFunctionTest.cs</DependentUpon>
     </Compile>
@@ -76,8 +116,20 @@
     <Compile Include="OrdinalSymbolMappingTest.Lookup.g.cs">
       <DependentUpon>OrdinalSymbolMappingTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="PKCS7ParserTest.Constructor.g.cs">
+      <DependentUpon>PKCS7ParserTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PKCS7ParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\PexAssemblyInfo.cs" />
+    <Compile Include="RuntimeFunctionsParserTest.Constructor.g.cs">
+      <DependentUpon>RuntimeFunctionsParserTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RuntimeFunctionsParserTest.cs" />
+    <Compile Include="TrieTest.Add.g.cs">
+      <DependentUpon>TrieTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrieTest.cs" />
     <Compile Include="UtilityTest.BytesToUInt16.g.cs">
       <DependentUpon>UtilityTest.cs</DependentUpon>
     </Compile>
@@ -169,6 +221,10 @@
     <Compile Include="UtilityTest.ToIntFromHexString.g.cs">
       <DependentUpon>UtilityTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinCertificateParserTest.Constructor.g.cs">
+      <DependentUpon>WinCertificateParserTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinCertificateParserTest.cs" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">

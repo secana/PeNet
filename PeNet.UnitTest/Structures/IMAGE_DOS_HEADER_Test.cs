@@ -41,12 +41,12 @@ namespace PeNet.UnitTest.Structures
             Assert.AreEqual((uint) 0x8877, idh.e_cs);
             Assert.AreEqual((uint) 0xaa99, idh.e_lfarlc);
             Assert.AreEqual((uint) 0xccbb, idh.e_ovno);
-            AssertEqual(new ushort []
+            AssertEqual(new ushort[]
             {
                 0xeedd,
                 0x00ff,
                 0x2211,
-                0x4433,
+                0x4433
             }, idh.e_res);
             Assert.AreEqual((uint) 0x6655, idh.e_oemid);
             Assert.AreEqual((uint) 0x8877, idh.e_oeminfo);
@@ -61,15 +61,14 @@ namespace PeNet.UnitTest.Structures
                 0x7766,
                 0x9988,
                 0xbbaa,
-                0xbbcc,
+                0xbbcc
             }, idh.e_res2);
-
         }
 
         private void AssertEqual(ushort[] expected, ushort[] actual)
         {
             Assert.AreEqual(expected.Length, actual.Length);
-            for (int i = 0; i < expected.Length; i++)
+            for (var i = 0; i < expected.Length; i++)
             {
                 Assert.AreEqual(expected[i], actual[i]);
             }

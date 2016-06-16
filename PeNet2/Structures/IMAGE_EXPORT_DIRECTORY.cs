@@ -36,7 +36,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     The characterisitcs of the export directory.
+        ///     The characteristics of the export directory.
         /// </summary>
         public uint Characteristics
         {

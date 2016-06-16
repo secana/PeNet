@@ -82,9 +82,9 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     Creates a string representation of the objects porperties.
+        ///     Creates a string representation of the objects properties.
         /// </summary>
-        /// <returns>The import decscriptors properties as a string.</returns>
+        /// <returns>The import descriptors properties as a string.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("IMAGE_IMPORT_DESCRIPTOR\n");

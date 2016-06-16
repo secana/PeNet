@@ -39,24 +39,6 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     Get the UNWIND_INFO from a runtime function form the
-        ///     Exception header in x64 applications.
-        /// </summary>
-        /// <param name="sh">Section Headers of the PE file.</param>
-        /// <returns>UNWIND_INFO for the runtime function.</returns>
-        private UNWIND_INFO GetUnwindInfo(IMAGE_SECTION_HEADER[] sh)
-        {
-            // Check if the last bit is set in the UnwindInfo. If so, it is a chained 
-            // information.
-            var uwAddress = (UnwindInfo & 0x1) == 0x1
-                ? UnwindInfo & 0xFFFE
-                : UnwindInfo;
-
-            var uw = new UNWIND_INFO(Buff, Utility.RVAtoFileMapping(uwAddress, sh));
-            return uw;
-        }
-
-        /// <summary>
         ///     RVA Start of the function in code.
         /// </summary>
         public uint FunctionStart
@@ -84,9 +66,27 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// Unwind Info object belonging to this Runtime Function.
+        ///     Unwind Info object belonging to this Runtime Function.
         /// </summary>
         public UNWIND_INFO ResolvedUnwindInfo { get; private set; }
+
+        /// <summary>
+        ///     Get the UNWIND_INFO from a runtime function form the
+        ///     Exception header in x64 applications.
+        /// </summary>
+        /// <param name="sh">Section Headers of the PE file.</param>
+        /// <returns>UNWIND_INFO for the runtime function.</returns>
+        private UNWIND_INFO GetUnwindInfo(IMAGE_SECTION_HEADER[] sh)
+        {
+            // Check if the last bit is set in the UnwindInfo. If so, it is a chained 
+            // information.
+            var uwAddress = (UnwindInfo & 0x1) == 0x1
+                ? UnwindInfo & 0xFFFE
+                : UnwindInfo;
+
+            var uw = new UNWIND_INFO(Buff, Utility.RVAtoFileMapping(uwAddress, sh));
+            return uw;
+        }
 
         /// <summary>
         ///     Creates a string representation of the objects

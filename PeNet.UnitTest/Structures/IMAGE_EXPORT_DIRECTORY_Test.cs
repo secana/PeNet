@@ -32,11 +32,11 @@ namespace PeNet.UnitTest.Structures
             Assert.AreEqual((uint) 0x77665544, exportDirectory.TimeDateStamp);
             Assert.AreEqual((ushort) 0x9988, exportDirectory.MajorVersion);
             Assert.AreEqual((ushort) 0xbbaa, exportDirectory.MinorVersion);
-            Assert.AreEqual((uint) 0xffeeddcc, exportDirectory.Name);
+            Assert.AreEqual(0xffeeddcc, exportDirectory.Name);
             Assert.AreEqual((uint) 0x55443322, exportDirectory.Base);
             Assert.AreEqual((uint) 0x44332211, exportDirectory.NumberOfFunctions);
-            Assert.AreEqual((uint) 0x88776655, exportDirectory.NumberOfNames);
-            Assert.AreEqual((uint) 0xccbbaa99, exportDirectory.AddressOfFunctions);
+            Assert.AreEqual(0x88776655, exportDirectory.NumberOfNames);
+            Assert.AreEqual(0xccbbaa99, exportDirectory.AddressOfFunctions);
             Assert.AreEqual((uint) 0x00ffeedd, exportDirectory.AddressOfNames);
             Assert.AreEqual((uint) 0x55443322, exportDirectory.AddressOfNameOrdinals);
         }

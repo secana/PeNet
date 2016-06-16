@@ -3,13 +3,13 @@
 namespace PeNet.Structures
 {
     /// <summary>
-    /// The IMAGE_RESOURCE_DATA_ENTRY points to the data of
-    /// the resources in the PE file like version info, strings etc.
+    ///     The IMAGE_RESOURCE_DATA_ENTRY points to the data of
+    ///     the resources in the PE file like version info, strings etc.
     /// </summary>
     public class IMAGE_RESOURCE_DATA_ENTRY : AbstractStructure
     {
         /// <summary>
-        /// Construct a IMAGE_RESOURCE_DATA_ENTRY at a given offset.
+        ///     Construct a IMAGE_RESOURCE_DATA_ENTRY at a given offset.
         /// </summary>
         /// <param name="buff">PE file as a byte array.</param>
         /// <param name="offset">Offset to the structure in the file.</param>
@@ -19,7 +19,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// Offset to the data of the resource.
+        ///     Offset to the data of the resource.
         /// </summary>
         public uint OffsetToData
         {
@@ -28,7 +28,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// Size of the resource data.
+        ///     Size of the resource data.
         /// </summary>
         public uint Size1
         {
@@ -37,7 +37,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// Code Page
+        ///     Code Page
         /// </summary>
         public uint CodePage
         {
@@ -46,7 +46,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// Reserved
+        ///     Reserved
         /// </summary>
         public uint Reserved
         {

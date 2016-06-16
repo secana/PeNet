@@ -21,17 +21,17 @@ namespace PeNet.Parser
 {
     internal class RuntimeFunctionsParser : SafeParser<RUNTIME_FUNCTION[]>
     {
-        private readonly bool _is32Bit;
         private readonly uint _directorySize;
+        private readonly bool _is32Bit;
         private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
 
         public RuntimeFunctionsParser(
-            byte[] buff, 
-            uint offset, 
-            bool is32Bit, 
+            byte[] buff,
+            uint offset,
+            bool is32Bit,
             uint directorySize,
             IMAGE_SECTION_HEADER[] sectionHeaders
-            ) 
+            )
             : base(buff, offset)
         {
             _is32Bit = is32Bit;

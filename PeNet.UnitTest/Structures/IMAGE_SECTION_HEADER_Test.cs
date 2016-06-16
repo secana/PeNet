@@ -31,10 +31,10 @@ namespace PeNet.UnitTest.Structures
             Assert.AreEqual(".data", Utility.ResolveSectionName(sectionHeader.Name));
             Assert.AreEqual((uint) 0x33221100, sectionHeader.VirtualSize);
             Assert.AreEqual((uint) 0x77665544, sectionHeader.VirtualAddress);
-            Assert.AreEqual((uint) 0xbbaa9988, sectionHeader.SizeOfRawData);
-            Assert.AreEqual((uint) 0xffeeddcc, sectionHeader.PointerToRawData);
+            Assert.AreEqual(0xbbaa9988, sectionHeader.SizeOfRawData);
+            Assert.AreEqual(0xffeeddcc, sectionHeader.PointerToRawData);
             Assert.AreEqual((uint) 0x44332211, sectionHeader.PointerToRelocations);
-            Assert.AreEqual((uint) 0x88776655, sectionHeader.PointerToLinenumbers);
+            Assert.AreEqual(0x88776655, sectionHeader.PointerToLinenumbers);
             Assert.AreEqual((ushort) 0xaa99, sectionHeader.NumberOfRelocations);
             Assert.AreEqual((ushort) 0xccbb, sectionHeader.NumberOfLinenumbers);
             Assert.AreEqual((uint) 0x00ffeedd, sectionHeader.Characteristics);

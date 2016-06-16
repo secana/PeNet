@@ -101,7 +101,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     Size of all unitialized data sections together.
+        ///     Size of all uninitialized data sections together.
         /// </summary>
         public uint SizeOfUninitializedData
         {
@@ -163,7 +163,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     Section aligment in memory in bytes. Must be greater or equal to the file alignment.
+        ///     Section alignment in memory in bytes. Must be greater or equal to the file alignment.
         /// </summary>
         public uint SectionAlignment
         {
@@ -217,7 +217,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     Major version of the sybsystem.
+        ///     Major version of the subsystem.
         /// </summary>
         public ushort MajorSubsystemVersion
         {
@@ -244,7 +244,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     Size of the image including all headers in bytes. Muste be a multiple of
+        ///     Size of the image including all headers in bytes. Must be a multiple of
         ///     the section alignment.
         /// </summary>
         public uint SizeOfImage
@@ -276,7 +276,7 @@ namespace PeNet.Structures
 
         /// <summary>
         ///     The subsystem required to run the image e.g., Windows GUI, XBOX etc.
-        ///     Can be resoved to a string with Utility.ResolveSubsystem(subsystem=
+        ///     Can be resolved to a string with Utility.ResolveSubsystem(subsystem=
         /// </summary>
         public ushort Subsystem
         {
@@ -285,7 +285,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     Dll characteristics of the image.
+        ///     DLL characteristics of the image.
         /// </summary>
         public ushort DllCharacteristics
         {
@@ -417,7 +417,7 @@ namespace PeNet.Structures
         ///     Creates a string representation of the objects
         ///     properties.
         /// </summary>
-        /// <returns>Optional header propteries as a string.</returns>
+        /// <returns>Optional header properties as a string.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("IMAGE_OPTIONAL_HEADER\n");

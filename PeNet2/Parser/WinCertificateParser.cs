@@ -21,7 +21,7 @@ namespace PeNet.Parser
 {
     internal class WinCertificateParser : SafeParser<WIN_CERTIFICATE>
     {
-        internal WinCertificateParser(byte[] buff, uint offset) 
+        internal WinCertificateParser(byte[] buff, uint offset)
             : base(buff, offset)
         {
         }

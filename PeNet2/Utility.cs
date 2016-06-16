@@ -17,6 +17,7 @@ limitations under the License.
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -33,13 +34,13 @@ namespace PeNet
     public static class Utility
     {
         /// <summary>
-        /// Converts the section name (UTF-8 byte array) to a string.
+        ///     Converts the section name (UTF-8 byte array) to a string.
         /// </summary>
         /// <param name="name">Section name byte array.</param>
         /// <returns>String representation of the section name.</returns>
         public static string ResolveSectionName(byte[] name)
         {
-            return Encoding.UTF8.GetString(name).TrimEnd((Char)0);
+            return Encoding.UTF8.GetString(name).TrimEnd((char) 0);
         }
 
         /// <summary>
@@ -170,7 +171,7 @@ namespace PeNet
             switch (id)
             {
                 case (uint) Constants.ResourceGroupIDs.Cursor:
-                    return "Curser";
+                    return "Cursor";
                 case (uint) Constants.ResourceGroupIDs.Bitmap:
                     return "Bitmap";
                 case (uint) Constants.ResourceGroupIDs.Icon:
@@ -272,7 +273,7 @@ namespace PeNet
         public static List<string> ResolveSectionFlags(uint sectionFlags)
         {
             var st = new List<string>();
-            foreach (var flag in (Constants.SectionFlags[]) Enum.GetValues(typeof (Constants.SectionFlags)))
+            foreach (var flag in (Constants.SectionFlags[]) Enum.GetValues(typeof(Constants.SectionFlags)))
             {
                 if ((sectionFlags & (uint) flag) == (uint) flag)
                 {
@@ -499,7 +500,7 @@ namespace PeNet
         /// <returns>Raw file address.</returns>
         public static uint RVAtoFileMapping(uint RVA, ICollection<IMAGE_SECTION_HEADER> sh)
         {
-            return (uint) RVAtoFileMapping((ulong) RVA, sh);  
+            return (uint) RVAtoFileMapping((ulong) RVA, sh);
         }
 
         internal static ushort GetOrdinal(uint ordinal, byte[] buff)
@@ -725,19 +726,19 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Convert a sub array of an byte array to an hex string where
-        /// every byte is separated by an whitespace.
+        ///     Convert a sub array of an byte array to an hex string where
+        ///     every byte is separated by an whitespace.
         /// </summary>
         /// <param name="input">Byte array.</param>
         /// <param name="from">Index in the byte array where the hex string starts.</param>
         /// <param name="length">Length of the hex string in the byte array.</param>
         /// <returns></returns>
-        public static List<string> ToHexString(byte[] input, UInt64 from, UInt64 length)
+        public static List<string> ToHexString(byte[] input, ulong from, ulong length)
         {
             if (input == null) return null;
 
             var hexList = new List<string>();
-            for (UInt64 i = from; i < from + length; i++)
+            for (var i = from; i < from + length; i++)
             {
                 hexList.Add(input[i].ToString("X2"));
             }
@@ -745,13 +746,13 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Converts a hex string of the form 0x435A4DE3 to a long value.
+        ///     Converts a hex string of the form 0x435A4DE3 to a long value.
         /// </summary>
         /// <param name="hexString"></param>
         /// <returns>The hex string value as a long.</returns>
         public static long ToIntFromHexString(string hexString)
         {
-            return (long)new System.ComponentModel.Int64Converter().ConvertFromString(hexString);
+            return (long) new Int64Converter().ConvertFromString(hexString);
         }
 
         /// <summary>

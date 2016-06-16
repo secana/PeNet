@@ -10,23 +10,24 @@ namespace PeNet
     {
         [DllImport("Wintrust.dll", PreserveSig = true, SetLastError = false)]
         private static extern uint WinVerifyTrust(IntPtr hWnd, IntPtr pgActionID, IntPtr pWinTrustData);
+
         private static uint WinVerifyTrust(string fileName)
         {
-            Guid wintrust_action_generic_verify_v2 = new Guid("{00AAC56B-CD44-11d0-8CC2-00C04FC295EE}");
+            var wintrust_action_generic_verify_v2 = new Guid("{00AAC56B-CD44-11d0-8CC2-00C04FC295EE}");
             uint result;
-            using (WINTRUST_FILE_INFO fileInfo = new WINTRUST_FILE_INFO(fileName, Guid.Empty))
+            using (var fileInfo = new WINTRUST_FILE_INFO(fileName, Guid.Empty))
 
-            using (UnmanagedPointer guidPtr = new UnmanagedPointer(
+            using (var guidPtr = new UnmanagedPointer(
                 Marshal.AllocHGlobal(Marshal.SizeOf(typeof(Guid))),
                 AllocMethod.HGlobal)
                 )
 
-            using (UnmanagedPointer wvtDataPtr = new UnmanagedPointer(
+            using (var wvtDataPtr = new UnmanagedPointer(
                 Marshal.AllocHGlobal(Marshal.SizeOf(typeof(WINTRUST_DATA))),
                 AllocMethod.HGlobal)
                 )
             {
-                WINTRUST_DATA data = new WINTRUST_DATA(fileInfo);
+                var data = new WINTRUST_DATA(fileInfo);
                 IntPtr pGuid = guidPtr;
                 IntPtr pData = wvtDataPtr;
                 Marshal.StructureToPtr(wintrust_action_generic_verify_v2, pGuid, true);
@@ -46,7 +47,7 @@ namespace PeNet
     {
         public WINTRUST_FILE_INFO(string fileName, Guid subject)
         {
-            cbStruct = (uint)Marshal.SizeOf(typeof(WINTRUST_FILE_INFO));
+            cbStruct = (uint) Marshal.SizeOf(typeof(WINTRUST_FILE_INFO));
             pcwszFilePath = fileName;
 
             if (subject != Guid.Empty)
@@ -63,13 +64,11 @@ namespace PeNet
 
         public uint cbStruct;
 
-        [MarshalAs(UnmanagedType.LPTStr)]
-        public string pcwszFilePath;
+        [MarshalAs(UnmanagedType.LPTStr)] public string pcwszFilePath;
 
         public IntPtr hFile;
 
         public IntPtr pgKnownSubject;
-
 
         #region IDisposable Members
 
@@ -79,48 +78,49 @@ namespace PeNet
             Marshal.DestroyStructure(pgKnownSubject, typeof(Guid));
             Marshal.FreeHGlobal(pgKnownSubject);
         }
+
         #endregion
     }
 
-    enum AllocMethod
+    internal enum AllocMethod
     {
         HGlobal,
         CoTaskMem
-    };
+    }
 
-    enum UnionChoice
+    internal enum UnionChoice
     {
         File = 1,
         Catalog,
         Blob,
         Signer,
         Cert
-    };
+    }
 
-    enum UiChoice
+    internal enum UiChoice
     {
         All = 1,
         NoUI,
         NoBad,
         NoGood
-    };
+    }
 
-    enum RevocationCheckFlags
+    internal enum RevocationCheckFlags
     {
         None = 0,
         WholeChain
-    };
+    }
 
-    enum StateAction
+    internal enum StateAction
     {
         Ignore = 0,
         Verify,
         Close,
         AutoCache,
         AutoCacheFlush
-    };
+    }
 
-    enum TrustProviderFlags
+    internal enum TrustProviderFlags
     {
         UseIE4Trust = 1,
         NoIE4Chain = 2,
@@ -133,20 +133,20 @@ namespace PeNet
         HashOnly = 512,
         UseDefaultOSVerCheck = 1024,
         LifetimeSigning = 2048
-    };
-    
-    enum UIContext
+    }
+
+    internal enum UIContext
     {
         Execute = 0,
         Install
-    };
+    }
 
     [StructLayout(LayoutKind.Sequential)]
     internal struct WINTRUST_DATA : IDisposable
     {
         public WINTRUST_DATA(WINTRUST_FILE_INFO fileInfo)
         {
-            cbStruct = (uint)Marshal.SizeOf(typeof(WINTRUST_DATA));
+            cbStruct = (uint) Marshal.SizeOf(typeof(WINTRUST_DATA));
             pInfoStruct = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(WINTRUST_FILE_INFO)));
             Marshal.StructureToPtr(fileInfo, pInfoStruct, false);
 
@@ -182,12 +182,11 @@ namespace PeNet
 
         public IntPtr hWVTStateData;
 
-        private IntPtr pwszURLReference;
+        private readonly IntPtr pwszURLReference;
 
         public TrustProviderFlags dwProvFlags;
 
         public UIContext dwUIContext;
-
 
         #region IDisposable Members
 
@@ -195,20 +194,21 @@ namespace PeNet
         {
             if (dwUnionChoice == UnionChoice.File)
             {
-                WINTRUST_FILE_INFO info = new WINTRUST_FILE_INFO();
+                var info = new WINTRUST_FILE_INFO();
                 Marshal.PtrToStructure(pInfoStruct, info);
                 info.Dispose();
                 Marshal.DestroyStructure(pInfoStruct, typeof(WINTRUST_FILE_INFO));
             }
             Marshal.FreeHGlobal(pInfoStruct);
         }
+
         #endregion
     }
 
     internal sealed class UnmanagedPointer : IDisposable
     {
+        private readonly AllocMethod m_meth;
         private IntPtr m_ptr;
-        private AllocMethod m_meth;
 
         internal UnmanagedPointer(IntPtr ptr, AllocMethod method)
         {
@@ -219,6 +219,11 @@ namespace PeNet
         ~UnmanagedPointer()
         {
             Dispose(false);
+        }
+
+        public static implicit operator IntPtr(UnmanagedPointer ptr)
+        {
+            return ptr.m_ptr;
         }
 
         #region IDisposable Members
@@ -252,10 +257,5 @@ namespace PeNet
         }
 
         #endregion
-
-        public static implicit operator IntPtr(UnmanagedPointer ptr)
-        {
-            return ptr.m_ptr;
-        }
     }
 }

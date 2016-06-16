@@ -29,13 +29,13 @@ namespace PeNet.UnitTest.Structures
             var idd = new IMAGE_DEBUG_DIRECTORY(RawStructures.RawDebugDirectory, 2);
 
             Assert.AreEqual((uint) 0x44332211, idd.Characteristics);
-            Assert.AreEqual((uint) 0x88776655, idd.TimeDateStamp);
+            Assert.AreEqual(0x88776655, idd.TimeDateStamp);
             Assert.AreEqual((ushort) 0xaa99, idd.MajorVersion);
             Assert.AreEqual((ushort) 0xccbb, idd.MinorVersion);
             Assert.AreEqual((uint) 0x11ffeedd, idd.Type);
             Assert.AreEqual((uint) 0x55443322, idd.SizeOfData);
-            Assert.AreEqual((uint) 0x99887766, idd.AddressOfRawData);
-            Assert.AreEqual((uint) 0xddccbbaa, idd.PointerToRawData);
+            Assert.AreEqual(0x99887766, idd.AddressOfRawData);
+            Assert.AreEqual(0xddccbbaa, idd.PointerToRawData);
         }
     }
 }

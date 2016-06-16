@@ -29,7 +29,7 @@ namespace PeNet.UnitTest.Structures
             var dataDirectory = new IMAGE_DATA_DIRECTORY(RawStructures.RawDataDirectory, 2);
 
             Assert.AreEqual((uint) 0x44332211, dataDirectory.VirtualAddress);
-            Assert.AreEqual((uint) 0x88776655, dataDirectory.Size);
+            Assert.AreEqual(0x88776655, dataDirectory.Size);
         }
     }
 }

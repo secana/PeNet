@@ -7,7 +7,7 @@ namespace PeNet.Parser
     {
         private readonly WIN_CERTIFICATE _winCertificate;
 
-        internal PKCS7Parser(WIN_CERTIFICATE winCertificate) 
+        internal PKCS7Parser(WIN_CERTIFICATE winCertificate)
             : base(null, 0)
         {
             _winCertificate = winCertificate;

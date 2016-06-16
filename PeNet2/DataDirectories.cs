@@ -26,39 +26,28 @@ namespace PeNet
 {
     internal class DataDirectories
     {
-        public IMAGE_EXPORT_DIRECTORY ImageExportDirectories => _imageExportDirectoriesParser?.GetParserTarget();
-        public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors => _imageImportDescriptorsParser?.GetParserTarget();
-        public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory => _imageResourceDirectoryParser?.GetParserTarget();
-        public IMAGE_BASE_RELOCATION[] ImageBaseRelocations => _imageBaseRelocationsParser?.GetParserTarget();
-        public WIN_CERTIFICATE WinCertificate => _winCertificateParser?.GetParserTarget();
-        public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory => _imageDebugDirectoryParser?.GetParserTarget();
-        public RUNTIME_FUNCTION[] RuntimeFunctions => _runtimeFunctionsParser?.GetParserTarget();
-        public ExportFunction[] ExportFunctions => _exportedFunctionsParser?.GetParserTarget();
-        public ImportFunction[] ImportFunctions => _importedFunctionsParser.GetParserTarget();
-        public X509Certificate2 PKCS7 => _pkcs7Parser.GetParserTarget();
+        private readonly byte[] _buff;
+        private readonly IMAGE_DATA_DIRECTORY[] _dataDirectories;
+
+        private readonly bool _is32Bit;
+        private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
+        private ExportedFunctionsParser _exportedFunctionsParser;
+        private ImageBaseRelocationsParser _imageBaseRelocationsParser;
+        private ImageDebugDirectoryParser _imageDebugDirectoryParser;
+
+        private ImageExportDirectoriesParser _imageExportDirectoriesParser;
+        private ImageImportDescriptorsParser _imageImportDescriptorsParser;
+        private ImageResourceDirectoryParser _imageResourceDirectoryParser;
+        private ImportedFunctionsParser _importedFunctionsParser;
+        private PKCS7Parser _pkcs7Parser;
+        private RuntimeFunctionsParser _runtimeFunctionsParser;
+        private WinCertificateParser _winCertificateParser;
 
         public List<Exception> RvaToFileMappingExceptions = new List<Exception>();
 
-        private ImageExportDirectoriesParser _imageExportDirectoriesParser;
-        private RuntimeFunctionsParser _runtimeFunctionsParser;
-        private ImageImportDescriptorsParser _imageImportDescriptorsParser;
-        private ImageBaseRelocationsParser _imageBaseRelocationsParser;
-        private ImageResourceDirectoryParser _imageResourceDirectoryParser;
-        private ImageDebugDirectoryParser _imageDebugDirectoryParser;
-        private WinCertificateParser _winCertificateParser;
-        private ExportedFunctionsParser _exportedFunctionsParser;
-        private ImportedFunctionsParser _importedFunctionsParser;
-        private PKCS7Parser _pkcs7Parser;
-
-        private readonly byte[] _buff;
-        private readonly IMAGE_DATA_DIRECTORY[] _dataDirectories;
-        private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
-       
-        private readonly bool _is32Bit;
-
         public DataDirectories(
-            byte[] buff, 
-            ICollection<IMAGE_DATA_DIRECTORY> dataDirectories, 
+            byte[] buff,
+            ICollection<IMAGE_DATA_DIRECTORY> dataDirectories,
             ICollection<IMAGE_SECTION_HEADER> sectionHeaders,
             bool is32Bit
             )
@@ -70,6 +59,17 @@ namespace PeNet
 
             InitAllParsers();
         }
+
+        public IMAGE_EXPORT_DIRECTORY ImageExportDirectories => _imageExportDirectoriesParser?.GetParserTarget();
+        public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors => _imageImportDescriptorsParser?.GetParserTarget();
+        public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory => _imageResourceDirectoryParser?.GetParserTarget();
+        public IMAGE_BASE_RELOCATION[] ImageBaseRelocations => _imageBaseRelocationsParser?.GetParserTarget();
+        public WIN_CERTIFICATE WinCertificate => _winCertificateParser?.GetParserTarget();
+        public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory => _imageDebugDirectoryParser?.GetParserTarget();
+        public RUNTIME_FUNCTION[] RuntimeFunctions => _runtimeFunctionsParser?.GetParserTarget();
+        public ExportFunction[] ExportFunctions => _exportedFunctionsParser?.GetParserTarget();
+        public ImportFunction[] ImportFunctions => _importedFunctionsParser.GetParserTarget();
+        public X509Certificate2 PKCS7 => _pkcs7Parser.GetParserTarget();
 
         private void InitAllParsers()
         {
@@ -157,7 +157,8 @@ namespace PeNet
 
         private ImageExportDirectoriesParser InitImageExportDirectoryParser()
         {
-            var rawAddress = SafeRVAtoFileMapping(_dataDirectories[(int) Constants.DataDirectoryIndex.Export].VirtualAddress);
+            var rawAddress =
+                SafeRVAtoFileMapping(_dataDirectories[(int) Constants.DataDirectoryIndex.Export].VirtualAddress);
             if (rawAddress == null)
                 return null;
 
@@ -172,7 +173,7 @@ namespace PeNet
             if (rawAddress == null)
                 return null;
 
-            return  new RuntimeFunctionsParser(
+            return new RuntimeFunctionsParser(
                 _buff,
                 rawAddress.Value,
                 _is32Bit,

@@ -31,7 +31,7 @@ namespace PeNet.Structures
         /// </summary>
         /// <param name="buff">A PE file as a byte array.</param>
         /// <param name="offset">Raw offset to the entry.</param>
-        /// <param name="resourceDirOffset">Raw offset to the resource dir.</param>
+        /// <param name="resourceDirOffset">Raw offset to the resource directory.</param>
         public IMAGE_RESOURCE_DIRECTORY_ENTRY(byte[] buff, uint offset, uint resourceDirOffset)
             : base(buff, offset)
         {
@@ -56,13 +56,13 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// Get the Resource Directory which the Directory Entry points
-        /// to if the Directory Entry has DataIsDirectory set.
+        ///     Get the Resource Directory which the Directory Entry points
+        ///     to if the Directory Entry has DataIsDirectory set.
         /// </summary>
         public IMAGE_RESOURCE_DIRECTORY ResourceDirectory { get; internal set; }
 
         /// <summary>
-        /// Get the Resource Data Entry if the entry is no directory.
+        ///     Get the Resource Data Entry if the entry is no directory.
         /// </summary>
         public IMAGE_RESOURCE_DATA_ENTRY ResourceDataEntry { get; internal set; }
 

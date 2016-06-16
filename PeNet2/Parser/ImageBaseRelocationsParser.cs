@@ -26,11 +26,11 @@ namespace PeNet.Parser
         private readonly uint _directorySize;
 
         public ImageBaseRelocationsParser(
-            byte[] buff, 
+            byte[] buff,
             uint offset,
             uint directorySize,
             IMAGE_SECTION_HEADER[] sectionHeaders
-            ) 
+            )
             : base(buff, offset)
         {
             _directorySize = directorySize;

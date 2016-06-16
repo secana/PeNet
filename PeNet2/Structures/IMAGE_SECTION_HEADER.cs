@@ -79,7 +79,7 @@ namespace PeNet.Structures
 
         /// <summary>
         ///     Size of the section when loaded into memory. If it's bigger than
-        ///     the raw data size, the rest of the section is filled with zeroes.
+        ///     the raw data size, the rest of the section is filled with zeros.
         /// </summary>
         public uint VirtualSize
         {
@@ -99,7 +99,7 @@ namespace PeNet.Structures
         /// <summary>
         ///     Size of the section in raw on disk. Must be a multiple of the file alignment
         ///     specified in the optional header. If its less than the virtual size, the rest
-        ///     is filled with zeroes.
+        ///     is filled with zeros.
         /// </summary>
         public uint SizeOfRawData
         {

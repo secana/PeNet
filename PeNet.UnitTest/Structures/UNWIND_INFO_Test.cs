@@ -38,7 +38,7 @@ namespace PeNet.UnitTest.Structures
             Assert.AreEqual((byte) 0x8, unwindInfo.UnwindCode[0].UnwindOp);
             Assert.AreEqual((byte) 0x9, unwindInfo.UnwindCode[0].Opinfo);
 
-            Assert.AreEqual((uint) 0xffeeddcc, unwindInfo.ExceptionHandler);
+            Assert.AreEqual(0xffeeddcc, unwindInfo.ExceptionHandler);
         }
     }
 }

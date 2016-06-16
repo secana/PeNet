@@ -32,7 +32,8 @@ namespace PeNet.UnitTest.Structures
 
             Assert.AreEqual((uint) 0x33221100, runtimeFunction.FunctionStart);
             Assert.AreEqual((uint) 0x77665544, runtimeFunction.FunctionEnd);
-            Assert.AreEqual((uint) 0xbbaa9988, runtimeFunction.UnwindInfo); // No valid UnwindInfo -> Throws ArgumentNullException
+            Assert.AreEqual(0xbbaa9988, runtimeFunction.UnwindInfo);
+                // No valid UnwindInfo -> Throws ArgumentNullException
         }
     }
 }

@@ -34,9 +34,9 @@ namespace PeNet.UnitTest.Structures
             Assert.AreEqual((ushort) 0x0001, resourceDirectory.NumberOfNameEntries);
             Assert.AreEqual((ushort) 0x0001, resourceDirectory.NumberOfIdEntries);
             Assert.AreEqual((uint) 0x44332211, resourceDirectory.DirectoryEntries[0].Name);
-            Assert.AreEqual((uint) 0x88776655, resourceDirectory.DirectoryEntries[0].OffsetToData);
+            Assert.AreEqual(0x88776655, resourceDirectory.DirectoryEntries[0].OffsetToData);
             Assert.AreEqual((uint) 0x44332222 & 0xFFFF, resourceDirectory.DirectoryEntries[1].ID);
-            Assert.AreEqual((uint) 0x88776622, resourceDirectory.DirectoryEntries[1].OffsetToData);
+            Assert.AreEqual(0x88776622, resourceDirectory.DirectoryEntries[1].OffsetToData);
         }
     }
 }

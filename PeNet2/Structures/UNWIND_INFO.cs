@@ -78,7 +78,7 @@ namespace PeNet.Structures
         /// <summary>
         ///     Frame offset.
         /// </summary>
-        public byte FrameOffset => (byte)(Buff[Offset + 0x3] & 0xF);
+        public byte FrameOffset => (byte) (Buff[Offset + 0x3] & 0xF);
 
         /// <summary>
         ///     UnwindCode structure.

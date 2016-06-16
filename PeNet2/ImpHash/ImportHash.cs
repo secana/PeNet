@@ -16,6 +16,7 @@ limitations under the License.
 *************************************************************************/
 
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace PeNet.ImpHash
@@ -34,8 +35,8 @@ namespace PeNet.ImpHash
     public class ImportHash
     {
         /// <summary>
-        /// Create an import hash object from the imported functions of a 
-        /// PE file.
+        ///     Create an import hash object from the imported functions of a
+        ///     PE file.
         /// </summary>
         /// <param name="importedFunctions"></param>
         public ImportHash(ICollection<ImportFunction> importedFunctions)
@@ -44,7 +45,7 @@ namespace PeNet.ImpHash
         }
 
         /// <summary>
-        /// The import hash of the PE file as a string.
+        ///     The import hash of the PE file as a string.
         /// </summary>
         public string ImpHash { get; private set; }
 
@@ -89,7 +90,7 @@ namespace PeNet.ImpHash
             // Concatenate all imports to one string separated by ','.
             var imports = string.Join(",", list);
 
-            var md5 = System.Security.Cryptography.MD5.Create();
+            var md5 = MD5.Create();
             var inputBytes = Encoding.ASCII.GetBytes(imports);
             var hash = md5.ComputeHash(inputBytes);
             var sb = new StringBuilder();

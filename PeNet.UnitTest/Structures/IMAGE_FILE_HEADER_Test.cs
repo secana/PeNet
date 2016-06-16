@@ -30,8 +30,8 @@ namespace PeNet.UnitTest.Structures
             Assert.AreEqual((ushort) 0x1100, fileHeader.Machine);
             Assert.AreEqual((ushort) 0x3322, fileHeader.NumberOfSections);
             Assert.AreEqual((uint) 0x77665544, fileHeader.TimeDateStamp);
-            Assert.AreEqual((uint) 0xbbaa9988, fileHeader.PointerToSymbolTable);
-            Assert.AreEqual((uint) 0xffeeddcc, fileHeader.NumberOfSymbols);
+            Assert.AreEqual(0xbbaa9988, fileHeader.PointerToSymbolTable);
+            Assert.AreEqual(0xffeeddcc, fileHeader.NumberOfSymbols);
             Assert.AreEqual((ushort) 0x2211, fileHeader.SizeOfOptionalHeader);
             Assert.AreEqual((ushort) 0x4433, fileHeader.Characteristics);
         }

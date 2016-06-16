@@ -31,6 +31,10 @@ namespace PeNet
     /// </summary>
     public class PeFile
     {
+        private readonly DataDirectories _dataDirectories;
+
+        private readonly StructureParser _structureParser;
+
         /// <summary>
         ///     The PE binary as a byte array.
         /// </summary>
@@ -40,9 +44,6 @@ namespace PeNet
         private string _md5;
         private string _sha1;
         private string _sha256;
-
-        private readonly StructureParser _structureParser;
-        private readonly DataDirectories _dataDirectories;
 
         /// <summary>
         ///     Create a new PeFile object.
@@ -54,8 +55,8 @@ namespace PeNet
             _structureParser = new StructureParser(Buff);
 
             _dataDirectories = new DataDirectories(
-                Buff, 
-                ImageNtHeaders?.OptionalHeader?.DataDirectory, 
+                Buff,
+                ImageNtHeaders?.OptionalHeader?.DataDirectory,
                 ImageSectionHeaders,
                 Is32Bit
                 );

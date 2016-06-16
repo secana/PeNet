@@ -34,7 +34,7 @@ namespace PeNet.Structures
         /// <param name="offset">Raw offset of the IMAGE_IMPORT_BY_NAME.</param>
         public IMAGE_IMPORT_BY_NAME(byte[] buff, uint offset)
             : base(buff, offset)
-        { 
+        {
         }
 
         /// <summary>

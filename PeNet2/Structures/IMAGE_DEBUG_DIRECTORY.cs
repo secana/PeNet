@@ -20,14 +20,13 @@ using System.Text;
 namespace PeNet.Structures
 {
     /// <summary>
-    /// The IMAGE_DEBUG_DIRECTORY hold debug information
-    /// about the PE file.
+    ///     The IMAGE_DEBUG_DIRECTORY hold debug information
+    ///     about the PE file.
     /// </summary>
     public class IMAGE_DEBUG_DIRECTORY : AbstractStructure
     {
-
         /// <summary>
-        /// Create a new IMAGE_DEBUG_DIRECTORY object.
+        ///     Create a new IMAGE_DEBUG_DIRECTORY object.
         /// </summary>
         /// <param name="buff">PE binary as byte array.</param>
         /// <param name="offset">Offset to the debug struct in the binary.</param>
@@ -46,7 +45,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///    Time and date stamp
+        ///     Time and date stamp
         /// </summary>
         public uint TimeDateStamp
         {
@@ -55,7 +54,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// Major Version.
+        ///     Major Version.
         /// </summary>
         public ushort MajorVersion
         {
@@ -64,7 +63,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// Minor Version.
+        ///     Minor Version.
         /// </summary>
         public ushort MinorVersion
         {
@@ -73,10 +72,10 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///   Type
-        ///   1: Coff
-        ///   2: CV-PDB
-        ///   9: Borland
+        ///     Type
+        ///     1: Coff
+        ///     2: CV-PDB
+        ///     9: Borland
         /// </summary>
         public uint Type
         {
@@ -85,7 +84,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///   Size of data.
+        ///     Size of data.
         /// </summary>
         public uint SizeOfData
         {
@@ -94,7 +93,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///    Address of raw data.
+        ///     Address of raw data.
         /// </summary>
         public uint AddressOfRawData
         {
@@ -103,7 +102,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///    Pointer to raw data.
+        ///     Pointer to raw data.
         /// </summary>
         public uint PointerToRawData
         {

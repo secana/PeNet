@@ -15,7 +15,6 @@ limitations under the License.
 
 *************************************************************************/
 
-using System;
 using System.Collections.Generic;
 using PeNet.Structures;
 
@@ -23,16 +22,16 @@ namespace PeNet.Parser
 {
     internal class ImportedFunctionsParser : SafeParser<ImportFunction[]>
     {
-        private IMAGE_IMPORT_DESCRIPTOR[] _importDescriptors;
-        private IMAGE_SECTION_HEADER[] _sectionHeaders;
-        private bool _is64Bit;
+        private readonly IMAGE_IMPORT_DESCRIPTOR[] _importDescriptors;
+        private readonly bool _is64Bit;
+        private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
 
         internal ImportedFunctionsParser(
-            byte[] buff, 
-            IMAGE_IMPORT_DESCRIPTOR[] importDescriptors, 
+            byte[] buff,
+            IMAGE_IMPORT_DESCRIPTOR[] importDescriptors,
             IMAGE_SECTION_HEADER[] sectionHeaders,
-            bool is64Bit) : 
-            base(buff, 0)
+            bool is64Bit) :
+                base(buff, 0)
         {
             _importDescriptors = importDescriptors;
             _sectionHeaders = sectionHeaders;
@@ -45,9 +44,9 @@ namespace PeNet.Parser
                 return null;
 
             var impFuncs = new List<ImportFunction>();
-            var sizeOfThunk = (uint)(_is64Bit ? 0x8 : 0x4); // Size of IMAGE_THUNK_DATA
+            var sizeOfThunk = (uint) (_is64Bit ? 0x8 : 0x4); // Size of IMAGE_THUNK_DATA
             var ordinalBit = _is64Bit ? 0x8000000000000000 : 0x80000000;
-            var ordinalMask = (ulong)(_is64Bit ? 0x7FFFFFFFFFFFFFFF : 0x7FFFFFFF);
+            var ordinalMask = (ulong) (_is64Bit ? 0x7FFFFFFFFFFFFFFF : 0x7FFFFFFF);
 
             foreach (var idesc in _importDescriptors)
             {
@@ -77,7 +76,8 @@ namespace PeNet.Parser
                     }
                     else // Import by name
                     {
-                        var ibn = new IMAGE_IMPORT_BY_NAME(_buff, Utility.RVAtoFileMapping((uint) t.AddressOfData, _sectionHeaders));
+                        var ibn = new IMAGE_IMPORT_BY_NAME(_buff,
+                            Utility.RVAtoFileMapping((uint) t.AddressOfData, _sectionHeaders));
                         impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint));
                     }
 

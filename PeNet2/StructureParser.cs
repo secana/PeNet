@@ -22,21 +22,24 @@ namespace PeNet
 {
     internal class StructureParser
     {
-        public IMAGE_DOS_HEADER ImageDosHeader => _imageDosHeaderParser?.GetParserTarget();
-        public IMAGE_NT_HEADERS ImageNtHeaders => _imageNtHeadersParser?.GetParserTarget();
-        public IMAGE_SECTION_HEADER[] ImageSectionHeaders => _imageSectionHeadersParser?.GetParserTarget();
-
-        private readonly  byte[] _buff;
+        private readonly byte[] _buff;
         private ImageDosHeaderParser _imageDosHeaderParser;
         private ImageNtHeadersParser _imageNtHeadersParser;
         private ImageSectionHeadersParser _imageSectionHeadersParser;
-        
+
 
         internal StructureParser(byte[] buff)
         {
             _buff = buff;
             InitAllParsers();
         }
+
+        public IMAGE_DOS_HEADER ImageDosHeader => _imageDosHeaderParser?.GetParserTarget();
+        public IMAGE_NT_HEADERS ImageNtHeaders => _imageNtHeadersParser?.GetParserTarget();
+        public IMAGE_SECTION_HEADER[] ImageSectionHeaders => _imageSectionHeadersParser?.GetParserTarget();
+
+        private bool Is64Bit => Utility.BytesToUInt16(_buff, ImageDosHeader.e_lfanew + 0x4) ==
+                                (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
 
         private void InitAllParsers()
         {
@@ -59,9 +62,6 @@ namespace PeNet
         {
             return new ImageDosHeaderParser(_buff, 0);
         }
-
-        private bool Is64Bit => Utility.BytesToUInt16(_buff, ImageDosHeader.e_lfanew + 0x4) ==
-                               (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
 
         private uint GetSecHeaderOffset()
         {

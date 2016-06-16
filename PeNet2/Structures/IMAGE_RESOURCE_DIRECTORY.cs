@@ -21,7 +21,7 @@ using System.Text;
 namespace PeNet.Structures
 {
     /// <summary>
-    ///     The resouce directory contains icons, mouse pointer, string
+    ///     The resource directory contains icons, mouse pointer, string
     ///     language files etc. which are used by the application.
     /// </summary>
     public class IMAGE_RESOURCE_DIRECTORY : AbstractStructure
@@ -107,7 +107,7 @@ namespace PeNet.Structures
         {
             var sb = new StringBuilder("IMAGE_RESOURCE_DIRECTORY\n");
             sb.Append(Utility.PropertiesToString(this, "{0,-20}:\t{1,10:X}\n"));
-            if(DirectoryEntries != null)
+            if (DirectoryEntries != null)
                 foreach (var de in DirectoryEntries)
                     sb.Append($"{de}");
             return sb.ToString();

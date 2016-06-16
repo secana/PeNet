@@ -1,15 +1,16 @@
-﻿using Microsoft.Win32;
-using PeNet;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Deployment.Application;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Deployment.Application;
+using Microsoft.Win32;
+using PeNet;
+using PeNet.Structures;
 
 namespace PEditor
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -22,7 +23,7 @@ namespace PEditor
 
         private void MenuOpen_Click(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog()
+            var openFileDialog = new OpenFileDialog
             {
                 Multiselect = false
             };
@@ -45,7 +46,7 @@ namespace PEditor
             tbStatusBarLocation.Text = file;
 
             // Parse the PE file
-            if(!PeFile.IsPEFile(file))
+            if (!PeFile.IsPEFile(file))
             {
                 MessageBox.Show("Not a PE file.");
                 return;
@@ -160,7 +161,7 @@ namespace PEditor
             if (!peFile.HasValidRelocDir)
                 return;
 
-            foreach(var reloc in peFile.ImageRelocationDirectory)
+            foreach (var reloc in peFile.ImageRelocationDirectory)
             {
                 lbRelocationEntries.Items.Add(new
                 {
@@ -173,18 +174,19 @@ namespace PEditor
         private void SetSections(PeFile peFile)
         {
             var num = 1;
-            foreach(var sec in peFile.ImageSectionHeaders)
+            foreach (var sec in peFile.ImageSectionHeaders)
             {
                 var flags = string.Join(", ", Utility.ResolveSectionFlags(sec.Characteristics));
-                dgSections.Items.Add(new {
-                    Number      = num,
-                    Name        = Utility.ResolveSectionName(sec.Name),
-                    VSize       = Utility.ToHexString(sec.VirtualSize),
-                    VAddress    = Utility.ToHexString(sec.VirtualAddress),
-                    PSize       = Utility.ToHexString(sec.SizeOfRawData),
-                    PAddress    = Utility.ToHexString(sec.PhysicalAddress),
-                    Flags       = Utility.ToHexString(sec.Characteristics),
-                    RFlags      = flags
+                dgSections.Items.Add(new
+                {
+                    Number = num,
+                    Name = Utility.ResolveSectionName(sec.Name),
+                    VSize = Utility.ToHexString(sec.VirtualSize),
+                    VAddress = Utility.ToHexString(sec.VirtualAddress),
+                    PSize = Utility.ToHexString(sec.SizeOfRawData),
+                    PAddress = Utility.ToHexString(sec.PhysicalAddress),
+                    Flags = Utility.ToHexString(sec.Characteristics),
+                    RFlags = flags
                 });
                 num++;
             }
@@ -202,42 +204,42 @@ namespace PEditor
             if (rd == null)
                 return;
 
-            var root = new MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>(null)
+            var root = new MyTreeViewItem<IMAGE_RESOURCE_DIRECTORY_ENTRY>(null)
             {
-                Header = "Resource Directory",
+                Header = "Resource Directory"
             };
 
             // Type
             foreach (var de in rd.DirectoryEntries)
             {
-                MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY> item = null;
+                MyTreeViewItem<IMAGE_RESOURCE_DIRECTORY_ENTRY> item = null;
                 if (de.IsIdEntry)
                 {
-                    item = new MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>(de)
+                    item = new MyTreeViewItem<IMAGE_RESOURCE_DIRECTORY_ENTRY>(de)
                     {
                         Header = Utility.ResolveResourceId(de.ID)
                     };
                 }
                 else if (de.IsNamedEntry)
                 {
-                    item = new MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>(de)
+                    item = new MyTreeViewItem<IMAGE_RESOURCE_DIRECTORY_ENTRY>(de)
                     {
                         Header = de.ResolvedName
                     };
                 }
 
                 // name/IDs
-                foreach(var de2 in de.ResourceDirectory.DirectoryEntries)
+                foreach (var de2 in de.ResourceDirectory.DirectoryEntries)
                 {
-                    MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY> item2 = null;
-                    item2 = new MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>(de2)
+                    MyTreeViewItem<IMAGE_RESOURCE_DIRECTORY_ENTRY> item2 = null;
+                    item2 = new MyTreeViewItem<IMAGE_RESOURCE_DIRECTORY_ENTRY>(de2)
                     {
                         Header = de2.ID.ToString()
                     };
 
-                    foreach(var de3 in de2.ResourceDirectory.DirectoryEntries)
+                    foreach (var de3 in de2.ResourceDirectory.DirectoryEntries)
                     {
-                        item2.Items.Add(new MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>(de3)
+                        item2.Items.Add(new MyTreeViewItem<IMAGE_RESOURCE_DIRECTORY_ENTRY>(de3)
                         {
                             Header = Utility.ToHexString(de3.ID)
                         });
@@ -263,7 +265,7 @@ namespace PEditor
 
             // Get the resource data entry. If no data entry is give, return.
             var tree = sender as TreeView;
-            var directoryEntry = (tree?.SelectedItem as MyTreeViewItem<PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY>)?.MyItem;
+            var directoryEntry = (tree?.SelectedItem as MyTreeViewItem<IMAGE_RESOURCE_DIRECTORY_ENTRY>)?.MyItem;
             if (directoryEntry?.ResourceDataEntry == null)
                 return;
 
@@ -275,11 +277,12 @@ namespace PEditor
 
             // Build the hex output
             var rawOffset = Utility.RVAtoFileMapping(
-                directoryEntry.ResourceDataEntry.OffsetToData, 
+                directoryEntry.ResourceDataEntry.OffsetToData,
                 _peFile.ImageSectionHeaders
                 );
-            
-            tbResource.Text = string.Join(" ", Utility.ToHexString(_peFile.Buff, rawOffset, directoryEntry.ResourceDataEntry.Size1));
+
+            tbResource.Text = string.Join(" ",
+                Utility.ToHexString(_peFile.Buff, rawOffset, directoryEntry.ResourceDataEntry.Size1));
         }
 
         private void SetExports(PeFile peFile)
@@ -289,9 +292,9 @@ namespace PEditor
             if (peFile.ExportedFunctions == null)
                 return;
 
-            foreach(var export in peFile.ExportedFunctions)
+            foreach (var export in peFile.ExportedFunctions)
             {
-                lbExports.Items.Add(new { Name = export.Name, Ordinal = export.Ordinal, RVA = $"0x{export.Address.ToString("X")}" });
+                lbExports.Items.Add(new {export.Name, export.Ordinal, RVA = $"0x{export.Address.ToString("X")}"});
             }
         }
 
@@ -305,15 +308,15 @@ namespace PEditor
             var dllNames = peFile.ImportedFunctions?.Select(x => x.DLL).Distinct();
             var dllFunctions = new Dictionary<string, IEnumerable<ImportFunction>>();
 
-            foreach(var dllName in dllNames)
+            foreach (var dllName in dllNames)
             {
                 var functions = peFile.ImportedFunctions.Where(x => x.DLL == dllName);
                 dllFunctions.Add(dllName, functions);
             }
 
-            foreach(var kv in dllFunctions)
+            foreach (var kv in dllFunctions)
             {
-                lbImportDlls.Items.Add(new { DLL = kv.Key });
+                lbImportDlls.Items.Add(new {DLL = kv.Key});
             }
         }
 
@@ -369,7 +372,8 @@ namespace PEditor
             tbPointerToSymbolTable.Text = Utility.ToHexString(fileHeader.PointerToSymbolTable);
             tbNumberOfSymbols.Text = Utility.ToHexString(fileHeader.NumberOfSymbols);
             tbSizeOfOptionalHeader.Text = Utility.ToHexString(fileHeader.SizeOfOptionalHeader);
-            tbCharacteristics.Text = $"{Utility.ToHexString(characteristics)}\n\n{Utility.ResolveFileCharacteristics(characteristics)}";
+            tbCharacteristics.Text =
+                $"{Utility.ToHexString(characteristics)}\n\n{Utility.ResolveFileCharacteristics(characteristics)}";
         }
 
         private void SetOptionalHeader(PeFile peFile)
@@ -415,13 +419,13 @@ namespace PEditor
             if (peFile.Is32Bit || peFile.RuntimeFunctions == null)
                 return;
 
-            foreach(var rt in peFile.RuntimeFunctions)
+            foreach (var rt in peFile.RuntimeFunctions)
             {
                 lbRuntimeFunctions.Items.Add(new
                 {
                     FunctionStart = Utility.ToHexString(rt.FunctionStart),
                     FunctionEnd = Utility.ToHexString(rt.FunctionEnd),
-                    UnwindInfo = Utility.ToHexString(rt.UnwindInfo),
+                    UnwindInfo = Utility.ToHexString(rt.UnwindInfo)
                 });
             }
         }
@@ -436,9 +440,9 @@ namespace PEditor
             dynamic selected = e.AddedItems[0];
             var functions = _peFile.ImportedFunctions.Where(x => x.DLL == selected.DLL);
 
-            foreach(var function in functions)
+            foreach (var function in functions)
             {
-                lbImportFunctions.Items.Add(new { Name = function.Name, Hint = function.Hint });
+                lbImportFunctions.Items.Add(new {function.Name, function.Hint});
             }
         }
 
@@ -472,7 +476,7 @@ namespace PEditor
 
             // Set the UNWIND_CODE structures for the UNWIND_INFO
             lbUnwindCode.Items.Clear();
-            foreach(var uc in rt.ResolvedUnwindInfo.UnwindCode)
+            foreach (var uc in rt.ResolvedUnwindInfo.UnwindCode)
             {
                 lbUnwindCode.Items.Add(new
                 {
@@ -491,7 +495,7 @@ namespace PEditor
                 version =
                     $"Your application name - v{ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString(4)}";
             }
-            
+
             MessageBox.Show($"PEditor\nVersion {version}\nCopyright by Secana 2016", "About");
         }
 
@@ -504,9 +508,11 @@ namespace PEditor
             if (selected == null)
                 return;
 
-            var reloc = _peFile.ImageRelocationDirectory.First(x => x.VirtualAddress == Utility.ToIntFromHexString(selected.VirtualAddress));
+            var reloc =
+                _peFile.ImageRelocationDirectory.First(
+                    x => x.VirtualAddress == Utility.ToIntFromHexString(selected.VirtualAddress));
 
-            foreach(var to in reloc.TypeOffsets)
+            foreach (var to in reloc.TypeOffsets)
             {
                 lbRelocTypeOffsets.Items.Add(new
                 {

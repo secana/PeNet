@@ -31,7 +31,7 @@ namespace PeNet.UnitTest.Structures
 
             Assert.IsTrue(resourceDirectroyEntry.IsNamedEntry);
             Assert.IsFalse(resourceDirectroyEntry.IsIdEntry);
-            Assert.AreEqual((uint) 0x80332211, resourceDirectroyEntry.Name);
+            Assert.AreEqual(0x80332211, resourceDirectroyEntry.Name);
             Assert.AreEqual((uint) 0x55443322, resourceDirectroyEntry.OffsetToData);
         }
 

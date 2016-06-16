@@ -28,7 +28,8 @@ namespace PeNet.UnitTest.Structures
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void SizeOfBlockIsBiggerThanRelocDirSize_Test()
         {
-            var rawImageBaseRelocBroken = new byte[] {0x00, 0x00, 0x01, 0x00, 0x60, 0x00, 0x00, 0x00, 0x60, 0x30, 0xC4, 0x30};
+            var rawImageBaseRelocBroken = new byte[]
+            {0x00, 0x00, 0x01, 0x00, 0x60, 0x00, 0x00, 0x00, 0x60, 0x30, 0xC4, 0x30};
             var ibr = new IMAGE_BASE_RELOCATION(rawImageBaseRelocBroken, 0, 0);
         }
 

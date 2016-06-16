@@ -21,7 +21,7 @@ namespace PeNet.Parser
 {
     internal class ImageDosHeaderParser : SafeParser<IMAGE_DOS_HEADER>
     {
-        internal ImageDosHeaderParser(byte[] buff, uint offset) 
+        internal ImageDosHeaderParser(byte[] buff, uint offset)
             : base(buff, offset)
         {
         }

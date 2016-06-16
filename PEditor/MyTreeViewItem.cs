@@ -2,7 +2,7 @@
 
 namespace PEditor
 {
-    class MyTreeViewItem<T> : TreeViewItem
+    internal class MyTreeViewItem<T> : TreeViewItem
         where T : class
     {
         public T MyItem;

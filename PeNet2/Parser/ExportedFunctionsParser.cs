@@ -25,10 +25,10 @@ namespace PeNet.Parser
         private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
 
         internal ExportedFunctionsParser(
-            byte[] buff, 
-            IMAGE_EXPORT_DIRECTORY exportDirectory, 
+            byte[] buff,
+            IMAGE_EXPORT_DIRECTORY exportDirectory,
             IMAGE_SECTION_HEADER[] sectionHeaders
-            ) 
+            )
             : base(buff, 0)
         {
             _exportDirectory = exportDirectory;

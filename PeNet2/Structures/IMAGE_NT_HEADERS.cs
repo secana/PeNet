@@ -21,7 +21,7 @@ namespace PeNet.Structures
 {
     /// <summary>
     ///     The NT header is the main header for modern Windows applications.
-    ///     It conaints the file header and the optional header.
+    ///     It contains the file header and the optional header.
     /// </summary>
     public class IMAGE_NT_HEADERS : AbstractStructure
     {

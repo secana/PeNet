@@ -21,6 +21,12 @@ namespace PeNet.Parser
 {
     internal abstract class SafeParser<T>
     {
+        protected readonly byte[] _buff;
+        protected readonly uint _offset;
+        private bool _alreadyParsed;
+
+        private T _target;
+
         internal SafeParser(byte[] buff, uint offset)
         {
             _buff = buff;
@@ -28,11 +34,6 @@ namespace PeNet.Parser
         }
 
         public Exception ParserException { get; protected set; }
-
-        private T _target = default(T);
-        private bool _alreadyParsed;
-        protected readonly byte[] _buff;
-        protected readonly uint _offset;
 
         protected abstract T ParseTarget();
 

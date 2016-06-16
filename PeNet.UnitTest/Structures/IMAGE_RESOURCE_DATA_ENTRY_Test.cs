@@ -30,8 +30,8 @@ namespace PeNet.UnitTest.Structures
 
             Assert.AreEqual((uint) 0x33221100, resourceDataEntry.OffsetToData);
             Assert.AreEqual((uint) 0x77665544, resourceDataEntry.Size1);
-            Assert.AreEqual((uint) 0xbbaa9988, resourceDataEntry.CodePage);
-            Assert.AreEqual((uint) 0xffeeddcc, resourceDataEntry.Reserved);
+            Assert.AreEqual(0xbbaa9988, resourceDataEntry.CodePage);
+            Assert.AreEqual(0xffeeddcc, resourceDataEntry.Reserved);
         }
     }
 }
