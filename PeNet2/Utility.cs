@@ -164,7 +164,7 @@ namespace PeNet
         ///     to a human readable string with a meaning.
         /// </summary>
         /// <param name="id">Resource identifier.</param>
-        /// <returns>String repesentation of the ID.</returns>
+        /// <returns>String representation of the ID.</returns>
         public static string ResolveResourceId(uint id)
         {
             switch (id)
@@ -283,7 +283,7 @@ namespace PeNet
         }
 
         /// <summary>
-        ///     Convert to bytes to an 16 bit unsinged integer.
+        ///     Convert to bytes to an 16 bit unsigned integer.
         /// </summary>
         /// <param name="b1">High byte.</param>
         /// <param name="b2">Low byte.</param>
@@ -671,6 +671,8 @@ namespace PeNet
         /// <returns>Hex-String</returns>
         public static string ToHexString(ICollection<byte> bytes)
         {
+            if (bytes == null) return null;
+
             var hex = new StringBuilder(bytes.Count*2);
             foreach (var b in bytes)
                 hex.AppendFormat("{0:x2}", b);
@@ -684,6 +686,8 @@ namespace PeNet
         /// <returns>Hex-String</returns>
         public static string ToHexString(ICollection<ushort> values)
         {
+            if (values == null) return null;
+
             var hex = new StringBuilder(values.Count*2);
             foreach (var b in values)
                 hex.AppendFormat("{0:X4}", b);
@@ -722,7 +726,7 @@ namespace PeNet
 
         /// <summary>
         /// Convert a sub array of an byte array to an hex string where
-        /// every byte is seperated by an whitespace.
+        /// every byte is separated by an whitespace.
         /// </summary>
         /// <param name="input">Byte array.</param>
         /// <param name="from">Index in the byte array where the hex string starts.</param>
@@ -730,6 +734,8 @@ namespace PeNet
         /// <returns></returns>
         public static List<string> ToHexString(byte[] input, UInt64 from, UInt64 length)
         {
+            if (input == null) return null;
+
             var hexList = new List<string>();
             for (UInt64 i = from; i < from + length; i++)
             {
@@ -947,7 +953,7 @@ namespace PeNet
             public bool System { get; private set; }
 
             /// <summary>
-            ///     Is a dynamic loaded library and exetuable but cannot
+            ///     Is a dynamic loaded library and executable but cannot
             ///     be run on its own.
             /// </summary>
             public bool DLL { get; private set; }

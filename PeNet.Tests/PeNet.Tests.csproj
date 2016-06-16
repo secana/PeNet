@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{629AE922-BFA6-438B-A2E9-9B6BBF647988}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PeNet.Tests</RootNamespace>
+    <AssemblyName>PeNet.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Pex.Framework">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Pex\Microsoft.Pex.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PeNet2\PeNet.csproj">
+      <Project>{FE67C8A3-B4B2-4429-A5BA-379580EEE90C}</Project>
+      <Name>PeNet</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CrlUrlListTest.Constructor.g.cs">
+      <DependentUpon>CrlUrlListTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrlUrlListTest.cs" />
+    <Compile Include="ExportFunctionTest.Constructor.g.cs">
+      <DependentUpon>ExportFunctionTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExportFunctionTest.cs" />
+    <Compile Include="ExportFunctionTest.ToString01.g.cs">
+      <DependentUpon>ExportFunctionTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportFunctionTest.Constructor.g.cs">
+      <DependentUpon>ImportFunctionTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportFunctionTest.cs" />
+    <Compile Include="ImportFunctionTest.ToString01.g.cs">
+      <DependentUpon>ImportFunctionTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportHashTest.Constructor.g.cs">
+      <DependentUpon>ImportHashTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportHashTest.cs" />
+    <Compile Include="OrdinalSymbolMappingTest.cs" />
+    <Compile Include="OrdinalSymbolMappingTest.Lookup.g.cs">
+      <DependentUpon>OrdinalSymbolMappingTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\PexAssemblyInfo.cs" />
+    <Compile Include="UtilityTest.BytesToUInt16.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.BytesToUInt32.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.BytesToUInt64.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.cs" />
+    <Compile Include="UtilityTest.GetName.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.GetNameLength.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.GetOrdinal.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.IsSignatureValid.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.IsSigned.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.IsValidCertChain.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.IsValidCertChain01.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.MD5.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.MD501.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.PropertiesToString.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.ResolveFileCharacteristics.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.ResolveResourceId.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.ResolveSectionFlags.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.ResolveSectionName.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.ResolveSubsystem.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.ResolveTargetMachine.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.RVAtoFileMapping.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.RVAtoFileMapping01.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.SetUInt16.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.SetUInt32.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.SetUInt64.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.Sha1.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.Sha101.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.Sha256.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.Sha25601.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.ToHexString.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityTest.ToIntFromHexString.g.cs">
+      <DependentUpon>UtilityTest.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

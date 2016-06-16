@@ -19,6 +19,10 @@ namespace PeNet
         public CrlUrlList(byte[] rawData)
         {
             Urls = new List<string>();
+
+            if (rawData == null)
+                return;
+            
             ParseCrls(rawData);
         }
 
@@ -29,6 +33,8 @@ namespace PeNet
         public CrlUrlList(X509Certificate2 cert)
         {
             Urls = new List<string>();
+            if(cert == null) return;
+                
             foreach (var ext in cert.Extensions)
             {
                 if (ext.Oid.Value == "2.5.29.31")
