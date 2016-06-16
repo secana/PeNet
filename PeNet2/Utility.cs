@@ -450,50 +450,11 @@ namespace PeNet
             return sb.ToString();
         }
 
+
         /// <summary>
         ///     Map an relative virtual address to the raw file address.
         /// </summary>
         /// <param name="RVA">Relative Virtual Address</param>
-        /// <param name="sh">Section Headers</param>
-        /// <returns>Raw file address.</returns>
-        public static uint RVAtoFileMapping(uint RVA, ICollection<IMAGE_SECTION_HEADER> sh)
-        {
-            var sortedSt = sh.OrderBy(x => x.VirtualAddress).ToList();
-            uint vOffset = 0, rOffset = 0;
-            var secFound = false;
-            for (var i = 0; i < sortedSt.Count - 1; i++)
-            {
-                if (sortedSt[i].VirtualAddress <= RVA && sortedSt[i + 1].VirtualAddress > RVA)
-                {
-                    vOffset = sortedSt[i].VirtualAddress;
-                    rOffset = sortedSt[i].PointerToRawData;
-                    secFound = true;
-                    break;
-                }
-            }
-
-            // try last section
-            if (secFound == false)
-            {
-                if (RVA >= sortedSt.Last().VirtualAddress &&
-                    RVA <= sortedSt.Last().VirtualSize + sortedSt.Last().VirtualAddress)
-                {
-                    vOffset = sortedSt.Last().VirtualAddress;
-                    rOffset = sortedSt.Last().PointerToRawData;
-                }
-                else
-                {
-                    throw new IndexOutOfRangeException("Cannot find corresponding section.");
-                }
-            }
-
-            return RVA - vOffset + rOffset;
-        }
-
-        /// <summary>
-        ///     Map an relative virtual address to the raw file address.
-        /// </summary>
-        /// <param name="RVA">Relative Virutal Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
         public static ulong RVAtoFileMapping(ulong RVA, ICollection<IMAGE_SECTION_HEADER> sh)
@@ -528,6 +489,17 @@ namespace PeNet
             }
 
             return RVA - vOffset + rOffset;
+        }
+
+        /// <summary>
+        ///     Map an relative virtual address to the raw file address.
+        /// </summary>
+        /// <param name="RVA">Relative Virtual Address</param>
+        /// <param name="sh">Section Headers</param>
+        /// <returns>Raw file address.</returns>
+        public static uint RVAtoFileMapping(uint RVA, ICollection<IMAGE_SECTION_HEADER> sh)
+        {
+            return (uint) RVAtoFileMapping((ulong) RVA, sh);  
         }
 
         internal static ushort GetOrdinal(uint ordinal, byte[] buff)
