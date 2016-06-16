@@ -451,6 +451,7 @@ namespace PEditor
             var listBox = sender as ListBox;
             if (listBox == null) return;
             dynamic selected = listBox.SelectedItem;
+            if(selected == null) return;
 
             // Convert string of format 0x... to an integer.
             var funcStart = Utility.ToIntFromHexString(selected.FunctionStart);
