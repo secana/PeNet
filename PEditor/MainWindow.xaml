@@ -855,6 +855,49 @@
                     </Grid>
                 </GroupBox>
             </TabItem>
+            
+            <TabItem Header="Debug">
+                <GroupBox Header="IMAGE_DEBUG_DIRECTORY">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Label Grid.Column="0" Grid.Row="0">Characteristics</Label>
+                        <TextBox Grid.Column="1" Grid.Row="0" Name="tbDebugCharacteristics"/>
+
+                        <Label Grid.Column="0" Grid.Row="1">TimeDateStamp</Label>
+                        <TextBox Grid.Column="1" Grid.Row="1" Name="tbDebugTimeDateStamp"/>
+
+                        <Label Grid.Column="0" Grid.Row="2">MajorVersion</Label>
+                        <TextBox Grid.Column="1" Grid.Row="2" Name="tbDebugMajorVersion"/>
+
+                        <Label Grid.Column="0" Grid.Row="3">MinorVersion</Label>
+                        <TextBox Grid.Column="1" Grid.Row="3" Name="tbDebugMinorVersion"/>
+                        
+                        <Label Grid.Column="2" Grid.Row="0">Type</Label>
+                        <TextBox Grid.Column="3" Grid.Row="0" Name="tbDebugType"/>
+
+                        <Label Grid.Column="2" Grid.Row="1">SizeOfData</Label>
+                        <TextBox Grid.Column="3" Grid.Row="1" Name="tbDebugSizeOfData"/>
+
+                        <Label Grid.Column="2" Grid.Row="2">AddressOfRawData</Label>
+                        <TextBox Grid.Column="3" Grid.Row="2" Name="tbDebugAddressOfRawData"/>
+
+                        <Label Grid.Column="2" Grid.Row="3">PointerToRawData</Label>
+                        <TextBox Grid.Column="3" Grid.Row="3" Name="tbDebugPointerToRawData"/>
+                    </Grid>
+                </GroupBox>
+            </TabItem>
 
         </TabControl>
         <StatusBar Grid.Row="2" Height="20">

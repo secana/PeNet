@@ -90,6 +90,32 @@ namespace PEditor
 
             // Set the Digital Signature information.
             SetDigSignature(peFile);
+
+            // Set the Debug directory.
+            SetDebug(peFile);
+        }
+
+        private void SetDebug(PeFile peFile)
+        {
+            // Clean
+            tbDebugCharacteristics.Text = string.Empty;
+            tbDebugTimeDateStamp.Text = string.Empty;
+            tbDebugMajorVersion.Text = string.Empty;
+            tbDebugMinorVersion.Text = string.Empty;
+            tbDebugType.Text = string.Empty;
+            tbDebugSizeOfData.Text = string.Empty;
+            tbDebugAddressOfRawData.Text = string.Empty;
+            tbDebugPointerToRawData.Text = string.Empty;
+
+            // Set
+            tbDebugCharacteristics.Text = Utility.ToHexString(peFile.ImageDebugDirectory.Characteristics);
+            tbDebugTimeDateStamp.Text = Utility.ToHexString(peFile.ImageDebugDirectory.TimeDateStamp);
+            tbDebugMajorVersion.Text = Utility.ToHexString(peFile.ImageDebugDirectory.MajorVersion);
+            tbDebugMinorVersion.Text = Utility.ToHexString(peFile.ImageDebugDirectory.MinorVersion);
+            tbDebugType.Text = Utility.ToHexString(peFile.ImageDebugDirectory.Type);
+            tbDebugSizeOfData.Text = Utility.ToHexString(peFile.ImageDebugDirectory.SizeOfData);
+            tbDebugAddressOfRawData.Text = Utility.ToHexString(peFile.ImageDebugDirectory.AddressOfRawData);
+            tbDebugPointerToRawData.Text = Utility.ToHexString(peFile.ImageDebugDirectory.PointerToRawData);
         }
 
         private void SetDigSignature(PeFile peFile)
