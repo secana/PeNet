@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Linq;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using PeNet;
 
 namespace PEditor.TabItems
@@ -21,6 +9,7 @@ namespace PEditor.TabItems
     /// </summary>
     public partial class Relocation : UserControl
     {
+        private PeFile _peFile;
         public Relocation()
         {
             InitializeComponent();
@@ -36,7 +25,7 @@ namespace PEditor.TabItems
                 return;
 
             var reloc =
-                MainWindow.PeFile.ImageRelocationDirectory.First(
+                _peFile.ImageRelocationDirectory.First(
                     x => x.VirtualAddress == Utility.ToIntFromHexString(selected.VirtualAddress));
 
             foreach (var to in reloc.TypeOffsets)
@@ -48,5 +37,26 @@ namespace PEditor.TabItems
                 });
             }
         }
+
+
+        public void SetRelocations(PeFile peFile)
+        {
+            _peFile = peFile;
+            lbRelocationEntries.Items.Clear();
+            lbRelocTypeOffsets.Items.Clear();
+
+            if (!peFile.HasValidRelocDir)
+                return;
+
+            foreach (var reloc in peFile.ImageRelocationDirectory)
+            {
+                lbRelocationEntries.Items.Add(new
+                {
+                    VirtualAddress = reloc.VirtualAddress.ToHexString(),
+                    SizeOfBlock = reloc.SizeOfBlock.ToHexString()
+                });
+            }
+        }
+
     }
 }

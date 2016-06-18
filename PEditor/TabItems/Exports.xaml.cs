@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+using PeNet;
 
 namespace PEditor.TabItems
 {
@@ -24,5 +12,20 @@ namespace PEditor.TabItems
         {
             InitializeComponent();
         }
+
+
+        public void SetExports(PeFile peFile)
+        {
+            lbExports.Items.Clear();
+
+            if (peFile.ExportedFunctions == null)
+                return;
+
+            foreach (var export in peFile.ExportedFunctions)
+            {
+                lbExports.Items.Add(new { export.Name, export.Ordinal, RVA = $"0x{export.Address.ToString("X")}" });
+            }
+        }
+
     }
 }

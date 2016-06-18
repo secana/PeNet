@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+using PeNet;
 
 namespace PEditor
 {
@@ -23,6 +11,16 @@ namespace PEditor
         public FileInfo()
         {
             InitializeComponent();
+        }
+
+        public void SetFileInfo(PeFile peFile)
+        {
+            tbLocation.Text = peFile.FileLocation;
+            tbSize.Text = $"{peFile.FileSize} Bytes";
+            tbMD5.Text = peFile.MD5;
+            tbSHA1.Text = peFile.SHA1;
+            tbSHA256.Text = peFile.SHA256;
+            tbImpHash.Text = peFile.ImpHash;
         }
     }
 }

@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Linq;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using PeNet;
 
 namespace PEditor.TabItems
@@ -21,6 +9,8 @@ namespace PEditor.TabItems
     /// </summary>
     public partial class Exceptions : UserControl
     {
+        private PeFile _peFile;
+
         public Exceptions()
         {
             InitializeComponent();
@@ -39,7 +29,7 @@ namespace PEditor.TabItems
             var uw = Utility.ToIntFromHexString(selected.UnwindInfo);
 
             // Find the RUNTIME_FUNCTION which was selected.
-            var rt = MainWindow.PeFile.RuntimeFunctions.First(x => x.FunctionStart == funcStart
+            var rt = _peFile.RuntimeFunctions.First(x => x.FunctionStart == funcStart
                                                          && x.FunctionEnd == funcEnd
                                                          && x.UnwindInfo == uw
                 );
@@ -67,5 +57,26 @@ namespace PEditor.TabItems
                 });
             }
         }
+
+
+        public void SetException(PeFile peFile)
+        {
+            _peFile = peFile;
+            lbRuntimeFunctions.Items.Clear();
+
+            if (peFile.Is32Bit || peFile.RuntimeFunctions == null)
+                return;
+
+            foreach (var rt in peFile.RuntimeFunctions)
+            {
+                lbRuntimeFunctions.Items.Add(new
+                {
+                    FunctionStart = rt.FunctionStart.ToHexString(),
+                    FunctionEnd = rt.FunctionEnd.ToHexString(),
+                    UnwindInfo = rt.UnwindInfo.ToHexString()
+                });
+            }
+        }
+
     }
 }

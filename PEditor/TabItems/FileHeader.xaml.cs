@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+using PeNet;
 
 namespace PEditor.TabItems
 {
@@ -23,6 +11,22 @@ namespace PEditor.TabItems
         public FileHeader()
         {
             InitializeComponent();
+        }
+
+        public void SetFileHeader(PeFile peFile)
+        {
+            var fileHeader = peFile.ImageNtHeaders.FileHeader;
+            var machine = fileHeader.Machine;
+            var characteristics = fileHeader.Characteristics;
+
+            tbMachine.Text = $"{machine.ToHexString()} <-> {Utility.ResolveTargetMachine(machine)}";
+            tbNumberOfSections.Text = fileHeader.NumberOfSections.ToHexString();
+            tbTimeDateStamp.Text = fileHeader.TimeDateStamp.ToHexString();
+            tbPointerToSymbolTable.Text = fileHeader.PointerToSymbolTable.ToHexString();
+            tbNumberOfSymbols.Text = fileHeader.NumberOfSymbols.ToHexString();
+            tbSizeOfOptionalHeader.Text = fileHeader.SizeOfOptionalHeader.ToHexString();
+            tbCharacteristics.Text =
+                $"{characteristics.ToHexString()}\n\n{Utility.ResolveFileCharacteristics(characteristics)}";
         }
     }
 }

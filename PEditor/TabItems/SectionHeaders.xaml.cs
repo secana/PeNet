@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+using PeNet;
 
 namespace PEditor.TabItems
 {
@@ -23,6 +11,27 @@ namespace PEditor.TabItems
         public SectionHeaders()
         {
             InitializeComponent();
+        }
+
+        public void SetSections(PeFile peFile)
+        {
+            var num = 1;
+            foreach (var sec in peFile.ImageSectionHeaders)
+            {
+                var flags = string.Join(", ", Utility.ResolveSectionFlags(sec.Characteristics));
+                dgSections.Items.Add(new
+                {
+                    Number = num,
+                    Name = Utility.ResolveSectionName(sec.Name),
+                    VSize = sec.VirtualSize.ToHexString(),
+                    VAddress = sec.VirtualAddress.ToHexString(),
+                    PSize = sec.SizeOfRawData.ToHexString(),
+                    PAddress = sec.PhysicalAddress.ToHexString(),
+                    Flags = sec.Characteristics.ToHexString(),
+                    RFlags = flags
+                });
+                num++;
+            }
         }
     }
 }

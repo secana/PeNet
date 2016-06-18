@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using PeNet;
 
 namespace PEditor.TabItems
@@ -21,6 +10,8 @@ namespace PEditor.TabItems
     /// </summary>
     public partial class Imports : UserControl
     {
+        private PeFile _peFile;
+
         public Imports()
         {
             InitializeComponent();
@@ -34,11 +25,35 @@ namespace PEditor.TabItems
                 return;
 
             dynamic selected = e.AddedItems[0];
-            var functions = MainWindow.PeFile.ImportedFunctions.Where(x => x.DLL == selected.DLL);
+            var functions = _peFile.ImportedFunctions.Where(x => x.DLL == selected.DLL);
 
             foreach (var function in functions)
             {
                 lbImportFunctions.Items.Add(new { function.Name, function.Hint });
+            }
+        }
+
+
+        public void SetImports(PeFile peFile)
+        {
+            _peFile = peFile;
+            lbImportDlls.Items.Clear();
+
+            if (peFile.ImportedFunctions == null)
+                return;
+
+            var dllNames = peFile.ImportedFunctions?.Select(x => x.DLL).Distinct();
+            var dllFunctions = new Dictionary<string, IEnumerable<ImportFunction>>();
+
+            foreach (var dllName in dllNames)
+            {
+                var functions = peFile.ImportedFunctions.Where(x => x.DLL == dllName);
+                dllFunctions.Add(dllName, functions);
+            }
+
+            foreach (var kv in dllFunctions)
+            {
+                lbImportDlls.Items.Add(new { DLL = kv.Key });
             }
         }
     }
