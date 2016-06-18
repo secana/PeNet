@@ -241,7 +241,7 @@ namespace PEditor
         private void SetResources(PeFile peFile)
         {
             // Clear the tree.
-            Resources.tbResources.Items.Clear();
+            Resource.tbResources.Items.Clear();
 
 
             // ROOT
@@ -297,7 +297,7 @@ namespace PEditor
                 root.Items.Add(item);
             }
 
-            Resources.tbResources.Items.Add(root);
+            Resource.tbResources.Items.Add(root);
         }
 
         private void SetExports(PeFile peFile)

@@ -61,8 +61,8 @@
                <tabItems:Exports x:Name="Exports"/>
             </TabItem>
 
-            <TabItem Header="Resources">
-                <tabItems:Resources x:Name="Resources"/>
+            <TabItem Header="Resource">
+                <tabItems:Resource x:Name="Resource"/>
             </TabItem>
 
             <TabItem Header="Exception">

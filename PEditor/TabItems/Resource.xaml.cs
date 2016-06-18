@@ -18,11 +18,11 @@ using PeNet.Structures;
 namespace PEditor.TabItems
 {
     /// <summary>
-    /// Interaction logic for Resources.xaml
+    /// Interaction logic for Resource.xaml
     /// </summary>
-    public partial class Resources : UserControl
+    public partial class Resource : UserControl
     {
-        public Resources()
+        public Resource()
         {
             InitializeComponent();
         }

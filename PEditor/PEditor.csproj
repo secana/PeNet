@@ -129,8 +129,8 @@
     <Compile Include="TabItems\Relocation.xaml.cs">
       <DependentUpon>Relocation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TabItems\Resources.xaml.cs">
-      <DependentUpon>Resources.xaml</DependentUpon>
+    <Compile Include="TabItems\Resource.xaml.cs">
+      <DependentUpon>Resource.xaml</DependentUpon>
     </Compile>
     <Compile Include="TabItems\SectionHeaders.xaml.cs">
       <DependentUpon>SectionHeaders.xaml</DependentUpon>
@@ -195,7 +195,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TabItems\Resources.xaml">
+    <Page Include="TabItems\Resource.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
