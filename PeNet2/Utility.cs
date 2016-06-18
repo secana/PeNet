@@ -300,7 +300,7 @@ namespace PeNet
         /// <param name="buff">Byte buffer.</param>
         /// <param name="i">Position of the high byte. Low byte is i+1.</param>
         /// <returns>UInt16 of the bytes in the buffer at position i and i+1.</returns>
-        public static ushort BytesToUInt16(byte[] buff, ulong i)
+        public static ushort BytesToUInt16(this byte[] buff, ulong i)
         {
             return BytesToUInt16(buff[i], buff[i + 1]);
         }
@@ -324,7 +324,7 @@ namespace PeNet
         /// <param name="buff">Byte buffer.</param>
         /// <param name="i">Offset of the highest byte.</param>
         /// <returns>UInt32 of 4 bytes.</returns>
-        public static uint BytesToUInt32(byte[] buff, uint i)
+        public static uint BytesToUInt32(this byte[] buff, uint i)
         {
             return BytesToUInt32(buff[i], buff[i + 1], buff[i + 2], buff[i + 3]);
         }
@@ -353,7 +353,7 @@ namespace PeNet
         /// <param name="buff">Byte buffer.</param>
         /// <param name="i">Offset of the highest byte.</param>
         /// <returns>UInt64 of the byte sequence at offset i.</returns>
-        public static ulong BytesToUInt64(byte[] buff, ulong i)
+        public static ulong BytesToUInt64(this byte[] buff, ulong i)
         {
             return BytesToUInt64(buff[i], buff[i + 1], buff[i + 2], buff[i + 3], buff[i + 4], buff[i + 5], buff[i + 6],
                 buff[i + 7]);
@@ -375,7 +375,7 @@ namespace PeNet
         /// <param name="value">The value to set.</param>
         /// <param name="offset">Offset where the value is set.</param>
         /// <param name="buff">Buffer in which the value is set.</param>
-        public static void SetUInt16(ushort value, ulong offset, byte[] buff)
+        public static void SetUInt16(this ushort value, ulong offset, byte[] buff)
         {
             var x = UInt16ToBytes(value);
             buff[offset] = x[0];
@@ -408,7 +408,7 @@ namespace PeNet
         /// <param name="value">Value to set.</param>
         /// <param name="offset">Offset in the array for the value.</param>
         /// <param name="buff">Buffer to set the value in.</param>
-        public static void SetUInt32(uint value, uint offset, byte[] buff)
+        public static void SetUInt32(this uint value, uint offset, byte[] buff)
         {
             var x = UInt32ToBytes(value);
             buff[offset] = x[0];
@@ -423,7 +423,7 @@ namespace PeNet
         /// <param name="value">Value to set.</param>
         /// <param name="offset">Offset in the array for the value.</param>
         /// <param name="buff">Buffer to set the value in.</param>
-        public static void SetUInt64(ulong value, ulong offset, byte[] buff)
+        public static void SetUInt64(this ulong value, ulong offset, byte[] buff)
         {
             var x = UInt64ToBytes(value);
             buff[offset] = x[0];
@@ -458,7 +458,7 @@ namespace PeNet
         /// <param name="RVA">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static ulong RVAtoFileMapping(ulong RVA, ICollection<IMAGE_SECTION_HEADER> sh)
+        public static ulong RVAtoFileMapping(this ulong RVA, ICollection<IMAGE_SECTION_HEADER> sh)
         {
             var sortedSt = sh.OrderBy(x => x.VirtualAddress).ToList();
             uint vOffset = 0, rOffset = 0;
@@ -498,7 +498,7 @@ namespace PeNet
         /// <param name="RVA">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static uint RVAtoFileMapping(uint RVA, ICollection<IMAGE_SECTION_HEADER> sh)
+        public static uint RVAtoFileMapping(this uint RVA, ICollection<IMAGE_SECTION_HEADER> sh)
         {
             return (uint) RVAtoFileMapping((ulong) RVA, sh);
         }
@@ -670,7 +670,7 @@ namespace PeNet
         /// </summary>
         /// <param name="bytes">Byte sequence.</param>
         /// <returns>Hex-String</returns>
-        public static string ToHexString(ICollection<byte> bytes)
+        public static string ToHexString(this ICollection<byte> bytes)
         {
             if (bytes == null) return null;
 
@@ -685,7 +685,7 @@ namespace PeNet
         /// </summary>
         /// <param name="values">Value sequence.</param>
         /// <returns>Hex-String</returns>
-        public static string ToHexString(ICollection<ushort> values)
+        public static string ToHexString(this ICollection<ushort> values)
         {
             if (values == null) return null;
 
@@ -700,7 +700,7 @@ namespace PeNet
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Hex-String</returns>
-        public static string ToHexString(ushort value)
+        public static string ToHexString(this ushort value)
         {
             return $"0x{value.ToString("X4")}";
         }
@@ -710,7 +710,7 @@ namespace PeNet
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Hex-String</returns>
-        public static string ToHexString(uint value)
+        public static string ToHexString(this uint value)
         {
             return $"0x{value.ToString("X8")}";
         }
@@ -720,7 +720,7 @@ namespace PeNet
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Hex-String</returns>
-        public static string ToHexString(ulong value)
+        public static string ToHexString(this ulong value)
         {
             return $"0x{value.ToString("X16")}";
         }
@@ -733,7 +733,7 @@ namespace PeNet
         /// <param name="from">Index in the byte array where the hex string starts.</param>
         /// <param name="length">Length of the hex string in the byte array.</param>
         /// <returns></returns>
-        public static List<string> ToHexString(byte[] input, ulong from, ulong length)
+        public static List<string> ToHexString(this byte[] input, ulong from, ulong length)
         {
             if (input == null) return null;
 
@@ -750,7 +750,7 @@ namespace PeNet
         /// </summary>
         /// <param name="hexString"></param>
         /// <returns>The hex string value as a long.</returns>
-        public static long ToIntFromHexString(string hexString)
+        public static long ToIntFromHexString(this string hexString)
         {
             return (long) new Int64Converter().ConvertFromString(hexString);
         }

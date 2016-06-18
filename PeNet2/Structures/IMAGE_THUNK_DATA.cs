@@ -45,13 +45,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong AddressOfData
         {
-            get { return _is64Bit ? Utility.BytesToUInt64(Buff, Offset) : Utility.BytesToUInt32(Buff, Offset); }
+            get { return _is64Bit ? Buff.BytesToUInt64(Offset) : Buff.BytesToUInt32(Offset); }
             set
             {
                 if (!_is64Bit)
-                    Utility.SetUInt32((uint) value, Offset, Buff);
+                    ((uint) value).SetUInt32(Offset, Buff);
                 else
-                    Utility.SetUInt64(value, Offset, Buff);
+                    value.SetUInt64(Offset, Buff);
             }
         }
 

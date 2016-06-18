@@ -41,8 +41,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Machine
         {
-            get { return Utility.BytesToUInt16(Buff, Offset); }
-            set { Utility.SetUInt16(value, Offset, Buff); }
+            get { return Buff.BytesToUInt16(Offset); }
+            set { value.SetUInt16(Offset, Buff); }
         }
 
         /// <summary>
@@ -50,8 +50,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfSections
         {
-            get { return Utility.BytesToUInt16(Buff, Offset + 0x2); }
-            set { Utility.SetUInt16(value, Offset + 0x2, Buff); }
+            get { return Buff.BytesToUInt16(Offset + 0x2); }
+            set { value.SetUInt16(Offset + 0x2, Buff); }
         }
 
         /// <summary>
@@ -59,8 +59,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
-            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0x4); }
+            set { value.SetUInt32(Offset + 0x4, Buff); }
         }
 
         /// <summary>
@@ -69,8 +69,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint PointerToSymbolTable
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0x8); }
-            set { Utility.SetUInt32(value, Offset + 0x8, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0x8); }
+            set { value.SetUInt32(Offset + 0x8, Buff); }
         }
 
         /// <summary>
@@ -78,8 +78,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint NumberOfSymbols
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0xC); }
-            set { Utility.SetUInt32(value, Offset + 0xC, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0xC); }
+            set { value.SetUInt32(Offset + 0xC, Buff); }
         }
 
         /// <summary>
@@ -87,8 +87,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort SizeOfOptionalHeader
         {
-            get { return Utility.BytesToUInt16(Buff, Offset + 0x10); }
-            set { Utility.SetUInt16(value, Offset + 0x10, Buff); }
+            get { return Buff.BytesToUInt16(Offset + 0x10); }
+            set { value.SetUInt16(Offset + 0x10, Buff); }
         }
 
         /// <summary>
@@ -97,8 +97,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Characteristics
         {
-            get { return Utility.BytesToUInt16(Buff, Offset + 0x12); }
-            set { Utility.SetUInt16(value, Offset + 0x12, Buff); }
+            get { return Buff.BytesToUInt16(Offset + 0x12); }
+            set { value.SetUInt16(Offset + 0x12, Buff); }
         }
 
         /// <summary>

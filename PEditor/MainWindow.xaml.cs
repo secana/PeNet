@@ -108,14 +108,14 @@ namespace PEditor
             tbDebugPointerToRawData.Text = string.Empty;
 
             // Set
-            tbDebugCharacteristics.Text = Utility.ToHexString(peFile.ImageDebugDirectory.Characteristics);
-            tbDebugTimeDateStamp.Text = Utility.ToHexString(peFile.ImageDebugDirectory.TimeDateStamp);
-            tbDebugMajorVersion.Text = Utility.ToHexString(peFile.ImageDebugDirectory.MajorVersion);
-            tbDebugMinorVersion.Text = Utility.ToHexString(peFile.ImageDebugDirectory.MinorVersion);
-            tbDebugType.Text = Utility.ToHexString(peFile.ImageDebugDirectory.Type);
-            tbDebugSizeOfData.Text = Utility.ToHexString(peFile.ImageDebugDirectory.SizeOfData);
-            tbDebugAddressOfRawData.Text = Utility.ToHexString(peFile.ImageDebugDirectory.AddressOfRawData);
-            tbDebugPointerToRawData.Text = Utility.ToHexString(peFile.ImageDebugDirectory.PointerToRawData);
+            tbDebugCharacteristics.Text = peFile.ImageDebugDirectory.Characteristics.ToHexString();
+            tbDebugTimeDateStamp.Text = peFile.ImageDebugDirectory.TimeDateStamp.ToHexString();
+            tbDebugMajorVersion.Text = peFile.ImageDebugDirectory.MajorVersion.ToHexString();
+            tbDebugMinorVersion.Text = peFile.ImageDebugDirectory.MinorVersion.ToHexString();
+            tbDebugType.Text = peFile.ImageDebugDirectory.Type.ToHexString();
+            tbDebugSizeOfData.Text = peFile.ImageDebugDirectory.SizeOfData.ToHexString();
+            tbDebugAddressOfRawData.Text = peFile.ImageDebugDirectory.AddressOfRawData.ToHexString();
+            tbDebugPointerToRawData.Text = peFile.ImageDebugDirectory.PointerToRawData.ToHexString();
         }
 
         private void SetDigSignature(PeFile peFile)
@@ -150,9 +150,9 @@ namespace PEditor
             cbCertIsValid.IsChecked = Utility.IsSignatureValid(peFile.FileLocation);
             cbCertIsSigned.IsChecked = peFile.IsSigned;
             cbCertIsValidChain.IsChecked = peFile.IsValidCertChain(true);
-            tbCertLength.Text = Utility.ToHexString(peFile.WinCertificate.dwLength);
-            tbCertRevision.Text = Utility.ToHexString(peFile.WinCertificate.wRevision);
-            tbCertType.Text = Utility.ToHexString(peFile.WinCertificate.wCertificateType);
+            tbCertLength.Text = peFile.WinCertificate.dwLength.ToHexString();
+            tbCertRevision.Text = peFile.WinCertificate.wRevision.ToHexString();
+            tbCertType.Text = peFile.WinCertificate.wCertificateType.ToHexString();
 
             cbX509Archived.IsChecked = peFile.PKCS7.Archived;
             cbX509HasPrivateKey.IsChecked = peFile.PKCS7.HasPrivateKey;
@@ -191,8 +191,8 @@ namespace PEditor
             {
                 lbRelocationEntries.Items.Add(new
                 {
-                    VirtualAddress = Utility.ToHexString(reloc.VirtualAddress),
-                    SizeOfBlock = Utility.ToHexString(reloc.SizeOfBlock)
+                    VirtualAddress = reloc.VirtualAddress.ToHexString(),
+                    SizeOfBlock = reloc.SizeOfBlock.ToHexString()
                 });
             }
         }
@@ -207,11 +207,11 @@ namespace PEditor
                 {
                     Number = num,
                     Name = Utility.ResolveSectionName(sec.Name),
-                    VSize = Utility.ToHexString(sec.VirtualSize),
-                    VAddress = Utility.ToHexString(sec.VirtualAddress),
-                    PSize = Utility.ToHexString(sec.SizeOfRawData),
-                    PAddress = Utility.ToHexString(sec.PhysicalAddress),
-                    Flags = Utility.ToHexString(sec.Characteristics),
+                    VSize = sec.VirtualSize.ToHexString(),
+                    VAddress = sec.VirtualAddress.ToHexString(),
+                    PSize = sec.SizeOfRawData.ToHexString(),
+                    PAddress = sec.PhysicalAddress.ToHexString(),
+                    Flags = sec.Characteristics.ToHexString(),
                     RFlags = flags
                 });
                 num++;
@@ -267,7 +267,7 @@ namespace PEditor
                     {
                         item2.Items.Add(new MyTreeViewItem<IMAGE_RESOURCE_DIRECTORY_ENTRY>(de3)
                         {
-                            Header = Utility.ToHexString(de3.ID)
+                            Header = de3.ID.ToHexString()
                         });
                     }
 
@@ -296,19 +296,17 @@ namespace PEditor
                 return;
 
             // Set all values.
-            tbOffsetToData.Text = Utility.ToHexString(directoryEntry.ResourceDataEntry.OffsetToData);
-            tbSize1.Text = Utility.ToHexString(directoryEntry.ResourceDataEntry.Size1);
-            tbCodePage.Text = Utility.ToHexString(directoryEntry.ResourceDataEntry.CodePage);
-            tbReserved.Text = Utility.ToHexString(directoryEntry.ResourceDataEntry.Reserved);
+            tbOffsetToData.Text = directoryEntry.ResourceDataEntry.OffsetToData.ToHexString();
+            tbSize1.Text = directoryEntry.ResourceDataEntry.Size1.ToHexString();
+            tbCodePage.Text = directoryEntry.ResourceDataEntry.CodePage.ToHexString();
+            tbReserved.Text = directoryEntry.ResourceDataEntry.Reserved.ToHexString();
 
             // Build the hex output
-            var rawOffset = Utility.RVAtoFileMapping(
-                directoryEntry.ResourceDataEntry.OffsetToData,
-                _peFile.ImageSectionHeaders
+            var rawOffset = directoryEntry.ResourceDataEntry.OffsetToData.RVAtoFileMapping(_peFile.ImageSectionHeaders
                 );
 
             tbResource.Text = string.Join(" ",
-                Utility.ToHexString(_peFile.Buff, rawOffset, directoryEntry.ResourceDataEntry.Size1));
+                _peFile.Buff.ToHexString(rawOffset, directoryEntry.ResourceDataEntry.Size1));
         }
 
         private void SetExports(PeFile peFile)
@@ -360,30 +358,30 @@ namespace PEditor
         {
             var magic = peFile.ImageDosHeader.e_magic;
 
-            tbe_magic.Text = magic == 0x5A4D ? $"{Utility.ToHexString(magic)} <-> MZ" : Utility.ToHexString(magic);
-            tbe_cblp.Text = Utility.ToHexString(peFile.ImageDosHeader.e_cblp);
-            tbe_cp.Text = Utility.ToHexString(peFile.ImageDosHeader.e_cp);
-            tbe_crlc.Text = Utility.ToHexString(peFile.ImageDosHeader.e_crlc);
-            tbe_cparhdr.Text = Utility.ToHexString(peFile.ImageDosHeader.e_cparhdr);
-            tbe_minalloc.Text = Utility.ToHexString(peFile.ImageDosHeader.e_minalloc);
-            tbe_maxalloc.Text = Utility.ToHexString(peFile.ImageDosHeader.e_maxalloc);
-            tbe_ss.Text = Utility.ToHexString(peFile.ImageDosHeader.e_ss);
-            tbe_sp.Text = Utility.ToHexString(peFile.ImageDosHeader.e_sp);
-            tbe_csum.Text = Utility.ToHexString(peFile.ImageDosHeader.e_csum);
-            tbe_ip.Text = Utility.ToHexString(peFile.ImageDosHeader.e_ip);
-            tbe_cs.Text = Utility.ToHexString(peFile.ImageDosHeader.e_cs);
-            tbe_lfarlc.Text = Utility.ToHexString(peFile.ImageDosHeader.e_lfarlc);
-            tbe_ovno.Text = Utility.ToHexString(peFile.ImageDosHeader.e_ovno);
-            tbe_res.Text = Utility.ToHexString(peFile.ImageDosHeader.e_res);
-            tbe_oemid.Text = Utility.ToHexString(peFile.ImageDosHeader.e_oemid);
-            tbe_oeminfo.Text = Utility.ToHexString(peFile.ImageDosHeader.e_oeminfo);
-            tbe_res2.Text = Utility.ToHexString(peFile.ImageDosHeader.e_res2);
-            tbe_lfanew.Text = Utility.ToHexString(peFile.ImageDosHeader.e_lfanew);
+            tbe_magic.Text = magic == 0x5A4D ? $"{magic.ToHexString()} <-> MZ" : magic.ToHexString();
+            tbe_cblp.Text = peFile.ImageDosHeader.e_cblp.ToHexString();
+            tbe_cp.Text = peFile.ImageDosHeader.e_cp.ToHexString();
+            tbe_crlc.Text = peFile.ImageDosHeader.e_crlc.ToHexString();
+            tbe_cparhdr.Text = peFile.ImageDosHeader.e_cparhdr.ToHexString();
+            tbe_minalloc.Text = peFile.ImageDosHeader.e_minalloc.ToHexString();
+            tbe_maxalloc.Text = peFile.ImageDosHeader.e_maxalloc.ToHexString();
+            tbe_ss.Text = peFile.ImageDosHeader.e_ss.ToHexString();
+            tbe_sp.Text = peFile.ImageDosHeader.e_sp.ToHexString();
+            tbe_csum.Text = peFile.ImageDosHeader.e_csum.ToHexString();
+            tbe_ip.Text = peFile.ImageDosHeader.e_ip.ToHexString();
+            tbe_cs.Text = peFile.ImageDosHeader.e_cs.ToHexString();
+            tbe_lfarlc.Text = peFile.ImageDosHeader.e_lfarlc.ToHexString();
+            tbe_ovno.Text = peFile.ImageDosHeader.e_ovno.ToHexString();
+            tbe_res.Text = peFile.ImageDosHeader.e_res.ToHexString();
+            tbe_oemid.Text = peFile.ImageDosHeader.e_oemid.ToHexString();
+            tbe_oeminfo.Text = peFile.ImageDosHeader.e_oeminfo.ToHexString();
+            tbe_res2.Text = peFile.ImageDosHeader.e_res2.ToHexString();
+            tbe_lfanew.Text = peFile.ImageDosHeader.e_lfanew.ToHexString();
         }
 
         private void SetNtHeader(PeFile peFile)
         {
-            tbSignature.Text = Utility.ToHexString(peFile.ImageNtHeaders.Signature);
+            tbSignature.Text = peFile.ImageNtHeaders.Signature.ToHexString();
         }
 
         private void SetFileHeader(PeFile peFile)
@@ -392,50 +390,50 @@ namespace PEditor
             var machine = fileHeader.Machine;
             var characteristics = fileHeader.Characteristics;
 
-            tbMachine.Text = $"{Utility.ToHexString(machine)} <-> {Utility.ResolveTargetMachine(machine)}";
-            tbNumberOfSections.Text = Utility.ToHexString(fileHeader.NumberOfSections);
-            tbTimeDateStamp.Text = Utility.ToHexString(fileHeader.TimeDateStamp);
-            tbPointerToSymbolTable.Text = Utility.ToHexString(fileHeader.PointerToSymbolTable);
-            tbNumberOfSymbols.Text = Utility.ToHexString(fileHeader.NumberOfSymbols);
-            tbSizeOfOptionalHeader.Text = Utility.ToHexString(fileHeader.SizeOfOptionalHeader);
+            tbMachine.Text = $"{machine.ToHexString()} <-> {Utility.ResolveTargetMachine(machine)}";
+            tbNumberOfSections.Text = fileHeader.NumberOfSections.ToHexString();
+            tbTimeDateStamp.Text = fileHeader.TimeDateStamp.ToHexString();
+            tbPointerToSymbolTable.Text = fileHeader.PointerToSymbolTable.ToHexString();
+            tbNumberOfSymbols.Text = fileHeader.NumberOfSymbols.ToHexString();
+            tbSizeOfOptionalHeader.Text = fileHeader.SizeOfOptionalHeader.ToHexString();
             tbCharacteristics.Text =
-                $"{Utility.ToHexString(characteristics)}\n\n{Utility.ResolveFileCharacteristics(characteristics)}";
+                $"{characteristics.ToHexString()}\n\n{Utility.ResolveFileCharacteristics(characteristics)}";
         }
 
         private void SetOptionalHeader(PeFile peFile)
         {
             var oh = peFile.ImageNtHeaders.OptionalHeader;
 
-            tbMagic.Text = Utility.ToHexString(oh.Magic);
+            tbMagic.Text = oh.Magic.ToHexString();
             tbMajorLinkerVersion.Text = Utility.ToHexString(oh.MajorLinkerVersion);
             tbMinorLinkerVersion.Text = Utility.ToHexString(oh.MinorLinkerVersion);
-            tbSizeOfCode.Text = Utility.ToHexString(oh.SizeOfCode);
-            tbSizeOfInitializedData.Text = Utility.ToHexString(oh.SizeOfInitializedData);
-            tbSizeOfUninitializedData.Text = Utility.ToHexString(oh.SizeOfUninitializedData);
-            tbAddressOfEntryPoint.Text = Utility.ToHexString(oh.AddressOfEntryPoint);
-            tbBaseOfCode.Text = Utility.ToHexString(oh.BaseOfCode);
-            tbBaseOfData.Text = Utility.ToHexString(oh.BaseOfData);
-            tbImageBase.Text = Utility.ToHexString(oh.ImageBase);
-            tbSectionAlignment.Text = Utility.ToHexString(oh.SectionAlignment);
-            tbFileAlignment.Text = Utility.ToHexString(oh.FileAlignment);
-            tbMajorOperatingSystemVersion.Text = Utility.ToHexString(oh.MajorOperatingSystemVersion);
-            tbMinorOperatingSystemVersion.Text = Utility.ToHexString(oh.MinorOperatingSystemVersion);
-            tbMajorImageVersion.Text = Utility.ToHexString(oh.MajorImageVersion);
-            tbMinorImageVersion.Text = Utility.ToHexString(oh.MinorImageVersion);
-            tbMajorSubsystemVersion.Text = Utility.ToHexString(oh.MajorSubsystemVersion);
-            tbMinorSubsystemVersion.Text = Utility.ToHexString(oh.MinorSubsystemVersion);
-            tbWin32VersionValue.Text = Utility.ToHexString(oh.Win32VersionValue);
-            tbSizeOfImage.Text = Utility.ToHexString(oh.SizeOfImage);
-            tbSizeOfHeaders.Text = Utility.ToHexString(oh.SizeOfHeaders);
-            tbCheckSum.Text = Utility.ToHexString(oh.CheckSum);
-            tbSubsystem.Text = Utility.ToHexString(oh.Subsystem);
-            tbDllCharacteristics.Text = Utility.ToHexString(oh.DllCharacteristics);
-            tbSizeOfStackReserve.Text = Utility.ToHexString(oh.SizeOfStackReserve);
-            tbSizeOfStackCommit.Text = Utility.ToHexString(oh.SizeOfStackCommit);
-            tbSizeOfHeapReserve.Text = Utility.ToHexString(oh.SizeOfHeapReserve);
-            tbSizeOfHeapCommit.Text = Utility.ToHexString(oh.SizeOfHeapCommit);
-            tbLoaderFlags.Text = Utility.ToHexString(oh.LoaderFlags);
-            tbNumberOfRvaAndSizes.Text = Utility.ToHexString(oh.NumberOfRvaAndSizes);
+            tbSizeOfCode.Text = oh.SizeOfCode.ToHexString();
+            tbSizeOfInitializedData.Text = oh.SizeOfInitializedData.ToHexString();
+            tbSizeOfUninitializedData.Text = oh.SizeOfUninitializedData.ToHexString();
+            tbAddressOfEntryPoint.Text = oh.AddressOfEntryPoint.ToHexString();
+            tbBaseOfCode.Text = oh.BaseOfCode.ToHexString();
+            tbBaseOfData.Text = oh.BaseOfData.ToHexString();
+            tbImageBase.Text = oh.ImageBase.ToHexString();
+            tbSectionAlignment.Text = oh.SectionAlignment.ToHexString();
+            tbFileAlignment.Text = oh.FileAlignment.ToHexString();
+            tbMajorOperatingSystemVersion.Text = oh.MajorOperatingSystemVersion.ToHexString();
+            tbMinorOperatingSystemVersion.Text = oh.MinorOperatingSystemVersion.ToHexString();
+            tbMajorImageVersion.Text = oh.MajorImageVersion.ToHexString();
+            tbMinorImageVersion.Text = oh.MinorImageVersion.ToHexString();
+            tbMajorSubsystemVersion.Text = oh.MajorSubsystemVersion.ToHexString();
+            tbMinorSubsystemVersion.Text = oh.MinorSubsystemVersion.ToHexString();
+            tbWin32VersionValue.Text = oh.Win32VersionValue.ToHexString();
+            tbSizeOfImage.Text = oh.SizeOfImage.ToHexString();
+            tbSizeOfHeaders.Text = oh.SizeOfHeaders.ToHexString();
+            tbCheckSum.Text = oh.CheckSum.ToHexString();
+            tbSubsystem.Text = oh.Subsystem.ToHexString();
+            tbDllCharacteristics.Text = oh.DllCharacteristics.ToHexString();
+            tbSizeOfStackReserve.Text = oh.SizeOfStackReserve.ToHexString();
+            tbSizeOfStackCommit.Text = oh.SizeOfStackCommit.ToHexString();
+            tbSizeOfHeapReserve.Text = oh.SizeOfHeapReserve.ToHexString();
+            tbSizeOfHeapCommit.Text = oh.SizeOfHeapCommit.ToHexString();
+            tbLoaderFlags.Text = oh.LoaderFlags.ToHexString();
+            tbNumberOfRvaAndSizes.Text = oh.NumberOfRvaAndSizes.ToHexString();
         }
 
         private void SetException(PeFile peFile)
@@ -449,9 +447,9 @@ namespace PEditor
             {
                 lbRuntimeFunctions.Items.Add(new
                 {
-                    FunctionStart = Utility.ToHexString(rt.FunctionStart),
-                    FunctionEnd = Utility.ToHexString(rt.FunctionEnd),
-                    UnwindInfo = Utility.ToHexString(rt.UnwindInfo)
+                    FunctionStart = rt.FunctionStart.ToHexString(),
+                    FunctionEnd = rt.FunctionEnd.ToHexString(),
+                    UnwindInfo = rt.UnwindInfo.ToHexString()
                 });
             }
         }
@@ -497,7 +495,7 @@ namespace PEditor
             tbUICountOfCodes.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.CountOfCodes);
             tbUIFrameRegister.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.FrameRegister);
             tbUIFrameOffset.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.FrameOffset);
-            tbUIExHandlerFuncEntry.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.ExceptionHandler);
+            tbUIExHandlerFuncEntry.Text = rt.ResolvedUnwindInfo.ExceptionHandler.ToHexString();
             // TODO: display excetption data as a hex array.
             //tbUIExData.Text = string.Format("", rt.ResolvedUnwindInfo.ExceptionData);
 
@@ -509,7 +507,7 @@ namespace PEditor
                 {
                     CodeOffset = Utility.ToHexString(uc.CodeOffset),
                     UnwindOp = Utility.ToHexString(uc.UnwindOp),
-                    FrameOffset = Utility.ToHexString(uc.FrameOffset)
+                    FrameOffset = uc.FrameOffset.ToHexString()
                 });
             }
         }
@@ -544,7 +542,7 @@ namespace PEditor
                 lbRelocTypeOffsets.Items.Add(new
                 {
                     Type = Utility.ToHexString(to.Type),
-                    Offset = Utility.ToHexString(to.Offset)
+                    Offset = to.Offset.ToHexString()
                 });
             }
         }

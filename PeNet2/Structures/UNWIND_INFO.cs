@@ -93,12 +93,12 @@ namespace PeNet.Structures
             get
             {
                 var off = (uint) (Offset + 0x4 + sizeOfUnwindeCode*CountOfCodes);
-                return Utility.BytesToUInt32(Buff, off);
+                return Buff.BytesToUInt32(off);
             }
             set
             {
                 var off = (uint) (Offset + 0x4 + sizeOfUnwindeCode*CountOfCodes);
-                Utility.SetUInt32(value, off, Buff);
+                value.SetUInt32(off, Buff);
             }
         }
 

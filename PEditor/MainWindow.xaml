@@ -857,7 +857,7 @@
             </TabItem>
             
             <TabItem Header="Debug">
-                <GroupBox Header="IMAGE_DEBUG_DIRECTORY">
+                <GroupBox Header="Debug Directory">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>

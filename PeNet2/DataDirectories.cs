@@ -198,7 +198,7 @@ namespace PeNet
             uint? rawAddress = null;
             try
             {
-                rawAddress = Utility.RVAtoFileMapping(rva, _sectionHeaders);
+                rawAddress = rva.RVAtoFileMapping(_sectionHeaders);
             }
             catch (Exception exception)
             {

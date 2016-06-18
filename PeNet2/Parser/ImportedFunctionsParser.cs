@@ -50,13 +50,13 @@ namespace PeNet.Parser
 
             foreach (var idesc in _importDescriptors)
             {
-                var dllAdr = Utility.RVAtoFileMapping(idesc.Name, _sectionHeaders);
+                var dllAdr = idesc.Name.RVAtoFileMapping(_sectionHeaders);
                 var dll = Utility.GetName(dllAdr, _buff);
                 var tmpAdr = idesc.OriginalFirstThunk != 0 ? idesc.OriginalFirstThunk : idesc.FirstThunk;
                 if (tmpAdr == 0)
                     continue;
 
-                var thunkAdr = Utility.RVAtoFileMapping(tmpAdr, _sectionHeaders);
+                var thunkAdr = tmpAdr.RVAtoFileMapping(_sectionHeaders);
                 uint round = 0;
                 while (true)
                 {
@@ -77,7 +77,7 @@ namespace PeNet.Parser
                     else // Import by name
                     {
                         var ibn = new IMAGE_IMPORT_BY_NAME(_buff,
-                            Utility.RVAtoFileMapping((uint) t.AddressOfData, _sectionHeaders));
+                            ((uint) t.AddressOfData).RVAtoFileMapping(_sectionHeaders));
                         impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint));
                     }
 

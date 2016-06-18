@@ -145,7 +145,7 @@ namespace PeNet
         /// <summary>
         ///     Returns true if the PE file is x64.
         /// </summary>
-        public bool Is64Bit => Utility.BytesToUInt16(Buff, ImageDosHeader.e_lfanew + 0x4) ==
+        public bool Is64Bit => Buff.BytesToUInt16(ImageDosHeader.e_lfanew + 0x4) ==
                                (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
 
         /// <summary>
@@ -344,7 +344,7 @@ namespace PeNet
             try
             {
                 dosHeader = new IMAGE_DOS_HEADER(buff, 0);
-                is64 = Utility.BytesToUInt16(buff, dosHeader.e_lfanew + 0x4) ==
+                is64 = buff.BytesToUInt16(dosHeader.e_lfanew + 0x4) ==
                        (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
             }
             catch (Exception)
@@ -368,7 +368,7 @@ namespace PeNet
             try
             {
                 dosHeader = new IMAGE_DOS_HEADER(buff, 0);
-                is32 = Utility.BytesToUInt16(buff, dosHeader.e_lfanew + 0x4) ==
+                is32 = buff.BytesToUInt16(dosHeader.e_lfanew + 0x4) ==
                        (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386;
             }
             catch (Exception)

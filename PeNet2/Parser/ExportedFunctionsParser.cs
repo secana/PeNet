@@ -42,15 +42,15 @@ namespace PeNet.Parser
 
             var expFuncs = new ExportFunction[_exportDirectory.NumberOfFunctions];
 
-            var funcOffsetPointer = Utility.RVAtoFileMapping(_exportDirectory.AddressOfFunctions, _sectionHeaders);
-            var ordOffset = Utility.RVAtoFileMapping(_exportDirectory.AddressOfNameOrdinals, _sectionHeaders);
-            var nameOffsetPointer = Utility.RVAtoFileMapping(_exportDirectory.AddressOfNames, _sectionHeaders);
+            var funcOffsetPointer = _exportDirectory.AddressOfFunctions.RVAtoFileMapping(_sectionHeaders);
+            var ordOffset = _exportDirectory.AddressOfNameOrdinals.RVAtoFileMapping(_sectionHeaders);
+            var nameOffsetPointer = _exportDirectory.AddressOfNames.RVAtoFileMapping(_sectionHeaders);
 
             //Get addresses
             for (uint i = 0; i < expFuncs.Length; i++)
             {
                 var ordinal = i + _exportDirectory.Base;
-                var address = Utility.BytesToUInt32(_buff, funcOffsetPointer + sizeof(uint)*i);
+                var address = _buff.BytesToUInt32(funcOffsetPointer + sizeof(uint)*i);
 
                 expFuncs[i] = new ExportFunction(null, address, (ushort) ordinal);
             }
@@ -58,8 +58,8 @@ namespace PeNet.Parser
             //Associate names
             for (uint i = 0; i < _exportDirectory.NumberOfNames; i++)
             {
-                var namePtr = Utility.BytesToUInt32(_buff, nameOffsetPointer + sizeof(uint)*i);
-                var nameAdr = Utility.RVAtoFileMapping(namePtr, _sectionHeaders);
+                var namePtr = _buff.BytesToUInt32(nameOffsetPointer + sizeof(uint)*i);
+                var nameAdr = namePtr.RVAtoFileMapping(_sectionHeaders);
                 var name = Utility.GetName(nameAdr, _buff);
                 var ordinalIndex = (uint) Utility.GetOrdinal(ordOffset + sizeof(ushort)*i, _buff);
 

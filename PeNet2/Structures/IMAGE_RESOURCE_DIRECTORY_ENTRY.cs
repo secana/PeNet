@@ -71,8 +71,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Name
         {
-            get { return Utility.BytesToUInt32(Buff, Offset); }
-            set { Utility.SetUInt32(value, Offset, Buff); }
+            get { return Buff.BytesToUInt32(Offset); }
+            set { value.SetUInt32(Offset, Buff); }
         }
 
         /// <summary>
@@ -95,8 +95,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint OffsetToData
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
-            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0x4); }
+            set { value.SetUInt32(Offset + 0x4, Buff); }
         }
 
         /// <summary>

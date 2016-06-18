@@ -25,8 +25,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Length
         {
-            get { return Utility.BytesToUInt16(Buff, Offset); }
-            set { Utility.SetUInt16(value, Offset, Buff); }
+            get { return Buff.BytesToUInt16(Offset); }
+            set { value.SetUInt16(Offset, Buff); }
         }
 
         /// <summary>

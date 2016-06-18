@@ -43,8 +43,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint FunctionStart
         {
-            get { return Utility.BytesToUInt32(Buff, Offset); }
-            set { Utility.SetUInt32(value, Offset, Buff); }
+            get { return Buff.BytesToUInt32(Offset); }
+            set { value.SetUInt32(Offset, Buff); }
         }
 
         /// <summary>
@@ -52,8 +52,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint FunctionEnd
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
-            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0x4); }
+            set { value.SetUInt32(Offset + 0x4, Buff); }
         }
 
         /// <summary>
@@ -61,8 +61,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint UnwindInfo
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0x8); }
-            set { Utility.SetUInt32(value, Offset + 0x8, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0x8); }
+            set { value.SetUInt32(Offset + 0x8, Buff); }
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace PeNet.Structures
                 ? UnwindInfo & 0xFFFE
                 : UnwindInfo;
 
-            var uw = new UNWIND_INFO(Buff, Utility.RVAtoFileMapping(uwAddress, sh));
+            var uw = new UNWIND_INFO(Buff, uwAddress.RVAtoFileMapping(sh));
             return uw;
         }
 
