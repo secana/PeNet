@@ -21,7 +21,7 @@ using PeNet.Structures;
 namespace PeNet.UnitTest.Structures
 {
     [TestClass]
-    public class ImageTlsDirectory_Test
+    public class IMAGE_TLS_DIRECTORY_Test
     {
         [TestMethod]
         public void ImageTlsDirectory64ConstructorWorks_Test()

@@ -2,6 +2,32 @@
 {
     public static class RawStructures
     {
+        public static readonly byte[] RawTlsCallback32 =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // Callback
+            0x11,
+            0x22,
+            0x33,
+        };
+
+        public static readonly byte[] RawTlsCallback64 =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // Callback
+            0x11,
+            0x22,
+            0x33,
+            0x44,
+            0x55,
+            0x66,
+            0x77
+        };
+
         public static readonly byte[] RawTlsDirectory32 =
         {
             0xff, // Junk
