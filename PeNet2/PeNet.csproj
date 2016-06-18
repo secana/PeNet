@@ -105,6 +105,7 @@
     <Compile Include="ImpHash\OrdinalSymbolMapping.cs" />
     <Compile Include="PeFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Structures\IMAGE_TLS_DIRECTORY.cs" />
     <Compile Include="Structures\RUNTIME_FUNCTION.cs" />
     <Compile Include="Structures\UNWIND_CODE.cs" />
     <Compile Include="Structures\UNWIND_INFO.cs" />

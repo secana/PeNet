@@ -42,7 +42,7 @@ namespace PeNet.Structures
         public ushort Machine
         {
             get { return Buff.BytesToUInt16(Offset); }
-            set { value.SetUInt16(Offset, Buff); }
+            set { Buff.SetUInt16(value, Offset); }
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace PeNet.Structures
         public ushort NumberOfSections
         {
             get { return Buff.BytesToUInt16(Offset + 0x2); }
-            set { value.SetUInt16(Offset + 0x2, Buff); }
+            set { Buff.SetUInt16(value, Offset + 0x2); }
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace PeNet.Structures
         public uint TimeDateStamp
         {
             get { return Buff.BytesToUInt32(Offset + 0x4); }
-            set { value.SetUInt32(Offset + 0x4, Buff); }
+            set { Buff.SetUInt32(value, Offset + 0x4); }
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace PeNet.Structures
         public uint PointerToSymbolTable
         {
             get { return Buff.BytesToUInt32(Offset + 0x8); }
-            set { value.SetUInt32(Offset + 0x8, Buff); }
+            set { Buff.SetUInt32(value, Offset + 0x8); }
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace PeNet.Structures
         public uint NumberOfSymbols
         {
             get { return Buff.BytesToUInt32(Offset + 0xC); }
-            set { value.SetUInt32(Offset + 0xC, Buff); }
+            set { Buff.SetUInt32(value, Offset + 0xC); }
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace PeNet.Structures
         public ushort SizeOfOptionalHeader
         {
             get { return Buff.BytesToUInt16(Offset + 0x10); }
-            set { value.SetUInt16(Offset + 0x10, Buff); }
+            set { Buff.SetUInt16(value, Offset + 0x10); }
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace PeNet.Structures
         public ushort Characteristics
         {
             get { return Buff.BytesToUInt16(Offset + 0x12); }
-            set { value.SetUInt16(Offset + 0x12, Buff); }
+            set { Buff.SetUInt16(value, Offset + 0x12); }
         }
 
         /// <summary>

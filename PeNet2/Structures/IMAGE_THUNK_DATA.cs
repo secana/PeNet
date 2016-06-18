@@ -49,9 +49,9 @@ namespace PeNet.Structures
             set
             {
                 if (!_is64Bit)
-                    ((uint) value).SetUInt32(Offset, Buff);
+                    Buff.SetUInt32((uint) value, Offset);
                 else
-                    value.SetUInt64(Offset, Buff);
+                    Buff.SetUInt64(value, Offset);
             }
         }
 

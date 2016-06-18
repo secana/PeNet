@@ -98,7 +98,7 @@ namespace PeNet.Structures
             set
             {
                 var off = (uint) (Offset + 0x4 + sizeOfUnwindeCode*CountOfCodes);
-                value.SetUInt32(off, Buff);
+                Buff.SetUInt32(value, off);
             }
         }
 

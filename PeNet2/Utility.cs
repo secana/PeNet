@@ -372,10 +372,10 @@ namespace PeNet
         /// <summary>
         ///     Set an UInt16 value at an offset in an byte array.
         /// </summary>
+        /// <param name="buff">Buffer in which the value is set.</param>
         /// <param name="value">The value to set.</param>
         /// <param name="offset">Offset where the value is set.</param>
-        /// <param name="buff">Buffer in which the value is set.</param>
-        public static void SetUInt16(this ushort value, ulong offset, byte[] buff)
+        public static void SetUInt16(this byte[] buff, ushort value, ulong offset)
         {
             var x = UInt16ToBytes(value);
             buff[offset] = x[0];
@@ -405,10 +405,10 @@ namespace PeNet
         /// <summary>
         ///     Sets an UInt32 value at an offset in a buffer.
         /// </summary>
+        /// <param name="buff">Buffer to set the value in.</param>
         /// <param name="value">Value to set.</param>
         /// <param name="offset">Offset in the array for the value.</param>
-        /// <param name="buff">Buffer to set the value in.</param>
-        public static void SetUInt32(this uint value, uint offset, byte[] buff)
+        public static void SetUInt32(this byte[] buff, uint value, uint offset)
         {
             var x = UInt32ToBytes(value);
             buff[offset] = x[0];
@@ -420,10 +420,10 @@ namespace PeNet
         /// <summary>
         ///     Sets an UInt64 value at an offset in a buffer.
         /// </summary>
+        /// <param name="buff">Buffer to set the value in.</param>
         /// <param name="value">Value to set.</param>
         /// <param name="offset">Offset in the array for the value.</param>
-        /// <param name="buff">Buffer to set the value in.</param>
-        public static void SetUInt64(this ulong value, ulong offset, byte[] buff)
+        public static void SetUInt64(this byte[] buff, ulong value, ulong offset)
         {
             var x = UInt64ToBytes(value);
             buff[offset] = x[0];

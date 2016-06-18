@@ -49,7 +49,7 @@ namespace PeNet.Structures
         public uint Characteristics
         {
             get { return Buff.BytesToUInt32(Offset); }
-            set { value.SetUInt32(Offset, Buff); }
+            set { Buff.SetUInt32(value, Offset); }
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace PeNet.Structures
         public uint TimeDateStamp
         {
             get { return Buff.BytesToUInt32(Offset + 0x4); }
-            set { value.SetUInt32(Offset + 0x4, Buff); }
+            set { Buff.SetUInt32(value, Offset + 0x4); }
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace PeNet.Structures
         public ushort MajorVersion
         {
             get { return Buff.BytesToUInt16(Offset + 0x8); }
-            set { value.SetUInt16(Offset + 0x8, Buff); }
+            set { Buff.SetUInt16(value, Offset + 0x8); }
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace PeNet.Structures
         public ushort MinorVersion
         {
             get { return Buff.BytesToUInt16(Offset + 0xa); }
-            set { value.SetUInt16(Offset + 0xa, Buff); }
+            set { Buff.SetUInt16(value, Offset + 0xa); }
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace PeNet.Structures
         public ushort NumberOfNameEntries
         {
             get { return Buff.BytesToUInt16(Offset + 0xc); }
-            set { value.SetUInt16(Offset + 0xc, Buff); }
+            set { Buff.SetUInt16(value, Offset + 0xc); }
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace PeNet.Structures
         public ushort NumberOfIdEntries
         {
             get { return Buff.BytesToUInt16(Offset + 0xe); }
-            set { value.SetUInt16(Offset + 0xe, Buff); }
+            set { Buff.SetUInt16(value, Offset + 0xe); }
         }
 
         /// <summary>
