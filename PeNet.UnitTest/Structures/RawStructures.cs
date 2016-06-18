@@ -2,6 +2,94 @@
 {
     public static class RawStructures
     {
+        public static readonly byte[] RawTlsDirectory32 =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // StartAddressOfRawData
+            0x11,
+            0x22,
+            0x33,
+
+            0x44, // EndAddressOfRawData
+            0x55,
+            0x66,
+            0x77,
+
+            0xbb, // AddressOfIndex
+            0xcc,
+            0xdd,
+            0xee,
+
+            0x33, // AddressOfCallBacks
+            0x44,
+            0x55,
+            0x66,
+
+            0x11, // SizeOfZeroFill,
+            0x22,
+            0x33,
+            0x44,
+
+            0x66, // Characteristics
+            0x77,
+            0x88,
+            0x99
+        };
+
+        public static readonly byte[] RawTlsDirectory64 =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // StartAddressOfRawData
+            0x11,
+            0x22,
+            0x33,
+            0x44,
+            0x55,
+            0x66,
+            0x77,
+
+            0x44, // EndAddressOfRawData
+            0x55,
+            0x66,
+            0x77,
+            0x88,
+            0x99,
+            0xaa,
+            0xbb,
+
+            0xbb, // AddressOfIndex
+            0xcc,
+            0xdd,
+            0xee,
+            0xff,
+            0x00,
+            0x11,
+            0x22,
+            
+            0x33, // AddressOfCallBacks
+            0x44,
+            0x55,
+            0x66,
+            0x77,
+            0x88,
+            0x99,
+            0xaa,
+            
+            0x11, // SizeOfZeroFill,
+            0x22,
+            0x33,
+            0x44,
+            
+            0x66, // Characteristics
+            0x77,
+            0x88,
+            0x99
+        };
+
         public static readonly byte[] RawCopyright =
         {
             0xff, // Junk
