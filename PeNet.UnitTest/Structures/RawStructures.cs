@@ -2,6 +2,23 @@
 {
     public static class RawStructures
     {
+        public static readonly byte[] RawBoundImportDescriptor =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // TimeDataStamp
+            0x11,
+            0x22,
+            0x33,
+
+            0x44, // OffsetModuleName
+            0x55,
+            
+            0x66, // NumberOfModuleForwarderRefs
+            0x77
+        };
+
         public static readonly byte[] RawTlsCallback32 =
         {
             0xff, // Junk
