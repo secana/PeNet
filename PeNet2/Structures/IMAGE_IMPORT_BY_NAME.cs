@@ -43,7 +43,7 @@ namespace PeNet.Structures
         public ushort Hint
         {
             get { return Buff.BytesToUInt16(Offset); }
-            set { Buff.SetUInt16(value, Offset); }
+            set { Buff.SetUInt16(Offset, value); }
         }
 
         /// <summary>

@@ -41,7 +41,7 @@ namespace PeNet.Structures
         public uint Characteristics
         {
             get { return Buff.BytesToUInt32(Offset); }
-            set { Buff.SetUInt32(value, Offset); }
+            set { Buff.SetUInt32(Offset, value); }
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace PeNet.Structures
         public uint TimeDateStamp
         {
             get { return Buff.BytesToUInt32(Offset + 0x4); }
-            set { Buff.SetUInt32(value, Offset + 0x4); }
+            set { Buff.SetUInt32(Offset + 0x4, value); }
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace PeNet.Structures
         public ushort MajorVersion
         {
             get { return Buff.BytesToUInt16(Offset + 0x8); }
-            set { Buff.SetUInt16(value, Offset + 0x8); }
+            set { Buff.SetUInt16(Offset + 0x8, value); }
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace PeNet.Structures
         public ushort MinorVersion
         {
             get { return Buff.BytesToUInt16(Offset + 0xa); }
-            set { Buff.SetUInt16(value, Offset + 0xa); }
+            set { Buff.SetUInt16(Offset + 0xa, value); }
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace PeNet.Structures
         public uint Type
         {
             get { return Buff.BytesToUInt32(Offset + 0xc); }
-            set { Buff.SetUInt32(value, Offset + 0xc); }
+            set { Buff.SetUInt32(Offset + 0xc, value); }
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace PeNet.Structures
         public uint SizeOfData
         {
             get { return Buff.BytesToUInt32(Offset + 0x10); }
-            set { Buff.SetUInt32(value, Offset + 0x10); }
+            set { Buff.SetUInt32(Offset + 0x10, value); }
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace PeNet.Structures
         public uint AddressOfRawData
         {
             get { return Buff.BytesToUInt32(Offset + 0x14); }
-            set { Buff.SetUInt32(value, Offset + 0x14); }
+            set { Buff.SetUInt32(Offset + 0x14, value); }
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace PeNet.Structures
         public uint PointerToRawData
         {
             get { return Buff.BytesToUInt32(Offset + 0x18); }
-            set { Buff.SetUInt32(value, Offset + 0x18); }
+            set { Buff.SetUInt32(Offset + 0x18, value); }
         }
 
         /// <summary>

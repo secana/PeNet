@@ -30,7 +30,7 @@ namespace PeNet.Structures
         public ulong StartAddressOfRawData
         {
             get { return Buff.BytesToUInt64(0); }
-            set { Buff.SetUInt64(value, 0); } 
+            set { Buff.SetUInt64(0, value); } 
         }
     }
 }

@@ -62,7 +62,7 @@ namespace PeNet.Structures
         public ushort FrameOffset
         {
             get { return Buff.BytesToUInt16(Offset + 0x2); }
-            set { Buff.SetUInt16(value, Offset + 0x2); }
+            set { Buff.SetUInt16(Offset + 0x2, value); }
         }
 
         /// <summary>

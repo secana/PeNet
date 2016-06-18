@@ -44,7 +44,7 @@ namespace PeNet.Structures
         public uint FunctionStart
         {
             get { return Buff.BytesToUInt32(Offset); }
-            set { Buff.SetUInt32(value, Offset); }
+            set { Buff.SetUInt32(Offset, value); }
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace PeNet.Structures
         public uint FunctionEnd
         {
             get { return Buff.BytesToUInt32(Offset + 0x4); }
-            set { Buff.SetUInt32(value, Offset + 0x4); }
+            set { Buff.SetUInt32(Offset + 0x4, value); }
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace PeNet.Structures
         public uint UnwindInfo
         {
             get { return Buff.BytesToUInt32(Offset + 0x8); }
-            set { Buff.SetUInt32(value, Offset + 0x8); }
+            set { Buff.SetUInt32(Offset + 0x8, value); }
         }
 
         /// <summary>

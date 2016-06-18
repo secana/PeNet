@@ -61,7 +61,7 @@ namespace PeNet.Structures
         public ushort Magic
         {
             get { return Buff.BytesToUInt16(Offset); }
-            set { Buff.SetUInt16(value, Offset); }
+            set { Buff.SetUInt16(Offset, value); }
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace PeNet.Structures
         public uint SizeOfCode
         {
             get { return Buff.BytesToUInt32(Offset + 0x4); }
-            set { Buff.SetUInt32(value, Offset + 0x4); }
+            set { Buff.SetUInt32(Offset + 0x4, value); }
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace PeNet.Structures
         public uint SizeOfInitializedData
         {
             get { return Buff.BytesToUInt32(Offset + 0x8); }
-            set { Buff.SetUInt32(value, Offset + 0x8); }
+            set { Buff.SetUInt32(Offset + 0x8, value); }
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace PeNet.Structures
         public uint SizeOfUninitializedData
         {
             get { return Buff.BytesToUInt32(Offset + 0xC); }
-            set { Buff.SetUInt32(value, Offset + 0xC); }
+            set { Buff.SetUInt32(Offset + 0xC, value); }
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace PeNet.Structures
         public uint AddressOfEntryPoint
         {
             get { return Buff.BytesToUInt32(Offset + 0x10); }
-            set { Buff.SetUInt32(value, Offset + 0x10); }
+            set { Buff.SetUInt32(Offset + 0x10, value); }
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace PeNet.Structures
         public uint BaseOfCode
         {
             get { return Buff.BytesToUInt32(Offset + 0x14); }
-            set { Buff.SetUInt32(value, Offset + 0x14); }
+            set { Buff.SetUInt32(Offset + 0x14, value); }
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace PeNet.Structures
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32(value, Offset + 0x18);
+                    Buff.SetUInt32(Offset + 0x18, value);
                 else
                     throw new Exception("IMAGE_OPTIONAL_HEADER->BaseOfCode does not exist in 64 bit applications.");
             }
@@ -156,9 +156,9 @@ namespace PeNet.Structures
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32((uint) value, Offset + 0x1C);
+                    Buff.SetUInt32(Offset + 0x1C, (uint) value);
                 else
-                    Buff.SetUInt64(value, Offset + 0x18);
+                    Buff.SetUInt64(Offset + 0x18, value);
             }
         }
 
@@ -168,7 +168,7 @@ namespace PeNet.Structures
         public uint SectionAlignment
         {
             get { return Buff.BytesToUInt32(Offset + 0x20); }
-            set { Buff.SetUInt32(value, Offset + 0x20); }
+            set { Buff.SetUInt32(Offset + 0x20, value); }
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace PeNet.Structures
         public uint FileAlignment
         {
             get { return Buff.BytesToUInt32(Offset + 0x24); }
-            set { Buff.SetUInt32(value, Offset + 0x24); }
+            set { Buff.SetUInt32(Offset + 0x24, value); }
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace PeNet.Structures
         public ushort MajorOperatingSystemVersion
         {
             get { return Buff.BytesToUInt16(Offset + 0x28); }
-            set { Buff.SetUInt16(value, Offset + 0x28); }
+            set { Buff.SetUInt16(Offset + 0x28, value); }
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace PeNet.Structures
         public ushort MinorOperatingSystemVersion
         {
             get { return Buff.BytesToUInt16(Offset + 0x2A); }
-            set { Buff.SetUInt16(value, Offset + 0x2A); }
+            set { Buff.SetUInt16(Offset + 0x2A, value); }
         }
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace PeNet.Structures
         public ushort MajorImageVersion
         {
             get { return Buff.BytesToUInt16(Offset + 0x2C); }
-            set { Buff.SetUInt16(value, Offset + 0x2C); }
+            set { Buff.SetUInt16(Offset + 0x2C, value); }
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace PeNet.Structures
         public ushort MinorImageVersion
         {
             get { return Buff.BytesToUInt16(Offset + 0x2E); }
-            set { Buff.SetUInt16(value, Offset + 0x2E); }
+            set { Buff.SetUInt16(Offset + 0x2E, value); }
         }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace PeNet.Structures
         public ushort MajorSubsystemVersion
         {
             get { return Buff.BytesToUInt16(Offset + 0x30); }
-            set { Buff.SetUInt16(value, Offset + 0x30); }
+            set { Buff.SetUInt16(Offset + 0x30, value); }
         }
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace PeNet.Structures
         public ushort MinorSubsystemVersion
         {
             get { return Buff.BytesToUInt16(Offset + 0x32); }
-            set { Buff.SetUInt16(value, Offset + 0x32); }
+            set { Buff.SetUInt16(Offset + 0x32, value); }
         }
 
         /// <summary>
@@ -240,7 +240,7 @@ namespace PeNet.Structures
         public uint Win32VersionValue
         {
             get { return Buff.BytesToUInt32(Offset + 0x34); }
-            set { Buff.SetUInt32(value, Offset + 0x34); }
+            set { Buff.SetUInt32(Offset + 0x34, value); }
         }
 
         /// <summary>
@@ -250,7 +250,7 @@ namespace PeNet.Structures
         public uint SizeOfImage
         {
             get { return Buff.BytesToUInt32(Offset + 0x38); }
-            set { Buff.SetUInt32(value, Offset + 0x38); }
+            set { Buff.SetUInt32(Offset + 0x38, value); }
         }
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace PeNet.Structures
         public uint SizeOfHeaders
         {
             get { return Buff.BytesToUInt32(Offset + 0x3C); }
-            set { Buff.SetUInt32(value, Offset + 0x3C); }
+            set { Buff.SetUInt32(Offset + 0x3C, value); }
         }
 
         /// <summary>
@@ -271,7 +271,7 @@ namespace PeNet.Structures
         public uint CheckSum
         {
             get { return Buff.BytesToUInt32(Offset + 0x40); }
-            set { Buff.SetUInt32(value, Offset + 0x40); }
+            set { Buff.SetUInt32(Offset + 0x40, value); }
         }
 
         /// <summary>
@@ -281,7 +281,7 @@ namespace PeNet.Structures
         public ushort Subsystem
         {
             get { return Buff.BytesToUInt16(Offset + 0x44); }
-            set { Buff.SetUInt16(value, Offset + 0x44); }
+            set { Buff.SetUInt16(Offset + 0x44, value); }
         }
 
         /// <summary>
@@ -290,7 +290,7 @@ namespace PeNet.Structures
         public ushort DllCharacteristics
         {
             get { return Buff.BytesToUInt16(Offset + 0x46); }
-            set { Buff.SetUInt16(value, Offset + 0x46); }
+            set { Buff.SetUInt16(Offset + 0x46, value); }
         }
 
         /// <summary>
@@ -307,9 +307,9 @@ namespace PeNet.Structures
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32((uint) value, Offset + 0x48);
+                    Buff.SetUInt32(Offset + 0x48, (uint) value);
                 else
-                    Buff.SetUInt64(value, Offset + 0x48);
+                    Buff.SetUInt64(Offset + 0x48, value);
             }
         }
 
@@ -327,9 +327,9 @@ namespace PeNet.Structures
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32((uint) value, Offset + 0x4C);
+                    Buff.SetUInt32(Offset + 0x4C, (uint) value);
                 else
-                    Buff.SetUInt64(value, Offset + 0x50);
+                    Buff.SetUInt64(Offset + 0x50, value);
             }
         }
 
@@ -347,9 +347,9 @@ namespace PeNet.Structures
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32((uint) value, Offset + 0x50);
+                    Buff.SetUInt32(Offset + 0x50, (uint) value);
                 else
-                    Buff.SetUInt64(value, Offset + 0x58);
+                    Buff.SetUInt64(Offset + 0x58, value);
             }
         }
 
@@ -367,9 +367,9 @@ namespace PeNet.Structures
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32((uint) value, Offset + 0x54);
+                    Buff.SetUInt32(Offset + 0x54, (uint) value);
                 else
-                    Buff.SetUInt64(value, Offset + 0x60);
+                    Buff.SetUInt64(Offset + 0x60, value);
             }
         }
 
@@ -387,9 +387,9 @@ namespace PeNet.Structures
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32(value, Offset + 0x58);
+                    Buff.SetUInt32(Offset + 0x58, value);
                 else
-                    Buff.SetUInt32(value, Offset + 0x68);
+                    Buff.SetUInt32(Offset + 0x68, value);
             }
         }
 
@@ -407,9 +407,9 @@ namespace PeNet.Structures
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32(value, Offset + 0x5C);
+                    Buff.SetUInt32(Offset + 0x5C, value);
                 else
-                    Buff.SetUInt32(value, Offset + 0x6C);
+                    Buff.SetUInt32(Offset + 0x6C, value);
             }
         }
 
