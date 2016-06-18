@@ -68,6 +68,7 @@
     <Compile Include="ImportFunction.cs" />
     <Compile Include="Parser\ExportedFunctionsParser.cs" />
     <Compile Include="Parser\ImageBaseRelocationsParser.cs" />
+    <Compile Include="Parser\ImageBoundImportDescriptorParser.cs" />
     <Compile Include="Parser\ImageDebugDirectoryParser.cs" />
     <Compile Include="Parser\ImageDosHeaderParser.cs" />
     <Compile Include="Parser\ImageExportDirectoriesParser.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="StructureParser.cs" />
     <Compile Include="Structures\AbstractStructure.cs" />
     <Compile Include="Structures\Copyright.cs" />
+    <Compile Include="Parser\ImageTlsDirectoryParser.cs" />
     <Compile Include="Structures\IMAGE_BASE_RELOCATION.cs" />
     <Compile Include="Structures\IMAGE_BOUND_IMPORT_DESCRIPTOR.cs" />
     <Compile Include="Structures\IMAGE_DEBUG_DIRECTORY.cs" />

@@ -34,7 +34,7 @@ namespace PeNet
         private ExportedFunctionsParser _exportedFunctionsParser;
         private ImageBaseRelocationsParser _imageBaseRelocationsParser;
         private ImageDebugDirectoryParser _imageDebugDirectoryParser;
-
+        private ImageBoundImportDescriptorParser _imageBoundImportDescriptorParser;
         private ImageExportDirectoriesParser _imageExportDirectoriesParser;
         private ImageImportDescriptorsParser _imageImportDescriptorsParser;
         private ImageResourceDirectoryParser _imageResourceDirectoryParser;
@@ -42,8 +42,10 @@ namespace PeNet
         private PKCS7Parser _pkcs7Parser;
         private RuntimeFunctionsParser _runtimeFunctionsParser;
         private WinCertificateParser _winCertificateParser;
+        private ImageTlsDirectoryParser _imageTlsDirectoryParser;
 
         public List<Exception> RvaToFileMappingExceptions = new List<Exception>();
+        
 
         public DataDirectories(
             byte[] buff,
@@ -68,8 +70,10 @@ namespace PeNet
         public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory => _imageDebugDirectoryParser?.GetParserTarget();
         public RUNTIME_FUNCTION[] RuntimeFunctions => _runtimeFunctionsParser?.GetParserTarget();
         public ExportFunction[] ExportFunctions => _exportedFunctionsParser?.GetParserTarget();
-        public ImportFunction[] ImportFunctions => _importedFunctionsParser.GetParserTarget();
-        public X509Certificate2 PKCS7 => _pkcs7Parser.GetParserTarget();
+        public ImportFunction[] ImportFunctions => _importedFunctionsParser?.GetParserTarget();
+        public IMAGE_BOUND_IMPORT_DESCRIPTOR ImageBoundImportDescriptor => _imageBoundImportDescriptorParser?.GetParserTarget();
+        public IMAGE_TLS_DIRECTORY ImageTlsDirectory => _imageTlsDirectoryParser?.GetParserTarget();
+        public X509Certificate2 PKCS7 => _pkcs7Parser?.GetParserTarget();
 
         private void InitAllParsers()
         {
@@ -82,7 +86,31 @@ namespace PeNet
             _winCertificateParser = InitWinCertificateParser();
             _exportedFunctionsParser = InitExportFunctionParser();
             _importedFunctionsParser = InitImportedFunctionsParser();
+            _imageBoundImportDescriptorParser = InitBoundImportDescriptorParser();
+            _imageTlsDirectoryParser = InitImageTlsDirectoryParser();
             _pkcs7Parser = InitPKCS7Parser();
+        }
+
+        private ImageTlsDirectoryParser InitImageTlsDirectoryParser()
+        {
+            var rawAddress =
+                SafeRVAtoFileMapping(_dataDirectories[(int) Constants.DataDirectoryIndex.TLS].VirtualAddress);
+
+            if (rawAddress == null)
+                return null;
+
+            return new ImageTlsDirectoryParser(_buff, rawAddress.Value, !_is32Bit, _sectionHeaders);
+        }
+
+        private ImageBoundImportDescriptorParser InitBoundImportDescriptorParser()
+        {
+            var rawAddress =
+                SafeRVAtoFileMapping(_dataDirectories[(int) Constants.DataDirectoryIndex.BoundImport].VirtualAddress);
+
+            if (rawAddress == null)
+                return null;
+
+            return new ImageBoundImportDescriptorParser(_buff, rawAddress.Value);
         }
 
         private ImportedFunctionsParser InitImportedFunctionsParser()

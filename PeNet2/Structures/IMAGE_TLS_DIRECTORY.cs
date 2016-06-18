@@ -143,5 +143,10 @@ namespace PeNet.Structures
                     Buff.SetUInt32(Offset+0x14, value);
             }
         }
+
+        /// <summary>
+        /// List with parsed TLS callback structures.
+        /// </summary>
+        public IMAGE_TLS_CALLBACK[] TlsCallbacks { get; set; }
     }
 }

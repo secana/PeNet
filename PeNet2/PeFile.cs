@@ -214,6 +214,16 @@ namespace PeNet
         public WIN_CERTIFICATE WinCertificate => _dataDirectories.WinCertificate;
 
         /// <summary>
+        /// Access the IMAGE_BOUND_IMPORT_DESCRIPTOR form the data directory.
+        /// </summary>
+        public IMAGE_BOUND_IMPORT_DESCRIPTOR ImageBoundImportDescriptor => _dataDirectories.ImageBoundImportDescriptor;
+
+        /// <summary>
+        /// Access the IMAGE_TLS_DIRECTORY from the data directory.
+        /// </summary>
+        public IMAGE_TLS_DIRECTORY ImageTlsDirectory => _dataDirectories.ImageTlsDirectory;
+
+        /// <summary>
         ///     A X509 PKCS7 signature if the PE file was digitally signed with such
         ///     a signature.
         /// </summary>
