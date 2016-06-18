@@ -93,6 +93,26 @@ namespace PEditor
 
             // Set the Debug directory.
             SetDebug(peFile);
+
+            // Set the Bound Import directory.
+            SetBoundImport(peFile);
+        }
+
+        private void SetBoundImport(PeFile peFile)
+        {
+            // Clean
+            tbBoundImportNumberOfModuleForwarderRefs.Text = string.Empty;
+            tbBoundImportOffsetModuleName.Text = string.Empty;
+            tbBoundImportTimeDateStamp.Text = string.Empty;
+
+            if(peFile.ImageBoundImportDescriptor == null)
+                return;
+
+            // Set
+            tbBoundImportNumberOfModuleForwarderRefs.Text =
+                peFile.ImageBoundImportDescriptor.NumberOfModuleForwarderRefs.ToHexString();
+            tbBoundImportOffsetModuleName.Text = peFile.ImageBoundImportDescriptor.OffsetModuleName.ToHexString();
+            tbBoundImportTimeDateStamp.Text = peFile.ImageBoundImportDescriptor.TimeDateStamp.ToHexString();
         }
 
         private void SetDebug(PeFile peFile)
