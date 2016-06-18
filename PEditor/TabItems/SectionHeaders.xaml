@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="PEditor.TabItems.SectionHeaders"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PEditor.TabItems"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <GroupBox Header="Sections">
+        <DataGrid Name="dgSections" AutoGenerateColumns="False" IsReadOnly="True"
+                              CanUserResizeColumns="True" CanUserAddRows="False" CanUserSortColumns="False"
+                              ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="#" Binding="{Binding Number}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Virtual Size" Binding="{Binding VSize}" />
+                <DataGridTextColumn Header="Virtual Address" Binding="{Binding VAddress}" />
+                <DataGridTextColumn Header="Physical Size" Binding="{Binding PSize}" />
+                <DataGridTextColumn Header="Physical Address" Binding="{Binding PAddress}" />
+                <DataGridTextColumn Header="Flags" Binding="{Binding Flags}" />
+                <DataGridTextColumn Header="Resolved Flags" Binding="{Binding RFlags}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </GroupBox>
+</UserControl>

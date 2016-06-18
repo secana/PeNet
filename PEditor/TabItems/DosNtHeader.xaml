@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="PEditor.TabItems.DosNtHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PEditor.TabItems"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Dos Header" Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0">e__magic:</Label>
+                <TextBox Name="tbe_magic" Grid.Column="1" Grid.Row="0" />
+
+                <Label Grid.Column="0" Grid.Row="1">e__cblp:</Label>
+                <TextBox Name="tbe_cblp" Grid.Column="1" Grid.Row="1" />
+
+                <Label Grid.Column="0" Grid.Row="2">e__cp:</Label>
+                <TextBox Name="tbe_cp" Grid.Column="1" Grid.Row="2" />
+
+                <Label Grid.Column="0" Grid.Row="3">e__crlc:</Label>
+                <TextBox Name="tbe_crlc" Grid.Column="1" Grid.Row="3" />
+
+                <Label Grid.Column="0" Grid.Row="4">e__cparhdr:</Label>
+                <TextBox Name="tbe_cparhdr" Grid.Column="1" Grid.Row="4" />
+
+                <Label Grid.Column="0" Grid.Row="5">e__minalloc:</Label>
+                <TextBox Name="tbe_minalloc" Grid.Column="1" Grid.Row="5" />
+
+                <Label Grid.Column="0" Grid.Row="6">e__maxalloc:</Label>
+                <TextBox Name="tbe_maxalloc" Grid.Column="1" Grid.Row="6" />
+
+                <Label Grid.Column="0" Grid.Row="7">e__ss:</Label>
+                <TextBox Name="tbe_ss" Grid.Column="1" Grid.Row="7" />
+
+                <Label Grid.Column="0" Grid.Row="8">e__sp:</Label>
+                <TextBox Name="tbe_sp" Grid.Column="1" Grid.Row="8" />
+
+                <Label Grid.Column="0" Grid.Row="9">e__csum:</Label>
+                <TextBox Name="tbe_csum" Grid.Column="1" Grid.Row="9" />
+
+                <Label Grid.Column="2" Grid.Row="0">e__ip:</Label>
+                <TextBox Name="tbe_ip" Grid.Column="3" Grid.Row="0" />
+
+                <Label Grid.Column="2" Grid.Row="1">e__cs:</Label>
+                <TextBox Name="tbe_cs" Grid.Column="3" Grid.Row="1" />
+
+                <Label Grid.Column="2" Grid.Row="2">e__lfarlc:</Label>
+                <TextBox Name="tbe_lfarlc" Grid.Column="3" Grid.Row="2" />
+
+                <Label Grid.Column="2" Grid.Row="3">e__ovno:</Label>
+                <TextBox Name="tbe_ovno" Grid.Column="3" Grid.Row="3" />
+
+                <Label Grid.Column="2" Grid.Row="4">e__res:</Label>
+                <TextBox Name="tbe_res" Grid.Column="3" Grid.Row="4" />
+
+                <Label Grid.Column="2" Grid.Row="5">e__oemid:</Label>
+                <TextBox Name="tbe_oemid" Grid.Column="3" Grid.Row="5" />
+
+                <Label Grid.Column="2" Grid.Row="6">e__oeminfo:</Label>
+                <TextBox Name="tbe_oeminfo" Grid.Column="3" Grid.Row="6" />
+
+                <Label Grid.Column="2" Grid.Row="7">e__res2:</Label>
+                <TextBox Name="tbe_res2" Grid.Column="3" Grid.Row="7" />
+
+                <Label Grid.Column="2" Grid.Row="8">e__lfanew:</Label>
+                <TextBox Name="tbe_lfanew" Grid.Column="3" Grid.Row="8" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="NT Header" Grid.Row="1">
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0">Signature:</Label>
+                <TextBox Name="tbSignature" Grid.Row="0" Grid.Column="1" />
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>
