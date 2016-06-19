@@ -80,6 +80,10 @@
             <TabItem Header="Debug/Bound Import">
                 <tabItems:DebugBoundImport x:Name="DebugBoundImport"/>
             </TabItem>
+            
+            <TabItem Header="TLS">
+                <tabItems:TlsDirectory x:Name="TlsDirectory"/>
+            </TabItem>
 
         </TabControl>
         <StatusBar Grid.Row="2" Height="20">

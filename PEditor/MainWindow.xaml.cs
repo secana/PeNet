@@ -92,6 +92,9 @@ namespace PEditor
 
             // Set the Bound Import directory.
             DebugBoundImport.SetBoundImport(peFile);
+
+            // Set the TLS directory.
+            TlsDirectory.SetTlsDirectory(peFile);
         }
 
         private void MenuHelp_Click(object sender, RoutedEventArgs e)

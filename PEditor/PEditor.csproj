@@ -138,6 +138,9 @@
     <Compile Include="TabItems\Signature.xaml.cs">
       <DependentUpon>Signature.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TabItems\TlsDirectory.xaml.cs">
+      <DependentUpon>TlsDirectory.xaml</DependentUpon>
+    </Compile>
     <Page Include="TabItems\DebugBoundImport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -204,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TabItems\Signature.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\TlsDirectory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
