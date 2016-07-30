@@ -224,6 +224,11 @@ namespace PeNet
         public IMAGE_TLS_DIRECTORY ImageTlsDirectory => _dataDirectories.ImageTlsDirectory;
 
         /// <summary>
+        /// Access the IMAGE_DELAY_IMPORT_DESCRIPTOR from the data directory.
+        /// </summary>
+        public IMAGE_DELAY_IMPORT_DESCRIPTOR ImageDelayImportDescriptor => _dataDirectories.ImageDelayImportDescriptor;
+
+        /// <summary>
         ///     A X509 PKCS7 signature if the PE file was digitally signed with such
         ///     a signature.
         /// </summary>

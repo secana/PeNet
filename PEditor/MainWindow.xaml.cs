@@ -78,7 +78,10 @@ namespace PEditor
             DosNtHeader.SetNtHeader(peFile);
 
             // Set the File header
-            FileHeader.SetFileHeader(peFile);
+            FileHeaderDebug.SetFileHeader(peFile);
+
+            // Set the Debug directory.
+            FileHeaderDebug.SetDebug(peFile);
 
             // Set the Optional header
             OptionalHeader.SetOptionalHeader(peFile);
@@ -104,11 +107,11 @@ namespace PEditor
             // Set the Digital Signature information.
             Signature.SetDigSignature(peFile);
 
-            // Set the Debug directory.
-            DebugBoundImport.SetDebug(peFile);
-
             // Set the Bound Import directory.
             DebugBoundImport.SetBoundImport(peFile);
+
+            // Set the Delay Import descriptor.
+            DebugBoundImport.SetDelayImport(peFile);
 
             // Set the TLS directory.
             TlsDirectory.SetTlsDirectory(peFile);

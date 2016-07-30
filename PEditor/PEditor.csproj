@@ -111,8 +111,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="TabItems\DebugBoundImport.xaml.cs">
-      <DependentUpon>DebugBoundImport.xaml</DependentUpon>
+    <Compile Include="TabItems\BoundDelayImport.xaml.cs">
+      <DependentUpon>BoundDelayImport.xaml</DependentUpon>
     </Compile>
     <Compile Include="TabItems\Exceptions.xaml.cs">
       <DependentUpon>Exceptions.xaml</DependentUpon>
@@ -141,7 +141,7 @@
     <Compile Include="TabItems\TlsDirectory.xaml.cs">
       <DependentUpon>TlsDirectory.xaml</DependentUpon>
     </Compile>
-    <Page Include="TabItems\DebugBoundImport.xaml">
+    <Page Include="TabItems\BoundDelayImport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,7 +157,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TabItems\FileHeader.xaml">
+    <Page Include="TabItems\FileHeaderDebug.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,8 +176,8 @@
     <Compile Include="TabItems\DosNtHeader.xaml.cs">
       <DependentUpon>DosNtHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TabItems\FileHeader.xaml.cs">
-      <DependentUpon>FileHeader.xaml</DependentUpon>
+    <Compile Include="TabItems\FileHeaderDebug.xaml.cs">
+      <DependentUpon>FileHeaderDebug.xaml</DependentUpon>
     </Compile>
     <Compile Include="TabItems\FileInfo.xaml.cs">
       <DependentUpon>FileInfo.xaml</DependentUpon>

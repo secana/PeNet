@@ -4,30 +4,29 @@ using PeNet;
 namespace PEditor.TabItems
 {
     /// <summary>
-    /// Interaction logic for DebugBoundImport.xaml
+    /// Interaction logic for FileHeaderDebug.xaml
     /// </summary>
-    public partial class DebugBoundImport : UserControl
+    public partial class FileHeader : UserControl
     {
-        public DebugBoundImport()
+        public FileHeader()
         {
             InitializeComponent();
         }
 
-        public void SetBoundImport(PeFile peFile)
+        public void SetFileHeader(PeFile peFile)
         {
-            // Clean
-            tbBoundImportNumberOfModuleForwarderRefs.Text = string.Empty;
-            tbBoundImportOffsetModuleName.Text = string.Empty;
-            tbBoundImportTimeDateStamp.Text = string.Empty;
+            var fileHeader = peFile.ImageNtHeaders.FileHeader;
+            var machine = fileHeader.Machine;
+            var characteristics = fileHeader.Characteristics;
 
-            if (peFile.ImageBoundImportDescriptor == null)
-                return;
-
-            // Set
-            tbBoundImportNumberOfModuleForwarderRefs.Text =
-                peFile.ImageBoundImportDescriptor.NumberOfModuleForwarderRefs.ToHexString();
-            tbBoundImportOffsetModuleName.Text = peFile.ImageBoundImportDescriptor.OffsetModuleName.ToHexString();
-            tbBoundImportTimeDateStamp.Text = peFile.ImageBoundImportDescriptor.TimeDateStamp.ToHexString();
+            tbMachine.Text = $"{machine.ToHexString()} <-> {Utility.ResolveTargetMachine(machine)}";
+            tbNumberOfSections.Text = fileHeader.NumberOfSections.ToHexString();
+            tbTimeDateStamp.Text = fileHeader.TimeDateStamp.ToHexString();
+            tbPointerToSymbolTable.Text = fileHeader.PointerToSymbolTable.ToHexString();
+            tbNumberOfSymbols.Text = fileHeader.NumberOfSymbols.ToHexString();
+            tbSizeOfOptionalHeader.Text = fileHeader.SizeOfOptionalHeader.ToHexString();
+            tbCharacteristics.Text =
+                $"{characteristics.ToHexString()}\n\n{Utility.ResolveFileCharacteristics(characteristics)}";
         }
 
         public void SetDebug(PeFile peFile)

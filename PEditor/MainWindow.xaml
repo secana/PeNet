@@ -41,8 +41,8 @@
                 <tabItems:DosNtHeader x:Name="DosNtHeader"/>
             </TabItem>
 
-            <TabItem Header="File Header">
-                <tabItems:FileHeader x:Name="FileHeader"/>
+            <TabItem Header="File Header/Debug">
+                <tabItems:FileHeader x:Name="FileHeaderDebug"/>
             </TabItem>
 
             <TabItem Header="Sections">
@@ -77,7 +77,7 @@
                 <tabItems:Signature x:Name="Signature"/>    
             </TabItem>
             
-            <TabItem Header="Debug/Bound Import">
+            <TabItem Header="Bound/Delay Import">
                 <tabItems:DebugBoundImport x:Name="DebugBoundImport"/>
             </TabItem>
             
