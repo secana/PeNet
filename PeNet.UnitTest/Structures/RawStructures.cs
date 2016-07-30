@@ -2,6 +2,52 @@
 {
     public static class RawStructures
     {
+        public static readonly byte[] RawDelayImportDescriptor =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // grAttr
+            0x11,
+            0x22,
+            0x33,
+
+            0x44, // szName
+            0x55,
+            0x66,
+            0x77,
+
+            0x88, // phmod
+            0x99,
+            0xaa,
+            0xbb,
+
+            0xcc, // pIAT
+            0xdd,
+            0xee,
+            0xff,
+
+            0x11, // pINT
+            0x22,
+            0x33,
+            0x44,
+
+            0x55, // pBoundIAT
+            0x66,
+            0x77,
+            0x88,
+
+            0x99, // pUnloadIAT
+            0xaa,
+            0xbb,
+            0xcc,
+
+            0xdd, // dwTimeStamp
+            0xee,
+            0xff,
+            0x00
+        };
+
         public static readonly byte[] RawBoundImportDescriptor =
         {
             0xff, // Junk
