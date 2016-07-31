@@ -90,6 +90,7 @@
     <Compile Include="Structures\IMAGE_BOUND_IMPORT_DESCRIPTOR.cs" />
     <Compile Include="Structures\IMAGE_DEBUG_DIRECTORY.cs" />
     <Compile Include="Structures\IMAGE_DELAY_IMPORT_DESCRIPTOR.cs" />
+    <Compile Include="Structures\IMAGE_LOAD_CONFIG_DIRECTORY.cs" />
     <Compile Include="Structures\IMAGE_RESOURCE_DATA_ENTRY.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Constants.cs" />
