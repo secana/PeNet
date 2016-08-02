@@ -17,10 +17,20 @@ limitations under the License.
 
 namespace PeNet.Structures
 {
+    /// <summary>
+    /// The IMAGE_LOAD_CONFIG_DIRECTORY hold information
+    /// important to load the PE file correctly.
+    /// </summary>
     public class IMAGE_LOAD_CONFIG_DIRECTORY : AbstractStructure
     {
         private readonly bool _is64Bit;
 
+        /// <summary>
+        /// Create a new IMAGE_LOAD_CONFIG_DIRECTORY object.
+        /// </summary>
+        /// <param name="buff">Byte buffer with a PE file as content.</param>
+        /// <param name="offset">Offset of the structure in the buffer.</param>
+        /// <param name="is64Bit">Flag if the PE file is 64 Bit.</param>
         public IMAGE_LOAD_CONFIG_DIRECTORY(byte[] buff, uint offset, bool is64Bit) 
             : base(buff, offset)
         {
