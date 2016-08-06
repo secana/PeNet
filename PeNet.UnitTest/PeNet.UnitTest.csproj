@@ -65,6 +65,7 @@
     <Compile Include="Structures\Copyright_Test.cs" />
     <Compile Include="Structures\IMAGE_BOUND_IMPORT_DESCRIPTOR_Test.cs" />
     <Compile Include="Structures\IMAGE_DELAY_IMPORT_DESCRIPTOR_Test.cs" />
+    <Compile Include="Structures\IMAGE_LOAD_CONFIG_DIRECTORY_Test.cs" />
     <Compile Include="Structures\IMAGE_TLS_CALLBACK_Test.cs" />
     <Compile Include="Structures\IMAGE_TLS_DIRECTORY_Test.cs" />
     <Compile Include="Structures\IMAGE_RESOURCE_DIRECTORY_ENTRY_Test.cs" />
