@@ -44,6 +44,7 @@ namespace PeNet
         private WinCertificateParser _winCertificateParser;
         private ImageTlsDirectoryParser _imageTlsDirectoryParser;
         private ImageDelayImportDescriptorParser _imageDelayImportDescriptorParser;
+        private ImageLoadConfigDirectoryParser _imageLoadConfigDirectoryParser;
 
         public List<Exception> RvaToFileMappingExceptions = new List<Exception>();
         
@@ -76,6 +77,7 @@ namespace PeNet
         public IMAGE_TLS_DIRECTORY ImageTlsDirectory => _imageTlsDirectoryParser?.GetParserTarget();
         public X509Certificate2 PKCS7 => _pkcs7Parser?.GetParserTarget();
         public IMAGE_DELAY_IMPORT_DESCRIPTOR ImageDelayImportDescriptor => _imageDelayImportDescriptorParser?.GetParserTarget();
+        public IMAGE_LOAD_CONFIG_DIRECTORY ImageLoadConfigDirectory => _imageLoadConfigDirectoryParser?.GetParserTarget();
 
         private void InitAllParsers()
         {
@@ -92,6 +94,18 @@ namespace PeNet
             _imageTlsDirectoryParser = InitImageTlsDirectoryParser();
             _pkcs7Parser = InitPKCS7Parser();
             _imageDelayImportDescriptorParser = InitImageDelayImportDescriptorParser();
+            _imageLoadConfigDirectoryParser = InitImageLoadConfigDirectoryParser();
+        }
+
+        private ImageLoadConfigDirectoryParser InitImageLoadConfigDirectoryParser()
+        {
+            var rawAddress =
+                SafeRVAtoFileMapping(_dataDirectories[(int) Constants.DataDirectoryIndex.LoadConfig].VirtualAddress);
+
+            if (rawAddress == null)
+                return null;
+
+            return new ImageLoadConfigDirectoryParser(_buff, rawAddress.Value, !_is32Bit);
         }
 
         private ImageDelayImportDescriptorParser InitImageDelayImportDescriptorParser()

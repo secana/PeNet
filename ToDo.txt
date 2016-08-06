@@ -1,6 +1,3 @@
-- Unit Test for IMAGE_LOAD_CONFIG_DIRECTORY
-- Parser for IMAGE_LOAD_CONFIG_DIRECTORY
-- IMAGE_LOAD_CONFIG_DIRECTORY in PeFile
 - IMAGE_LOAD_CONFIG_DIRECTORY in PEditor
 
 - Overview table over all data directories (size/virtual address/raw address)

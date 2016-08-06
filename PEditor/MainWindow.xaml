@@ -84,6 +84,10 @@
             <TabItem Header="TLS">
                 <tabItems:TlsDirectory x:Name="TlsDirectory"/>
             </TabItem>
+            
+            <TabItem Header="Load Config">
+                <tabItems:LoadConfig x:Name="LoadConfig"/>
+            </TabItem>
 
         </TabControl>
         <StatusBar Grid.Row="2" Height="20">

@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="PEditor.TabItems.LoadConfig"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PEditor.TabItems"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <GroupBox Header="Load Config">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Label Grid.Row="0" Grid.Column="0">Size</Label>
+            <TextBox Grid.Row="0" Grid.Column="1" Name="Size"/>
+
+            <Label Grid.Row="1" Grid.Column="0">TimeDateStamp</Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="TimeDateStamp"/>
+            
+            <Label Grid.Row="2" Grid.Column="0">MajorVersion</Label>
+            <TextBox Grid.Row="2" Grid.Column="1" Name="MajorVersion"/>
+
+            <Label Grid.Row="3" Grid.Column="0">MinorVersion</Label>
+            <TextBox Grid.Row="3" Grid.Column="1" Name="MinorVersion"/>
+
+            <Label Grid.Row="4" Grid.Column="0">GlobalFlagsClear</Label>
+            <TextBox Grid.Row="4" Grid.Column="1" Name="GlobalFlagsClear"/>
+
+            <Label Grid.Row="5" Grid.Column="0">GlobalFlagsSet</Label>
+            <TextBox Grid.Row="5" Grid.Column="1" Name="GlobalFlagsSet"/>
+
+            <Label Grid.Row="6" Grid.Column="0">CriticalSectionDefaultTimeout</Label>
+            <TextBox Grid.Row="6" Grid.Column="1" Name="CriticalSectionDefaultTimeout"/>
+
+            <Label Grid.Row="7" Grid.Column="0">DeCommitFreeBlockThreshold</Label>
+            <TextBox Grid.Row="7" Grid.Column="1" Name="DeCommitFreeBlockThreshold"/>
+
+            <Label Grid.Row="8" Grid.Column="0">DeCommitTotalFreeThreshold</Label>
+            <TextBox Grid.Row="8" Grid.Column="1" Name="DeCommitTotalFreeThreshold"/>
+
+            <Label Grid.Row="9" Grid.Column="0">LockPrefixTable</Label>
+            <TextBox Grid.Row="9" Grid.Column="1" Name="LockPrefixTable"/>
+
+            <Label Grid.Row="10" Grid.Column="0">MaximumAllocationSize</Label>
+            <TextBox Grid.Row="10" Grid.Column="1" Name="MaximumAllocationSize"/>
+
+            <Label Grid.Row="11" Grid.Column="0">VirtualMemoryThreshold</Label>
+            <TextBox Grid.Row="11" Grid.Column="1" Name="VirtualMemoryThreshold"/>
+
+            <Label Grid.Row="12" Grid.Column="0">ProcessAffinityMask</Label>
+            <TextBox Grid.Row="12" Grid.Column="1" Name="ProcessAffinityMask"/>
+
+            <Label Grid.Row="0" Grid.Column="2">ProcessHeapFlags</Label>
+            <TextBox Grid.Row="0" Grid.Column="3" Name="ProcessHeapFlags"/>
+
+            <Label Grid.Row="1" Grid.Column="2">CSDVersion</Label>
+            <TextBox Grid.Row="1" Grid.Column="3" Name="CSDVersion"/>
+
+            <Label Grid.Row="2" Grid.Column="2">Reserved1</Label>
+            <TextBox Grid.Row="2" Grid.Column="3" Name="Reserved1"/>
+
+            <Label Grid.Row="3" Grid.Column="2">EditList</Label>
+            <TextBox Grid.Row="3" Grid.Column="3" Name="EditList"/>
+
+            <Label Grid.Row="4" Grid.Column="2">SecurityCoockie</Label>
+            <TextBox Grid.Row="4" Grid.Column="3" Name="SecurityCookie"/>
+
+            <Label Grid.Row="5" Grid.Column="2">SEHanlderTable</Label>
+            <TextBox Grid.Row="5" Grid.Column="3" Name="SEHandlerTable"/>
+
+            <Label Grid.Row="6" Grid.Column="2">SEHandlerCount</Label>
+            <TextBox Grid.Row="6" Grid.Column="3" Name="SEHandlerCount"/>
+
+            <Label Grid.Row="7" Grid.Column="2">GuardCFCheckFunctionPointer</Label>
+            <TextBox Grid.Row="7" Grid.Column="3" Name="GuardCFCheckFunctionPointer"/>
+
+            <Label Grid.Row="8" Grid.Column="2">Reserved2</Label>
+            <TextBox Grid.Row="8" Grid.Column="3" Name="Reserved2"/>
+
+            <Label Grid.Row="9" Grid.Column="2">GuardCFFunctionTable</Label>
+            <TextBox Grid.Row="9" Grid.Column="3" Name="GuardCFFunctionTable"/>
+
+            <Label Grid.Row="10" Grid.Column="2">GuardCFFunctionCount</Label>
+            <TextBox Grid.Row="10" Grid.Column="3" Name="GuardCFFunctionCount"/>
+
+            <Label Grid.Row="11" Grid.Column="2">GuardFlags</Label>
+            <TextBox Grid.Row="11" Grid.Column="3" Name="GuardFlags"/>
+        </Grid>
+    </GroupBox>
+</UserControl>

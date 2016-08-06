@@ -123,6 +123,9 @@
     <Compile Include="TabItems\Imports.xaml.cs">
       <DependentUpon>Imports.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TabItems\LoadConfig.xaml.cs">
+      <DependentUpon>LoadConfig.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TabItems\OptionalHeader.xaml.cs">
       <DependentUpon>OptionalHeader.xaml</DependentUpon>
     </Compile>
@@ -187,6 +190,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="TabItems\Imports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\LoadConfig.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

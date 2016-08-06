@@ -115,6 +115,9 @@ namespace PEditor
 
             // Set the TLS directory.
             TlsDirectory.SetTlsDirectory(peFile);
+
+            // Set the Load Config Directory
+            LoadConfig.SetLoadConfig(peFile);
         }
 
         private void MenuHelp_Click(object sender, RoutedEventArgs e)

@@ -74,6 +74,7 @@
     <Compile Include="Parser\ImageDosHeaderParser.cs" />
     <Compile Include="Parser\ImageExportDirectoriesParser.cs" />
     <Compile Include="Parser\ImageImportDescriptorsParser.cs" />
+    <Compile Include="Parser\ImageLoadConfigDirectoryParser.cs" />
     <Compile Include="Parser\ImageNtHeadersParser.cs" />
     <Compile Include="Parser\ImageResourceDirectoryParser.cs" />
     <Compile Include="Parser\ImageSectionHeadersParser.cs" />

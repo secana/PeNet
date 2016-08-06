@@ -15,8 +15,6 @@ limitations under the License.
 
 *************************************************************************/
 
-using System.Security.Cryptography.X509Certificates;
-
 namespace PeNet.Structures
 {
     /// <summary>
