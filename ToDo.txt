@@ -1,4 +1,2 @@
-- IMAGE_LOAD_CONFIG_DIRECTORY in PEditor
-
 - Overview table over all data directories (size/virtual address/raw address)
 - Start with .Net header
