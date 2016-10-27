@@ -41,6 +41,9 @@ namespace PEditor.TabItems
             tbDebugAddressOfRawData.Text = string.Empty;
             tbDebugPointerToRawData.Text = string.Empty;
 
+            if(peFile.ImageDebugDirectory == null)
+                return;
+
             // Set
             tbDebugCharacteristics.Text = peFile.ImageDebugDirectory.Characteristics.ToHexString();
             tbDebugTimeDateStamp.Text = peFile.ImageDebugDirectory.TimeDateStamp.ToHexString();
