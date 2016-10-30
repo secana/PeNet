@@ -47,7 +47,7 @@ namespace PeNet.Parser
         private IMAGE_TLS_CALLBACK[] ParseTlsCallbacks(ulong addressOfCallBacks)
         {
             var callbacks = new List<IMAGE_TLS_CALLBACK>();
-            var rawAddressOfCallbacks = (uint) addressOfCallBacks.RVAtoFileMapping(_sectionsHeaders);
+            var rawAddressOfCallbacks = (uint) addressOfCallBacks.VAtoFileMapping(_sectionsHeaders);
 
             uint count = 0;
             while (true)
@@ -59,7 +59,7 @@ namespace PeNet.Parser
                         break;
 
                     callbacks.Add(cb);
-                    count += 8;
+                    count++;
                 }
                 else
                 {
@@ -68,7 +68,7 @@ namespace PeNet.Parser
                         break;
 
                     callbacks.Add(cb);
-                    count += 4;
+                    count++;
                 }
             }
 

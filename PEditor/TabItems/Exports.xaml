@@ -35,7 +35,7 @@
                             <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Ordinal:</Label>
                             <TextBlock Text="{Binding Ordinal}" Grid.Row="1" Grid.Column="1"
                                                    VerticalAlignment="Center" />
-                            <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">RVA:</Label>
+                            <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">VA:</Label>
                             <TextBlock Text="{Binding RVA}" Grid.Row="2" Grid.Column="1"
                                                    VerticalAlignment="Center" />
                             <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />

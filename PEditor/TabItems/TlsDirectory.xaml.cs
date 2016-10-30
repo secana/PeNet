@@ -52,7 +52,7 @@ namespace PEditor.TabItems
 
             foreach (var cb in peFile.ImageTlsDirectory.TlsCallbacks)
             {
-                Callbacks.Items.Add(new {Callback = cb.Callback});
+                Callbacks.Items.Add(new {Callback = cb.Callback.ToHexString()});
             }
         }
 
