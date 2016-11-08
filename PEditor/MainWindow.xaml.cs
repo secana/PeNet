@@ -15,6 +15,7 @@ limitations under the License.
 
 *************************************************************************/
 
+using System;
 using System.Deployment.Application;
 using System.Windows;
 using Microsoft.Win32;
@@ -61,11 +62,22 @@ namespace PEditor
             // Parse the PE file
             if (!PeFile.IsPEFile(file))
             {
-                MessageBox.Show("Not a PE file.");
+                ShowInvalidPeFileMsgBox();
                 return;
             }
 
-            var peFile = new PeFile(file);
+            PeFile peFile = null;
+            try
+            {
+               peFile = new PeFile(file);
+                
+            }
+            catch (Exception)
+            {
+                ShowInvalidPeFileMsgBox();
+                return;
+            }
+
             _peFile = peFile;
 
             // Set all FileInfo fields.
@@ -118,6 +130,11 @@ namespace PEditor
 
             // Set the Load Config Directory
             LoadConfig.SetLoadConfig(peFile);
+        }
+
+        private void ShowInvalidPeFileMsgBox()
+        {
+            MessageBox.Show("Not a valid PE file.", "Invalid Format", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void MenuHelp_Click(object sender, RoutedEventArgs e)

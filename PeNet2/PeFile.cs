@@ -348,7 +348,15 @@ namespace PeNet
             {
                 return false;
             }
-            return dosHeader.e_magic == 0x5a4d;
+
+            try
+            {
+                return dosHeader.e_magic == 0x5a4d;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <summary>
