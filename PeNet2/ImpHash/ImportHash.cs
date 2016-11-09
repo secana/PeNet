@@ -16,6 +16,7 @@ limitations under the License.
 *************************************************************************/
 
 using System.Collections.Generic;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -49,6 +50,7 @@ namespace PeNet.ImpHash
         /// </summary>
         public string ImpHash { get; private set; }
 
+
         private string ComputeImpHash(ICollection<ImportFunction> importedFunctions)
         {
             if (importedFunctions == null || importedFunctions.Count == 0)
@@ -57,34 +59,10 @@ namespace PeNet.ImpHash
             var list = new List<string>();
             foreach (var impFunc in importedFunctions)
             {
-                var tmp = impFunc.DLL.Split('.')[0];
-                tmp += ".";
-                if (impFunc.Name == null) // Import by ordinal
-                {
-                    if (impFunc.DLL == "oleaut32.dll")
-                    {
-                        tmp += OrdinalSymbolMapping.Lookup(OrdinalSymbolMapping.Modul.oleaut32, impFunc.Hint);
-                    }
-                    else if (impFunc.DLL == "ws2_32.dll")
-                    {
-                        tmp += OrdinalSymbolMapping.Lookup(OrdinalSymbolMapping.Modul.ws2_32, impFunc.Hint);
-                    }
-                    else if (impFunc.DLL == "wsock32.dll")
-                    {
-                        tmp += OrdinalSymbolMapping.Lookup(OrdinalSymbolMapping.Modul.wsock32, impFunc.Hint);
-                    }
-                    else // cannot resolve ordinal to a function name
-                    {
-                        tmp += "ord";
-                        tmp += impFunc.Hint.ToString();
-                    }
-                }
-                else // Import by name
-                {
-                    tmp += impFunc.Name;
-                }
+                var tmp = FormatLibraryName(impFunc.DLL);
+                tmp += FormatFunctionName(impFunc);
 
-                list.Add(tmp.ToLower());
+                list.Add(tmp);
             }
 
             // Concatenate all imports to one string separated by ','.
@@ -99,6 +77,63 @@ namespace PeNet.ImpHash
                 sb.Append(t.ToString("x2"));
             }
             return sb.ToString();
+        }
+
+        private string FormatLibraryName(string libraryName)
+        {
+            var exts = new List<string> {"ocx", "sys", "dll"};
+            var parts = libraryName.ToLower().Split('.');
+            var libName = "";
+
+            if (parts.Length > 1 && exts.Contains(parts[parts.Length - 1]))
+            {
+                for (var i = 0; i < parts.Length - 1; i++)
+                {
+                    libName += parts[i];
+                    libName += ".";
+                }
+            }
+            else
+            {
+                foreach (var p in parts)
+                {
+                    libName += p;
+                    libName += ".";
+                }
+            }
+
+            return libName;
+        }
+
+        private string FormatFunctionName(ImportFunction impFunc)
+        {
+            var tmp = "";
+            if (impFunc.Name == null) // Import by ordinal
+            {
+                if (impFunc.DLL.ToLower() == "oleaut32.dll")
+                {
+                    tmp += OrdinalSymbolMapping.Lookup(OrdinalSymbolMapping.Modul.oleaut32, impFunc.Hint);
+                }
+                else if (impFunc.DLL.ToLower() == "ws2_32.dll")
+                {
+                    tmp += OrdinalSymbolMapping.Lookup(OrdinalSymbolMapping.Modul.ws2_32, impFunc.Hint);
+                }
+                else if (impFunc.DLL.ToLower() == "wsock32.dll")
+                {
+                    tmp += OrdinalSymbolMapping.Lookup(OrdinalSymbolMapping.Modul.wsock32, impFunc.Hint);
+                }
+                else // cannot resolve ordinal to a function name
+                {
+                    tmp += "ord";
+                    tmp += impFunc.Hint.ToString();
+                }
+            }
+            else // Import by name
+            {
+                tmp += impFunc.Name;
+            }
+
+            return tmp.ToLower();
         }
     }
 }

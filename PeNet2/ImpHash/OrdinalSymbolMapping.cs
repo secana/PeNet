@@ -564,11 +564,11 @@ namespace PeNet.ImpHash
             switch (module)
             {
                 case Modul.oleaut32:
-                    name = oleaut32.ContainsKey(ordinal) ? oleaut32[ordinal] : null;
+                    name = oleaut32.ContainsKey(ordinal) ? oleaut32[ordinal] : $"ord{ordinal}";
                     break;
                 case Modul.wsock32:
                 case Modul.ws2_32:
-                    name = ws2_32.ContainsKey(ordinal) ? ws2_32[ordinal] : null;
+                    name = ws2_32.ContainsKey(ordinal) ? ws2_32[ordinal] : $"ord{ordinal}";
                     break;
                 default:
                     throw new Exception("Unknown module chosen for ordinal/name lookup.");
