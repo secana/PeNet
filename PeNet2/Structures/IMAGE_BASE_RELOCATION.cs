@@ -45,8 +45,8 @@ namespace PeNet.Structures
                 throw new ArgumentOutOfRangeException(nameof(relocSize),
                     "SizeOfBlock cannot be bigger than size of the Relocation Directory.");
 
-            if (SizeOfBlock == 0)
-                throw new Exception("SizeOfBlock cannot be 0.");
+            if(SizeOfBlock < 8)
+                throw new Exception("SizeOfBlock cannot be smaller than 8.");
 
             ParseTypeOffsets();
         }
