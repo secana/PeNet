@@ -7,7 +7,7 @@
         xmlns:tabItems="clr-namespace:PEditor.TabItems"
         mc:Ignorable="d"
         Title="PEditor" Height="768" Width="1024" MinHeight="532" MinWidth="800"
-        Icon="Icons/Pen4.ico">
+        Icon="Icons/PEditor.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

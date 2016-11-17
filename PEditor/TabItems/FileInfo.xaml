@@ -47,5 +47,8 @@
                                      HorizontalAlignment="Stretch" />
             </Grid>
         </GroupBox>
+        <Image MaxHeight="150" Source="../Icons/PEditor.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label FontSize="24" HorizontalAlignment="Center">PEditor</Label>
+        <Label FontSize="12" HorizontalAlignment="Center">powered by PeNet</Label>
     </StackPanel>
 </UserControl>
