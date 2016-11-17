@@ -143,11 +143,11 @@ namespace PEditor
 
         private void MenuHelp_Click(object sender, RoutedEventArgs e)
         {
-            var version = "1.0.0";
+            var version = "DEBUG";
+
             if (ApplicationDeployment.IsNetworkDeployed)
             {
-                version =
-                    $"Your application name - v{ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString(4)}";
+                version = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString(4);
             }
 
             MessageBox.Show($"PEditor\nVersion {version}\nCopyright by Secana 2016", "About");
