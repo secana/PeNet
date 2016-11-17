@@ -143,7 +143,7 @@ namespace PEditor
 
         private void MenuHelp_Click(object sender, RoutedEventArgs e)
         {
-            var version = "DEBUG";
+            var version = "1.0.0";
             if (ApplicationDeployment.IsNetworkDeployed)
             {
                 version =
