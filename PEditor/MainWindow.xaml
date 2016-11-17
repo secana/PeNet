@@ -49,6 +49,10 @@
                <tabItems:SectionHeaders x:Name="SectionHeaders"/>
             </TabItem>
 
+            <TabItem Header="Data Directories">
+                <tabItems:DirectoryView x:Name="DirectoryView"/>
+            </TabItem>
+            
             <TabItem Header="Optional Header">
               <tabItems:OptionalHeader x:Name="OptionalHeader"/>
             </TabItem>

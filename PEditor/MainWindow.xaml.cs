@@ -20,6 +20,7 @@ using System.Deployment.Application;
 using System.Windows;
 using Microsoft.Win32;
 using PeNet;
+using PEditor.TabItems;
 
 namespace PEditor
 {
@@ -130,6 +131,9 @@ namespace PEditor
 
             // Set the Load Config Directory
             LoadConfig.SetLoadConfig(peFile);
+
+            // Set the Data Directory View
+            DirectoryView.SetDirectoryView(peFile);
         }
 
         private void ShowInvalidPeFileMsgBox()

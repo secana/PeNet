@@ -114,6 +114,9 @@
     <Compile Include="TabItems\BoundDelayImport.xaml.cs">
       <DependentUpon>BoundDelayImport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TabItems\DirectoryView.xaml.cs">
+      <DependentUpon>DirectoryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TabItems\Exceptions.xaml.cs">
       <DependentUpon>Exceptions.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,10 @@
       <DependentUpon>TlsDirectory.xaml</DependentUpon>
     </Compile>
     <Page Include="TabItems\BoundDelayImport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\DirectoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
