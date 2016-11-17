@@ -111,6 +111,70 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="TabItems\BoundDelayImport.xaml.cs">
+      <DependentUpon>BoundDelayImport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabItems\DirectoryView.xaml.cs">
+      <DependentUpon>DirectoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabItems\Exceptions.xaml.cs">
+      <DependentUpon>Exceptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabItems\Exports.xaml.cs">
+      <DependentUpon>Exports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabItems\Imports.xaml.cs">
+      <DependentUpon>Imports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabItems\LoadConfig.xaml.cs">
+      <DependentUpon>LoadConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabItems\OptionalHeader.xaml.cs">
+      <DependentUpon>OptionalHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabItems\Relocation.xaml.cs">
+      <DependentUpon>Relocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabItems\Resource.xaml.cs">
+      <DependentUpon>Resource.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabItems\SectionHeaders.xaml.cs">
+      <DependentUpon>SectionHeaders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabItems\Signature.xaml.cs">
+      <DependentUpon>Signature.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabItems\TlsDirectory.xaml.cs">
+      <DependentUpon>TlsDirectory.xaml</DependentUpon>
+    </Compile>
+    <Page Include="TabItems\BoundDelayImport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\DirectoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\DosNtHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\Exceptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\Exports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\FileHeaderDebug.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\FileInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -119,10 +183,51 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TabItems\DosNtHeader.xaml.cs">
+      <DependentUpon>DosNtHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabItems\FileHeaderDebug.xaml.cs">
+      <DependentUpon>FileHeaderDebug.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabItems\FileInfo.xaml.cs">
+      <DependentUpon>FileInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TabItems\Imports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\LoadConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\OptionalHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\Relocation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\Resource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\SectionHeaders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\Signature.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabItems\TlsDirectory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyTreeViewItem.cs" />

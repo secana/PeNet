@@ -53,8 +53,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Signature
         {
-            get { return Utility.BytesToUInt32(Buff, Offset); }
-            set { Utility.SetUInt32(value, Offset, Buff); }
+            get { return Buff.BytesToUInt32(Offset); }
+            set { Buff.SetUInt32(Offset, value); }
         }
 
         /// <summary>

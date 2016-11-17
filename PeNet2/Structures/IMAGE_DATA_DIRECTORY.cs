@@ -39,8 +39,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint VirtualAddress
         {
-            get { return Utility.BytesToUInt32(Buff, Offset); }
-            set { Utility.SetUInt32(value, Offset, Buff); }
+            get { return Buff.BytesToUInt32(Offset); }
+            set { Buff.SetUInt32(Offset, value); }
         }
 
         /// <summary>
@@ -48,8 +48,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Size
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
-            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0x4); }
+            set { Buff.SetUInt32(Offset + 0x4, value); }
         }
 
         /// <summary>

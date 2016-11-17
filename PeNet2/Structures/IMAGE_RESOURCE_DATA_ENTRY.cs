@@ -23,8 +23,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint OffsetToData
         {
-            get { return Utility.BytesToUInt32(Buff, Offset); }
-            set { Utility.SetUInt32(value, Offset, Buff); }
+            get { return Buff.BytesToUInt32(Offset); }
+            set { Buff.SetUInt32(Offset, value); }
         }
 
         /// <summary>
@@ -32,8 +32,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Size1
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
-            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0x4); }
+            set { Buff.SetUInt32(Offset + 0x4, value); }
         }
 
         /// <summary>
@@ -41,8 +41,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint CodePage
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0x8); }
-            set { Utility.SetUInt32(value, Offset + 0x8, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0x8); }
+            set { Buff.SetUInt32(Offset + 0x8, value); }
         }
 
         /// <summary>
@@ -50,8 +50,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Reserved
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0xC); }
-            set { Utility.SetUInt32(value, Offset + 0xC, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0xC); }
+            set { Buff.SetUInt32(Offset + 0xC, value); }
         }
 
         /// <summary>

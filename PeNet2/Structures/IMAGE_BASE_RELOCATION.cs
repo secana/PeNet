@@ -45,8 +45,8 @@ namespace PeNet.Structures
                 throw new ArgumentOutOfRangeException(nameof(relocSize),
                     "SizeOfBlock cannot be bigger than size of the Relocation Directory.");
 
-            if (SizeOfBlock == 0)
-                throw new Exception("SizeOfBlock cannot be 0.");
+            if(SizeOfBlock < 8)
+                throw new Exception("SizeOfBlock cannot be smaller than 8.");
 
             ParseTypeOffsets();
         }
@@ -56,8 +56,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint VirtualAddress
         {
-            get { return Utility.BytesToUInt32(Buff, Offset); }
-            set { Utility.SetUInt32(value, Offset, Buff); }
+            get { return Buff.BytesToUInt32(Offset); }
+            set { Buff.SetUInt32(Offset, value); }
         }
 
         /// <summary>
@@ -65,8 +65,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint SizeOfBlock
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
-            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0x4); }
+            set { Buff.SetUInt32(Offset + 0x4, value); }
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace PeNet.Structures
             {
                 get
                 {
-                    var to = Utility.BytesToUInt16(_buff, _offset);
+                    var to = _buff.BytesToUInt16(_offset);
                     return (byte) (to >> 12);
                 }
             }
@@ -138,7 +138,7 @@ namespace PeNet.Structures
             {
                 get
                 {
-                    var to = Utility.BytesToUInt16(_buff, _offset);
+                    var to = _buff.BytesToUInt16(_offset);
                     return (ushort) (to & 0xFFF);
                 }
             }

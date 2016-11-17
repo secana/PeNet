@@ -2,6 +2,489 @@
 {
     public static class RawStructures
     {
+        public static byte[] RawImageLoadConfigDirectory64 =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // Size
+            0x11,
+            0x22,
+            0x33,
+
+            0x44, // TimeDateStamp
+            0x55,
+            0x66,
+            0x77,
+
+            0x88, // MajorVersion
+            0x99,
+
+            0xaa, // MinorVersion
+            0xbb,
+
+            0xcc, // GlobalFlagsClear
+            0xdd,
+            0xee,
+            0xff,
+
+            0x11, // GlobalFlagsSet
+            0x22,
+            0x33,
+            0x44,
+
+            0x55, // CriticalSectionDefaultTimeout
+            0x66,
+            0x77,
+            0x88,
+
+            0x99, // DeCommitFreeBlockThreshold
+            0xaa,
+            0xbb,
+            0xcc,
+            0xaa,
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0xdd, // DeCommitTotalFreeThreshold
+            0xee,
+            0xff,
+            0x00,
+            0xaa,
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0x22, // LockPrefixTable
+            0x33,
+            0x44,
+            0x55,
+            0xaa,
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0x66, // MaximumAllocationSize
+            0x77,
+            0x88,
+            0x99,
+            0xaa,
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0xaa, // VirtualMemoryThreshold
+            0xbb,
+            0xcc,
+            0xdd,
+            0xaa,
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0x33, // ProcessAffinityMask
+            0x44,
+            0x55,
+            0x66,
+            0xaa,
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0xff, // ProcessHeapFlags
+            0x00,
+            0x11,
+            0x22,
+            
+            0x77, // CSDVersion
+            0x88,
+
+            0x99, // Reserved1
+            0xaa,
+
+            0xbb, // EditList
+            0xcc,
+            0xdd,
+            0xff,
+            0xaa,
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0x44, // SecurityCookie
+            0x55,
+            0x66,
+            0x77,
+            0xaa,
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0x88, // SEHandlerTable
+            0x99,
+            0xaa,
+            0xbb,
+            0xaa,
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0xcc, // SEHandlerCount
+            0xdd,
+            0xee,
+            0xff,
+            0xaa,
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0x55, // GuardCFCheckFunctionPointer
+            0x66,
+            0x77,
+            0x88,
+            0xaa,
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0x99, // Reserved2
+            0xaa,
+            0xbb,
+            0xcc,
+            0xaa,
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0xdd, // GuardCFFunctionTable
+            0xee,
+            0xff,
+            0x00,
+            0xaa,
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0x66, // GuardCFFunctionCount
+            0x77,
+            0x88,
+            0x99,
+            0xaa,
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0xaa, // GuardFlags
+            0xbb,
+            0xcc,
+            0xdd,
+            0xaa,
+            0xbb,
+            0xcc,
+            0xdd
+        };
+
+        public static byte[] RawImageLoadConfigDirectory32 =
+        { 
+            0xff, // Junk
+            0xff,
+
+            0x00, // Size
+            0x11,
+            0x22,
+            0x33,
+            
+            0x44, // TimeDateStamp
+            0x55,
+            0x66,
+            0x77,
+
+            0x88, // MajorVersion
+            0x99,
+
+            0xaa, // MinorVersion
+            0xbb,
+
+            0xcc, // GlobalFlagsClear
+            0xdd,
+            0xee,
+            0xff,
+
+            0x11, // GlobalFlagsSet
+            0x22,
+            0x33,
+            0x44,
+
+            0x55, // CriticalSectionDefaultTimeout
+            0x66,
+            0x77,
+            0x88,
+
+            0x99, // DeCommitFreeBlockThreshold
+            0xaa,
+            0xbb,
+            0xcc,
+
+            0xdd, // DeCommitTotalFreeThreshold
+            0xee,
+            0xff,
+            0x00,
+
+            0x22, // LockPrefixTable
+            0x33,
+            0x44,
+            0x55,
+            
+            0x66, // MaximumAllocationSize
+            0x77,
+            0x88,
+            0x99,
+
+            0xaa, // VirtualMemoryThreshold
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0xff, // ProcessHeapFlags
+            0x00,
+            0x11,
+            0x22,
+
+            0x33, // ProcessAffinityMas
+            0x44,
+            0x55,
+            0x66,
+
+            0x77, // CSDVersion
+            0x88,
+
+            0x99, // Reserved1
+            0xaa,
+
+            0xbb, // EditList
+            0xcc,
+            0xdd,
+            0xff,
+
+            0x44, // SecurityCookie
+            0x55,
+            0x66,
+            0x77,
+
+            0x88, // SEHandlerTable
+            0x99,
+            0xaa,
+            0xbb,
+
+            0xcc, // SEHandlerCount
+            0xdd,
+            0xee,
+            0xff,
+
+            0x55, // GuardCFCheckFunctionPointer
+            0x66,
+            0x77,
+            0x88,
+            
+            0x99, // Reserved2
+            0xaa,
+            0xbb,
+            0xcc,
+
+            0xdd, // GuardCFFunctionTable
+            0xee,
+            0xff,
+            0x00,
+
+            0x66, // GuardCFFunctionCount
+            0x77, 
+            0x88,
+            0x99,
+
+            0xaa, // GuardFlags
+            0xbb,
+            0xcc,
+            0xdd
+        };
+
+        public static readonly byte[] RawDelayImportDescriptor =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // grAttr
+            0x11,
+            0x22,
+            0x33,
+
+            0x44, // szName
+            0x55,
+            0x66,
+            0x77,
+
+            0x88, // phmod
+            0x99,
+            0xaa,
+            0xbb,
+
+            0xcc, // pIAT
+            0xdd,
+            0xee,
+            0xff,
+
+            0x11, // pINT
+            0x22,
+            0x33,
+            0x44,
+
+            0x55, // pBoundIAT
+            0x66,
+            0x77,
+            0x88,
+
+            0x99, // pUnloadIAT
+            0xaa,
+            0xbb,
+            0xcc,
+
+            0xdd, // dwTimeStamp
+            0xee,
+            0xff,
+            0x00
+        };
+
+        public static readonly byte[] RawBoundImportDescriptor =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // TimeDataStamp
+            0x11,
+            0x22,
+            0x33,
+
+            0x44, // OffsetModuleName
+            0x55,
+            
+            0x66, // NumberOfModuleForwarderRefs
+            0x77
+        };
+
+        public static readonly byte[] RawTlsCallback32 =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // Callback
+            0x11,
+            0x22,
+            0x33,
+        };
+
+        public static readonly byte[] RawTlsCallback64 =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // Callback
+            0x11,
+            0x22,
+            0x33,
+            0x44,
+            0x55,
+            0x66,
+            0x77
+        };
+
+        public static readonly byte[] RawTlsDirectory32 =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // StartAddressOfRawData
+            0x11,
+            0x22,
+            0x33,
+
+            0x44, // EndAddressOfRawData
+            0x55,
+            0x66,
+            0x77,
+
+            0xbb, // AddressOfIndex
+            0xcc,
+            0xdd,
+            0xee,
+
+            0x33, // AddressOfCallBacks
+            0x44,
+            0x55,
+            0x66,
+
+            0x11, // SizeOfZeroFill,
+            0x22,
+            0x33,
+            0x44,
+
+            0x66, // Characteristics
+            0x77,
+            0x88,
+            0x99
+        };
+
+        public static readonly byte[] RawTlsDirectory64 =
+        {
+            0xff, // Junk
+            0xff,
+
+            0x00, // StartAddressOfRawData
+            0x11,
+            0x22,
+            0x33,
+            0x44,
+            0x55,
+            0x66,
+            0x77,
+
+            0x44, // EndAddressOfRawData
+            0x55,
+            0x66,
+            0x77,
+            0x88,
+            0x99,
+            0xaa,
+            0xbb,
+
+            0xbb, // AddressOfIndex
+            0xcc,
+            0xdd,
+            0xee,
+            0xff,
+            0x00,
+            0x11,
+            0x22,
+            
+            0x33, // AddressOfCallBacks
+            0x44,
+            0x55,
+            0x66,
+            0x77,
+            0x88,
+            0x99,
+            0xaa,
+            
+            0x11, // SizeOfZeroFill,
+            0x22,
+            0x33,
+            0x44,
+            
+            0x66, // Characteristics
+            0x77,
+            0x88,
+            0x99
+        };
+
         public static readonly byte[] RawCopyright =
         {
             0xff, // Junk

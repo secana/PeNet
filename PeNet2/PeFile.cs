@@ -145,7 +145,7 @@ namespace PeNet
         /// <summary>
         ///     Returns true if the PE file is x64.
         /// </summary>
-        public bool Is64Bit => Utility.BytesToUInt16(Buff, ImageDosHeader.e_lfanew + 0x4) ==
+        public bool Is64Bit => Buff.BytesToUInt16(ImageDosHeader.e_lfanew + 0x4) ==
                                (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
 
         /// <summary>
@@ -212,6 +212,26 @@ namespace PeNet
         ///     Access the WIN_CERTIFICATE from the Security header.
         /// </summary>
         public WIN_CERTIFICATE WinCertificate => _dataDirectories.WinCertificate;
+
+        /// <summary>
+        /// Access the IMAGE_BOUND_IMPORT_DESCRIPTOR form the data directory.
+        /// </summary>
+        public IMAGE_BOUND_IMPORT_DESCRIPTOR ImageBoundImportDescriptor => _dataDirectories.ImageBoundImportDescriptor;
+
+        /// <summary>
+        /// Access the IMAGE_TLS_DIRECTORY from the data directory.
+        /// </summary>
+        public IMAGE_TLS_DIRECTORY ImageTlsDirectory => _dataDirectories.ImageTlsDirectory;
+
+        /// <summary>
+        /// Access the IMAGE_DELAY_IMPORT_DESCRIPTOR from the data directory.
+        /// </summary>
+        public IMAGE_DELAY_IMPORT_DESCRIPTOR ImageDelayImportDescriptor => _dataDirectories.ImageDelayImportDescriptor;
+
+        /// <summary>
+        /// Access the IMAGE_LOAD_CONFIG_DIRECTORY from the data directory.
+        /// </summary>
+        public IMAGE_LOAD_CONFIG_DIRECTORY ImageLoadConfigDirectory => _dataDirectories.ImageLoadConfigDirectory;
 
         /// <summary>
         ///     A X509 PKCS7 signature if the PE file was digitally signed with such
@@ -328,7 +348,15 @@ namespace PeNet
             {
                 return false;
             }
-            return dosHeader.e_magic == 0x5a4d;
+
+            try
+            {
+                return dosHeader.e_magic == 0x5a4d;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -344,7 +372,7 @@ namespace PeNet
             try
             {
                 dosHeader = new IMAGE_DOS_HEADER(buff, 0);
-                is64 = Utility.BytesToUInt16(buff, dosHeader.e_lfanew + 0x4) ==
+                is64 = buff.BytesToUInt16(dosHeader.e_lfanew + 0x4) ==
                        (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
             }
             catch (Exception)
@@ -368,7 +396,7 @@ namespace PeNet
             try
             {
                 dosHeader = new IMAGE_DOS_HEADER(buff, 0);
-                is32 = Utility.BytesToUInt16(buff, dosHeader.e_lfanew + 0x4) ==
+                is32 = buff.BytesToUInt16(dosHeader.e_lfanew + 0x4) ==
                        (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386;
             }
             catch (Exception)

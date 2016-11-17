@@ -48,8 +48,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Characteristics
         {
-            get { return Utility.BytesToUInt32(Buff, Offset); }
-            set { Utility.SetUInt32(value, Offset, Buff); }
+            get { return Buff.BytesToUInt32(Offset); }
+            set { Buff.SetUInt32(Offset, value); }
         }
 
         /// <summary>
@@ -57,8 +57,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
-            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0x4); }
+            set { Buff.SetUInt32(Offset + 0x4, value); }
         }
 
         /// <summary>
@@ -66,8 +66,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorVersion
         {
-            get { return Utility.BytesToUInt16(Buff, Offset + 0x8); }
-            set { Utility.SetUInt16(value, Offset + 0x8, Buff); }
+            get { return Buff.BytesToUInt16(Offset + 0x8); }
+            set { Buff.SetUInt16(Offset + 0x8, value); }
         }
 
         /// <summary>
@@ -75,8 +75,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorVersion
         {
-            get { return Utility.BytesToUInt16(Buff, Offset + 0xa); }
-            set { Utility.SetUInt16(value, Offset + 0xa, Buff); }
+            get { return Buff.BytesToUInt16(Offset + 0xa); }
+            set { Buff.SetUInt16(Offset + 0xa, value); }
         }
 
         /// <summary>
@@ -84,8 +84,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfNameEntries
         {
-            get { return Utility.BytesToUInt16(Buff, Offset + 0xc); }
-            set { Utility.SetUInt16(value, Offset + 0xc, Buff); }
+            get { return Buff.BytesToUInt16(Offset + 0xc); }
+            set { Buff.SetUInt16(Offset + 0xc, value); }
         }
 
         /// <summary>
@@ -93,8 +93,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfIdEntries
         {
-            get { return Utility.BytesToUInt16(Buff, Offset + 0xe); }
-            set { Utility.SetUInt16(value, Offset + 0xe, Buff); }
+            get { return Buff.BytesToUInt16(Offset + 0xe); }
+            set { Buff.SetUInt16(Offset + 0xe, value); }
         }
 
         /// <summary>
@@ -115,6 +115,9 @@ namespace PeNet.Structures
 
         private IMAGE_RESOURCE_DIRECTORY_ENTRY[] ParseDirectoryEntries(uint resourceDirOffset)
         {
+            if (SanityCheckFailed())
+                return null;
+
             var entries = new IMAGE_RESOURCE_DIRECTORY_ENTRY[NumberOfIdEntries + NumberOfNameEntries];
 
             for (var index = 0; index < entries.Length; index++)
@@ -131,6 +134,14 @@ namespace PeNet.Structures
             }
 
             return entries;
+        }
+
+        private bool SanityCheckFailed()
+        {
+            if (NumberOfIdEntries + NumberOfNameEntries >= 1000)
+                return true;
+
+            return false;
         }
     }
 }

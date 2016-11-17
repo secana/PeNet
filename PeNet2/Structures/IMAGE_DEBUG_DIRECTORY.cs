@@ -40,8 +40,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Characteristics
         {
-            get { return Utility.BytesToUInt32(Buff, Offset); }
-            set { Utility.SetUInt32(value, Offset, Buff); }
+            get { return Buff.BytesToUInt32(Offset); }
+            set { Buff.SetUInt32(Offset, value); }
         }
 
         /// <summary>
@@ -49,8 +49,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0x4); }
-            set { Utility.SetUInt32(value, Offset + 0x4, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0x4); }
+            set { Buff.SetUInt32(Offset + 0x4, value); }
         }
 
         /// <summary>
@@ -58,8 +58,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorVersion
         {
-            get { return Utility.BytesToUInt16(Buff, Offset + 0x8); }
-            set { Utility.SetUInt16(value, Offset + 0x8, Buff); }
+            get { return Buff.BytesToUInt16(Offset + 0x8); }
+            set { Buff.SetUInt16(Offset + 0x8, value); }
         }
 
         /// <summary>
@@ -67,8 +67,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorVersion
         {
-            get { return Utility.BytesToUInt16(Buff, Offset + 0xa); }
-            set { Utility.SetUInt16(value, Offset + 0xa, Buff); }
+            get { return Buff.BytesToUInt16(Offset + 0xa); }
+            set { Buff.SetUInt16(Offset + 0xa, value); }
         }
 
         /// <summary>
@@ -79,8 +79,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Type
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0xc); }
-            set { Utility.SetUInt32(value, Offset + 0xc, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0xc); }
+            set { Buff.SetUInt32(Offset + 0xc, value); }
         }
 
         /// <summary>
@@ -88,8 +88,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint SizeOfData
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0x10); }
-            set { Utility.SetUInt32(value, Offset + 0x10, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0x10); }
+            set { Buff.SetUInt32(Offset + 0x10, value); }
         }
 
         /// <summary>
@@ -97,8 +97,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint AddressOfRawData
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0x14); }
-            set { Utility.SetUInt32(value, Offset + 0x14, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0x14); }
+            set { Buff.SetUInt32(Offset + 0x14, value); }
         }
 
         /// <summary>
@@ -106,8 +106,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint PointerToRawData
         {
-            get { return Utility.BytesToUInt32(Buff, Offset + 0x18); }
-            set { Utility.SetUInt32(value, Offset + 0x18, Buff); }
+            get { return Buff.BytesToUInt32(Offset + 0x18); }
+            set { Buff.SetUInt32(Offset + 0x18, value); }
         }
 
         /// <summary>

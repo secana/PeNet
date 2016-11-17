@@ -62,7 +62,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Binaries\TLSCallback_x86_Test.cs" />
     <Compile Include="Structures\Copyright_Test.cs" />
+    <Compile Include="Structures\IMAGE_BOUND_IMPORT_DESCRIPTOR_Test.cs" />
+    <Compile Include="Structures\IMAGE_DELAY_IMPORT_DESCRIPTOR_Test.cs" />
+    <Compile Include="Structures\IMAGE_LOAD_CONFIG_DIRECTORY_Test.cs" />
+    <Compile Include="Structures\IMAGE_TLS_CALLBACK_Test.cs" />
+    <Compile Include="Structures\IMAGE_TLS_DIRECTORY_Test.cs" />
     <Compile Include="Structures\IMAGE_RESOURCE_DIRECTORY_ENTRY_Test.cs" />
     <Compile Include="Structures\IMAGE_EXPORT_DIRECTORY_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +100,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Binaries\TLSCallback_x86.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

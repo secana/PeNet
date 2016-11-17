@@ -300,7 +300,7 @@ namespace PeNet
         /// <param name="buff">Byte buffer.</param>
         /// <param name="i">Position of the high byte. Low byte is i+1.</param>
         /// <returns>UInt16 of the bytes in the buffer at position i and i+1.</returns>
-        public static ushort BytesToUInt16(byte[] buff, ulong i)
+        public static ushort BytesToUInt16(this byte[] buff, ulong i)
         {
             return BytesToUInt16(buff[i], buff[i + 1]);
         }
@@ -324,7 +324,7 @@ namespace PeNet
         /// <param name="buff">Byte buffer.</param>
         /// <param name="i">Offset of the highest byte.</param>
         /// <returns>UInt32 of 4 bytes.</returns>
-        public static uint BytesToUInt32(byte[] buff, uint i)
+        public static uint BytesToUInt32(this byte[] buff, uint i)
         {
             return BytesToUInt32(buff[i], buff[i + 1], buff[i + 2], buff[i + 3]);
         }
@@ -353,7 +353,7 @@ namespace PeNet
         /// <param name="buff">Byte buffer.</param>
         /// <param name="i">Offset of the highest byte.</param>
         /// <returns>UInt64 of the byte sequence at offset i.</returns>
-        public static ulong BytesToUInt64(byte[] buff, ulong i)
+        public static ulong BytesToUInt64(this byte[] buff, ulong i)
         {
             return BytesToUInt64(buff[i], buff[i + 1], buff[i + 2], buff[i + 3], buff[i + 4], buff[i + 5], buff[i + 6],
                 buff[i + 7]);
@@ -372,10 +372,10 @@ namespace PeNet
         /// <summary>
         ///     Set an UInt16 value at an offset in an byte array.
         /// </summary>
-        /// <param name="value">The value to set.</param>
-        /// <param name="offset">Offset where the value is set.</param>
         /// <param name="buff">Buffer in which the value is set.</param>
-        public static void SetUInt16(ushort value, ulong offset, byte[] buff)
+        /// <param name="offset">Offset where the value is set.</param>
+        /// <param name="value">The value to set.</param>
+        public static void SetUInt16(this byte[] buff, ulong offset, ushort value)
         {
             var x = UInt16ToBytes(value);
             buff[offset] = x[0];
@@ -405,10 +405,10 @@ namespace PeNet
         /// <summary>
         ///     Sets an UInt32 value at an offset in a buffer.
         /// </summary>
-        /// <param name="value">Value to set.</param>
-        /// <param name="offset">Offset in the array for the value.</param>
         /// <param name="buff">Buffer to set the value in.</param>
-        public static void SetUInt32(uint value, uint offset, byte[] buff)
+        /// <param name="offset">Offset in the array for the value.</param>
+        /// <param name="value">Value to set.</param>
+        public static void SetUInt32(this byte[] buff, uint offset, uint value)
         {
             var x = UInt32ToBytes(value);
             buff[offset] = x[0];
@@ -420,10 +420,10 @@ namespace PeNet
         /// <summary>
         ///     Sets an UInt64 value at an offset in a buffer.
         /// </summary>
-        /// <param name="value">Value to set.</param>
-        /// <param name="offset">Offset in the array for the value.</param>
         /// <param name="buff">Buffer to set the value in.</param>
-        public static void SetUInt64(ulong value, ulong offset, byte[] buff)
+        /// <param name="offset">Offset in the array for the value.</param>
+        /// <param name="value">Value to set.</param>
+        public static void SetUInt64(this byte[] buff, ulong offset, ulong value)
         {
             var x = UInt64ToBytes(value);
             buff[offset] = x[0];
@@ -451,6 +451,57 @@ namespace PeNet
             return sb.ToString();
         }
 
+        /// <summary>
+        ///     Map an virtual address to the raw file address.
+        /// </summary>
+        /// <param name="VA">Virtual Address</param>
+        /// <param name="sh">Section Headers</param>
+        /// <returns>Raw file address.</returns>
+        public static ulong VAtoFileMapping(this ulong VA, ICollection<IMAGE_SECTION_HEADER> sh)
+        {
+            VA -= 0x00400000;
+            var sortedSt = sh.OrderBy(x => x.VirtualAddress).ToList();
+            uint vOffset = 0, rOffset = 0;
+            var secFound = false;
+            for (var i = 0; i < sortedSt.Count - 1; i++)
+            {
+                if (sortedSt[i].VirtualAddress <= VA && sortedSt[i + 1].VirtualAddress > VA)
+                {
+                    vOffset = sortedSt[i].VirtualAddress;
+                    rOffset = sortedSt[i].PointerToRawData;
+                    secFound = true;
+                    break;
+                }
+            }
+
+            // try last section
+            if (secFound == false)
+            {
+                if (VA >= sortedSt.Last().VirtualAddress &&
+                    VA <= sortedSt.Last().VirtualSize + sortedSt.Last().VirtualAddress)
+                {
+                    vOffset = sortedSt.Last().VirtualAddress;
+                    rOffset = sortedSt.Last().PointerToRawData;
+                }
+                else
+                {
+                    throw new Exception("Cannot find corresponding section.");
+                }
+            }
+
+            return VA - vOffset + rOffset;
+        }
+
+        /// <summary>
+        ///     Map an virtual address to the raw file address.
+        /// </summary>
+        /// <param name="VA">Virtual Address</param>
+        /// <param name="sh">Section Headers</param>
+        /// <returns>Raw file address.</returns>
+        public static uint VAtoFileMapping(this uint VA, ICollection<IMAGE_SECTION_HEADER> sh)
+        {
+            return (uint)VAtoFileMapping((ulong)VA, sh);
+        }
 
         /// <summary>
         ///     Map an relative virtual address to the raw file address.
@@ -458,7 +509,7 @@ namespace PeNet
         /// <param name="RVA">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static ulong RVAtoFileMapping(ulong RVA, ICollection<IMAGE_SECTION_HEADER> sh)
+        public static ulong RVAtoFileMapping(this ulong RVA, ICollection<IMAGE_SECTION_HEADER> sh)
         {
             var sortedSt = sh.OrderBy(x => x.VirtualAddress).ToList();
             uint vOffset = 0, rOffset = 0;
@@ -498,7 +549,7 @@ namespace PeNet
         /// <param name="RVA">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static uint RVAtoFileMapping(uint RVA, ICollection<IMAGE_SECTION_HEADER> sh)
+        public static uint RVAtoFileMapping(this uint RVA, ICollection<IMAGE_SECTION_HEADER> sh)
         {
             return (uint) RVAtoFileMapping((ulong) RVA, sh);
         }
@@ -670,7 +721,7 @@ namespace PeNet
         /// </summary>
         /// <param name="bytes">Byte sequence.</param>
         /// <returns>Hex-String</returns>
-        public static string ToHexString(ICollection<byte> bytes)
+        public static string ToHexString(this ICollection<byte> bytes)
         {
             if (bytes == null) return null;
 
@@ -685,7 +736,7 @@ namespace PeNet
         /// </summary>
         /// <param name="values">Value sequence.</param>
         /// <returns>Hex-String</returns>
-        public static string ToHexString(ICollection<ushort> values)
+        public static string ToHexString(this ICollection<ushort> values)
         {
             if (values == null) return null;
 
@@ -700,7 +751,7 @@ namespace PeNet
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Hex-String</returns>
-        public static string ToHexString(ushort value)
+        public static string ToHexString(this ushort value)
         {
             return $"0x{value.ToString("X4")}";
         }
@@ -710,7 +761,7 @@ namespace PeNet
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Hex-String</returns>
-        public static string ToHexString(uint value)
+        public static string ToHexString(this uint value)
         {
             return $"0x{value.ToString("X8")}";
         }
@@ -720,7 +771,7 @@ namespace PeNet
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Hex-String</returns>
-        public static string ToHexString(ulong value)
+        public static string ToHexString(this ulong value)
         {
             return $"0x{value.ToString("X16")}";
         }
@@ -733,7 +784,7 @@ namespace PeNet
         /// <param name="from">Index in the byte array where the hex string starts.</param>
         /// <param name="length">Length of the hex string in the byte array.</param>
         /// <returns></returns>
-        public static List<string> ToHexString(byte[] input, ulong from, ulong length)
+        public static List<string> ToHexString(this byte[] input, ulong from, ulong length)
         {
             if (input == null) return null;
 
@@ -750,7 +801,7 @@ namespace PeNet
         /// </summary>
         /// <param name="hexString"></param>
         /// <returns>The hex string value as a long.</returns>
-        public static long ToIntFromHexString(string hexString)
+        public static long ToIntFromHexString(this string hexString)
         {
             return (long) new Int64Converter().ConvertFromString(hexString);
         }
