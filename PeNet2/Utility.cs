@@ -284,6 +284,25 @@ namespace PeNet
         }
 
         /// <summary>
+        ///     Resolve flags from the IMAGE_COR20_HEADER COM+ 2 (CLI) header to
+        ///     their string representation.
+        /// </summary>
+        /// <param name="comImageFlags">Flags from IMAGE_COR20_HEADER.</param>
+        /// <returns>List with resolved flag names.</returns>
+        public static List<string> ResolveCOMImageFlags(uint comImageFlags)
+        {
+            var st = new List<string>();
+            foreach (var flag in (Constants.COMImageFlag[]) Enum.GetValues(typeof(Constants.COMImageFlag)))
+            {
+                if ((comImageFlags & (uint) flag) == (uint) flag)
+                {
+                    st.Add(flag.ToString());
+                }
+            }
+            return st;
+        }
+
+        /// <summary>
         ///     Convert to bytes to an 16 bit unsigned integer.
         /// </summary>
         /// <param name="b1">High byte.</param>

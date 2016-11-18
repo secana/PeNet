@@ -49,6 +49,8 @@
         </GroupBox>
         <Image MaxHeight="150" Source="../Icons/PEditor.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label FontSize="24" HorizontalAlignment="Center">PEditor</Label>
-        <Label FontSize="12" HorizontalAlignment="Center">powered by PeNet</Label>
+        <TextBlock HorizontalAlignment="Center">
+            <Hyperlink NavigateUri="https://github.com/secana/PeNet" RequestNavigate="Hyperlink_RequestNavigate">powered by PeNet</Hyperlink>
+        </TextBlock>
     </StackPanel>
 </UserControl>

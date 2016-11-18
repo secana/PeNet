@@ -119,6 +119,11 @@ namespace PeNet
         public bool HasValidRelocDir => ImageRelocationDirectory != null;
 
         /// <summary>
+        ///     Returns true if the COM+ 2 (CLI) directory is valid.
+        /// </summary>
+        public bool HasValidComDescriptor => ImageComDescriptor != null;
+
+        /// <summary>
         ///     Returns true if the DLL flag in the
         ///     File Header is set.
         /// </summary>
@@ -232,6 +237,11 @@ namespace PeNet
         /// Access the IMAGE_LOAD_CONFIG_DIRECTORY from the data directory.
         /// </summary>
         public IMAGE_LOAD_CONFIG_DIRECTORY ImageLoadConfigDirectory => _dataDirectories.ImageLoadConfigDirectory;
+    
+        /// <summary>
+        /// Access the IMAGE_COR20_HEADER (COM Descriptor/CLI) from the data directory.
+        /// </summary>
+        public IMAGE_COR20_HEADER ImageComDescriptor => _dataDirectories.ImageComDescriptor;
 
         /// <summary>
         ///     A X509 PKCS7 signature if the PE file was digitally signed with such

@@ -15,7 +15,7 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\stefan.hausotte\Desktop\</PublishUrl>
+    <PublishUrl>E:\Git\PeNet\Releases\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -28,10 +28,10 @@
     <SupportUrl>https://github.com/secana/PeNet</SupportUrl>
     <ErrorReportUrl>https://github.com/secana/PeNet</ErrorReportUrl>
     <ProductName>PEditor</ProductName>
-    <PublisherName>Stefan Hausotte</PublisherName>
+    <PublisherName>Secana</PublisherName>
     <SuiteName>PEditor</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -87,6 +87,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>PEditor.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -280,6 +283,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\PEditor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\PEditor.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PEditor.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

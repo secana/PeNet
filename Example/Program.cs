@@ -7,9 +7,11 @@ namespace Example
     {
         private static void Main(string[] args)
         {
-            var file = @"C:\Users\stefan.hausotte\Downloads\FilesWithErrors\These all have the same issue\ds16gt.dLL";
+            var file = @"filepath";
             var pe = new PeFile(file);
 
+            var comHeader = pe.ImageComDescriptor;
+            Console.WriteLine(comHeader);
             Console.WriteLine("Finished");
             Console.ReadKey();
         }

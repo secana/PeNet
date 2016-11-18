@@ -877,5 +877,46 @@ namespace PeNet
             /// </summary>
             WIN_CERT_TYPE_PKCS1_SIGN = 0x0009
         }
+
+        ///////////////////////////////////////
+        // IMAGE_COR20_HEADER Flags
+        ///////////////////////////////////////
+
+        /// <summary>
+        /// IMAGE_COR20_HEADER Flags
+        /// </summary>
+        [Flags]
+        public enum COMImageFlag : uint
+        {
+            /// <summary>
+            /// Intermediate language only flag.
+            /// </summary>
+            COMIMAGE_FLAGS_ILONLY = 0x00000001,
+
+            /// <summary>
+            /// 32 bit required flag.
+            /// </summary>
+            COMIMAGE_FLAGS_32BITREQUIRED = 0x00000002,
+
+            /// <summary>
+            /// Intermediate language library flag.
+            /// </summary>
+            COMIMAGE_FLAGS_IL_LIBRARY = 0x00000004,
+
+            /// <summary>
+            /// Strong named signed flag.
+            /// </summary>
+            COMIMAGE_FLAGS_STRONGNAMESIGNED = 0x00000008,
+
+            /// <summary>
+            /// Native entry point flag.
+            /// </summary>
+            COMIMAGE_FLAGS_NATIVE_ENTRYPOINT = 0x00000010,
+
+            /// <summary>
+            /// Track debug data flag.
+            /// </summary>
+            COMIMAGE_FLAGS_TRACKDEBUGDATA = 0x00010000
+        };
     }
 }
