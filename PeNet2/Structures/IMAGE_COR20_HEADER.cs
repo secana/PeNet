@@ -17,6 +17,7 @@ limitations under the License.
 
 using System;
 using System.Text;
+using PeNet.Parser;
 
 namespace PeNet.Structures
 {
@@ -84,7 +85,7 @@ namespace PeNet.Structures
                 return _metaData;
             }
         }
-
+        
         /// <summary>
         /// COM image flags.
         /// </summary>

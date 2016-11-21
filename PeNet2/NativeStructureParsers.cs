@@ -20,15 +20,14 @@ using PeNet.Structures;
 
 namespace PeNet
 {
-    internal class StructureParser
+    internal class NativeStructureParsers
     {
         private readonly byte[] _buff;
         private ImageDosHeaderParser _imageDosHeaderParser;
         private ImageNtHeadersParser _imageNtHeadersParser;
         private ImageSectionHeadersParser _imageSectionHeadersParser;
 
-
-        internal StructureParser(byte[] buff)
+        internal NativeStructureParsers(byte[] buff)
         {
             _buff = buff;
             InitAllParsers();

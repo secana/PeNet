@@ -31,9 +31,9 @@ namespace PeNet
     /// </summary>
     public class PeFile
     {
-        private readonly DataDirectories _dataDirectories;
-
-        private readonly StructureParser _structureParser;
+        private readonly DataDirectoryParsers _dataDirectoryParsers;
+        private readonly NativeStructureParsers _nativeStructureParsers;
+        private readonly DotNetStructureParsers _dotNetStructureParsers;
 
         /// <summary>
         ///     The PE binary as a byte array.
@@ -52,13 +52,19 @@ namespace PeNet
         public PeFile(byte[] buff)
         {
             Buff = buff;
-            _structureParser = new StructureParser(Buff);
+            _nativeStructureParsers = new NativeStructureParsers(Buff);
 
-            _dataDirectories = new DataDirectories(
+            _dataDirectoryParsers = new DataDirectoryParsers(
                 Buff,
                 ImageNtHeaders?.OptionalHeader?.DataDirectory,
                 ImageSectionHeaders,
                 Is32Bit
+                );
+
+            _dotNetStructureParsers = new DotNetStructureParsers(
+                Buff,
+                ImageComDescriptor,
+                ImageSectionHeaders
                 );
         }
 
@@ -161,93 +167,98 @@ namespace PeNet
         /// <summary>
         ///     Access the IMAGE_DOS_HEADER of the PE file.
         /// </summary>
-        public IMAGE_DOS_HEADER ImageDosHeader => _structureParser.ImageDosHeader;
+        public IMAGE_DOS_HEADER ImageDosHeader => _nativeStructureParsers.ImageDosHeader;
 
         /// <summary>
         ///     Access the IMAGE_NT_HEADERS of the PE file.
         /// </summary>
-        public IMAGE_NT_HEADERS ImageNtHeaders => _structureParser.ImageNtHeaders;
+        public IMAGE_NT_HEADERS ImageNtHeaders => _nativeStructureParsers.ImageNtHeaders;
 
         /// <summary>
         ///     Access the IMAGE_SECTION_HEADERS of the PE file.
         /// </summary>
-        public IMAGE_SECTION_HEADER[] ImageSectionHeaders => _structureParser.ImageSectionHeaders;
+        public IMAGE_SECTION_HEADER[] ImageSectionHeaders => _nativeStructureParsers.ImageSectionHeaders;
 
         /// <summary>
         ///     Access the IMAGE_EXPORT_DIRECTORY of the PE file.
         /// </summary>
-        public IMAGE_EXPORT_DIRECTORY ImageExportDirectory => _dataDirectories.ImageExportDirectories;
+        public IMAGE_EXPORT_DIRECTORY ImageExportDirectory => _dataDirectoryParsers.ImageExportDirectories;
 
         /// <summary>
         ///     Access the IMAGE_IMPORT_DESCRIPTOR array of the PE file.
         /// </summary>
-        public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors => _dataDirectories.ImageImportDescriptors;
+        public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors => _dataDirectoryParsers.ImageImportDescriptors;
 
         /// <summary>
         ///     Access the IMAGE_BASE_RELOCATION array of the PE file.
         /// </summary>
-        public IMAGE_BASE_RELOCATION[] ImageRelocationDirectory => _dataDirectories.ImageBaseRelocations;
+        public IMAGE_BASE_RELOCATION[] ImageRelocationDirectory => _dataDirectoryParsers.ImageBaseRelocations;
 
         /// <summary>
         ///     Access the IMAGE_DEBUG_DIRECTORY of the PE file.
         /// </summary>
-        public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory => _dataDirectories.ImageDebugDirectory;
+        public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory => _dataDirectoryParsers.ImageDebugDirectory;
 
         /// <summary>
         ///     Access the exported functions as an array of parsed objects.
         /// </summary>
-        public ExportFunction[] ExportedFunctions => _dataDirectories.ExportFunctions;
+        public ExportFunction[] ExportedFunctions => _dataDirectoryParsers.ExportFunctions;
 
         /// <summary>
         ///     Access the imported functions as an array of parsed objects.
         /// </summary>
-        public ImportFunction[] ImportedFunctions => _dataDirectories.ImportFunctions;
+        public ImportFunction[] ImportedFunctions => _dataDirectoryParsers.ImportFunctions;
 
         /// <summary>
         ///     Access the IMAGE_RESOURCE_DIRECTORY of the PE file.
         /// </summary>
-        public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory => _dataDirectories.ImageResourceDirectory;
+        public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory => _dataDirectoryParsers.ImageResourceDirectory;
 
         /// <summary>
         ///     Access the array of RUNTIME_FUNCTION from the Exception header.
         /// </summary>
-        public RUNTIME_FUNCTION[] RuntimeFunctions => _dataDirectories.RuntimeFunctions;
+        public RUNTIME_FUNCTION[] RuntimeFunctions => _dataDirectoryParsers.RuntimeFunctions;
 
         /// <summary>
         ///     Access the WIN_CERTIFICATE from the Security header.
         /// </summary>
-        public WIN_CERTIFICATE WinCertificate => _dataDirectories.WinCertificate;
+        public WIN_CERTIFICATE WinCertificate => _dataDirectoryParsers.WinCertificate;
 
         /// <summary>
         /// Access the IMAGE_BOUND_IMPORT_DESCRIPTOR form the data directory.
         /// </summary>
-        public IMAGE_BOUND_IMPORT_DESCRIPTOR ImageBoundImportDescriptor => _dataDirectories.ImageBoundImportDescriptor;
+        public IMAGE_BOUND_IMPORT_DESCRIPTOR ImageBoundImportDescriptor => _dataDirectoryParsers.ImageBoundImportDescriptor;
 
         /// <summary>
         /// Access the IMAGE_TLS_DIRECTORY from the data directory.
         /// </summary>
-        public IMAGE_TLS_DIRECTORY ImageTlsDirectory => _dataDirectories.ImageTlsDirectory;
+        public IMAGE_TLS_DIRECTORY ImageTlsDirectory => _dataDirectoryParsers.ImageTlsDirectory;
 
         /// <summary>
         /// Access the IMAGE_DELAY_IMPORT_DESCRIPTOR from the data directory.
         /// </summary>
-        public IMAGE_DELAY_IMPORT_DESCRIPTOR ImageDelayImportDescriptor => _dataDirectories.ImageDelayImportDescriptor;
+        public IMAGE_DELAY_IMPORT_DESCRIPTOR ImageDelayImportDescriptor => _dataDirectoryParsers.ImageDelayImportDescriptor;
 
         /// <summary>
         /// Access the IMAGE_LOAD_CONFIG_DIRECTORY from the data directory.
         /// </summary>
-        public IMAGE_LOAD_CONFIG_DIRECTORY ImageLoadConfigDirectory => _dataDirectories.ImageLoadConfigDirectory;
+        public IMAGE_LOAD_CONFIG_DIRECTORY ImageLoadConfigDirectory => _dataDirectoryParsers.ImageLoadConfigDirectory;
     
         /// <summary>
         /// Access the IMAGE_COR20_HEADER (COM Descriptor/CLI) from the data directory.
         /// </summary>
-        public IMAGE_COR20_HEADER ImageComDescriptor => _dataDirectories.ImageComDescriptor;
+        public IMAGE_COR20_HEADER ImageComDescriptor => _dataDirectoryParsers.ImageComDescriptor;
 
         /// <summary>
         ///     A X509 PKCS7 signature if the PE file was digitally signed with such
         ///     a signature.
         /// </summary>
-        public X509Certificate2 PKCS7 => _dataDirectories.PKCS7;
+        public X509Certificate2 PKCS7 => _dataDirectoryParsers.PKCS7;
+
+        /// <summary>
+        ///     Access the METADATAHDR from the COM/CLI header.
+        /// </summary>
+        public METADATAHDR MetaDataHdr => _dotNetStructureParsers.MetaDataHdr;
 
         /// <summary>
         ///     The SHA-256 hash sum of the binary.

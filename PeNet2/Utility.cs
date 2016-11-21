@@ -573,6 +573,24 @@ namespace PeNet
             return (uint) RVAtoFileMapping((ulong) RVA, sh);
         }
 
+        /// <summary>
+        ///     Map an relative virtual address to the raw file address.
+        /// </summary>
+        /// <param name="rva">Relative Virtual Address</param>
+        /// <param name="sh">Section Headers</param>
+        /// <returns>Raw address of null if error occurred.</returns>
+        public static uint? SafeRVAtoFileMapping(this uint rva, ICollection<IMAGE_SECTION_HEADER> sh)
+        {
+            try
+            {
+                return rva.RVAtoFileMapping(sh);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         internal static ushort GetOrdinal(uint ordinal, byte[] buff)
         {
             return BitConverter.ToUInt16(new[] {buff[ordinal], buff[ordinal + 1]}, 0);

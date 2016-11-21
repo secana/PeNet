@@ -114,5 +114,91 @@ namespace PeNet.UnitTest.Structures
             0x55,
             0x66
         };
+
+        public static byte[] RawMetaDataHeader =
+        {
+            0x00, // Garbage for offset test
+            0x11,
+
+            0x22, // Signature
+            0x33,
+            0x44,
+            0x55,
+
+            0x66, // MajorVersion
+            0x77,
+
+            0x88, // MinorVersion
+            0x99,
+
+            0xaa, // Reserved
+            0xbb,
+            0xcc,
+            0xdd,
+
+            0x0C, // VersionLength
+            0x00, // = 12
+            0x00,
+            0x00,
+
+            0x76, // Version
+            0x34, // v4.0.30319
+            0x2E,
+            0x30,
+            0x2E,
+            0x33,
+            0x30,
+            0x33,
+            0x31,
+            0x39,
+            0x00,
+            0x00,
+
+            0x11, // Flags
+            0x22,
+
+            0x02, // Streams (number of streams)
+            0x00,
+
+            // Stream Header 1
+            0x6C,   // Offset
+            0x00,
+            0x00,
+            0x00,
+
+            0x04,  // Size
+            0x18,
+            0x00,
+            0x00,
+
+            0x23, // Stream name = #~
+            0x7E, 
+            0x00, // Padding
+            0x00, 
+
+            // Stream Header 2
+            0x70, // Offset
+            0x18,
+            0x00,
+            0x00,
+
+            0x68, // Size
+            0x14,
+            0x00,
+            0x00,
+
+            0x23, // Stream name = #Strings
+            0x53,
+            0x74,
+            0x72,
+            0x69,
+            0x6E,
+            0x67,
+            0x73, // Padding
+            0x00,
+            0x00,
+            0x00,
+            0x00
+    };
     }
 }

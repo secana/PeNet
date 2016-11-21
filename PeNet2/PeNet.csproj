@@ -62,7 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CrlUrlList.cs" />
-    <Compile Include="DataDirectories.cs" />
+    <Compile Include="DataDirectoryParsers.cs" />
+    <Compile Include="DotNetStructureParsers.cs" />
     <Compile Include="ExportFunction.cs" />
     <Compile Include="ImpHash\ImportHash.cs" />
     <Compile Include="ImportFunction.cs" />
@@ -80,11 +81,12 @@
     <Compile Include="Parser\ImageResourceDirectoryParser.cs" />
     <Compile Include="Parser\ImageSectionHeadersParser.cs" />
     <Compile Include="Parser\ImportedFunctionsParser.cs" />
+    <Compile Include="Parser\MetaDataHdrParser.cs" />
     <Compile Include="Parser\PKCS7Parser.cs" />
     <Compile Include="Parser\RuntimeFunctionsParser.cs" />
     <Compile Include="Parser\SafeParser.cs" />
     <Compile Include="Parser\WinCertificateParser.cs" />
-    <Compile Include="StructureParser.cs" />
+    <Compile Include="NativeStructureParsers.cs" />
     <Compile Include="Structures\AbstractStructure.cs" />
     <Compile Include="Structures\Copyright.cs" />
     <Compile Include="Parser\ImageTlsDirectoryParser.cs" />
@@ -116,6 +118,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structures\IMAGE_TLS_CALLBACK.cs" />
     <Compile Include="Structures\IMAGE_TLS_DIRECTORY.cs" />
+    <Compile Include="Structures\METADATAHDR.cs" />
+    <Compile Include="Structures\METADATASTREAMHDR.cs" />
     <Compile Include="Structures\RUNTIME_FUNCTION.cs" />
     <Compile Include="Structures\UNWIND_CODE.cs" />
     <Compile Include="Structures\UNWIND_INFO.cs" />

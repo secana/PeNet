@@ -7,11 +7,10 @@ namespace Example
     {
         private static void Main(string[] args)
         {
-            var file = @"filepath";
+            var file = @"E:\Git\GAIA\Clustering\bin\x64\Release\Clustering.dll";
             var pe = new PeFile(file);
 
-            var comHeader = pe.ImageComDescriptor;
-            Console.WriteLine(comHeader);
+            Console.WriteLine(pe.MetaDataHdr);
             Console.WriteLine("Finished");
             Console.ReadKey();
         }
