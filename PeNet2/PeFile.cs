@@ -360,7 +360,7 @@ namespace PeNet
         public static bool IsPEFile(string file)
         {
             var buff = File.ReadAllBytes(file);
-            IMAGE_DOS_HEADER dosHeader = null;
+            IMAGE_DOS_HEADER dosHeader;
             try
             {
                 dosHeader = new IMAGE_DOS_HEADER(buff, 0);

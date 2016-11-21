@@ -28,8 +28,7 @@ namespace PeNet.Parser
         public ImageBaseRelocationsParser(
             byte[] buff,
             uint offset,
-            uint directorySize,
-            IMAGE_SECTION_HEADER[] sectionHeaders
+            uint directorySize
             )
             : base(buff, offset)
         {

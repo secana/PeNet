@@ -63,7 +63,6 @@ namespace PeNet.Structures
 
         private int AddHeaderPaddingLength(int headerLength)
         {
-            var stringLength = headerLength - 8;
             if (headerLength%4 == 0)
                 return headerLength + 4;
             else

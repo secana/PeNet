@@ -48,15 +48,8 @@ namespace PeNet
 
         private MetaDataHdrParser InitMetaDataParser()
         {
-            if (_imageCor20Header == null)
-                return null;
-
-            var rawAddress = Utility.SafeRVAtoFileMapping(_imageCor20Header.MetaData.VirtualAddress, _sectionHeaders);
-
-            if (rawAddress == null)
-                return null;
-
-            return new MetaDataHdrParser(_buff, rawAddress.Value);
+            var rawAddress = _imageCor20Header?.MetaData.VirtualAddress.SafeRVAtoFileMapping(_sectionHeaders);
+            return rawAddress == null ? null : new MetaDataHdrParser(_buff, rawAddress.Value);
         }
     }
 }

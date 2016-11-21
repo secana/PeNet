@@ -13,7 +13,6 @@ namespace PeNet.UnitTest.Binaries
             var peFile = new PeFile(@"../../Binaries/TLSCallback_x86.exe");
 
             // When
-            var path = peFile.FileLocation;
             var callbacks = peFile.ImageTlsDirectory.TlsCallbacks;
 
             // Then
