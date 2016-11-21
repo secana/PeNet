@@ -7,7 +7,7 @@ namespace Example
     {
         private static void Main(string[] args)
         {
-            var file = @"E:\Git\GAIA\Clustering\bin\x64\Release\Clustering.dll";
+            var file = @"filePath";
             var pe = new PeFile(file);
 
             Console.WriteLine(pe.MetaDataHdr);
