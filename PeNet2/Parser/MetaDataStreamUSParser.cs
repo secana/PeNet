@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
+using static System.String;
 
 namespace PeNet.Parser
 {
@@ -23,7 +23,7 @@ namespace PeNet.Parser
                 var tmpString = Utility.GetUnicodeString(i, _buff);
                 i += (uint) tmpString.Length * 2 + 1 ;
 
-                if (String.IsNullOrWhiteSpace(tmpString))
+                if (IsNullOrWhiteSpace(tmpString))
                     continue;
 
                 stringList.Add(tmpString);

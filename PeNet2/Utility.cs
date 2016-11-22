@@ -653,6 +653,7 @@ namespace PeNet
             return length;
         }
 
+        // TODO: Improve parser. Currently it parses only ASCII characters.
         /// <summary>
         ///     Get a unicode string at a specific position in a buffer.
         /// </summary>
