@@ -30,9 +30,11 @@ namespace PeNet
         private readonly IMAGE_COR20_HEADER _imageCor20Header;
         private MetaDataHdrParser _metaDataHdrParser;
         private MetaDataStreamStringParser _metaDataStreamStringParser;
+        private MetaDataStreamUSParser _metaDataStreamUSParser;
 
         public METADATAHDR MetaDataHdr => _metaDataHdrParser?.GetParserTarget();
         public List<string> MetaDataStreamString => _metaDataStreamStringParser?.GetParserTarget();
+        public List<string> MedaDataStreamUS => _metaDataStreamUSParser?.GetParserTarget();
 
         public DotNetStructureParsers(
             byte[] buff,
@@ -50,6 +52,7 @@ namespace PeNet
         {
             _metaDataHdrParser = InitMetaDataParser();
             _metaDataStreamStringParser = InitMetaDataStreamStringParser();
+            _metaDataStreamUSParser = InitMetaDataStreamUSParser();
         }
 
         private MetaDataHdrParser InitMetaDataParser()
@@ -66,6 +69,16 @@ namespace PeNet
                 return null;
 
             return new MetaDataStreamStringParser(_buff, MetaDataHdr.Offset + metaDataStream.offset, metaDataStream.size);
+        }
+
+        private MetaDataStreamUSParser InitMetaDataStreamUSParser()
+        {
+            var metaDataStream = MetaDataHdr?.MetaDataStreamsHdrs?.FirstOrDefault(x => x.streamName == "#US");
+
+            if (metaDataStream == null)
+                return null;
+
+            return new MetaDataStreamUSParser(_buff, MetaDataHdr.Offset + metaDataStream.offset, metaDataStream.size);
         }
     }
 }

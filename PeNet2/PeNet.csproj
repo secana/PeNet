@@ -84,6 +84,7 @@
     <Compile Include="Parser\ImportedFunctionsParser.cs" />
     <Compile Include="Parser\MetaDataHdrParser.cs" />
     <Compile Include="Parser\MetaDataStreamStringParser.cs" />
+    <Compile Include="Parser\MetaDataStreamUSParser.cs" />
     <Compile Include="Parser\PKCS7Parser.cs" />
     <Compile Include="Parser\RuntimeFunctionsParser.cs" />
     <Compile Include="Parser\SafeParser.cs" />

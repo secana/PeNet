@@ -40,7 +40,7 @@ namespace PeNet.Parser
 
             for (var i = _offset; i < _offset + _size; i++)
             {
-                var tmpString = Utility.GetName(i, _buff);
+                var tmpString = Utility.GetCString(i, _buff);
                 i += (uint) tmpString.Length;
 
                 if(String.IsNullOrWhiteSpace(tmpString))

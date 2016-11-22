@@ -619,16 +619,16 @@ namespace PeNet
         /// <summary>
         ///     Get a name (C string) at a specific position in a buffer.
         /// </summary>
-        /// <param name="name">Offset of the string.</param>
+        /// <param name="stringOffset">Offset of the string.</param>
         /// <param name="buff">Containing buffer.</param>
         /// <returns>The parsed C string.</returns>
-        public static string GetName(ulong name, byte[] buff)
+        public static string GetCString(ulong stringOffset, byte[] buff)
         {
-            var length = GetNameLength(name, buff);
+            var length = GetCStringLength(stringOffset, buff);
             var tmp = new char[length];
             for (ulong i = 0; i < length; i++)
             {
-                tmp[i] = (char) buff[name + i];
+                tmp[i] = (char) buff[stringOffset + i];
             }
 
             return new string(tmp);
@@ -638,12 +638,12 @@ namespace PeNet
         ///     For a given offset in an byte array, find the next
         ///     null value which terminates a C string.
         /// </summary>
-        /// <param name="name">Offset of the string.</param>
+        /// <param name="stringOffset">Offset of the string.</param>
         /// <param name="buff">Buffer which contains the string.</param>
         /// <returns>Length of the string in bytes.</returns>
-        public static ulong GetNameLength(ulong name, byte[] buff)
+        public static ulong GetCStringLength(ulong stringOffset, byte[] buff)
         {
-            var offset = name;
+            var offset = stringOffset;
             ulong length = 0;
             while (buff[offset] != 0x00)
             {
@@ -651,6 +651,33 @@ namespace PeNet
                 offset++;
             }
             return length;
+        }
+
+        /// <summary>
+        ///     Get a unicode string at a specific position in a buffer.
+        /// </summary>
+        /// <param name="stringOffset">Offset of the string.</param>
+        /// <param name="buff">Containing buffer.</param>
+        /// <returns>The parsed unicode string.</returns>
+        public static string GetUnicodeString(ulong stringOffset, byte[] buff)
+        {
+            var charList = new List<byte>();
+
+            for (var i = stringOffset; i < (ulong) buff.Length - 1; i++)
+            {
+                var highByte = buff[i +  1];
+                var lowByte = buff[i];
+
+                if(highByte != 0x00)
+                    continue;
+
+                if (highByte == 0x00 && lowByte == 0x00) // End of string.
+                    break;
+
+                charList.Add(lowByte);
+            }
+
+            return Encoding.ASCII.GetString(charList.ToArray());
         }
 
         /// <summary>

@@ -73,7 +73,7 @@ namespace PeNet.Structures
 
         private string ParseStreamName(uint nameOffset)
         {
-            return Utility.GetName(nameOffset, Buff);
+            return Utility.GetCString(nameOffset, Buff);
         }
 
         /// <summary>

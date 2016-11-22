@@ -266,6 +266,11 @@ namespace PeNet
         public List<string> MetaDataStreamString => _dotNetStructureParsers.MetaDataStreamString;
 
         /// <summary>
+        /// Meta Data Stream #US as a parsed list of strings.
+        /// </summary>
+        public List<string> MetaDataStreamUS => _dotNetStructureParsers.MedaDataStreamUS;
+
+        /// <summary>
         ///     The SHA-256 hash sum of the binary.
         /// </summary>
         public string SHA256 => _sha256 ?? (_sha256 = Utility.Sha256(Buff));

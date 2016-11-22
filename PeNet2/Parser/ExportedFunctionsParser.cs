@@ -60,7 +60,7 @@ namespace PeNet.Parser
             {
                 var namePtr = _buff.BytesToUInt32(nameOffsetPointer + sizeof(uint)*i);
                 var nameAdr = namePtr.RVAtoFileMapping(_sectionHeaders);
-                var name = Utility.GetName(nameAdr, _buff);
+                var name = Utility.GetCString(nameAdr, _buff);
                 var ordinalIndex = (uint) Utility.GetOrdinal(ordOffset + sizeof(ushort)*i, _buff);
 
                 expFuncs[ordinalIndex] = new ExportFunction(name, expFuncs[ordinalIndex].Address,

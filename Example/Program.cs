@@ -10,7 +10,7 @@ namespace Example
             var file = @"E:\Git\GAIA\Clustering\bin\x64\Release\Clustering.dll";
             var pe = new PeFile(file);
 
-            var list = pe.MetaDataStreamString;
+            var list = pe.MetaDataStreamUS;
 
             foreach (var s in list)
             {

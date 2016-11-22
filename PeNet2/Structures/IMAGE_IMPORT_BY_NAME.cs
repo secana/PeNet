@@ -49,7 +49,7 @@ namespace PeNet.Structures
         /// <summary>
         ///     Name of the function to import as a C-string (null terminated).
         /// </summary>
-        public string Name => Utility.GetName(Offset + 0x2, Buff);
+        public string Name => Utility.GetCString(Offset + 0x2, Buff);
 
         /// <summary>
         ///     Creates a string representation of the objects properties.
