@@ -15,6 +15,9 @@ limitations under the License.
 
 *************************************************************************/
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using PeNet.Parser;
 using PeNet.Structures;
 
@@ -26,8 +29,10 @@ namespace PeNet
         private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
         private readonly IMAGE_COR20_HEADER _imageCor20Header;
         private MetaDataHdrParser _metaDataHdrParser;
+        private MetaDataStreamStringParser _metaDataStreamStringParser;
 
         public METADATAHDR MetaDataHdr => _metaDataHdrParser?.GetParserTarget();
+        public List<string> MetaDataStreamString => _metaDataStreamStringParser?.GetParserTarget();
 
         public DotNetStructureParsers(
             byte[] buff,
@@ -44,12 +49,23 @@ namespace PeNet
         private void InitAllParsers()
         {
             _metaDataHdrParser = InitMetaDataParser();
+            _metaDataStreamStringParser = InitMetaDataStreamStringParser();
         }
 
         private MetaDataHdrParser InitMetaDataParser()
         {
             var rawAddress = _imageCor20Header?.MetaData.VirtualAddress.SafeRVAtoFileMapping(_sectionHeaders);
             return rawAddress == null ? null : new MetaDataHdrParser(_buff, rawAddress.Value);
+        }
+
+        private MetaDataStreamStringParser InitMetaDataStreamStringParser()
+        {
+            var metaDataStream = MetaDataHdr?.MetaDataStreamsHdrs?.FirstOrDefault(x => x.streamName == "#Strings");
+
+            if (metaDataStream == null)
+                return null;
+
+            return new MetaDataStreamStringParser(_buff, MetaDataHdr.Offset + metaDataStream.offset, metaDataStream.size);
         }
     }
 }

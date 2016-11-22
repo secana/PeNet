@@ -7,10 +7,15 @@ namespace Example
     {
         private static void Main(string[] args)
         {
-            var file = @"filePath";
+            var file = @"E:\Git\GAIA\Clustering\bin\x64\Release\Clustering.dll";
             var pe = new PeFile(file);
 
-            Console.WriteLine(pe.MetaDataHdr);
+            var list = pe.MetaDataStreamString;
+
+            foreach (var s in list)
+            {
+                Console.WriteLine(s);
+            }
             Console.WriteLine("Finished");
             Console.ReadKey();
         }

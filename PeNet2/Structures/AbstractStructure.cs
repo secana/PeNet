@@ -8,12 +8,12 @@
         /// <summary>
         ///     A PE file as a binary buffer.
         /// </summary>
-        protected readonly byte[] Buff;
+        internal readonly byte[] Buff;
 
         /// <summary>
         ///     The offset to the structure in the buffer.
         /// </summary>
-        protected readonly uint Offset;
+        internal readonly uint Offset;
 
 
         /// <summary>

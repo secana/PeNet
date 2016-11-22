@@ -199,6 +199,43 @@ namespace PeNet.UnitTest.Structures
             0x00,
             0x00,
             0x00
-    };
+        };
+
+        public static byte[] RawMetaDataDataTablesHdr =
+        {
+            0x00, // Garbage to test offset
+            0x11,
+
+            0x22, // Reserved1
+            0x33,
+            0x44,
+            0x55,
+
+            0x66, // MajorVersion
+
+            0x77, // MinorVersion
+            
+            0x88, // HeapOffsetSizes
+
+            0x99, // Reserved2
+
+            0xbb, // MaskValid
+            0xcc,
+            0xdd,
+            0xee,
+            0xff,
+            0x00,
+            0x11,
+            0x22,
+
+            0x33, // MaskSorted
+            0x44,
+            0x55,
+            0x66,
+            0x77,
+            0x88,
+            0x99,
+            0xaa
+        };
     }
 }

@@ -8,6 +8,8 @@ namespace PeNet.Structures
     /// </summary>
     public class METADATASTREAMHDR : AbstractStructure
     {
+        internal uint HeaderLength => GetHeaderLength();
+
         /// <summary>
         /// Create a new Meta Data Stream Header instance from a byte array.
         /// </summary>
@@ -41,8 +43,6 @@ namespace PeNet.Structures
         /// Name of the stream.
         /// </summary>
         public string streamName => ParseStreamName(Offset + 0x8);
-
-        internal uint HeaderLength => GetHeaderLength();
 
         private uint GetHeaderLength()
         {

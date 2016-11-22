@@ -88,6 +88,7 @@
     <Compile Include="Structures\IMAGE_SECTION_HEADER_Test.cs" />
     <Compile Include="Structures\IMAGE_THUNK_DATA_Test.cs" />
     <Compile Include="Structures\METADATAHDR_Test.cs" />
+    <Compile Include="Structures\METADATATABLESHDR_Test.cs" />
     <Compile Include="Structures\RawDotNetStructures.cs" />
     <Compile Include="Structures\RawStructures.cs" />
     <Compile Include="Structures\RUNTIME_FUNCTION_Test.cs" />

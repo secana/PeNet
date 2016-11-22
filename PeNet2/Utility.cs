@@ -292,7 +292,7 @@ namespace PeNet
         public static List<string> ResolveCOMImageFlags(uint comImageFlags)
         {
             var st = new List<string>();
-            foreach (var flag in (Constants.COMImageFlag[]) Enum.GetValues(typeof(Constants.COMImageFlag)))
+            foreach (var flag in (DotNetConstants.COMImageFlag[]) Enum.GetValues(typeof(DotNetConstants.COMImageFlag)))
             {
                 if ((comImageFlags & (uint) flag) == (uint) flag)
                 {
@@ -301,6 +301,26 @@ namespace PeNet
             }
             return st;
         }
+
+        /// <summary>
+        ///     Resolve which tables are present in the .Net header based
+        ///     on the MaskValid flags from the METADATATABLESHDR.
+        /// </summary>
+        /// <param name="maskValid">MaskValid value from the METADATATABLESHDR</param>
+        /// <returns>List with present table names.</returns>
+        public static List<string> ResolveMaskValidFlags(ulong maskValid)
+        {
+            var st = new List<string>();
+            foreach (var flag in (DotNetConstants.MaskValidFlags[]) Enum.GetValues(typeof(DotNetConstants.MaskValidFlags)))
+            {
+                if ((maskValid & (ulong) flag) == (ulong) flag)
+                {
+                    st.Add(flag.ToString());
+                }
+            }
+            return st;
+        }
+
 
         /// <summary>
         ///     Convert to bytes to an 16 bit unsigned integer.

@@ -29,7 +29,7 @@ namespace PeNet
     ///     This class represents a Portable Executable (PE) file and makes the different
     ///     header and properties accessible.
     /// </summary>
-    public class PeFile
+    public partial class PeFile
     {
         private readonly DataDirectoryParsers _dataDirectoryParsers;
         private readonly NativeStructureParsers _nativeStructureParsers;
@@ -259,6 +259,11 @@ namespace PeNet
         ///     Access the METADATAHDR from the COM/CLI header.
         /// </summary>
         public METADATAHDR MetaDataHdr => _dotNetStructureParsers.MetaDataHdr;
+
+        /// <summary>
+        /// Meta Data Stream #String as a parsed list of strings.
+        /// </summary>
+        public List<string> MetaDataStreamString => _dotNetStructureParsers.MetaDataStreamString;
 
         /// <summary>
         ///     The SHA-256 hash sum of the binary.
