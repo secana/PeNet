@@ -15,7 +15,6 @@ limitations under the License.
 
 *************************************************************************/
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using PeNet.Parser;
@@ -31,10 +30,12 @@ namespace PeNet
         private MetaDataHdrParser _metaDataHdrParser;
         private MetaDataStreamStringParser _metaDataStreamStringParser;
         private MetaDataStreamUSParser _metaDataStreamUSParser;
+        private MetaDataStreamTablesHeaderParser _metaDataStreamTablesHeaderParser;
 
         public METADATAHDR MetaDataHdr => _metaDataHdrParser?.GetParserTarget();
         public List<string> MetaDataStreamString => _metaDataStreamStringParser?.GetParserTarget();
         public List<string> MedaDataStreamUS => _metaDataStreamUSParser?.GetParserTarget();
+        public METADATATABLESHDR MetaDataStreamTablesHeader => _metaDataStreamTablesHeaderParser?.GetParserTarget();
 
         public DotNetStructureParsers(
             byte[] buff,
@@ -53,6 +54,7 @@ namespace PeNet
             _metaDataHdrParser = InitMetaDataParser();
             _metaDataStreamStringParser = InitMetaDataStreamStringParser();
             _metaDataStreamUSParser = InitMetaDataStreamUSParser();
+            _metaDataStreamTablesHeaderParser = InitMetaDataStreamTablesHeaderParser();
         }
 
         private MetaDataHdrParser InitMetaDataParser()
@@ -79,6 +81,16 @@ namespace PeNet
                 return null;
 
             return new MetaDataStreamUSParser(_buff, MetaDataHdr.Offset + metaDataStream.offset, metaDataStream.size);
+        }
+
+        private MetaDataStreamTablesHeaderParser InitMetaDataStreamTablesHeaderParser()
+        {
+            var metaDataStream = MetaDataHdr?.MetaDataStreamsHdrs?.FirstOrDefault(x => x.streamName == "#~");
+
+            if (metaDataStream == null)
+                return null;
+
+            return new MetaDataStreamTablesHeaderParser(_buff, MetaDataHdr.Offset + metaDataStream.offset);
         }
     }
 }

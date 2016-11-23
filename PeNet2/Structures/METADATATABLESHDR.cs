@@ -15,6 +15,7 @@ limitations under the License.
 
 *************************************************************************/
 
+using System.Collections.Generic;
 using System.Text;
 
 namespace PeNet.Structures
@@ -25,6 +26,50 @@ namespace PeNet.Structures
     /// </summary>
     public class METADATATABLESHDR : AbstractStructure
     {
+        private List<TableDefinition> _tableDefinitions;
+
+        /// <summary>
+        /// Represents an table definition entry from the list
+        /// of available tables in the Meta Data Tables Header 
+        /// in the .Net header of an assembly.
+        /// </summary>
+        public class TableDefinition
+        {
+            /// <summary>
+            /// Number of rows of the table.
+            /// </summary>
+            public uint NumOfRows { get; }
+
+            /// <summary>
+            /// Name of the table.
+            /// </summary>
+            public string Name { get; }
+
+            /// <summary>
+            /// Create a new table definition.
+            /// </summary>
+            /// <param name="name">Name of the table.</param>
+            /// <param name="numOfRows">Number of rows of the table.</param>
+            public TableDefinition(string name, uint numOfRows)
+            {
+                NumOfRows = numOfRows;
+                Name = name;
+            }
+
+            /// <summary>
+            ///     Create a string representation of the objects
+            ///     properties.
+            /// </summary>
+            /// <returns>The TableDefinition properties as a string.</returns>
+            public override string ToString()
+            {
+                var sb = new StringBuilder("Table Definition\n");
+                sb.Append(Utility.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
+
+                return sb.ToString();
+            }
+        }
+
         /// <summary>
         /// Create a new Meta Data Tables Header instance from a byte array.
         /// </summary>
@@ -102,6 +147,37 @@ namespace PeNet.Structures
         {
             get { return Buff.BytesToUInt64(Offset + 0x10); }
             set { Buff.SetUInt64(Offset + 0x10, value); }
+        }
+
+        /// <summary>
+        /// Access a list of defined tables in the Meta Data Tables Header
+        /// with the name and number of rows of the table.
+        /// </summary>
+        public List<TableDefinition> TableDefinitions
+        {
+            get
+            {
+                if (_tableDefinitions != null)
+                    return _tableDefinitions;
+
+                _tableDefinitions = ParseTableDefinitions();
+                return _tableDefinitions;
+            }
+        }
+
+        private List<TableDefinition> ParseTableDefinitions()
+        {
+            var names = Utility.ResolveMaskValidFlags(MaskValid);
+            var tableDefinitions = new List<TableDefinition>(names.Count);
+            var startOfTableDefinitions = Offset + 24;
+            for (var i = 0; i < names.Count; i++)
+            {
+                var numOfRows = Buff.BytesToUInt32(startOfTableDefinitions + (uint) i*4);
+                var tableDefinition = new TableDefinition(names[i], numOfRows);
+                tableDefinitions.Add(tableDefinition);
+            }
+
+            return tableDefinitions;
         }
 
         /// <summary>

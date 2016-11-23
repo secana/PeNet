@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using static System.String;
 
 namespace PeNet.Parser

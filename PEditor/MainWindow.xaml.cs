@@ -20,7 +20,6 @@ using System.Deployment.Application;
 using System.Windows;
 using Microsoft.Win32;
 using PeNet;
-using PEditor.TabItems;
 
 namespace PEditor
 {
