@@ -77,7 +77,7 @@ namespace PeNet.Utilities
         /// <returns>True if the signature is valid, else false.</returns>
         public static bool IsSignatureValid(string filePath)
         {
-            return NativeMethods.IsTrusted(filePath);
+            return SignatureValidation.IsTrusted(filePath);
         }
 
         /// <summary>

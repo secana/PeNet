@@ -258,5 +258,336 @@ namespace PeNet
             /// </summary>
             GenericParamConstraint = 0x100000000000
         }
+
+        //////////////////////////////////// 
+        /// Meta Data Tables Header Constants
+        ////////////////////////////////////
+
+        /// <summary>
+        /// Lower 2 bits of Meta Data Tables index
+        /// which specify to what the index points.
+        /// </summary>
+        public enum TypeDefOrRef : uint
+        {
+            /// <summary>
+            /// Index into TypeDef table.
+            /// </summary>
+            TypeDef = 0,
+
+            /// <summary>
+            /// Index into TypeRef table.
+            /// </summary>
+            TypeRef = 1,
+
+            /// <summary>
+            /// Index into TypeSpec table.
+            /// </summary>
+            TypeSpec = 2
+        }
+
+        /// <summary>
+        /// Lower 2 bits of Meta Data Tables index
+        /// which specify to what the index points.
+        /// </summary>
+        public enum HasConstant : uint
+        {
+            /// <summary>
+            /// Index into FieldDef.
+            /// </summary>
+            FieldDef = 0,
+
+            /// <summary>
+            /// Index into ParamDef.
+            /// </summary>
+            ParamDef = 1,
+
+            /// <summary>
+            /// Index into Property.
+            /// </summary>
+            Property = 2
+        }
+
+        /// <summary>
+        /// Lower 5 bits of Meta Data Tables index
+        /// which specify to what the index points.
+        /// </summary>
+        public enum HasCustomAttribute : uint
+        {
+            /// <summary>
+            /// Index into MethodDef.
+            /// </summary>
+            MethodDef = 0,
+
+            /// <summary>
+            /// Index into FieldDef.
+            /// </summary>
+            FieldDef = 1,
+
+            /// <summary>
+            /// Index into TypeRef.
+            /// </summary>
+            TypeRef = 2,
+
+            /// <summary>
+            /// Index into TypeDef.
+            /// </summary>
+            TypeDef = 3,
+
+            /// <summary>
+            /// Index into ParamDef.
+            /// </summary>
+            ParamDef = 4,
+
+            /// <summary>
+            /// Index into InterfaceImpl.
+            /// </summary>
+            InterfaceImpl = 5,
+
+            /// <summary>
+            /// Index into MemberRef.
+            /// </summary>
+            MemberRef = 6,
+
+            /// <summary>
+            /// Index into Module.
+            /// </summary>
+            Module = 7,
+
+            /// <summary>
+            /// Index into Permission.
+            /// </summary>
+            Permission = 8,
+
+            /// <summary>
+            /// Index into Property.
+            /// </summary>
+            Property = 9,
+
+            /// <summary>
+            /// Index into Event.
+            /// </summary>
+            Event = 10,
+
+            /// <summary>
+            /// Index into StandAloneSig.
+            /// </summary>
+            StandAloneSig = 11,
+
+            /// <summary>
+            /// Index into ModuleRef.
+            /// </summary>
+            ModuleRef = 12,
+
+            /// <summary>
+            /// Index into TypeSpec.
+            /// </summary>
+            TypeSpec = 13,
+
+            /// <summary>
+            /// Index into Assembly.
+            /// </summary>
+            Assembly = 14,
+
+            /// <summary>
+            /// Index into AssemblyRef.
+            /// </summary>
+            AssemblyRef = 15,
+
+            /// <summary>
+            /// Index into File.
+            /// </summary>
+            File = 16,
+
+            /// <summary>
+            /// Index into ExportType.
+            /// </summary>
+            ExportedType = 17,
+
+            /// <summary>
+            /// Index into ManifestResource.
+            /// </summary>
+            ManifestResource = 18
+        }
+
+        /// <summary>
+        /// Lower 2 bits of Meta Data Tables index
+        /// which specify to what the index points.
+        /// </summary>
+        public enum HasFieldMarshall : uint
+        {
+            /// <summary>
+            /// Index into FieldDef.
+            /// </summary>
+            FieldDef = 0,
+
+            /// <summary>
+            /// Index into ParamDef.
+            /// </summary>
+            ParamDef = 1
+        }
+
+        /// <summary>
+        /// Lower 2 bits of Meta Data Tables index
+        /// which specify to what the index points.
+        /// </summary>
+        public enum HasDeclSecurity : uint
+        {
+            /// <summary>
+            /// Index into TypeDef.
+            /// </summary>
+            TypeDef = 0,
+
+            /// <summary>
+            /// Index into MethodDef.
+            /// </summary>
+            MethodDef = 1,
+
+            /// <summary>
+            /// Index into Assembly.
+            /// </summary>
+            Assembly = 2
+        }
+
+        /// <summary>
+        /// Lower 3 bits of Meta Data Tables index
+        /// which specify to what the index points.
+        /// </summary>
+        public enum MemberRefParent : uint
+        {
+            /// <summary>
+            /// Index into TypeDef.
+            /// </summary>
+            TypeDef = 0,
+
+            /// <summary>
+            /// Index into TypeRef.
+            /// </summary>
+            TypeRef = 1,
+
+            /// <summary>
+            /// Index into ModuleRef.
+            /// </summary>
+            ModuleRef = 2,
+
+            /// <summary>
+            /// Index into MethodDef.
+            /// </summary>
+            MethodDef = 3,
+
+            /// <summary>
+            /// Index into TypeSpec.
+            /// </summary>
+            TypeSpec = 4
+        }
+
+        /// <summary>
+        /// Lowest bit of Meta Data Tables index
+        /// which specify to what the index points.
+        /// </summary>
+        public enum HasSemantics : uint
+        {
+            /// <summary>
+            /// Index into Event.
+            /// </summary>
+            Event = 0,
+
+            /// <summary>
+            /// Index into Property.
+            /// </summary>
+            Property = 1
+        }
+
+        /// <summary>
+        /// Lowest bit of Meta Data Tables index
+        /// which specify to what the index points.
+        /// </summary>
+        public enum MethodDefOrRef : uint
+        {
+            /// <summary>
+            /// Index into MethodDef.
+            /// </summary>
+            MethodDef = 0,
+
+            /// <summary>
+            /// Index into MemberRef.
+            /// </summary>
+            MemberRef = 1
+        }
+
+        /// <summary>
+        /// Lowest bit of Meta Data Tables index
+        /// which specify to what the index points.
+        /// </summary>
+        public enum MemberForwarded : uint
+        {
+            /// <summary>
+            /// Index into FieldDef.
+            /// </summary>
+            FieldDef = 0,
+
+            /// <summary>
+            /// Index into MethodDef.
+            /// </summary>
+            MethodDef = 1
+        }
+
+        /// <summary>
+        /// Lower 3 bits of Meta Data Tables index
+        /// which specify to what the index points.
+        /// </summary>
+        public enum CustomAttributeType : uint
+        {
+            /// <summary>
+            /// Not used.
+            /// </summary>
+            NotUsed1 = 0,
+
+            /// <summary>
+            /// Not used.
+            /// </summary>
+            NotUsed2 = 1,
+
+            /// <summary>
+            /// Index into MethodDef.
+            /// </summary>
+            MethodDef = 2,
+
+            /// <summary>
+            /// Index into MemberRef.
+            /// </summary>
+            MemberRef = 3,
+
+            /// <summary>
+            /// Not used.
+            /// </summary>
+            NotUsed3 = 4
+        }
+
+        /// <summary>
+        /// Lower 2 bits of Meta Data Tables index
+        /// which specify to what the index points.
+        /// </summary>
+        public enum ResolutionScope : uint
+        {
+            /// <summary>
+            /// Index into Module.
+            /// </summary>
+            Module = 0,
+
+            /// <summary>
+            /// Index into ModuleRef.
+            /// </summary>
+            ModuleRef = 1,
+
+            /// <summary>
+            /// Index into AssemblyRef.
+            /// </summary>
+            AssemblyRef = 2,
+
+            /// <summary>
+            /// Index into TypeRef.
+            /// </summary>
+            TypeRef = 3
+        }
     }
 }
