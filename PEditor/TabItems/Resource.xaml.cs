@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using PeNet;
 using PeNet.Structures;
+using PeNet.Utilities;
 
 namespace PEditor.TabItems
 {
@@ -72,7 +73,7 @@ namespace PEditor.TabItems
                 {
                     item = new MyTreeViewItem<IMAGE_RESOURCE_DIRECTORY_ENTRY>(de)
                     {
-                        Header = Utility.ResolveResourceId(de.ID)
+                        Header = PeNet.Utilities.FlagResolver.ResolveResourceId(de.ID)
                     };
                 }
                 else if (de.IsNamedEntry)

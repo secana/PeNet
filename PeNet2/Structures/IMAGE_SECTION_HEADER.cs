@@ -16,6 +16,8 @@ limitations under the License.
 *************************************************************************/
 
 using System.Text;
+using PeNet.Utilities;
+using ExtensionMethods = PeNet.Utilities.ExtensionMethods;
 
 namespace PeNet.Structures
 {
@@ -170,7 +172,7 @@ namespace PeNet.Structures
         public override string ToString()
         {
             var sb = new StringBuilder("IMAGE_SECTION_HEADER\n");
-            sb.Append(Utility.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
+            sb.Append(ExtensionMethods.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
             return sb.ToString();
         }
     }

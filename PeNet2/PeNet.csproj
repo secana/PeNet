@@ -66,6 +66,10 @@
     <Compile Include="DotNetConstants.cs" />
     <Compile Include="DotNetStructureParsers.cs" />
     <Compile Include="ExportFunction.cs" />
+    <Compile Include="Utilities\ExtractionMethods.cs" />
+    <Compile Include="FileCharacteristics.cs" />
+    <Compile Include="Utilities\SignatureInformation.cs" />
+    <Compile Include="Utilities\Hashes.cs" />
     <Compile Include="ImpHash\ImportHash.cs" />
     <Compile Include="ImportFunction.cs" />
     <Compile Include="Parser\ExportedFunctionsParser.cs" />
@@ -128,7 +132,8 @@
     <Compile Include="Structures\RUNTIME_FUNCTION.cs" />
     <Compile Include="Structures\UNWIND_CODE.cs" />
     <Compile Include="Structures\UNWIND_INFO.cs" />
-    <Compile Include="Utility.cs" />
+    <Compile Include="Utilities\ExtensionMethods.cs" />
+    <Compile Include="Utilities\FlagResolver.cs" />
     <Compile Include="Structures\WIN_CERTIFICATE.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

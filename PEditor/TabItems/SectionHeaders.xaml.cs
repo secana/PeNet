@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using PeNet;
+using PeNet.Utilities;
 
 namespace PEditor.TabItems
 {
@@ -18,11 +19,11 @@ namespace PEditor.TabItems
             var num = 1;
             foreach (var sec in peFile.ImageSectionHeaders)
             {
-                var flags = string.Join(", ", Utility.ResolveSectionFlags(sec.Characteristics));
+                var flags = string.Join(", ", PeNet.Utilities.FlagResolver.ResolveSectionFlags(sec.Characteristics));
                 dgSections.Items.Add(new
                 {
                     Number = num,
-                    Name = Utility.ResolveSectionName(sec.Name),
+                    Name = PeNet.Utilities.FlagResolver.ResolveSectionName(sec.Name),
                     VSize = sec.VirtualSize.ToHexString(),
                     VAddress = sec.VirtualAddress.ToHexString(),
                     PSize = sec.SizeOfRawData.ToHexString(),

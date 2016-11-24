@@ -95,7 +95,7 @@
     <Compile Include="Structures\UNWIND_CODE_Test.cs" />
     <Compile Include="Structures\UNWIND_INFO_Test.cs" />
     <Compile Include="Structures\WIN_CERTIFICATE_Test.cs" />
-    <Compile Include="Utility_Test.cs" />
+    <Compile Include="Utilities\FlagResolver_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PeNet2\PeNet.csproj">

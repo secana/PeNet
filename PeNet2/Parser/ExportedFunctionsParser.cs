@@ -16,6 +16,7 @@ limitations under the License.
 *************************************************************************/
 
 using PeNet.Structures;
+using PeNet.Utilities;
 
 namespace PeNet.Parser
 {
@@ -60,8 +61,8 @@ namespace PeNet.Parser
             {
                 var namePtr = _buff.BytesToUInt32(nameOffsetPointer + sizeof(uint)*i);
                 var nameAdr = namePtr.RVAtoFileMapping(_sectionHeaders);
-                var name = Utility.GetCString(nameAdr, _buff);
-                var ordinalIndex = (uint) Utility.GetOrdinal(ordOffset + sizeof(ushort)*i, _buff);
+                var name = ExtractionMethods.GetCString(nameAdr, _buff);
+                var ordinalIndex = (uint) ExtractionMethods.GetOrdinal(ordOffset + sizeof(ushort)*i, _buff);
 
                 expFuncs[ordinalIndex] = new ExportFunction(name, expFuncs[ordinalIndex].Address,
                     expFuncs[ordinalIndex].Ordinal);

@@ -22,6 +22,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using PeNet.ImpHash;
 using PeNet.Structures;
+using PeNet.Utilities;
+using ExtensionMethods = PeNet.Utilities.ExtensionMethods;
 
 namespace PeNet
 {
@@ -279,17 +281,17 @@ namespace PeNet
         /// <summary>
         ///     The SHA-256 hash sum of the binary.
         /// </summary>
-        public string SHA256 => _sha256 ?? (_sha256 = Utility.Sha256(Buff));
+        public string SHA256 => _sha256 ?? (_sha256 = Hashes.Sha256(Buff));
 
         /// <summary>
         ///     The SHA-1 hash sum of the binary.
         /// </summary>
-        public string SHA1 => _sha1 ?? (_sha1 = Utility.Sha1(Buff));
+        public string SHA1 => _sha1 ?? (_sha1 = Hashes.Sha1(Buff));
 
         /// <summary>
         ///     The MD5 of hash sum of the binary.
         /// </summary>
-        public string MD5 => _md5 ?? (_md5 = Utility.MD5(Buff));
+        public string MD5 => _md5 ?? (_md5 = Hashes.MD5(Buff));
 
         /// <summary>
         ///     The Import Hash of the binary if any imports are
@@ -317,7 +319,7 @@ namespace PeNet
             if (!IsSigned)
                 return false;
 
-            return Utility.IsValidCertChain(PKCS7, online);
+            return SignatureInformation.IsValidCertChain(PKCS7, online);
         }
 
         /// <summary>
@@ -493,7 +495,7 @@ namespace PeNet
         public override string ToString()
         {
             var sb = new StringBuilder("PE HEADER:\n");
-            sb.Append(Utility.PropertiesToString(this, "{0,-15}:\t{1,10:X}\n"));
+            sb.Append(ExtensionMethods.PropertiesToString(this, "{0,-15}:\t{1,10:X}\n"));
             return sb.ToString();
         }
     }

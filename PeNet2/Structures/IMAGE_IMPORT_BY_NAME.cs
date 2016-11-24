@@ -16,6 +16,8 @@ limitations under the License.
 *************************************************************************/
 
 using System.Text;
+using PeNet.Utilities;
+using ExtensionMethods = PeNet.Utilities.ExtensionMethods;
 
 namespace PeNet.Structures
 {
@@ -49,7 +51,7 @@ namespace PeNet.Structures
         /// <summary>
         ///     Name of the function to import as a C-string (null terminated).
         /// </summary>
-        public string Name => Utility.GetCString(Offset + 0x2, Buff);
+        public string Name => ExtractionMethods.GetCString(Offset + 0x2, Buff);
 
         /// <summary>
         ///     Creates a string representation of the objects properties.
@@ -58,7 +60,7 @@ namespace PeNet.Structures
         public override string ToString()
         {
             var sb = new StringBuilder("IMAGE_IMPORT_BY_NAME\n");
-            sb.Append(Utility.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
+            sb.Append(ExtensionMethods.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
             return sb.ToString();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PeNet.Utilities;
 using static System.String;
 
 namespace PeNet.Parser
@@ -19,7 +20,7 @@ namespace PeNet.Parser
 
             for (var i = _offset; i < _offset + _size; i++)
             {
-                var tmpString = Utility.GetUnicodeString(i, _buff);
+                var tmpString = ExtractionMethods.GetUnicodeString(i, _buff);
                 i += (uint) tmpString.Length * 2 + 1 ;
 
                 if (IsNullOrWhiteSpace(tmpString))

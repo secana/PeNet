@@ -20,6 +20,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using PeNet.Parser;
 using PeNet.Structures;
+using PeNet.Utilities;
 
 namespace PeNet
 {

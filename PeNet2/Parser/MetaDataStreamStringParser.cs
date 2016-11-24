@@ -17,6 +17,7 @@ limitations under the License.
 
 using System;
 using System.Collections.Generic;
+using PeNet.Utilities;
 
 namespace PeNet.Parser
 {
@@ -40,7 +41,7 @@ namespace PeNet.Parser
 
             for (var i = _offset; i < _offset + _size; i++)
             {
-                var tmpString = Utility.GetCString(i, _buff);
+                var tmpString = ExtractionMethods.GetCString(i, _buff);
                 i += (uint) tmpString.Length;
 
                 if(String.IsNullOrWhiteSpace(tmpString))

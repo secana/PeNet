@@ -219,14 +219,14 @@ namespace PeNet.UnitTest.Structures
 
             0x99, // Reserved2
 
-            0xbb, // MaskValid
-            0xcc,
-            0xdd,
-            0xee,
+            0xff, // MaskValid
             0xff,
-            0x00,
-            0x11,
-            0x22,
+            0xff,
+            0xff,
+            0xff,
+            0xff,
+            0xff,
+            0xff,
 
             0x33, // MaskSorted
             0x44,
@@ -235,7 +235,198 @@ namespace PeNet.UnitTest.Structures
             0x77,
             0x88,
             0x99,
-            0xaa
+            0xaa,
+
+            // Table number of row definitions
+            0x00, // Module
+            0x00,
+            0x00,
+            0x00,
+
+            0x01, // TypeRef
+            0x00,
+            0x00,
+            0x00,
+
+            0x02, // TypeDef
+            0x00,
+            0x00,
+            0x00,
+
+            0x04, // Field
+            0x00,
+            0x00,
+            0x00,
+
+            0x06, // MethodDef
+            0x00,
+            0x00,
+            0x00,
+
+            0x08, // Param
+            0x00,
+            0x00,
+            0x00,
+
+            0x09, // InterfaceImpl
+            0x00,
+            0x00,
+            0x00,
+
+            0x10, // MemberRef
+            0x00,
+            0x00,
+            0x00,
+
+            0x11, // Constant
+            0x00,
+            0x00,
+            0x00,
+
+            0x12, // CustomAttribute
+            0x00,
+            0x00,
+            0x00,
+
+            0x13, // FieldMarshal
+            0x00,
+            0x00,
+            0x00,
+
+            0x14, // DeclSecurity
+            0x00,
+            0x00,
+            0x00,
+
+            0x15, // ClassLayout
+            0x00,
+            0x00,
+            0x00,
+
+            0x16, // FieldLayout
+            0x00,
+            0x00,
+            0x00,
+
+            0x17, // StandAloneSig
+            0x00,
+            0x00,
+            0x00,
+
+            0x18, // EventMap
+            0x00,
+            0x00,
+            0x00,
+
+            0x20, // Event
+            0x00,
+            0x00,
+            0x00,
+
+            0x21, // PropertyMap
+            0x00,
+            0x00,
+            0x00,
+
+            0x23, // Property
+            0x00,
+            0x00,
+            0x00,
+
+            0x24, // MethodSemantics
+            0x00,
+            0x00,
+            0x00,
+
+            0x25, // MethodImpl
+            0x00,
+            0x00,
+            0x00,
+
+            0x26, // ModuleRef
+            0x00,
+            0x00,
+            0x00,
+
+            0x27, // TypeSpec
+            0x00,
+            0x00,
+            0x00,
+
+            0x28, // ImplMap
+            0x00,
+            0x00,
+            0x00,
+
+            0x29, // FieldRVA
+            0x00,
+            0x00,
+            0x00,
+
+            0x32, // Assembly
+            0x00,
+            0x00,
+            0x00,
+
+            0x33, // AssemblyProcessor
+            0x00,
+            0x00,
+            0x00,
+
+            0x34, // AssemblyOS
+            0x00,
+            0x00,
+            0x00,
+
+            0x35, // AssemblyRef
+            0x00,
+            0x00,
+            0x00,
+
+            0x36, // AssemblyRefProcessor
+            0x00,
+            0x00,
+            0x00,
+
+            0x37, // AssemblyRefOS
+            0x00,
+            0x00,
+            0x00,
+
+            0x38, // File
+            0x00,
+            0x00,
+            0x00,
+
+            0x39, // ExportedType
+            0x00,
+            0x00,
+            0x00,
+
+            0x40, // ManifestResource
+            0x00,
+            0x00,
+            0x00,
+
+            0x41, // NestedClass
+            0x00,
+            0x00,
+            0x00,
+
+            0x42, // GenericParam
+            0x00,
+            0x00,
+            0x00,
+
+            0x43, // MethodSpec
+            0x00,
+            0x00,
+            0x00,
+
+            0x44, // GenericParamConstraint
+            0x00,
+            0x00,
+            0x00
         };
     }
 }
