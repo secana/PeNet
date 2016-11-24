@@ -41,7 +41,7 @@ namespace PeNet.Parser
 
             for (var i = _offset; i < _offset + _size; i++)
             {
-                var tmpString = ExtractionMethods.GetCString(i, _buff);
+                var tmpString = _buff.GetCString(i);
                 i += (uint) tmpString.Length;
 
                 if(String.IsNullOrWhiteSpace(tmpString))

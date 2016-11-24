@@ -52,7 +52,7 @@ namespace PeNet.Parser
             foreach (var idesc in _importDescriptors)
             {
                 var dllAdr = idesc.Name.RVAtoFileMapping(_sectionHeaders);
-                var dll = ExtractionMethods.GetCString(dllAdr, _buff);
+                var dll = _buff.GetCString(dllAdr);
                 var tmpAdr = idesc.OriginalFirstThunk != 0 ? idesc.OriginalFirstThunk : idesc.FirstThunk;
                 if (tmpAdr == 0)
                     continue;

@@ -420,5 +420,74 @@ namespace PeNet.Utilities
 
             return sb.ToString();
         }
+
+        internal static ushort GetOrdinal(this byte[] buff, uint ordinal)
+        {
+            return BitConverter.ToUInt16(new[] {buff[ordinal], buff[ordinal + 1]}, 0);
+        }
+
+        /// <summary>
+        ///     Get a name (C string) at a specific position in a buffer.
+        /// </summary>
+        /// <param name="buff">Containing buffer.</param>
+        /// <param name="stringOffset">Offset of the string.</param>
+        /// <returns>The parsed C string.</returns>
+        public static string GetCString(this byte[] buff, ulong stringOffset)
+        {
+            var length = GetCStringLength(buff, stringOffset);
+            var tmp = new char[length];
+            for (ulong i = 0; i < length; i++)
+            {
+                tmp[i] = (char) buff[stringOffset + i];
+            }
+
+            return new string(tmp);
+        }
+
+        /// <summary>
+        ///     For a given offset in an byte array, find the next
+        ///     null value which terminates a C string.
+        /// </summary>
+        /// <param name="buff">Buffer which contains the string.</param>
+        /// <param name="stringOffset">Offset of the string.</param>
+        /// <returns>Length of the string in bytes.</returns>
+        public static ulong GetCStringLength(this byte[] buff, ulong stringOffset)
+        {
+            var offset = stringOffset;
+            ulong length = 0;
+            while (buff[offset] != 0x00)
+            {
+                length++;
+                offset++;
+            }
+            return length;
+        }
+
+        /// <summary>
+        ///     Get a unicode string at a specific position in a buffer.
+        /// </summary>
+        /// <param name="buff">Containing buffer.</param>
+        /// <param name="stringOffset">Offset of the string.</param>
+        /// <returns>The parsed unicode string.</returns>
+        public static string GetUnicodeString(this byte[] buff, ulong stringOffset)
+        {
+            var charList = new List<byte>();
+
+            for (var i = stringOffset; i < (ulong) buff.Length - 1; i++)
+            {
+                var highByte = buff[i +  1];
+                var lowByte = buff[i];
+
+                if(highByte != 0x00)
+                    continue;
+
+                if (highByte == 0x00 && lowByte == 0x00) // End of string.
+                    break;
+
+                charList.Add(lowByte);
+            }
+
+            return Encoding.ASCII.GetString(charList.ToArray());
+        }
     }
 }

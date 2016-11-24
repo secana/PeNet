@@ -66,7 +66,7 @@ namespace PeNet.Structures
         public override string ToString()
         {
             var sb = new StringBuilder("IMAGE_NT_HEADERS\n");
-            sb.Append(ExtensionMethods.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
+            sb.Append(this.PropertiesToString("{0,-10}:\t{1,10:X}\n"));
             sb.Append(FileHeader);
             sb.Append(OptionalHeader);
 

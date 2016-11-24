@@ -75,7 +75,7 @@ namespace PeNet.Structures
 
         private string ParseStreamName(uint nameOffset)
         {
-            return ExtractionMethods.GetCString(nameOffset, Buff);
+            return Buff.GetCString(nameOffset);
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace PeNet.Structures
         public override string ToString()
         {
             var sb = new StringBuilder("METADATASTREAMHDR\n");
-            sb.Append(ExtensionMethods.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
+            sb.Append(this.PropertiesToString("{0,-10}:\t{1,10:X}\n"));
 
             return sb.ToString();
         }

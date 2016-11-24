@@ -93,7 +93,7 @@ namespace PeNet.Structures
         public override string ToString()
         {
             var sb = new StringBuilder("IMAGE_BASE_RELOCATION\n");
-            sb.Append(ExtensionMethods.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
+            sb.Append(this.PropertiesToString("{0,-10}:\t{1,10:X}\n"));
             TypeOffsets.ToList().ForEach(to => sb.AppendLine(to.ToString()));
 
             return sb.ToString();
@@ -152,7 +152,7 @@ namespace PeNet.Structures
             public override string ToString()
             {
                 var sb = new StringBuilder("TypeOffset\n");
-                sb.Append(ExtensionMethods.PropertiesToString(this, "{0,-10}:\t{1,10:X}\n"));
+                sb.Append(this.PropertiesToString("{0,-10}:\t{1,10:X}\n"));
 
                 return sb.ToString();
             }

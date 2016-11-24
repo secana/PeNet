@@ -146,7 +146,7 @@ namespace PeNet.Structures
         public override string ToString()
         {
             var sb = new StringBuilder("IMAGE_RESOURCE_DIRECTORY_ENTRY\n");
-            sb.Append(ExtensionMethods.PropertiesToString(this, "{0,-20}:\t{1,10:X}\n"));
+            sb.Append(this.PropertiesToString("{0,-20}:\t{1,10:X}\n"));
             if (ResourceDirectory != null)
                 sb.Append(ResourceDirectory);
             return sb.ToString();

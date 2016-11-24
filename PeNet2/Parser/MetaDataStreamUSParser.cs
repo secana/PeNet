@@ -20,7 +20,7 @@ namespace PeNet.Parser
 
             for (var i = _offset; i < _offset + _size; i++)
             {
-                var tmpString = ExtractionMethods.GetUnicodeString(i, _buff);
+                var tmpString = _buff.GetUnicodeString(i);
                 i += (uint) tmpString.Length * 2 + 1 ;
 
                 if (IsNullOrWhiteSpace(tmpString))

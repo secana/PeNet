@@ -34,7 +34,7 @@
         </Menu>
         <TabControl Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <TabItem Header="File Info">
-               <local:FileInfo x:Name="FileInfo"></local:FileInfo>
+               <local:FileInfo x:Name="FileInfo" />
             </TabItem>
 
             <TabItem Header="DOS/NT Header">

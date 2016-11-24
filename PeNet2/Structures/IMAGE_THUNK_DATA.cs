@@ -93,7 +93,7 @@ namespace PeNet.Structures
         public override string ToString()
         {
             var sb = new StringBuilder("IMAGE_THUNK_DATA\n");
-            sb.Append(ExtensionMethods.PropertiesToString(this, "{0,-15}:\t{1,10:X}\n"));
+            sb.Append(this.PropertiesToString("{0,-15}:\t{1,10:X}\n"));
             return sb.ToString();
         }
     }

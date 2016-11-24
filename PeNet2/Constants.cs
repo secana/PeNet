@@ -23,7 +23,7 @@ namespace PeNet
     ///     This class contains constants and flags which are used in a PE file.
     ///     The constants can be used to map a numeric value to an understandable string.
     /// </summary>
-    public static partial class Constants
+    public static class Constants
     {
         ////////////////////////
         // IMAGE_DATA_DIRECTORY
