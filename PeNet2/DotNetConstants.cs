@@ -260,7 +260,7 @@ namespace PeNet
         }
 
         //////////////////////////////////// 
-        /// Meta Data Tables Header Constants
+        // Meta Data Tables Header Constants
         ////////////////////////////////////
 
         /// <summary>

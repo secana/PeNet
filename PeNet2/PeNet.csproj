@@ -67,6 +67,7 @@
     <Compile Include="DotNetStructureParsers.cs" />
     <Compile Include="ExportFunction.cs" />
     <Compile Include="FileCharacteristics.cs" />
+    <Compile Include="Utilities\HeapOffsetBasedIndexSizes.cs" />
     <Compile Include="Utilities\MetaDataTableIndexComputation.cs" />
     <Compile Include="Utilities\SignatureInformation.cs" />
     <Compile Include="Utilities\Hashes.cs" />
