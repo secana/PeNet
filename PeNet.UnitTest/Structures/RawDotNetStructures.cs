@@ -428,5 +428,26 @@ namespace PeNet.UnitTest.Structures
             0x00,
             0x00
         };
+
+        public static byte[] RawModuleTableSmall =
+        {
+            0x00, // Garbage for offset test
+            0x00,
+
+            0x11, // Generation
+            0x22,
+
+            0x33, // Name
+            0x44,
+
+            0x55, // Mvid
+            0x66,
+
+            0x77, // EndId
+            0x88,
+
+            0x99, // EncBaseId
+            0xaa
+        };
     }
 }

@@ -42,6 +42,10 @@
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="dotMemory.Unit, Version=103.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.dotMemoryUnit.2.3.20160517.113140\lib\dotMemory.Unit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Moq, Version=4.5.8.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.5.8\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
@@ -104,6 +108,7 @@
     <Compile Include="Structures\IMAGE_THUNK_DATA_Test.cs" />
     <Compile Include="Structures\METADATAHDR_Test.cs" />
     <Compile Include="Structures\METADATATABLESHDR_Test.cs" />
+    <Compile Include="Structures\MetaDataTables\ModuleTable_Test.cs" />
     <Compile Include="Structures\RawDotNetStructures.cs" />
     <Compile Include="Structures\RawStructures.cs" />
     <Compile Include="Structures\RUNTIME_FUNCTION_Test.cs" />
@@ -127,6 +132,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

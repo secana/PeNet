@@ -46,11 +46,27 @@ namespace PeNet.Utilities
         ///     Convert a two bytes in a byte array to an 16 bit unsigned integer.
         /// </summary>
         /// <param name="buff">Byte buffer.</param>
-        /// <param name="i">Position of the high byte. Low byte is i+1.</param>
+        /// <param name="offset">Position of the high byte. Low byte is i+1.</param>
         /// <returns>UInt16 of the bytes in the buffer at position i and i+1.</returns>
-        public static ushort BytesToUInt16(this byte[] buff, ulong i)
+        public static ushort BytesToUInt16(this byte[] buff, ulong offset)
         {
-            return BytesToUInt16(buff[i], buff[i + 1]);
+            return BytesToUInt16(buff[offset], buff[offset + 1]);
+        }
+
+        /// <summary>
+        ///     Convert up to 2 bytes out of a buffer to an 16 bit unsigned integer.
+        /// </summary>
+        /// <param name="buff">Byte buffer.</param>
+        /// <param name="offset">Offset of the highest byte.</param>
+        /// <param name="numOfBytes">Number of bytes to read.</param>
+        /// <returns>UInt16 of numOfBytes bytes.</returns>
+        public static uint BytesToUInt16(this byte[] buff, uint offset, uint numOfBytes)
+        {
+            var bytes = new byte[2];
+            for (var i = 0; i < numOfBytes; i++)
+                bytes[i] = buff[offset + i];
+
+            return BitConverter.ToUInt16(bytes, 0);
         }
 
         /// <summary>
@@ -70,11 +86,27 @@ namespace PeNet.Utilities
         ///     Convert 4 consecutive bytes out of a buffer to an 32 bit unsigned integer.
         /// </summary>
         /// <param name="buff">Byte buffer.</param>
-        /// <param name="i">Offset of the highest byte.</param>
+        /// <param name="offset">Offset of the highest byte.</param>
         /// <returns>UInt32 of 4 bytes.</returns>
-        public static uint BytesToUInt32(this byte[] buff, uint i)
+        public static uint BytesToUInt32(this byte[] buff, uint offset)
         {
-            return BytesToUInt32(buff[i], buff[i + 1], buff[i + 2], buff[i + 3]);
+            return BytesToUInt32(buff[offset], buff[offset + 1], buff[offset + 2], buff[offset + 3]);
+        }
+
+        /// <summary>
+        ///     Convert up to 4 bytes out of a buffer to an 32 bit unsigned integer.
+        /// </summary>
+        /// <param name="buff">Byte buffer.</param>
+        /// <param name="offset">Offset of the highest byte.</param>
+        /// <param name="numOfBytes">Number of bytes to read.</param>
+        /// <returns>UInt32 of numOfBytes bytes.</returns>
+        public static uint BytesToUInt32(this byte[] buff, uint offset, uint numOfBytes)
+        {
+            var bytes = new byte[4];
+            for (var i = 0; i < numOfBytes; i++)
+                bytes[i] = buff[offset + i];
+
+            return BitConverter.ToUInt32(bytes, 0);
         }
 
         /// <summary>
@@ -99,12 +131,29 @@ namespace PeNet.Utilities
         ///     64 bit unsigned integer.
         /// </summary>
         /// <param name="buff">Byte buffer.</param>
-        /// <param name="i">Offset of the highest byte.</param>
+        /// <param name="offset">Offset of the highest byte.</param>
         /// <returns>UInt64 of the byte sequence at offset i.</returns>
-        public static ulong BytesToUInt64(this byte[] buff, ulong i)
+        public static ulong BytesToUInt64(this byte[] buff, ulong offset)
         {
-            return BytesToUInt64(buff[i], buff[i + 1], buff[i + 2], buff[i + 3], buff[i + 4], buff[i + 5], buff[i + 6],
-                buff[i + 7]);
+            return BytesToUInt64(buff[offset], buff[offset + 1], buff[offset + 2], 
+                buff[offset + 3], buff[offset + 4], buff[offset + 5], buff[offset + 6],
+                buff[offset + 7]);
+        }
+
+        /// <summary>
+        ///     Convert up to 8 bytes out of a buffer to an 64 bit unsigned integer.
+        /// </summary>
+        /// <param name="buff">Byte buffer.</param>
+        /// <param name="offset">Offset of the highest byte.</param>
+        /// <param name="numOfBytes">Number of bytes to read.</param>
+        /// <returns>UInt64 of numOfBytes bytes.</returns>
+        public static ulong BytesToUInt64(this byte[] buff, uint offset, uint numOfBytes)
+        {
+            var bytes = new byte[8];
+            for (var i = 0; i < numOfBytes; i++)
+                bytes[i] = buff[offset + i];
+
+            return BitConverter.ToUInt64(bytes, 0);
         }
 
         /// <summary>

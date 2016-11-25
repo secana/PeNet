@@ -28,17 +28,17 @@ namespace PeNet.Utilities
         /// <summary>
         /// Size of the #String index (4 or 2 bytes).
         /// </summary>
-        public int StringIndexSize => (_heapOffsetSizes & 0x1) == 0x1 ? 4 : 2;
+        public uint StringIndexSize => (uint) ((_heapOffsetSizes & 0x1) == 0x1 ? 4 : 2);
 
         /// <summary>
         /// Size of the #GUID index (4 or 2 bytes).
         /// </summary>
-        public int GuidIndexSize => ((_heapOffsetSizes >> 1) & 0x1) == 0x1 ? 4 : 2;
+        public uint GuidIndexSize => (uint) (((_heapOffsetSizes >> 1) & 0x1) == 0x1 ? 4 : 2);
 
         /// <summary>
         /// Size of the #Blob index (4 or 2 bytes).
         /// </summary>
-        public int BlobSize => ((_heapOffsetSizes >> 2) & 0x1) == 0x1 ? 4 : 2;
+        public uint BlobSize => (uint) (((_heapOffsetSizes >> 2) & 0x1) == 0x1 ? 4 : 2);
 
         /// <summary>
         /// Create a new HeapOffsetBasedIndexSizes instance based
