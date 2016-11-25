@@ -15,25 +15,25 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class IMAGE_DELAY_IMPORT_DESCRIPTOR_Test
     {
-        [TestMethod]
+        [Fact]
         public void ImageDelayImportDescriptorConstructorWorks_Test()
         {
             var delayImportDescriptor = new IMAGE_DELAY_IMPORT_DESCRIPTOR(RawStructures.RawDelayImportDescriptor, 0x2);
-            Assert.AreEqual((uint) 0x33221100, delayImportDescriptor.grAttrs);
-            Assert.AreEqual((uint) 0x77665544, delayImportDescriptor.szName);
-            Assert.AreEqual((uint) 0xbbaa9988, delayImportDescriptor.phmod);
-            Assert.AreEqual((uint) 0xffeeddcc, delayImportDescriptor.pIAT);
-            Assert.AreEqual((uint) 0x44332211, delayImportDescriptor.pINT);
-            Assert.AreEqual((uint) 0xccbbaa99, delayImportDescriptor.pUnloadIAT);
-            Assert.AreEqual((uint) 0x00ffeedd, delayImportDescriptor.dwTimeStamp);
+            Assert.Equal((uint) 0x33221100, delayImportDescriptor.grAttrs);
+            Assert.Equal((uint) 0x77665544, delayImportDescriptor.szName);
+            Assert.Equal((uint) 0xbbaa9988, delayImportDescriptor.phmod);
+            Assert.Equal((uint) 0xffeeddcc, delayImportDescriptor.pIAT);
+            Assert.Equal((uint) 0x44332211, delayImportDescriptor.pINT);
+            Assert.Equal((uint) 0xccbbaa99, delayImportDescriptor.pUnloadIAT);
+            Assert.Equal((uint) 0x00ffeedd, delayImportDescriptor.dwTimeStamp);
         }
     }
 }

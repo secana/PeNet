@@ -15,23 +15,23 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class UNWIND_CODE_Test
     {
-        [TestMethod]
+        [Fact]
         public void UnwindCodeConstructorWorks_Test()
         {
             var unwindCode = new UNWIND_CODE(RawStructures.RawUnwindCode, 2);
 
-            Assert.AreEqual((byte) 0x11, unwindCode.CodeOffset);
-            Assert.AreEqual((byte) 0x2, unwindCode.UnwindOp);
-            Assert.AreEqual((byte) 0x3, unwindCode.Opinfo);
-            Assert.AreEqual((ushort) 0x5544, unwindCode.FrameOffset);
+            Assert.Equal((byte) 0x11, unwindCode.CodeOffset);
+            Assert.Equal((byte) 0x2, unwindCode.UnwindOp);
+            Assert.Equal((byte) 0x3, unwindCode.Opinfo);
+            Assert.Equal((ushort) 0x5544, unwindCode.FrameOffset);
         }
     }
 }

@@ -15,19 +15,19 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class Copyright_Test
     {
-        [TestMethod]
+        [Fact]
         public void CopyrightConstructorWorks_Test()
         {
             var copyright = new Copyright(RawStructures.RawCopyright, 2, 9);
-            Assert.AreEqual("copyright", copyright.CopyrightString);
+            Assert.Equal("copyright", copyright.CopyrightString);
         }
     }
 }

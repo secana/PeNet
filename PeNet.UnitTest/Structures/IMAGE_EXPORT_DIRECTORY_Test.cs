@@ -15,30 +15,30 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class IMAGE_EXPORT_DIRECTORY_Test
     {
-        [TestMethod]
+        [Fact]
         public void ImageExportDirectoryConstructorWorks_Test()
         {
             var exportDirectory = new IMAGE_EXPORT_DIRECTORY(RawStructures.RawExportDirectory, 2);
 
-            Assert.AreEqual((uint) 0x33221100, exportDirectory.Characteristics);
-            Assert.AreEqual((uint) 0x77665544, exportDirectory.TimeDateStamp);
-            Assert.AreEqual((ushort) 0x9988, exportDirectory.MajorVersion);
-            Assert.AreEqual((ushort) 0xbbaa, exportDirectory.MinorVersion);
-            Assert.AreEqual(0xffeeddcc, exportDirectory.Name);
-            Assert.AreEqual((uint) 0x55443322, exportDirectory.Base);
-            Assert.AreEqual((uint) 0x44332211, exportDirectory.NumberOfFunctions);
-            Assert.AreEqual(0x88776655, exportDirectory.NumberOfNames);
-            Assert.AreEqual(0xccbbaa99, exportDirectory.AddressOfFunctions);
-            Assert.AreEqual((uint) 0x00ffeedd, exportDirectory.AddressOfNames);
-            Assert.AreEqual((uint) 0x55443322, exportDirectory.AddressOfNameOrdinals);
+            Assert.Equal((uint) 0x33221100, exportDirectory.Characteristics);
+            Assert.Equal((uint) 0x77665544, exportDirectory.TimeDateStamp);
+            Assert.Equal((ushort) 0x9988, exportDirectory.MajorVersion);
+            Assert.Equal((ushort) 0xbbaa, exportDirectory.MinorVersion);
+            Assert.Equal(0xffeeddcc, exportDirectory.Name);
+            Assert.Equal((uint) 0x55443322, exportDirectory.Base);
+            Assert.Equal((uint) 0x44332211, exportDirectory.NumberOfFunctions);
+            Assert.Equal(0x88776655, exportDirectory.NumberOfNames);
+            Assert.Equal(0xccbbaa99, exportDirectory.AddressOfFunctions);
+            Assert.Equal((uint) 0x00ffeedd, exportDirectory.AddressOfNames);
+            Assert.Equal((uint) 0x55443322, exportDirectory.AddressOfNameOrdinals);
         }
     }
 }

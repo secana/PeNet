@@ -23,7 +23,6 @@ using System.Text;
 using PeNet.ImpHash;
 using PeNet.Structures;
 using PeNet.Utilities;
-using ExtensionMethods = PeNet.Utilities.ExtensionMethods;
 
 namespace PeNet
 {

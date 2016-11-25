@@ -15,34 +15,34 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class METADATAHDR_Test
     {
-        [TestMethod]
+        [Fact]
         public void MetaDataHdrConstructorWorks_Test()
         {
             var metaDataHdr = new METADATAHDR(RawDotNetStructures.RawMetaDataHeader, 2);
-            Assert.AreEqual((uint) 0x55443322, metaDataHdr.Signature);
-            Assert.AreEqual((ushort) 0x7766, metaDataHdr.MajorVersion);
-            Assert.AreEqual((ushort) 0x9988, metaDataHdr.MinorVersion);
-            Assert.AreEqual((uint) 0xddccbbaa, metaDataHdr.Reserved);
-            Assert.AreEqual((uint) 0x0000000C, metaDataHdr.VersionLength);
-            Assert.AreEqual("v4.0.30319", metaDataHdr.Version);
-            Assert.AreEqual((ushort) 0x2211, metaDataHdr.Flags);
-            Assert.AreEqual((ushort) 0x0002, metaDataHdr.Streams);
+            Assert.Equal((uint) 0x55443322, metaDataHdr.Signature);
+            Assert.Equal((ushort) 0x7766, metaDataHdr.MajorVersion);
+            Assert.Equal((ushort) 0x9988, metaDataHdr.MinorVersion);
+            Assert.Equal((uint) 0xddccbbaa, metaDataHdr.Reserved);
+            Assert.Equal((uint) 0x0000000C, metaDataHdr.VersionLength);
+            Assert.Equal("v4.0.30319", metaDataHdr.Version);
+            Assert.Equal((ushort) 0x2211, metaDataHdr.Flags);
+            Assert.Equal((ushort) 0x0002, metaDataHdr.Streams);
 
-            Assert.AreEqual(2, metaDataHdr.MetaDataStreamsHdrs.Length);
-            Assert.AreEqual((uint) 0x6C, metaDataHdr.MetaDataStreamsHdrs[0].offset);
-            Assert.AreEqual((uint) 0x1804, metaDataHdr.MetaDataStreamsHdrs[0].size);
-            Assert.AreEqual("#~", metaDataHdr.MetaDataStreamsHdrs[0].streamName);
-            Assert.AreEqual((uint) 0x1870, metaDataHdr.MetaDataStreamsHdrs[1].offset);
-            Assert.AreEqual((uint) 0x1468, metaDataHdr.MetaDataStreamsHdrs[1].size);
-            Assert.AreEqual("#Strings", metaDataHdr.MetaDataStreamsHdrs[1].streamName);
+            Assert.Equal(2, metaDataHdr.MetaDataStreamsHdrs.Length);
+            Assert.Equal((uint) 0x6C, metaDataHdr.MetaDataStreamsHdrs[0].offset);
+            Assert.Equal((uint) 0x1804, metaDataHdr.MetaDataStreamsHdrs[0].size);
+            Assert.Equal("#~", metaDataHdr.MetaDataStreamsHdrs[0].streamName);
+            Assert.Equal((uint) 0x1870, metaDataHdr.MetaDataStreamsHdrs[1].offset);
+            Assert.Equal((uint) 0x1468, metaDataHdr.MetaDataStreamsHdrs[1].size);
+            Assert.Equal("#Strings", metaDataHdr.MetaDataStreamsHdrs[1].streamName);
         }
     }
 }

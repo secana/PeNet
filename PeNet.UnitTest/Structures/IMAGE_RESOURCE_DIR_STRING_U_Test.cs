@@ -15,20 +15,20 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class IMAGE_RESOURCE_DIR_STRING_U_Test
     {
-        [TestMethod]
+        [Fact]
         public void ImageResourceDirStringUConstructorWorks_Test()
         {
             var resourceDirStringU = new IMAGE_RESOURCE_DIR_STRING_U(RawStructures.RawResourceDirStringU, 2);
-            Assert.AreEqual((uint) 0x000b, resourceDirStringU.Length);
-            Assert.AreEqual("Hello World", resourceDirStringU.NameString);
+            Assert.Equal((uint) 0x000b, resourceDirStringU.Length);
+            Assert.Equal("Hello World", resourceDirStringU.NameString);
         }
     }
 }

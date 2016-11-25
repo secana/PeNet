@@ -15,29 +15,29 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class IMAGE_SECTION_HEADER_Test
     {
-        [TestMethod]
+        [Fact]
         public void ImageSectionHeaderConstructorWorks_Test()
         {
             var sectionHeader = new IMAGE_SECTION_HEADER(RawStructures.RawSectionHeader, 2);
 
-            Assert.AreEqual(".data", PeNet.Utilities.FlagResolver.ResolveSectionName(sectionHeader.Name));
-            Assert.AreEqual((uint) 0x33221100, sectionHeader.VirtualSize);
-            Assert.AreEqual((uint) 0x77665544, sectionHeader.VirtualAddress);
-            Assert.AreEqual(0xbbaa9988, sectionHeader.SizeOfRawData);
-            Assert.AreEqual(0xffeeddcc, sectionHeader.PointerToRawData);
-            Assert.AreEqual((uint) 0x44332211, sectionHeader.PointerToRelocations);
-            Assert.AreEqual(0x88776655, sectionHeader.PointerToLinenumbers);
-            Assert.AreEqual((ushort) 0xaa99, sectionHeader.NumberOfRelocations);
-            Assert.AreEqual((ushort) 0xccbb, sectionHeader.NumberOfLinenumbers);
-            Assert.AreEqual((uint) 0x00ffeedd, sectionHeader.Characteristics);
+            Assert.Equal(".data", PeNet.Utilities.FlagResolver.ResolveSectionName(sectionHeader.Name));
+            Assert.Equal((uint) 0x33221100, sectionHeader.VirtualSize);
+            Assert.Equal((uint) 0x77665544, sectionHeader.VirtualAddress);
+            Assert.Equal(0xbbaa9988, sectionHeader.SizeOfRawData);
+            Assert.Equal(0xffeeddcc, sectionHeader.PointerToRawData);
+            Assert.Equal((uint) 0x44332211, sectionHeader.PointerToRelocations);
+            Assert.Equal(0x88776655, sectionHeader.PointerToLinenumbers);
+            Assert.Equal((ushort) 0xaa99, sectionHeader.NumberOfRelocations);
+            Assert.Equal((ushort) 0xccbb, sectionHeader.NumberOfLinenumbers);
+            Assert.Equal((uint) 0x00ffeedd, sectionHeader.Characteristics);
         }
     }
 }

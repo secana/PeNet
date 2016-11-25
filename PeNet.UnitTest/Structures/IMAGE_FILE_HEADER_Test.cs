@@ -15,25 +15,25 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class IMAGE_FILE_HEADER_Test
     {
-        [TestMethod]
+        [Fact]
         public void ImageFileHeaderConstructorWorks_Test()
         {
             var fileHeader = new IMAGE_FILE_HEADER(RawStructures.RawFileHeader, 2);
-            Assert.AreEqual((ushort) 0x1100, fileHeader.Machine);
-            Assert.AreEqual((ushort) 0x3322, fileHeader.NumberOfSections);
-            Assert.AreEqual((uint) 0x77665544, fileHeader.TimeDateStamp);
-            Assert.AreEqual(0xbbaa9988, fileHeader.PointerToSymbolTable);
-            Assert.AreEqual(0xffeeddcc, fileHeader.NumberOfSymbols);
-            Assert.AreEqual((ushort) 0x2211, fileHeader.SizeOfOptionalHeader);
-            Assert.AreEqual((ushort) 0x4433, fileHeader.Characteristics);
+            Assert.Equal((ushort) 0x1100, fileHeader.Machine);
+            Assert.Equal((ushort) 0x3322, fileHeader.NumberOfSections);
+            Assert.Equal((uint) 0x77665544, fileHeader.TimeDateStamp);
+            Assert.Equal(0xbbaa9988, fileHeader.PointerToSymbolTable);
+            Assert.Equal(0xffeeddcc, fileHeader.NumberOfSymbols);
+            Assert.Equal((ushort) 0x2211, fileHeader.SizeOfOptionalHeader);
+            Assert.Equal((ushort) 0x4433, fileHeader.Characteristics);
         }
     }
 }

@@ -15,102 +15,68 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace PeNet.UnitTest.Utilities
 {
-    [TestClass]
     public class HeapOffsetBasedIndexSizes_Test
     {
-        [TestMethod]
-        public void StringIndexSizeShouldBeTwo_Test()
+        [Theory]
+        [InlineData(0x00, 2)]
+        [InlineData(0x02, 2)]
+        [InlineData(0x22, 2)]
+        [InlineData(0x01, 4)]
+        [InlineData(0x21, 4)]
+        [InlineData(0x31, 4)]
+        public void StringIndexSize_Test(byte heapOffsetSizes, int result)
         {
-            var heapOffsetBasedIndexSizes_1 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x00);
-            var heapOffsetBasedIndexSizes_2 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x02);
-            var heapOffsetBasedIndexSizes_3 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x22);
-
-            Assert.AreEqual(2, heapOffsetBasedIndexSizes_1.StringIndexSize);
-            Assert.AreEqual(2, heapOffsetBasedIndexSizes_2.StringIndexSize);
-            Assert.AreEqual(2, heapOffsetBasedIndexSizes_3.StringIndexSize);
+            var heapOffsetBasedIndexSizes = new PeNet.Utilities.HeapOffsetBasedIndexSizes(heapOffsetSizes);
+            Assert.Equal(result, heapOffsetBasedIndexSizes.StringIndexSize);
         }
 
-        [TestMethod]
-        public void StringIndexSizeShouldBeFour_Test()
+        [Theory]
+        [InlineData(0x00, 2)]
+        [InlineData(0x01, 2)]
+        [InlineData(0x04, 2)]
+        [InlineData(0x02, 4)]
+        [InlineData(0x03, 4)]
+        [InlineData(0x42, 4)]
+        public void GuidIndexSizeShouldBeTwo_Test(byte heapOffsetSizes, int result)
         {
-            var heapOffsetBasedIndexSizes_1 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x01);
-            var heapOffsetBasedIndexSizes_2 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x21);
-            var heapOffsetBasedIndexSizes_3 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x31);
-
-            Assert.AreEqual(4, heapOffsetBasedIndexSizes_1.StringIndexSize);
-            Assert.AreEqual(4, heapOffsetBasedIndexSizes_2.StringIndexSize);
-            Assert.AreEqual(4, heapOffsetBasedIndexSizes_3.StringIndexSize);
+            var heapOffsetBasedIndexSizes = new PeNet.Utilities.HeapOffsetBasedIndexSizes(heapOffsetSizes);
+            Assert.Equal(result, heapOffsetBasedIndexSizes.GuidIndexSize);
         }
 
-        [TestMethod]
-        public void GuidIndexSizeShouldBeTwo_Test()
+        [Theory]
+        [InlineData(0x00, 2)]
+        [InlineData(0x01, 2)]
+        [InlineData(0x51, 2)]
+        [InlineData(0x04, 4)]
+        [InlineData(0x54, 4)]
+        [InlineData(0x05, 4)]
+        public void BlobIndexSizeShouldBeTwo_Test(byte heapOffsetSizes, int result)
         {
-            var heapOffsetBasedIndexSizes_1 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x00);
-            var heapOffsetBasedIndexSizes_2 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x01);
-            var heapOffsetBasedIndexSizes_3 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x04);
+            var heapOffsetBasedIndexSizes = new PeNet.Utilities.HeapOffsetBasedIndexSizes(heapOffsetSizes);
 
-            Assert.AreEqual(2, heapOffsetBasedIndexSizes_1.GuidIndexSize);
-            Assert.AreEqual(2, heapOffsetBasedIndexSizes_2.GuidIndexSize);
-            Assert.AreEqual(2, heapOffsetBasedIndexSizes_3.GuidIndexSize);
+            Assert.Equal(result, heapOffsetBasedIndexSizes.BlobSize);
         }
 
-        [TestMethod]
-        public void GuidIndexSizeShouldBeFour_Test()
-        {
-            var heapOffsetBasedIndexSizes_1 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x02);
-            var heapOffsetBasedIndexSizes_2 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x03);
-            var heapOffsetBasedIndexSizes_3 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x42);
-
-            Assert.AreEqual(4, heapOffsetBasedIndexSizes_1.GuidIndexSize);
-            Assert.AreEqual(4, heapOffsetBasedIndexSizes_2.GuidIndexSize);
-            Assert.AreEqual(4, heapOffsetBasedIndexSizes_3.GuidIndexSize);
-        }
-
-
-        [TestMethod]
-        public void BlobIndexSizeShouldBeTwo_Test()
-        {
-            var heapOffsetBasedIndexSizes_1 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x00);
-            var heapOffsetBasedIndexSizes_2 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x01);
-            var heapOffsetBasedIndexSizes_3 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x51);
-
-            Assert.AreEqual(2, heapOffsetBasedIndexSizes_1.BlobSize);
-            Assert.AreEqual(2, heapOffsetBasedIndexSizes_2.BlobSize);
-            Assert.AreEqual(2, heapOffsetBasedIndexSizes_3.BlobSize);
-        }
-
-        [TestMethod]
-        public void BlobIndexSizeShouldBeFour_Test()
-        {
-            var heapOffsetBasedIndexSizes_1 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x04);
-            var heapOffsetBasedIndexSizes_2 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x54);
-            var heapOffsetBasedIndexSizes_3 = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x05);
-
-            Assert.AreEqual(4, heapOffsetBasedIndexSizes_1.BlobSize);
-            Assert.AreEqual(4, heapOffsetBasedIndexSizes_2.BlobSize);
-            Assert.AreEqual(4, heapOffsetBasedIndexSizes_3.BlobSize);
-        }
-
-        [TestMethod]
+        [Fact]
         public void AllIndexesShouldBeFour_Test()
         {
             var heapOffsetBasedIndexSizes = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x07);
-            Assert.AreEqual(4, heapOffsetBasedIndexSizes.StringIndexSize);
-            Assert.AreEqual(4, heapOffsetBasedIndexSizes.GuidIndexSize);
-            Assert.AreEqual(4, heapOffsetBasedIndexSizes.BlobSize);
+            Assert.Equal(4, heapOffsetBasedIndexSizes.StringIndexSize);
+            Assert.Equal(4, heapOffsetBasedIndexSizes.GuidIndexSize);
+            Assert.Equal(4, heapOffsetBasedIndexSizes.BlobSize);
         }
 
-        [TestMethod]
+        [Fact]
         public void AllIndexesShouldBeTwo_Test()
         {
             var heapOffsetBasedIndexSizes = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x00);
-            Assert.AreEqual(2, heapOffsetBasedIndexSizes.StringIndexSize);
-            Assert.AreEqual(2, heapOffsetBasedIndexSizes.GuidIndexSize);
-            Assert.AreEqual(2, heapOffsetBasedIndexSizes.BlobSize);
+            Assert.Equal(2, heapOffsetBasedIndexSizes.StringIndexSize);
+            Assert.Equal(2, heapOffsetBasedIndexSizes.GuidIndexSize);
+            Assert.Equal(2, heapOffsetBasedIndexSizes.BlobSize);
         }
     }
 }

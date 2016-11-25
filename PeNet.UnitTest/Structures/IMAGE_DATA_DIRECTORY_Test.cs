@@ -15,21 +15,21 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class IMAGE_DATA_DIRECTORY_Test
     {
-        [TestMethod]
+        [Fact]
         public void ImageDataDirectoryConstructorWorks_Test()
         {
             var dataDirectory = new IMAGE_DATA_DIRECTORY(RawStructures.RawDataDirectory, 2);
 
-            Assert.AreEqual((uint) 0x44332211, dataDirectory.VirtualAddress);
-            Assert.AreEqual(0x88776655, dataDirectory.Size);
+            Assert.Equal((uint) 0x44332211, dataDirectory.VirtualAddress);
+            Assert.Equal(0x88776655, dataDirectory.Size);
         }
     }
 }

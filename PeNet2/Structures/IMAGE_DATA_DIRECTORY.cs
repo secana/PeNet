@@ -17,7 +17,6 @@ limitations under the License.
 
 using System.Text;
 using PeNet.Utilities;
-using ExtensionMethods = PeNet.Utilities.ExtensionMethods;
 
 namespace PeNet.Structures
 {

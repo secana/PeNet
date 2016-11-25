@@ -16,24 +16,22 @@ limitations under the License.
 *************************************************************************/
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class RUNTIME_FUNCTION_Test
     {
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void RuntimeFunctionConstructorWorks_Test()
         {
             var runtimeFunction = new RUNTIME_FUNCTION(RawStructures.RawRuntimeFunction, 2, null);
 
-            Assert.AreEqual((uint) 0x33221100, runtimeFunction.FunctionStart);
-            Assert.AreEqual((uint) 0x77665544, runtimeFunction.FunctionEnd);
-            Assert.AreEqual(0xbbaa9988, runtimeFunction.UnwindInfo);
-                // No valid UnwindInfo -> Throws ArgumentNullException
+            Assert.Equal((uint) 0x33221100, runtimeFunction.FunctionStart);
+            Assert.Equal((uint) 0x77665544, runtimeFunction.FunctionEnd);
+            Assert.Equal((uint) 0xbbaa9988, runtimeFunction.UnwindInfo);
         }
     }
 }

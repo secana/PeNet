@@ -15,30 +15,30 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class UNWIND_INFO_Test
     {
-        [TestMethod]
+        [Fact]
         public void UnwindInfoConstructorWorks_Test()
         {
             var unwindInfo = new UNWIND_INFO(RawStructures.RawUnwindInfo, 2);
-            Assert.AreEqual((byte) 0x1, unwindInfo.Version);
-            Assert.AreEqual((byte) 0x12, unwindInfo.Flags);
-            Assert.AreEqual((byte) 0x33, unwindInfo.SizeOfProlog);
-            Assert.AreEqual((byte) 0x5, unwindInfo.FrameRegister);
-            Assert.AreEqual((byte) 0x6, unwindInfo.FrameOffset);
+            Assert.Equal((byte) 0x1, unwindInfo.Version);
+            Assert.Equal((byte) 0x12, unwindInfo.Flags);
+            Assert.Equal((byte) 0x33, unwindInfo.SizeOfProlog);
+            Assert.Equal((byte) 0x5, unwindInfo.FrameRegister);
+            Assert.Equal((byte) 0x6, unwindInfo.FrameOffset);
 
-            Assert.AreEqual(1, unwindInfo.UnwindCode.Length);
-            Assert.AreEqual((byte) 0x77, unwindInfo.UnwindCode[0].CodeOffset);
-            Assert.AreEqual((byte) 0x8, unwindInfo.UnwindCode[0].UnwindOp);
-            Assert.AreEqual((byte) 0x9, unwindInfo.UnwindCode[0].Opinfo);
+            Assert.Equal(1, unwindInfo.UnwindCode.Length);
+            Assert.Equal((byte) 0x77, unwindInfo.UnwindCode[0].CodeOffset);
+            Assert.Equal((byte) 0x8, unwindInfo.UnwindCode[0].UnwindOp);
+            Assert.Equal((byte) 0x9, unwindInfo.UnwindCode[0].Opinfo);
 
-            Assert.AreEqual(0xffeeddcc, unwindInfo.ExceptionHandler);
+            Assert.Equal(0xffeeddcc, unwindInfo.ExceptionHandler);
         }
     }
 }
