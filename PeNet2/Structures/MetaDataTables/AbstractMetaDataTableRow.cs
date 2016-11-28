@@ -15,19 +15,21 @@ limitations under the License.
 
 *************************************************************************/
 
+using PeNet.Utilities;
+
 namespace PeNet.Structures.MetaDataTables
 {
     /// <summary>
     /// Abstract Meta Data Table Row.
     /// </summary>
-    public class AbstractMetaDataTableRow : AbstractStructure
+    public abstract class AbstractMetaDataTableRow : AbstractStructure
     {
         /// <summary>
         /// Create a new instance.
         /// </summary>
         /// <param name="buff">Buffer containing the row.</param>
         /// <param name="offset">Offset in the buffer where the row starts.</param>
-        public AbstractMetaDataTableRow(byte[] buff, uint offset) 
+        protected AbstractMetaDataTableRow(byte[] buff, uint offset) 
             : base(buff, offset)
         {
         }
@@ -35,6 +37,6 @@ namespace PeNet.Structures.MetaDataTables
         /// <summary>
         /// Length of the row in bytes.
         /// </summary>
-        public uint Length { get; protected set; }
+        public abstract uint Length { get; }
     }
 }

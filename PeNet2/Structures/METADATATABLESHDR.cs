@@ -17,6 +17,7 @@ limitations under the License.
 
 using System.Collections.Generic;
 using System.Text;
+using PeNet.Structures.MetaDataTables;
 using PeNet.Utilities;
 
 namespace PeNet.Structures
@@ -28,6 +29,7 @@ namespace PeNet.Structures
     public class METADATATABLESHDR : AbstractStructure
     {
         private List<TableDefinition> _tableDefinitions;
+        private MetaDataTablesParser _metaDataTablesParser;
 
         /// <summary>
         /// Represents an table definition entry from the list
@@ -163,6 +165,20 @@ namespace PeNet.Structures
 
                 _tableDefinitions = ParseTableDefinitions();
                 return _tableDefinitions;
+            }
+        }
+
+        /// <summary>
+        /// Access the Meta Data Tables and their rows.
+        /// </summary>
+        public MetaDataTablesParser MetaDataTables {
+            get
+            {
+                if (_metaDataTablesParser != null)
+                    return _metaDataTablesParser;
+
+                _metaDataTablesParser = new MetaDataTablesParser(Buff, this);
+                return _metaDataTablesParser;
             }
         }
 

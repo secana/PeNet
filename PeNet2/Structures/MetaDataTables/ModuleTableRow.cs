@@ -15,6 +15,7 @@ limitations under the License.
 
 *************************************************************************/
 
+using System.Text;
 using PeNet.Utilities;
 
 namespace PeNet.Structures.MetaDataTables
@@ -33,10 +34,10 @@ namespace PeNet.Structures.MetaDataTables
         /// <param name="buff">Buffer which contains the row.</param>
         /// <param name="offset">Offset in the buff, where the header starts.</param>
         /// <param name="heapOffsetSizes">The HeapOffsetsSizes byte field from the Meta Data Tables Header.</param>
-        public ModuleTableRow(byte[] buff, uint offset, byte heapOffsetSizes) 
+        public ModuleTableRow(byte[] buff, uint offset, HeapOffsetBasedIndexSizes heapOffsetSizes) 
             : base(buff, offset)
         {
-            _heapIndexSizes = new HeapOffsetBasedIndexSizes(heapOffsetSizes);
+            _heapIndexSizes = heapOffsetSizes;
         }
 
         /// <summary>
@@ -74,5 +75,19 @@ namespace PeNet.Structures.MetaDataTables
             =>
             Buff.BytesToUInt32(Offset + 0x2 + _heapIndexSizes.StringIndexSize + _heapIndexSizes.GuidIndexSize*2,
                 _heapIndexSizes.GuidIndexSize);
+
+        /// <summary>
+        /// Length of the row in bytes.
+        /// </summary>
+        public override uint Length => 0x2 + _heapIndexSizes.StringIndexSize + _heapIndexSizes.GuidIndexSize*3;
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            var sb = new StringBuilder("ModuleTableRow\n");
+            sb.Append(this.PropertiesToString("{0,-10}:\t{1,10:X}\n"));
+
+            return sb.ToString();
+        }
     }
 }

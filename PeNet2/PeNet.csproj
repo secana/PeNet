@@ -69,8 +69,10 @@
     <Compile Include="FileCharacteristics.cs" />
     <Compile Include="Structures\MetaDataTables\AbstractMetaDataTable.cs" />
     <Compile Include="Structures\MetaDataTables\AbstractMetaDataTableRow.cs" />
+    <Compile Include="Structures\MetaDataTables\MetaDataTablesParser.cs" />
     <Compile Include="Structures\MetaDataTables\ModuleTable.cs" />
     <Compile Include="Structures\MetaDataTables\ModuleTableRow.cs" />
+    <Compile Include="Structures\MetaDataTables\Parsers\ModuleTableParser.cs" />
     <Compile Include="Utilities\HeapOffsetBasedIndexSizes.cs" />
     <Compile Include="Utilities\MetaDataTableIndexComputation.cs" />
     <Compile Include="Utilities\SignatureInformation.cs" />

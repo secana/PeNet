@@ -18,6 +18,8 @@ namespace Example
                 Console.WriteLine(tableDefinition);
             }
 
+            Console.WriteLine(pe.MetaDataStreamTablesHeader.MetaDataTables.ModuleTable);
+
             Console.WriteLine("Finished");
             Console.ReadKey();
         }
