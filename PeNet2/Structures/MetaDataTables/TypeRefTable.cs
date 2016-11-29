@@ -15,9 +15,10 @@ limitations under the License.
 
 *************************************************************************/
 
-namespace PeNet.Utilities
+namespace PeNet.Structures.MetaDataTables
 {
-    public class MetaDataTableIndexComputation
+    public class TypeRefTable
     {
+        
     }
 }

@@ -22,11 +22,29 @@ using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
+    public interface IMETADATATABLESHDR
+    {
+        /// <summary>
+        /// The size the indexes into the streams have. 
+        /// Bit 0 (0x01) set: Indexes into #String are 4 bytes wide.
+        /// Bit 1 (0x02) set: Indexes into #GUID heap are 4 bytes wide.
+        /// Bit 2 (0x04) set: Indexes into #Blob heap are 4 bytes wide.
+        /// If bit not set: indexes into heap is 2 bytes wide.
+        /// </summary>
+        byte HeapOffsetSizes { get; set; }
+
+        /// <summary>
+        /// Access a list of defined tables in the Meta Data Tables Header
+        /// with the name and number of rows of the table.
+        /// </summary>
+        List<METADATATABLESHDR.TableDefinition> TableDefinitions { get; }
+    }
+
     /// <summary>
     /// The Meta Data Tables Header contains information about all present
     /// data tables in the .Net assembly.
     /// </summary>
-    public class METADATATABLESHDR : AbstractStructure
+    public class METADATATABLESHDR : AbstractStructure, IMETADATATABLESHDR
     {
         private List<TableDefinition> _tableDefinitions;
         private MetaDataTablesParser _metaDataTablesParser;

@@ -33,7 +33,7 @@ namespace PeNet.Structures.MetaDataTables
         /// </summary>
         /// <param name="buff">Buffer which contains the row.</param>
         /// <param name="offset">Offset in the buff, where the header starts.</param>
-        /// <param name="heapOffsetSizes">The HeapOffsetsSizes byte field from the Meta Data Tables Header.</param>
+        /// <param name="heapOffsetSizes">Computes sizes of the heap bases indexes.</param>
         public ModuleTableRow(byte[] buff, uint offset, HeapOffsetBasedIndexSizes heapOffsetSizes) 
             : base(buff, offset)
         {
