@@ -14,8 +14,15 @@ namespace PEditor.TabItems
             InitializeComponent();
         }
 
+        private void CleanSections()
+        {
+            dgSections.Items.Clear();
+        }
+
         public void SetSections(PeFile peFile)
         {
+            CleanSections();
+
             var num = 1;
             foreach (var sec in peFile.ImageSectionHeaders)
             {
