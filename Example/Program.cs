@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using PeNet;
 
 namespace Example
@@ -7,20 +8,11 @@ namespace Example
     {
         private static void Main(string[] args)
         {
-            var file = @"E:\Git\GAIA\Clustering\bin\x64\Release\Clustering.dll";
-            var pe = new PeFile(file);
-            
-
-            Console.WriteLine(pe.MetaDataStreamTablesHeader);
-            
-            foreach (var tableDefinition in pe.MetaDataStreamTablesHeader.TableDefinitions)
+            var files = Directory.GetFiles(@"C:\Users\Stefa\Downloads\Issues");
+            foreach (var file in files)
             {
-                Console.WriteLine(tableDefinition);
+                Console.WriteLine($"{file}, valid: {PeFile.IsValidPEFile(file)}");
             }
-
-            Console.WriteLine(pe.MetaDataStreamTablesHeader.MetaDataTables.ModuleTable);
-
-            Console.WriteLine("Finished");
             Console.ReadKey();
         }
     }
