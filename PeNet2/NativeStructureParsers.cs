@@ -65,7 +65,7 @@ namespace PeNet
 
         private uint GetSecHeaderOffset()
         {
-            var x = (uint) (Is64Bit ? 0x108 : 0xF8);
+            var x = (uint) ImageNtHeaders.FileHeader.SizeOfOptionalHeader + 0x18;
             return ImageDosHeader.e_lfanew + x;
         }
     }
