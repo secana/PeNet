@@ -24,7 +24,7 @@ namespace PeNet.Structures.MetaDataTables
     /// <summary>
     /// Module Table from the Meta Data Table Header of the 
     /// .Net header. Contains information about the current 
-    /// assembly.
+    /// assembly. Has only one row.
     /// </summary>
     public class ModuleTable : AbstractMetaDataTable<ModuleTableRow>
     {

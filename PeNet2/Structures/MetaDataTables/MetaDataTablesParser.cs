@@ -29,7 +29,7 @@ namespace PeNet.Structures.MetaDataTables
         private readonly byte[] _buff;
         private readonly METADATATABLESHDR _metaDataTablesHdr;
         private ModuleTableParser _moduleTableParser;
-
+        private TypeRefTableParser _typeRefTableParser;
 
         /// <summary>
         /// Access the Module Table.

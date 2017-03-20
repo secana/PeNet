@@ -39,7 +39,7 @@ namespace PeNet.Structures.MetaDataTables
         public uint GetTableIndexSize(Type indexEnumType)
         {
             if(!indexEnumType.IsEnum)
-                throw new ArgumentException($"Generic parameter must be of type enum.");
+                throw new ArgumentException("Generic parameter must be of type enum.");
 
             var names = Enum.GetNames(indexEnumType);
             var maxRows = GetMaxRows(names);

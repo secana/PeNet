@@ -110,6 +110,24 @@ namespace PeNet.Utilities
         }
 
         /// <summary>
+        ///     Convert up to 4 bytes out of a buffer to an 32 bit unsigned integer.
+        /// </summary>
+        /// <param name="buff">Byte buffer.</param>
+        /// <param name="offset">Offset of the highest byte.</param>
+        /// <param name="numOfBytes">Number of bytes to read.</param>
+        /// <param name="count">Gets increased by numOfBytes.</param>
+        /// <returns>UInt32 of numOfBytes bytes.</returns>
+        public static uint BytesToUInt32(this byte[] buff, uint offset, uint numOfBytes, ref uint count)
+        {
+            var bytes = new byte[4];
+            for (var i = 0; i < numOfBytes; i++)
+                bytes[i] = buff[offset + i];
+
+            count += numOfBytes;
+            return BitConverter.ToUInt32(bytes, 0);
+        }
+
+        /// <summary>
         ///     Converts 8 bytes to an 64 bit unsigned integer.
         /// </summary>
         /// <param name="b1">Highest byte.</param>
@@ -537,6 +555,18 @@ namespace PeNet.Utilities
             }
 
             return Encoding.ASCII.GetString(charList.ToArray());
+        }
+
+        /// <summary>
+        /// Computes the number of bits needed by an MetaData Table index 
+        /// based on the number of fields which the enum of the index has.
+        /// </summary>
+        /// <param name="indexEnum">MetaData tables index.</param>
+        /// <returns>Size if index in bits.</returns>
+        public static uint MetaDataTableIndexSize(this Type indexEnum)
+        {
+            var numOfTags = Enum.GetNames(indexEnum).Length;
+            return (uint) Math.Ceiling(Math.Log(numOfTags, 2));
         }
     }
 }

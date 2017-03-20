@@ -8,12 +8,12 @@ namespace Example
     {
         private static void Main(string[] args)
         {
-            var files = Directory.GetFiles(@"C:\Users\Stefa\Downloads\Issues");
-            foreach (var file in files)
-            {
-                Console.WriteLine($"{file}, valid: {PeFile.IsValidPEFile(file)}");
-            }
-            Console.ReadKey();
+            var dotNetFile = @"D:\BitbucketRepos\GAIA\DataEntities\bin\x64\Release\DataEntities.dll";
+            var peFile = new PeFile(dotNetFile);
+
+            Console.WriteLine(peFile.MetaDataStreamTablesHeader);
+            var x = peFile.MetaDataStreamTablesHeader.MetaDataTables;
+            Console.WriteLine(x.ModuleTable);
         }
     }
 }
