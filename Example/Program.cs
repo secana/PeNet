@@ -10,24 +10,9 @@ namespace Example
     {
         private static void Main(string[] args)
         {
-            var path = @"C:\Windows\Syswow64\kernel32.dll";
+            var path = @"D:\Stefa\Documents\GitHubVisualStudio\PeNet\PEditor\bin\Release\PEditor.exe";
             var file = new PeFile(path);
 
-            Console.WriteLine($"IsSigned: {file.IsSigned}");
-            Console.WriteLine($"IsValidCertChain: {file.IsValidCertChain(true)}");
-            Console.WriteLine($"Hash: {file.PKCS7.GetHashCode()}");
-            Console.WriteLine($"PubKey: {file.PKCS7.PublicKey.EncodedKeyValue.Format(true)}");
-            Console.WriteLine($"SigAlg: {file.PKCS7.SignatureAlgorithm.FriendlyName}");
-            Console.WriteLine($"Thumbprint: {file.PKCS7.Thumbprint}");
-            Console.WriteLine($"IsSignatureValid: {PeNet.Utilities.SignatureInformation.IsSignatureValid(path)}");
-            var signedContent = GetSignedContent(file, file.Buff);
-
-            var foo =
-                new X509Certificate2(
-                    X509Certificate.CreateFromSignedFile(path));
-
-            Console.WriteLine($"My verification {VerifySignature(signedContent, file.WinCertificate.bCertificate, file.PKCS7)}");
-            Console.ReadKey();
         }
 
         private static bool VerifySignature(byte[] content, byte[] signature, X509Certificate2 cert)

@@ -23,6 +23,7 @@ namespace PeNet.Structures
 {
     /// <summary>
     /// COM+ 2.0 (CLI) Header
+    /// https://www.codeproject.com/Articles/12585/The-NET-File-Format
     /// </summary>
     public class IMAGE_COR20_HEADER : AbstractStructure
     {
