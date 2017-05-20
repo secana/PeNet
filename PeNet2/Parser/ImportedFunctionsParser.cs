@@ -53,11 +53,12 @@ namespace PeNet.Parser
             {
                 var dllAdr = idesc.Name.RVAtoFileMapping(_sectionHeaders);
                 var dll = _buff.GetCString(dllAdr);
-                var tmpAdr = idesc.OriginalFirstThunk != 0 ? idesc.OriginalFirstThunk : idesc.FirstThunk;
+                var tmpAdr = /*idesc.OriginalFirstThunk != 0 ?*/ idesc.OriginalFirstThunk /*: idesc.FirstThunk*/;
                 if (tmpAdr == 0)
                     continue;
 
                 var thunkAdr = tmpAdr.RVAtoFileMapping(_sectionHeaders);
+				var thunkDestAdr = idesc.FirstThunk;
                 uint round = 0;
                 while (true)
                 {
@@ -66,20 +67,22 @@ namespace PeNet.Parser
                     if (t.AddressOfData == 0)
                         break;
 
-                    // Check if import by name or by ordinal.
+					var td = thunkDestAdr + round * sizeOfThunk;
+					
+					// Check if import by name or by ordinal.
                     // If it is an import by ordinal, the most significant bit of "Ordinal" is "1" and the ordinal can
                     // be extracted from the least significant bits.
                     // Else it is an import by name and the link to the IMAGE_IMPORT_BY_NAME has to be followed
 
                     if ((t.Ordinal & ordinalBit) == ordinalBit) // Import by ordinal
                     {
-                        impFuncs.Add(new ImportFunction(null, dll, (ushort) (t.Ordinal & ordinalMask)));
+                        impFuncs.Add(new ImportFunction(null, dll, (ushort) (t.Ordinal & ordinalMask), td));
                     }
                     else // Import by name
                     {
                         var ibn = new IMAGE_IMPORT_BY_NAME(_buff,
                             ((uint) t.AddressOfData).RVAtoFileMapping(_sectionHeaders));
-                        impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint));
+                        impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint, td));
                     }
 
                     round++;
