@@ -118,7 +118,7 @@ namespace PeNet.Utilities
 
             using (var sr = new StreamReader(file))
             {
-                var sha = new MD5Cng();
+                var sha = new MD5CryptoServiceProvider();
                 hash = sha.ComputeHash(sr.BaseStream);
             }
 
@@ -137,7 +137,7 @@ namespace PeNet.Utilities
         {
             var sBuilder = new StringBuilder();
 
-            var sha = new MD5Cng();
+            var sha = new MD5CryptoServiceProvider();
             var hash = sha.ComputeHash(buff);
 
             foreach (var t in hash)
