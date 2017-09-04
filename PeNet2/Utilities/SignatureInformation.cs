@@ -16,6 +16,7 @@ limitations under the License.
 *************************************************************************/
 
 using System;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 
 namespace PeNet.Utilities
@@ -77,6 +78,9 @@ namespace PeNet.Utilities
         /// <returns>True if the signature is valid, else false.</returns>
         public static bool IsSignatureValid(string filePath)
         {
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows)  == false)
+                throw new PlatformNotSupportedException("This features is currently only supported on Windows");
+
             return SignatureValidation.IsTrusted(filePath);
         }
 
