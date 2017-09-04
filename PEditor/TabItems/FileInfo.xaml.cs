@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System.Diagnostics;
+using System.Windows.Controls;
+using System.Windows.Navigation;
 using PeNet;
 
 namespace PEditor
@@ -21,6 +23,12 @@ namespace PEditor
             tbSHA1.Text = peFile.SHA1;
             tbSHA256.Text = peFile.SHA256;
             tbImpHash.Text = peFile.ImpHash;
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
         }
     }
 }

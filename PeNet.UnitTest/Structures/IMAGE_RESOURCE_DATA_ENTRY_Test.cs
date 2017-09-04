@@ -15,23 +15,23 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class IMAGE_RESOURCE_DATA_ENTRY_Test
     {
-        [TestMethod]
+        [Fact]
         public void ImageResourceDataEntryConstructorWorks_Test()
         {
             var resourceDataEntry = new IMAGE_RESOURCE_DATA_ENTRY(RawStructures.RawResourceDataEntry, 2);
 
-            Assert.AreEqual((uint) 0x33221100, resourceDataEntry.OffsetToData);
-            Assert.AreEqual((uint) 0x77665544, resourceDataEntry.Size1);
-            Assert.AreEqual(0xbbaa9988, resourceDataEntry.CodePage);
-            Assert.AreEqual(0xffeeddcc, resourceDataEntry.Reserved);
+            Assert.Equal((uint) 0x33221100, resourceDataEntry.OffsetToData);
+            Assert.Equal((uint) 0x77665544, resourceDataEntry.Size1);
+            Assert.Equal(0xbbaa9988, resourceDataEntry.CodePage);
+            Assert.Equal(0xffeeddcc, resourceDataEntry.Reserved);
         }
     }
 }

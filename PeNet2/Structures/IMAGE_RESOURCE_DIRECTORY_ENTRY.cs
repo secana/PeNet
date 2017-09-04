@@ -17,6 +17,7 @@ limitations under the License.
 
 using System;
 using System.Text;
+using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
@@ -40,7 +41,7 @@ namespace PeNet.Structures
             {
                 if (IsIdEntry)
                 {
-                    ResolvedName = Utility.ResolveResourceId(ID);
+                    ResolvedName = Utilities.FlagResolver.ResolveResourceId(ID);
                 }
                 else if (IsNamedEntry)
                 {
@@ -144,7 +145,7 @@ namespace PeNet.Structures
         public override string ToString()
         {
             var sb = new StringBuilder("IMAGE_RESOURCE_DIRECTORY_ENTRY\n");
-            sb.Append(Utility.PropertiesToString(this, "{0,-20}:\t{1,10:X}\n"));
+            sb.Append(this.PropertiesToString("{0,-20}:\t{1,10:X}\n"));
             if (ResourceDirectory != null)
                 sb.Append(ResourceDirectory);
             return sb.ToString();

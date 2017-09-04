@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using PeNet;
+using PeNet.Utilities;
 
 namespace PEditor.TabItems
 {
@@ -19,14 +20,14 @@ namespace PEditor.TabItems
             var machine = fileHeader.Machine;
             var characteristics = fileHeader.Characteristics;
 
-            tbMachine.Text = $"{machine.ToHexString()} <-> {Utility.ResolveTargetMachine(machine)}";
+            tbMachine.Text = $"{machine.ToHexString()} <-> {PeNet.Utilities.FlagResolver.ResolveTargetMachine(machine)}";
             tbNumberOfSections.Text = fileHeader.NumberOfSections.ToHexString();
             tbTimeDateStamp.Text = fileHeader.TimeDateStamp.ToHexString();
             tbPointerToSymbolTable.Text = fileHeader.PointerToSymbolTable.ToHexString();
             tbNumberOfSymbols.Text = fileHeader.NumberOfSymbols.ToHexString();
             tbSizeOfOptionalHeader.Text = fileHeader.SizeOfOptionalHeader.ToHexString();
             tbCharacteristics.Text =
-                $"{characteristics.ToHexString()}\n\n{Utility.ResolveFileCharacteristics(characteristics)}";
+                $"{characteristics.ToHexString()}\n\n{PeNet.Utilities.FlagResolver.ResolveFileCharacteristics(characteristics)}";
         }
 
         public void SetDebug(PeFile peFile)

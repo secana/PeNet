@@ -15,27 +15,27 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class IMAGE_DEBUG_DIRECTORY_Test
     {
-        [TestMethod]
+        [Fact]
         public void ImageDebugDirectoryConstructorWorks_Test()
         {
             var idd = new IMAGE_DEBUG_DIRECTORY(RawStructures.RawDebugDirectory, 2);
 
-            Assert.AreEqual((uint) 0x44332211, idd.Characteristics);
-            Assert.AreEqual(0x88776655, idd.TimeDateStamp);
-            Assert.AreEqual((ushort) 0xaa99, idd.MajorVersion);
-            Assert.AreEqual((ushort) 0xccbb, idd.MinorVersion);
-            Assert.AreEqual((uint) 0x11ffeedd, idd.Type);
-            Assert.AreEqual((uint) 0x55443322, idd.SizeOfData);
-            Assert.AreEqual(0x99887766, idd.AddressOfRawData);
-            Assert.AreEqual(0xddccbbaa, idd.PointerToRawData);
+            Assert.Equal((uint) 0x44332211, idd.Characteristics);
+            Assert.Equal(0x88776655, idd.TimeDateStamp);
+            Assert.Equal((ushort) 0xaa99, idd.MajorVersion);
+            Assert.Equal((ushort) 0xccbb, idd.MinorVersion);
+            Assert.Equal((uint) 0x11ffeedd, idd.Type);
+            Assert.Equal((uint) 0x55443322, idd.SizeOfData);
+            Assert.Equal(0x99887766, idd.AddressOfRawData);
+            Assert.Equal(0xddccbbaa, idd.PointerToRawData);
         }
     }
 }

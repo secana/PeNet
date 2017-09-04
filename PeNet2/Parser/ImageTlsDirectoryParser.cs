@@ -17,6 +17,7 @@ limitations under the License.
 
 using System.Collections.Generic;
 using PeNet.Structures;
+using PeNet.Utilities;
 
 namespace PeNet.Parser
 {

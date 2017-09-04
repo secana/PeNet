@@ -17,18 +17,18 @@ limitations under the License.
 
 using PeNet.Parser;
 using PeNet.Structures;
+using PeNet.Utilities;
 
 namespace PeNet
 {
-    internal class StructureParser
+    internal class NativeStructureParsers
     {
         private readonly byte[] _buff;
         private ImageDosHeaderParser _imageDosHeaderParser;
         private ImageNtHeadersParser _imageNtHeadersParser;
         private ImageSectionHeadersParser _imageSectionHeadersParser;
 
-
-        internal StructureParser(byte[] buff)
+        internal NativeStructureParsers(byte[] buff)
         {
             _buff = buff;
             InitAllParsers();
@@ -65,7 +65,7 @@ namespace PeNet
 
         private uint GetSecHeaderOffset()
         {
-            var x = (uint) (Is64Bit ? 0x108 : 0xF8);
+            var x = (uint) ImageNtHeaders.FileHeader.SizeOfOptionalHeader + 0x18;
             return ImageDosHeader.e_lfanew + x;
         }
     }

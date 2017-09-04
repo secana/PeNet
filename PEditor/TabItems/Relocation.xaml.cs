@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Windows.Controls;
 using PeNet;
+using PeNet.Utilities;
 
 namespace PEditor.TabItems
 {
@@ -26,13 +27,13 @@ namespace PEditor.TabItems
 
             var reloc =
                 _peFile.ImageRelocationDirectory.First(
-                    x => x.VirtualAddress == Utility.ToIntFromHexString(selected.VirtualAddress));
+                    x => x.VirtualAddress == selected.VirtualAddress.ToIntFromHexString());
 
             foreach (var to in reloc.TypeOffsets)
             {
                 lbRelocTypeOffsets.Items.Add(new
                 {
-                    Type = Utility.ToHexString(to.Type),
+                    Type = to.Type.ToHexString(),
                     Offset = to.Offset.ToHexString()
                 });
             }

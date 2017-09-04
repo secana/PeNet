@@ -15,38 +15,38 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class IMAGE_TLS_DIRECTORY_Test
     {
-        [TestMethod]
+        [Fact]
         public void ImageTlsDirectory64ConstructorWorks_Test()
         {
             var tlsDirectory = new IMAGE_TLS_DIRECTORY(RawStructures.RawTlsDirectory64, 2, true);
 
-            Assert.AreEqual((ulong) 0x7766554433221100, tlsDirectory.StartAddressOfRawData);
-            Assert.AreEqual((ulong) 0xbbaa998877665544, tlsDirectory.EndAddressOfRawData);
-            Assert.AreEqual((ulong) 0x221100ffeeddccbb, tlsDirectory.AddressOfIndex);
-            Assert.AreEqual((ulong) 0xaa99887766554433, tlsDirectory.AddressOfCallBacks);
-            Assert.AreEqual((uint) 0x44332211, tlsDirectory.SizeOfZeroFill);
-            Assert.AreEqual((uint) 0x99887766, tlsDirectory.Characteristics);
+            Assert.Equal((ulong) 0x7766554433221100, tlsDirectory.StartAddressOfRawData);
+            Assert.Equal((ulong) 0xbbaa998877665544, tlsDirectory.EndAddressOfRawData);
+            Assert.Equal((ulong) 0x221100ffeeddccbb, tlsDirectory.AddressOfIndex);
+            Assert.Equal((ulong) 0xaa99887766554433, tlsDirectory.AddressOfCallBacks);
+            Assert.Equal((uint) 0x44332211, tlsDirectory.SizeOfZeroFill);
+            Assert.Equal((uint) 0x99887766, tlsDirectory.Characteristics);
         }
 
-        [TestMethod]
+        [Fact]
         public void ImageTlsDirectory32ConstructorWorks_Test()
         {
             var tlsDirectory = new IMAGE_TLS_DIRECTORY(RawStructures.RawTlsDirectory32, 2, false);
 
-            Assert.AreEqual((ulong)0x33221100, tlsDirectory.StartAddressOfRawData);
-            Assert.AreEqual((ulong)0x77665544, tlsDirectory.EndAddressOfRawData);
-            Assert.AreEqual((ulong)0xeeddccbb, tlsDirectory.AddressOfIndex);
-            Assert.AreEqual((ulong)0x66554433, tlsDirectory.AddressOfCallBacks);
-            Assert.AreEqual((uint)0x44332211, tlsDirectory.SizeOfZeroFill);
-            Assert.AreEqual((uint)0x99887766, tlsDirectory.Characteristics);
+            Assert.Equal((ulong)0x33221100, tlsDirectory.StartAddressOfRawData);
+            Assert.Equal((ulong)0x77665544, tlsDirectory.EndAddressOfRawData);
+            Assert.Equal((ulong)0xeeddccbb, tlsDirectory.AddressOfIndex);
+            Assert.Equal((ulong)0x66554433, tlsDirectory.AddressOfCallBacks);
+            Assert.Equal((uint)0x44332211, tlsDirectory.SizeOfZeroFill);
+            Assert.Equal((uint)0x99887766, tlsDirectory.Characteristics);
         }
     }
 }

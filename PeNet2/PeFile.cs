@@ -22,6 +22,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using PeNet.ImpHash;
 using PeNet.Structures;
+using PeNet.Utilities;
 
 namespace PeNet
 {
@@ -29,11 +30,11 @@ namespace PeNet
     ///     This class represents a Portable Executable (PE) file and makes the different
     ///     header and properties accessible.
     /// </summary>
-    public class PeFile
+    public partial class PeFile
     {
-        private readonly DataDirectories _dataDirectories;
-
-        private readonly StructureParser _structureParser;
+        private readonly DataDirectoryParsers _dataDirectoryParsers;
+        private readonly NativeStructureParsers _nativeStructureParsers;
+        private readonly DotNetStructureParsers _dotNetStructureParsers;
 
         /// <summary>
         ///     The PE binary as a byte array.
@@ -52,13 +53,19 @@ namespace PeNet
         public PeFile(byte[] buff)
         {
             Buff = buff;
-            _structureParser = new StructureParser(Buff);
+            _nativeStructureParsers = new NativeStructureParsers(Buff);
 
-            _dataDirectories = new DataDirectories(
+            _dataDirectoryParsers = new DataDirectoryParsers(
                 Buff,
                 ImageNtHeaders?.OptionalHeader?.DataDirectory,
                 ImageSectionHeaders,
                 Is32Bit
+                );
+
+            _dotNetStructureParsers = new DotNetStructureParsers(
+                Buff,
+                ImageComDescriptor,
+                ImageSectionHeaders
                 );
         }
 
@@ -119,6 +126,11 @@ namespace PeNet
         public bool HasValidRelocDir => ImageRelocationDirectory != null;
 
         /// <summary>
+        ///     Returns true if the COM+ 2 (CLI) directory is valid.
+        /// </summary>
+        public bool HasValidComDescriptor => ImageComDescriptor != null;
+
+        /// <summary>
         ///     Returns true if the DLL flag in the
         ///     File Header is set.
         /// </summary>
@@ -156,103 +168,129 @@ namespace PeNet
         /// <summary>
         ///     Access the IMAGE_DOS_HEADER of the PE file.
         /// </summary>
-        public IMAGE_DOS_HEADER ImageDosHeader => _structureParser.ImageDosHeader;
+        public IMAGE_DOS_HEADER ImageDosHeader => _nativeStructureParsers.ImageDosHeader;
 
         /// <summary>
         ///     Access the IMAGE_NT_HEADERS of the PE file.
         /// </summary>
-        public IMAGE_NT_HEADERS ImageNtHeaders => _structureParser.ImageNtHeaders;
+        public IMAGE_NT_HEADERS ImageNtHeaders => _nativeStructureParsers.ImageNtHeaders;
 
         /// <summary>
         ///     Access the IMAGE_SECTION_HEADERS of the PE file.
         /// </summary>
-        public IMAGE_SECTION_HEADER[] ImageSectionHeaders => _structureParser.ImageSectionHeaders;
+        public IMAGE_SECTION_HEADER[] ImageSectionHeaders => _nativeStructureParsers.ImageSectionHeaders;
 
         /// <summary>
         ///     Access the IMAGE_EXPORT_DIRECTORY of the PE file.
         /// </summary>
-        public IMAGE_EXPORT_DIRECTORY ImageExportDirectory => _dataDirectories.ImageExportDirectories;
+        public IMAGE_EXPORT_DIRECTORY ImageExportDirectory => _dataDirectoryParsers.ImageExportDirectories;
 
         /// <summary>
         ///     Access the IMAGE_IMPORT_DESCRIPTOR array of the PE file.
         /// </summary>
-        public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors => _dataDirectories.ImageImportDescriptors;
+        public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors => _dataDirectoryParsers.ImageImportDescriptors;
 
         /// <summary>
         ///     Access the IMAGE_BASE_RELOCATION array of the PE file.
         /// </summary>
-        public IMAGE_BASE_RELOCATION[] ImageRelocationDirectory => _dataDirectories.ImageBaseRelocations;
+        public IMAGE_BASE_RELOCATION[] ImageRelocationDirectory => _dataDirectoryParsers.ImageBaseRelocations;
 
         /// <summary>
         ///     Access the IMAGE_DEBUG_DIRECTORY of the PE file.
         /// </summary>
-        public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory => _dataDirectories.ImageDebugDirectory;
+        public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory => _dataDirectoryParsers.ImageDebugDirectory;
 
         /// <summary>
         ///     Access the exported functions as an array of parsed objects.
         /// </summary>
-        public ExportFunction[] ExportedFunctions => _dataDirectories.ExportFunctions;
+        public ExportFunction[] ExportedFunctions => _dataDirectoryParsers.ExportFunctions;
 
         /// <summary>
         ///     Access the imported functions as an array of parsed objects.
         /// </summary>
-        public ImportFunction[] ImportedFunctions => _dataDirectories.ImportFunctions;
+        public ImportFunction[] ImportedFunctions => _dataDirectoryParsers.ImportFunctions;
 
         /// <summary>
         ///     Access the IMAGE_RESOURCE_DIRECTORY of the PE file.
         /// </summary>
-        public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory => _dataDirectories.ImageResourceDirectory;
+        public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory => _dataDirectoryParsers.ImageResourceDirectory;
 
         /// <summary>
         ///     Access the array of RUNTIME_FUNCTION from the Exception header.
         /// </summary>
-        public RUNTIME_FUNCTION[] RuntimeFunctions => _dataDirectories.RuntimeFunctions;
+        public RUNTIME_FUNCTION[] RuntimeFunctions => _dataDirectoryParsers.RuntimeFunctions;
 
         /// <summary>
         ///     Access the WIN_CERTIFICATE from the Security header.
         /// </summary>
-        public WIN_CERTIFICATE WinCertificate => _dataDirectories.WinCertificate;
+        public WIN_CERTIFICATE WinCertificate => _dataDirectoryParsers.WinCertificate;
 
         /// <summary>
         /// Access the IMAGE_BOUND_IMPORT_DESCRIPTOR form the data directory.
         /// </summary>
-        public IMAGE_BOUND_IMPORT_DESCRIPTOR ImageBoundImportDescriptor => _dataDirectories.ImageBoundImportDescriptor;
+        public IMAGE_BOUND_IMPORT_DESCRIPTOR ImageBoundImportDescriptor => _dataDirectoryParsers.ImageBoundImportDescriptor;
 
         /// <summary>
         /// Access the IMAGE_TLS_DIRECTORY from the data directory.
         /// </summary>
-        public IMAGE_TLS_DIRECTORY ImageTlsDirectory => _dataDirectories.ImageTlsDirectory;
+        public IMAGE_TLS_DIRECTORY ImageTlsDirectory => _dataDirectoryParsers.ImageTlsDirectory;
 
         /// <summary>
         /// Access the IMAGE_DELAY_IMPORT_DESCRIPTOR from the data directory.
         /// </summary>
-        public IMAGE_DELAY_IMPORT_DESCRIPTOR ImageDelayImportDescriptor => _dataDirectories.ImageDelayImportDescriptor;
+        public IMAGE_DELAY_IMPORT_DESCRIPTOR ImageDelayImportDescriptor => _dataDirectoryParsers.ImageDelayImportDescriptor;
 
         /// <summary>
         /// Access the IMAGE_LOAD_CONFIG_DIRECTORY from the data directory.
         /// </summary>
-        public IMAGE_LOAD_CONFIG_DIRECTORY ImageLoadConfigDirectory => _dataDirectories.ImageLoadConfigDirectory;
+        public IMAGE_LOAD_CONFIG_DIRECTORY ImageLoadConfigDirectory => _dataDirectoryParsers.ImageLoadConfigDirectory;
+    
+        /// <summary>
+        /// Access the IMAGE_COR20_HEADER (COM Descriptor/CLI) from the data directory.
+        /// </summary>
+        public IMAGE_COR20_HEADER ImageComDescriptor => _dataDirectoryParsers.ImageComDescriptor;
 
         /// <summary>
         ///     A X509 PKCS7 signature if the PE file was digitally signed with such
         ///     a signature.
         /// </summary>
-        public X509Certificate2 PKCS7 => _dataDirectories.PKCS7;
+        public X509Certificate2 PKCS7 => _dataDirectoryParsers.PKCS7;
+
+        /// <summary>
+        ///     Access the METADATAHDR from the COM/CLI header.
+        /// </summary>
+        public METADATAHDR MetaDataHdr => _dotNetStructureParsers.MetaDataHdr;
+
+        /// <summary>
+        /// Meta Data Stream #String as a parsed list of strings.
+        /// </summary>
+        public List<string> MetaDataStreamString => _dotNetStructureParsers.MetaDataStreamString;
+
+        /// <summary>
+        /// Meta Data Stream #US as a parsed list of strings.
+        /// </summary>
+        public List<string> MetaDataStreamUS => _dotNetStructureParsers.MedaDataStreamUS;
+
+        /// <summary>
+        ///     Access the Meta Data Stream Tables Header from the list of
+        ///     Meta Data Streams of the .Net header.
+        /// </summary>
+        public METADATATABLESHDR MetaDataStreamTablesHeader => _dotNetStructureParsers.MetaDataStreamTablesHeader;
 
         /// <summary>
         ///     The SHA-256 hash sum of the binary.
         /// </summary>
-        public string SHA256 => _sha256 ?? (_sha256 = Utility.Sha256(Buff));
+        public string SHA256 => _sha256 ?? (_sha256 = Hashes.Sha256(Buff));
 
         /// <summary>
         ///     The SHA-1 hash sum of the binary.
         /// </summary>
-        public string SHA1 => _sha1 ?? (_sha1 = Utility.Sha1(Buff));
+        public string SHA1 => _sha1 ?? (_sha1 = Hashes.Sha1(Buff));
 
         /// <summary>
         ///     The MD5 of hash sum of the binary.
         /// </summary>
-        public string MD5 => _md5 ?? (_md5 = Utility.MD5(Buff));
+        public string MD5 => _md5 ?? (_md5 = Hashes.MD5(Buff));
 
         /// <summary>
         ///     The Import Hash of the binary if any imports are
@@ -280,7 +318,7 @@ namespace PeNet
             if (!IsSigned)
                 return false;
 
-            return Utility.IsValidCertChain(PKCS7, online);
+            return SignatureInformation.IsValidCertChain(PKCS7, online);
         }
 
         /// <summary>
@@ -339,24 +377,7 @@ namespace PeNet
         public static bool IsPEFile(string file)
         {
             var buff = File.ReadAllBytes(file);
-            IMAGE_DOS_HEADER dosHeader = null;
-            try
-            {
-                dosHeader = new IMAGE_DOS_HEADER(buff, 0);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            try
-            {
-                return dosHeader.e_magic == 0x5a4d;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return PeValidator.IsPeValidPeFile(buff);
         }
 
         /// <summary>
@@ -456,7 +477,7 @@ namespace PeNet
         public override string ToString()
         {
             var sb = new StringBuilder("PE HEADER:\n");
-            sb.Append(Utility.PropertiesToString(this, "{0,-15}:\t{1,10:X}\n"));
+            sb.Append(this.PropertiesToString("{0,-15}:\t{1,10:X}\n"));
             return sb.ToString();
         }
     }

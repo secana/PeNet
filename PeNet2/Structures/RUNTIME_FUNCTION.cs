@@ -16,6 +16,7 @@ limitations under the License.
 *************************************************************************/
 
 using System.Text;
+using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
@@ -26,6 +27,9 @@ namespace PeNet.Structures
     /// </summary>
     public class RUNTIME_FUNCTION : AbstractStructure
     {
+        private UNWIND_INFO _resolvedUnwindInfo;
+        private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
+
         /// <summary>
         ///     Create a new RUNTIME_FUNCTION object.
         /// </summary>
@@ -35,7 +39,7 @@ namespace PeNet.Structures
         public RUNTIME_FUNCTION(byte[] buff, uint offset, IMAGE_SECTION_HEADER[] sh)
             : base(buff, offset)
         {
-            ResolvedUnwindInfo = GetUnwindInfo(sh);
+            _sectionHeaders = sh;
         }
 
         /// <summary>
@@ -68,7 +72,16 @@ namespace PeNet.Structures
         /// <summary>
         ///     Unwind Info object belonging to this Runtime Function.
         /// </summary>
-        public UNWIND_INFO ResolvedUnwindInfo { get; private set; }
+        public UNWIND_INFO ResolvedUnwindInfo {
+            get
+            {
+                if (_resolvedUnwindInfo != null)
+                    return _resolvedUnwindInfo;
+
+                _resolvedUnwindInfo = GetUnwindInfo(_sectionHeaders);
+                return _resolvedUnwindInfo;
+            }
+        }
 
         /// <summary>
         ///     Get the UNWIND_INFO from a runtime function form the
@@ -96,7 +109,7 @@ namespace PeNet.Structures
         public override string ToString()
         {
             var sb = new StringBuilder("RUNTIME_FUNCTION\n");
-            sb.Append(Utility.PropertiesToString(this, "{0,-20}:\t{1,10:X}\n"));
+            sb.Append(this.PropertiesToString("{0,-20}:\t{1,10:X}\n"));
             return sb.ToString();
         }
     }

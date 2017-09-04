@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using PeNet;
+using PeNet.Utilities;
 
 namespace PEditor.TabItems
 {
@@ -42,7 +43,7 @@ namespace PEditor.TabItems
             if (!peFile.IsSigned)
                 return;
 
-            cbCertIsValid.IsChecked = Utility.IsSignatureValid(peFile.FileLocation);
+            cbCertIsValid.IsChecked = SignatureInformation.IsSignatureValid(peFile.FileLocation);
             cbCertIsSigned.IsChecked = peFile.IsSigned;
             cbCertIsValidChain.IsChecked = peFile.IsValidCertChain(true);
             tbCertLength.Text = peFile.WinCertificate.dwLength.ToHexString();

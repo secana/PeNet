@@ -15,6 +15,8 @@ limitations under the License.
 
 *************************************************************************/
 
+using PeNet.Utilities;
+
 namespace PeNet.Structures
 {
     /// <summary>

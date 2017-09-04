@@ -20,7 +20,6 @@ using System.Deployment.Application;
 using System.Windows;
 using Microsoft.Win32;
 using PeNet;
-using PEditor.TabItems;
 
 namespace PEditor
 {
@@ -67,73 +66,61 @@ namespace PEditor
                 return;
             }
 
-            PeFile peFile = null;
-            try
-            {
-               peFile = new PeFile(file);
-                
-            }
-            catch (Exception)
-            {
-                ShowInvalidPeFileMsgBox();
-                return;
-            }
-
-            _peFile = peFile;
+            _peFile = new PeFile(file);
 
             // Set all FileInfo fields.
-            FileInfo.SetFileInfo(peFile);
+            FileInfo.SetFileInfo(_peFile);
 
             // Set the DOS header fields
-            DosNtHeader.SetDosHeader(peFile);
+            DosNtHeader.SetDosHeader(_peFile);
 
             // Set the PE File fields
-            DosNtHeader.SetNtHeader(peFile);
+            DosNtHeader.SetNtHeader(_peFile);
 
             // Set the File header
-            FileHeaderDebug.SetFileHeader(peFile);
+            FileHeaderDebug.SetFileHeader(_peFile);
 
             // Set the Debug directory.
-            FileHeaderDebug.SetDebug(peFile);
+            FileHeaderDebug.SetDebug(_peFile);
 
             // Set the Optional header
-            OptionalHeader.SetOptionalHeader(peFile);
+            OptionalHeader.SetOptionalHeader(_peFile);
 
             // Set the imports.
-            Imports.SetImports(peFile);
+            Imports.SetImports(_peFile);
 
             // Set the exports.
-            Exports.SetExports(peFile);
+            Exports.SetExports(_peFile);
 
             // Set the resources.
-            Resource.SetResources(peFile);
+            Resource.SetResources(_peFile);
 
             // Set the sections.
-            SectionHeaders.SetSections(peFile);
+            SectionHeaders.SetSections(_peFile);
 
             // Set the Exception (only for x64)
-            Exceptions.SetException(peFile);
+            Exceptions.SetException(_peFile);
 
             // Set the Relocations.
-            Relocation.SetRelocations(peFile);
+            Relocation.SetRelocations(_peFile);
 
             // Set the Digital Signature information.
-            Signature.SetDigSignature(peFile);
+            Signature.SetDigSignature(_peFile);
 
             // Set the Bound Import directory.
-            DebugBoundImport.SetBoundImport(peFile);
+            DebugBoundImport.SetBoundImport(_peFile);
 
             // Set the Delay Import descriptor.
-            DebugBoundImport.SetDelayImport(peFile);
+            DebugBoundImport.SetDelayImport(_peFile);
 
             // Set the TLS directory.
-            TlsDirectory.SetTlsDirectory(peFile);
+            TlsDirectory.SetTlsDirectory(_peFile);
 
             // Set the Load Config Directory
-            LoadConfig.SetLoadConfig(peFile);
+            LoadConfig.SetLoadConfig(_peFile);
 
             // Set the Data Directory View
-            DirectoryView.SetDirectoryView(peFile);
+            DirectoryView.SetDirectoryView(_peFile);
         }
 
         private void ShowInvalidPeFileMsgBox()

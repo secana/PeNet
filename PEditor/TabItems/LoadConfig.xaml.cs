@@ -17,6 +17,7 @@ limitations under the License.
 
 using System.Windows.Controls;
 using PeNet;
+using PeNet.Utilities;
 
 namespace PEditor.TabItems
 {

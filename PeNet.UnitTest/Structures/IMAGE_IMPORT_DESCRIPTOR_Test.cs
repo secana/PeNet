@@ -15,23 +15,23 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class IMAGE_IMPORT_DESCRIPTOR_Test
     {
-        [TestMethod]
+        [Fact]
         public void ImageImportDescriptorConstructorWorks_Test()
         {
             var importDescriptor = new IMAGE_IMPORT_DESCRIPTOR(RawStructures.RawImportDescriptor, 2);
-            Assert.AreEqual((uint) 0x33221100, importDescriptor.OriginalFirstThunk);
-            Assert.AreEqual((uint) 0x77665544, importDescriptor.TimeDateStamp);
-            Assert.AreEqual(0xbbaa9988, importDescriptor.ForwarderChain);
-            Assert.AreEqual(0xffeeddcc, importDescriptor.Name);
-            Assert.AreEqual((uint) 0x44332211, importDescriptor.FirstThunk);
+            Assert.Equal((uint) 0x33221100, importDescriptor.OriginalFirstThunk);
+            Assert.Equal((uint) 0x77665544, importDescriptor.TimeDateStamp);
+            Assert.Equal(0xbbaa9988, importDescriptor.ForwarderChain);
+            Assert.Equal(0xffeeddcc, importDescriptor.Name);
+            Assert.Equal((uint) 0x44332211, importDescriptor.FirstThunk);
         }
     }
 }

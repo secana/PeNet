@@ -15,32 +15,32 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class IMAGE_DOS_HEADER_Test
     {
-        [TestMethod]
+        [Fact]
         public void ImageDosHeaderConstructorWorks_Test()
         {
             var idh = new IMAGE_DOS_HEADER(RawStructures.RawDosHeader, 0);
-            Assert.AreEqual((uint) 0x1100, idh.e_magic);
-            Assert.AreEqual((uint) 0x3322, idh.e_cblp);
-            Assert.AreEqual((uint) 0x5544, idh.e_cp);
-            Assert.AreEqual((uint) 0x7766, idh.e_crlc);
-            Assert.AreEqual((uint) 0x9988, idh.e_cparhdr);
-            Assert.AreEqual((uint) 0xbbaa, idh.e_minalloc);
-            Assert.AreEqual((uint) 0xddcc, idh.e_maxalloc);
-            Assert.AreEqual((uint) 0x00ff, idh.e_ss);
-            Assert.AreEqual((uint) 0x2211, idh.e_sp);
-            Assert.AreEqual((uint) 0x4433, idh.e_csum);
-            Assert.AreEqual((uint) 0x6655, idh.e_ip);
-            Assert.AreEqual((uint) 0x8877, idh.e_cs);
-            Assert.AreEqual((uint) 0xaa99, idh.e_lfarlc);
-            Assert.AreEqual((uint) 0xccbb, idh.e_ovno);
+            Assert.Equal((uint) 0x1100, idh.e_magic);
+            Assert.Equal((uint) 0x3322, idh.e_cblp);
+            Assert.Equal((uint) 0x5544, idh.e_cp);
+            Assert.Equal((uint) 0x7766, idh.e_crlc);
+            Assert.Equal((uint) 0x9988, idh.e_cparhdr);
+            Assert.Equal((uint) 0xbbaa, idh.e_minalloc);
+            Assert.Equal((uint) 0xddcc, idh.e_maxalloc);
+            Assert.Equal((uint) 0x00ff, idh.e_ss);
+            Assert.Equal((uint) 0x2211, idh.e_sp);
+            Assert.Equal((uint) 0x4433, idh.e_csum);
+            Assert.Equal((uint) 0x6655, idh.e_ip);
+            Assert.Equal((uint) 0x8877, idh.e_cs);
+            Assert.Equal((uint) 0xaa99, idh.e_lfarlc);
+            Assert.Equal((uint) 0xccbb, idh.e_ovno);
             AssertEqual(new ushort[]
             {
                 0xeedd,
@@ -48,8 +48,8 @@ namespace PeNet.UnitTest.Structures
                 0x2211,
                 0x4433
             }, idh.e_res);
-            Assert.AreEqual((uint) 0x6655, idh.e_oemid);
-            Assert.AreEqual((uint) 0x8877, idh.e_oeminfo);
+            Assert.Equal((uint) 0x6655, idh.e_oemid);
+            Assert.Equal((uint) 0x8877, idh.e_oeminfo);
             AssertEqual(new ushort[]
             {
                 0xaa99,
@@ -67,10 +67,10 @@ namespace PeNet.UnitTest.Structures
 
         private void AssertEqual(ushort[] expected, ushort[] actual)
         {
-            Assert.AreEqual(expected.Length, actual.Length);
+            Assert.Equal(expected.Length, actual.Length);
             for (var i = 0; i < expected.Length; i++)
             {
-                Assert.AreEqual(expected[i], actual[i]);
+                Assert.Equal(expected[i], actual[i]);
             }
         }
     }

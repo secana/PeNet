@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Windows.Controls;
 using PeNet;
+using PeNet.Utilities;
 
 namespace PEditor.TabItems
 {
@@ -24,9 +25,9 @@ namespace PEditor.TabItems
             if (selected == null) return;
 
             // Convert string of format 0x... to an integer.
-            var funcStart = Utility.ToIntFromHexString(selected.FunctionStart);
-            var funcEnd = Utility.ToIntFromHexString(selected.FunctionEnd);
-            var uw = Utility.ToIntFromHexString(selected.UnwindInfo);
+            var funcStart = selected.FunctionStart.ToIntFromHexString();
+            var funcEnd = selected.FunctionEnd.ToIntFromHexString();
+            var uw = selected.UnwindInfo.ToIntFromHexString();
 
             // Find the RUNTIME_FUNCTION which was selected.
             var rt = _peFile.RuntimeFunctions.First(x => x.FunctionStart == funcStart
@@ -35,14 +36,14 @@ namespace PEditor.TabItems
                 );
 
             // Set the UNWIND_INFO properties.
-            tbUIVersion.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.Version);
-            tbUIFlags.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.Flags);
-            tbUISizeOfProlog.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.SizeOfProlog);
-            tbUICountOfCodes.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.CountOfCodes);
-            tbUIFrameRegister.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.FrameRegister);
-            tbUIFrameOffset.Text = Utility.ToHexString(rt.ResolvedUnwindInfo.FrameOffset);
+            tbUIVersion.Text = rt.ResolvedUnwindInfo.Version.ToHexString();
+            tbUIFlags.Text = rt.ResolvedUnwindInfo.Flags.ToHexString();
+            tbUISizeOfProlog.Text = rt.ResolvedUnwindInfo.SizeOfProlog.ToHexString();
+            tbUICountOfCodes.Text = rt.ResolvedUnwindInfo.CountOfCodes.ToHexString();
+            tbUIFrameRegister.Text = rt.ResolvedUnwindInfo.FrameRegister.ToHexString();
+            tbUIFrameOffset.Text = rt.ResolvedUnwindInfo.FrameOffset.ToHexString();
             tbUIExHandlerFuncEntry.Text = rt.ResolvedUnwindInfo.ExceptionHandler.ToHexString();
-            // TODO: display excetption data as a hex array.
+            // TODO: display exception data as a hex array.
             //tbUIExData.Text = string.Format("", rt.ResolvedUnwindInfo.ExceptionData);
 
             // Set the UNWIND_CODE structures for the UNWIND_INFO
@@ -51,8 +52,8 @@ namespace PEditor.TabItems
             {
                 lbUnwindCode.Items.Add(new
                 {
-                    CodeOffset = Utility.ToHexString(uc.CodeOffset),
-                    UnwindOp = Utility.ToHexString(uc.UnwindOp),
+                    CodeOffset = uc.CodeOffset.ToHexString(),
+                    UnwindOp = uc.UnwindOp.ToHexString(),
                     FrameOffset = uc.FrameOffset.ToHexString()
                 });
             }

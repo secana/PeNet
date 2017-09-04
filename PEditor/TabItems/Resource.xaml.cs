@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using PeNet;
 using PeNet.Structures;
+using PeNet.Utilities;
 
 namespace PEditor.TabItems
 {
@@ -39,11 +40,13 @@ namespace PEditor.TabItems
             tbReserved.Text = directoryEntry.ResourceDataEntry.Reserved.ToHexString();
 
             // Build the hex output
-            var rawOffset = directoryEntry.ResourceDataEntry.OffsetToData.RVAtoFileMapping(_peFile.ImageSectionHeaders
-                );
+            var rawOffset = directoryEntry.ResourceDataEntry.OffsetToData.SafeRVAtoFileMapping(_peFile.ImageSectionHeaders);
 
-            tbResource.Text = string.Join(" ",
-                _peFile.Buff.ToHexString(rawOffset, directoryEntry.ResourceDataEntry.Size1));
+            if (rawOffset == null)
+                tbResource.Text = "invalid";
+            else
+                tbResource.Text = string.Join(" ",
+                    _peFile.Buff.ToHexString(rawOffset.Value, directoryEntry.ResourceDataEntry.Size1));
         }
 
         public void SetResources(PeFile peFile)
@@ -72,7 +75,7 @@ namespace PEditor.TabItems
                 {
                     item = new MyTreeViewItem<IMAGE_RESOURCE_DIRECTORY_ENTRY>(de)
                     {
-                        Header = Utility.ResolveResourceId(de.ID)
+                        Header = PeNet.Utilities.FlagResolver.ResolveResourceId(de.ID)
                     };
                 }
                 else if (de.IsNamedEntry)

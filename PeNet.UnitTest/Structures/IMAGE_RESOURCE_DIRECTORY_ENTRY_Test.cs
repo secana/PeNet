@@ -15,36 +15,36 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class IMAGE_RESOURCE_DIRECTORY_ENTRY_Test
     {
-        [TestMethod]
+        [Fact]
         public void ResourceDirectroyEntryByNameConstructorWorks_Test()
         {
             var resourceDirectroyEntry =
                 new IMAGE_RESOURCE_DIRECTORY_ENTRY(RawStructures.RawResourceDirectoryEntryByName, 2, 2);
 
-            Assert.IsTrue(resourceDirectroyEntry.IsNamedEntry);
-            Assert.IsFalse(resourceDirectroyEntry.IsIdEntry);
-            Assert.AreEqual(0x80332211, resourceDirectroyEntry.Name);
-            Assert.AreEqual((uint) 0x55443322, resourceDirectroyEntry.OffsetToData);
+            Assert.True(resourceDirectroyEntry.IsNamedEntry);
+            Assert.False(resourceDirectroyEntry.IsIdEntry);
+            Assert.Equal(0x80332211, resourceDirectroyEntry.Name);
+            Assert.Equal((uint) 0x55443322, resourceDirectroyEntry.OffsetToData);
         }
 
-        [TestMethod]
+        [Fact]
         public void ResourceDirectroyEntryByIdConstructorWorks_Test()
         {
             var resourceDirectroyEntry =
                 new IMAGE_RESOURCE_DIRECTORY_ENTRY(RawStructures.RawResourceDirectoryEntryById, 2, 2);
 
-            Assert.IsTrue(resourceDirectroyEntry.IsIdEntry);
-            Assert.IsFalse(resourceDirectroyEntry.IsNamedEntry);
-            Assert.AreEqual((uint) 0x00332211 & 0xFFFF, resourceDirectroyEntry.ID);
-            Assert.AreEqual((uint) 0x55443322, resourceDirectroyEntry.OffsetToData);
+            Assert.True(resourceDirectroyEntry.IsIdEntry);
+            Assert.False(resourceDirectroyEntry.IsNamedEntry);
+            Assert.Equal((uint) 0x00332211 & 0xFFFF, resourceDirectroyEntry.ID);
+            Assert.Equal((uint) 0x55443322, resourceDirectroyEntry.OffsetToData);
         }
     }
 }

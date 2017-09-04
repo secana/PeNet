@@ -15,24 +15,24 @@ limitations under the License.
 
 *************************************************************************/
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using PeNet.Structures;
 
 namespace PeNet.UnitTest.Structures
 {
-    [TestClass]
+    
     public class WIN_CERTIFICATE_Test
     {
-        [TestMethod]
+        [Fact]
         public void WinCertificateConstructorWorks_Test()
         {
             var winCertifiacte = new WIN_CERTIFICATE(RawStructures.RawWinCertificate, 2);
-            Assert.AreEqual((uint) 0x0000000b, winCertifiacte.dwLength);
-            Assert.AreEqual((ushort) 0x5544, winCertifiacte.wRevision);
-            Assert.AreEqual((ushort) 0x7766, winCertifiacte.wCertificateType);
-            Assert.AreEqual((byte) 0x11, winCertifiacte.bCertificate[0]);
-            Assert.AreEqual((byte) 0x22, winCertifiacte.bCertificate[1]);
-            Assert.AreEqual((byte) 0x33, winCertifiacte.bCertificate[2]);
+            Assert.Equal((uint) 0x0000000b, winCertifiacte.dwLength);
+            Assert.Equal((ushort) 0x5544, winCertifiacte.wRevision);
+            Assert.Equal((ushort) 0x7766, winCertifiacte.wCertificateType);
+            Assert.Equal((byte) 0x11, winCertifiacte.bCertificate[0]);
+            Assert.Equal((byte) 0x22, winCertifiacte.bCertificate[1]);
+            Assert.Equal((byte) 0x33, winCertifiacte.bCertificate[2]);
         }
     }
 }
