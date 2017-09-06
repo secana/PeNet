@@ -1,2 +1,0 @@
-- Overview table over all data directories (size/virtual address/raw address)
-- Start with .Net header
