@@ -70,8 +70,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PeNet2\PeNet.csproj">
-      <Project>{fe67c8a3-b4b2-4429-a5ba-379580eee90c}</Project>
+    <ProjectReference Include="..\PeNet\PeNet.csproj">
+      <Project>{12794d4d-98ea-4a5c-92ea-d3282790c3d3}</Project>
       <Name>PeNet</Name>
     </ProjectReference>
   </ItemGroup>
