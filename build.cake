@@ -3,10 +3,9 @@ var testFailed = false;
 var solutionDir = System.IO.Directory.GetCurrentDirectory();
 
 
-var testResultDir = Argument("testResultDir", System.IO.Path.Combine(solutionDir, "test-results"));     // ./build.sh --target Build-Container -testResultsDir="somedir"
-var artifactDir = Argument("artifactDir", "./artifacts"); 												// ./build.sh --target Build-Container -artifactDir="somedir"
-var buildNumber = Argument<int>("buildNumber", 0); 														// ./build.sh --target Build-Container -buildNumber=5
-var slnName = Argument("slnName", "PeNet");
+var testResultDir = Argument("testResultDir", System.IO.Path.Combine(solutionDir, "test-results"));     // ./build.sh --target publish -testResultsDir="somedir"
+var artifactDir = Argument("artifactDir", "./artifacts"); 												// ./build.sh --target publish -artifactDir="somedir"
+var buildNumber = Argument<int>("buildNumber", 0); 														// ./build.sh --target publish -buildNumber=5
 
 Information("Solution Directory: {0}", solutionDir);
 Information("Test Results Directory: {0}", testResultDir);
@@ -157,8 +156,6 @@ Task("Default")
 		Information("Build and test the whole solution.");
 		Information("To pack (nuget) the application use the cake build argument: --target Pack");
 		Information("To publish (to run it somewhere else) the application use the cake build argument: --target Publish");
-		Information("To build a Docker container with the application use the cake build argument: --target Build-Container");
-		Information("To push the Docker container into an Docker registry use the cake build argument: --target Push-Container -dockerRegistry=\"yourregistry\"");
 	});
 
 
