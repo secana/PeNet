@@ -121,7 +121,7 @@ Task("Pack")
 
 		var peditorSetting = new MSBuildSettings {
 			ToolPath = msBuildPathX64,
-			//Verbosity = Verbosity.Minimal,
+			Verbosity = Verbosity.Minimal,
 			Configuration = "Release",
 		};
 
