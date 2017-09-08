@@ -1,10 +1,13 @@
 #tool nuget:?package=vswhere
+#addin nuget:?package=Cake.OctoDeploy
 
 var target = Argument("target", "Default");
 var solutionDir = System.IO.Directory.GetCurrentDirectory();
 var testResultDir = Argument("testResultDir", System.IO.Path.Combine(solutionDir, "test-results"));     // ./build.sh --target publish -testResultsDir="somedir"
 var artifactDir = Argument("artifactDir", System.IO.Path.Combine(solutionDir, "artifacts")); 			// ./build.sh --target publish -artifactDir="somedir"
 var peditorArtifactDir = System.IO.Path.Combine(artifactDir, "PEditor");
+string peditorReleaseZip = null;
+string peditorVersion = null;
 var testFailed = false;
 
 var peNetProj = System.IO.Path.Combine(solutionDir, "src", "PeNet", "PeNet.csproj");
@@ -132,18 +135,11 @@ Task("Pack")
 			.WithProperty("PublishDir", peditorArtifactDir + @"\")
 			);
 
-		var version = GetPEditorVersion();
-		var zipName = System.IO.Path.Combine(artifactDir, $"PEditor-{version}.zip");
-		Zip(peditorArtifactDir, zipName);
+		peditorVersion = GetPEditorVersion();
+		peditorReleaseZip = System.IO.Path.Combine(artifactDir, $"PEditor-{peditorVersion}.zip");
+		Zip(peditorArtifactDir, peditorReleaseZip);
 	});
 
-string GetPEditorVersion()
-{
-	var versionPath = System.IO.Directory.GetDirectories(System.IO.Path.Combine(peditorArtifactDir, "Application Files")).ElementAt(0);
-	var version = versionPath.Split(new char[] { '_' }, 2, StringSplitOptions.RemoveEmptyEntries).ElementAt(1).Replace('_', '.');
-	Information($"Extracted {version} for PEditor");
-	return version;
-}
 
 Task("Publish")
 	.IsDependentOn("Test")
@@ -155,7 +151,31 @@ Task("Publish")
 			return;
 		}
 
-		Information("NOT IMPLEMENTED YET");
+		var octoSettings = new OctoDeploySettings {
+			AccessToken = "YOUR ACCESS TOKEN HERE (add command line argument for that)",
+			Owner = "secana",
+			Repository = @"https://github.com/secana/PeNet"
+		}
+
+		var tag = $"v{peditorVersion}";
+		var releaseTitle = $"PEditor Version {peditorVersion}";
+		var releaseNotes = "Latest release of the GUI editor for Portable Executable headers based on the PeNet library.";
+		var draftRelease = false;
+		var preRelease = false;
+		var artifactPath = new FilePath(peditorReleaseZip);
+		var artifactName = artifactPath.GetFilename();
+		var artifactMimeType = "application/zip";
+
+		PublishReleaseWithArtifact(
+			tag,
+			releaseTitle,
+			releaseNotes,
+			draftRelease,
+			preRelease,
+			artifactPath,
+			artifactName,
+			artifactMimeType,
+			octoSettings);
 	});
 
 
@@ -168,6 +188,13 @@ Task("Default")
 		Information("To publish (to run it somewhere else) the application use the cake build argument: --target Publish");
 	});
 
+string GetPEditorVersion()
+{
+	var versionPath = System.IO.Directory.GetDirectories(System.IO.Path.Combine(peditorArtifactDir, "Application Files")).ElementAt(0);
+	var version = versionPath.Split(new char[] { '_' }, 2, StringSplitOptions.RemoveEmptyEntries).ElementAt(1).Replace('_', '.');
+	Information($"Extracted {version} for PEditor");
+	return version;
+}
 
 FilePathCollection GetSrcProjectFiles()
 {
