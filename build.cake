@@ -1,23 +1,21 @@
 #tool nuget:?package=vswhere
 
 var target = Argument("target", "Default");
-var testFailed = false;
 var solutionDir = System.IO.Directory.GetCurrentDirectory();
-
 var testResultDir = Argument("testResultDir", System.IO.Path.Combine(solutionDir, "test-results"));     // ./build.sh --target publish -testResultsDir="somedir"
 var artifactDir = Argument("artifactDir", "./artifacts"); 												// ./build.sh --target publish -artifactDir="somedir"
 var buildNumber = Argument<int>("buildNumber", 0); 														// ./build.sh --target publish -buildNumber=5
+var testFailed = false;
 
-Information("Solution Directory: {0}", solutionDir);
-Information("Test Results Directory: {0}", testResultDir);
-
-var peNetProj = System.IO.Path.Combine(solutionDir, "src", "PeNet", "PeNet.csproj");
-var peNetTestProj = System.IO.Path.Combine(solutionDir, "test", "PeNet.Test", "PeNet.Test.csproj");
-
+// Get the latest VS installation to find the latest MSBuild tools.
 DirectoryPath vsLatest  = VSWhereLatest();
 FilePath msBuildPathX64 = (vsLatest==null)
                             ? null
                             : vsLatest.CombineWithFilePath("./MSBuild/15.0/Bin/amd64/MSBuild.exe");
+
+
+Information("Solution Directory: {0}", solutionDir);
+Information("Test Results Directory: {0}", testResultDir);
 
 
 Task("Clean")
@@ -40,6 +38,7 @@ Task("Clean")
 
 
 Task("PrepareDirectories")
+	.IsDependentOn("Clean")
 	.Does(() =>
 	{
 		EnsureDirectoryExists(testResultDir);
@@ -48,12 +47,14 @@ Task("PrepareDirectories")
 
 
 Task("Restore")
+	.IsDependentOn("PrepareDirectories")
 	.Does(() =>
 	{
 		DotNetCoreRestore();	  
 	});
 
 Task("Build")
+	.IsDependentOn("Restore")
 	.Does(() =>
 	{
 		MSBuild(solutionDir, new MSBuildSettings {
