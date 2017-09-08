@@ -1,3 +1,5 @@
+#tool nuget:?package=vswhere
+
 var target = Argument("target", "Default");
 var testFailed = false;
 var solutionDir = System.IO.Directory.GetCurrentDirectory();
@@ -11,6 +13,12 @@ Information("Test Results Directory: {0}", testResultDir);
 
 var peNetProj = System.IO.Path.Combine(solutionDir, "src", "PeNet", "PeNet.csproj");
 var peNetTestProj = System.IO.Path.Combine(solutionDir, "test", "PeNet.Test", "PeNet.Test.csproj");
+
+DirectoryPath vsLatest  = VSWhereLatest();
+FilePath msBuildPathX64 = (vsLatest==null)
+                            ? null
+                            : vsLatest.CombineWithFilePath("./MSBuild/15.0/Bin/amd64/MSBuild.exe");
+
 
 Task("Clean")
 	.Does(() =>
@@ -45,51 +53,13 @@ Task("Restore")
 		DotNetCoreRestore();	  
 	});
 
-
-Task("BuildPeNet")
-	.IsDependentOn("Clean")
-	.IsDependentOn("PrepareDirectories")
-	.IsDependentOn("Restore")
-	.Does(() => 
-	{
-		var settings = new DotNetCoreBuildSettings
-		{
-			Configuration = "Release"
-		};
-
-		DotNetCoreBuild(peNetProj, settings);
-		DotNetCoreBuild(peNetTestProj, settings);
-	});
-
-Task("TestPeNet")
-	.IsDependentOn("BuildPeNet")
-	.Does(() => 
-	{
-		var settings = new DotNetCoreTestSettings
-		{
-			Configuration = "Release"
-	    };
-
-		DotNetCoreTest(peNetTestProj, settings);
-	});
-
-
 Task("Build")
-	.IsDependentOn("BuildPeNet")
 	.Does(() =>
 	{
-		var solution = GetFiles("./*.sln").ElementAt(0);
-		Information("Build solution: {0}", solution);
-
-		MSBuild(solution);
-
-		var settings = new DotNetCoreBuildSettings
-		{
+		MSBuild(solutionDir, new MSBuildSettings {
+			ToolPath = msBuildPathX64,
 			Configuration = "Release"
-		};
-
-		DotNetCoreBuild(solution.FullPath, settings);
-
+		});
 	});
 
 

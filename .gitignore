@@ -3,6 +3,7 @@
 
 # Cake
 tools/
+test-results/
 
 # User-specific files
 *.suo
