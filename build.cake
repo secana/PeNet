@@ -7,6 +7,9 @@ var artifactDir = Argument("artifactDir", "./artifacts"); 												// ./build
 var buildNumber = Argument<int>("buildNumber", 0); 														// ./build.sh --target publish -buildNumber=5
 var testFailed = false;
 
+var peNetProj = System.IO.Path.Combine(solutionDir, "src", "PeNet", "PeNet.csproj");
+var peditorProj = System.IO.Path.Combine(solutionDir, "src", "PEditor", "PEditor.csproj");
+
 // Get the latest VS installation to find the latest MSBuild tools.
 DirectoryPath vsLatest  = VSWhereLatest();
 FilePath msBuildPathX64 = (vsLatest==null)
@@ -105,19 +108,15 @@ Task("Pack")
 			Information("Do not pack because tests failed");
 			return;
 		}
-
-		var projects = GetSrcProjectFiles();
+		
 		var settings = new DotNetCorePackSettings
 		{
 			Configuration = "Release",
 			OutputDirectory = artifactDir
 		};
 		
-		foreach(var project in projects)
-		{
-			Information("Pack {0}", project.FullPath);
-			DotNetCorePack(project.FullPath, settings);
-		}
+		Information("Pack {0}", peNetProj);
+		DotNetCorePack(peNetProj, settings);
 	});
 
 
@@ -169,22 +168,6 @@ FilePathCollection GetSrcProjectFiles()
 FilePathCollection GetTestProjectFiles()
 {
 	return GetFiles("./test/**/*Test/*.csproj");
-}
-
-string GetMSBuildExePath()
-{
-	var msbuildPath = (string) Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\software\Microsoft\MSBuild\ToolsVersions\4.0", "MSBuildToolsPath", null);
-
-	if(msbuildPath == null)
-		throw new Exception($"Could not find msbuild path.");
-
-	var msbuildExe = System.IO.Path.Combine(msbuildPath, "msbuild.exe");
-
-	if(!System.IO.File.Exists(msbuildExe))
-		throw new Exception($"Could not find msbuild exe.");
-
-	Information($"Found msbuild.exe at {msbuildExe}");
-	return msbuildExe;
 }
 
 RunTarget(target);

@@ -4,6 +4,7 @@
 # Cake
 tools/
 test-results/
+artifacts/
 
 # User-specific files
 *.suo
