@@ -1,4 +1,4 @@
-﻿namespace PeNet.UnitTest.Structures
+﻿namespace PeNet.Test.Structures
 {
     public static class RawStructures
     {

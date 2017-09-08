@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Xunit;
 
-namespace PeNet.UnitTest.Binaries
+namespace PeNet.Test.Binaries
 {
     public class TLSCallback_x86_Test
     {
@@ -9,7 +9,7 @@ namespace PeNet.UnitTest.Binaries
         public void TLSCallback_x86_Works_Test()
         {
             // Given
-            var peFile = new PeFile(@"../../Binaries/TLSCallback_x86.exe");
+            var peFile = new PeFile(@"../../../Binaries/TLSCallback_x86.exe");
 
             // When
             var callbacks = peFile.ImageTlsDirectory.TlsCallbacks;

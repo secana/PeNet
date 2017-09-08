@@ -15,7 +15,7 @@ limitations under the License.
 
 *************************************************************************/
 
-namespace PeNet.UnitTest.Structures
+namespace PeNet.Test.Structures
 {
     /// <summary>
     /// See for more information: 

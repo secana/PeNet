@@ -15,10 +15,10 @@ limitations under the License.
 
 *************************************************************************/
 
-using Xunit;
 using PeNet.Structures;
+using Xunit;
 
-namespace PeNet.UnitTest.Structures
+namespace PeNet.Test.Structures
 {
     
     public class IMAGE_DATA_DIRECTORY_Test

@@ -19,7 +19,7 @@ using System.Linq;
 using PeNet.Utilities;
 using Xunit;
 
-namespace PeNet.UnitTest.Utilities
+namespace PeNet.Test.Utilities
 {
     public class FlagResolver_Test
     {

@@ -17,7 +17,7 @@ limitations under the License.
 
 using Xunit;
 
-namespace PeNet.UnitTest.Utilities
+namespace PeNet.Test.Utilities
 {
     public class HeapOffsetBasedIndexSizes_Test
     {

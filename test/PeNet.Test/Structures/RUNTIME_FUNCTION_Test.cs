@@ -15,11 +15,10 @@ limitations under the License.
 
 *************************************************************************/
 
-using System;
-using Xunit;
 using PeNet.Structures;
+using Xunit;
 
-namespace PeNet.UnitTest.Structures
+namespace PeNet.Test.Structures
 {
     
     public class RUNTIME_FUNCTION_Test

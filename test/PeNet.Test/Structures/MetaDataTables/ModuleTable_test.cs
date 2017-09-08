@@ -19,7 +19,7 @@ using System.Linq;
 using PeNet.Structures.MetaDataTables;
 using Xunit;
 
-namespace PeNet.UnitTest.Structures.MetaDataTables
+namespace PeNet.Test.Structures.MetaDataTables
 {
     public class ModuleTable_Test
     {

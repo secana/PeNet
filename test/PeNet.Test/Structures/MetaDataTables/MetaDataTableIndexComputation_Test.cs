@@ -5,7 +5,7 @@ using PeNet.Structures;
 using PeNet.Structures.MetaDataTables;
 using Xunit;
 
-namespace PeNet.UnitTest.Structures.MetaDataTables
+namespace PeNet.Test.Structures.MetaDataTables
 {
     public class MetaDataTableIndexComputation_Test
     {
