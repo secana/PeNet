@@ -3,8 +3,7 @@
 var target = Argument("target", "Default");
 var solutionDir = System.IO.Directory.GetCurrentDirectory();
 var testResultDir = Argument("testResultDir", System.IO.Path.Combine(solutionDir, "test-results"));     // ./build.sh --target publish -testResultsDir="somedir"
-var artifactDir = Argument("artifactDir", "./artifacts"); 												// ./build.sh --target publish -artifactDir="somedir"
-var buildNumber = Argument<int>("buildNumber", 0); 														// ./build.sh --target publish -buildNumber=5
+var artifactDir = Argument("artifactDir", System.IO.Path.Combine(solutionDir, "artifacts")); 												// ./build.sh --target publish -artifactDir="somedir"
 var testFailed = false;
 
 var peNetProj = System.IO.Path.Combine(solutionDir, "src", "PeNet", "PeNet.csproj");
@@ -62,6 +61,7 @@ Task("Build")
 	{
 		MSBuild(solutionDir, new MSBuildSettings {
 			ToolPath = msBuildPathX64,
+			Verbosity = Verbosity.Minimal,
 			Configuration = "Release"
 		});
 	});
@@ -109,14 +109,23 @@ Task("Pack")
 			return;
 		}
 		
+		Information($"Pack {peNetProj}");
 		var settings = new DotNetCorePackSettings
 		{
 			Configuration = "Release",
 			OutputDirectory = artifactDir
 		};
-		
-		Information("Pack {0}", peNetProj);
 		DotNetCorePack(peNetProj, settings);
+
+		Information($"Pack {peditorProj}");
+
+		var peditorSetting = new MSBuildSettings {
+			ToolPath = msBuildPathX64,
+			//Verbosity = Verbosity.Minimal,
+			Configuration = "Release",
+		};
+
+        MSBuild(peditorProj, peditorSetting.WithTarget("publish").WithProperty("PublishDir", artifactDir + @"\"));
 	});
 
 
