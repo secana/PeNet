@@ -2,13 +2,15 @@ var target = Argument("target", "Default");
 var testFailed = false;
 var solutionDir = System.IO.Directory.GetCurrentDirectory();
 
-
 var testResultDir = Argument("testResultDir", System.IO.Path.Combine(solutionDir, "test-results"));     // ./build.sh --target publish -testResultsDir="somedir"
 var artifactDir = Argument("artifactDir", "./artifacts"); 												// ./build.sh --target publish -artifactDir="somedir"
 var buildNumber = Argument<int>("buildNumber", 0); 														// ./build.sh --target publish -buildNumber=5
 
 Information("Solution Directory: {0}", solutionDir);
 Information("Test Results Directory: {0}", testResultDir);
+
+var peNetProj = System.IO.Path.Combine(solutionDir, "src", "PeNet", "PeNet.csproj");
+var peNetTestProj = System.IO.Path.Combine(solutionDir, "test", "PeNet.Test", "PeNet.Test.csproj");
 
 Task("Clean")
 	.Does(() =>
@@ -44,14 +46,42 @@ Task("Restore")
 	});
 
 
-Task("Build")
+Task("BuildPeNet")
 	.IsDependentOn("Clean")
 	.IsDependentOn("PrepareDirectories")
 	.IsDependentOn("Restore")
+	.Does(() => 
+	{
+		var settings = new DotNetCoreBuildSettings
+		{
+			Configuration = "Release"
+		};
+
+		DotNetCoreBuild(peNetProj, settings);
+		DotNetCoreBuild(peNetTestProj, settings);
+	});
+
+Task("TestPeNet")
+	.IsDependentOn("BuildPeNet")
+	.Does(() => 
+	{
+		var settings = new DotNetCoreTestSettings
+		{
+			Configuration = "Release"
+	    };
+
+		DotNetCoreTest(peNetTestProj, settings);
+	});
+
+
+Task("Build")
+	.IsDependentOn("BuildPeNet")
 	.Does(() =>
 	{
 		var solution = GetFiles("./*.sln").ElementAt(0);
 		Information("Build solution: {0}", solution);
+
+		MSBuild(solution);
 
 		var settings = new DotNetCoreBuildSettings
 		{
@@ -59,6 +89,7 @@ Task("Build")
 		};
 
 		DotNetCoreBuild(solution.FullPath, settings);
+
 	});
 
 
@@ -167,6 +198,22 @@ FilePathCollection GetSrcProjectFiles()
 FilePathCollection GetTestProjectFiles()
 {
 	return GetFiles("./test/**/*Test/*.csproj");
+}
+
+string GetMSBuildExePath()
+{
+	var msbuildPath = (string) Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\software\Microsoft\MSBuild\ToolsVersions\4.0", "MSBuildToolsPath", null);
+
+	if(msbuildPath == null)
+		throw new Exception($"Could not find msbuild path.");
+
+	var msbuildExe = System.IO.Path.Combine(msbuildPath, "msbuild.exe");
+
+	if(!System.IO.File.Exists(msbuildExe))
+		throw new Exception($"Could not find msbuild exe.");
+
+	Information($"Found msbuild.exe at {msbuildExe}");
+	return msbuildExe;
 }
 
 RunTarget(target);

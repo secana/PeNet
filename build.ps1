@@ -33,6 +33,18 @@ Param(
     [string[]]$ScriptArgs
 )
 
+
+$dotNetVersion = "4.0"
+$regKey = "HKLM:\software\Microsoft\MSBuild\ToolsVersions\$dotNetVersion"
+$regProperty = "MSBuildToolsPath"
+$msbuildPath = (Get-ItemProperty $regKey).$regProperty
+$msbuildExe = join-path -path $msbuildPath -childpath "msbuild.exe"
+if (!(Test-Path $msbuildExe)) {
+    Throw "Could not find msbuild.exe"
+}
+
+$env:Path += ";$msbuildPath"
+
 $CakeVersion = "0.21.1"
 $NugetUrl = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
 
