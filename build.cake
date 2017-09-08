@@ -3,7 +3,8 @@
 var target = Argument("target", "Default");
 var solutionDir = System.IO.Directory.GetCurrentDirectory();
 var testResultDir = Argument("testResultDir", System.IO.Path.Combine(solutionDir, "test-results"));     // ./build.sh --target publish -testResultsDir="somedir"
-var artifactDir = Argument("artifactDir", System.IO.Path.Combine(solutionDir, "artifacts")); 												// ./build.sh --target publish -artifactDir="somedir"
+var artifactDir = Argument("artifactDir", System.IO.Path.Combine(solutionDir, "artifacts")); 			// ./build.sh --target publish -artifactDir="somedir"
+var peditorArtifactDir = System.IO.Path.Combine(artifactDir, "PEditor");
 var testFailed = false;
 
 var peNetProj = System.IO.Path.Combine(solutionDir, "src", "PeNet", "PeNet.csproj");
@@ -45,6 +46,7 @@ Task("PrepareDirectories")
 	{
 		EnsureDirectoryExists(testResultDir);
 		EnsureDirectoryExists(artifactDir);
+		EnsureDirectoryExists(peditorArtifactDir);
 	});
 
 
@@ -125,9 +127,23 @@ Task("Pack")
 			Configuration = "Release",
 		};
 
-        MSBuild(peditorProj, peditorSetting.WithTarget("publish").WithProperty("PublishDir", artifactDir + @"\"));
+        MSBuild(peditorProj, peditorSetting
+			.WithTarget("publish")
+			.WithProperty("PublishDir", peditorArtifactDir + @"\")
+			);
+
+		var version = GetPEditorVersion();
+		var zipName = System.IO.Path.Combine(artifactDir, $"PEditor-{version}.zip");
+		Zip(peditorArtifactDir, zipName);
 	});
 
+string GetPEditorVersion()
+{
+	var versionPath = System.IO.Directory.GetDirectories(System.IO.Path.Combine(peditorArtifactDir, "Application Files")).ElementAt(0);
+	var version = versionPath.Split(new char[] { '_' }, 2, StringSplitOptions.RemoveEmptyEntries).ElementAt(1).Replace('_', '.');
+	Information($"Extracted {version} for PEditor");
+	return version;
+}
 
 Task("Publish")
 	.IsDependentOn("Test")
@@ -138,26 +154,10 @@ Task("Publish")
 			Information("Do not publish because tests failed");
 			return;
 		}
-		var projects = GetFiles("./src/**/*.csproj");
 
-		foreach(var project in projects)
-		{
-			var projectDir = System.IO.Path.GetDirectoryName(project.FullPath);
-			var projectName = new System.IO.DirectoryInfo(projectDir).Name;
-			var outputDir = System.IO.Path.Combine(artifactDir, projectName);
-			EnsureDirectoryExists(outputDir);
-
-			Information("Publish {0} to {1}", projectName, outputDir);
-
-			var settings = new DotNetCorePublishSettings
-			{
-				OutputDirectory = outputDir,
-				Configuration = "Release"
-			};
-
-			DotNetCorePublish(project.FullPath, settings);
-		}
+		Information("NOT IMPLEMENTED YET");
 	});
+
 
 Task("Default")
 	.IsDependentOn("Test")
