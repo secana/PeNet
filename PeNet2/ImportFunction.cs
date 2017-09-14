@@ -14,11 +14,13 @@ namespace PeNet
         /// <param name="name">Function name.</param>
         /// <param name="dll">DLL where the function comes from.</param>
         /// <param name="hint">Function hint.</param>
-        public ImportFunction(string name, string dll, ushort hint)
+		/// <param name="thunk">Thunk RVA</param>
+        public ImportFunction(string name, string dll, ushort hint, uint thunk)
         {
             Name = name;
             DLL = dll;
             Hint = hint;
+			Thunk = thunk;
         }
 
         /// <summary>
@@ -35,6 +37,11 @@ namespace PeNet
         ///     Function hint.
         /// </summary>
         public ushort Hint { get; }
+
+		/// <summary>
+		/// Thunk RVA
+		/// </summary>
+		public uint Thunk { get; }
 
         /// <summary>
         ///     Creates a string representation of all
