@@ -78,10 +78,14 @@ namespace PeNet.Utilities
         /// <returns>True if the signature is valid, else false.</returns>
         public static bool IsSignatureValid(string filePath)
         {
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows)  == false)
-                throw new PlatformNotSupportedException("This features is currently only supported on Windows");
-
+            #if NET461
             return SignatureValidation.IsTrusted(filePath);
+            #else
+                if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows)  == false)
+                    throw new PlatformNotSupportedException("This features is currently only supported on Windows");
+
+                return SignatureValidation.IsTrusted(filePath);
+            #endif
         }
 
         /// <summary>
