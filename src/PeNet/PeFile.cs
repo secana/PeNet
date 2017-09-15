@@ -149,6 +149,13 @@ namespace PeNet
                  (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) > 0;
 
         /// <summary>
+        ///     Returns true if the PE file is a system driver
+        ///     based on the Subsytem = 0x1 value in the Optional Header.
+        /// </summary>
+        public bool IsDriver => ImageNtHeaders.OptionalHeader.Subsystem ==
+                                (ushort) Constants.OptionalHeaderSubsystem.IMAGE_SUBSYSTEM_NATIVE;
+
+        /// <summary>
         ///     Returns true if the PE file is signed. It
         ///     does not check if the signature is valid!
         /// </summary>
