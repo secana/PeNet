@@ -1,14 +1,17 @@
 #tool nuget:?package=vswhere
+#addin nuget:?package=Octokit
 #addin nuget:?package=Cake.OctoDeploy
 
-var target = Argument("target", "Default");
-var solutionDir = System.IO.Directory.GetCurrentDirectory();
-var testResultDir = Argument("testResultDir", System.IO.Path.Combine(solutionDir, "test-results"));     // ./build.sh --target publish -testResultsDir="somedir"
-var artifactDir = Argument("artifactDir", System.IO.Path.Combine(solutionDir, "artifacts")); 			// ./build.sh --target publish -artifactDir="somedir"
-var peditorArtifactDir = System.IO.Path.Combine(artifactDir, "PEditor");
-string peditorReleaseZip = null;
-string peditorVersion = null;
-var testFailed = false;
+var target					= Argument("target", "Default");
+var solutionDir				= System.IO.Directory.GetCurrentDirectory();
+var testResultDir			= Argument("testResultDir", System.IO.Path.Combine(solutionDir, "test-results"));   // ./build.sh --target test -testResultsDir="somedir"
+var artifactDir				= Argument("artifactDir", System.IO.Path.Combine(solutionDir, "artifacts"));		// ./build.sh --target pack -artifactDir="somedir"
+var apiKey					= Argument<string>("apiKey", null);													// ./build.sh --target push -apiKey="nuget api key"
+var accessToken				= Argument<string>("accessToken", null);											// ./build.sh --target release -accessToken="github access token"
+var peditorArtifactDir		= System.IO.Path.Combine(artifactDir, "PEditor");
+string peditorReleaseZip	= null;
+string peditorVersion		= null;
+var testFailed				= false;
 
 var peNetProj = System.IO.Path.Combine(solutionDir, "src", "PeNet", "PeNet.csproj");
 var peditorProj = System.IO.Path.Combine(solutionDir, "src", "PEditor", "PEditor.csproj");
@@ -141,8 +144,8 @@ Task("Pack")
 	});
 
 
-Task("Publish")
-	.IsDependentOn("Test")
+Task("Release")
+	.IsDependentOn("Pack")
 	.Does(() =>
 	{
 		if(testFailed)
@@ -151,11 +154,14 @@ Task("Publish")
 			return;
 		}
 
+		if(accessToken == null)
+			throw new ArgumentNullException(nameof(accessToken), "You need to provide an GitHub access token to release PEditor.");
+
 		var octoSettings = new OctoDeploySettings {
-			AccessToken = "YOUR ACCESS TOKEN HERE (add command line argument for that)",
+			AccessToken = accessToken,
 			Owner = "secana",
 			Repository = @"https://github.com/secana/PeNet"
-		}
+		};
 
 		var tag = $"v{peditorVersion}";
 		var releaseTitle = $"PEditor Version {peditorVersion}";
@@ -163,9 +169,12 @@ Task("Publish")
 		var draftRelease = false;
 		var preRelease = false;
 		var artifactPath = new FilePath(peditorReleaseZip);
-		var artifactName = artifactPath.GetFilename();
+		var artifactName = artifactPath.GetFilename().FullPath;
 		var artifactMimeType = "application/zip";
-
+		
+		Information($"ArtifactName: {artifactName}");
+		Information($"ArtifactPath: {artifactPath}");
+		
 		PublishReleaseWithArtifact(
 			tag,
 			releaseTitle,
@@ -175,7 +184,7 @@ Task("Publish")
 			artifactPath,
 			artifactName,
 			artifactMimeType,
-			octoSettings);
+			octoSettings); 
 	});
 
 
@@ -184,8 +193,8 @@ Task("Default")
 	.Does(() =>
 	{
 		Information("Build and test the whole solution.");
-		Information("To pack (nuget) the application use the cake build argument: --target Pack");
-		Information("To publish (to run it somewhere else) the application use the cake build argument: --target Publish");
+		Information("To pack the PeNet library and Zip the PEditor use the cake build argument: --target Pack");
+		Information("To release the PEditor use the cake build argument: --target Release -accessToken=\"github access token\"");
 	});
 
 string GetPEditorVersion()

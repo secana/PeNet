@@ -45,7 +45,7 @@ if (!(Test-Path $msbuildExe)) {
 
 $env:Path += ";$msbuildPath"
 
-$CakeVersion = "0.21.1"
+$CakeVersion = "0.22.0"
 $NugetUrl = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
 
 # Make sure tools folder exists
