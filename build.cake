@@ -1,5 +1,4 @@
 #tool nuget:?package=vswhere
-#addin nuget:?package=Octokit
 #addin nuget:?package=Cake.OctoDeploy
 
 var target					= Argument("target", "Default");
@@ -143,7 +142,24 @@ Task("Pack")
 		Zip(peditorArtifactDir, peditorReleaseZip);
 	});
 
+Task("Push")
+    .IsDependentOn("Pack")
+    .Does(() => {
+        var package = GetFiles($"{artifactDir}/PeNet.*.nupkg").ElementAt(0);
+        var source = "https://www.nuget.org/api/v2/package";
 
+        if(apiKey==null)
+            throw new ArgumentNullException(nameof(apiKey), "The \"apiKey\" argument must be set for this task.");
+
+        Information($"Push {package} to {source}");
+
+        NuGetPush(package, new NuGetPushSettings {
+            Source = source,
+            ApiKey = apiKey
+        });
+    });
+
+/* Need to wait for octodeploy update
 Task("Release")
 	.IsDependentOn("Pack")
 	.Does(() =>
@@ -186,7 +202,7 @@ Task("Release")
 			artifactMimeType,
 			octoSettings); 
 	});
-
+*/
 
 Task("Default")
 	.IsDependentOn("Test")
