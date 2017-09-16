@@ -29,19 +29,21 @@ Information("Test Results Directory: {0}", testResultDir);
 Task("Clean")
 	.Does(() =>
 	{
+		var delSettings = new DeleteDirectorySettings { Recursive = true, Force = true };
+			
 		if(DirectoryExists(testResultDir))
-			DeleteDirectory(testResultDir, recursive:true);
+			DeleteDirectory(testResultDir, delSettings);
 
 		if(DirectoryExists(artifactDir))
-			DeleteDirectory(artifactDir, recursive:true);
+			DeleteDirectory(artifactDir, delSettings);
 
 		var binDirs = GetDirectories("./**/bin");
 		var objDirs = GetDirectories("./**/obj");
 		var testResDirs = GetDirectories("./**/TestResults");
 		
-		DeleteDirectories(binDirs, true);
-		DeleteDirectories(objDirs, true);
-		DeleteDirectories(testResDirs, true);
+		DeleteDirectories(binDirs, delSettings);
+		DeleteDirectories(objDirs, delSettings);
+		DeleteDirectories(testResDirs, delSettings);
 	});
 
 
