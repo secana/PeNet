@@ -161,7 +161,6 @@ Task("Push")
         });
     });
 
-/* Need to wait for octodeploy update
 Task("Release")
 	.IsDependentOn("Pack")
 	.Does(() =>
@@ -178,7 +177,7 @@ Task("Release")
 		var octoSettings = new OctoDeploySettings {
 			AccessToken = accessToken,
 			Owner = "secana",
-			Repository = @"https://github.com/secana/PeNet"
+			Repository = "PeNet"
 		};
 
 		var tag = $"v{peditorVersion}";
@@ -204,7 +203,6 @@ Task("Release")
 			artifactMimeType,
 			octoSettings); 
 	});
-*/
 
 Task("Default")
 	.IsDependentOn("Test")
