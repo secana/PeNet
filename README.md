@@ -1,6 +1,6 @@
 # PeNet
 <p align="center">
-    <img src="https://github.com/secana/PeNet/blob/devel/PEditor/Icons/PEditor.png" />
+    <img src="https://github.com/secana/PeNet/blob/master/src/PEditor/Icons/PEditor.png" />
 </p>
 
 PeNet is a parser for Windows Portable Executable headers. It completely written in C# and does not rely on any native Windows APIs. The only exception is the signature check for PE files. Since .Net has no function for it, the native API is use transparently here.
