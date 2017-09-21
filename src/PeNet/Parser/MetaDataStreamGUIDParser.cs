@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using PeNet.Utilities;
 
 namespace PeNet.Parser

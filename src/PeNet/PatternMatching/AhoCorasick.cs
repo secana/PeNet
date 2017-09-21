@@ -18,7 +18,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 // 
-// Enhanced by Stefan Hausotte for PeNet
+// Enhanced by Secana (Stefan Hausotte) for PeNet
 
 
 using System;
