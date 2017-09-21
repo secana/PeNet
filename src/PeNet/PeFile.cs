@@ -257,7 +257,7 @@ namespace PeNet
         public List<string> MetaDataStreamString => _dotNetStructureParsers.MetaDataStreamString;
 
         /// <summary>
-        /// Meta Data Stream #US as a parsed list of strings.
+        /// Meta Data Stream #US (User strings) as a parsed list of strings.
         /// </summary>
         public List<string> MetaDataStreamUS => _dotNetStructureParsers.MetaDataStreamUS;
 
