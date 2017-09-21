@@ -32,10 +32,14 @@ namespace PeNet
         private MetaDataStreamStringParser _metaDataStreamStringParser;
         private MetaDataStreamUSParser _metaDataStreamUSParser;
         private MetaDataStreamTablesHeaderParser _metaDataStreamTablesHeaderParser;
+        private MetaDataStreamGUIDParser _metaDataStreamGuidParser;
+        private MetaDataStreamBlobParser _metaDataStreamBlobParser;
 
         public METADATAHDR MetaDataHdr => _metaDataHdrParser?.GetParserTarget();
         public List<string> MetaDataStreamString => _metaDataStreamStringParser?.GetParserTarget();
-        public List<string> MedaDataStreamUS => _metaDataStreamUSParser?.GetParserTarget();
+        public List<string> MetaDataStreamUS => _metaDataStreamUSParser?.GetParserTarget();
+        public List<string> MetaDataStreamGUID => _metaDataStreamGuidParser?.GetParserTarget();
+        public byte[] MetaDataStreamBlob => _metaDataStreamBlobParser?.GetParserTarget();
         public METADATATABLESHDR MetaDataStreamTablesHeader => _metaDataStreamTablesHeaderParser?.GetParserTarget();
 
         public DotNetStructureParsers(
@@ -56,6 +60,8 @@ namespace PeNet
             _metaDataStreamStringParser = InitMetaDataStreamStringParser();
             _metaDataStreamUSParser = InitMetaDataStreamUSParser();
             _metaDataStreamTablesHeaderParser = InitMetaDataStreamTablesHeaderParser();
+            _metaDataStreamGuidParser = InitMetaDataStreamGUIDParser();
+            _metaDataStreamBlobParser = InitMetaDataStreamBlobParser();
         }
 
         private MetaDataHdrParser InitMetaDataParser()
@@ -92,6 +98,26 @@ namespace PeNet
                 return null;
 
             return new MetaDataStreamTablesHeaderParser(_buff, MetaDataHdr.Offset + metaDataStream.offset);
+        }
+
+        private MetaDataStreamGUIDParser InitMetaDataStreamGUIDParser()
+        {
+            var metaDataStream = MetaDataHdr?.MetaDataStreamsHdrs?.FirstOrDefault(x => x.streamName == "#GUID");
+
+            if (metaDataStream == null)
+                return null;
+
+            return new MetaDataStreamGUIDParser(_buff, MetaDataHdr.Offset +  metaDataStream.offset, metaDataStream.size);
+        }
+
+        private MetaDataStreamBlobParser InitMetaDataStreamBlobParser()
+        {
+            var metaDataStream = MetaDataHdr?.MetaDataStreamsHdrs?.FirstOrDefault(x => x.streamName == "#Blob");
+
+            if (metaDataStream == null)
+                return null;
+
+            return new MetaDataStreamBlobParser(_buff, MetaDataHdr.Offset + metaDataStream.offset, metaDataStream.size);
         }
     }
 }
