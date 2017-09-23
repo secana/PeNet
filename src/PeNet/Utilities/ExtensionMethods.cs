@@ -1,21 +1,4 @@
-﻿/***********************************************************************
-Copyright 2016 Stefan Hausotte
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-*************************************************************************/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -535,26 +518,13 @@ namespace PeNet.Utilities
         /// </summary>
         /// <param name="buff">Containing buffer.</param>
         /// <param name="stringOffset">Offset of the string.</param>
+        /// <param name="length">Lengh of the string to parse.</param>
         /// <returns>The parsed unicode string.</returns>
-        public static string GetUnicodeString(this byte[] buff, ulong stringOffset)
+        public static string GetUnicodeString(this byte[] buff, ulong stringOffset, int length)
         {
-            var charList = new List<byte>();
-
-            for (var i = stringOffset; i < (ulong) buff.Length - 1; i++)
-            {
-                var highByte = buff[i +  1];
-                var lowByte = buff[i];
-
-                if(highByte != 0x00)
-                    continue;
-
-                if (highByte == 0x00 && lowByte == 0x00) // End of string.
-                    break;
-
-                charList.Add(lowByte);
-            }
-
-            return Encoding.ASCII.GetString(charList.ToArray());
+            var bytes = new byte[length];
+            Array.Copy(buff, (int)stringOffset, bytes, 0, length);
+            return Encoding.Unicode.GetString(bytes);
         }
 
         /// <summary>

@@ -1,21 +1,4 @@
-﻿/***********************************************************************
-Copyright 2016 Stefan Hausotte
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-*************************************************************************/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
@@ -274,9 +257,19 @@ namespace PeNet
         public List<string> MetaDataStreamString => _dotNetStructureParsers.MetaDataStreamString;
 
         /// <summary>
-        /// Meta Data Stream #US as a parsed list of strings.
+        /// Meta Data Stream #US (User strings) as a parsed list of strings.
         /// </summary>
-        public List<string> MetaDataStreamUS => _dotNetStructureParsers.MedaDataStreamUS;
+        public List<string> MetaDataStreamUS => _dotNetStructureParsers.MetaDataStreamUS;
+
+        /// <summary>
+        /// Meta Data Stream #GUID as a parsed list of hex strings.
+        /// </summary>
+        public List<string> MetaDataStreamGUID => _dotNetStructureParsers.MetaDataStreamGUID;
+
+        /// <summary>
+        /// Meta Data Stream #Blob as an byte array.
+        /// </summary>
+        public byte[] MetaDataStreamBlob => _dotNetStructureParsers.MetaDataStreamBlob;
 
         /// <summary>
         ///     Access the Meta Data Stream Tables Header from the list of

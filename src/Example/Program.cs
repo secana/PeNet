@@ -10,9 +10,10 @@ namespace Example
     {
         private static void Main(string[] args)
         {
-            var path = @"D:\Stefa\Documents\GitHubVisualStudio\PeNet\PEditor\bin\Release\PEditor.exe";
+            var path = @"D:\BitbucketRepos\CandCMetaInformation\src\CandCMetaInformationService.Console\bin\Debug\netcoreapp1.1\CandCMetaInformationService.Console.dll";
             var file = new PeFile(path);
-
+            file.MetaDataStreamUS.ForEach(Console.WriteLine);
+            Console.ReadKey();
         }
 
         private static bool VerifySignature(byte[] content, byte[] signature, X509Certificate2 cert)

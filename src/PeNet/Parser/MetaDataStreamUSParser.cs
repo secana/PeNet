@@ -18,13 +18,21 @@ namespace PeNet.Parser
         {
             var stringList = new List<string>();
 
-            for (var i = _offset; i < _offset + _size; i++)
+            // The #US stream starts with a "0x00" byte. That's why 
+            // we skip the first byte in the buffer
+            for (var i = _offset + 1; i < _offset + _size; i++)
             {
-                var tmpString = _buff.GetUnicodeString(i);
-                i += (uint) tmpString.Length * 2 + 1 ;
+                if (_buff[i] >= 0x80) // Not sure why this works but it does.
+                    i++;
 
-                if (IsNullOrWhiteSpace(tmpString))
-                    continue;
+                int length = _buff[i]; 
+             
+                if (length == 0)                                        // Stop if a string has the length 0 since the end 
+                    break;                                              // of the list is reached.
+
+                i += 1;                                                 // Add "length byte" to current offset.
+                var tmpString = _buff.GetUnicodeString(i, length - 1);  // Read the UTF-16 string
+                i += (uint) length - 1;                                 // Add the string length to the current offset.
 
                 stringList.Add(tmpString);
             }
