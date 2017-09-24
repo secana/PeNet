@@ -139,7 +139,7 @@ namespace PeNet.Test.Binaries
             var guid = _peFile.MetaDataStreamGUID;
 
             Assert.Equal(1, guid.Count);
-            Assert.Equal("0x451fbc42566faa448b553141b27a1270", guid[0]);
+            Assert.Equal("0x53e850527ac1764eadb30a716ec8af5d", guid[0]);
         }
 
         [Fact]
