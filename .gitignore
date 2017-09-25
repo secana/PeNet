@@ -9,6 +9,7 @@
 tools/
 test-results/
 artifacts/
+TestResults/
 
 # User-specific files
 *.suo

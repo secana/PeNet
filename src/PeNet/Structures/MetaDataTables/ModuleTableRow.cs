@@ -9,7 +9,7 @@ namespace PeNet.Structures.MetaDataTables
     /// </summary>
     public class ModuleTableRow : AbstractMetaDataTableRow
     {
-        private readonly HeapOffsetBasedIndexSizes _heapIndexSizes;
+        private readonly IHeapOffsetBasedIndexSizes _heapIndexSizes;
 
         /// <summary>
         /// Create a new ModuleTableRow instance.
@@ -17,7 +17,7 @@ namespace PeNet.Structures.MetaDataTables
         /// <param name="buff">Buffer which contains the row.</param>
         /// <param name="offset">Offset in the buff, where the header starts.</param>
         /// <param name="heapOffsetSizes">Computes sizes of the heap bases indexes.</param>
-        public ModuleTableRow(byte[] buff, uint offset, HeapOffsetBasedIndexSizes heapOffsetSizes) 
+        public ModuleTableRow(byte[] buff, uint offset, IHeapOffsetBasedIndexSizes heapOffsetSizes) 
             : base(buff, offset)
         {
             _heapIndexSizes = heapOffsetSizes;

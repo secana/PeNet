@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using PeNet.Structures.MetaDataTables.Parsers;
+using PeNet.Utilities;
 
 namespace PeNet.Structures.MetaDataTables
 {
@@ -11,8 +12,10 @@ namespace PeNet.Structures.MetaDataTables
     {
         private readonly byte[] _buff;
         private readonly METADATATABLESHDR _metaDataTablesHdr;
+        private readonly HeapOffsetBasedIndexSizes _heapOffsetBasedIndexSizes;
         private ModuleTableParser _moduleTableParser;
         private TypeRefTableParser _typeRefTableParser;
+
 
         /// <summary>
         /// Access the Module Table.
@@ -28,6 +31,7 @@ namespace PeNet.Structures.MetaDataTables
         {
             _buff = buff;
             _metaDataTablesHdr = metaDataTablesHdr;
+            _heapOffsetBasedIndexSizes = new HeapOffsetBasedIndexSizes(metaDataTablesHdr.HeapOffsetSizes);
             InitParsers();
         }
 
@@ -43,7 +47,7 @@ namespace PeNet.Structures.MetaDataTables
                 _metaDataTablesHdr.TableDefinitions.FirstOrDefault(
                     x => x.Name == DotNetConstants.MaskValidFlags.Module.ToString());
 
-            return tableDef == null ? null : new ModuleTableParser(_buff, offset, tableDef.NumOfRows, _metaDataTablesHdr.HeapOffsetSizes);
+            return tableDef == null ? null : new ModuleTableParser(_buff, offset, tableDef.NumOfRows, _heapOffsetBasedIndexSizes);
         }
     }
 }

@@ -4,23 +4,33 @@
     /// Computes the index sizes of #String, #GUID and #Blob
     /// based on the HeapOffsetSizes value in the Meta Data Tables Header.
     /// </summary>
-    public class HeapOffsetBasedIndexSizes
+    public interface IHeapOffsetBasedIndexSizes
     {
-        private readonly byte _heapOffsetSizes;
-
         /// <summary>
         /// Size of the #String index (4 or 2 bytes).
         /// </summary>
-        public uint StringIndexSize => (uint) ((_heapOffsetSizes & 0x1) == 0x1 ? 4 : 2);
+        uint StringIndexSize { get; }
 
         /// <summary>
         /// Size of the #GUID index (4 or 2 bytes).
         /// </summary>
-        public uint GuidIndexSize => (uint) (((_heapOffsetSizes >> 1) & 0x1) == 0x1 ? 4 : 2);
+        uint GuidIndexSize { get; }
 
         /// <summary>
         /// Size of the #Blob index (4 or 2 bytes).
         /// </summary>
+        uint BlobSize { get; }
+    }
+  
+    /// <inheritdoc />
+    public class HeapOffsetBasedIndexSizes : IHeapOffsetBasedIndexSizes
+    {
+        private readonly byte _heapOffsetSizes;
+
+        public uint StringIndexSize => (uint) ((_heapOffsetSizes & 0x1) == 0x1 ? 4 : 2);
+
+        public uint GuidIndexSize => (uint) (((_heapOffsetSizes >> 1) & 0x1) == 0x1 ? 4 : 2);
+
         public uint BlobSize => (uint) (((_heapOffsetSizes >> 2) & 0x1) == 0x1 ? 4 : 2);
 
         /// <summary>
