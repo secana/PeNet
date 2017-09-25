@@ -130,8 +130,8 @@ namespace PeNet.Test.Binaries
         {
             var us = _peFile.MetaDataStreamUS;
 
-            Assert.Equal(1, us.Count);
-            Assert.Equal(@"C:\", us[0]);
+            Assert.Equal(1, us.UserStrings.Count);
+            Assert.Equal(@"C:\", us.UserStrings[0]);
         }
 
         [Fact]

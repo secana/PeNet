@@ -253,17 +253,17 @@ namespace PeNet
         public METADATAHDR MetaDataHdr => _dotNetStructureParsers.MetaDataHdr;
 
         /// <summary>
-        /// Meta Data Stream #String as a parsed list of strings.
+        /// Meta Data Stream #String.
         /// </summary>
         public METADATASTREAM_STRING MetaDataStreamString => _dotNetStructureParsers.MetaDataStreamString;
 
         /// <summary>
-        /// Meta Data Stream #US (User strings) as a parsed list of strings.
+        /// Meta Data Stream #US (User strings).
         /// </summary>
-        public List<string> MetaDataStreamUS => _dotNetStructureParsers.MetaDataStreamUS;
+        public METADATASTREAM_US MetaDataStreamUS => _dotNetStructureParsers.MetaDataStreamUS;
 
         /// <summary>
-        /// Meta Data Stream #GUID as a parsed list of hex strings.
+        /// Meta Data Stream #GUID.
         /// </summary>
         public METADATASTREAM_GUID MetaDataStreamGUID => _dotNetStructureParsers.MetaDataStreamGUID;
 
