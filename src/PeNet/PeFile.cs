@@ -264,7 +264,7 @@ namespace PeNet
         /// <summary>
         /// Meta Data Stream #GUID as a parsed list of hex strings.
         /// </summary>
-        public List<string> MetaDataStreamGUID => _dotNetStructureParsers.MetaDataStreamGUID;
+        public List<Guid> MetaDataStreamGUID => _dotNetStructureParsers.MetaDataStreamGUID;
 
         /// <summary>
         /// Meta Data Stream #Blob as an byte array.

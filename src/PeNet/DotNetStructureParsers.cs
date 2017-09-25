@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using PeNet.Parser;
 using PeNet.Structures;
@@ -21,7 +22,7 @@ namespace PeNet
         public METADATAHDR MetaDataHdr => _metaDataHdrParser?.GetParserTarget();
         public List<string> MetaDataStreamString => _metaDataStreamStringParser?.GetParserTarget();
         public List<string> MetaDataStreamUS => _metaDataStreamUSParser?.GetParserTarget();
-        public List<string> MetaDataStreamGUID => _metaDataStreamGuidParser?.GetParserTarget();
+        public List<Guid> MetaDataStreamGUID => _metaDataStreamGuidParser?.GetParserTarget();
         public byte[] MetaDataStreamBlob => _metaDataStreamBlobParser?.GetParserTarget();
         public METADATATABLESHDR MetaDataStreamTablesHeader => _metaDataStreamTablesHeaderParser?.GetParserTarget();
 

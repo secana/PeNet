@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace PeNet.Test.Binaries
 {
@@ -137,9 +138,8 @@ namespace PeNet.Test.Binaries
         public void NetFrameworkConsole_MetaDataStreamGUID_ParseCorrectValues()
         {
             var guid = _peFile.MetaDataStreamGUID;
-
             Assert.Equal(1, guid.Count);
-            Assert.Equal("0x53e850527ac1764eadb30a716ec8af5d", guid[0]);
+            Assert.Equal(new Guid("5250e853-c17a-4e76-adb3-0a716ec8af5d"), guid[0]);
         }
 
         [Fact]
