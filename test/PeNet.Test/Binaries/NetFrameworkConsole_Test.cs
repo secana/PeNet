@@ -157,7 +157,14 @@ namespace PeNet.Test.Binaries
         [Fact]
         public void NetFrameWorkConsole_MetaDataStreamTables_Module_ParseCorrectValues()
         {
-            //var module = _peFile
+            var module = _peFile.MetaDataTables.ModuleTable;
+
+            Assert.Equal(1u, module.NumberOfRows);   
+            Assert.Equal(0x0000u, module.Rows[0].Generation);
+            Assert.Equal(0x01EBu, module.Rows[0].Name);
+            Assert.Equal(0x0001u, module.Rows[0].Mvid);
+            Assert.Equal(0x0000u, module.Rows[0].EncId);
+            Assert.Equal(0x0000u, module.Rows[0].EncBaseId);
         }
     }
 }

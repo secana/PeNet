@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using PeNet.ImpHash;
 using PeNet.Structures;
+using PeNet.Structures.MetaDataTables;
 using PeNet.Utilities;
 
 namespace PeNet
@@ -276,6 +277,11 @@ namespace PeNet
         ///     Meta Data Streams of the .Net header.
         /// </summary>
         public METADATATABLESHDR MetaDataStreamTablesHeader => _dotNetStructureParsers.MetaDataStreamTablesHeader;
+
+        /// <summary>
+        ///     Access the Meta Data Tables from the .Net header stream #~.
+        /// </summary>
+        public MetaDataTables MetaDataTables => _dotNetStructureParsers.MetaDataTables;
 
         /// <summary>
         ///     The SHA-256 hash sum of the binary.

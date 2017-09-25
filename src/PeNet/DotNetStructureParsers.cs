@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using PeNet.Parser;
+using PeNet.Parser.MetaDataTables;
 using PeNet.Structures;
+using PeNet.Structures.MetaDataTables;
 using PeNet.Utilities;
 
 namespace PeNet
@@ -18,6 +20,7 @@ namespace PeNet
         private MetaDataStreamTablesHeaderParser _metaDataStreamTablesHeaderParser;
         private MetaDataStreamGUIDParser _metaDataStreamGuidParser;
         private MetaDataStreamBlobParser _metaDataStreamBlobParser;
+        private MetaDataTablesParser _metaDataTablesParser;
 
         public METADATAHDR MetaDataHdr => _metaDataHdrParser?.GetParserTarget();
         public List<string> MetaDataStreamString => _metaDataStreamStringParser?.GetParserTarget();
@@ -25,6 +28,7 @@ namespace PeNet
         public List<Guid> MetaDataStreamGUID => _metaDataStreamGuidParser?.GetParserTarget();
         public byte[] MetaDataStreamBlob => _metaDataStreamBlobParser?.GetParserTarget();
         public METADATATABLESHDR MetaDataStreamTablesHeader => _metaDataStreamTablesHeaderParser?.GetParserTarget();
+        public MetaDataTables MetaDataTables => _metaDataTablesParser?.GetParserTarget();
 
         public DotNetStructureParsers(
             byte[] buff,
@@ -46,6 +50,12 @@ namespace PeNet
             _metaDataStreamTablesHeaderParser = InitMetaDataStreamTablesHeaderParser();
             _metaDataStreamGuidParser = InitMetaDataStreamGUIDParser();
             _metaDataStreamBlobParser = InitMetaDataStreamBlobParser();
+            _metaDataTablesParser = InitMetaDataTablesParser();
+        }
+
+        private MetaDataTablesParser InitMetaDataTablesParser()
+        {
+            return _imageCor20Header != null ? new MetaDataTablesParser(_buff, MetaDataStreamTablesHeader) : null;
         }
 
         private MetaDataHdrParser InitMetaDataParser()
