@@ -153,5 +153,11 @@ namespace PeNet.Test.Binaries
             Assert.Equal(0x4E, blob[0x97]);
             Assert.Equal(0x00, blob[0x14F]);
         }
+
+        [Fact]
+        public void NetFrameWorkConsole_MetaDataStreamTables_Module_ParseCorrectValues()
+        {
+            //var module = _peFile
+        }
     }
 }

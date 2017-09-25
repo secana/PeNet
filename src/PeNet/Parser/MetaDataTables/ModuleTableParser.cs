@@ -1,7 +1,7 @@
-﻿using PeNet.Parser;
+﻿using PeNet.Structures.MetaDataTables;
 using PeNet.Utilities;
 
-namespace PeNet.Structures.MetaDataTables.Parsers
+namespace PeNet.Parser.MetaDataTables
 {
     internal class ModuleTableParser : SafeParser<ModuleTable>
     {

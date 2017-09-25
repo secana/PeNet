@@ -9,6 +9,7 @@ namespace PeNet.Structures.MetaDataTables
     /// .Net header. Contains information about the current 
     /// assembly. Has only one row.
     /// </summary>
+    /// <inheritdoc />
     public class ModuleTable : AbstractMetaDataTable<ModuleTableRow>
     {
         private readonly IHeapOffsetBasedIndexSizes _heapOffsetIndexSizes;
@@ -26,10 +27,6 @@ namespace PeNet.Structures.MetaDataTables
             _heapOffsetIndexSizes = heapOffsetSizes;
         }
 
-        /// <summary>
-        /// Parse the rows of the table.
-        /// </summary>
-        /// <returns>List with rows.</returns>
         protected override List<ModuleTableRow> ParseRows()
         {
             var currentOffset = Offset;
@@ -43,7 +40,6 @@ namespace PeNet.Structures.MetaDataTables
             return rows;
         }
 
-        /// <inheritdoc />
         public override string ToString()
         {
             var sb = new StringBuilder("ModuleTable\n");

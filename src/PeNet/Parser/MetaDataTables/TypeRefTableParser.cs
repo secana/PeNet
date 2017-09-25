@@ -1,7 +1,6 @@
-﻿using System;
-using PeNet.Parser;
+﻿using PeNet.Structures.MetaDataTables;
 
-namespace PeNet.Structures.MetaDataTables.Parsers
+namespace PeNet.Parser.MetaDataTables
 {
     internal class TypeRefTableParser : SafeParser<TypeRefTable>
     {

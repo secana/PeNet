@@ -1,8 +1,9 @@
 ﻿using System.Linq;
-using PeNet.Structures.MetaDataTables.Parsers;
+using PeNet.Structures;
+using PeNet.Structures.MetaDataTables;
 using PeNet.Utilities;
 
-namespace PeNet.Structures.MetaDataTables
+namespace PeNet.Parser.MetaDataTables
 {
     /// <summary>
     /// Parser for all Meta Data Tables in the Meta Data Tables Header 
