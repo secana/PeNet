@@ -74,7 +74,7 @@ namespace PeNet.Test.Binaries
         [Fact]
         public void NetFrameworkConsole_MetaDataStreamStrings_ParseCorrectValues()
         {
-            var strings = _peFile.MetaDataStreamString;
+            var strings = _peFile.MetaDataStreamString.Strings;
 
             Assert.Equal(46, strings.Count);
             Assert.Equal("IEnumerable`1", strings[0]);
@@ -138,8 +138,8 @@ namespace PeNet.Test.Binaries
         public void NetFrameworkConsole_MetaDataStreamGUID_ParseCorrectValues()
         {
             var guid = _peFile.MetaDataStreamGUID;
-            Assert.Equal(1, guid.Count);
-            Assert.Equal(new Guid("5250e853-c17a-4e76-adb3-0a716ec8af5d"), guid[0]);
+            Assert.Equal(1, guid.GuidsAndIndices.Count);
+            Assert.Equal(new Guid("5250e853-c17a-4e76-adb3-0a716ec8af5d"), guid.Guids[0]);
         }
 
         [Fact]

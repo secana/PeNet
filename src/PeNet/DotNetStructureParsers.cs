@@ -23,9 +23,9 @@ namespace PeNet
         private MetaDataTablesParser _metaDataTablesParser;
 
         public METADATAHDR MetaDataHdr => _metaDataHdrParser?.GetParserTarget();
-        public List<string> MetaDataStreamString => _metaDataStreamStringParser?.GetParserTarget();
+        public METADATASTREAM_STRING MetaDataStreamString => _metaDataStreamStringParser?.GetParserTarget();
         public List<string> MetaDataStreamUS => _metaDataStreamUSParser?.GetParserTarget();
-        public List<Guid> MetaDataStreamGUID => _metaDataStreamGuidParser?.GetParserTarget();
+        public METADATASTREAM_GUID MetaDataStreamGUID => _metaDataStreamGuidParser?.GetParserTarget();
         public byte[] MetaDataStreamBlob => _metaDataStreamBlobParser?.GetParserTarget();
         public METADATATABLESHDR MetaDataStreamTablesHeader => _metaDataStreamTablesHeaderParser?.GetParserTarget();
         public MetaDataTables MetaDataTables => _metaDataTablesParser?.GetParserTarget();
