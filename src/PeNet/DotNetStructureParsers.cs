@@ -23,9 +23,9 @@ namespace PeNet
         private MetaDataTablesParser _metaDataTablesParser;
 
         public METADATAHDR MetaDataHdr => _metaDataHdrParser?.GetParserTarget();
-        public METADATASTREAM_STRING MetaDataStreamString => _metaDataStreamStringParser?.GetParserTarget();
-        public METADATASTREAM_US MetaDataStreamUS => _metaDataStreamUSParser?.GetParserTarget();
-        public METADATASTREAM_GUID MetaDataStreamGUID => _metaDataStreamGuidParser?.GetParserTarget();
+        public IMETADATASTREAM_STRING MetaDataStreamString => _metaDataStreamStringParser?.GetParserTarget();
+        public IMETADATASTREAM_US MetaDataStreamUS => _metaDataStreamUSParser?.GetParserTarget();
+        public IMETADATASTREAM_GUID MetaDataStreamGUID => _metaDataStreamGuidParser?.GetParserTarget();
         public byte[] MetaDataStreamBlob => _metaDataStreamBlobParser?.GetParserTarget();
         public METADATATABLESHDR MetaDataStreamTablesHeader => _metaDataStreamTablesHeaderParser?.GetParserTarget();
         public MetaDataTables MetaDataTables => _metaDataTablesParser?.GetParserTarget();
@@ -55,7 +55,11 @@ namespace PeNet
 
         private MetaDataTablesParser InitMetaDataTablesParser()
         {
-            return _imageCor20Header != null ? new MetaDataTablesParser(_buff, MetaDataStreamTablesHeader) : null;
+            return _imageCor20Header != null ? new MetaDataTablesParser(
+                _buff, 
+                MetaDataStreamTablesHeader, 
+                MetaDataStreamString,
+                MetaDataStreamGUID) : null;
         }
 
         private MetaDataHdrParser InitMetaDataParser()

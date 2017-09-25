@@ -2,7 +2,7 @@
 
 namespace PeNet.Parser
 {
-    internal class MetaDataStreamUSParser : SafeParser<METADATASTREAM_US>
+    internal class MetaDataStreamUSParser : SafeParser<IMETADATASTREAM_US>
     {
         private readonly uint _size;
 
@@ -12,7 +12,7 @@ namespace PeNet.Parser
             _size = size;
         }
 
-        protected override METADATASTREAM_US ParseTarget()
+        protected override IMETADATASTREAM_US ParseTarget()
         {
             return new METADATASTREAM_US(_buff, _offset, _size);
         }

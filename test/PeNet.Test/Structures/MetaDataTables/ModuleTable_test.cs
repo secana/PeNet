@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using Moq;
+using PeNet.Structures;
 using PeNet.Structures.MetaDataTables;
 using PeNet.Utilities;
 using Xunit;
@@ -10,8 +12,16 @@ namespace PeNet.Test.Structures.MetaDataTables
         [Fact]
         public void ModuleTableConstructorWorksSmallIndexes_Test()
         {
+            var fakeStreamString = new Mock<IMETADATASTREAM_STRING>();
+            var fakeStreamGuid = new Mock<IMETADATASTREAM_GUID>();
             var heapOffsets = new HeapOffsetBasedIndexSizes(0x00);
-            var moduleTable = new ModuleTable(RawDotNetStructures.RawModuleTableSmall, 0x02, 1, heapOffsets);
+            var moduleTable = new ModuleTable(
+                RawDotNetStructures.RawModuleTableSmall, 
+                0x02, 
+                1, 
+                fakeStreamString.Object, 
+                fakeStreamGuid.Object,
+                heapOffsets);
 
             Assert.Equal((uint) 1, moduleTable.NumberOfRows);
             Assert.Equal(1, moduleTable.Rows.Count);
@@ -27,8 +37,16 @@ namespace PeNet.Test.Structures.MetaDataTables
         [Fact]
         public void ModuleTableConstructorWorksBigIndexes_Test()
         {
+            var fakeStreamString = new Mock<IMETADATASTREAM_STRING>();
+            var fakeStreamGuid = new Mock<IMETADATASTREAM_GUID>();
             var heapOffsets = new HeapOffsetBasedIndexSizes(0x07);
-            var moduleTable = new ModuleTable(RawDotNetStructures.RawModuleTableBig, 0x02, 1, heapOffsets);
+            var moduleTable = new ModuleTable(
+                RawDotNetStructures.RawModuleTableBig, 
+                0x02, 
+                1, 
+                fakeStreamString.Object, 
+                fakeStreamGuid.Object,
+                heapOffsets);
 
             Assert.Equal((uint) 1, moduleTable.NumberOfRows);
             Assert.Equal(1, moduleTable.Rows.Count);

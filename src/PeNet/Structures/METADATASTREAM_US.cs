@@ -6,32 +6,44 @@ using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
-    /// <summary>
-    /// Represents the "US" (user string) meta data stream from the .Net header which 
-    /// contains all application interal strings.
-    /// </summary>
-    /// <inheritdoc />
-    public class METADATASTREAM_US : AbstractStructure
+    public interface IMETADATASTREAM_US
     {
-        private uint _size;
-
         /// <summary>
         /// List with strings in the Meta Data stream "US".
         /// </summary>
-        public List<string> UserStrings { get; }
+        List<string> UserStrings { get; }
 
         /// <summary>
         /// List with strings and their index in the Meta Data stream "US".
         /// </summary>
-        public List<Tuple<string, uint>> UserStringsAndIndices { get; }
+        List<Tuple<string, uint>> UserStringsAndIndices { get; }
 
         /// <summary>
-        /// Create a new METADATASTREAM_US that represents the Meta Data stream
-        /// "String" from the .Net header.
+        /// Return the user string at the index from the stream.
         /// </summary>
-        /// <param name="buff">PE file as a byte buffer.</param>
-        /// <param name="offset">Offset of the "US" stream in the PE header.</param>
-        /// <param name="size">Size of the "US" stream in bytes.</param>
+        /// <param name="index">Index of the user string to return.</param>
+        /// <returns>User string at the position index.</returns>
+        string GetUserStringAtIndex(uint index);
+
+        /// <summary>
+        ///     Creates a string representation of the objects
+        ///     properties.
+        /// </summary>
+        /// <returns>Optional header properties as a string.</returns>
+        string ToString();
+    }
+
+    /// <summary>
+    /// Represents the "US" (user string) meta data stream from the .Net header which 
+    /// contains all application interal strings.
+    /// </summary>
+    /// <inheritdoc cref="IMETADATASTREAM_US" />
+    public class METADATASTREAM_US : AbstractStructure, IMETADATASTREAM_US
+    {
+        private uint _size;
+        public List<string> UserStrings { get; }
+        public List<Tuple<string, uint>> UserStringsAndIndices { get; }
+
         public METADATASTREAM_US(byte[] buff, uint offset, uint size) 
             : base(buff, offset)
         {
@@ -41,21 +53,11 @@ namespace PeNet.Structures
 
         }
 
-        /// <summary>
-        /// Return the user string at the index from the stream.
-        /// </summary>
-        /// <param name="index">Index of the user string to return.</param>
-        /// <returns>User string at the position index.</returns>
         public string GetUserStringAtIndex(uint index)
         {
             return UserStringsAndIndices.FirstOrDefault(x => x.Item2 == index)?.Item1;
         }
 
-        /// <summary>
-        ///     Creates a string representation of the objects
-        ///     properties.
-        /// </summary>
-        /// <returns>Optional header properties as a string.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("METADATASTREAM_US\n");

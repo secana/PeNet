@@ -6,33 +6,45 @@ using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
-    /// <summary>
-    /// Represents the "GUID" meta data stream from the .Net header which 
-    /// contains all application GUIDs to idenfitfy different assembly versions.
-    /// </summary>
-    /// <inheritdoc />
-    public class METADATASTREAM_GUID : AbstractStructure
+    public interface IMETADATASTREAM_GUID
     {
-        private readonly uint _size;
-
         /// <summary>
         /// List with all GUIDs from the Meta Data stream "GUID".
         /// </summary>
-        public List<Guid> Guids { get; }
+        List<Guid> Guids { get; }
 
         /// <summary>
         /// List with all GUIDs and their index from the 
         /// Meta Data stream "GUID".
         /// </summary>
-        public List<Tuple<Guid, uint>> GuidsAndIndices { get; }
+        List<Tuple<Guid, uint>> GuidsAndIndices { get; }
 
         /// <summary>
-        /// Create a new METADATASTREAM_GUID that represents the Meta Data stream
-        /// "GUID" from the .Net header.
+        /// Return the GUID at the index from the stream.
         /// </summary>
-        /// <param name="buff">PE file as a byte buffer.</param>
-        /// <param name="offset">Offset of the "GUID" stream in the PE header.</param>
-        /// <param name="size">Size of the "GUID" stream in bytes.</param>
+        /// <param name="index">Index of the GUID to return.</param>
+        /// <returns>GUID at the position index. Null if not available.</returns>
+        Guid? GetGuidAtIndex(uint index);
+
+        /// <summary>
+        ///     Creates a string representation of the objects
+        ///     properties.
+        /// </summary>
+        /// <returns>Optional header properties as a string.</returns>
+        string ToString();
+    }
+
+    /// <summary>
+    /// Represents the "GUID" meta data stream from the .Net header which 
+    /// contains all application GUIDs to idenfitfy different assembly versions.
+    /// </summary>
+    /// <inheritdoc cref="IMETADATASTREAM_GUID" />
+    public class METADATASTREAM_GUID : AbstractStructure, IMETADATASTREAM_GUID
+    {
+        private readonly uint _size;
+        public List<Guid> Guids { get; }
+        public List<Tuple<Guid, uint>> GuidsAndIndices { get; }
+
         public METADATASTREAM_GUID(byte[] buff, uint offset, uint size) 
             : base(buff, offset)
         {
@@ -41,21 +53,11 @@ namespace PeNet.Structures
             Guids = GuidsAndIndices.Select(x => x.Item1).ToList();
         }
 
-        /// <summary>
-        /// Return the GUID at the index from the stream.
-        /// </summary>
-        /// <param name="index">Index of the GUID to return.</param>
-        /// <returns>GUID at the position index. Null if not available.</returns>
         public Guid? GetGuidAtIndex(uint index)
         {
             return GuidsAndIndices.FirstOrDefault(x => x.Item2 == index)?.Item1;
         }
 
-        /// <summary>
-        ///     Creates a string representation of the objects
-        ///     properties.
-        /// </summary>
-        /// <returns>Optional header properties as a string.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("METADATASTREAM_GUID\n");
@@ -76,7 +78,7 @@ namespace PeNet.Structures
                 var bytes = new byte[16];
                 Array.Copy(Buff, i, bytes, 0, 16);
 
-                guidsAndIndicies.Add(new Tuple<Guid, uint>(new Guid(bytes), i - Offset));
+                guidsAndIndicies.Add(new Tuple<Guid, uint>(new Guid(bytes), (uint) guidsAndIndicies.Count + 1));
             }
 
             return guidsAndIndicies;

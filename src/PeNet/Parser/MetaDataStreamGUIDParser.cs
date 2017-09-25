@@ -2,7 +2,7 @@
 
 namespace PeNet.Parser
 {
-    internal class MetaDataStreamGUIDParser : SafeParser<METADATASTREAM_GUID>
+    internal class MetaDataStreamGUIDParser : SafeParser<IMETADATASTREAM_GUID>
     {
         private readonly uint _size;
 
@@ -17,7 +17,7 @@ namespace PeNet.Parser
             _size = size;
         }
 
-        protected override METADATASTREAM_GUID ParseTarget()
+        protected override IMETADATASTREAM_GUID ParseTarget()
         {
             return new METADATASTREAM_GUID(_buff, _offset, _size);
         }

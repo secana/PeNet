@@ -6,32 +6,46 @@ using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
-    /// <summary>
-    /// Represents the "String" meta data stream from the .Net header which 
-    /// contains all application interal strings.
-    /// </summary>
-    /// <inheritdoc />
-    public class METADATASTREAM_STRING : AbstractStructure
+    public interface IMETADATASTREAM_STRING
     {
-        private readonly uint _size;
-        
         /// <summary>
         /// List with strings in the Meta Data stream "String".
         /// </summary>
-        public List<string> Strings { get; }
+        List<string> Strings { get; }
 
         /// <summary>
         /// List with strings and their index in the Meta Data stream "String".
         /// </summary>
-        public List<Tuple<string, uint>> StringsAndIndices { get; }
+        List<Tuple<string, uint>> StringsAndIndices { get; }
 
         /// <summary>
-        /// Create a new METADATASTREAM_STRING that represents the Meta Data stream
-        /// "String" from the .Net header.
+        /// Return the string at the index from the stream.
         /// </summary>
-        /// <param name="buff">PE file as a byte buffer.</param>
-        /// <param name="offset">Offset of the "String" stream in the PE header.</param>
-        /// <param name="size">Size of the "String" stream in bytes.</param>
+        /// <param name="index">Index of the string to return.</param>
+        /// <returns>String at the position index.</returns>
+        string GetStringAtIndex(uint index);
+
+        /// <summary>
+        ///     Creates a string representation of the objects
+        ///     properties.
+        /// </summary>
+        /// <returns>Optional header properties as a string.</returns>
+        string ToString();
+    }
+
+    /// <inheritdoc cref="IMETADATASTREAM_STRING" />
+    /// <summary>
+    /// Represents the "String" meta data stream from the .Net header which 
+    /// contains all application interal strings.
+    /// </summary>
+    public class METADATASTREAM_STRING : AbstractStructure, IMETADATASTREAM_STRING
+    {
+        private readonly uint _size;
+        
+        public List<string> Strings { get; }
+
+        public List<Tuple<string, uint>> StringsAndIndices { get; }
+
         public METADATASTREAM_STRING(byte[] buff, uint offset, uint size) 
             : base(buff, offset)
         {
@@ -41,22 +55,11 @@ namespace PeNet.Structures
             Strings = StringsAndIndices.Select(x => x.Item1).ToList();
         }
 
-        /// <summary>
-        /// Return the string at the index from the stream.
-        /// </summary>
-        /// <param name="index">Index of the string to return.</param>
-        /// <returns>String at the position index.</returns>
         public string GetStringAtIndex(uint index)
         {
             return StringsAndIndices.FirstOrDefault(x => x.Item2 == index)?.Item1;
         }
 
-
-        /// <summary>
-        ///     Creates a string representation of the objects
-        ///     properties.
-        /// </summary>
-        /// <returns>Optional header properties as a string.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder("METADATASTREAM_STRING\n");
@@ -72,13 +75,14 @@ namespace PeNet.Structures
 
             for (var i = Offset; i < Offset + _size; i++)
             {
+                var index = i - Offset;
                 var tmpString = Buff.GetCString(i);
                 i += (uint)tmpString.Length;
 
                 if (String.IsNullOrWhiteSpace(tmpString))
                     continue;
 
-                stringsAndIndices.Add(new Tuple<string, uint>(tmpString, i - Offset));
+                stringsAndIndices.Add(new Tuple<string, uint>(tmpString, index));
             }
 
             return stringsAndIndices;

@@ -255,17 +255,17 @@ namespace PeNet
         /// <summary>
         /// Meta Data Stream #String.
         /// </summary>
-        public METADATASTREAM_STRING MetaDataStreamString => _dotNetStructureParsers.MetaDataStreamString;
+        public IMETADATASTREAM_STRING MetaDataStreamString => _dotNetStructureParsers.MetaDataStreamString;
 
         /// <summary>
         /// Meta Data Stream #US (User strings).
         /// </summary>
-        public METADATASTREAM_US MetaDataStreamUS => _dotNetStructureParsers.MetaDataStreamUS;
+        public IMETADATASTREAM_US MetaDataStreamUS => _dotNetStructureParsers.MetaDataStreamUS;
 
         /// <summary>
         /// Meta Data Stream #GUID.
         /// </summary>
-        public METADATASTREAM_GUID MetaDataStreamGUID => _dotNetStructureParsers.MetaDataStreamGUID;
+        public IMETADATASTREAM_GUID MetaDataStreamGUID => _dotNetStructureParsers.MetaDataStreamGUID;
 
         /// <summary>
         /// Meta Data Stream #Blob as an byte array.

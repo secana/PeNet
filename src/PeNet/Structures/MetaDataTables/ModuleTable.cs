@@ -13,6 +13,8 @@ namespace PeNet.Structures.MetaDataTables
     public class ModuleTable : AbstractMetaDataTable<ModuleTableRow>
     {
         private readonly IHeapOffsetBasedIndexSizes _heapOffsetIndexSizes;
+        private readonly IMETADATASTREAM_STRING _metaDataStreamString;
+        private readonly IMETADATASTREAM_GUID _metaDataStreamGuid;
 
         /// <summary>
         /// Create a new instance of the ModuleTable.
@@ -20,14 +22,22 @@ namespace PeNet.Structures.MetaDataTables
         /// <param name="buff">Buffer containing the ModuleTable.</param>
         /// <param name="offset">Offset to the ModuleTable in the buffer.</param>
         /// <param name="numberOfRows">Number of rows of the table.</param>
+        /// <param name="metaDataStreamString">Meta Data stream "String" to resolve strings in
+        /// the rows.</param>
+        /// <param name="metaDataStreamGuid">Meta Data stream "GUID" to resolve GUIDs in
+        /// the rows.</param>
         /// <param name="heapOffsetSizes">The HeapOffsetSizes flag of the Meta Data Tables Header.</param>
         public ModuleTable(
             byte[] buff, 
             uint offset, 
-            uint numberOfRows, 
+            uint numberOfRows,
+            IMETADATASTREAM_STRING metaDataStreamString,
+            IMETADATASTREAM_GUID metaDataStreamGuid,
             IHeapOffsetBasedIndexSizes heapOffsetSizes) 
             : base(buff, offset, numberOfRows)
         {
+            _metaDataStreamString = metaDataStreamString;
+            _metaDataStreamGuid = metaDataStreamGuid;
             _heapOffsetIndexSizes = heapOffsetSizes;
         }
 
@@ -37,7 +47,7 @@ namespace PeNet.Structures.MetaDataTables
             var rows = new List<ModuleTableRow>((int) NumberOfRows);
             for (var i = 0; i < NumberOfRows; i++)
             {
-                var row = new ModuleTableRow(Buff, currentOffset, _heapOffsetIndexSizes);
+                var row = new ModuleTableRow(Buff, currentOffset, _metaDataStreamString, _metaDataStreamGuid, _heapOffsetIndexSizes);
                 rows.Add(row);
                 currentOffset += row.Length;
             }

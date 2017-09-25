@@ -165,6 +165,8 @@ namespace PeNet.Test.Binaries
             Assert.Equal(0x0001u, module.Rows[0].Mvid);
             Assert.Equal(0x0000u, module.Rows[0].EncId);
             Assert.Equal(0x0000u, module.Rows[0].EncBaseId);
+            Assert.Equal("NetFrameworkConsole.exe", module.Rows[0].NameResolved);
+            Assert.Equal(new Guid("5250e853-c17a-4e76-adb3-0a716ec8af5d"), module.Rows[0].MvidResolved);
         }
     }
 }
