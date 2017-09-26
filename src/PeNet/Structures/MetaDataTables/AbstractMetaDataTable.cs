@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using PeNet.Utilities;
 
 namespace PeNet.Structures.MetaDataTables
 {
@@ -18,11 +19,23 @@ namespace PeNet.Structures.MetaDataTables
         /// <param name="buff">Buffer which contains the table.</param>
         /// <param name="offset">Offset of the table in the buffer.</param>
         /// <param name="numberOfRows">Number of rows of the table.</param>
-        protected AbstractMetaDataTable(byte[] buff, uint offset, uint numberOfRows) 
+        /// <param name="heapIndexSizex">Heap index sizes.</param>
+        protected AbstractMetaDataTable(
+            byte[] buff, 
+            uint offset, 
+            uint numberOfRows,
+            IHeapOffsetBasedIndexSizes heapIndexSizex
+            ) 
             : base(buff, offset)
         {
             NumberOfRows = numberOfRows;
+            HeapIndexSizes = heapIndexSizex;
         }
+
+        /// <summary>
+        /// Heap (stream) index sizes of the .Net header.
+        /// </summary>
+        public IHeapOffsetBasedIndexSizes HeapIndexSizes { get; }
 
         /// <summary>
         /// Number of rows of the table.

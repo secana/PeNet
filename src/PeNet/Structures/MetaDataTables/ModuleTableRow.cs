@@ -11,7 +11,6 @@ namespace PeNet.Structures.MetaDataTables
     /// <inheritdoc />
     public class ModuleTableRow : AbstractMetaDataTableRow
     {
-        private readonly IHeapOffsetBasedIndexSizes _heapIndexSizes;
         private readonly IMETADATASTREAM_STRING _metaDataStreamString;
         private readonly IMETADATASTREAM_GUID _metaDataStreamGuid;
 
@@ -32,11 +31,10 @@ namespace PeNet.Structures.MetaDataTables
             IMETADATASTREAM_GUID metaDataStreamGuid,
             IHeapOffsetBasedIndexSizes heapOffsetSizes
             ) 
-            : base(buff, offset)
+            : base(buff, offset, heapOffsetSizes)
         {
             _metaDataStreamString = metaDataStreamString;
             _metaDataStreamGuid = metaDataStreamGuid;
-            _heapIndexSizes = heapOffsetSizes;
         }
 
         /// <summary>
@@ -51,7 +49,7 @@ namespace PeNet.Structures.MetaDataTables
         /// <summary>
         /// Index into #String heap which contains the assembly name.
         /// </summary>
-        public uint Name => Buff.BytesToUInt32(Offset + 0x2, _heapIndexSizes.StringIndexSize);
+        public uint Name => Buff.BytesToUInt32(Offset + 0x2, HeapIndexSizes.StringIndexSize);
 
         /// <summary>
         /// The resolved "Name" attribute of this row.
@@ -62,7 +60,7 @@ namespace PeNet.Structures.MetaDataTables
         /// Index into #GUID heap which contains the module version ID.
         /// </summary>
         public uint Mvid
-            => Buff.BytesToUInt32(Offset + 0x2 + _heapIndexSizes.StringIndexSize, _heapIndexSizes.GuidIndexSize);
+            => Buff.BytesToUInt32(Offset + 0x2 + HeapIndexSizes.StringIndexSize, HeapIndexSizes.GuidIndexSize);
 
         /// <summary>
         /// Resolved "Mvid" (GUID) attribute of this row.
@@ -74,21 +72,21 @@ namespace PeNet.Structures.MetaDataTables
         /// </summary>
         public uint EncId
             =>
-            Buff.BytesToUInt32(Offset + 0x2 + _heapIndexSizes.StringIndexSize + _heapIndexSizes.GuidIndexSize,
-                _heapIndexSizes.GuidIndexSize);
+            Buff.BytesToUInt32(Offset + 0x2 + HeapIndexSizes.StringIndexSize + HeapIndexSizes.GuidIndexSize,
+                HeapIndexSizes.GuidIndexSize);
 
         /// <summary>
         /// Index into GUID heap. Reserved, should be 0.
         /// </summary>
         public uint EncBaseId
             =>
-            Buff.BytesToUInt32(Offset + 0x2 + _heapIndexSizes.StringIndexSize + _heapIndexSizes.GuidIndexSize*2,
-                _heapIndexSizes.GuidIndexSize);
+            Buff.BytesToUInt32(Offset + 0x2 + HeapIndexSizes.StringIndexSize + HeapIndexSizes.GuidIndexSize*2,
+                HeapIndexSizes.GuidIndexSize);
 
         /// <summary>
         /// Length of the row in bytes.
         /// </summary>
-        public override uint Length => 0x2 + _heapIndexSizes.StringIndexSize + _heapIndexSizes.GuidIndexSize*3;
+        public override uint Length => 0x2 + HeapIndexSizes.StringIndexSize + HeapIndexSizes.GuidIndexSize*3;
 
         /// <inheritdoc />
         public override string ToString()

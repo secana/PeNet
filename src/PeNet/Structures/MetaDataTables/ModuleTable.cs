@@ -12,7 +12,6 @@ namespace PeNet.Structures.MetaDataTables
     /// <inheritdoc />
     public class ModuleTable : AbstractMetaDataTable<ModuleTableRow>
     {
-        private readonly IHeapOffsetBasedIndexSizes _heapOffsetIndexSizes;
         private readonly IMETADATASTREAM_STRING _metaDataStreamString;
         private readonly IMETADATASTREAM_GUID _metaDataStreamGuid;
 
@@ -34,11 +33,10 @@ namespace PeNet.Structures.MetaDataTables
             IMETADATASTREAM_STRING metaDataStreamString,
             IMETADATASTREAM_GUID metaDataStreamGuid,
             IHeapOffsetBasedIndexSizes heapOffsetSizes) 
-            : base(buff, offset, numberOfRows)
+            : base(buff, offset, numberOfRows, heapOffsetSizes)
         {
             _metaDataStreamString = metaDataStreamString;
             _metaDataStreamGuid = metaDataStreamGuid;
-            _heapOffsetIndexSizes = heapOffsetSizes;
         }
 
         protected override List<ModuleTableRow> ParseRows()
@@ -47,7 +45,7 @@ namespace PeNet.Structures.MetaDataTables
             var rows = new List<ModuleTableRow>((int) NumberOfRows);
             for (var i = 0; i < NumberOfRows; i++)
             {
-                var row = new ModuleTableRow(Buff, currentOffset, _metaDataStreamString, _metaDataStreamGuid, _heapOffsetIndexSizes);
+                var row = new ModuleTableRow(Buff, currentOffset, _metaDataStreamString, _metaDataStreamGuid, HeapIndexSizes);
                 rows.Add(row);
                 currentOffset += row.Length;
             }

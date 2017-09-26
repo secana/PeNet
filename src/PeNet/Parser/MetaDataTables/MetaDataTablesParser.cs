@@ -15,7 +15,7 @@ namespace PeNet.Parser.MetaDataTables
         private readonly IMETADATASTREAM_GUID _metaDataStreamGuid;
         private readonly HeapOffsetBasedIndexSizes _heapOffsetBasedIndexSizes;
         private ModuleTableParser _moduleTableParser;
-        private TypeRefTableParser _typeRefTableParser;
+        private AssemblyRefTableParser _assemblyRefTableParser;
 
 
         /// <summary>
