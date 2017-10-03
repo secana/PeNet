@@ -47,8 +47,8 @@ namespace PeNet.Structures
                 Buff[Offset + 3] = value[3];
                 Buff[Offset + 4] = value[4];
                 Buff[Offset + 5] = value[5];
-                Buff[Offset + 6] = value[7];
-                Buff[Offset + 7] = value[8];
+                Buff[Offset + 6] = value[6];
+                Buff[Offset + 7] = value[7];
             }
         }
 
