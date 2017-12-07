@@ -111,6 +111,64 @@ namespace PeNet.Utilities
         }
 
         /// <summary>
+        ///     Convert 4 bytes to an 32 bit signed integer.
+        /// </summary>
+        /// <param name="b1">Highest byte.</param>
+        /// <param name="b2">Second highest byte.</param>
+        /// <param name="b3">Second lowest byte.</param>
+        /// <param name="b4">Lowest byte.</param>
+        /// <returns>UInt32 representation of the input bytes.</returns>
+        private static int BytesToInt32(byte b1, byte b2, byte b3, byte b4)
+        {
+            return BitConverter.ToInt32(new[] {b1, b2, b3, b4}, 0);
+        }
+
+        /// <summary>
+        ///     Convert 4 consecutive bytes out of a buffer to an 32 bit signed integer.
+        /// </summary>
+        /// <param name="buff">Byte buffer.</param>
+        /// <param name="offset">Offset of the highest byte.</param>
+        /// <returns>UInt32 of 4 bytes.</returns>
+        public static int BytesToInt32(this byte[] buff, uint offset)
+        {
+            return BytesToInt32(buff[offset], buff[offset + 1], buff[offset + 2], buff[offset + 3]);
+        }
+
+        /// <summary>
+        ///     Convert up to 4 bytes out of a buffer to an 32 bit signed integer.
+        /// </summary>
+        /// <param name="buff">Byte buffer.</param>
+        /// <param name="offset">Offset of the highest byte.</param>
+        /// <param name="numOfBytes">Number of bytes to read.</param>
+        /// <returns>UInt32 of numOfBytes bytes.</returns>
+        public static int BytesToInt32(this byte[] buff, uint offset, uint numOfBytes)
+        {
+            var bytes = new byte[4];
+            for (var i = 0; i < numOfBytes; i++)
+                bytes[i] = buff[offset + i];
+
+            return BitConverter.ToInt32(bytes, 0);
+        }
+
+        /// <summary>
+        ///     Convert up to 4 bytes out of a buffer to an 32 bit signed integer.
+        /// </summary>
+        /// <param name="buff">Byte buffer.</param>
+        /// <param name="offset">Offset of the highest byte.</param>
+        /// <param name="numOfBytes">Number of bytes to read.</param>
+        /// <param name="count">Gets increased by numOfBytes.</param>
+        /// <returns>UInt32 of numOfBytes bytes.</returns>
+        public static int BytesToInt32(this byte[] buff, uint offset, uint numOfBytes, ref uint count)
+        {
+            var bytes = new byte[4];
+            for (var i = 0; i < numOfBytes; i++)
+                bytes[i] = buff[offset + i];
+
+            count += numOfBytes;
+            return BitConverter.ToInt32(bytes, 0);
+        }
+
+        /// <summary>
         ///     Converts 8 bytes to an 64 bit unsigned integer.
         /// </summary>
         /// <param name="b1">Highest byte.</param>

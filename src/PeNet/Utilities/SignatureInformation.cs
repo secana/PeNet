@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 
 namespace PeNet.Utilities
@@ -50,25 +49,6 @@ namespace PeNet.Utilities
             }
 
             return IsValidCertChain(cert, online);
-        }
-
-        /// <summary>
-        ///     Checks if the digital signature of a PE file is valid.
-        ///     Since .Net has not function for it, PInvoke is used to query
-        ///     the native API like here http://geekswithblogs.net/robp/archive/2007/05/04/112250.aspx
-        /// </summary>
-        /// <param name="filePath">Path to a PE file.</param>
-        /// <returns>True if the signature is valid, else false.</returns>
-        public static bool IsSignatureValid(string filePath)
-        {
-            #if NET461
-                return SignatureValidation.IsTrusted(filePath);
-            #else
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) == false)
-                    throw new PlatformNotSupportedException("This features is currently only supported on Windows");
-
-                return SignatureValidation.IsTrusted(filePath);
-            #endif
         }
 
         /// <summary>

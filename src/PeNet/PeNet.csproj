@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net461;netcoreapp2.0</TargetFrameworks>
     <PackageProjectUrl>https://github.com/secana/PeNet</PackageProjectUrl>
     <Version>0.5.3</Version>
     <Authors>Stefan Hausotte</Authors>
@@ -12,5 +11,4 @@
     <RepositoryUrl>https://github.com/secana/PeNet</RepositoryUrl>
     <PackageTags>PE Header Portable Executable</PackageTags>
   </PropertyGroup>
-
 </Project>

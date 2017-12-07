@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using PeNet.Authenticode;
 using PeNet.ImpHash;
 using PeNet.Structures;
 using PeNet.Utilities;
@@ -143,6 +144,11 @@ namespace PeNet
         ///     does not check if the signature is valid!
         /// </summary>
         public bool IsSigned => PKCS7 != null;
+        
+        /// <summary>
+        ///     Returns true if the PE file signature is valid signed.
+        /// </summary>
+        public bool IsSignatureValid => PKCS7 != null && Authenticode.Authenticode.CheckSignature(Buff);
 
         /// <summary>
         ///     Returns true if the PE file is x64.
