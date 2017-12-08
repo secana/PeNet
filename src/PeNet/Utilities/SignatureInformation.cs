@@ -50,6 +50,17 @@ namespace PeNet.Utilities
 
             return IsValidCertChain(cert, online);
         }
+        
+        /// <summary>
+        ///     Checks if the digital signature of a PE file is valid.
+        /// </summary>
+        /// <param name="filePath">Path to a PE file.</param>
+        /// <returns>True if the signature is valid, else false.</returns>
+        [Obsolete("use `new PeFile(filePath).IsSignatureValid`", true)]
+        public static bool IsSignatureValid(string filePath)
+        {
+            return new PeFile(filePath).IsSignatureValid;
+        }
 
         /// <summary>
         ///     Checks if cert is from a trusted CA with a valid certificate chain.
