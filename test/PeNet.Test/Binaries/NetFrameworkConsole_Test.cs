@@ -14,6 +14,11 @@ namespace PeNet.Test.Binaries
             Assert.Equal(0x2008u, dataDirectory.VirtualAddress);
             Assert.Equal(0x48u, dataDirectory.Size);
         }
+        [Fact]
+        public void NetFameworkConsole_IsSignatureValid()
+        {
+            Assert.Equal(false, _peFile.IsSignatureValid);
+        }
 
         [Fact]
         public void NetFameworkConsole_NetDirectory_ParseCorrectValues()
