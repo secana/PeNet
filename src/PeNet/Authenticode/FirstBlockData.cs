@@ -27,21 +27,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.IO;
-using System.Security.Cryptography;
-using PeNet.Utilities;
-
 namespace PeNet.Authenticode {
 
 	public class FirstBlockData
 	{
-		public int BlockNo { get; set; }
 		public int BlockLength { get; set; }
-		public uint PeOffset { get; set; }
-		public int DirSecurityOffset { get; set; }
-		public int DirSecuritySize { get; set; }
-		public int CoffSymbolTableOffset { get; set; }
 		public byte[] FileBlock { get; set; } = new byte [4096];
 		
 	}

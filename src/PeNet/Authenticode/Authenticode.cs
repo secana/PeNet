@@ -32,7 +32,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using PeNet.Utilities;
 
 namespace PeNet.Authenticode
 
@@ -43,7 +42,8 @@ namespace PeNet.Authenticode
     {
         public static bool CheckSignature(byte[] bytes)
         {
-            var signedHash = GetSignedHash(bytes);
+            var file = new PeFile(bytes);
+            var signedHash = GetSignedHash(file);
             if (signedHash == null) return false;
             HashAlgorithm ha;
             switch (signedHash.Length)
@@ -67,9 +67,9 @@ namespace PeNet.Authenticode
                     return false;
             }
             var fs = new MemoryStream(bytes);
-            var firstBlockData = ProcessFirstBlock(fs);
+            var firstBlockData = ProcessFirstBlock(fs, file);
             if (firstBlockData == null) return false;
-            var hash = GetHash(ha, fs, firstBlockData);
+            var hash = GetHash(ha, file, fs, firstBlockData);
             return CompareArray(signedHash, hash);
         }
 
@@ -79,9 +79,8 @@ namespace PeNet.Authenticode
             return !array1.Where((t, i) => t != array2[i]).Any();
         }
 
-        private static byte[] GetSignedHash(byte[] buff)
+        private static byte[] GetSignedHash(PeFile file)
         {
-            var file = new PeFile(buff);
             var cert = file.WinCertificate;
             var ci = new PKCS7.ContentInfo(cert.bCertificate);
             if (ci.ContentType != "1.2.840.113549.1.7.2")
@@ -101,75 +100,63 @@ namespace PeNet.Authenticode
         }
 
 
-        private static FirstBlockData ProcessFirstBlock(Stream fs)
+        private static FirstBlockData ProcessFirstBlock(Stream stream, PeFile file)
         {
-            if (fs == null)
+            if (stream == null)
                 return null;
 
-            fs.Position = 0;
+            stream.Position = 0;
             var fileblock = new byte[4096];
             // read first block - it will include (100% sure) 
             // the MZ header and (99.9% sure) the PE header
-            var blockLength = fs.Read(fileblock, 0, fileblock.Length);
-            var blockNo = 1;
+            var blockLength = stream.Read(fileblock, 0, fileblock.Length);
             if (blockLength < 64)
                 return null; // invalid PE file
 
             // 1. Validate the MZ header informations
             // 1.1. Check for magic MZ at start of header
-            if (fileblock.BytesToUInt16(0) != 0x5A4D)
+            if (file.ImageDosHeader.e_magic != 0x5A4D)
                 return null;
 
             // 1.2. Find the offset of the PE header
-            //peOffset = fileblock.BytesToUInt32(60)
-            var peOffset = fileblock.BytesToUInt32(60);
+            var peOffset = file.ImageDosHeader.e_lfanew;
             if (peOffset > fileblock.Length)
             {
                 // just in case (0.1%) this can actually happen
                 throw new NotSupportedException($"Header size too big (> {fileblock.Length} bytes).");
             }
-            if (peOffset > fs.Length)
+            if (peOffset > stream.Length)
                 return null;
 
             // 2. Read between DOS header and first part of PE header
             // 2.1. Check for magic PE at start of header
             //	PE - NT header ('P' 'E' 0x00 0x00)
-            if (fileblock.BytesToUInt32(peOffset) != 0x4550)
+            if (file.ImageNtHeaders.Signature != 0x4550)
                 return null;
-
-            // 2.2. Locate IMAGE_DIRECTORY_ENTRY_SECURITY (offset and size)
-            var dirSecurityOffset = fileblock.BytesToInt32(peOffset + 152);
-            var dirSecuritySize = fileblock.BytesToInt32(peOffset + 156);
-
-            // COFF symbol tables are deprecated - we'll strip them if we see them!
-            // (otherwise the signature won't work on MS and we don't want to support COFF for that)
-            var coffSymbolTableOffset = fileblock.BytesToInt32(peOffset + 12);
 
             return new FirstBlockData
             {
-                DirSecurityOffset = dirSecurityOffset,
-                DirSecuritySize = dirSecuritySize,
                 BlockLength = blockLength,
-                BlockNo = blockNo,
-                PeOffset = peOffset,
                 FileBlock = fileblock,
-                CoffSymbolTableOffset = coffSymbolTableOffset,
             };
         }
 
-        internal static byte[] GetHash(HashAlgorithm hash, Stream fs, FirstBlockData firstBlockData)
+        private static byte[] GetHash(HashAlgorithm hash, PeFile file, Stream stream, FirstBlockData firstBlockData)
         {
             var blockLength = firstBlockData.BlockLength;
-            var dirSecurityOffset = firstBlockData.DirSecurityOffset;
-            var coffSymbolTableOffset = firstBlockData.CoffSymbolTableOffset;
-            var peOffset = firstBlockData.PeOffset;
+            // Locate IMAGE_DIRECTORY_ENTRY_SECURITY (offset)
+            var dirSecurityOffset = Convert.ToInt32(file.WinCertificate.Offset);
+            // COFF symbol tables are deprecated - we'll strip them if we see them!
+            // (otherwise the signature won't work on MS and we don't want to support COFF for that)
+            var coffSymbolTableOffset = Convert.ToInt32(file.ImageNtHeaders.FileHeader.PointerToSymbolTable);
+            var peOffset = file.ImageDosHeader.e_lfanew;
             var fileblock = firstBlockData.FileBlock;
 
-            fs.Position = firstBlockData.BlockLength;
+            stream.Position = firstBlockData.BlockLength;
 
             // hash the rest of the file
             long n;
-            int addsize = 0;
+            var addsize = 0;
             // minus any authenticode signature (with 8 bytes header)
             if (dirSecurityOffset > 0)
             {
@@ -209,11 +196,11 @@ namespace PeNet.Authenticode
             }
             else
             {
-                addsize = (int) (fs.Length & 7);
+                addsize = (int) (stream.Length & 7);
                 if (addsize > 0)
                     addsize = 8 - addsize;
 
-                n = fs.Length - blockLength;
+                n = stream.Length - blockLength;
             }
 
             // Authenticode(r) gymnastics
@@ -249,11 +236,11 @@ namespace PeNet.Authenticode
                 // blocks
                 while (blocks-- > 0)
                 {
-                    fs.Read(fileblock, 0, fileblock.Length);
+                    stream.Read(fileblock, 0, fileblock.Length);
                     hash.TransformBlock(fileblock, 0, fileblock.Length, fileblock, 0);
                 }
                 // remainder
-                if (fs.Read(fileblock, 0, remainder) != remainder)
+                if (stream.Read(fileblock, 0, remainder) != remainder)
                     return null;
 
                 if (addsize > 0)
