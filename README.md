@@ -1,4 +1,5 @@
 # PeNet
+[![NuGet](https://img.shields.io/nuget/v/PeNet.svg)](https://www.nuget.org/packages/PeNet)
 <p align="center">
     <img src="https://github.com/secana/PeNet/blob/master/src/PEditor/Icons/PEditor.png" />
 </p>
