@@ -39,10 +39,11 @@ namespace PeNet.Authenticode
     {
         public class ContentInfo
         {
+            public ASN1   Content     { get; }
+            public string ContentType { get; }
+
             public ContentInfo(byte[] data)
-                : this(new ASN1(data))
-            {
-            }
+                : this(new ASN1(data)) {}
 
             public ContentInfo(ASN1 asn1)
             {
@@ -57,10 +58,6 @@ namespace PeNet.Authenticode
                     throw new ArgumentException("Invalid content");
                 Content = asn1[1];
             }
-
-            public ASN1 Content { get; }
-
-            public string ContentType { get; }
         }
 
         public class SignedData

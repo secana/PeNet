@@ -76,18 +76,16 @@ namespace PeNet.Authenticode
             }
 
             m_aValue = new byte [nLength];
-            Buffer.BlockCopy(data, (2 + nLenLength), m_aValue, 0, nLength);
+            Buffer.BlockCopy(data, 2 + nLenLength, m_aValue, 0, nLength);
 
             if ((Tag & 0x20) != 0x20) return;
-            var nStart = (2 + nLenLength);
+            var nStart = 2 + nLenLength;
             Decode(data, ref nStart, data.Length);
         }
 
         public int Count => elist?.Count ?? 0;
 
         public byte Tag { get; }
-
-        public int Length => m_aValue?.Length ?? 0;
 
         public byte[] Value
         {
@@ -97,17 +95,6 @@ namespace PeNet.Authenticode
                     GetBytes();
                 return (byte[]) m_aValue.Clone();
             }
-        }
-
-        private bool CompareArray(byte[] array1, byte[] array2)
-        {
-            if (array1.Length != array2.Length) return false;
-            return !array1.Where((t, i) => t != array2[i]).Any();
-        }
-
-        public bool CompareValue(byte[] value)
-        {
-            return CompareArray(m_aValue, value);
         }
 
         private ASN1 Add(ASN1 asn1)
@@ -156,14 +143,14 @@ namespace PeNet.Authenticode
                 // special for length > 127
                 if (nLength > 127)
                 {
-                    if (nLength <= Byte.MaxValue)
+                    if (nLength <= byte.MaxValue)
                     {
                         der = new byte [3 + nLength];
                         Buffer.BlockCopy(val, 0, der, 3, nLength);
                         nLengthLen = 0x81;
                         der[2] = (byte) (nLength);
                     }
-                    else if (nLength <= UInt16.MaxValue)
+                    else if (nLength <= ushort.MaxValue)
                     {
                         der = new byte [4 + nLength];
                         Buffer.BlockCopy(val, 0, der, 4, nLength);
@@ -259,7 +246,7 @@ namespace PeNet.Authenticode
             {
                 try
                 {
-                    if ((elist == null) || (index >= elist.Count))
+                    if (elist == null || index >= elist.Count)
                         return null;
                     return (ASN1) elist[index];
                 }

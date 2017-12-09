@@ -47,7 +47,7 @@ namespace PeNet.Authenticode
         public static string ToOid(ASN1 asn1)
         {
             if (asn1 == null)
-                throw new ArgumentNullException("asn1");
+                throw new ArgumentNullException(nameof(asn1));
 
             var aOID = asn1.Value;
             var sb = new StringBuilder();
