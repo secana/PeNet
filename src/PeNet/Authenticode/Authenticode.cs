@@ -71,13 +71,7 @@ namespace PeNet.Authenticode
             var firstBlockData = ProcessFirstBlock(fs, peFile);
             if (firstBlockData == null) return false;
             var hash = GetHash(ha, peFile, fs, firstBlockData);
-            return CompareArray(signedHash, hash);
-        }
-
-        private static bool CompareArray(IReadOnlyCollection<byte> array1, IReadOnlyList<byte> array2)
-        {
-            if (array1.Count != array2.Count) return false;
-            return !array1.Where((t, i) => t != array2[i]).Any();
+            return signedHash.SequenceEqual(hash);
         }
 
         private static byte[] GetSignedHash(PeFile file)
