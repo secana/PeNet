@@ -83,13 +83,13 @@ namespace PeNet.Authenticode
         private static byte[] GetSignedHash(PeFile file)
         {
             var cert = file.WinCertificate;
-            var ci = new PKCS7.ContentInfo(cert.bCertificate);
+            var ci = new X509AuthentiCodeInfo.ContentInfo(cert.bCertificate);
             if (ci.ContentType != "1.2.840.113549.1.7.2")
             {
                 return null;
             }
 
-            var sd = new PKCS7.SignedData(ci.Content);
+            var sd = new X509AuthentiCodeInfo.SignedData(ci.Content);
             if (sd.ContentInfo.ContentType != "1.3.6.1.4.1.311.2.1.4")
             {
                 return null;

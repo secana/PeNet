@@ -35,20 +35,8 @@ using System;
 
 namespace PeNet.Authenticode
 {
-    public sealed class PKCS7
+    class X509AuthentiCodeInfo
     {
-
-        private PKCS7()
-        {
-        }
-
-        /*
-         * ContentInfo ::= SEQUENCE {
-         *	contentType ContentType,
-         *	content [0] EXPLICIT ANY DEFINED BY contentType OPTIONAL 
-         * }
-         * ContentType ::= OBJECT IDENTIFIER
-         */
         public class ContentInfo
         {
             public ContentInfo(byte[] data)
@@ -75,16 +63,6 @@ namespace PeNet.Authenticode
             public string ContentType { get; }
         }
 
-        /*
-         * SignedData ::= SEQUENCE {
-         *	version Version,
-         *	digestAlgorithms DigestAlgorithmIdentifiers,
-         *	contentInfo ContentInfo,
-         *	certificates [0] IMPLICIT ExtendedCertificatesAndCertificates OPTIONAL,
-         *	crls [1] IMPLICIT CertificateRevocationLists OPTIONAL,
-         *	signerInfos SignerInfos 
-         * }
-         */
         public class SignedData
         {
             public SignedData(ASN1 asn1)
