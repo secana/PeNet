@@ -148,7 +148,7 @@ namespace PeNet
         /// <summary>
         ///     Returns true if the PE file signature is valid signed.
         /// </summary>
-        public bool IsSignatureValid => PKCS7 != null && Authenticode.Authenticode.CheckSignature(Buff);
+        public bool IsSignatureValid => WinCertificate != null && Authenticode.Authenticode.CheckSignature(this);
 
         /// <summary>
         ///     Returns true if the PE file is x64.

@@ -42,10 +42,9 @@ namespace PeNet.Authenticode
 {
     public static class Authenticode
     {
-        public static bool CheckSignature(byte[] bytes)
+        public static bool CheckSignature(PeFile peFile)
         {
-            var file = new PeFile(bytes);
-            var signedHash = GetSignedHash(file);
+            var signedHash = GetSignedHash(peFile);
             if (signedHash == null) return false;
             HashAlgorithm ha;
             switch (signedHash.Length)
@@ -68,10 +67,10 @@ namespace PeNet.Authenticode
                 default:
                     return false;
             }
-            var fs = new MemoryStream(bytes);
-            var firstBlockData = ProcessFirstBlock(fs, file);
+            var fs = new MemoryStream(peFile.Buff);
+            var firstBlockData = ProcessFirstBlock(fs, peFile);
             if (firstBlockData == null) return false;
-            var hash = GetHash(ha, file, fs, firstBlockData);
+            var hash = GetHash(ha, peFile, fs, firstBlockData);
             return CompareArray(signedHash, hash);
         }
 
