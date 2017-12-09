@@ -67,10 +67,9 @@ namespace PeNet.Authenticode
                 default:
                     return false;
             }
-            var fs = new MemoryStream(peFile.Buff);
-            var firstBlockData = ProcessFirstBlock(fs, peFile);
+            var firstBlockData = ProcessFirstBlock(peFile);
             if (firstBlockData == null) return false;
-            var hash = GetHash(ha, peFile, fs, firstBlockData);
+            var hash = GetHash(ha, peFile, firstBlockData);
             return signedHash.SequenceEqual(hash);
         }
 
@@ -95,38 +94,30 @@ namespace PeNet.Authenticode
         }
 
 
-        private static FirstBlockData ProcessFirstBlock(Stream stream, PeFile file)
+        private static FirstBlockData ProcessFirstBlock(PeFile peFile)
         {
-            if (stream == null)
-                return null;
-
-            stream.Position = 0;
+            peFile.Stream.Position = 0;
             var fileblock = new byte[4096];
             // read first block - it will include (100% sure) 
             // the MZ header and (99.9% sure) the PE header
-            var blockLength = stream.Read(fileblock, 0, fileblock.Length);
+            var blockLength = peFile.Stream.Read(fileblock, 0, fileblock.Length);
             if (blockLength < 64)
                 return null; // invalid PE file
 
-            // 1. Validate the MZ header informations
-            // 1.1. Check for magic MZ at start of header
-            if (file.ImageDosHeader.e_magic != 0x5A4D)
-                return null;
-
             // 1.2. Find the offset of the PE header
-            var peOffset = file.ImageDosHeader.e_lfanew;
+            var peOffset = peFile.ImageDosHeader.e_lfanew;
             if (peOffset > fileblock.Length)
             {
                 // just in case (0.1%) this can actually happen
                 throw new NotSupportedException($"Header size too big (> {fileblock.Length} bytes).");
             }
-            if (peOffset > stream.Length)
+            if (peOffset > peFile.Stream.Length)
                 return null;
 
             // 2. Read between DOS header and first part of PE header
             // 2.1. Check for magic PE at start of header
             //	PE - NT header ('P' 'E' 0x00 0x00)
-            if (file.ImageNtHeaders.Signature != 0x4550)
+            if (peFile.ImageNtHeaders.Signature != 0x4550)
                 return null;
 
             return new FirstBlockData
@@ -136,18 +127,18 @@ namespace PeNet.Authenticode
             };
         }
 
-        private static byte[] GetHash(HashAlgorithm hash, PeFile file, Stream stream, FirstBlockData firstBlockData)
+        private static IEnumerable<byte> GetHash(HashAlgorithm hash, PeFile peFile, FirstBlockData firstBlockData)
         {
             var blockLength = firstBlockData.BlockLength;
             // Locate IMAGE_DIRECTORY_ENTRY_SECURITY (offset)
-            var dirSecurityOffset = Convert.ToInt32(file.WinCertificate.Offset);
+            var dirSecurityOffset = (int) peFile.WinCertificate.Offset;
             // COFF symbol tables are deprecated - we'll strip them if we see them!
             // (otherwise the signature won't work on MS and we don't want to support COFF for that)
-            var coffSymbolTableOffset = Convert.ToInt32(file.ImageNtHeaders.FileHeader.PointerToSymbolTable);
-            var peOffset = file.ImageDosHeader.e_lfanew;
+            var coffSymbolTableOffset = (int) peFile.ImageNtHeaders.FileHeader.PointerToSymbolTable;
+            var peOffset = peFile.ImageDosHeader.e_lfanew;
             var fileblock = firstBlockData.FileBlock;
 
-            stream.Position = firstBlockData.BlockLength;
+            peFile.Stream.Position = firstBlockData.BlockLength;
 
             // hash the rest of the file
             long n;
@@ -191,16 +182,16 @@ namespace PeNet.Authenticode
             }
             else
             {
-                addsize = (int) (stream.Length & 7);
+                addsize = (int) (peFile.Stream.Length & 7);
                 if (addsize > 0)
                     addsize = 8 - addsize;
 
-                n = stream.Length - blockLength;
+                n = peFile.Stream.Length - blockLength;
             }
 
             // Authenticode(r) gymnastics
             // Hash from (generally) 0 to 215 (216 bytes)
-            int pe = (int) peOffset + 88;
+            var pe = (int) peOffset + 88;
             hash.TransformBlock(fileblock, 0, pe, fileblock, 0);
             // then skip 4 for checksum
             pe += 4;
@@ -221,8 +212,8 @@ namespace PeNet.Authenticode
                 hash.TransformBlock(fileblock, pe, blockLength - pe, fileblock, pe);
 
                 // hash by blocks of 4096 bytes
-                long blocks = (n >> 12);
-                int remainder = (int) (n - (blocks << 12));
+                var blocks = n >> 12;
+                var remainder = (int) (n - (blocks << 12));
                 if (remainder == 0)
                 {
                     blocks--;
@@ -231,11 +222,11 @@ namespace PeNet.Authenticode
                 // blocks
                 while (blocks-- > 0)
                 {
-                    stream.Read(fileblock, 0, fileblock.Length);
+                    peFile.Stream.Read(fileblock, 0, fileblock.Length);
                     hash.TransformBlock(fileblock, 0, fileblock.Length, fileblock, 0);
                 }
                 // remainder
-                if (stream.Read(fileblock, 0, remainder) != remainder)
+                if (peFile.Stream.Read(fileblock, 0, remainder) != remainder)
                     return null;
 
                 if (addsize > 0)

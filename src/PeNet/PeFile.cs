@@ -25,6 +25,13 @@ namespace PeNet
         /// </summary>
         public readonly byte[] Buff;
 
+        private Stream _stream = null;
+
+        /// <summary>
+        ///     The PE binary as a stream.
+        /// </summary>
+        public Stream Stream => _stream ?? (_stream = new MemoryStream(Buff));
+
         private string _impHash;
         private string _md5;
         private string _sha1;
