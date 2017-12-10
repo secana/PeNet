@@ -10,6 +10,7 @@
     <PackageReleaseNotes>Authenticode improvements for cross plattform usage</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/secana/PeNet</RepositoryUrl>
     <PackageTags>PE Header Portable Executable</PackageTags>
+    <PackageIconUrl>https://raw.githubusercontent.com/secana/PeNet/master/src/PEditor/Icons/logo.png</PackageIconUrl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
     <NoWarn>1701;1702;1705</NoWarn>
