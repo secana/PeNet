@@ -8,7 +8,7 @@ namespace PeNet.Test.Utilities
         [Fact]
         void IsSigned_PathToSignedBinary_ReturnsTrue()
         {
-            Assert.True(PeNet.Utilities.SignatureInformation.IsSigned(@"../../../Binaries/firefox.exe"));
+            Assert.True(PeNet.Utilities.SignatureInformation.IsSigned(@"../../../Binaries/firefox_x86.exe"));
         }
 
         [Fact]
@@ -24,13 +24,13 @@ namespace PeNet.Test.Utilities
         [Fact]
         void IsValidCertChain_PathToSignedBinaryWithValidChain_Online_ReturnsTrue()
         {
-            Assert.True(PeNet.Utilities.SignatureInformation.IsValidCertChain(@"../../../Binaries/firefox.exe", true));
+            Assert.True(PeNet.Utilities.SignatureInformation.IsValidCertChain(@"../../../Binaries/firefox_x86.exe", true));
         }
 
         [Fact]
         void IsValidCertChain_PathToSignedBinaryWithValidChain_CheckRoot_ReturnsTrue()
         {
-            Assert.True(PeNet.Utilities.SignatureInformation.IsValidCertChain(@"../../../Binaries/firefox.exe", new TimeSpan(0,0,0,10), false));
+            Assert.True(PeNet.Utilities.SignatureInformation.IsValidCertChain(@"../../../Binaries/firefox_x86.exe", new TimeSpan(0,0,0,10), false));
         }
     }
 }

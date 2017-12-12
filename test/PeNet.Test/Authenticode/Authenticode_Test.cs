@@ -5,9 +5,16 @@ namespace PeNet.Test.Authenticode
     public class Authenticode_Test
     {
         [Fact]
-        public void IsSignatureValid_SigendBinary_ReturnsTrue()
+        public void IsSignatureValid_SigendBinary_x86_ReturnsTrue()
         {
-            var peFile = new PeFile(@"../../../Binaries/firefox.exe");
+            var peFile = new PeFile(@"../../../Binaries/firefox_x86.exe");
+            Assert.True(peFile.IsSignatureValid);
+        }
+
+        [Fact]
+        public void IsSignatureValid_SigendBinary_x64_ReturnsTrue()
+        {
+            var peFile = new PeFile(@"../../../Binaries/firefox_x64.exe");
             Assert.True(peFile.IsSignatureValid);
         }
 
