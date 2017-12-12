@@ -32,21 +32,78 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using PeNet.Utilities;
 
 namespace PeNet.Authenticode
 
     // References:
     // a.	http://www.cs.auckland.ac.nz/~pgut001/pubs/authenticode.txt
 {
-    public static class Authenticode
+    public class AuthenticodeInfo
     {
-        public static bool CheckSignature(PeFile peFile)
+        private readonly PeFile _peFile;
+        private readonly X509AuthentiCodeInfo.ContentInfo _contentInfo;
+
+        public string SignerSerialNumber { get; }
+        public byte[] SignedHash { get; }
+        public bool IsAuthenticodeValid { get; }
+        public X509Certificate2 SigningCertificate { get; }
+
+        public AuthenticodeInfo(PeFile peFile)
         {
-            var signedHash = GetSignedHash(peFile);
-            if (signedHash == null) return false;
+            _peFile = peFile;
+            _contentInfo = new X509AuthentiCodeInfo.ContentInfo(_peFile.WinCertificate.bCertificate);
+            SignerSerialNumber = GetSigningSerialNumber();
+            SignedHash = GetSignedHash();
+            IsAuthenticodeValid = CheckSignature();
+            SigningCertificate = GetSigningCertificate();
+        }
+
+        private X509Certificate2 GetSigningCertificate()
+        {
+            if (_peFile.WinCertificate?.wCertificateType !=
+                (ushort) Constants.WinCertificateType.WIN_CERT_TYPE_PKCS_SIGNED_DATA)
+            {
+                return null;
+            }
+
+            var pkcs7 = _peFile.WinCertificate.bCertificate;
+
+            // Workaround since the X509Certificate2 class does not return
+            // the signing certificate in the PKCS7 byte array but crashes on Linux 
+            // when using .Net Core.
+            // Under Windows with .Net Core the class works as intended.
+            // See issue: https://github.com/dotnet/corefx/issues/25828
+
+            #if NET461
+            return new X509Certificate2(pkcs7);
+            #else
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return new X509Certificate2(pkcs7);
+            }
+            else
+            {
+                return GetSigningCertificateNonWindows(_peFile);
+            }
+            #endif
+        }
+
+        private X509Certificate2 GetSigningCertificateNonWindows(PeFile peFile)
+        {
+            var collection = new X509Certificate2Collection();
+            collection.Import(peFile.WinCertificate.bCertificate);
+            return collection.Cast<X509Certificate2>().FirstOrDefault(cert => string.Equals(cert.SerialNumber, SignerSerialNumber, StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        private bool CheckSignature()
+        {
+            if (SignedHash == null) return false;
             HashAlgorithm ha;
-            switch (signedHash.Length)
+            switch (SignedHash.Length)
             {
                 case 16:
                     ha = MD5.Create();
@@ -66,23 +123,21 @@ namespace PeNet.Authenticode
                 default:
                     return false;
             }
-            var firstBlockData = ProcessFirstBlock(peFile);
+            var firstBlockData = ProcessFirstBlock();
             if (firstBlockData == null) return false;
-            var hash = GetHash(ha, peFile, firstBlockData);
-            return signedHash.SequenceEqual(hash);
+            var hash = GetHash(ha, firstBlockData);
+            return SignedHash.SequenceEqual(hash);
         }
 
-        private static byte[] GetSignedHash(PeFile file)
+        private byte[] GetSignedHash()
         {
-            var cert = file.WinCertificate;
-            var ci = new X509AuthentiCodeInfo.ContentInfo(cert.bCertificate);
-            if (ci.ContentType != "1.2.840.113549.1.7.2")
+            if (_contentInfo.ContentType != "1.2.840.113549.1.7.2") //1.2.840.113549.1.7.2 = OID for signedData
             {
                 return null;
             }
 
-            var sd = new X509AuthentiCodeInfo.SignedData(ci.Content);
-            if (sd.ContentInfo.ContentType != "1.3.6.1.4.1.311.2.1.4")
+            var sd = new X509AuthentiCodeInfo.SignedData(_contentInfo.Content);
+            if (sd.ContentInfo.ContentType != "1.3.6.1.4.1.311.2.1.4") // 1.3.6.1.4.1.311.2.1.4 = OID for Microsoft Crypto
             {
                 return null;
             }
@@ -92,31 +147,38 @@ namespace PeNet.Authenticode
             return signedHash.Value;
         }
 
-
-        private static FirstBlockData ProcessFirstBlock(PeFile peFile)
+        private string GetSigningSerialNumber()
         {
-            peFile.Stream.Position = 0;
+            var asn1 = _contentInfo.Content;
+            var x = asn1[0][4][0][1][1].Value; // ASN.1 Path to signer serial number: /1/0/4/0/1/1
+            return x.ToHexString().Substring(2).ToUpper();
+        }
+
+
+        private FirstBlockData ProcessFirstBlock()
+        {
+            _peFile.Stream.Position = 0;
             var fileblock = new byte[4096];
             // read first block - it will include (100% sure) 
             // the MZ header and (99.9% sure) the PE header
-            var blockLength = peFile.Stream.Read(fileblock, 0, fileblock.Length);
+            var blockLength = _peFile.Stream.Read(fileblock, 0, fileblock.Length);
             if (blockLength < 64)
                 return null; // invalid PE file
 
             // 1.2. Find the offset of the PE header
-            var peOffset = peFile.ImageDosHeader.e_lfanew;
+            var peOffset = _peFile.ImageDosHeader.e_lfanew;
             if (peOffset > fileblock.Length)
             {
                 // just in case (0.1%) this can actually happen
                 throw new NotSupportedException($"Header size too big (> {fileblock.Length} bytes).");
             }
-            if (peOffset > peFile.Stream.Length)
+            if (peOffset > _peFile.Stream.Length)
                 return null;
 
             // 2. Read between DOS header and first part of PE header
             // 2.1. Check for magic PE at start of header
             //	PE - NT header ('P' 'E' 0x00 0x00)
-            if (peFile.ImageNtHeaders.Signature != 0x4550)
+            if (_peFile.ImageNtHeaders.Signature != 0x4550)
                 return null;
 
             return new FirstBlockData
@@ -126,18 +188,18 @@ namespace PeNet.Authenticode
             };
         }
 
-        private static IEnumerable<byte> GetHash(HashAlgorithm hash, PeFile peFile, FirstBlockData firstBlockData)
+        private IEnumerable<byte> GetHash(HashAlgorithm hash, FirstBlockData firstBlockData)
         {
             var blockLength = firstBlockData.BlockLength;
             // Locate IMAGE_DIRECTORY_ENTRY_SECURITY (offset)
-            var dirSecurityOffset = (int) peFile.WinCertificate.Offset;
+            var dirSecurityOffset = (int) _peFile.WinCertificate.Offset;
             // COFF symbol tables are deprecated - we'll strip them if we see them!
             // (otherwise the signature won't work on MS and we don't want to support COFF for that)
-            var coffSymbolTableOffset = (int) peFile.ImageNtHeaders.FileHeader.PointerToSymbolTable;
-            var peOffset = peFile.ImageDosHeader.e_lfanew;
+            var coffSymbolTableOffset = (int) _peFile.ImageNtHeaders.FileHeader.PointerToSymbolTable;
+            var peOffset = _peFile.ImageDosHeader.e_lfanew;
             var fileblock = firstBlockData.FileBlock;
 
-            peFile.Stream.Position = firstBlockData.BlockLength;
+            _peFile.Stream.Position = firstBlockData.BlockLength;
 
             // hash the rest of the file
             long n;
@@ -181,11 +243,11 @@ namespace PeNet.Authenticode
             }
             else
             {
-                addsize = (int) (peFile.Stream.Length & 7);
+                addsize = (int) (_peFile.Stream.Length & 7);
                 if (addsize > 0)
                     addsize = 8 - addsize;
 
-                n = peFile.Stream.Length - blockLength;
+                n = _peFile.Stream.Length - blockLength;
             }
 
             // Authenticode(r) gymnastics
@@ -221,11 +283,11 @@ namespace PeNet.Authenticode
                 // blocks
                 while (blocks-- > 0)
                 {
-                    peFile.Stream.Read(fileblock, 0, fileblock.Length);
+                    _peFile.Stream.Read(fileblock, 0, fileblock.Length);
                     hash.TransformBlock(fileblock, 0, fileblock.Length, fileblock, 0);
                 }
                 // remainder
-                if (peFile.Stream.Read(fileblock, 0, remainder) != remainder)
+                if (_peFile.Stream.Read(fileblock, 0, remainder) != remainder)
                     return null;
 
                 if (addsize > 0)

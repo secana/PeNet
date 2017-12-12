@@ -29,10 +29,9 @@
 
 namespace PeNet.Authenticode {
 
-	public class FirstBlockData
+	class FirstBlockData
 	{
 		public int BlockLength { get; set; }
 		public byte[] FileBlock { get; set; } = new byte [4096];
-		
 	}
 }
