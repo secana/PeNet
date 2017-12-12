@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using PeNet.Authenticode;
 using PeNet.Parser;
 using PeNet.Structures;
 using PeNet.Utilities;
@@ -22,7 +23,7 @@ namespace PeNet
         private ImageImportDescriptorsParser _imageImportDescriptorsParser;
         private ImageResourceDirectoryParser _imageResourceDirectoryParser;
         private ImportedFunctionsParser _importedFunctionsParser;
-        private PKCS7Parser _pkcs7Parser;
+        private AuthenticodeParser _authenticodeParser;
         private RuntimeFunctionsParser _runtimeFunctionsParser;
         private WinCertificateParser _winCertificateParser;
         private ImageTlsDirectoryParser _imageTlsDirectoryParser;
@@ -56,7 +57,6 @@ namespace PeNet
         public ImportFunction[] ImportFunctions => _importedFunctionsParser?.GetParserTarget();
         public IMAGE_BOUND_IMPORT_DESCRIPTOR ImageBoundImportDescriptor => _imageBoundImportDescriptorParser?.GetParserTarget();
         public IMAGE_TLS_DIRECTORY ImageTlsDirectory => _imageTlsDirectoryParser?.GetParserTarget();
-        public X509Certificate2 PKCS7 => _pkcs7Parser?.GetParserTarget();
         public IMAGE_DELAY_IMPORT_DESCRIPTOR ImageDelayImportDescriptor => _imageDelayImportDescriptorParser?.GetParserTarget();
         public IMAGE_LOAD_CONFIG_DIRECTORY ImageLoadConfigDirectory => _imageLoadConfigDirectoryParser?.GetParserTarget();
         public IMAGE_COR20_HEADER ImageComDescriptor => _imageCor20HeaderParser?.GetParserTarget();
@@ -74,7 +74,6 @@ namespace PeNet
             _importedFunctionsParser = InitImportedFunctionsParser();
             _imageBoundImportDescriptorParser = InitBoundImportDescriptorParser();
             _imageTlsDirectoryParser = InitImageTlsDirectoryParser();
-            _pkcs7Parser = InitPKCS7Parser();
             _imageDelayImportDescriptorParser = InitImageDelayImportDescriptorParser();
             _imageLoadConfigDirectoryParser = InitImageLoadConfigDirectoryParser();
             _imageCor20HeaderParser = InitImageComDescriptorParser();
@@ -128,11 +127,6 @@ namespace PeNet
                 _sectionHeaders,
                 !_is32Bit
                 );
-        }
-
-        private PKCS7Parser InitPKCS7Parser()
-        {
-            return new PKCS7Parser(WinCertificate);
         }
 
         private ExportedFunctionsParser InitExportFunctionParser()
