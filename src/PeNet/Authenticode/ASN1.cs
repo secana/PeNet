@@ -39,7 +39,7 @@ namespace PeNet.Authenticode
     // a.	ITU ASN.1 standards (free download)
     //	http://www.itu.int/ITU-T/studygroups/com17/languages/
 
-    public sealed class ASN1
+    class ASN1
     {
         private byte[] m_aValue;
         private ArrayList elist;

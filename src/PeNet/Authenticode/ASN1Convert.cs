@@ -40,7 +40,7 @@ namespace PeNet.Authenticode
     // a.	ITU ASN.1 standards (free download)
     //	http://www.itu.int/ITU-T/studygroups/com17/languages/
 
-    public static class ASN1Convert
+    static class ASN1Convert
     {
         // Convert a binary encoded OID to human readable string representation of 
         // an OID (IETF style). Based on DUMPASN1.C from Peter Gutmann.

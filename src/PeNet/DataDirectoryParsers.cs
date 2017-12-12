@@ -23,7 +23,6 @@ namespace PeNet
         private ImageImportDescriptorsParser _imageImportDescriptorsParser;
         private ImageResourceDirectoryParser _imageResourceDirectoryParser;
         private ImportedFunctionsParser _importedFunctionsParser;
-        private AuthenticodeParser _authenticodeParser;
         private RuntimeFunctionsParser _runtimeFunctionsParser;
         private WinCertificateParser _winCertificateParser;
         private ImageTlsDirectoryParser _imageTlsDirectoryParser;
