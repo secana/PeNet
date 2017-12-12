@@ -28,14 +28,21 @@ namespace PeNet.Utilities
         /// <returns>True if signed, false if not. </returns>
         public static bool IsSigned(string filePath, out X509Certificate2 cert)
         {
+            cert = null;
             try
             {
-                var signer = X509Certificate.CreateFromSignedFile(filePath);
-                cert  = new X509Certificate2(signer);
+                var peFile = new PeFile(filePath);
+                if (peFile.PKCS7 == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    cert = peFile.PKCS7;
+                }
             }
             catch (Exception)
             {
-                cert = null;
                 return false;
             }
             return true;

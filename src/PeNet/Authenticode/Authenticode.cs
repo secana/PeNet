@@ -33,6 +33,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using PeNet.Utilities;
 
 namespace PeNet.Authenticode
 
@@ -72,17 +73,17 @@ namespace PeNet.Authenticode
             return signedHash.SequenceEqual(hash);
         }
 
-        private static byte[] GetSignedHash(PeFile file)
+        private static byte[] GetSignedHash(PeFile peFile)
         {
-            var cert = file.WinCertificate;
+            var cert = peFile.WinCertificate;
             var ci = new X509AuthentiCodeInfo.ContentInfo(cert.bCertificate);
-            if (ci.ContentType != "1.2.840.113549.1.7.2")
+            if (ci.ContentType != "1.2.840.113549.1.7.2") //1.2.840.113549.1.7.2 = OID for signedData
             {
                 return null;
             }
 
             var sd = new X509AuthentiCodeInfo.SignedData(ci.Content);
-            if (sd.ContentInfo.ContentType != "1.3.6.1.4.1.311.2.1.4")
+            if (sd.ContentInfo.ContentType != "1.3.6.1.4.1.311.2.1.4") // 1.3.6.1.4.1.311.2.1.4 = OID for Microsoft Crypto
             {
                 return null;
             }
@@ -90,6 +91,15 @@ namespace PeNet.Authenticode
             var spc = sd.ContentInfo.Content;
             var signedHash = spc[0][1][1];
             return signedHash.Value;
+        }
+
+        public static string GetSigningSerialNumber(byte[] pkcs7)
+        {
+            var ci   = new X509AuthentiCodeInfo.ContentInfo(pkcs7);
+            var asn1 = ci.Content;
+            var x = asn1[0][4][0][1][1].Value;
+
+            return x.ToHexString();
         }
 
 
