@@ -21,8 +21,15 @@ namespace PeNet.Parser
                 return null;
             }
 
-            var cert = _winCertificate.bCertificate;
-            return new X509Certificate2(cert);
+            var pkcs7 = _winCertificate.bCertificate;
+
+            var collection = new X509Certificate2Collection();
+            collection.Import(pkcs7);
+
+            if (collection.Count == 0)
+                return null;
+
+            return collection[0];
         }
     }
 }
