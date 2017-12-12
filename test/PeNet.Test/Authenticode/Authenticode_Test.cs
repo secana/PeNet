@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace PeNet.Test.Binaries
+namespace PeNet.Test.Authenticode
 {
     public class Authenticode_Test
     {

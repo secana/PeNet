@@ -15,6 +15,7 @@ limitations under the License.
 
 *************************************************************************/
 
+using System.Linq;
 using PeNet.Structures;
 using Xunit;
 
@@ -35,6 +36,20 @@ namespace PeNet.Test.Structures
         {
             var tlsCallback = new IMAGE_TLS_CALLBACK(RawStructures.RawTlsCallback32, 2, false);
             Assert.Equal((ulong)0x33221100, tlsCallback.Callback);
+        }
+
+        [Fact]
+        public void TLSCallback_x86_Works_Test()
+        {
+            // Given
+            var peFile = new PeFile(@"../../../Binaries/TLSCallback_x86.exe");
+
+            // When
+            var callbacks = peFile.ImageTlsDirectory.TlsCallbacks;
+
+            // Then
+            Assert.Equal(1, callbacks.Length);
+            Assert.Equal((ulong) 0x004111CC, callbacks.First().Callback);
         }
     }
 }
