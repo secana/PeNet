@@ -35,6 +35,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using PeNet.Structures;
 using PeNet.Utilities;
 
 namespace PeNet.Authenticode
@@ -78,30 +79,26 @@ namespace PeNet.Authenticode
             // Under Windows with .Net Core the class works as intended.
             // See issue: https://github.com/dotnet/corefx/issues/25828
 
-            #if NET461
+#if NET461
             return new X509Certificate2(pkcs7);
-            #else
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return new X509Certificate2(pkcs7);
-            }
-            else
-            {
-                return GetSigningCertificateNonWindows(_peFile);
-            }
-            #endif
+#else
+            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? 
+                new X509Certificate2(pkcs7) : GetSigningCertificateNonWindows(_peFile);
+#endif
         }
 
         private X509Certificate2 GetSigningCertificateNonWindows(PeFile peFile)
         {
             var collection = new X509Certificate2Collection();
             collection.Import(peFile.WinCertificate.bCertificate);
-            return collection.Cast<X509Certificate2>().FirstOrDefault(cert => string.Equals(cert.SerialNumber, SignerSerialNumber, StringComparison.CurrentCultureIgnoreCase));
+            return collection.Cast<X509Certificate2>().FirstOrDefault(cert =>
+                string.Equals(cert.SerialNumber, SignerSerialNumber, StringComparison.CurrentCultureIgnoreCase));
         }
 
         private bool CheckSignature()
         {
             if (SignedHash == null) return false;
+            // 2.  Initialize a hash algorithm context.
             HashAlgorithm ha;
             switch (SignedHash.Length)
             {
@@ -123,9 +120,7 @@ namespace PeNet.Authenticode
                 default:
                     return false;
             }
-            var firstBlockData = ProcessFirstBlock();
-            if (firstBlockData == null) return false;
-            var hash = GetHash(ha, firstBlockData);
+            var hash = GetHash(ha);
             return SignedHash.SequenceEqual(hash);
         }
 
@@ -154,152 +149,79 @@ namespace PeNet.Authenticode
             return x.ToHexString().Substring(2).ToUpper();
         }
 
-
-        private FirstBlockData ProcessFirstBlock()
+        private IEnumerable<byte> GetHash(HashAlgorithm hash)
         {
-            _peFile.Stream.Position = 0;
-            var fileblock = new byte[4096];
-            // read first block - it will include (100% sure) 
-            // the MZ header and (99.9% sure) the PE header
-            var blockLength = _peFile.Stream.Read(fileblock, 0, fileblock.Length);
-            if (blockLength < 64)
-                return null; // invalid PE file
+            // 3.  Hash the image header from its base to immediately before the start of the checksum address, 
+            // as specified in Optional Header Windows-Specific Fields.
+            var offset = Convert.ToInt32(_peFile.ImageNtHeaders.OptionalHeader.Offset) + 0x40;
+            hash.TransformBlock(_peFile.Buff, 0, offset, new byte[offset], 0);
 
-            // 1.2. Find the offset of the PE header
-            var peOffset = _peFile.ImageDosHeader.e_lfanew;
-            if (peOffset > fileblock.Length)
+            // 4.  Skip over the checksum, which is a 4-byte field.
+            offset += 0x4;
+
+            // 6.  Get the Attribute Certificate Table address and size from the Certificate Table entry. 
+            // For details, see section 5.7 of the PE/COFF specification.
+            var certificateTable = _peFile.ImageNtHeaders.OptionalHeader.DataDirectory[4];
+
+            // 5.  Hash everything from the end of the checksum field to immediately before the start of the Certificate Table entry,
+            // as specified in Optional Header Data Directories.
+            var length = Convert.ToInt32(certificateTable.Offset) - offset;
+            hash.TransformBlock(_peFile.Buff, offset, length, new byte[length], 0);
+            offset += length + 0x8;//end of Attribute Certificate Table addres
+            
+            // 7.  Exclude the Certificate Table entry from the calculation and 
+            // hash everything from the end of the Certificate Table entry to the end of image header, 
+            // including Section Table (headers). The Certificate Table entry is 8 bytes long, as specified in Optional Header Data Directories.
+            length = Convert.ToInt32(_peFile.ImageNtHeaders.OptionalHeader.SizeOfHeaders) - offset;// end optional header
+            hash.TransformBlock(_peFile.Buff, offset, length, new byte[length], 0);
+
+            // 8.  Create a counter called SUM_OF_BYTES_HASHED, which is not part of the signature. 
+            // Set this counter to the SizeOfHeaders field, as specified in Optional Header Windows-Specific Field.
+            var sumOfBytesHashed = Convert.ToInt32(_peFile.ImageNtHeaders.OptionalHeader.SizeOfHeaders);
+
+            // 9.  Build a temporary table of pointers to all of the section headers in the image. 
+            var sectionHeaders = _peFile.ImageSectionHeaders
+                // The NumberOfSections field of COFF File Header indicates how big the table should be. 
+                // Do not include any section headers in the table whose SizeOfRawData field is zero. 
+                .Where(sectionHeader => sectionHeader.SizeOfRawData != 0)
+                // 10. Using the PointerToRawData field (offset 20) in the referenced SectionHeader structure as a key, 
+                // arrange the table's elements in ascending order. 
+                // In other words, sort the section headers in ascending order according to the disk-file offset of the sections.
+                .OrderBy(section => section.PointerToRawData).ToList();
+
+            // 13. Repeat steps 11 and 12 for all of the sections in the sorted table.
+            foreach (var sectionHeader in sectionHeaders)
             {
-                // just in case (0.1%) this can actually happen
-                throw new NotSupportedException($"Header size too big (> {fileblock.Length} bytes).");
-            }
-            if (peOffset > _peFile.Stream.Length)
-                return null;
-
-            // 2. Read between DOS header and first part of PE header
-            // 2.1. Check for magic PE at start of header
-            //	PE - NT header ('P' 'E' 0x00 0x00)
-            if (_peFile.ImageNtHeaders.Signature != 0x4550)
-                return null;
-
-            return new FirstBlockData
-            {
-                BlockLength = blockLength,
-                FileBlock = fileblock,
-            };
-        }
-
-        private IEnumerable<byte> GetHash(HashAlgorithm hash, FirstBlockData firstBlockData)
-        {
-            var blockLength = firstBlockData.BlockLength;
-            // Locate IMAGE_DIRECTORY_ENTRY_SECURITY (offset)
-            var dirSecurityOffset = (int) _peFile.WinCertificate.Offset;
-            // COFF symbol tables are deprecated - we'll strip them if we see them!
-            // (otherwise the signature won't work on MS and we don't want to support COFF for that)
-            var coffSymbolTableOffset = (int) _peFile.ImageNtHeaders.FileHeader.PointerToSymbolTable;
-            var peOffset = _peFile.ImageDosHeader.e_lfanew;
-            var fileblock = firstBlockData.FileBlock;
-
-            _peFile.Stream.Position = firstBlockData.BlockLength;
-
-            // hash the rest of the file
-            long n;
-            var addsize = 0;
-            // minus any authenticode signature (with 8 bytes header)
-            if (dirSecurityOffset > 0)
-            {
-                // it is also possible that the signature block 
-                // starts within the block in memory (small EXE)
-                if (dirSecurityOffset < blockLength)
-                {
-                    blockLength = dirSecurityOffset;
-                    n = 0;
-                }
-                else
-                {
-                    n = dirSecurityOffset - blockLength;
-                }
-            }
-            else if (coffSymbolTableOffset > 0)
-            {
-                fileblock[peOffset + 12] = 0;
-                fileblock[peOffset + 13] = 0;
-                fileblock[peOffset + 14] = 0;
-                fileblock[peOffset + 15] = 0;
-                fileblock[peOffset + 16] = 0;
-                fileblock[peOffset + 17] = 0;
-                fileblock[peOffset + 18] = 0;
-                fileblock[peOffset + 19] = 0;
-                // it is also possible that the signature block 
-                // starts within the block in memory (small EXE)
-                if (coffSymbolTableOffset < blockLength)
-                {
-                    blockLength = coffSymbolTableOffset;
-                    n = 0;
-                }
-                else
-                {
-                    n = coffSymbolTableOffset - blockLength;
-                }
-            }
-            else
-            {
-                addsize = (int) (_peFile.Stream.Length & 7);
-                if (addsize > 0)
-                    addsize = 8 - addsize;
-
-                n = _peFile.Stream.Length - blockLength;
+                // 11. Walk through the sorted table, load the corresponding section into memory, 
+                // and hash the entire section. 
+                // Use the SizeOfRawData field in the SectionHeader structure to determine the amount of data to hash.
+                length = Convert.ToInt32(sectionHeader.SizeOfRawData);
+                offset = Convert.ToInt32(sectionHeader.PointerToRawData);
+                hash.TransformBlock(_peFile.Buff, offset, length, new byte[length], 0);
+                // 12. Add the section’s SizeOfRawData value to SUM_OF_BYTES_HASHED.
+                sumOfBytesHashed += length;
             }
 
-            // Authenticode(r) gymnastics
-            // Hash from (generally) 0 to 215 (216 bytes)
-            var pe = (int) peOffset + 88;
-            hash.TransformBlock(fileblock, 0, pe, fileblock, 0);
-            // then skip 4 for checksum
-            pe += 4;
-            // Continue hashing from (generally) 220 to 279 (60 bytes)
-            hash.TransformBlock(fileblock, pe, 60, fileblock, pe);
-            // then skip 8 bytes for IMAGE_DIRECTORY_ENTRY_SECURITY
-            pe += 68;
-
-            // everything is present so start the hashing
-            if (n == 0)
+            // 14. Create a value called FILE_SIZE, which is not part of the signature. 
+            // Set this value to the image’s file size, acquired from the underlying file system. 
+            // If FILE_SIZE is greater than SUM_OF_BYTES_HASHED, the file contains extra data that must be added to the hash. 
+            // This data begins at the SUM_OF_BYTES_HASHED file offset, and its length is:
+            // (File Size) – ((Size of AttributeCertificateTable) + SUM_OF_BYTES_HASHED)
+            // Note: The size of Attribute Certificate Table is specified 
+            // in the second ULONG value in the Certificate Table entry (32 bit: offset 132, 64 bit: offset 148) in Optional Header Data Directories.
+            var fileSize = _peFile.Buff.Length;
+            if (fileSize > sumOfBytesHashed)
             {
-                // hash the (only) block
-                hash.TransformFinalBlock(fileblock, pe, blockLength - pe);
-            }
-            else
-            {
-                // hash the last part of the first (already in memory) block
-                hash.TransformBlock(fileblock, pe, blockLength - pe, fileblock, pe);
-
-                // hash by blocks of 4096 bytes
-                var blocks = n >> 12;
-                var remainder = (int) (n - (blocks << 12));
-                if (remainder == 0)
+                var sizeOfAttributeCertificateTable = Convert.ToInt32(certificateTable.Size);
+                length = fileSize - (sizeOfAttributeCertificateTable + sumOfBytesHashed);
+                if (length != 0)
                 {
-                    blocks--;
-                    remainder = 4096;
-                }
-                // blocks
-                while (blocks-- > 0)
-                {
-                    _peFile.Stream.Read(fileblock, 0, fileblock.Length);
-                    hash.TransformBlock(fileblock, 0, fileblock.Length, fileblock, 0);
-                }
-                // remainder
-                if (_peFile.Stream.Read(fileblock, 0, remainder) != remainder)
-                    return null;
-
-                if (addsize > 0)
-                {
-                    hash.TransformBlock(fileblock, 0, remainder, fileblock, 0);
-                    hash.TransformFinalBlock(new byte [addsize], 0, addsize);
-                }
-                else
-                {
-                    hash.TransformFinalBlock(fileblock, 0, remainder);
+                    hash.TransformBlock(_peFile.Buff, sumOfBytesHashed + sizeOfAttributeCertificateTable, length, new byte[length], 0);
                 }
             }
+
+            // 15. Finalize the hash algorithm context.
+            hash.TransformFinalBlock(_peFile.Buff, 0, 0);
             return hash.Hash;
         }
     }
