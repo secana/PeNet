@@ -10,6 +10,20 @@ namespace PeNet.Test.Authenticode
             var peFile = new PeFile(@"../../../Binaries/firefox_x86.exe");
             Assert.True(peFile.IsSignatureValid);
         }
+        
+        [Fact]
+        public void IsSignatureValid_InvalidSigendBinary_x86_ReturnsFalse()
+        {
+            var peFile = new PeFile(@"../../../Binaries/firefox_invalid_x86.exe");
+            Assert.False(peFile.IsSignatureValid);
+        }
+        
+        [Fact]
+        public void IsSignatureValid_InvalidSigendBinary_x64_ReturnsFalse()
+        {
+            var peFile = new PeFile(@"../../../Binaries/firefox_invalid_x64.exe");
+            Assert.False(peFile.IsSignatureValid);
+        }
 
         [Fact]
         public void IsSignatureValid_SigendBinary_x64_ReturnsTrue()
