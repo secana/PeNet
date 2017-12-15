@@ -1,0 +1,228 @@
+//
+// AuthenticodeDeformatter.cs: Authenticode signature validator
+//
+// Author:
+//	Sebastien Pouliot <sebastien@ximian.com>
+//
+// (C) 2003 Motus Technologies Inc. (http://www.motus.com)
+// Copyright (C) 2004-2006 Novell, Inc (http://www.novell.com)
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+// https://github.com/mono/mono/blob/0bcbe39b148bb498742fc68416f8293ccd350fb6/mcs/class/Mono.Security/Mono.Security.Authenticode/AuthenticodeDeformatter.cs
+// https://github.com/mono/mono/blob/0bcbe39b148bb498742fc68416f8293ccd350fb6/mcs/class/Mono.Security/Mono.Security.Authenticode/AuthenticodeBase.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using PeNet.Structures;
+using PeNet.Utilities;
+
+namespace PeNet.Authenticode
+
+    // References:
+    // a.	http://www.cs.auckland.ac.nz/~pgut001/pubs/authenticode.txt
+{
+    public class AuthenticodeInfo
+    {
+        private readonly PeFile _peFile;
+        private readonly X509AuthentiCodeInfo.ContentInfo _contentInfo;
+
+        public string SignerSerialNumber { get; }
+        public byte[] SignedHash { get; }
+        public bool IsAuthenticodeValid { get; }
+        public X509Certificate2 SigningCertificate { get; }
+
+        public AuthenticodeInfo(PeFile peFile)
+        {
+            _peFile = peFile;
+            _contentInfo = new X509AuthentiCodeInfo.ContentInfo(_peFile.WinCertificate.bCertificate);
+            SignerSerialNumber = GetSigningSerialNumber();
+            SignedHash = GetSignedHash();
+            IsAuthenticodeValid = CheckSignature();
+            SigningCertificate = GetSigningCertificate();
+        }
+
+        private X509Certificate2 GetSigningCertificate()
+        {
+            if (_peFile.WinCertificate?.wCertificateType !=
+                (ushort) Constants.WinCertificateType.WIN_CERT_TYPE_PKCS_SIGNED_DATA)
+            {
+                return null;
+            }
+
+            var pkcs7 = _peFile.WinCertificate.bCertificate;
+
+            // Workaround since the X509Certificate2 class does not return
+            // the signing certificate in the PKCS7 byte array but crashes on Linux 
+            // when using .Net Core.
+            // Under Windows with .Net Core the class works as intended.
+            // See issue: https://github.com/dotnet/corefx/issues/25828
+
+#if NET461
+            return new X509Certificate2(pkcs7);
+#else
+            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? 
+                new X509Certificate2(pkcs7) : GetSigningCertificateNonWindows(_peFile);
+#endif
+        }
+
+        private X509Certificate2 GetSigningCertificateNonWindows(PeFile peFile)
+        {
+            var collection = new X509Certificate2Collection();
+            collection.Import(peFile.WinCertificate.bCertificate);
+            return collection.Cast<X509Certificate2>().FirstOrDefault(cert =>
+                string.Equals(cert.SerialNumber, SignerSerialNumber, StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        private bool CheckSignature()
+        {
+            if (SignedHash == null) return false;
+            // 2.  Initialize a hash algorithm context.
+            HashAlgorithm ha;
+            switch (SignedHash.Length)
+            {
+                case 16:
+                    ha = MD5.Create();
+                    break;
+                case 20:
+                    ha = SHA1.Create();
+                    break;
+                case 32:
+                    ha = SHA256.Create();
+                    break;
+                case 48:
+                    ha = SHA384.Create();
+                    break;
+                case 64:
+                    ha = SHA512.Create();
+                    break;
+                default:
+                    return false;
+            }
+            var hash = GetHash(ha);
+            return SignedHash.SequenceEqual(hash);
+        }
+
+        private byte[] GetSignedHash()
+        {
+            if (_contentInfo.ContentType != "1.2.840.113549.1.7.2") //1.2.840.113549.1.7.2 = OID for signedData
+            {
+                return null;
+            }
+
+            var sd = new X509AuthentiCodeInfo.SignedData(_contentInfo.Content);
+            if (sd.ContentInfo.ContentType != "1.3.6.1.4.1.311.2.1.4") // 1.3.6.1.4.1.311.2.1.4 = OID for Microsoft Crypto
+            {
+                return null;
+            }
+
+            var spc = sd.ContentInfo.Content;
+            var signedHash = spc[0][1][1];
+            return signedHash.Value;
+        }
+
+        private string GetSigningSerialNumber()
+        {
+            var asn1 = _contentInfo.Content;
+            var x = asn1[0][4][0][1][1].Value; // ASN.1 Path to signer serial number: /1/0/4/0/1/1
+            return x.ToHexString().Substring(2).ToUpper();
+        }
+
+        private IEnumerable<byte> GetHash(HashAlgorithm hash)
+        {
+            // 3.  Hash the image header from its base to immediately before the start of the checksum address, 
+            // as specified in Optional Header Windows-Specific Fields.
+            var offset = Convert.ToInt32(_peFile.ImageNtHeaders.OptionalHeader.Offset) + 0x40;
+            hash.TransformBlock(_peFile.Buff, 0, offset, new byte[offset], 0);
+
+            // 4.  Skip over the checksum, which is a 4-byte field.
+            offset += 0x4;
+
+            // 6.  Get the Attribute Certificate Table address and size from the Certificate Table entry. 
+            // For details, see section 5.7 of the PE/COFF specification.
+            var certificateTable = _peFile.ImageNtHeaders.OptionalHeader.DataDirectory[4];
+
+            // 5.  Hash everything from the end of the checksum field to immediately before the start of the Certificate Table entry,
+            // as specified in Optional Header Data Directories.
+            var length = Convert.ToInt32(certificateTable.Offset) - offset;
+            hash.TransformBlock(_peFile.Buff, offset, length, new byte[length], 0);
+            offset += length + 0x8;//end of Attribute Certificate Table addres
+            
+            // 7.  Exclude the Certificate Table entry from the calculation and 
+            // hash everything from the end of the Certificate Table entry to the end of image header, 
+            // including Section Table (headers). The Certificate Table entry is 8 bytes long, as specified in Optional Header Data Directories.
+            length = Convert.ToInt32(_peFile.ImageNtHeaders.OptionalHeader.SizeOfHeaders) - offset;// end optional header
+            hash.TransformBlock(_peFile.Buff, offset, length, new byte[length], 0);
+
+            // 8.  Create a counter called SUM_OF_BYTES_HASHED, which is not part of the signature. 
+            // Set this counter to the SizeOfHeaders field, as specified in Optional Header Windows-Specific Field.
+            var sumOfBytesHashed = Convert.ToInt32(_peFile.ImageNtHeaders.OptionalHeader.SizeOfHeaders);
+
+            // 9.  Build a temporary table of pointers to all of the section headers in the image. 
+            var sectionHeaders = _peFile.ImageSectionHeaders
+                // The NumberOfSections field of COFF File Header indicates how big the table should be. 
+                // Do not include any section headers in the table whose SizeOfRawData field is zero. 
+                .Where(sectionHeader => sectionHeader.SizeOfRawData != 0)
+                // 10. Using the PointerToRawData field (offset 20) in the referenced SectionHeader structure as a key, 
+                // arrange the table's elements in ascending order. 
+                // In other words, sort the section headers in ascending order according to the disk-file offset of the sections.
+                .OrderBy(section => section.PointerToRawData).ToList();
+
+            // 13. Repeat steps 11 and 12 for all of the sections in the sorted table.
+            foreach (var sectionHeader in sectionHeaders)
+            {
+                // 11. Walk through the sorted table, load the corresponding section into memory, 
+                // and hash the entire section. 
+                // Use the SizeOfRawData field in the SectionHeader structure to determine the amount of data to hash.
+                length = Convert.ToInt32(sectionHeader.SizeOfRawData);
+                offset = Convert.ToInt32(sectionHeader.PointerToRawData);
+                hash.TransformBlock(_peFile.Buff, offset, length, new byte[length], 0);
+                // 12. Add the section’s SizeOfRawData value to SUM_OF_BYTES_HASHED.
+                sumOfBytesHashed += length;
+            }
+
+            // 14. Create a value called FILE_SIZE, which is not part of the signature. 
+            // Set this value to the image’s file size, acquired from the underlying file system. 
+            // If FILE_SIZE is greater than SUM_OF_BYTES_HASHED, the file contains extra data that must be added to the hash. 
+            // This data begins at the SUM_OF_BYTES_HASHED file offset, and its length is:
+            // (File Size) – ((Size of AttributeCertificateTable) + SUM_OF_BYTES_HASHED)
+            // Note: The size of Attribute Certificate Table is specified 
+            // in the second ULONG value in the Certificate Table entry (32 bit: offset 132, 64 bit: offset 148) in Optional Header Data Directories.
+            var fileSize = _peFile.Buff.Length;
+            if (fileSize > sumOfBytesHashed)
+            {
+                var sizeOfAttributeCertificateTable = Convert.ToInt32(certificateTable.Size);
+                length = fileSize - (sizeOfAttributeCertificateTable + sumOfBytesHashed);
+                if (length != 0)
+                {
+                    hash.TransformBlock(_peFile.Buff, sumOfBytesHashed + sizeOfAttributeCertificateTable, length, new byte[length], 0);
+                }
+            }
+
+            // 15. Finalize the hash algorithm context.
+            hash.TransformFinalBlock(_peFile.Buff, 0, 0);
+            return hash.Hash;
+        }
+    }
+}

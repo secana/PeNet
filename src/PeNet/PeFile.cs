@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using PeNet.Authenticode;
 using PeNet.ImpHash;
 using PeNet.Structures;
 using PeNet.Structures.MetaDataTables;
@@ -19,11 +20,19 @@ namespace PeNet
         private readonly DataDirectoryParsers _dataDirectoryParsers;
         private readonly NativeStructureParsers _nativeStructureParsers;
         private readonly DotNetStructureParsers _dotNetStructureParsers;
+        private readonly AuthenticodeParser _authenticodeParser;
 
         /// <summary>
         ///     The PE binary as a byte array.
         /// </summary>
         public readonly byte[] Buff;
+
+        private Stream _stream = null;
+
+        /// <summary>
+        ///     The PE binary as a stream.
+        /// </summary>
+        public Stream Stream => _stream ?? (_stream = new MemoryStream(Buff));
 
         private string _impHash;
         private string _md5;
@@ -51,6 +60,8 @@ namespace PeNet
                 ImageComDescriptor,
                 ImageSectionHeaders
                 );
+
+            _authenticodeParser = new AuthenticodeParser(this);
         }
 
         /// <summary>
@@ -144,6 +155,16 @@ namespace PeNet
         ///     does not check if the signature is valid!
         /// </summary>
         public bool IsSigned => PKCS7 != null;
+
+        /// <summary>
+        ///     Returns true if the PE file signature is valid signed.
+        /// </summary>
+        public bool IsSignatureValid => Authenticode?.IsAuthenticodeValid ?? false;
+
+        /// <summary>
+        /// Information about a possible Authenticode binary signature.
+        /// </summary>
+        public AuthenticodeInfo Authenticode => _authenticodeParser.GetParserTarget();
 
         /// <summary>
         ///     Returns true if the PE file is x64.
@@ -242,10 +263,9 @@ namespace PeNet
         public IMAGE_COR20_HEADER ImageComDescriptor => _dataDirectoryParsers.ImageComDescriptor;
 
         /// <summary>
-        ///     A X509 PKCS7 signature if the PE file was digitally signed with such
-        ///     a signature.
+        ///     Signing X509 certificate if the binary was signed with
         /// </summary>
-        public X509Certificate2 PKCS7 => _dataDirectoryParsers.PKCS7;
+        public X509Certificate2 PKCS7 => Authenticode?.SigningCertificate;
 
         /// <summary>
         ///     Access the METADATAHDR from the COM/CLI header.

@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace PeNet.Test.Binaries
+namespace PeNet.Test.Structures
 {
     public class NetFrameworkConsole_Test
     {
@@ -14,6 +14,11 @@ namespace PeNet.Test.Binaries
 
             Assert.Equal(0x2008u, dataDirectory.VirtualAddress);
             Assert.Equal(0x48u, dataDirectory.Size);
+        }
+        [Fact]
+        public void NetFameworkConsole_IsSignatureValid()
+        {
+            Assert.Equal(false, _peFile.IsSignatureValid);
         }
 
         [Fact]

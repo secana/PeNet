@@ -43,7 +43,7 @@ namespace PEditor.TabItems
             if (!peFile.IsSigned)
                 return;
 
-            cbCertIsValid.IsChecked = SignatureInformation.IsSignatureValid(peFile.FileLocation);
+            cbCertIsValid.IsChecked = peFile.IsSignatureValid;
             cbCertIsSigned.IsChecked = peFile.IsSigned;
             cbCertIsValidChain.IsChecked = peFile.IsValidCertChain(true);
             tbCertLength.Text = peFile.WinCertificate.dwLength.ToHexString();

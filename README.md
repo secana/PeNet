@@ -7,7 +7,7 @@
 [![NuGet](https://img.shields.io/nuget/v/PeNet.svg)](https://www.nuget.org/packages/PeNet/)
 [![NuGet](https://img.shields.io/nuget/dt/PeNet.svg)](https://www.nuget.org/packages/PeNet/)
 
-PeNet is a parser for Windows Portable Executable headers. It completely written in C# and does not rely on any native Windows APIs. The only exception is the signature check for PE files. Since .Net has no function for it, the native API is use transparently here.
+PeNet is a parser for Windows Portable Executable headers. It completely written in C# and does not rely on any native Windows APIs.
 Furthermore it supports the creation of Import Hashes (ImpHash), which is a feature often used in malware analysis. You can extract Certificate Revocation List, compute different hash sums and other useful stuff for working with PE files.
 
 For help see the Wiki.
