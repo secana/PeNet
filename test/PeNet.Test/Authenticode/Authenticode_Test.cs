@@ -1,4 +1,6 @@
-﻿using Xunit;
+﻿using System.IO;
+using Asn1;
+using Xunit;
 
 namespace PeNet.Test.Authenticode
 {
@@ -37,6 +39,14 @@ namespace PeNet.Test.Authenticode
         {
             var peFile = new PeFile(@"../../../Binaries/TLSCallback_x86.exe");
             Assert.False(peFile.IsSignatureValid);
+        }
+
+        [Fact]
+        public void PreventOverflow()
+        {
+            var cert = File.ReadAllBytes(@"../../../Authenticode/pkcs7.bin");
+            var asn1 = Asn1Node.ReadNode(cert);
+            Assert.NotNull(asn1);
         }
     }
 }

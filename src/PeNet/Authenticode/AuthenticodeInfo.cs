@@ -1,40 +1,10 @@
-//
-// AuthenticodeDeformatter.cs: Authenticode signature validator
-//
-// Author:
-//	Sebastien Pouliot <sebastien@ximian.com>
-//
-// (C) 2003 Motus Technologies Inc. (http://www.motus.com)
-// Copyright (C) 2004-2006 Novell, Inc (http://www.novell.com)
-//
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-// 
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
-// https://github.com/mono/mono/blob/0bcbe39b148bb498742fc68416f8293ccd350fb6/mcs/class/Mono.Security/Mono.Security.Authenticode/AuthenticodeDeformatter.cs
-// https://github.com/mono/mono/blob/0bcbe39b148bb498742fc68416f8293ccd350fb6/mcs/class/Mono.Security/Mono.Security.Authenticode/AuthenticodeBase.cs
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using Asn1;
 using PeNet.Structures;
 using PeNet.Utilities;
 
@@ -46,7 +16,7 @@ namespace PeNet.Authenticode
     public class AuthenticodeInfo
     {
         private readonly PeFile _peFile;
-        private readonly X509AuthentiCodeInfo.ContentInfo _contentInfo;
+        private readonly ContentInfo _contentInfo;
 
         public string SignerSerialNumber { get; }
         public byte[] SignedHash { get; }
@@ -56,7 +26,7 @@ namespace PeNet.Authenticode
         public AuthenticodeInfo(PeFile peFile)
         {
             _peFile = peFile;
-            _contentInfo = new X509AuthentiCodeInfo.ContentInfo(_peFile.WinCertificate.bCertificate);
+            _contentInfo = new ContentInfo(_peFile.WinCertificate.bCertificate);
             SignerSerialNumber = GetSigningSerialNumber();
             SignedHash = GetSignedHash();
             IsAuthenticodeValid = CheckSignature();
@@ -131,22 +101,22 @@ namespace PeNet.Authenticode
                 return null;
             }
 
-            var sd = new X509AuthentiCodeInfo.SignedData(_contentInfo.Content);
+            var sd = new SignedData(_contentInfo.Content);
             if (sd.ContentInfo.ContentType != "1.3.6.1.4.1.311.2.1.4") // 1.3.6.1.4.1.311.2.1.4 = OID for Microsoft Crypto
             {
                 return null;
             }
 
             var spc = sd.ContentInfo.Content;
-            var signedHash = spc[0][1][1];
-            return signedHash.Value;
+            var signedHash = (Asn1OctetString)spc.Nodes[0].Nodes[1].Nodes[1];
+            return signedHash.Data;
         }
 
         private string GetSigningSerialNumber()
         {
             var asn1 = _contentInfo.Content;
-            var x = asn1[0][4][0][1][1].Value; // ASN.1 Path to signer serial number: /1/0/4/0/1/1
-            return x.ToHexString().Substring(2).ToUpper();
+            var x = (Asn1Integer)asn1.Nodes[0].Nodes[4].Nodes[0].Nodes[1].Nodes[1]; // ASN.1 Path to signer serial number: /1/0/4/0/1/1
+            return x.Value.ToHexString().Substring(2).ToUpper();
         }
 
         private IEnumerable<byte> GetHash(HashAlgorithm hash)
