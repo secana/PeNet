@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <Authors>Sergey Savchuk</Authors>
+    <Company />
+    <RepositoryUrl>https://github.com/SavchukSergey/asn1</RepositoryUrl>
+    <Description>Asn1 is a tool for parsing and formating ASN1 files.</Description>
+    <PackageTags>ASN.1, ASN</PackageTags>
+    <Version>1.0.6</Version>
+    <Copyright>Copyright © 2017</Copyright>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+</Project>
