@@ -1,5 +1,5 @@
 using System;
-using Asn1;
+using PeNet.Asn1;
 
 namespace PeNet.Authenticode
 {

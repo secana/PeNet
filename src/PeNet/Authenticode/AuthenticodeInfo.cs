@@ -4,8 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using Asn1;
-using PeNet.Structures;
+using PeNet.Asn1;
 using PeNet.Utilities;
 
 namespace PeNet.Authenticode
