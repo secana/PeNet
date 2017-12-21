@@ -1,5 +1,5 @@
 using System;
-using Asn1;
+using PeNet.Asn1;
 
 namespace PeNet.Authenticode
 {
@@ -15,8 +15,7 @@ namespace PeNet.Authenticode
         {
             var nodes = asn1.Nodes;
             // SEQUENCE with 1 or 2 elements
-            if ((asn1.TagClass != Asn1TagClass.Universal || asn1.TagForm != Asn1TagForm.Constructed) ||
-                ((nodes.Count < 1) && (nodes.Count > 2)))
+            if ((asn1.NodeType != Asn1UniversalNodeType.Sequence) || (nodes.Count < 1 && nodes.Count > 2))
                 throw new ArgumentException("Invalid ASN1");
             if (!(nodes[0] is Asn1ObjectIdentifier))
                 throw new ArgumentException("Invalid contentType");
@@ -33,11 +32,10 @@ namespace PeNet.Authenticode
         public SignedData(Asn1Node asn1)
         {
             var node = asn1.Nodes[0];
-            if ((node.TagClass != Asn1TagClass.Universal || node.TagForm != Asn1TagForm.Constructed) ||
-                (node.Nodes.Count < 4))
+            if ((node.NodeType != Asn1UniversalNodeType.Sequence) || (node.Nodes.Count < 4))
                 throw new ArgumentException("Invalid SignedData");
 
-            if (node.Nodes[0].TagClass != Asn1TagClass.Universal || node.Nodes[0].TagForm != Asn1TagForm.Primitive)
+            if (node.Nodes[0].NodeType != Asn1UniversalNodeType.Integer)
                 throw new ArgumentException("Invalid version");
 
             ContentInfo = new ContentInfo(node.Nodes[2]);

@@ -4,8 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using Asn1;
-using PeNet.Structures;
+using PeNet.Asn1;
 using PeNet.Utilities;
 
 namespace PeNet.Authenticode
@@ -138,39 +137,17 @@ namespace PeNet.Authenticode
             var length = Convert.ToInt32(certificateTable.Offset) - offset;
             hash.TransformBlock(_peFile.Buff, offset, length, new byte[length], 0);
             offset += length + 0x8;//end of Attribute Certificate Table addres
-            
+
             // 7.  Exclude the Certificate Table entry from the calculation and 
             // hash everything from the end of the Certificate Table entry to the end of image header, 
             // including Section Table (headers). The Certificate Table entry is 8 bytes long, as specified in Optional Header Data Directories.
             length = Convert.ToInt32(_peFile.ImageNtHeaders.OptionalHeader.SizeOfHeaders) - offset;// end optional header
             hash.TransformBlock(_peFile.Buff, offset, length, new byte[length], 0);
 
-            // 8.  Create a counter called SUM_OF_BYTES_HASHED, which is not part of the signature. 
-            // Set this counter to the SizeOfHeaders field, as specified in Optional Header Windows-Specific Field.
-            var sumOfBytesHashed = Convert.ToInt32(_peFile.ImageNtHeaders.OptionalHeader.SizeOfHeaders);
-
-            // 9.  Build a temporary table of pointers to all of the section headers in the image. 
-            var sectionHeaders = _peFile.ImageSectionHeaders
-                // The NumberOfSections field of COFF File Header indicates how big the table should be. 
-                // Do not include any section headers in the table whose SizeOfRawData field is zero. 
-                .Where(sectionHeader => sectionHeader.SizeOfRawData != 0)
-                // 10. Using the PointerToRawData field (offset 20) in the referenced SectionHeader structure as a key, 
-                // arrange the table's elements in ascending order. 
-                // In other words, sort the section headers in ascending order according to the disk-file offset of the sections.
-                .OrderBy(section => section.PointerToRawData).ToList();
-
-            // 13. Repeat steps 11 and 12 for all of the sections in the sorted table.
-            foreach (var sectionHeader in sectionHeaders)
-            {
-                // 11. Walk through the sorted table, load the corresponding section into memory, 
-                // and hash the entire section. 
-                // Use the SizeOfRawData field in the SectionHeader structure to determine the amount of data to hash.
-                length = Convert.ToInt32(sectionHeader.SizeOfRawData);
-                offset = Convert.ToInt32(sectionHeader.PointerToRawData);
-                hash.TransformBlock(_peFile.Buff, offset, length, new byte[length], 0);
-                // 12. Add the section’s SizeOfRawData value to SUM_OF_BYTES_HASHED.
-                sumOfBytesHashed += length;
-            }
+            // 8-13. Hash everything between end of header and certificate
+            var sizeOfHeaders = Convert.ToInt32(_peFile.ImageNtHeaders.OptionalHeader.SizeOfHeaders);
+            length = Convert.ToInt32(_peFile.WinCertificate.Offset) - sizeOfHeaders;
+            hash.TransformBlock(_peFile.Buff, sizeOfHeaders, length, new byte[length], 0);
 
             // 14. Create a value called FILE_SIZE, which is not part of the signature. 
             // Set this value to the image’s file size, acquired from the underlying file system. 
@@ -179,14 +156,16 @@ namespace PeNet.Authenticode
             // (File Size) – ((Size of AttributeCertificateTable) + SUM_OF_BYTES_HASHED)
             // Note: The size of Attribute Certificate Table is specified 
             // in the second ULONG value in the Certificate Table entry (32 bit: offset 132, 64 bit: offset 148) in Optional Header Data Directories.
+            // 14. Hash everything from the end of the certificate to the end of the file.
             var fileSize = _peFile.Buff.Length;
-            if (fileSize > sumOfBytesHashed)
+            var sizeOfAttributeCertificateTable = Convert.ToInt32(certificateTable.Size);
+            offset = sizeOfAttributeCertificateTable + Convert.ToInt32(_peFile.WinCertificate.Offset);
+            if (fileSize > offset)
             {
-                var sizeOfAttributeCertificateTable = Convert.ToInt32(certificateTable.Size);
-                length = fileSize - (sizeOfAttributeCertificateTable + sumOfBytesHashed);
+                length = fileSize - offset;
                 if (length != 0)
                 {
-                    hash.TransformBlock(_peFile.Buff, sumOfBytesHashed + sizeOfAttributeCertificateTable, length, new byte[length], 0);
+                    hash.TransformBlock(_peFile.Buff, offset, length, new byte[length], 0);
                 }
             }
 
