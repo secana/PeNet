@@ -12,6 +12,11 @@ namespace PeNet.Structures
     /// </summary>
     public class METADATAHDR : AbstractStructure
     {
+        private METADATASTREAMHDR[] _metaDataStreamsHdrs;
+        private bool _metaDataStreamsHdrsParsed;
+        private string _versionString;
+        private bool _versionStringParsed;
+
         /// <summary>
         /// Create a new Meta Data Header from a byte array.
         /// </summary>
@@ -71,7 +76,27 @@ namespace PeNet.Structures
         /// <summary>
         /// Version number as an UTF-8 string.
         /// </summary>
-        public string Version => ParseVersionString(Offset + 0x10, VersionLength);
+        public string Version {
+            get
+            {
+                if (!_versionStringParsed)
+                {
+                    _versionStringParsed = true;
+                    try
+                    {
+                        _versionString = ParseVersionString(Offset + 0x10, VersionLength);
+                    }
+                    catch (Exception)
+                    {
+                        _versionString = null;
+                    }
+                    
+                }
+
+                return _versionString;
+            }
+        }
+            
 
         /// <summary>
         /// Reserved flags field. Always 0.
@@ -94,12 +119,31 @@ namespace PeNet.Structures
         /// <summary>
         /// Array with all Meta Data Stream Headers.
         /// </summary>
-        public METADATASTREAMHDR[] MetaDataStreamsHdrs => ParseMetaDataStreamHdrs(VersionLength + Offset + 0x14);
+        public METADATASTREAMHDR[] MetaDataStreamsHdrs
+        {
+            get
+            {
+                if (!_metaDataStreamsHdrsParsed)
+                {
+                    _metaDataStreamsHdrsParsed = true;
+                    try
+                    {
+                        _metaDataStreamsHdrs = ParseMetaDataStreamHdrs(VersionLength + Offset + 0x14);
+                    }
+                    catch (Exception)
+                    {
+                        _metaDataStreamsHdrs = null;
+                    }
+                }
+                return _metaDataStreamsHdrs;
+            }
+        }
 
         private METADATASTREAMHDR[] ParseMetaDataStreamHdrs(uint offset)
         {
             var metaDataStreamHdrs = new List<METADATASTREAMHDR>();
             var tmpOffset = offset;
+
             for (var i = 0; i < Streams; i++)
             {
                 var metaDataStreamHdr = new METADATASTREAMHDR(Buff, tmpOffset);
