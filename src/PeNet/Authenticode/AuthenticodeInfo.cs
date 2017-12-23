@@ -1,41 +1,10 @@
-//
-// AuthenticodeDeformatter.cs: Authenticode signature validator
-//
-// Author:
-//	Sebastien Pouliot <sebastien@ximian.com>
-//
-// (C) 2003 Motus Technologies Inc. (http://www.motus.com)
-// Copyright (C) 2004-2006 Novell, Inc (http://www.novell.com)
-//
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-// 
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
-// https://github.com/mono/mono/blob/0bcbe39b148bb498742fc68416f8293ccd350fb6/mcs/class/Mono.Security/Mono.Security.Authenticode/AuthenticodeDeformatter.cs
-// https://github.com/mono/mono/blob/0bcbe39b148bb498742fc68416f8293ccd350fb6/mcs/class/Mono.Security/Mono.Security.Authenticode/AuthenticodeBase.cs
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using PeNet.Structures;
+using PeNet.Asn1;
 using PeNet.Utilities;
 
 namespace PeNet.Authenticode
@@ -46,7 +15,7 @@ namespace PeNet.Authenticode
     public class AuthenticodeInfo
     {
         private readonly PeFile _peFile;
-        private readonly X509AuthentiCodeInfo.ContentInfo _contentInfo;
+        private readonly ContentInfo _contentInfo;
 
         public string SignerSerialNumber { get; }
         public byte[] SignedHash { get; }
@@ -56,7 +25,7 @@ namespace PeNet.Authenticode
         public AuthenticodeInfo(PeFile peFile)
         {
             _peFile = peFile;
-            _contentInfo = new X509AuthentiCodeInfo.ContentInfo(_peFile.WinCertificate.bCertificate);
+            _contentInfo = new ContentInfo(_peFile.WinCertificate.bCertificate);
             SignerSerialNumber = GetSigningSerialNumber();
             SignedHash = GetSignedHash();
             IsAuthenticodeValid = CheckSignature();
@@ -131,22 +100,22 @@ namespace PeNet.Authenticode
                 return null;
             }
 
-            var sd = new X509AuthentiCodeInfo.SignedData(_contentInfo.Content);
+            var sd = new SignedData(_contentInfo.Content);
             if (sd.ContentInfo.ContentType != "1.3.6.1.4.1.311.2.1.4") // 1.3.6.1.4.1.311.2.1.4 = OID for Microsoft Crypto
             {
                 return null;
             }
 
             var spc = sd.ContentInfo.Content;
-            var signedHash = spc[0][1][1];
-            return signedHash.Value;
+            var signedHash = (Asn1OctetString)spc.Nodes[0].Nodes[1].Nodes[1];
+            return signedHash.Data;
         }
 
         private string GetSigningSerialNumber()
         {
             var asn1 = _contentInfo.Content;
-            var x = asn1[0][4][0][1][1].Value; // ASN.1 Path to signer serial number: /1/0/4/0/1/1
-            return x.ToHexString().Substring(2).ToUpper();
+            var x = (Asn1Integer)asn1.Nodes[0].Nodes[4].Nodes[0].Nodes[1].Nodes[1]; // ASN.1 Path to signer serial number: /1/0/4/0/1/1
+            return x.Value.ToHexString().Substring(2).ToUpper();
         }
 
         private IEnumerable<byte> GetHash(HashAlgorithm hash)
@@ -168,39 +137,17 @@ namespace PeNet.Authenticode
             var length = Convert.ToInt32(certificateTable.Offset) - offset;
             hash.TransformBlock(_peFile.Buff, offset, length, new byte[length], 0);
             offset += length + 0x8;//end of Attribute Certificate Table addres
-            
+
             // 7.  Exclude the Certificate Table entry from the calculation and 
             // hash everything from the end of the Certificate Table entry to the end of image header, 
             // including Section Table (headers). The Certificate Table entry is 8 bytes long, as specified in Optional Header Data Directories.
             length = Convert.ToInt32(_peFile.ImageNtHeaders.OptionalHeader.SizeOfHeaders) - offset;// end optional header
             hash.TransformBlock(_peFile.Buff, offset, length, new byte[length], 0);
 
-            // 8.  Create a counter called SUM_OF_BYTES_HASHED, which is not part of the signature. 
-            // Set this counter to the SizeOfHeaders field, as specified in Optional Header Windows-Specific Field.
-            var sumOfBytesHashed = Convert.ToInt32(_peFile.ImageNtHeaders.OptionalHeader.SizeOfHeaders);
-
-            // 9.  Build a temporary table of pointers to all of the section headers in the image. 
-            var sectionHeaders = _peFile.ImageSectionHeaders
-                // The NumberOfSections field of COFF File Header indicates how big the table should be. 
-                // Do not include any section headers in the table whose SizeOfRawData field is zero. 
-                .Where(sectionHeader => sectionHeader.SizeOfRawData != 0)
-                // 10. Using the PointerToRawData field (offset 20) in the referenced SectionHeader structure as a key, 
-                // arrange the table's elements in ascending order. 
-                // In other words, sort the section headers in ascending order according to the disk-file offset of the sections.
-                .OrderBy(section => section.PointerToRawData).ToList();
-
-            // 13. Repeat steps 11 and 12 for all of the sections in the sorted table.
-            foreach (var sectionHeader in sectionHeaders)
-            {
-                // 11. Walk through the sorted table, load the corresponding section into memory, 
-                // and hash the entire section. 
-                // Use the SizeOfRawData field in the SectionHeader structure to determine the amount of data to hash.
-                length = Convert.ToInt32(sectionHeader.SizeOfRawData);
-                offset = Convert.ToInt32(sectionHeader.PointerToRawData);
-                hash.TransformBlock(_peFile.Buff, offset, length, new byte[length], 0);
-                // 12. Add the section’s SizeOfRawData value to SUM_OF_BYTES_HASHED.
-                sumOfBytesHashed += length;
-            }
+            // 8-13. Hash everything between end of header and certificate
+            var sizeOfHeaders = Convert.ToInt32(_peFile.ImageNtHeaders.OptionalHeader.SizeOfHeaders);
+            length = Convert.ToInt32(_peFile.WinCertificate.Offset) - sizeOfHeaders;
+            hash.TransformBlock(_peFile.Buff, sizeOfHeaders, length, new byte[length], 0);
 
             // 14. Create a value called FILE_SIZE, which is not part of the signature. 
             // Set this value to the image’s file size, acquired from the underlying file system. 
@@ -209,14 +156,16 @@ namespace PeNet.Authenticode
             // (File Size) – ((Size of AttributeCertificateTable) + SUM_OF_BYTES_HASHED)
             // Note: The size of Attribute Certificate Table is specified 
             // in the second ULONG value in the Certificate Table entry (32 bit: offset 132, 64 bit: offset 148) in Optional Header Data Directories.
+            // 14. Hash everything from the end of the certificate to the end of the file.
             var fileSize = _peFile.Buff.Length;
-            if (fileSize > sumOfBytesHashed)
+            var sizeOfAttributeCertificateTable = Convert.ToInt32(certificateTable.Size);
+            offset = sizeOfAttributeCertificateTable + Convert.ToInt32(_peFile.WinCertificate.Offset);
+            if (fileSize > offset)
             {
-                var sizeOfAttributeCertificateTable = Convert.ToInt32(certificateTable.Size);
-                length = fileSize - (sizeOfAttributeCertificateTable + sumOfBytesHashed);
+                length = fileSize - offset;
                 if (length != 0)
                 {
-                    hash.TransformBlock(_peFile.Buff, sumOfBytesHashed + sizeOfAttributeCertificateTable, length, new byte[length], 0);
+                    hash.TransformBlock(_peFile.Buff, offset, length, new byte[length], 0);
                 }
             }
 
