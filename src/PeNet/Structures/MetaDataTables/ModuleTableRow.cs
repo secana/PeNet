@@ -83,9 +83,7 @@ namespace PeNet.Structures.MetaDataTables
             Buff.BytesToUInt32(Offset + 0x2 + HeapIndexSizes.StringIndexSize + HeapIndexSizes.GuidIndexSize*2,
                 HeapIndexSizes.GuidIndexSize);
 
-        /// <summary>
-        /// Length of the row in bytes.
-        /// </summary>
+        /// <inheritdoc />
         public override uint Length => 0x2 + HeapIndexSizes.StringIndexSize + HeapIndexSizes.GuidIndexSize*3;
 
         /// <inheritdoc />

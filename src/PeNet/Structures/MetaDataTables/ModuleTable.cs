@@ -18,8 +18,8 @@ namespace PeNet.Structures.MetaDataTables
         /// <summary>
         /// Create a new instance of the ModuleTable.
         /// </summary>
-        /// <param name="buff">Buffer containing the ModuleTable.</param>
-        /// <param name="offset">Offset to the ModuleTable in the buffer.</param>
+        /// <param name="buff">Buffer containing the .Net header.</param>
+        /// <param name="offset">Offset to the Module Table in the buffer.</param>
         /// <param name="numberOfRows">Number of rows of the table.</param>
         /// <param name="metaDataStreamString">Meta Data stream "String" to resolve strings in
         /// the rows.</param>

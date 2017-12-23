@@ -13,6 +13,7 @@ namespace PeNet.Parser.MetaDataTables
         private readonly METADATATABLESHDR _metaDataTablesHdr;
         private readonly IMETADATASTREAM_STRING _metaDataStreamString;
         private readonly IMETADATASTREAM_GUID _metaDataStreamGuid;
+        private readonly IMETADATASTREAM_BLOB _metaDataStreamBlob;
         private readonly HeapOffsetBasedIndexSizes _heapOffsetBasedIndexSizes;
         private ModuleTableParser _moduleTableParser;
         private AssemblyRefTableParser _assemblyRefTableParser;
@@ -25,16 +26,20 @@ namespace PeNet.Parser.MetaDataTables
         /// <param name="metaDataTablesHdr">The Meta Data Tables Header structure of the .Net header.</param>
         /// <param name="metaDataStreamString">Meta Data stream "String".</param>
         /// <param name="metaDataStreamGuid">Meta Data stream "GUID".</param>
+        /// <param name="metaDataStreamBlob">Meta Data stream "Blob".</param>
         public MetaDataTablesParser(
             byte[] buff, 
             METADATATABLESHDR metaDataTablesHdr, 
             IMETADATASTREAM_STRING metaDataStreamString, 
-            IMETADATASTREAM_GUID metaDataStreamGuid)
+            IMETADATASTREAM_GUID metaDataStreamGuid,
+            IMETADATASTREAM_BLOB metaDataStreamBlob
+            )
             : base(buff, 0)
         {
             _metaDataTablesHdr = metaDataTablesHdr;
             _metaDataStreamString = metaDataStreamString;
             _metaDataStreamGuid = metaDataStreamGuid;
+            _metaDataStreamBlob = metaDataStreamBlob;
             _heapOffsetBasedIndexSizes = new HeapOffsetBasedIndexSizes(metaDataTablesHdr.HeapOffsetSizes);
             InitParsers();
         }
@@ -43,6 +48,7 @@ namespace PeNet.Parser.MetaDataTables
         {
             var currentTableOffset = (uint) (_metaDataTablesHdr.Offset + 0x18 + _metaDataTablesHdr.TableDefinitions.Count*0x4);
             _moduleTableParser = InitModuleTableParser(currentTableOffset);
+            _assemblyRefTableParser = InitAssemblyRefTableParser(currentTableOffset);
         }
 
         private ModuleTableParser InitModuleTableParser(uint offset)
@@ -51,13 +57,32 @@ namespace PeNet.Parser.MetaDataTables
                 _metaDataTablesHdr.TableDefinitions.FirstOrDefault(
                     x => x.Name == DotNetConstants.MaskValidFlags.Module.ToString());
 
-            return tableDef == null ? null : new ModuleTableParser(
-                _buff, 
-                offset, 
-                tableDef.NumOfRows, 
-                _metaDataStreamString,
-                _metaDataStreamGuid,
-                _heapOffsetBasedIndexSizes
+            return tableDef == null
+                ? null
+                : new ModuleTableParser(
+                    _buff,
+                    offset,
+                    tableDef.NumOfRows,
+                    _metaDataStreamString,
+                    _metaDataStreamGuid,
+                    _heapOffsetBasedIndexSizes
+                );
+        }
+
+        private AssemblyRefTableParser InitAssemblyRefTableParser(uint offset)
+        {
+            var tableDef = _metaDataTablesHdr.TableDefinitions.FirstOrDefault(x =>
+                x.Name == DotNetConstants.MaskValidFlags.AssemblyRef.ToString());
+
+            return tableDef == null
+                ? null
+                : new AssemblyRefTableParser(
+                    _buff,
+                    _offset,
+                    tableDef.NumOfRows,
+                    _heapOffsetBasedIndexSizes,
+                    _metaDataStreamString,
+                    _metaDataStreamBlob
                 );
         }
 
@@ -66,6 +91,7 @@ namespace PeNet.Parser.MetaDataTables
             var metaDataTables = new Structures.MetaDataTables.MetaDataTables();
 
             metaDataTables.ModuleTable = _moduleTableParser?.GetParserTarget();
+            metaDataTables.AssemblyRefTable = _assemblyRefTableParser?.GetParserTarget();
 
             return metaDataTables;
         }

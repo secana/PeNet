@@ -59,7 +59,9 @@ namespace PeNet
                 _buff, 
                 MetaDataStreamTablesHeader, 
                 MetaDataStreamString,
-                MetaDataStreamGUID) : null;
+                MetaDataStreamGUID,
+                null // TODO: Add MetaDataStreamBlob instance here
+                ) : null;
         }
 
         private MetaDataHdrParser InitMetaDataParser()
