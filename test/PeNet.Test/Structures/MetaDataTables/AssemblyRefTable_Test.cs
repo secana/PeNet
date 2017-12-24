@@ -4,7 +4,7 @@ namespace PeNet.Test.Structures.MetaDataTables
 {
     public class AssemblyRefTable_Test
     {
-        [Fact]
+        [Fact(Skip = "Cannot be implemented atm")]
         public void AssemblyRefTable_NetFrameworkConsoleExe_CorrectValues()
         {
             var peFile = new PeFile(@"./Binaries/NetFrameworkConsole.exe");

@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using PeNet.Structures.MetaDataTables.Indices;
 using PeNet.Utilities;
 
 namespace PeNet.Structures.MetaDataTables
@@ -13,7 +14,7 @@ namespace PeNet.Structures.MetaDataTables
         public AssemblyRefTableRow(
             byte[] buff, 
             uint offset,
-            IHeapOffsetBasedIndexSizes heapOffsetSizes,
+            IHeapOffsetSizes heapOffsetSizes,
             IMETADATASTREAM_STRING metaDataStreamString,
             IMETADATASTREAM_BLOB metaDataStreamBlob
             ) 

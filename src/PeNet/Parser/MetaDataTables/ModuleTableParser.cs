@@ -1,5 +1,6 @@
 ﻿using PeNet.Structures;
 using PeNet.Structures.MetaDataTables;
+using PeNet.Structures.MetaDataTables.Indices;
 using PeNet.Utilities;
 
 namespace PeNet.Parser.MetaDataTables
@@ -7,7 +8,7 @@ namespace PeNet.Parser.MetaDataTables
     internal class ModuleTableParser : SafeParser<ModuleTable>
     {
         private readonly uint _numOfRows;
-        private readonly HeapOffsetBasedIndexSizes _heapOffsetSizes;
+        private readonly HeapOffsetSizes _heapOffsetSizes;
         private readonly IMETADATASTREAM_STRING _metaDataStreamString;
         private readonly IMETADATASTREAM_GUID _metaDataStreamGuid;
 
@@ -17,7 +18,7 @@ namespace PeNet.Parser.MetaDataTables
             uint numOfRows,
             IMETADATASTREAM_STRING metaDataStreamString, 
             IMETADATASTREAM_GUID metaDataStreamGuid,
-            HeapOffsetBasedIndexSizes heapOffsetSizes
+            HeapOffsetSizes heapOffsetSizes
             ) 
             : base(buff, offset)
         {

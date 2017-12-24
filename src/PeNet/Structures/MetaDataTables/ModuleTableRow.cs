@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using PeNet.Structures.MetaDataTables.Indices;
 using PeNet.Utilities;
 
 namespace PeNet.Structures.MetaDataTables
@@ -29,7 +30,7 @@ namespace PeNet.Structures.MetaDataTables
             uint offset,
             IMETADATASTREAM_STRING metaDataStreamString, 
             IMETADATASTREAM_GUID metaDataStreamGuid,
-            IHeapOffsetBasedIndexSizes heapOffsetSizes
+            IHeapOffsetSizes heapOffsetSizes
             ) 
             : base(buff, offset, heapOffsetSizes)
         {

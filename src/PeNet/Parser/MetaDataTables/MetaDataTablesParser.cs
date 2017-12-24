@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using PeNet.Structures;
+using PeNet.Structures.MetaDataTables.Indices;
 using PeNet.Utilities;
 
 namespace PeNet.Parser.MetaDataTables
@@ -14,7 +15,7 @@ namespace PeNet.Parser.MetaDataTables
         private readonly IMETADATASTREAM_STRING _metaDataStreamString;
         private readonly IMETADATASTREAM_GUID _metaDataStreamGuid;
         private readonly IMETADATASTREAM_BLOB _metaDataStreamBlob;
-        private readonly HeapOffsetBasedIndexSizes _heapOffsetBasedIndexSizes;
+        private readonly HeapOffsetSizes _heapOffsetSizes;
         private ModuleTableParser _moduleTableParser;
         private AssemblyRefTableParser _assemblyRefTableParser;
 
@@ -40,7 +41,7 @@ namespace PeNet.Parser.MetaDataTables
             _metaDataStreamString = metaDataStreamString;
             _metaDataStreamGuid = metaDataStreamGuid;
             _metaDataStreamBlob = metaDataStreamBlob;
-            _heapOffsetBasedIndexSizes = new HeapOffsetBasedIndexSizes(metaDataTablesHdr.HeapOffsetSizes);
+            _heapOffsetSizes = new HeapOffsetSizes(metaDataTablesHdr.HeapOffsetSizes);
             InitParsers();
         }
 
@@ -65,7 +66,7 @@ namespace PeNet.Parser.MetaDataTables
                     tableDef.NumOfRows,
                     _metaDataStreamString,
                     _metaDataStreamGuid,
-                    _heapOffsetBasedIndexSizes
+                    _heapOffsetSizes
                 );
         }
 
@@ -80,7 +81,7 @@ namespace PeNet.Parser.MetaDataTables
                     _buff,
                     _offset,
                     tableDef.NumOfRows,
-                    _heapOffsetBasedIndexSizes,
+                    _heapOffsetSizes,
                     _metaDataStreamString,
                     _metaDataStreamBlob
                 );

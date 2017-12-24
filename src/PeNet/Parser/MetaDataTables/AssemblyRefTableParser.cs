@@ -1,5 +1,6 @@
 ﻿using PeNet.Structures;
 using PeNet.Structures.MetaDataTables;
+using PeNet.Structures.MetaDataTables.Indices;
 using PeNet.Utilities;
 
 namespace PeNet.Parser.MetaDataTables
@@ -8,14 +9,14 @@ namespace PeNet.Parser.MetaDataTables
     {
         private readonly uint _numOfRows;
         private readonly IMETADATASTREAM_STRING _metaDataStreamString;
-        private readonly HeapOffsetBasedIndexSizes _heapOffsetSizes;
+        private readonly HeapOffsetSizes _heapOffsetSizes;
         private readonly IMETADATASTREAM_BLOB _metaDataStreamBlob;
 
         public AssemblyRefTableParser(
             byte[] buff, 
             uint offset,
             uint numOfRows,
-            HeapOffsetBasedIndexSizes heapOffsetSizes,
+            HeapOffsetSizes heapOffsetSizes,
             IMETADATASTREAM_STRING metaDataStreamString,
             IMETADATASTREAM_BLOB metadatastreamBlob
             )

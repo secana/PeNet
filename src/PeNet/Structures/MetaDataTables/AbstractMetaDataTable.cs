@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using PeNet.Structures.MetaDataTables.Indices;
 using PeNet.Utilities;
 
 namespace PeNet.Structures.MetaDataTables
@@ -24,7 +25,7 @@ namespace PeNet.Structures.MetaDataTables
             byte[] buff, 
             uint offset, 
             uint numberOfRows,
-            IHeapOffsetBasedIndexSizes heapIndexSize
+            IHeapOffsetSizes heapIndexSize
             ) 
             : base(buff, offset)
         {
@@ -35,7 +36,7 @@ namespace PeNet.Structures.MetaDataTables
         /// <summary>
         /// Heap (stream) index sizes of the .Net header.
         /// </summary>
-        public IHeapOffsetBasedIndexSizes HeapIndexSizes { get; }
+        public IHeapOffsetSizes HeapIndexSizes { get; }
 
         /// <summary>
         /// Number of rows of the table.

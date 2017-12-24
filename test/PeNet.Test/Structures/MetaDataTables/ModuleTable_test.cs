@@ -2,7 +2,6 @@
 using Moq;
 using PeNet.Structures;
 using PeNet.Structures.MetaDataTables;
-using PeNet.Utilities;
 using Xunit;
 
 namespace PeNet.Test.Structures.MetaDataTables
@@ -14,7 +13,7 @@ namespace PeNet.Test.Structures.MetaDataTables
         {
             var fakeStreamString = new Mock<IMETADATASTREAM_STRING>();
             var fakeStreamGuid = new Mock<IMETADATASTREAM_GUID>();
-            var heapOffsets = new HeapOffsetBasedIndexSizes(0x00);
+            var heapOffsets = new PeNet.Structures.MetaDataTables.Indices.HeapOffsetSizes(0x00);
             var moduleTable = new ModuleTable(
                 RawDotNetStructures.RawModuleTableSmall, 
                 0x02, 
@@ -39,7 +38,7 @@ namespace PeNet.Test.Structures.MetaDataTables
         {
             var fakeStreamString = new Mock<IMETADATASTREAM_STRING>();
             var fakeStreamGuid = new Mock<IMETADATASTREAM_GUID>();
-            var heapOffsets = new HeapOffsetBasedIndexSizes(0x07);
+            var heapOffsets = new PeNet.Structures.MetaDataTables.Indices.HeapOffsetSizes(0x07);
             var moduleTable = new ModuleTable(
                 RawDotNetStructures.RawModuleTableBig, 
                 0x02, 

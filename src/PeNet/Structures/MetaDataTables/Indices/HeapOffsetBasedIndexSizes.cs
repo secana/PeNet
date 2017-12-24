@@ -1,10 +1,10 @@
-﻿namespace PeNet.Utilities
+﻿namespace PeNet.Structures.MetaDataTables.Indices
 {
     /// <summary>
     /// Computes the index sizes of #String, #GUID and #Blob
     /// based on the HeapOffsetSizes value in the Meta Data Tables Header.
     /// </summary>
-    public interface IHeapOffsetBasedIndexSizes
+    public interface IHeapOffsetSizes
     {
         /// <summary>
         /// Size of the #String index (4 or 2 bytes).
@@ -23,7 +23,7 @@
     }
   
     /// <inheritdoc />
-    public class HeapOffsetBasedIndexSizes : IHeapOffsetBasedIndexSizes
+    public class HeapOffsetSizes : IHeapOffsetSizes
     {
         private readonly byte _heapOffsetSizes;
 
@@ -38,7 +38,7 @@
         /// on the HeapOffsetSizes byte from the Meta Data Tables Header.
         /// </summary>
         /// <param name="heapOffsetSizes"></param>
-        public HeapOffsetBasedIndexSizes(byte heapOffsetSizes)
+        public HeapOffsetSizes(byte heapOffsetSizes)
         {
             _heapOffsetSizes = heapOffsetSizes;
         }

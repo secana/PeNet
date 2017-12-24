@@ -1,4 +1,5 @@
-﻿using PeNet.Utilities;
+﻿using PeNet.Structures.MetaDataTables.Indices;
+using PeNet.Utilities;
 
 namespace PeNet.Structures.MetaDataTables
 {
@@ -10,7 +11,7 @@ namespace PeNet.Structures.MetaDataTables
         /// <summary>
         /// The index sizes of the .Net heaps (streams). 
         /// </summary>
-        public IHeapOffsetBasedIndexSizes HeapIndexSizes { get; }
+        public IHeapOffsetSizes HeapIndexSizes { get; }
 
         /// <summary>
         /// Create a new instance.
@@ -18,7 +19,7 @@ namespace PeNet.Structures.MetaDataTables
         /// <param name="buff">Buffer containing the row.</param>
         /// <param name="offset">Offset in the buffer where the row starts.</param>
         /// <param name="heapIndexSizes">The index sizes of the .Net heaps (streams).</param>
-        protected AbstractMetaDataTableRow(byte[] buff, uint offset, IHeapOffsetBasedIndexSizes heapIndexSizes) 
+        protected AbstractMetaDataTableRow(byte[] buff, uint offset, IHeapOffsetSizes heapIndexSizes) 
             : base(buff, offset)
         {
             HeapIndexSizes = heapIndexSizes;
