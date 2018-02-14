@@ -79,17 +79,6 @@ namespace PeNet
         public List<Exception> Exceptions { get; } = new List<Exception>();
 
         /// <summary>
-        ///     Returns true if the Exception Dir, Export Dir, Import Dir,
-        ///     Resource Dir and Security Dir are valid and the MZ header is set.
-        /// </summary>
-        public bool IsValidPeFile => HasValidExceptionDir
-                                     && HasValidExportDir
-                                     && HasValidImportDir
-                                     && HasValidResourceDir
-                                     && HasValidSecurityDir
-                                     && (ImageDosHeader.e_magic == 0x5a4d);
-
-        /// <summary>
         ///     Returns true if the Export directory is valid.
         /// </summary>
         public bool HasValidExportDir => ImageExportDirectory != null;
@@ -366,28 +355,6 @@ namespace PeNet
         }
 
         /// <summary>
-        ///     Tries to parse the PE file and checks all directories.
-        /// </summary>
-        /// <param name="file">Path to a possible PE file.</param>
-        /// <returns>
-        ///     True if the file could be parsed as a PE file and
-        ///     all directories are valid.
-        /// </returns>
-        public static bool IsValidPEFile(string file)
-        {
-            PeFile pe;
-            try
-            {
-                pe = new PeFile(file);
-            }
-            catch
-            {
-                return false;
-            }
-            return pe.IsValidPeFile;
-        }
-
-        /// <summary>
         ///     Tests is a file is a PE file based on the MZ
         ///     header. It is not checked if the PE file is correct
         ///     in all other parts.
@@ -396,8 +363,15 @@ namespace PeNet
         /// <returns>True if the MZ header is set.</returns>
         public static bool IsPEFile(string file)
         {
-            var buff = File.ReadAllBytes(file);
-            return PeValidator.IsPeValidPeFile(buff);
+            var buffer = new byte[2];
+
+            using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
+            {
+                fs.Read(buffer, 0, buffer.Length);
+                fs.Close();
+            }
+
+            return buffer[1] == 0x5a && buffer[0] == 0x4d; // MZ Header
         }
 
         /// <summary>
