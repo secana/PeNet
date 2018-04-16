@@ -16,6 +16,6 @@
     <NoWarn>1701;1702;1705</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="PeNet.Asn1" Version="1.0.7" />
+    <PackageReference Include="PeNet.Asn1" Version="1.0.8" />
   </ItemGroup>
 </Project>
