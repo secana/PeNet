@@ -48,11 +48,11 @@ namespace PeNet.Authenticode
             // Under Windows with .Net Core the class works as intended.
             // See issue: https://github.com/dotnet/corefx/issues/25828
 
-#if NET461
-            return new X509Certificate2(pkcs7);
-#else
+#if NETSTANDARD2_0
             return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? 
-                new X509Certificate2(pkcs7) : GetSigningCertificateNonWindows(_peFile);
+                new X509Certificate2(pkcs7) : GetSigningCertificateNonWindows(_peFile); 
+#else
+            return new X509Certificate2(pkcs7);
 #endif
         }
 
