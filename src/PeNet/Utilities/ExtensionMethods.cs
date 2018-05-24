@@ -523,7 +523,7 @@ namespace PeNet.Utilities
                 if (p.PropertyType.IsArray)
                     continue;
 
-                sb.AppendFormat(format, p.Name, p.GetValue(obj));
+                sb.AppendFormat(format, p.Name, p.GetValue(obj, null));
             }
 
             return sb.ToString();
