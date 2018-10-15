@@ -209,9 +209,9 @@ Task("Default")
 	.Does(() =>
 	{
 		Information("Build and test the whole solution.");
-		Information("To pack the PeNet library and Zip the PEditor use the cake build argument: -target Pack");
-		Information("To push the PeNet library to nuget.org use the cake build argument: -target push -apiKey=\"nuget api key\"");
-		Information("To release the PEditor use the cake build argument: -target Release -accessToken=\"github access token\"");
+		Information("To pack the PeNet library and Zip the PEditor use the cake build argument: --target=pack");
+		Information("To push the PeNet library to nuget.org use the cake build argument: --target=push -apiKey=\"nuget api key\"");
+		Information("To release the PEditor use the cake build argument: --target=release -accessToken=\"github access token\"");
 	});
 
 string GetPEditorVersion()
