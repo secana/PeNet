@@ -53,23 +53,15 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     The raw (file) address of the section.
-        /// </summary>
-        public uint PhysicalAddress
-        {
-            get { return Buff.BytesToUInt32(Offset + 0x8); }
-            set { Buff.SetUInt32(Offset + 0x8, value); }
-        }
-
-        /// <summary>
         ///     Size of the section when loaded into memory. If it's bigger than
         ///     the raw data size, the rest of the section is filled with zeros.
         /// </summary>
         public uint VirtualSize
         {
-            get { return PhysicalAddress; }
-            set { PhysicalAddress = value; }
+            get { return Buff.BytesToUInt32(Offset + 0x8); }
+            set { Buff.SetUInt32(Offset + 0x8, value); }
         }
+
 
         /// <summary>
         ///     RVA of the section start in memory.

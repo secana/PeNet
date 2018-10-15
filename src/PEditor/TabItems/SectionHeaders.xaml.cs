@@ -34,7 +34,7 @@ namespace PEditor.TabItems
                     VSize = sec.VirtualSize.ToHexString(),
                     VAddress = sec.VirtualAddress.ToHexString(),
                     PSize = sec.SizeOfRawData.ToHexString(),
-                    PAddress = sec.PhysicalAddress.ToHexString(),
+                    PAddress = sec.PointerToRawData.ToHexString(),
                     Flags = sec.Characteristics.ToHexString(),
                     RFlags = flags
                 });
