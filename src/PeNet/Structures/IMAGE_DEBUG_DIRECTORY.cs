@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Linq;
+using System.Text;
 using PeNet.Utilities;
 
 namespace PeNet.Structures
@@ -93,6 +95,36 @@ namespace PeNet.Structures
             get { return Buff.BytesToUInt32(Offset + 0x18); }
             set { Buff.SetUInt32(Offset + 0x18, value); }
         }
+
+        public Guid PdbSignature
+        {
+            get
+            {
+                var bytes = new byte[16];
+                Array.Copy(Buff, PointerToRawData + 4, bytes, 0, 16);
+                return new Guid(bytes);
+            }
+            set
+            {
+                Array.Copy(value.ToByteArray(), 0, Buff, PointerToRawData + 4, 16);
+            }
+        }
+
+        public uint PdbAge
+        {
+            get { return Buff.BytesToUInt32(PointerToRawData + 0x14); }
+            set { Buff.SetUInt32(PointerToRawData + 0x14, value); }
+        }
+
+        public string PdbPath
+        {
+            get
+            {
+                var bytes = Buff.Skip((int) PointerToRawData + 0x18).TakeWhile(x => x != 0x0).ToArray();
+                return Encoding.UTF8.GetString(bytes);
+            }
+        }
+
 
         /// <summary>
         ///     Convert all object properties to strings.
