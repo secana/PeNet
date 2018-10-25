@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace PeNet.Test.Structures
 {
@@ -9,11 +10,12 @@ namespace PeNet.Test.Structures
         [Fact]
         public void NetFameworkConsole_DataDirectory_COMDescripterSet()
         {
-            var dataDirectory = _peFile.ImageNtHeaders.OptionalHeader.DataDirectory[(int)Constants.DataDirectoryIndex.COM_Descriptor];
+            var dataDirectory = _peFile.ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.COM_Descriptor];
 
             Assert.Equal(0x2008u, dataDirectory.VirtualAddress);
             Assert.Equal(0x48u, dataDirectory.Size);
         }
+
         [Fact]
         public void NetFameworkConsole_IsSignatureValid()
         {
@@ -157,6 +159,25 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x00, blob[0]);
             Assert.Equal(0x4E, blob[0x97]);
             Assert.Equal(0x00, blob[0x14F]);
+        }
+
+        [Fact]
+        public void NetFrameworkConsole_ImageDebugDirectory_ParseCorrectValues()
+        {
+            var debug = _peFile.ImageDebugDirectory;
+
+            Assert.Equal(0x0u, debug.Characteristics);
+            Assert.Equal(0x59C7FCFDu, debug.TimeDateStamp);
+            Assert.Equal(0x0u, debug.MajorVersion);
+            Assert.Equal(0x0u, debug.MinorVersion);
+            Assert.Equal(0x2u, debug.Type);
+            Assert.Equal(0x11Cu, debug.SizeOfData);
+            Assert.Equal(0x000027F0u, debug.AddressOfRawData);
+            Assert.Equal(0x000009F0u, debug.PointerToRawData);
+            
+            Assert.Equal(Guid.Parse("089DBC29-C16A-44DA-8290-53544C40DD95"), debug.PdbSignature);
+            Assert.Equal(0x1u, debug.PdbAge);
+            Assert.Equal(@"C:\Users\stefa\Documents\Git\PeNet-Test-Executables\NetFrameworkConsole\obj\Release\NetFrameworkConsole.pdb", debug.PdbPath);
         }
     }
 }
