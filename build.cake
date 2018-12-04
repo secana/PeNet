@@ -3,10 +3,10 @@
 
 var target					= Argument("target", "Default");
 var solutionDir				= System.IO.Directory.GetCurrentDirectory();
-var testResultDir			= Argument("testResultDir", System.IO.Path.Combine(solutionDir, "test-results"));   // ./build.sh --target test -testResultsDir="somedir"
-var artifactDir				= Argument("artifactDir", System.IO.Path.Combine(solutionDir, "artifacts"));		// ./build.sh --target pack -artifactDir="somedir"
-var apiKey					= Argument<string>("apiKey", null);													// ./build.sh --target push -apiKey="nuget api key"
-var accessToken				= Argument<string>("accessToken", null);											// ./build.sh --target release -accessToken="github access token"
+var testResultDir			= Argument("testResultDir", System.IO.Path.Combine(solutionDir, "test-results"));  
+var artifactDir				= Argument("artifactDir", System.IO.Path.Combine(solutionDir, "artifacts"));		
+var apiKey					= Argument<string>("apiKey", null);													
+var accessToken				= Argument<string>("accessToken", null);											
 var peditorArtifactDir		= System.IO.Path.Combine(artifactDir, "PEditor");
 string peditorReleaseZip	= null;
 string peditorVersion		= null;
