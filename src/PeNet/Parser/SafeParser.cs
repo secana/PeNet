@@ -3,7 +3,7 @@
 namespace PeNet.Parser
 {
     internal abstract class SafeParser<T>
-        where T : class 
+        where T : class
     {
         protected readonly byte[] _buff;
         protected readonly uint _offset;
@@ -22,7 +22,6 @@ namespace PeNet.Parser
             return _offset > _buff?.Length;
         }
 
-        public Exception ParserException { get; protected set; }
 
         protected abstract T ParseTarget();
 
@@ -40,9 +39,11 @@ namespace PeNet.Parser
             {
                 _target = ParseTarget();
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                ParserException = exception;
+                // Silently catch the exception
+                // TODO: Add global list with exception
+                _target = null;
             }
 
             return _target;
