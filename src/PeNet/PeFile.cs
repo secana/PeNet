@@ -74,11 +74,6 @@ namespace PeNet
         }
 
         /// <summary>
-        ///     List with all exceptions that have occurred during the PE header parsing.
-        /// </summary>
-        public List<Exception> Exceptions { get; } = new List<Exception>();
-
-        /// <summary>
         ///     Returns true if the Export directory is valid.
         /// </summary>
         public bool HasValidExportDir => ImageExportDirectory != null;
@@ -96,7 +91,7 @@ namespace PeNet
         /// <summary>
         ///     Returns true if the Exception directory is valid.
         /// </summary>
-        public bool HasValidExceptionDir => Exceptions != null;
+        public bool HasValidDir => ExceptionDirectory != null;
 
         /// <summary>
         ///     Returns true if the Security directory is valid.
@@ -218,7 +213,7 @@ namespace PeNet
         /// <summary>
         ///     Access the array of RUNTIME_FUNCTION from the Exception header.
         /// </summary>
-        public RUNTIME_FUNCTION[] RuntimeFunctions => _dataDirectoryParsers.RuntimeFunctions;
+        public RUNTIME_FUNCTION[] ExceptionDirectory => _dataDirectoryParsers.RuntimeFunctions;
 
         /// <summary>
         ///     Access the WIN_CERTIFICATE from the Security header.
@@ -324,10 +319,7 @@ namespace PeNet
         /// <returns>True of cert chain is valid and from a trusted CA.</returns>
         public bool IsValidCertChain(bool online)
         {
-            if (!IsSigned)
-                return false;
-
-            return SignatureInformation.IsValidCertChain(PKCS7, online);
+            return IsSigned && SignatureInformation.IsValidCertChain(PKCS7, online);
         }
 
         /// <summary>
@@ -341,17 +333,16 @@ namespace PeNet
             if (PKCS7 == null)
                 return null;
 
-            CrlUrlList list = null;
             try
             {
-                list = new CrlUrlList(PKCS7);
+                return new CrlUrlList(PKCS7);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                Exceptions.Add(exception);
+                // Silently catch exceptions.
+                // TODO: Add to global exception list.
+                return null;
             }
-
-            return list;
         }
 
         /// <summary>
@@ -368,7 +359,6 @@ namespace PeNet
             using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
             {
                 fs.Read(buffer, 0, buffer.Length);
-                fs.Close();
             }
 
             return buffer[1] == 0x5a && buffer[0] == 0x4d; // MZ Header

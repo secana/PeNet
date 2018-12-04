@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using PeNet.Structures;
 using PeNet.Utilities;
 
@@ -36,6 +37,8 @@ namespace PeNet.Parser
             {
                 var dllAdr = idesc.Name.RVAtoFileMapping(_sectionHeaders);
                 var dll = _buff.GetCString(dllAdr);
+                if (IsModuleNameTooLong(dll))
+                    continue;
                 var tmpAdr = idesc.OriginalFirstThunk != 0 ? idesc.OriginalFirstThunk : idesc.FirstThunk;
                 if (tmpAdr == 0)
                     continue;
@@ -71,6 +74,11 @@ namespace PeNet.Parser
 
 
             return impFuncs.ToArray();
+        }
+
+        private bool IsModuleNameTooLong(string dllName)
+        {
+            return dllName.Length > 256;
         }
     }
 }

@@ -30,7 +30,7 @@ namespace PEditor.TabItems
             var uw = selected.UnwindInfo.ToIntFromHexString();
 
             // Find the RUNTIME_FUNCTION which was selected.
-            var rt = _peFile.RuntimeFunctions.First(x => x.FunctionStart == funcStart
+            var rt = _peFile.ExceptionDirectory.First(x => x.FunctionStart == funcStart
                                                          && x.FunctionEnd == funcEnd
                                                          && x.UnwindInfo == uw
                 );
@@ -65,10 +65,10 @@ namespace PEditor.TabItems
             _peFile = peFile;
             lbRuntimeFunctions.Items.Clear();
 
-            if (peFile.Is32Bit || peFile.RuntimeFunctions == null)
+            if (peFile.Is32Bit || peFile.ExceptionDirectory == null)
                 return;
 
-            foreach (var rt in peFile.RuntimeFunctions)
+            foreach (var rt in peFile.ExceptionDirectory)
             {
                 lbRuntimeFunctions.Items.Add(new
                 {
