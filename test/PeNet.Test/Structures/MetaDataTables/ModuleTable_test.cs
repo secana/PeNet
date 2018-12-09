@@ -29,7 +29,7 @@ namespace PeNet.Test.Structures.MetaDataTables
             var moduleTable = new ModuleTable(RawDotNetStructures.RawModuleTableSmall, 0x02, 1, 0x00);
 
             Assert.Equal((uint) 1, moduleTable.NumberOfRows);
-            Assert.Equal(1, moduleTable.Rows.Count);
+            Assert.Single(moduleTable.Rows);
             Assert.Equal((ushort) 0x2211, moduleTable.Rows.First().Generation);
             Assert.Equal((uint) 0x4433, moduleTable.Rows.First().Name);
             Assert.Equal((uint) 0x6655, moduleTable.Rows.First().Mvid);
@@ -45,7 +45,7 @@ namespace PeNet.Test.Structures.MetaDataTables
             var moduleTable = new ModuleTable(RawDotNetStructures.RawModuleTableBig, 0x02, 1, 0x07);
 
             Assert.Equal((uint) 1, moduleTable.NumberOfRows);
-            Assert.Equal(1, moduleTable.Rows.Count);
+            Assert.Single(moduleTable.Rows);
             Assert.Equal((ushort) 0x2211, moduleTable.Rows.First().Generation);
             Assert.Equal((uint) 0xbbaa4433, moduleTable.Rows.First().Name);
             Assert.Equal((uint) 0xbbaa6655, moduleTable.Rows.First().Mvid);
