@@ -1,21 +1,4 @@
-﻿/***********************************************************************
-Copyright 2016 Stefan Hausotte
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-*************************************************************************/
-
-using Xunit;
+﻿using Xunit;
 
 namespace PeNet.Test.Utilities
 {
@@ -30,7 +13,7 @@ namespace PeNet.Test.Utilities
         [InlineData(0x31, 4)]
         public void StringIndexSize_Test(byte heapOffsetSizes, uint result)
         {
-            var heapOffsetBasedIndexSizes = new PeNet.Utilities.HeapOffsetBasedIndexSizes(heapOffsetSizes);
+            var heapOffsetBasedIndexSizes = new PeNet.Structures.MetaDataTables.Indices.HeapOffsetSizes(heapOffsetSizes);
             Assert.Equal(result, heapOffsetBasedIndexSizes.StringIndexSize);
         }
 
@@ -43,7 +26,7 @@ namespace PeNet.Test.Utilities
         [InlineData(0x42, 4)]
         public void GuidIndexSizeShouldBeTwo_Test(byte heapOffsetSizes, uint result)
         {
-            var heapOffsetBasedIndexSizes = new PeNet.Utilities.HeapOffsetBasedIndexSizes(heapOffsetSizes);
+            var heapOffsetBasedIndexSizes = new PeNet.Structures.MetaDataTables.Indices.HeapOffsetSizes(heapOffsetSizes);
             Assert.Equal(result, heapOffsetBasedIndexSizes.GuidIndexSize);
         }
 
@@ -56,7 +39,7 @@ namespace PeNet.Test.Utilities
         [InlineData(0x05, 4)]
         public void BlobIndexSizeShouldBeTwo_Test(byte heapOffsetSizes, uint result)
         {
-            var heapOffsetBasedIndexSizes = new PeNet.Utilities.HeapOffsetBasedIndexSizes(heapOffsetSizes);
+            var heapOffsetBasedIndexSizes = new PeNet.Structures.MetaDataTables.Indices.HeapOffsetSizes(heapOffsetSizes);
 
             Assert.Equal(result, heapOffsetBasedIndexSizes.BlobSize);
         }
@@ -64,7 +47,7 @@ namespace PeNet.Test.Utilities
         [Fact]
         public void AllIndexesShouldBeFour_Test()
         {
-            var heapOffsetBasedIndexSizes = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x07);
+            var heapOffsetBasedIndexSizes = new PeNet.Structures.MetaDataTables.Indices.HeapOffsetSizes(0x07);
             Assert.Equal((uint) 4, heapOffsetBasedIndexSizes.StringIndexSize);
             Assert.Equal((uint) 4, heapOffsetBasedIndexSizes.GuidIndexSize);
             Assert.Equal((uint) 4, heapOffsetBasedIndexSizes.BlobSize);
@@ -73,7 +56,7 @@ namespace PeNet.Test.Utilities
         [Fact]
         public void AllIndexesShouldBeTwo_Test()
         {
-            var heapOffsetBasedIndexSizes = new PeNet.Utilities.HeapOffsetBasedIndexSizes(0x00);
+            var heapOffsetBasedIndexSizes = new PeNet.Structures.MetaDataTables.Indices.HeapOffsetSizes(0x00);
             Assert.Equal((uint) 2, heapOffsetBasedIndexSizes.StringIndexSize);
             Assert.Equal((uint) 2, heapOffsetBasedIndexSizes.GuidIndexSize);
             Assert.Equal((uint) 2, heapOffsetBasedIndexSizes.BlobSize);

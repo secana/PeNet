@@ -6,6 +6,7 @@ using System.Text;
 using PeNet.Authenticode;
 using PeNet.ImpHash;
 using PeNet.Structures;
+using PeNet.Structures.MetaDataTables;
 using PeNet.Utilities;
 
 namespace PeNet
@@ -256,19 +257,19 @@ namespace PeNet
         public METADATAHDR MetaDataHdr => _dotNetStructureParsers.MetaDataHdr;
 
         /// <summary>
-        /// Meta Data Stream #String as a parsed list of strings.
+        /// Meta Data Stream #String.
         /// </summary>
-        public List<string> MetaDataStreamString => _dotNetStructureParsers.MetaDataStreamString;
+        public IMETADATASTREAM_STRING MetaDataStreamString => _dotNetStructureParsers.MetaDataStreamString;
 
         /// <summary>
-        /// Meta Data Stream #US (User strings) as a parsed list of strings.
+        /// Meta Data Stream #US (User strings).
         /// </summary>
-        public List<string> MetaDataStreamUS => _dotNetStructureParsers.MetaDataStreamUS;
+        public IMETADATASTREAM_US MetaDataStreamUS => _dotNetStructureParsers.MetaDataStreamUS;
 
         /// <summary>
-        /// Meta Data Stream #GUID as a parsed list of hex strings.
+        /// Meta Data Stream #GUID.
         /// </summary>
-        public List<string> MetaDataStreamGUID => _dotNetStructureParsers.MetaDataStreamGUID;
+        public IMETADATASTREAM_GUID MetaDataStreamGUID => _dotNetStructureParsers.MetaDataStreamGUID;
 
         /// <summary>
         /// Meta Data Stream #Blob as an byte array.
@@ -280,6 +281,11 @@ namespace PeNet
         ///     Meta Data Streams of the .Net header.
         /// </summary>
         public METADATATABLESHDR MetaDataStreamTablesHeader => _dotNetStructureParsers.MetaDataStreamTablesHeader;
+
+        /// <summary>
+        ///     Access the Meta Data Tables from the .Net header stream #~.
+        /// </summary>
+        public MetaDataTables MetaDataTables => _dotNetStructureParsers.MetaDataTables;
 
         /// <summary>
         ///     The SHA-256 hash sum of the binary.

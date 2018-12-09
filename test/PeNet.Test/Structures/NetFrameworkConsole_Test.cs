@@ -80,7 +80,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void NetFrameworkConsole_MetaDataStreamStrings_ParseCorrectValues()
         {
-            var strings = _peFile.MetaDataStreamString;
+            var strings = _peFile.MetaDataStreamString.Strings;
 
             Assert.Equal(46, strings.Count);
             Assert.Equal("IEnumerable`1", strings[0]);
@@ -136,17 +136,16 @@ namespace PeNet.Test.Structures
         {
             var us = _peFile.MetaDataStreamUS;
 
-            Assert.Equal(1, us.Count);
-            Assert.Equal(@"C:\", us[0]);
+            Assert.Equal(1, us.UserStrings.Count);
+            Assert.Equal(@"C:\", us.UserStrings[0]);
         }
 
         [Fact]
         public void NetFrameworkConsole_MetaDataStreamGUID_ParseCorrectValues()
         {
             var guid = _peFile.MetaDataStreamGUID;
-
-            Assert.Equal(1, guid.Count);
-            Assert.Equal("0x53e850527ac1764eadb30a716ec8af5d", guid[0]);
+            Assert.Equal(1, guid.GuidsAndIndices.Count);
+            Assert.Equal(new Guid("5250e853-c17a-4e76-adb3-0a716ec8af5d"), guid.Guids[0]);
         }
 
         [Fact]
@@ -162,22 +161,18 @@ namespace PeNet.Test.Structures
         }
 
         [Fact]
-        public void NetFrameworkConsole_ImageDebugDirectory_ParseCorrectValues()
+        public void NetFrameWorkConsole_MetaDataStreamTables_Module_ParseCorrectValues()
         {
-            var debug = _peFile.ImageDebugDirectory;
+            var module = _peFile.MetaDataTables.ModuleTable;
 
-            Assert.Equal(0x0u, debug.Characteristics);
-            Assert.Equal(0x59C7FCFDu, debug.TimeDateStamp);
-            Assert.Equal(0x0u, debug.MajorVersion);
-            Assert.Equal(0x0u, debug.MinorVersion);
-            Assert.Equal(0x2u, debug.Type);
-            Assert.Equal(0x11Cu, debug.SizeOfData);
-            Assert.Equal(0x000027F0u, debug.AddressOfRawData);
-            Assert.Equal(0x000009F0u, debug.PointerToRawData);
-            
-            Assert.Equal(Guid.Parse("089DBC29-C16A-44DA-8290-53544C40DD95"), debug.PdbSignature);
-            Assert.Equal(0x1u, debug.PdbAge);
-            Assert.Equal(@"C:\Users\stefa\Documents\Git\PeNet-Test-Executables\NetFrameworkConsole\obj\Release\NetFrameworkConsole.pdb", debug.PdbPath);
+            Assert.Equal(1u, module.NumberOfRows);   
+            Assert.Equal(0x0000u, module.Rows[0].Generation);
+            Assert.Equal(0x01EBu, module.Rows[0].Name);
+            Assert.Equal(0x0001u, module.Rows[0].Mvid);
+            Assert.Equal(0x0000u, module.Rows[0].EncId);
+            Assert.Equal(0x0000u, module.Rows[0].EncBaseId);
+            Assert.Equal("NetFrameworkConsole.exe", module.Rows[0].NameResolved);
+            Assert.Equal(new Guid("5250e853-c17a-4e76-adb3-0a716ec8af5d"), module.Rows[0].MvidResolved);
         }
     }
 }

@@ -1,21 +1,6 @@
-﻿/***********************************************************************
-Copyright 2016 Stefan Hausotte
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-*************************************************************************/
-
-using System.Linq;
+﻿using System.Linq;
+using Moq;
+using PeNet.Structures;
 using PeNet.Structures.MetaDataTables;
 using Xunit;
 
@@ -26,7 +11,16 @@ namespace PeNet.Test.Structures.MetaDataTables
         [Fact]
         public void ModuleTableConstructorWorksSmallIndexes_Test()
         {
-            var moduleTable = new ModuleTable(RawDotNetStructures.RawModuleTableSmall, 0x02, 1, 0x00);
+            var fakeStreamString = new Mock<IMETADATASTREAM_STRING>();
+            var fakeStreamGuid = new Mock<IMETADATASTREAM_GUID>();
+            var heapOffsets = new PeNet.Structures.MetaDataTables.Indices.HeapOffsetSizes(0x00);
+            var moduleTable = new ModuleTable(
+                RawDotNetStructures.RawModuleTableSmall, 
+                0x02, 
+                1, 
+                fakeStreamString.Object, 
+                fakeStreamGuid.Object,
+                heapOffsets);
 
             Assert.Equal((uint) 1, moduleTable.NumberOfRows);
             Assert.Single(moduleTable.Rows);
@@ -42,7 +36,16 @@ namespace PeNet.Test.Structures.MetaDataTables
         [Fact]
         public void ModuleTableConstructorWorksBigIndexes_Test()
         {
-            var moduleTable = new ModuleTable(RawDotNetStructures.RawModuleTableBig, 0x02, 1, 0x07);
+            var fakeStreamString = new Mock<IMETADATASTREAM_STRING>();
+            var fakeStreamGuid = new Mock<IMETADATASTREAM_GUID>();
+            var heapOffsets = new PeNet.Structures.MetaDataTables.Indices.HeapOffsetSizes(0x07);
+            var moduleTable = new ModuleTable(
+                RawDotNetStructures.RawModuleTableBig, 
+                0x02, 
+                1, 
+                fakeStreamString.Object, 
+                fakeStreamGuid.Object,
+                heapOffsets);
 
             Assert.Equal((uint) 1, moduleTable.NumberOfRows);
             Assert.Single(moduleTable.Rows);

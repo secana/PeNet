@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using PeNet.Utilities;
+﻿using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class MetaDataStreamGUIDParser : SafeParser<List<string>>
+    internal class MetaDataStreamGUIDParser : SafeParser<IMETADATASTREAM_GUID>
     {
         private readonly uint _size;
 
@@ -19,21 +17,9 @@ namespace PeNet.Parser
             _size = size;
         }
 
-        protected override List<string> ParseTarget()
+        protected override IMETADATASTREAM_GUID ParseTarget()
         {
-            // A GUID is an 128 bit (16 bytes) long identifier
-            var numOfGUIDs = _size / 16;
-            var GUIDs = new List<string>((int) numOfGUIDs);
-
-            for (var i = _offset; i < _offset + _size; i += 16)
-            {
-                var bytes = new byte[16];
-                Array.Copy(_buff, i, bytes, 0, 16);
-
-                GUIDs.Add(bytes.ToHexString());
-            }
-
-            return GUIDs;
+            return new METADATASTREAM_GUID(_buff, _offset, _size);
         }
     }
 }

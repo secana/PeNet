@@ -12,7 +12,6 @@ namespace Example
         {
             var path = @"D:\BitbucketRepos\CandCMetaInformation\src\CandCMetaInformationService.Console\bin\Debug\netcoreapp1.1\CandCMetaInformationService.Console.dll";
             var file = new PeFile(path);
-            file.MetaDataStreamUS.ForEach(Console.WriteLine);
             Console.ReadKey();
         }
 

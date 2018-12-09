@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using PeNet.Utilities;
-using static System.String;
+﻿using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class MetaDataStreamUSParser : SafeParser<List<string>>
+    internal class MetaDataStreamUSParser : SafeParser<IMETADATASTREAM_US>
     {
         private readonly uint _size;
 
@@ -14,30 +12,9 @@ namespace PeNet.Parser
             _size = size;
         }
 
-        protected override List<string> ParseTarget()
+        protected override IMETADATASTREAM_US ParseTarget()
         {
-            var stringList = new List<string>();
-
-            // The #US stream starts with a "0x00" byte. That's why 
-            // we skip the first byte in the buffer
-            for (var i = _offset + 1; i < _offset + _size; i++)
-            {
-                if (_buff[i] >= 0x80) // Not sure why this works but it does.
-                    i++;
-
-                int length = _buff[i]; 
-             
-                if (length == 0)                                        // Stop if a string has the length 0 since the end 
-                    break;                                              // of the list is reached.
-
-                i += 1;                                                 // Add "length byte" to current offset.
-                var tmpString = _buff.GetUnicodeString(i, length - 1);  // Read the UTF-16 string
-                i += (uint) length - 1;                                 // Add the string length to the current offset.
-
-                stringList.Add(tmpString);
-            }
-
-            return stringList;
+            return new METADATASTREAM_US(_buff, _offset, _size);
         }
     }
 }
