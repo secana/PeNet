@@ -78,25 +78,25 @@ namespace PeNet.Test.Utilities
             var tables = FlagResolver.ResolveMaskValidFlags(multipleFlags);
 
             Assert.Equal(19, tables.Count);
-            Assert.True(tables.Contains("Module"));
-            Assert.True(tables.Contains("TypeRef"));
-            Assert.True(tables.Contains("TypeDef"));
-            Assert.True(tables.Contains("Field"));
-            Assert.True(tables.Contains("MethodDef"));
-            Assert.True(tables.Contains("Param"));
-            Assert.True(tables.Contains("InterfaceImpl"));
-            Assert.True(tables.Contains("MemberRef"));
-            Assert.True(tables.Contains("Constant"));
-            Assert.True(tables.Contains("CustomAttribute"));
-            Assert.True(tables.Contains("StandAloneSig"));
-            Assert.True(tables.Contains("PropertyMap"));
-            Assert.True(tables.Contains("Property"));
-            Assert.True(tables.Contains("MethodSemantics"));
-            Assert.True(tables.Contains("TypeSpec"));
-            Assert.True(tables.Contains("Assembly"));
-            Assert.True(tables.Contains("AssemblyRef"));
-            Assert.True(tables.Contains("NestedClass"));
-            Assert.True(tables.Contains("MethodSpec"));
+            Assert.Contains("Module", tables);
+            Assert.Contains("TypeRef", tables);
+            Assert.Contains("TypeDef", tables);
+            Assert.Contains("Field", tables);
+            Assert.Contains("MethodDef", tables);
+            Assert.Contains("Param", tables);
+            Assert.Contains("InterfaceImpl", tables);
+            Assert.Contains("MemberRef", tables);
+            Assert.Contains("Constant", tables);
+            Assert.Contains("CustomAttribute", tables);
+            Assert.Contains("StandAloneSig", tables);
+            Assert.Contains("PropertyMap", tables);
+            Assert.Contains("Property", tables);
+            Assert.Contains("MethodSemantics", tables);
+            Assert.Contains("TypeSpec", tables);
+            Assert.Contains("Assembly", tables);
+            Assert.Contains("AssemblyRef", tables);
+            Assert.Contains("NestedClass", tables);
+            Assert.Contains("MethodSpec", tables);
         }
     }
 }

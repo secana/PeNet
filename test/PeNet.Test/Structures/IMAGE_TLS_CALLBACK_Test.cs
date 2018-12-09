@@ -31,7 +31,7 @@ namespace PeNet.Test.Structures
             var callbacks = peFile.ImageTlsDirectory.TlsCallbacks;
 
             // Then
-            Assert.Equal(1, callbacks.Length);
+            Assert.Single(callbacks);
             Assert.Equal((ulong) 0x004111CC, callbacks.First().Callback);
         }
     }

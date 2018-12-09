@@ -16,7 +16,7 @@ namespace PeNet.Test.Structures
             Assert.Equal((byte) 0x5, unwindInfo.FrameRegister);
             Assert.Equal((byte) 0x6, unwindInfo.FrameOffset);
 
-            Assert.Equal(1, unwindInfo.UnwindCode.Length);
+            Assert.Single(unwindInfo.UnwindCode);
             Assert.Equal((byte) 0x77, unwindInfo.UnwindCode[0].CodeOffset);
             Assert.Equal((byte) 0x8, unwindInfo.UnwindCode[0].UnwindOp);
             Assert.Equal((byte) 0x9, unwindInfo.UnwindCode[0].Opinfo);
