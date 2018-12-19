@@ -7,6 +7,14 @@ namespace PeNet.Test.Authenticode
     public class AuthenticodeTest
     {
         [Fact]
+        public void IsSignatureValid_ManipulatedSignature_x64_ReturnsFalse()
+        {
+            var peFile = new PeFile(@"./Binaries/firefox_x64_manipulated.exe");
+            Assert.NotNull(peFile.PKCS7);
+            Assert.False(peFile.IsSignatureValid);
+        }
+
+        [Fact]
         public void IsSignatureValid_SigendBinaryOld_x86_ReturnsTrue()
         {
             var peFile = new PeFile(@"./Binaries/old_firefox_x86.exe");
