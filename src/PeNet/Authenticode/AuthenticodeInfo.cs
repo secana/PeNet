@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+#if NETSTANDARD2_0
 using System.Runtime.InteropServices;
+#endif
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography.Pkcs;
 using PeNet.Asn1;
 using PeNet.Utilities;
 
@@ -28,7 +31,7 @@ namespace PeNet.Authenticode
             _contentInfo = new ContentInfo(_peFile.WinCertificate.bCertificate);
             SignerSerialNumber = GetSigningSerialNumber();
             SignedHash = GetSignedHash();
-            IsAuthenticodeValid = CheckSignature();
+            IsAuthenticodeValid = VerifyHash() && VerifySignature();
             SigningCertificate = GetSigningCertificate();
         }
 
@@ -64,32 +67,50 @@ namespace PeNet.Authenticode
                 string.Equals(cert.SerialNumber, SignerSerialNumber, StringComparison.CurrentCultureIgnoreCase));
         }
 
-        private bool CheckSignature()
+        private bool VerifySignature()
+        {
+            var signedCms = new SignedCms();
+            signedCms.Decode(_peFile.WinCertificate.bCertificate);
+
+            try
+            {
+                // Throws an exception if the signature is invalid.
+                signedCms.CheckSignature(true);
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool VerifyHash()
         {
             if (SignedHash == null) return false;
             // 2.  Initialize a hash algorithm context.
-            HashAlgorithm ha;
+            HashAlgorithm hashAlgorithm;
             switch (SignedHash.Length)
             {
                 case 16:
-                    ha = MD5.Create();
+                    hashAlgorithm = MD5.Create();
                     break;
                 case 20:
-                    ha = SHA1.Create();
+                    hashAlgorithm = SHA1.Create();
                     break;
                 case 32:
-                    ha = SHA256.Create();
+                    hashAlgorithm = SHA256.Create();
                     break;
                 case 48:
-                    ha = SHA384.Create();
+                    hashAlgorithm = SHA384.Create();
                     break;
                 case 64:
-                    ha = SHA512.Create();
+                    hashAlgorithm = SHA512.Create();
                     break;
                 default:
                     return false;
             }
-            var hash = GetHash(ha);
+            var hash = ComputeAuthenticodeHashFromPeFile(hashAlgorithm);
             return SignedHash.SequenceEqual(hash);
         }
 
@@ -118,7 +139,7 @@ namespace PeNet.Authenticode
             return x.Value.ToHexString().Substring(2).ToUpper();
         }
 
-        private IEnumerable<byte> GetHash(HashAlgorithm hash)
+        private IEnumerable<byte> ComputeAuthenticodeHashFromPeFile(HashAlgorithm hash)
         {
             // 3.  Hash the image header from its base to immediately before the start of the checksum address, 
             // as specified in Optional Header Windows-Specific Fields.

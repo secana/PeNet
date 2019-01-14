@@ -45,15 +45,9 @@ namespace PEditor.TabItems
             var dllNames = peFile.ImportedFunctions?.Select(x => x.DLL).Distinct();
             var dllFunctions = new Dictionary<string, IEnumerable<ImportFunction>>();
 
-            foreach (var dllName in dllNames)
+            foreach (var dllName in peFile.ImportedFunctions?.Select(x => x.DLL).Distinct())
             {
-                var functions = peFile.ImportedFunctions.Where(x => x.DLL == dllName);
-                dllFunctions.Add(dllName, functions);
-            }
-
-            foreach (var kv in dllFunctions)
-            {
-                lbImportDlls.Items.Add(new { DLL = kv.Key });
+                lbImportDlls.Items.Add(new { DLL = dllName });
             }
         }
     }
