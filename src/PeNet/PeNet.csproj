@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461;net40</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <PackageProjectUrl>https://github.com/secana/PeNet</PackageProjectUrl>
     <Version>0.8.2</Version>
     <Authors>Stefan Hausotte</Authors>
@@ -17,5 +17,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="PeNet.Asn1" Version="1.3.2" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="4.5.1" />
   </ItemGroup>
 </Project>
