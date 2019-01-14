@@ -14,20 +14,30 @@ namespace PeNet.Test.Authenticode
             Assert.False(peFile.IsSignatureValid);
         }
 
+        /// <summary>
+        /// Firefox is signed by a broken certificate.
+        /// The Windows CAPI (and thus .Net Framework) shows it's valid, but its not!
+        /// https://github.com/dotnet/corefx/issues/34202
+        /// </summary>
         [Fact]
-        public void IsSignatureValid_SigendBinaryOld_x86_ReturnsTrue()
+        public void IsSignatureValid_SigendBinaryOld_x86_ReturnsFalse()
         {
             var peFile = new PeFile(@"./Binaries/old_firefox_x86.exe");
             Assert.NotNull(peFile.PKCS7);
-            Assert.True(peFile.IsSignatureValid);
+            Assert.False(peFile.IsSignatureValid);
         }
 
+        /// <summary>
+        /// Firefox is signed by a broken certificate.
+        /// The Windows CAPI (and thus .Net Framework) shows it's valid, but its not!
+        /// https://github.com/dotnet/corefx/issues/34202
+        /// </summary>
         [Fact]
-        public void IsSignatureValid_SigendBinary_x86_ReturnsTrue()
+        public void IsSignatureValid_SigendBinary_x86_ReturnsFalse()
         {
             var peFile = new PeFile(@"./Binaries/firefox_x86.exe");
             Assert.NotNull(peFile.PKCS7);
-            Assert.True(peFile.IsSignatureValid);
+            Assert.False(peFile.IsSignatureValid);
         }
 
         [Fact]
@@ -46,12 +56,17 @@ namespace PeNet.Test.Authenticode
             Assert.False(peFile.IsSignatureValid);
         }
 
+        /// <summary>
+        /// Firefox is signed by a broken certificate.
+        /// The Windows CAPI (and thus .Net Framework) shows it's valid, but its not!
+        /// https://github.com/dotnet/corefx/issues/34202
+        /// </summary>
         [Fact]
-        public void IsSignatureValid_SigendBinary_x64_ReturnsTrue()
+        public void IsSignatureValid_SigendBinary_x64_ReturnsFalse()
         {
             var peFile = new PeFile(@"./Binaries/firefox_x64.exe");
             Assert.NotNull(peFile.PKCS7);
-            Assert.True(peFile.IsSignatureValid);
+            Assert.False(peFile.IsSignatureValid);
         }
 
         [Fact]
