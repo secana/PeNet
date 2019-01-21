@@ -184,7 +184,7 @@
             0x00
         };
 
-        public static byte[] RawMetaDataDataTablesHdr =
+        public static byte[] RawMetaDataTablesHdr =
         {
             0x00, // Garbage to test offset
             0x11,

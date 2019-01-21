@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using PeNet.Test.Structures;
 using PeNet.Utilities;
 
 namespace PeNet.Structures
@@ -13,13 +15,13 @@ namespace PeNet.Structures
         /// Bit 2 (0x04) set: Indexes into #Blob heap are 4 bytes wide.
         /// If bit not set: indexes into heap is 2 bytes wide.
         /// </summary>
-        byte HeapOffsetSizes { get; set; }
+        byte HeapSizes { get; set; }
 
         /// <summary>
         /// Access a list of defined tables in the Meta Data Tables Header
         /// with the name and number of rows of the table.
         /// </summary>
-        List<METADATATABLESHDR.TableDefinition> TableDefinitions { get; }
+        List<METADATATABLESHDR.MetaDataTableInfo> TableDefinitions { get; }
     }
 
     /// <summary>
@@ -28,35 +30,34 @@ namespace PeNet.Structures
     /// </summary>
     public class METADATATABLESHDR : AbstractStructure, IMETADATATABLESHDR
     {
-        private List<TableDefinition> _tableDefinitions;
+        private List<MetaDataTableInfo> _tableDefinitions;
 
         /// <summary>
         /// Represents an table definition entry from the list
         /// of available tables in the Meta Data Tables Header 
         /// in the .Net header of an assembly.
         /// </summary>
-        public class TableDefinition
+        public struct MetaDataTableInfo
         {
             /// <summary>
             /// Number of rows of the table.
             /// </summary>
-            public uint NumOfRows { get; }
+            public uint RowCount { get; set; }
 
             /// <summary>
             /// Name of the table.
             /// </summary>
-            public string Name { get; }
+            public string Name { get; set; }
 
             /// <summary>
-            /// Create a new table definition.
+            /// Offset where the table starts.
             /// </summary>
-            /// <param name="name">Name of the table.</param>
-            /// <param name="numOfRows">Number of rows of the table.</param>
-            public TableDefinition(string name, uint numOfRows)
-            {
-                NumOfRows = numOfRows;
-                Name = name;
-            }
+            public uint Offset { get; set; }
+
+            /// <summary>
+            /// Byter per row in the table.
+            /// </summary>
+            public uint BytesPerRow { get; set;}
 
             /// <summary>
             ///     Create a string representation of the objects
@@ -116,7 +117,7 @@ namespace PeNet.Structures
         /// Bit 2 (0x04) set: Indexes into #Blob heap are 4 bytes wide.
         /// If bit not set: indexes into heap is 2 bytes wide.
         /// </summary>
-        public byte HeapOffsetSizes
+        public byte HeapSizes
         {
             get { return Buff[Offset + 0x6]; }
             set { Buff[Offset + 0x6] = value; }
@@ -136,7 +137,7 @@ namespace PeNet.Structures
         /// Maximal 64 tables can be present, but most tables are not defined such that
         /// the high bits of the mask are always 0.
         /// </summary>
-        public ulong MaskValid
+        public ulong Valid
         {
             get { return Buff.BytesToUInt64(Offset + 0x8); }
             set { Buff.SetUInt64(Offset + 0x8, value); }
@@ -155,7 +156,7 @@ namespace PeNet.Structures
         /// Access a list of defined tables in the Meta Data Tables Header
         /// with the name and number of rows of the table.
         /// </summary>
-        public List<TableDefinition> TableDefinitions
+        public List<MetaDataTableInfo> TableDefinitions
         {
             get
             {
@@ -167,20 +168,100 @@ namespace PeNet.Structures
             }
         }
 
-        private List<TableDefinition> ParseTableDefinitions()
+        private List<MetaDataTableInfo> ParseTableDefinitions()
         {
-            var names =Utilities.FlagResolver.ResolveMaskValidFlags(MaskValid);
-            var tableDefinitions = new List<TableDefinition>(names.Count);
+            var heapSizes = new HeapSizes(HeapSizes);
+            var tables = new MetaDataTableInfo[64];
+
             var startOfTableDefinitions = Offset + 24;
-            for (var i = 0; i < names.Count; i++)
+            var names = FlagResolver.ResolveMaskValidFlags(Valid);
+
+            var cnt = 0;
+            for (var i = 0; i < tables.Length; ++i)
             {
-                var numOfRows = Buff.BytesToUInt32(startOfTableDefinitions + (uint) i*4);
-                var tableDefinition = new TableDefinition(names[i], numOfRows);
-                tableDefinitions.Add(tableDefinition);
+                if((Valid & (1UL << i)) != 0)
+                {
+                    tables[i].RowCount = Buff.BytesToUInt32(startOfTableDefinitions + (uint) cnt*4);
+                    tables[i].Name = names[cnt];
+                    cnt++;
+                }
             }
 
-            return tableDefinitions;
+            tables[(int)MetadataToken.Module].BytesPerRow = 2 + heapSizes.String + heapSizes.Guid * 3;
+			tables[(int)MetadataToken.TypeReference].BytesPerRow = GetIndexSize(CodedIndex.ResolutionScope, tables) + heapSizes.String * 2;
+			tables[(int)MetadataToken.Type].BytesPerRow = 4 + heapSizes.String * 2 + GetIndexSize(CodedIndex.TypeDefOrRef, tables)
+				+ GetIndexSize(MetadataToken.Field, tables) + GetIndexSize(MetadataToken.Method, tables);
+			tables[(int)MetadataToken.Field].BytesPerRow = 2 + heapSizes.String + heapSizes.Blob;
+			tables[(int)MetadataToken.Method].BytesPerRow = 8 + heapSizes.String + heapSizes.Blob + GetIndexSize(MetadataToken.Parameter, tables);
+			tables[(int)MetadataToken.Parameter].BytesPerRow = 4 + heapSizes.String;
+			tables[(int)MetadataToken.InterfaceImplementation].BytesPerRow = GetIndexSize(MetadataToken.Type, tables) + GetIndexSize(CodedIndex.TypeDefOrRef, tables);
+			tables[(int)MetadataToken.MemberReference].BytesPerRow = GetIndexSize(CodedIndex.MemberRefParent, tables) + heapSizes.String + heapSizes.Blob;
+			tables[(int)MetadataToken.Constant].BytesPerRow = 2 + GetIndexSize(CodedIndex.HasConstant, tables) + heapSizes.Blob;
+			tables[(int)MetadataToken.CustomAttribute].BytesPerRow = GetIndexSize(CodedIndex.HasCustomAttribute, tables)
+				+ GetIndexSize(CodedIndex.CustomAttributeType, tables) + heapSizes.Blob;
+			tables[(int)MetadataToken.FieldMarshal].BytesPerRow = GetIndexSize(CodedIndex.HasFieldMarshal, tables) + heapSizes.Blob;
+			tables[(int)MetadataToken.DeclarativeSecurity].BytesPerRow = 2 + GetIndexSize(CodedIndex.HasDeclSecurity, tables) + heapSizes.Blob;
+			tables[(int)MetadataToken.ClassLayout].BytesPerRow = 6 + GetIndexSize(MetadataToken.Type, tables);
+			tables[(int)MetadataToken.FieldLayout].BytesPerRow = 4 + GetIndexSize(MetadataToken.Field, tables);
+			tables[(int)MetadataToken.Signature].BytesPerRow = heapSizes.Blob;
+			tables[(int)MetadataToken.EventMap].BytesPerRow = GetIndexSize(MetadataToken.Type, tables) + GetIndexSize(MetadataToken.Event, tables);
+			tables[(int)MetadataToken.Event].BytesPerRow = 2 + heapSizes.String + GetIndexSize(CodedIndex.TypeDefOrRef, tables);
+			tables[(int)MetadataToken.PropertyMap].BytesPerRow = GetIndexSize(MetadataToken.Type, tables) + GetIndexSize(MetadataToken.Property, tables);
+			tables[(int)MetadataToken.Property].BytesPerRow = 2 + heapSizes.String + heapSizes.Blob;
+			tables[(int)MetadataToken.MethodSemantics].BytesPerRow = 2 + GetIndexSize(MetadataToken.Method, tables) + GetIndexSize(CodedIndex.HasSemantics, tables);
+			tables[(int)MetadataToken.MethodImplementation].BytesPerRow = GetIndexSize(MetadataToken.Type, tables) + GetIndexSize(CodedIndex.MethodDefOrRef, tables) * 2;
+			tables[(int)MetadataToken.ModuleReference].BytesPerRow = heapSizes.String;
+			tables[(int)MetadataToken.TypeSpecification].BytesPerRow = heapSizes.Blob;
+			tables[(int)MetadataToken.ImplementationMap].BytesPerRow = 2 + GetIndexSize(CodedIndex.MemberForwarded, tables)
+				+ heapSizes.String + GetIndexSize(MetadataToken.ModuleReference, tables);
+			tables[(int)MetadataToken.FieldRva].BytesPerRow = 4 + GetIndexSize(MetadataToken.Field, tables);
+			tables[(int)MetadataToken.Assembly].BytesPerRow = 16 + heapSizes.Blob + heapSizes.String * 2;
+			tables[(int)MetadataToken.AssemblyProcessor].BytesPerRow = 4;
+			tables[(int)MetadataToken.AssemblyOS].BytesPerRow = 12;
+			tables[(int)MetadataToken.AssemblyReference].BytesPerRow = 12 + heapSizes.Blob * 2 + heapSizes.String * 2;
+			tables[(int)MetadataToken.AssemblyReferenceProcessor].BytesPerRow = 4 + GetIndexSize(MetadataToken.AssemblyReference, tables);
+			tables[(int)MetadataToken.AssemblyReferenceOS].BytesPerRow = 12 + GetIndexSize(MetadataToken.AssemblyReference, tables);
+			tables[(int)MetadataToken.File].BytesPerRow = 4 + heapSizes.String + heapSizes.Blob;
+			tables[(int)MetadataToken.ExportedType].BytesPerRow = 8 + heapSizes.String * 2 + GetIndexSize(CodedIndex.Implementation, tables);
+			tables[(int)MetadataToken.ManifestResource].BytesPerRow = 8 + heapSizes.String + GetIndexSize(CodedIndex.Implementation, tables);
+			tables[(int)MetadataToken.NestedClass].BytesPerRow = GetIndexSize(MetadataToken.NestedClass, tables) * 2;
+			tables[(int)MetadataToken.GenericParameter].BytesPerRow = 4 + GetIndexSize(CodedIndex.TypeOrMethodDef, tables) + heapSizes.String;
+			tables[(int)MetadataToken.MethodSpecification].BytesPerRow = GetIndexSize(CodedIndex.MethodDefOrRef, tables) + heapSizes.Blob;
+			tables[(int)MetadataToken.GenericParameterConstraint].BytesPerRow = GetIndexSize(MetadataToken.GenericParameter, tables) + GetIndexSize(CodedIndex.TypeDefOrRef, tables);
+
+
+            uint offset = 0;
+			for (int i = 0; i < tables.Length; ++i)
+			{
+				tables[i].Offset = offset;
+				offset += tables[i].BytesPerRow * tables[i].RowCount;
+			}
+
+      
+            return tables.ToList();
         }
+
+        private uint GetIndexSize(CodedIndex codedIndex, MetaDataTableInfo[] tables)
+		{
+			uint maxRowCount = 0;
+			for (int i = 0; i < codedIndex.TableCount; ++i)
+			{
+				var table = codedIndex.GetTable(i);
+				if (table.HasValue)
+				{
+					var rowCount = tables[(int)table.Value].RowCount;
+					if (rowCount > maxRowCount) maxRowCount = rowCount;
+				}
+			}
+
+			int valueBitCount = 16 - codedIndex.TagBitCount;
+			return maxRowCount < (1U << valueBitCount) ? 2U : 4U;
+		}
+
+        private uint GetIndexSize(MetadataToken table, MetaDataTableInfo[] tables)
+		{
+			return tables[(int)table].RowCount <= ushort.MaxValue ? 2U : 4U;
+		}
 
         /// <summary>
         ///     Create a string representation of the objects

@@ -73,7 +73,7 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x02u, tablesHeader.MajorVersion);
             Assert.Equal(0x00u, tablesHeader.MinorVersion);
             Assert.Equal(0x01u, tablesHeader.Reserved2);
-            Assert.Equal(0x0000000908021547u, tablesHeader.MaskValid);
+            Assert.Equal(0x0000000908021547u, tablesHeader.Valid);
             Assert.Equal(0x000016003301FA00u, tablesHeader.MaskSorted);
         }
 
@@ -158,6 +158,24 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x00, blob[0]);
             Assert.Equal(0x4E, blob[0x97]);
             Assert.Equal(0x00, blob[0x14F]);
+        }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTablesHdr_ParseCorrectTables()
+        {
+            var metaDataTablesHdr = _peFile.MetaDataStreamTablesHeader;
+
+            Assert.Equal("Module", metaDataTablesHdr.TableDefinitions[0].Name);
+            Assert.Equal(1U, metaDataTablesHdr.TableDefinitions[0].RowCount);
+            Assert.Equal(0U, metaDataTablesHdr.TableDefinitions[0].Offset);
+            Assert.Equal(10U, metaDataTablesHdr.TableDefinitions[0].BytesPerRow);
+
+            // ... More tables ...
+          
+            Assert.Equal("AssemblyRef", metaDataTablesHdr.TableDefinitions[35].Name);
+            Assert.Equal(1U, metaDataTablesHdr.TableDefinitions[35].RowCount);
+            Assert.Equal(454U, metaDataTablesHdr.TableDefinitions[35].Offset);
+            Assert.Equal(20U, metaDataTablesHdr.TableDefinitions[35].BytesPerRow);
         }
     }
 }
