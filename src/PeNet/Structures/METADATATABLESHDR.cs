@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using PeNet.Parser.MetaDataTables;
-using PeNet.Structures.MetaDataTables;
 using PeNet.Utilities;
 
 namespace PeNet.Structures

@@ -159,20 +159,5 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x4E, blob[0x97]);
             Assert.Equal(0x00, blob[0x14F]);
         }
-
-        [Fact]
-        public void NetFrameWorkConsole_MetaDataStreamTables_Module_ParseCorrectValues()
-        {
-            var module = _peFile.MetaDataTables.ModuleTable;
-
-            Assert.Equal(1u, module.NumberOfRows);   
-            Assert.Equal(0x0000u, module.Rows[0].Generation);
-            Assert.Equal(0x01EBu, module.Rows[0].Name);
-            Assert.Equal(0x0001u, module.Rows[0].Mvid);
-            Assert.Equal(0x0000u, module.Rows[0].EncId);
-            Assert.Equal(0x0000u, module.Rows[0].EncBaseId);
-            Assert.Equal("NetFrameworkConsole.exe", module.Rows[0].NameResolved);
-            Assert.Equal(new Guid("5250e853-c17a-4e76-adb3-0a716ec8af5d"), module.Rows[0].MvidResolved);
-        }
     }
 }
