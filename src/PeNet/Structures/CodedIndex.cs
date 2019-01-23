@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using PeNet.Structures;
+using static PeNet.Structures.METADATATABLESHDR;
 
 namespace PeNet.Test.Structures
 {
-    /// <summary>
-	/// The type of the Meta Data Table index.
-	/// </summary>
-	public enum MetadataToken
+	internal enum MetadataToken
 	{
 		Module = 0x00,
 		TypeReference = 0x01,
@@ -50,56 +50,132 @@ namespace PeNet.Test.Structures
 		BaseType = 0x72,
 	}
 
-    class CodedIndex
+    interface IMetaDataIndex
+    {
+        uint Size {get;}
+    }
+
+
+    public enum Index
+    {
+        String,
+        Guid,
+        Method,
+        Field,
+        TypeDefOrRef,
+        HasConstant,
+        HasCustomAttribute,
+        HasFieldMarshal,
+        HasDeclSecurity,
+        MemberRefParent,
+        HasSemantics,
+        MethodDefOrRef,
+        MemberForwarded,
+        Implementation,
+        CustomAttributeType,
+        ResolutionScope,
+        TypeOrMethodDef
+    };
+
+    public class IndexSize
+    {
+        private const byte unused = 0xFF;
+        public IndexSize(MetaDataTableInfo[] tables)
+        {
+            _index = new Dictionary<Index, IMetaDataIndex>
+            {
+                // Single Indices
+                {Index.Method, new SingleIndex(MetadataToken.Method, tables)},
+                {Index.Field, new SingleIndex(MetadataToken.Field, tables)},
+
+                // Coded Indices
+                {Index.TypeDefOrRef, new CodedIndex(tables, (byte)MetadataToken.Type, (byte)MetadataToken.TypeReference, (byte)MetadataToken.TypeSpecification)},
+		        {Index.HasConstant, new CodedIndex(tables, (byte)MetadataToken.Field, (byte)MetadataToken.Parameter, (byte)MetadataToken.Property)},
+                {Index.HasCustomAttribute, new CodedIndex(tables,
+                (byte)MetadataToken.Method, (byte)MetadataToken.Field, (byte)MetadataToken.TypeReference, (byte)MetadataToken.Type,
+                (byte)MetadataToken.Parameter, (byte)MetadataToken.InterfaceImplementation, (byte)MetadataToken.MemberReference, (byte)MetadataToken.Module,
+                (byte)MetadataToken.DeclarativeSecurity, (byte)MetadataToken.Property, (byte)MetadataToken.Event, (byte)MetadataToken.Signature,
+                (byte)MetadataToken.ModuleReference, (byte)MetadataToken.TypeSpecification, (byte)MetadataToken.Assembly, (byte)MetadataToken.AssemblyReference,
+                (byte)MetadataToken.Field, (byte)MetadataToken.ExportedType, (byte)MetadataToken.ManifestResource) },
+                {Index.HasFieldMarshal, new CodedIndex(tables, (byte)MetadataToken.Field, (byte)MetadataToken.Parameter)},
+                {Index.HasDeclSecurity, new CodedIndex(tables, (byte)MetadataToken.Type, (byte)MetadataToken.Method, (byte)MetadataToken.Assembly)},
+                {Index.MemberRefParent, new CodedIndex(tables, (byte)MetadataToken.Type, (byte)MetadataToken.TypeReference, (byte)MetadataToken.ModuleReference, (byte)MetadataToken.Method, (byte)MetadataToken.TypeSpecification)},
+                {Index.HasSemantics, new CodedIndex(tables, (byte)MetadataToken.Event, (byte)MetadataToken.Property)},
+                {Index.MethodDefOrRef, new CodedIndex(tables, (byte)MetadataToken.Method, (byte)MetadataToken.MemberReference)},
+                {Index.MemberForwarded, new CodedIndex(tables, (byte)MetadataToken.Field, (byte)MetadataToken.Method)},
+                {Index.Implementation, new CodedIndex(tables, (byte)MetadataToken.Field, (byte)MetadataToken.AssemblyReference, (byte)MetadataToken.ExportedType)},
+                {Index.CustomAttributeType, new CodedIndex(tables, unused, unused, (byte)MetadataToken.Method, (byte)MetadataToken.MemberReference, unused)},
+                {Index.ResolutionScope, new CodedIndex(tables, (byte)MetadataToken.Module, (byte)MetadataToken.ModuleReference, (byte)MetadataToken.AssemblyReference, (byte)MetadataToken.TypeReference)},
+                {Index.TypeOrMethodDef, new CodedIndex(tables, (byte)MetadataToken.Type, (byte)MetadataToken.Method)}
+
+            };
+        }
+    
+
+        private Dictionary<Index, IMetaDataIndex> _index = null;
+
+        public uint this[Index index]
+        {
+            get
+            {
+                return _index[index].Size;
+            }
+        }
+    }
+
+
+
+    class SingleIndex : IMetaDataIndex
+    {
+        private MetadataToken _token;
+        private MetaDataTableInfo[] _tables;
+
+        public SingleIndex(MetadataToken token, MetaDataTableInfo[] tables)
+        {
+            _token = token;
+            _tables = tables;
+        }
+
+        public uint Size => _tables[(int)_token].RowCount <= ushort.MaxValue ? 2U : 4U;
+    }
+
+    class CodedIndex : IMetaDataIndex
     {
 		private const byte unused = 0xFF;
+		private readonly byte[] _tokens;
+        private readonly MetaDataTableInfo[] _tables;
+        private readonly int _tagBitCount;
 
-		public static readonly CodedIndex TypeDefOrRef = new CodedIndex(
-			(byte)MetadataToken.Type, (byte)MetadataToken.TypeReference, (byte)MetadataToken.TypeSpecification);
-		public static readonly CodedIndex HasConstant = new CodedIndex(
-			(byte)MetadataToken.Field, (byte)MetadataToken.Parameter, (byte)MetadataToken.Property);
-		public static readonly CodedIndex HasCustomAttribute = new CodedIndex(
-			(byte)MetadataToken.Method, (byte)MetadataToken.Field, (byte)MetadataToken.TypeReference, (byte)MetadataToken.Type,
-			(byte)MetadataToken.Parameter, (byte)MetadataToken.InterfaceImplementation, (byte)MetadataToken.MemberReference, (byte)MetadataToken.Module,
-			(byte)MetadataToken.DeclarativeSecurity, (byte)MetadataToken.Property, (byte)MetadataToken.Event, (byte)MetadataToken.Signature,
-			(byte)MetadataToken.ModuleReference, (byte)MetadataToken.TypeSpecification, (byte)MetadataToken.Assembly, (byte)MetadataToken.AssemblyReference,
-			(byte)MetadataToken.Field, (byte)MetadataToken.ExportedType, (byte)MetadataToken.ManifestResource);
-		public static readonly CodedIndex HasFieldMarshal = new CodedIndex(
-			(byte)MetadataToken.Field, (byte)MetadataToken.Parameter);
-		public static readonly CodedIndex HasDeclSecurity = new CodedIndex(
-			(byte)MetadataToken.Type, (byte)MetadataToken.Method, (byte)MetadataToken.Assembly);
-		public static readonly CodedIndex MemberRefParent = new CodedIndex(
-			(byte)MetadataToken.Type, (byte)MetadataToken.TypeReference, (byte)MetadataToken.ModuleReference, (byte)MetadataToken.Method, (byte)MetadataToken.TypeSpecification);
-		public static readonly CodedIndex HasSemantics = new CodedIndex(
-			(byte)MetadataToken.Event, (byte)MetadataToken.Property);
-		public static readonly CodedIndex MethodDefOrRef = new CodedIndex(
-			(byte)MetadataToken.Method, (byte)MetadataToken.MemberReference);
-		public static readonly CodedIndex MemberForwarded = new CodedIndex(
-			(byte)MetadataToken.Field, (byte)MetadataToken.Method);
-		public static readonly CodedIndex Implementation = new CodedIndex
-			((byte)MetadataToken.Field, (byte)MetadataToken.AssemblyReference, (byte)MetadataToken.ExportedType);
-		public static readonly CodedIndex CustomAttributeType = new CodedIndex(
-			unused, unused, (byte)MetadataToken.Method, (byte)MetadataToken.MemberReference, unused);
-		public static readonly CodedIndex ResolutionScope = new CodedIndex(
-			(byte)MetadataToken.Module, (byte)MetadataToken.ModuleReference, (byte)MetadataToken.AssemblyReference, (byte)MetadataToken.TypeReference);
-		public static readonly CodedIndex TypeOrMethodDef = new CodedIndex(
-			(byte)MetadataToken.Type, (byte)MetadataToken.Method);
-
-		private readonly byte[] _tables;
-
-		internal CodedIndex(params byte[] tables)
+        public CodedIndex(MetaDataTableInfo[] tables, params byte[] tokens)
 		{
-			_tables = tables;
-			TagBitCount = (int)Math.Ceiling(Math.Log(tables.Length, 2));
+			_tokens = tokens;
+            _tables = tables;
+			_tagBitCount = (int)Math.Ceiling(Math.Log(tokens.Length, 2));
 		}
 
-		public int TableCount => _tables.Length;
+        public uint Size 
+        {
+            get
+            {
+                uint maxRowCount = 0;
+		        for (int i = 0; i < _tokens.Length; ++i)
+			    {
+				    var table = GetTable(i);
+				    if (table.HasValue)
+				    {
+					    var rowCount = _tables[(int)table.Value].RowCount;
+					    if (rowCount > maxRowCount) maxRowCount = rowCount;
+				    }
+			    }
 
-		public int TagBitCount {get;}
+			    int valueBitCount = 16 - _tagBitCount;
+			    return maxRowCount < (1U << valueBitCount) ? 2U : 4U;
+                }
+        }
 		
-		public MetadataToken? GetTable(int tag)
+		private MetadataToken? GetTable(int tag)
 		{
-			var table = _tables[tag];
+			var table = _tokens[tag];
 			return table == unused ? null : (MetadataToken?)table;
 		}
     }
