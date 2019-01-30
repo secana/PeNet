@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace PeNet.Structures.MetaDataTables
 {
@@ -8,5 +6,6 @@ namespace PeNet.Structures.MetaDataTables
     {
         public List<Module> Module {get; set;}
         public List<TypeRef> TypeRef {get; set;}
+        public List<TypeDef> TypeDef {get; set;}
     }
 }

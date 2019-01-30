@@ -203,9 +203,34 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x0160u, typeRef[0].TypeName);
             Assert.Equal(0x02A4u, typeRef[0].TypeNamespace);
 
+            // ... More rows ...
+
             Assert.Equal(0x0006u, typeRef[22].ResolutionScope);
             Assert.Equal(0x0243u, typeRef[22].TypeName);
             Assert.Equal(0x0225u, typeRef[22].TypeNamespace);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_TypeDef()
+        {
+            var typeDef = _peFile.MetaDataStreamTablesHeader.Tables.TypeDef;
+
+            Assert.Equal(2, typeDef.Count);
+
+            Assert.Equal(0x00000000u, typeDef[0].Flags);
+            Assert.Equal(0x001Du, typeDef[0].TypeName);
+            Assert.Equal(0x0000u, typeDef[0].TypeNamespace);
+            Assert.Equal(0x0000u, typeDef[0].Extends);
+            Assert.Equal(0x0001u, typeDef[0].FieldList);
+            Assert.Equal(0x0001u, typeDef[0].MethodList);
+
+            Assert.Equal(0x00100000u, typeDef[1].Flags);
+            Assert.Equal(0x021Du, typeDef[1].TypeName);
+            Assert.Equal(0x0060u, typeDef[1].TypeNamespace);
+            Assert.Equal(0x0041u, typeDef[1].Extends);
+            Assert.Equal(0x0001u, typeDef[1].FieldList);
+            Assert.Equal(0x0001u, typeDef[1].MethodList);
+        }
+
     }
 }

@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PeNet.Structures.MetaDataTables;
 using PeNet.Test.Structures;
 using PeNet.Utilities;
 
@@ -245,37 +247,36 @@ namespace PeNet.Structures
             return tables.ToList();
         }
 
-        private MetaDataTables.Tables SetMetaDataTables()
+        private Tables ParseMetaDataTables()
         {
             var heapSizes = new HeapSizes(HeapSizes);
             var indexSizes = new IndexSize(TableDefinitions.ToArray());
 
-            var tables = new MetaDataTables.Tables();
+            var tables = new Tables();
             uint tablesOffset = (uint)(Offset + 0x18u + HammingWeight(Valid) * 4u);
 
-            // Module Table
-            var moduleInfo = TableDefinitions[(int)MetadataToken.Module];
-            if (moduleInfo.RowCount != 0)
-            {
-                tables.Module = new List<MetaDataTables.Module>();
-                for (var i = 0u; i < moduleInfo.RowCount; i++)
-                {
-                    tables.Module.Add(new MetaDataTables.Module(Buff, tablesOffset + moduleInfo.Offset + moduleInfo.BytesPerRow * i, heapSizes, indexSizes));
-                }
-            }
-
-            // TypeRef Table
-            var typeRefInfo = TableDefinitions[(int)MetadataToken.TypeReference];
-            if(typeRefInfo.RowCount != 0)
-            {
-                tables.TypeRef = new List<MetaDataTables.TypeRef>();
-                for(var i = 0u; i < typeRefInfo.RowCount; i++)
-                {
-                    tables.TypeRef.Add(new MetaDataTables.TypeRef(Buff, tablesOffset + typeRefInfo.Offset + typeRefInfo.BytesPerRow * i, heapSizes, indexSizes));
-                }
-            }
+            tables.Module = ParseTable<Module>(MetadataToken.Module, tablesOffset, heapSizes, indexSizes);
+            tables.TypeRef = ParseTable<TypeRef>(MetadataToken.TypeReference, tablesOffset, heapSizes, indexSizes);
+            tables.TypeDef = ParseTable<TypeDef>(MetadataToken.Type, tablesOffset, heapSizes, indexSizes);
 
             return tables;
+        }
+
+        private List<T> ParseTable<T>(MetadataToken token, uint tablesOffset, HeapSizes heapSizes, IndexSize indexSizes)
+            where T : AbstractTable
+        {
+            var tableInfo = TableDefinitions[(int)token];
+            var rows = new List<T>();
+
+            if(tableInfo.RowCount != 0)
+            {
+                for(var i = 0u; i < tableInfo.RowCount; i++)
+                {
+                    rows.Add((T) Activator.CreateInstance(typeof(T), new object[] {Buff, tablesOffset + tableInfo.Offset + tableInfo.BytesPerRow * i, heapSizes, indexSizes}));
+                }
+            }
+
+            return rows.Count == 0 ? null : rows;
         }
 
         private int HammingWeight(ulong value)
@@ -290,15 +291,15 @@ namespace PeNet.Structures
         }
 
 
-        private MetaDataTables.Tables _tables = null;
-        public MetaDataTables.Tables Tables 
+        private Tables _tables = null;
+        public Tables Tables 
         {
             get
             {
                 if(_tables is null)
                 {
                     
-                    _tables = SetMetaDataTables();
+                    _tables = ParseMetaDataTables();
                 }
 
                 return _tables;
