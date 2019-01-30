@@ -198,25 +198,25 @@ namespace PeNet.Structures
 
             tables[(int)MetadataToken.Module].BytesPerRow = 2 + heapSizes.String + heapSizes.Guid * 3;
             tables[(int)MetadataToken.TypeReference].BytesPerRow = indexSizes[Index.ResolutionScope] + heapSizes.String * 2;
-            tables[(int)MetadataToken.Type].BytesPerRow = 4 + heapSizes.String * 2 + indexSizes[Index.TypeDefOrRef] + indexSizes[Index.Field] + indexSizes[Index.Method];
+            tables[(int)MetadataToken.TypeDef].BytesPerRow = 4 + heapSizes.String * 2 + indexSizes[Index.TypeDefOrRef] + indexSizes[Index.Field] + indexSizes[Index.MethodDef];
             tables[(int)MetadataToken.Field].BytesPerRow = 2 + heapSizes.String + heapSizes.Blob;
-            tables[(int)MetadataToken.Method].BytesPerRow = 8 + heapSizes.String + heapSizes.Blob + GetIndexSize(MetadataToken.Parameter, tables);
+            tables[(int)MetadataToken.MethodDef].BytesPerRow = 8 + heapSizes.String + heapSizes.Blob + GetIndexSize(MetadataToken.Parameter, tables);
             tables[(int)MetadataToken.Parameter].BytesPerRow = 4 + heapSizes.String;
-            tables[(int)MetadataToken.InterfaceImplementation].BytesPerRow = GetIndexSize(MetadataToken.Type, tables) + indexSizes[Index.TypeDefOrRef];
+            tables[(int)MetadataToken.InterfaceImplementation].BytesPerRow = GetIndexSize(MetadataToken.TypeDef, tables) + indexSizes[Index.TypeDefOrRef];
             tables[(int)MetadataToken.MemberReference].BytesPerRow = indexSizes[Index.MemberRefParent] + heapSizes.String + heapSizes.Blob;
             tables[(int)MetadataToken.Constant].BytesPerRow = 2 + indexSizes[Index.HasConstant] + heapSizes.Blob;
             tables[(int)MetadataToken.CustomAttribute].BytesPerRow = indexSizes[Index.HasCustomAttribute] + indexSizes[Index.CustomAttributeType] + heapSizes.Blob;
             tables[(int)MetadataToken.FieldMarshal].BytesPerRow = indexSizes[Index.HasFieldMarshal] + heapSizes.Blob;
             tables[(int)MetadataToken.DeclarativeSecurity].BytesPerRow = 2 + indexSizes[Index.HasDeclSecurity] + heapSizes.Blob;
-            tables[(int)MetadataToken.ClassLayout].BytesPerRow = 6 + GetIndexSize(MetadataToken.Type, tables);
+            tables[(int)MetadataToken.ClassLayout].BytesPerRow = 6 + GetIndexSize(MetadataToken.TypeDef, tables);
             tables[(int)MetadataToken.FieldLayout].BytesPerRow = 4 + GetIndexSize(MetadataToken.Field, tables);
             tables[(int)MetadataToken.Signature].BytesPerRow = heapSizes.Blob;
-            tables[(int)MetadataToken.EventMap].BytesPerRow = GetIndexSize(MetadataToken.Type, tables) + GetIndexSize(MetadataToken.Event, tables);
+            tables[(int)MetadataToken.EventMap].BytesPerRow = GetIndexSize(MetadataToken.TypeDef, tables) + GetIndexSize(MetadataToken.Event, tables);
             tables[(int)MetadataToken.Event].BytesPerRow = 2 + heapSizes.String + indexSizes[Index.TypeDefOrRef];
-            tables[(int)MetadataToken.PropertyMap].BytesPerRow = GetIndexSize(MetadataToken.Type, tables) + GetIndexSize(MetadataToken.Property, tables);
+            tables[(int)MetadataToken.PropertyMap].BytesPerRow = GetIndexSize(MetadataToken.TypeDef, tables) + GetIndexSize(MetadataToken.Property, tables);
             tables[(int)MetadataToken.Property].BytesPerRow = 2 + heapSizes.String + heapSizes.Blob;
-            tables[(int)MetadataToken.MethodSemantics].BytesPerRow = 2 + GetIndexSize(MetadataToken.Method, tables) + indexSizes[Index.HasSemantics];
-            tables[(int)MetadataToken.MethodImplementation].BytesPerRow = GetIndexSize(MetadataToken.Type, tables) + indexSizes[Index.MethodDefOrRef] * 2;
+            tables[(int)MetadataToken.MethodSemantics].BytesPerRow = 2 + GetIndexSize(MetadataToken.MethodDef, tables) + indexSizes[Index.HasSemantics];
+            tables[(int)MetadataToken.MethodImplementation].BytesPerRow = GetIndexSize(MetadataToken.TypeDef, tables) + indexSizes[Index.MethodDefOrRef] * 2;
             tables[(int)MetadataToken.ModuleReference].BytesPerRow = heapSizes.String;
             tables[(int)MetadataToken.TypeSpecification].BytesPerRow = heapSizes.Blob;
             tables[(int)MetadataToken.ImplementationMap].BytesPerRow = 2 + indexSizes[Index.MemberForwarded] + heapSizes.String + GetIndexSize(MetadataToken.ModuleReference, tables);
@@ -257,10 +257,11 @@ namespace PeNet.Structures
 
             tables.Module = ParseTable<Module>(MetadataToken.Module, tablesOffset, heapSizes, indexSizes);
             tables.TypeRef = ParseTable<TypeRef>(MetadataToken.TypeReference, tablesOffset, heapSizes, indexSizes);
-            tables.TypeDef = ParseTable<TypeDef>(MetadataToken.Type, tablesOffset, heapSizes, indexSizes);
+            tables.TypeDef = ParseTable<TypeDef>(MetadataToken.TypeDef, tablesOffset, heapSizes, indexSizes);
             tables.Field = ParseTable<Field>(MetadataToken.Field, tablesOffset, heapSizes, indexSizes);
-            tables.Method = ParseTable<Method>(MetadataToken.Method, tablesOffset, heapSizes, indexSizes);
+            tables.MethodDef = ParseTable<MethodDef>(MetadataToken.MethodDef, tablesOffset, heapSizes, indexSizes);
             tables.Param = ParseTable<Param>(MetadataToken.Parameter, tablesOffset, heapSizes, indexSizes);
+            tables.InterfaceImpl = ParseTable<InterfaceImpl>(MetadataToken.InterfaceImplementation, tablesOffset, heapSizes, indexSizes);
 
             return tables;
         }

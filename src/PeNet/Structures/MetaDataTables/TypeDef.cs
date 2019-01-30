@@ -15,7 +15,7 @@ namespace PeNet.Structures.MetaDataTables
             TypeNamespace = ReadSize(HeapSizes.String, ref CurrentOffset);
             Extends = ReadSize(IndexSizes[Index.TypeDefOrRef], ref CurrentOffset);
             FieldList = ReadSize(IndexSizes[Index.Field], ref CurrentOffset);
-            MethodList = ReadSize(IndexSizes[Index.Method], ref CurrentOffset);
+            MethodList = ReadSize(IndexSizes[Index.MethodDef], ref CurrentOffset);
         }
 
         public uint Flags {get;}

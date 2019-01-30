@@ -241,25 +241,25 @@ namespace PeNet.Test.Structures
         }
 
         [Fact]
-        public void NetFrameworkConsole_MetaDataTable_Method()
+        public void NetFrameworkConsole_MetaDataTable_MethodDef()
         {
-            var method = _peFile.MetaDataStreamTablesHeader.Tables.Method;
+            var methodDef = _peFile.MetaDataStreamTablesHeader.Tables.MethodDef;
 
-            Assert.Equal(2, method.Count);
+            Assert.Equal(2, methodDef.Count);
 
-            Assert.Equal(0x00002050u, method[0].RVA);
-            Assert.Equal(0x0000u, method[0].ImplFlags);
-            Assert.Equal(0x0091u, method[0].Flags);
-            Assert.Equal(0x022Cu, method[0].Name);
-            Assert.Equal(0x005Cu, method[0].Signature);
-            Assert.Equal(0x0001u, method[0].ParamList);
+            Assert.Equal(0x00002050u, methodDef[0].RVA);
+            Assert.Equal(0x0000u, methodDef[0].ImplFlags);
+            Assert.Equal(0x0091u, methodDef[0].Flags);
+            Assert.Equal(0x022Cu, methodDef[0].Name);
+            Assert.Equal(0x005Cu, methodDef[0].Signature);
+            Assert.Equal(0x0001u, methodDef[0].ParamList);
 
-            Assert.Equal(0x000020A4u, method[1].RVA);
-            Assert.Equal(0x0000u, method[1].ImplFlags);
-            Assert.Equal(0x1886u, method[1].Flags);
-            Assert.Equal(0x026Cu, method[1].Name);
-            Assert.Equal(0x0006u, method[1].Signature);
-            Assert.Equal(0x0002u, method[1].ParamList);
+            Assert.Equal(0x000020A4u, methodDef[1].RVA);
+            Assert.Equal(0x0000u, methodDef[1].ImplFlags);
+            Assert.Equal(0x1886u, methodDef[1].Flags);
+            Assert.Equal(0x026Cu, methodDef[1].Name);
+            Assert.Equal(0x0006u, methodDef[1].Signature);
+            Assert.Equal(0x0002u, methodDef[1].ParamList);
         }
 
         [Fact]
@@ -272,6 +272,14 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x0000u, param[0].Flags);
             Assert.Equal(0x0001u, param[0].Sequence);
             Assert.Equal(0x02E8u, param[0].Name);
+        }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_InterfaceImpl()
+        {
+            var interfaceImpl = _peFile.MetaDataStreamTablesHeader.Tables.InterfaceImpl;
+
+            Assert.Null(interfaceImpl);
         }
     }
 }

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PeNet.Test.Structures;
+﻿using PeNet.Test.Structures;
 
 namespace PeNet.Structures.MetaDataTables
 {
-    public class Method : AbstractTable
+    public class MethodDef : AbstractTable
     {
-        public Method(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
+        public MethodDef(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
             : base(buff, offset, heapSizes, indexSizes)
         {
             RVA = ReadSize(4, ref CurrentOffset);

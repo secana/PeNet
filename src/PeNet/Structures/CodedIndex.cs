@@ -9,9 +9,9 @@ namespace PeNet.Test.Structures
 	{
 		Module = 0x00,
 		TypeReference = 0x01,
-		Type = 0x02,
+		TypeDef = 0x02,
 		Field = 0x04,
-		Method = 0x06,
+		MethodDef = 0x06,
 		Parameter = 0x08,
 		InterfaceImplementation = 0x09,
 		MemberReference = 0x0A,
@@ -60,9 +60,10 @@ namespace PeNet.Test.Structures
     {
         String,
         Guid,
-        Method,
+        MethodDef,
         Field,
         Param,
+        TypeDef,
         TypeDefOrRef,
         HasConstant,
         HasCustomAttribute,
@@ -86,29 +87,30 @@ namespace PeNet.Test.Structures
             _index = new Dictionary<Index, IMetaDataIndex>
             {
                 // Single Indices
-                {Index.Method, new SingleIndex(MetadataToken.Method, tables)},
+                {Index.MethodDef, new SingleIndex(MetadataToken.MethodDef, tables)},
                 {Index.Field, new SingleIndex(MetadataToken.Field, tables)},
                 {Index.Param, new SingleIndex(MetadataToken.Parameter, tables)},
+                {Index.TypeDef, new SingleIndex(MetadataToken.TypeDef, tables)},
 
                 // Coded Indices
-                {Index.TypeDefOrRef, new CodedIndex(tables, (byte)MetadataToken.Type, (byte)MetadataToken.TypeReference, (byte)MetadataToken.TypeSpecification)},
+                {Index.TypeDefOrRef, new CodedIndex(tables, (byte)MetadataToken.TypeDef, (byte)MetadataToken.TypeReference, (byte)MetadataToken.TypeSpecification)},
 		        {Index.HasConstant, new CodedIndex(tables, (byte)MetadataToken.Field, (byte)MetadataToken.Parameter, (byte)MetadataToken.Property)},
                 {Index.HasCustomAttribute, new CodedIndex(tables,
-                (byte)MetadataToken.Method, (byte)MetadataToken.Field, (byte)MetadataToken.TypeReference, (byte)MetadataToken.Type,
+                (byte)MetadataToken.MethodDef, (byte)MetadataToken.Field, (byte)MetadataToken.TypeReference, (byte)MetadataToken.TypeDef,
                 (byte)MetadataToken.Parameter, (byte)MetadataToken.InterfaceImplementation, (byte)MetadataToken.MemberReference, (byte)MetadataToken.Module,
                 (byte)MetadataToken.DeclarativeSecurity, (byte)MetadataToken.Property, (byte)MetadataToken.Event, (byte)MetadataToken.Signature,
                 (byte)MetadataToken.ModuleReference, (byte)MetadataToken.TypeSpecification, (byte)MetadataToken.Assembly, (byte)MetadataToken.AssemblyReference,
                 (byte)MetadataToken.Field, (byte)MetadataToken.ExportedType, (byte)MetadataToken.ManifestResource) },
                 {Index.HasFieldMarshal, new CodedIndex(tables, (byte)MetadataToken.Field, (byte)MetadataToken.Parameter)},
-                {Index.HasDeclSecurity, new CodedIndex(tables, (byte)MetadataToken.Type, (byte)MetadataToken.Method, (byte)MetadataToken.Assembly)},
-                {Index.MemberRefParent, new CodedIndex(tables, (byte)MetadataToken.Type, (byte)MetadataToken.TypeReference, (byte)MetadataToken.ModuleReference, (byte)MetadataToken.Method, (byte)MetadataToken.TypeSpecification)},
+                {Index.HasDeclSecurity, new CodedIndex(tables, (byte)MetadataToken.TypeDef, (byte)MetadataToken.MethodDef, (byte)MetadataToken.Assembly)},
+                {Index.MemberRefParent, new CodedIndex(tables, (byte)MetadataToken.TypeDef, (byte)MetadataToken.TypeReference, (byte)MetadataToken.ModuleReference, (byte)MetadataToken.MethodDef, (byte)MetadataToken.TypeSpecification)},
                 {Index.HasSemantics, new CodedIndex(tables, (byte)MetadataToken.Event, (byte)MetadataToken.Property)},
-                {Index.MethodDefOrRef, new CodedIndex(tables, (byte)MetadataToken.Method, (byte)MetadataToken.MemberReference)},
-                {Index.MemberForwarded, new CodedIndex(tables, (byte)MetadataToken.Field, (byte)MetadataToken.Method)},
+                {Index.MethodDefOrRef, new CodedIndex(tables, (byte)MetadataToken.MethodDef, (byte)MetadataToken.MemberReference)},
+                {Index.MemberForwarded, new CodedIndex(tables, (byte)MetadataToken.Field, (byte)MetadataToken.MethodDef)},
                 {Index.Implementation, new CodedIndex(tables, (byte)MetadataToken.Field, (byte)MetadataToken.AssemblyReference, (byte)MetadataToken.ExportedType)},
-                {Index.CustomAttributeType, new CodedIndex(tables, unused, unused, (byte)MetadataToken.Method, (byte)MetadataToken.MemberReference, unused)},
+                {Index.CustomAttributeType, new CodedIndex(tables, unused, unused, (byte)MetadataToken.MethodDef, (byte)MetadataToken.MemberReference, unused)},
                 {Index.ResolutionScope, new CodedIndex(tables, (byte)MetadataToken.Module, (byte)MetadataToken.ModuleReference, (byte)MetadataToken.AssemblyReference, (byte)MetadataToken.TypeReference)},
-                {Index.TypeOrMethodDef, new CodedIndex(tables, (byte)MetadataToken.Type, (byte)MetadataToken.Method)}
+                {Index.TypeOrMethodDef, new CodedIndex(tables, (byte)MetadataToken.TypeDef, (byte)MetadataToken.MethodDef)}
 
             };
         }
