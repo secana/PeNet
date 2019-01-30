@@ -5,7 +5,7 @@ namespace PeNet.Test.Structures
 {
     public class NetFrameworkConsole_Test
     {
-        private readonly PeFile _peFile = new PeFile(@"../../../Binaries/NetFrameworkConsole.exe");
+        private readonly PeFile _peFile = new PeFile(@"./Binaries/NetFrameworkConsole.exe");
 
         [Fact]
         public void NetFameworkConsole_DataDirectory_COMDescripterSet()
@@ -230,6 +230,14 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x0041u, typeDef[1].Extends);
             Assert.Equal(0x0001u, typeDef[1].FieldList);
             Assert.Equal(0x0001u, typeDef[1].MethodList);
+        }
+
+        [Fact]
+         public void NetFrameworkConsole_MetaDataTable_Field()
+        {
+            var field = _peFile.MetaDataStreamTablesHeader.Tables.Field;
+
+            Assert.Null(field);
         }
 
     }
