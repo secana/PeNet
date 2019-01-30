@@ -299,5 +299,13 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x026Cu, memberRef[21].Name);
             Assert.Equal(0x0006u, memberRef[21].Signature);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_Constant()
+        {
+            var constant = _peFile.MetaDataStreamTablesHeader.Tables.Constant;
+
+            Assert.Null(constant);
+        }
     }
 }

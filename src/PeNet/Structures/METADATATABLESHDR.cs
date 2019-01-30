@@ -263,6 +263,7 @@ namespace PeNet.Structures
             tables.Param = ParseTable<Param>(MetadataToken.Parameter, tablesOffset, heapSizes, indexSizes);
             tables.InterfaceImpl = ParseTable<InterfaceImpl>(MetadataToken.InterfaceImplementation, tablesOffset, heapSizes, indexSizes);
             tables.MemberRef = ParseTable<MemberRef>(MetadataToken.MemberReference, tablesOffset, heapSizes, indexSizes);
+            tables.Constant = ParseTable<Constant>(MetadataToken.Constant, tablesOffset, heapSizes, indexSizes);
 
             return tables;
         }
