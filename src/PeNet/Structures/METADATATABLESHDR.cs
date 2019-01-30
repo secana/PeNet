@@ -260,6 +260,7 @@ namespace PeNet.Structures
             tables.TypeDef = ParseTable<TypeDef>(MetadataToken.Type, tablesOffset, heapSizes, indexSizes);
             tables.Field = ParseTable<Field>(MetadataToken.Field, tablesOffset, heapSizes, indexSizes);
             tables.Method = ParseTable<Method>(MetadataToken.Method, tablesOffset, heapSizes, indexSizes);
+            tables.Param = ParseTable<Param>(MetadataToken.Parameter, tablesOffset, heapSizes, indexSizes);
 
             return tables;
         }

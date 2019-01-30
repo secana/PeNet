@@ -9,5 +9,6 @@ namespace PeNet.Structures.MetaDataTables
         public List<TypeDef> TypeDef {get; set;}
         public List<Field> Field {get; set;}
         public List<Method> Method {get; set;}
+        public List<Param> Param {get; set;}
     }
 }

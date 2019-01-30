@@ -262,5 +262,16 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x0002u, method[1].ParamList);
         }
 
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_Param()
+        {
+            var param = _peFile.MetaDataStreamTablesHeader.Tables.Param;
+
+            Assert.Single(param);
+
+            Assert.Equal(0x0000u, param[0].Flags);
+            Assert.Equal(0x0001u, param[0].Sequence);
+            Assert.Equal(0x02E8u, param[0].Name);
+        }
     }
 }
