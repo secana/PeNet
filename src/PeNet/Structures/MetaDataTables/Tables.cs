@@ -11,5 +11,6 @@ namespace PeNet.Structures.MetaDataTables
         public List<MethodDef> MethodDef {get; set;}
         public List<Param> Param {get; set;}
         public List<InterfaceImpl> InterfaceImpl {get; set;}
+        public List<MemberRef> MemberRef {get; set;}
     }
 }

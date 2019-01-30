@@ -281,5 +281,23 @@ namespace PeNet.Test.Structures
 
             Assert.Null(interfaceImpl);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_MemberRef()
+        {
+            var memberRef = _peFile.MetaDataStreamTablesHeader.Tables.MemberRef;
+
+            Assert.Equal(22, memberRef.Count);
+
+            Assert.Equal(0x0009u, memberRef[0].Class);
+            Assert.Equal(0x026Cu, memberRef[0].Name);
+            Assert.Equal(0x0001u, memberRef[0].Signature);
+
+            // ... More rows ...
+
+            Assert.Equal(0x0081u, memberRef[21].Class);
+            Assert.Equal(0x026Cu, memberRef[21].Name);
+            Assert.Equal(0x0006u, memberRef[21].Signature);
+        }
     }
 }
