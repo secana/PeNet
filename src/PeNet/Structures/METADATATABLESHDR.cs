@@ -249,30 +249,30 @@ namespace PeNet.Structures
 
         private Tables ParseMetaDataTables()
         {
-            var heapSizes = new HeapSizes(HeapSizes);
-            var indexSizes = new IndexSize(TableDefinitions.ToArray());
-
             var tables = new Tables();
-            uint tablesOffset = (uint)(Offset + 0x18u + HammingWeight(Valid) * 4u);
-
-            tables.Module = ParseTable<Module>(MetadataToken.Module, tablesOffset, heapSizes, indexSizes);
-            tables.TypeRef = ParseTable<TypeRef>(MetadataToken.TypeReference, tablesOffset, heapSizes, indexSizes);
-            tables.TypeDef = ParseTable<TypeDef>(MetadataToken.TypeDef, tablesOffset, heapSizes, indexSizes);
-            tables.Field = ParseTable<Field>(MetadataToken.Field, tablesOffset, heapSizes, indexSizes);
-            tables.MethodDef = ParseTable<MethodDef>(MetadataToken.MethodDef, tablesOffset, heapSizes, indexSizes);
-            tables.Param = ParseTable<Param>(MetadataToken.Parameter, tablesOffset, heapSizes, indexSizes);
-            tables.InterfaceImpl = ParseTable<InterfaceImpl>(MetadataToken.InterfaceImplementation, tablesOffset, heapSizes, indexSizes);
-            tables.MemberRef = ParseTable<MemberRef>(MetadataToken.MemberReference, tablesOffset, heapSizes, indexSizes);
-            tables.Constant = ParseTable<Constant>(MetadataToken.Constant, tablesOffset, heapSizes, indexSizes);
-            tables.CustomAttribute = ParseTable<CustomAttribute>(MetadataToken.CustomAttribute, tablesOffset, heapSizes, indexSizes);
-            tables.FieldMarshal = ParseTable<FieldMarshal>(MetadataToken.FieldMarshal, tablesOffset, heapSizes, indexSizes);
+            
+            tables.Module = ParseTable<Module>(MetadataToken.Module);
+            tables.TypeRef = ParseTable<TypeRef>(MetadataToken.TypeReference);
+            tables.TypeDef = ParseTable<TypeDef>(MetadataToken.TypeDef);
+            tables.Field = ParseTable<Field>(MetadataToken.Field);
+            tables.MethodDef = ParseTable<MethodDef>(MetadataToken.MethodDef);
+            tables.Param = ParseTable<Param>(MetadataToken.Parameter);
+            tables.InterfaceImpl = ParseTable<InterfaceImpl>(MetadataToken.InterfaceImplementation);
+            tables.MemberRef = ParseTable<MemberRef>(MetadataToken.MemberReference);
+            tables.Constant = ParseTable<Constant>(MetadataToken.Constant);
+            tables.CustomAttribute = ParseTable<CustomAttribute>(MetadataToken.CustomAttribute);
+            tables.FieldMarshal = ParseTable<FieldMarshal>(MetadataToken.FieldMarshal);
 
             return tables;
         }
 
-        private List<T> ParseTable<T>(MetadataToken token, uint tablesOffset, HeapSizes heapSizes, IndexSize indexSizes)
+        private List<T> ParseTable<T>(MetadataToken token)
             where T : AbstractTable
         {
+            var heapSizes = new HeapSizes(HeapSizes);
+            var indexSizes = new IndexSize(TableDefinitions.ToArray());
+            uint tablesOffset = (uint)(Offset + 0x18u + HammingWeight(Valid) * 4u);
+
             var tableInfo = TableDefinitions[(int)token];
             var rows = new List<T>();
 
