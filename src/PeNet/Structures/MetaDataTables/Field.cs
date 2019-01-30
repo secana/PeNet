@@ -7,9 +7,9 @@ namespace PeNet.Structures.MetaDataTables
         public Field(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
             : base(buff, offset, heapSizes, indexSizes)
         {
-            Flags = (ushort) ReadSize(2, ref CurrentOffset);
-            Name = ReadSize(HeapSizes.String, ref CurrentOffset);
-            Signature = ReadSize(HeapSizes.Blob, ref CurrentOffset);
+            Flags = (ushort) ReadSize(2);
+            Name = ReadSize(HeapSizes.String);
+            Signature = ReadSize(HeapSizes.Blob);
         }
 
         public ushort Flags {get;}

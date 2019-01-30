@@ -7,9 +7,9 @@ namespace PeNet.Structures.MetaDataTables
         public MemberRef(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
             : base(buff, offset, heapSizes, indexSizes)
         {
-            Class = ReadSize(IndexSizes[Index.MemberRefParent], ref CurrentOffset);
-            Name = ReadSize(HeapSizes.String, ref CurrentOffset);
-            Signature = ReadSize(HeapSizes.Blob, ref CurrentOffset);
+            Class = ReadSize(IndexSizes[Index.MemberRefParent]);
+            Name = ReadSize(HeapSizes.String);
+            Signature = ReadSize(HeapSizes.Blob);
         }
 
         public uint Class {get;}

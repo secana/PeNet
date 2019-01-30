@@ -17,7 +17,7 @@ namespace PeNet.Structures.MetaDataTables
             CurrentOffset = Offset;
         }
 
-        protected uint ReadSize(uint size, ref uint offset)
+        private uint ReadSize(uint size, ref uint offset)
         {
             if(size == 2)
             {
@@ -27,6 +27,11 @@ namespace PeNet.Structures.MetaDataTables
             
             offset += 4;
             return Buff.BytesToUInt32(offset - 4);
+        }
+
+        protected uint ReadSize(uint size)
+        {
+            return ReadSize(size, ref CurrentOffset);
         }
     }
 }

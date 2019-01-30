@@ -9,11 +9,11 @@ namespace PeNet.Structures.MetaDataTables
             : base(buff, offset, heapSizes, indexSizes)
         {
 
-            Generation = (ushort) ReadSize(2, ref CurrentOffset);
-            Name = ReadSize(HeapSizes.String, ref CurrentOffset);
-            Mvid = ReadSize(HeapSizes.Guid, ref CurrentOffset);
-            EncId = ReadSize(HeapSizes.Guid, ref CurrentOffset);
-            EncBaseId = ReadSize(HeapSizes.Guid, ref CurrentOffset);
+            Generation = (ushort) ReadSize(2);
+            Name = ReadSize(HeapSizes.String);
+            Mvid = ReadSize(HeapSizes.Guid);
+            EncId = ReadSize(HeapSizes.Guid);
+            EncBaseId = ReadSize(HeapSizes.Guid);
         }
 
         public ushort Generation {get;}

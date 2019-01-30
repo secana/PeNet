@@ -7,12 +7,12 @@ namespace PeNet.Structures.MetaDataTables
         public MethodDef(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
             : base(buff, offset, heapSizes, indexSizes)
         {
-            RVA = ReadSize(4, ref CurrentOffset);
-            ImplFlags = (ushort) ReadSize(2, ref CurrentOffset);
-            Flags = (ushort) ReadSize(2, ref CurrentOffset);
-            Name = ReadSize(HeapSizes.String, ref CurrentOffset);
-            Signature = ReadSize(HeapSizes.Blob, ref CurrentOffset);
-            ParamList = ReadSize(IndexSizes[Index.Param], ref CurrentOffset);
+            RVA = ReadSize(4);
+            ImplFlags = (ushort) ReadSize(2);
+            Flags = (ushort) ReadSize(2);
+            Name = ReadSize(HeapSizes.String);
+            Signature = ReadSize(HeapSizes.Blob);
+            ParamList = ReadSize(IndexSizes[Index.Param]);
         }
 
         public uint RVA {get;}

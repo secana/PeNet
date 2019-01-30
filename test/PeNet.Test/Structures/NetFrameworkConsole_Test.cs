@@ -325,5 +325,13 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x0073u, customAttribute[13].Type);
             Assert.Equal(0x00101u, customAttribute[13].Value);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_FieldMarshall()
+        {
+            var fieldMarshall = _peFile.MetaDataStreamTablesHeader.Tables.FieldMarshal;
+
+            Assert.Null(fieldMarshall);
+        }
     }
 }

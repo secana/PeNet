@@ -7,8 +7,8 @@ namespace PeNet.Structures.MetaDataTables
         public InterfaceImpl(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
             : base(buff, offset, heapSizes, indexSizes)
         {
-            Class = ReadSize(IndexSizes[Index.TypeDef], ref CurrentOffset);
-            Interface = ReadSize(IndexSizes[Index.TypeDefOrRef], ref CurrentOffset);
+            Class = ReadSize(IndexSizes[Index.TypeDef]);
+            Interface = ReadSize(IndexSizes[Index.TypeDefOrRef]);
         }
 
         public uint Class {get;}

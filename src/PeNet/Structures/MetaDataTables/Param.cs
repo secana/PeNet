@@ -7,9 +7,9 @@ namespace PeNet.Structures.MetaDataTables
         public Param(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
             : base(buff, offset, heapSizes, indexSizes)
         {
-            Flags = (ushort) ReadSize(2, ref CurrentOffset);
-            Sequence = (ushort) ReadSize(2, ref CurrentOffset);
-            Name = ReadSize(HeapSizes.String, ref CurrentOffset);
+            Flags = (ushort) ReadSize(2);
+            Sequence = (ushort) ReadSize(2);
+            Name = ReadSize(HeapSizes.String);
         }
 
         public ushort Flags {get;}

@@ -7,9 +7,9 @@ namespace PeNet.Structures.MetaDataTables
         public TypeRef(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
             : base(buff, offset, heapSizes, indexSizes)
         {
-            ResolutionScope = ReadSize(IndexSizes[Index.ResolutionScope], ref CurrentOffset);
-            TypeName = ReadSize(HeapSizes.String, ref CurrentOffset);
-            TypeNamespace = ReadSize(HeapSizes.String, ref CurrentOffset);
+            ResolutionScope = ReadSize(IndexSizes[Index.ResolutionScope]);
+            TypeName = ReadSize(HeapSizes.String);
+            TypeNamespace = ReadSize(HeapSizes.String);
         }
 
         public uint ResolutionScope {get;}

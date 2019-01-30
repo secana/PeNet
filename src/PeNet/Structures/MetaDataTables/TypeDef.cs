@@ -10,12 +10,12 @@ namespace PeNet.Structures.MetaDataTables
         public TypeDef(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
             : base(buff, offset, heapSizes, indexSizes)
         {
-            Flags = ReadSize(4, ref CurrentOffset);
-            TypeName = ReadSize(HeapSizes.String, ref CurrentOffset);
-            TypeNamespace = ReadSize(HeapSizes.String, ref CurrentOffset);
-            Extends = ReadSize(IndexSizes[Index.TypeDefOrRef], ref CurrentOffset);
-            FieldList = ReadSize(IndexSizes[Index.Field], ref CurrentOffset);
-            MethodList = ReadSize(IndexSizes[Index.MethodDef], ref CurrentOffset);
+            Flags = ReadSize(4);
+            TypeName = ReadSize(HeapSizes.String);
+            TypeNamespace = ReadSize(HeapSizes.String);
+            Extends = ReadSize(IndexSizes[Index.TypeDefOrRef]);
+            FieldList = ReadSize(IndexSizes[Index.Field]);
+            MethodList = ReadSize(IndexSizes[Index.MethodDef]);
         }
 
         public uint Flags {get;}

@@ -265,6 +265,7 @@ namespace PeNet.Structures
             tables.MemberRef = ParseTable<MemberRef>(MetadataToken.MemberReference, tablesOffset, heapSizes, indexSizes);
             tables.Constant = ParseTable<Constant>(MetadataToken.Constant, tablesOffset, heapSizes, indexSizes);
             tables.CustomAttribute = ParseTable<CustomAttribute>(MetadataToken.CustomAttribute, tablesOffset, heapSizes, indexSizes);
+            tables.FieldMarshal = ParseTable<FieldMarshal>(MetadataToken.FieldMarshal, tablesOffset, heapSizes, indexSizes);
 
             return tables;
         }
