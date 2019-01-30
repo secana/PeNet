@@ -307,5 +307,23 @@ namespace PeNet.Test.Structures
 
             Assert.Null(constant);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_CustomAttribute()
+        {
+            var customAttribute = _peFile.MetaDataStreamTablesHeader.Tables.CustomAttribute;
+
+            Assert.Equal(14, customAttribute.Count);
+
+            Assert.Equal(0x002Eu, customAttribute[0].Parent);
+            Assert.Equal(0x000Bu, customAttribute[0].Type);
+            Assert.Equal(0x0062u, customAttribute[0].Value);
+
+            // ... More rows ...
+
+            Assert.Equal(0x002Eu, customAttribute[13].Parent);
+            Assert.Equal(0x0073u, customAttribute[13].Type);
+            Assert.Equal(0x00101u, customAttribute[13].Value);
+        }
     }
 }
