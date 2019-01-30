@@ -177,5 +177,35 @@ namespace PeNet.Test.Structures
             Assert.Equal(454U, metaDataTablesHdr.TableDefinitions[35].Offset);
             Assert.Equal(20U, metaDataTablesHdr.TableDefinitions[35].BytesPerRow);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_Module()
+        {
+            var module = _peFile.MetaDataStreamTablesHeader.Tables.Module;
+
+            Assert.Single(module);
+            Assert.Equal(0x0000, module[0].Generation);
+            Assert.Equal(0x01EBu, module[0].Name);
+            Assert.Equal(0x0001u, module[0].Mvid);
+            Assert.Equal(0x0000u, module[0].EncId);
+            Assert.Equal(0x0000u, module[0].EncBaseId);
+        }
+
+        
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_TypeRef()
+        {
+            var typeRef = _peFile.MetaDataStreamTablesHeader.Tables.TypeRef;
+
+            Assert.Equal(23, typeRef.Count);
+
+            Assert.Equal(0x0006u, typeRef[0].ResolutionScope);
+            Assert.Equal(0x0160u, typeRef[0].TypeName);
+            Assert.Equal(0x02A4u, typeRef[0].TypeNamespace);
+
+            Assert.Equal(0x0006u, typeRef[22].ResolutionScope);
+            Assert.Equal(0x0243u, typeRef[22].TypeName);
+            Assert.Equal(0x0225u, typeRef[22].TypeNamespace);
+        }
     }
 }

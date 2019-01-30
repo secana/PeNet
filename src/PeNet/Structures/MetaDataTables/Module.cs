@@ -1,26 +1,19 @@
-﻿using System;
-using PeNet.Test.Structures;
+﻿using PeNet.Test.Structures;
 using PeNet.Utilities;
 
 namespace PeNet.Structures.MetaDataTables
 {
-    public class Module : AbstractStructure
+    public class Module : AbstractTable
     {
-        private readonly HeapSizes _heapSizes;
-        private readonly IndexSize _indexSizes;
-
         public Module(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset)
+            : base(buff, offset, heapSizes, indexSizes)
         {
-            _heapSizes = heapSizes;
-            _indexSizes = indexSizes;
-            var currentOffset = offset;
 
-            Generation = buff.BytesToUInt16(Offset);
-            Name = ReadSize(_heapSizes.String, ref currentOffset);
-            Mvid = ReadSize(_heapSizes.Guid, ref currentOffset);
-            EncId = ReadSize(_heapSizes.Guid, ref currentOffset);
-            EncBaseId = ReadSize(_heapSizes.Guid, ref currentOffset);
+            Generation = (ushort) ReadSize(2, ref CurrentOffset);
+            Name = ReadSize(HeapSizes.String, ref CurrentOffset);
+            Mvid = ReadSize(HeapSizes.Guid, ref CurrentOffset);
+            EncId = ReadSize(HeapSizes.Guid, ref CurrentOffset);
+            EncBaseId = ReadSize(HeapSizes.Guid, ref CurrentOffset);
         }
 
         public ushort Generation {get;}
@@ -32,17 +25,5 @@ namespace PeNet.Structures.MetaDataTables
         public uint EncId {get;}
 
         public uint EncBaseId {get;}
-
-        private uint ReadSize(uint size, ref uint offset)
-        {
-            if(size == 2)
-            {
-                offset += 2;
-                return Buff.BytesToUInt16(offset);
-            }
-            
-            offset += 4;
-            return Buff.BytesToUInt32(offset);
-        }
     }
 }
