@@ -62,6 +62,7 @@ namespace PeNet.Test.Structures
         Guid,
         Method,
         Field,
+        Param,
         TypeDefOrRef,
         HasConstant,
         HasCustomAttribute,
@@ -87,6 +88,7 @@ namespace PeNet.Test.Structures
                 // Single Indices
                 {Index.Method, new SingleIndex(MetadataToken.Method, tables)},
                 {Index.Field, new SingleIndex(MetadataToken.Field, tables)},
+                {Index.Param, new SingleIndex(MetadataToken.Parameter, tables)},
 
                 // Coded Indices
                 {Index.TypeDefOrRef, new CodedIndex(tables, (byte)MetadataToken.Type, (byte)MetadataToken.TypeReference, (byte)MetadataToken.TypeSpecification)},

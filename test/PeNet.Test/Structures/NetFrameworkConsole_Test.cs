@@ -233,11 +233,33 @@ namespace PeNet.Test.Structures
         }
 
         [Fact]
-         public void NetFrameworkConsole_MetaDataTable_Field()
+        public void NetFrameworkConsole_MetaDataTable_Field()
         {
             var field = _peFile.MetaDataStreamTablesHeader.Tables.Field;
 
             Assert.Null(field);
+        }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_Method()
+        {
+            var method = _peFile.MetaDataStreamTablesHeader.Tables.Method;
+
+            Assert.Equal(2, method.Count);
+
+            Assert.Equal(0x00002050u, method[0].RVA);
+            Assert.Equal(0x0000u, method[0].ImplFlags);
+            Assert.Equal(0x0091u, method[0].Flags);
+            Assert.Equal(0x022Cu, method[0].Name);
+            Assert.Equal(0x005Cu, method[0].Signature);
+            Assert.Equal(0x0001u, method[0].ParamList);
+
+            Assert.Equal(0x000020A4u, method[1].RVA);
+            Assert.Equal(0x0000u, method[1].ImplFlags);
+            Assert.Equal(0x1886u, method[1].Flags);
+            Assert.Equal(0x026Cu, method[1].Name);
+            Assert.Equal(0x0006u, method[1].Signature);
+            Assert.Equal(0x0002u, method[1].ParamList);
         }
 
     }
