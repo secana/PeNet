@@ -357,5 +357,15 @@ namespace PeNet.Test.Structures
 
             Assert.Null(fieldLayout);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_StandAloneSig()
+        {
+            var standAloneSig = _peFile.MetaDataStreamTablesHeader.Tables.StandAloneSig;
+
+            Assert.Single(standAloneSig);
+
+            Assert.Equal(0x001Au, standAloneSig[0].Signature);
+        }
     }
 }

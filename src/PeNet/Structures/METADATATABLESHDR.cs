@@ -210,7 +210,7 @@ namespace PeNet.Structures
             tables[(int)MetadataToken.DeclarativeSecurity].BytesPerRow = 2 + indexSizes[Index.HasDeclSecurity] + heapSizes.Blob;
             tables[(int)MetadataToken.ClassLayout].BytesPerRow = 6 + GetIndexSize(MetadataToken.TypeDef, tables);
             tables[(int)MetadataToken.FieldLayout].BytesPerRow = 4 + GetIndexSize(MetadataToken.Field, tables);
-            tables[(int)MetadataToken.Signature].BytesPerRow = heapSizes.Blob;
+            tables[(int)MetadataToken.StandAloneSignature].BytesPerRow = heapSizes.Blob;
             tables[(int)MetadataToken.EventMap].BytesPerRow = GetIndexSize(MetadataToken.TypeDef, tables) + GetIndexSize(MetadataToken.Event, tables);
             tables[(int)MetadataToken.Event].BytesPerRow = 2 + heapSizes.String + indexSizes[Index.TypeDefOrRef];
             tables[(int)MetadataToken.PropertyMap].BytesPerRow = GetIndexSize(MetadataToken.TypeDef, tables) + GetIndexSize(MetadataToken.Property, tables);
@@ -264,7 +264,8 @@ namespace PeNet.Structures
                 FieldMarshal    = ParseTable<FieldMarshal>(MetadataToken.FieldMarshal),
                 DeclSecurity    = ParseTable<DeclSecurity>(MetadataToken.DeclarativeSecurity),
                 ClassLayout     = ParseTable<ClassLayout>(MetadataToken.ClassLayout),
-                FieldLayout     = ParseTable<FieldLayout>(MetadataToken.FieldLayout)
+                FieldLayout     = ParseTable<FieldLayout>(MetadataToken.FieldLayout),
+                StandAloneSig   = ParseTable<StandAloneSig>(MetadataToken.StandAloneSignature)
             };
 
             return tables;

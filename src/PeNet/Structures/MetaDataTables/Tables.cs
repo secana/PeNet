@@ -18,5 +18,6 @@ namespace PeNet.Structures.MetaDataTables
         public List<DeclSecurity> DeclSecurity {get; set;}
         public List<ClassLayout> ClassLayout {get; set;}
         public List<FieldLayout> FieldLayout {get; set;}
+        public List<StandAloneSig> StandAloneSig {get; set;}
     }
 }
