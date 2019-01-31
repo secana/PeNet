@@ -266,7 +266,8 @@ namespace PeNet.Structures
                 ClassLayout     = ParseTable<ClassLayout>(MetadataToken.ClassLayout),
                 FieldLayout     = ParseTable<FieldLayout>(MetadataToken.FieldLayout),
                 StandAloneSig   = ParseTable<StandAloneSig>(MetadataToken.StandAloneSignature),
-                EventMap        = ParseTable<EventMap>(MetadataToken.EventMap)
+                EventMap        = ParseTable<EventMap>(MetadataToken.EventMap),
+                Event           = ParseTable<Event>(MetadataToken.Event)
             };
 
             return tables;

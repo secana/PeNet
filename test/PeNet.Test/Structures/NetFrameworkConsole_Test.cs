@@ -369,11 +369,19 @@ namespace PeNet.Test.Structures
         }
 
         [Fact]
-        public void NetFrameworkConsole_MetaDataTable_Event()
+        public void NetFrameworkConsole_MetaDataTable_EventMap()
         {
             var eventMap = _peFile.MetaDataStreamTablesHeader.Tables.EventMap;
 
             Assert.Null(eventMap);
+        }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_Event()
+        {
+            var ev = _peFile.MetaDataStreamTablesHeader.Tables.Event;
+
+            Assert.Null(ev);
         }
     }
 }
