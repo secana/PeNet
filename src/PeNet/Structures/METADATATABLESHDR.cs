@@ -249,19 +249,21 @@ namespace PeNet.Structures
 
         private Tables ParseMetaDataTables()
         {
-            var tables = new Tables();
-            
-            tables.Module = ParseTable<Module>(MetadataToken.Module);
-            tables.TypeRef = ParseTable<TypeRef>(MetadataToken.TypeReference);
-            tables.TypeDef = ParseTable<TypeDef>(MetadataToken.TypeDef);
-            tables.Field = ParseTable<Field>(MetadataToken.Field);
-            tables.MethodDef = ParseTable<MethodDef>(MetadataToken.MethodDef);
-            tables.Param = ParseTable<Param>(MetadataToken.Parameter);
-            tables.InterfaceImpl = ParseTable<InterfaceImpl>(MetadataToken.InterfaceImplementation);
-            tables.MemberRef = ParseTable<MemberRef>(MetadataToken.MemberReference);
-            tables.Constant = ParseTable<Constant>(MetadataToken.Constant);
-            tables.CustomAttribute = ParseTable<CustomAttribute>(MetadataToken.CustomAttribute);
-            tables.FieldMarshal = ParseTable<FieldMarshal>(MetadataToken.FieldMarshal);
+            var tables = new Tables
+            {
+                Module = ParseTable<Module>(MetadataToken.Module),
+                TypeRef = ParseTable<TypeRef>(MetadataToken.TypeReference),
+                TypeDef = ParseTable<TypeDef>(MetadataToken.TypeDef),
+                Field = ParseTable<Field>(MetadataToken.Field),
+                MethodDef = ParseTable<MethodDef>(MetadataToken.MethodDef),
+                Param = ParseTable<Param>(MetadataToken.Parameter),
+                InterfaceImpl = ParseTable<InterfaceImpl>(MetadataToken.InterfaceImplementation),
+                MemberRef = ParseTable<MemberRef>(MetadataToken.MemberReference),
+                Constant = ParseTable<Constant>(MetadataToken.Constant),
+                CustomAttribute = ParseTable<CustomAttribute>(MetadataToken.CustomAttribute),
+                FieldMarshal = ParseTable<FieldMarshal>(MetadataToken.FieldMarshal),
+                DeclSecurity = ParseTable<DeclSecurity>(MetadataToken.DeclarativeSecurity)
+            };
 
             return tables;
         }
@@ -280,7 +282,10 @@ namespace PeNet.Structures
             {
                 for(var i = 0u; i < tableInfo.RowCount; i++)
                 {
-                    rows.Add((T) Activator.CreateInstance(typeof(T), new object[] {Buff, tablesOffset + tableInfo.Offset + tableInfo.BytesPerRow * i, heapSizes, indexSizes}));
+                    rows.Add((T) Activator.CreateInstance(typeof(T), new object[] 
+                        {
+                            Buff, tablesOffset + tableInfo.Offset + tableInfo.BytesPerRow * i, heapSizes, indexSizes
+                        }));
                 }
             }
 

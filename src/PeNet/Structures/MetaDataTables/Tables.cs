@@ -15,5 +15,6 @@ namespace PeNet.Structures.MetaDataTables
         public List<Constant> Constant {get; set;}
         public List<CustomAttribute> CustomAttribute {get; set;}
         public List<FieldMarshal> FieldMarshal  {get; set;}
+        public List<DeclSecurity> DeclSecurity {get; set;}
     }
 }

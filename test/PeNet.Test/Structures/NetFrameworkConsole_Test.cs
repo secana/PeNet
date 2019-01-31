@@ -333,5 +333,13 @@ namespace PeNet.Test.Structures
 
             Assert.Null(fieldMarshall);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_DeclSecurity()
+        {
+            var declSecurity = _peFile.MetaDataStreamTablesHeader.Tables.DeclSecurity;
+
+            Assert.Null(declSecurity);
+        }
     }
 }
