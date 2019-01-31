@@ -251,18 +251,19 @@ namespace PeNet.Structures
         {
             var tables = new Tables
             {
-                Module = ParseTable<Module>(MetadataToken.Module),
-                TypeRef = ParseTable<TypeRef>(MetadataToken.TypeReference),
-                TypeDef = ParseTable<TypeDef>(MetadataToken.TypeDef),
-                Field = ParseTable<Field>(MetadataToken.Field),
-                MethodDef = ParseTable<MethodDef>(MetadataToken.MethodDef),
-                Param = ParseTable<Param>(MetadataToken.Parameter),
-                InterfaceImpl = ParseTable<InterfaceImpl>(MetadataToken.InterfaceImplementation),
-                MemberRef = ParseTable<MemberRef>(MetadataToken.MemberReference),
-                Constant = ParseTable<Constant>(MetadataToken.Constant),
+                Module          = ParseTable<Module>(MetadataToken.Module),
+                TypeRef         = ParseTable<TypeRef>(MetadataToken.TypeReference),
+                TypeDef         = ParseTable<TypeDef>(MetadataToken.TypeDef),
+                Field           = ParseTable<Field>(MetadataToken.Field),
+                MethodDef       = ParseTable<MethodDef>(MetadataToken.MethodDef),
+                Param           = ParseTable<Param>(MetadataToken.Parameter),
+                InterfaceImpl   = ParseTable<InterfaceImpl>(MetadataToken.InterfaceImplementation),
+                MemberRef       = ParseTable<MemberRef>(MetadataToken.MemberReference),
+                Constant        = ParseTable<Constant>(MetadataToken.Constant),
                 CustomAttribute = ParseTable<CustomAttribute>(MetadataToken.CustomAttribute),
-                FieldMarshal = ParseTable<FieldMarshal>(MetadataToken.FieldMarshal),
-                DeclSecurity = ParseTable<DeclSecurity>(MetadataToken.DeclarativeSecurity)
+                FieldMarshal    = ParseTable<FieldMarshal>(MetadataToken.FieldMarshal),
+                DeclSecurity    = ParseTable<DeclSecurity>(MetadataToken.DeclarativeSecurity),
+                ClassLayout     = ParseTable<ClassLayout>(MetadataToken.ClassLayout)
             };
 
             return tables;

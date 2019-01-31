@@ -341,5 +341,13 @@ namespace PeNet.Test.Structures
 
             Assert.Null(declSecurity);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_ClassLayout()
+        {
+            var classLayout = _peFile.MetaDataStreamTablesHeader.Tables.ClassLayout;
+
+            Assert.Null(classLayout);
+        }
     }
 }
