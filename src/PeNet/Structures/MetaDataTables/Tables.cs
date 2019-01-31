@@ -19,5 +19,6 @@ namespace PeNet.Structures.MetaDataTables
         public List<ClassLayout> ClassLayout {get; set;}
         public List<FieldLayout> FieldLayout {get; set;}
         public List<StandAloneSig> StandAloneSig {get; set;}
+        public List<EventMap> EventMap {get; set;}
     }
 }

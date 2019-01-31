@@ -367,5 +367,13 @@ namespace PeNet.Test.Structures
 
             Assert.Equal(0x001Au, standAloneSig[0].Signature);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_Event()
+        {
+            var eventMap = _peFile.MetaDataStreamTablesHeader.Tables.EventMap;
+
+            Assert.Null(eventMap);
+        }
     }
 }
