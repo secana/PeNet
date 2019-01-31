@@ -263,7 +263,8 @@ namespace PeNet.Structures
                 CustomAttribute = ParseTable<CustomAttribute>(MetadataToken.CustomAttribute),
                 FieldMarshal    = ParseTable<FieldMarshal>(MetadataToken.FieldMarshal),
                 DeclSecurity    = ParseTable<DeclSecurity>(MetadataToken.DeclarativeSecurity),
-                ClassLayout     = ParseTable<ClassLayout>(MetadataToken.ClassLayout)
+                ClassLayout     = ParseTable<ClassLayout>(MetadataToken.ClassLayout),
+                FieldLayout     = ParseTable<FieldLayout>(MetadataToken.FieldLayout)
             };
 
             return tables;
