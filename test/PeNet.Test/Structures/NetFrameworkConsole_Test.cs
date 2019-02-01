@@ -460,5 +460,13 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x0060u, assembly[0].Name);
             Assert.Equal(0x0000u, assembly[0].Culture);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_AssemblyProcessor()
+        {
+            var assemblyProcessor = _peFile.MetaDataStreamTablesHeader.Tables.AssemblyProcessor;
+
+            Assert.Null(assemblyProcessor);
+        }
     }
 }

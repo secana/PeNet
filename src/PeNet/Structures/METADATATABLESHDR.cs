@@ -276,7 +276,8 @@ namespace PeNet.Structures
                 TypeSpec        = ParseTable<TypeSpec>(MetadataToken.TypeSpecification),
                 ImplMap         = ParseTable<ImplMap>(MetadataToken.ImplementationMap),
                 FieldRVA        = ParseTable<FieldRVA>(MetadataToken.FieldRVA),
-                Assembly        = ParseTable<Assembly>(MetadataToken.Assembly)
+                Assembly        = ParseTable<Assembly>(MetadataToken.Assembly),
+                AssemblyProcessor = ParseTable<AssemblyProcessor>(MetadataToken.AssemblyProcessor)
             };
 
             return tables;

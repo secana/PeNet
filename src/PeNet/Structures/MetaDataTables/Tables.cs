@@ -30,5 +30,6 @@ namespace PeNet.Structures.MetaDataTables
         public List<ImplMap> ImplMap {get; set;}
         public List<FieldRVA> FieldRVA {get; set;}
         public List<Assembly> Assembly {get; set;}
+        public List<AssemblyProcessor> AssemblyProcessor {get; set;}
     }
 }
