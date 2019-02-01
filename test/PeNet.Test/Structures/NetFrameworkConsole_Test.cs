@@ -510,5 +510,13 @@ namespace PeNet.Test.Structures
 
             Assert.Null(assemblyRefOS);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_File()
+        {
+            var file = _peFile.MetaDataStreamTablesHeader.Tables.File;
+
+            Assert.Null(file);
+        }
     }
 }

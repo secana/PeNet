@@ -35,5 +35,6 @@ namespace PeNet.Structures.MetaDataTables
         public List<AssemblyRef> AssemblyRef {get; set;}
         public List<AssemblyRefProcessor> AssemblyRefProcessor {get; set;}
         public List<AssemblyRefOS> AssemblyRefOS {get; set;}
+        public List<File> File {get; set;}
     }
 }

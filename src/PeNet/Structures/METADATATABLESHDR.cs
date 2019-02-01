@@ -281,7 +281,8 @@ namespace PeNet.Structures
                 AssemblyOS      = ParseTable<AssemblyOS>(MetadataToken.AssemblyOS),
                 AssemblyRef     = ParseTable<AssemblyRef>(MetadataToken.AssemblyReference),
                 AssemblyRefProcessor = ParseTable<AssemblyRefProcessor>(MetadataToken.AssemblyReferenceProcessor),
-                AssemblyRefOS   = ParseTable<AssemblyRefOS>(MetadataToken.AssemblyReferenceOS)
+                AssemblyRefOS   = ParseTable<AssemblyRefOS>(MetadataToken.AssemblyReferenceOS),
+                File            = ParseTable<File>(MetadataToken.File)
             };
 
             return tables;
