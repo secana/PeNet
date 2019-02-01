@@ -518,5 +518,13 @@ namespace PeNet.Test.Structures
 
             Assert.Null(file);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_ExportedType()
+        {
+            var exportedType = _peFile.MetaDataStreamTablesHeader.Tables.ExportedType;
+
+            Assert.Null(exportedType);
+        }
     }
 }
