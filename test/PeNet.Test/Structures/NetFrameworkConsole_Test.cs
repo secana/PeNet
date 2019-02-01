@@ -526,5 +526,13 @@ namespace PeNet.Test.Structures
 
             Assert.Null(exportedType);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_ManifestResource()
+        {
+            var manifestResource = _peFile.MetaDataStreamTablesHeader.Tables.ManifestResource;
+
+            Assert.Null(manifestResource);
+        }
     }
 }

@@ -37,5 +37,6 @@ namespace PeNet.Structures.MetaDataTables
         public List<AssemblyRefOS> AssemblyRefOS {get; set;}
         public List<File> File {get; set;}
         public List<ExportedType> ExportedType {get; set;}
+        public List<ManifestResource> ManifestResource {get; set;}
     }
 }
