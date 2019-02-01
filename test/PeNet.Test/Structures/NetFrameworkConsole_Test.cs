@@ -407,5 +407,13 @@ namespace PeNet.Test.Structures
 
             Assert.Null(methodSemantics);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_MethodImpl()
+        {
+            var methodImpl = _peFile.MetaDataStreamTablesHeader.Tables.MethodImpl;
+
+            Assert.Null(methodImpl);
+        }
     }
 }
