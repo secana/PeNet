@@ -39,5 +39,6 @@ namespace PeNet.Structures.MetaDataTables
         public List<ExportedType> ExportedType {get; set;}
         public List<ManifestResource> ManifestResource {get; set;}
         public List<NestedClass> NestedClass {get; set;}
+        public List<GenericParam> GenericParam {get; set;}
     }
 }

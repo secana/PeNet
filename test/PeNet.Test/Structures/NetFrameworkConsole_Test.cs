@@ -542,5 +542,13 @@ namespace PeNet.Test.Structures
 
             Assert.Null(nestedClass);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_GenericParam()
+        {
+            var genericParam = _peFile.MetaDataStreamTablesHeader.Tables.GenericParam;
+
+            Assert.Null(genericParam);
+        }
     }
 }
