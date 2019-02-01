@@ -550,5 +550,13 @@ namespace PeNet.Test.Structures
 
             Assert.Null(genericParam);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_GenericParamConstraint()
+        {
+            var genericParamConstraint = _peFile.MetaDataStreamTablesHeader.Tables.GenericParamConstraints;
+
+            Assert.Null(genericParamConstraint);
+        }
     }
 }

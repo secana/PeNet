@@ -40,5 +40,6 @@ namespace PeNet.Structures.MetaDataTables
         public List<ManifestResource> ManifestResource {get; set;}
         public List<NestedClass> NestedClass {get; set;}
         public List<GenericParam> GenericParam {get; set;}
+        public List<GenericParamConstraint> GenericParamConstraints {get; set;}
     }
 }

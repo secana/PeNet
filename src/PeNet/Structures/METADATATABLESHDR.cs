@@ -286,7 +286,8 @@ namespace PeNet.Structures
                 ExportedType            = ParseTable<ExportedType>(MetadataToken.ExportedType),
                 ManifestResource        = ParseTable<ManifestResource>(MetadataToken.ManifestResource),
                 NestedClass             = ParseTable<NestedClass>(MetadataToken.NestedClass),
-                GenericParam            = ParseTable<GenericParam>(MetadataToken.GenericParameter)
+                GenericParam            = ParseTable<GenericParam>(MetadataToken.GenericParameter),
+                GenericParamConstraints = ParseTable<GenericParamConstraint>(MetadataToken.GenericParameterConstraint)
             };
 
             return tables;
