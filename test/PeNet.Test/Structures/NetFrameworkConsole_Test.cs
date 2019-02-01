@@ -391,5 +391,21 @@ namespace PeNet.Test.Structures
 
             Assert.Null(popertyMap);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_Property()
+        {
+            var poperty = _peFile.MetaDataStreamTablesHeader.Tables.Property;
+
+            Assert.Null(poperty);
+        }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_MethodSemantics()
+        {
+            var methodSemantics = _peFile.MetaDataStreamTablesHeader.Tables.MethodSemantic;
+
+            Assert.Null(methodSemantics);
+        }
     }
 }

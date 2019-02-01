@@ -269,7 +269,8 @@ namespace PeNet.Structures
                 EventMap        = ParseTable<EventMap>(MetadataToken.EventMap),
                 Event           = ParseTable<Event>(MetadataToken.Event),
                 PropertyMap     = ParseTable<PropertyMap>(MetadataToken.PropertyMap),
-                Property        = ParseTable<Property>(MetadataToken.Property)
+                Property        = ParseTable<Property>(MetadataToken.Property),
+                MethodSemantic  = ParseTable<MethodSemantics>(MetadataToken.MethodSemantics)
             };
 
             return tables;
