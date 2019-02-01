@@ -423,5 +423,16 @@ namespace PeNet.Test.Structures
 
             Assert.Null(moduleRef);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_TypeSpec()
+        {
+            var typeSpec = _peFile.MetaDataStreamTablesHeader.Tables.TypeSpec;
+
+            Assert.Equal(2, typeSpec.Count);
+
+            Assert.Equal(0x002Bu, typeSpec[0].Signature);
+            Assert.Equal(0x003Au, typeSpec[1].Signature);
+        }
     }
 }

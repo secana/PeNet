@@ -272,7 +272,8 @@ namespace PeNet.Structures
                 Property        = ParseTable<Property>(MetadataToken.Property),
                 MethodSemantic  = ParseTable<MethodSemantics>(MetadataToken.MethodSemantics),
                 MethodImpl      = ParseTable<MethodImpl>(MetadataToken.MethodImplementation),
-                ModuleRef       = ParseTable<ModuleRef>(MetadataToken.ModuleReference)
+                ModuleRef       = ParseTable<ModuleRef>(MetadataToken.ModuleReference),
+                TypeSpec        = ParseTable<TypeSpec>(MetadataToken.TypeSpecification)
             };
 
             return tables;
