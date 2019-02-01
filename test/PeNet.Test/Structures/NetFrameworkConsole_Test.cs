@@ -415,5 +415,13 @@ namespace PeNet.Test.Structures
 
             Assert.Null(methodImpl);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_ModuleRef()
+        {
+            var moduleRef = _peFile.MetaDataStreamTablesHeader.Tables.ModuleRef;
+
+            Assert.Null(moduleRef);
+        }
     }
 }
