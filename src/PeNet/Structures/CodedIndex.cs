@@ -66,6 +66,7 @@ namespace PeNet.Test.Structures
         Event,
         TypeDef,
         Property,
+        ModuleRef,
         TypeDefOrRef,
         HasConstant,
         HasCustomAttribute,
@@ -95,6 +96,7 @@ namespace PeNet.Test.Structures
                 {Index.TypeDef, new SingleIndex(MetadataToken.TypeDef, tables)},
                 {Index.Event, new SingleIndex(MetadataToken.Event, tables)},
                 {Index.Property, new SingleIndex(MetadataToken.Property, tables)},
+                {Index.ModuleRef, new SingleIndex(MetadataToken.ModuleReference, tables)},
 
                 // Coded Indices
                 {Index.TypeDefOrRef, new CodedIndex(tables, (byte)MetadataToken.TypeDef, (byte)MetadataToken.TypeReference, (byte)MetadataToken.TypeSpecification)},

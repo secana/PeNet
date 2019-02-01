@@ -27,5 +27,6 @@ namespace PeNet.Structures.MetaDataTables
         public List<MethodImpl> MethodImpl {get; set;}
         public List<ModuleRef> ModuleRef {get; set;}
         public List<TypeSpec> TypeSpec {get; set;}
+        public List<ImplMap> ImplMap {get; set;}
     }
 }
