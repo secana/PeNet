@@ -7,13 +7,11 @@ namespace PeNet.Structures.MetaDataTables
         public PropertyMap(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
             : base(buff, offset, heapSizes, indexSizes)
         {
-            EventFlags = (ushort) ReadSize(2);
-            Name = ReadSize(HeapSizes.String);
-            EventType = ReadSize(IndexSizes[Index.TypeDefOrRef]);
+            Parent = ReadSize(IndexSizes[Index.TypeDef]);
+            PropertyList = ReadSize(IndexSizes[Index.Property]);
         }
 
-        public ushort EventFlags {get;}
-        public uint Name {get;}
-        public uint EventType {get;}
+        public uint Parent {get;}
+        public uint PropertyList {get;}
     }
 }

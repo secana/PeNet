@@ -268,7 +268,8 @@ namespace PeNet.Structures
                 StandAloneSig   = ParseTable<StandAloneSig>(MetadataToken.StandAloneSignature),
                 EventMap        = ParseTable<EventMap>(MetadataToken.EventMap),
                 Event           = ParseTable<Event>(MetadataToken.Event),
-                PropertyMap     = ParseTable<PropertyMap>(MetadataToken.PropertyMap)
+                PropertyMap     = ParseTable<PropertyMap>(MetadataToken.PropertyMap),
+                Property        = ParseTable<Property>(MetadataToken.Property)
             };
 
             return tables;
