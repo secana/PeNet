@@ -534,5 +534,13 @@ namespace PeNet.Test.Structures
 
             Assert.Null(manifestResource);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_NestedClass()
+        {
+            var nestedClass = _peFile.MetaDataStreamTablesHeader.Tables.NestedClass;
+
+            Assert.Null(nestedClass);
+        }
     }
 }

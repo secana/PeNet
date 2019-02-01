@@ -284,7 +284,8 @@ namespace PeNet.Structures
                 AssemblyRefOS           = ParseTable<AssemblyRefOS>(MetadataToken.AssemblyReferenceOS),
                 File                    = ParseTable<File>(MetadataToken.File),
                 ExportedType            = ParseTable<ExportedType>(MetadataToken.ExportedType),
-                ManifestResource        = ParseTable<ManifestResource>(MetadataToken.ManifestResource)
+                ManifestResource        = ParseTable<ManifestResource>(MetadataToken.ManifestResource),
+                NestedClass             = ParseTable<NestedClass>(MetadataToken.NestedClass)
             };
 
             return tables;
