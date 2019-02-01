@@ -502,5 +502,13 @@ namespace PeNet.Test.Structures
 
             Assert.Null(assemblyRefProcessor);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_AssemblyRefOS()
+        {
+            var assemblyRefOS = _peFile.MetaDataStreamTablesHeader.Tables.AssemblyRefOS;
+
+            Assert.Null(assemblyRefOS);
+        }
     }
 }
