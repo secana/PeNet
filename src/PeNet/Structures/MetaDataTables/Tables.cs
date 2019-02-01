@@ -28,5 +28,6 @@ namespace PeNet.Structures.MetaDataTables
         public List<ModuleRef> ModuleRef {get; set;}
         public List<TypeSpec> TypeSpec {get; set;}
         public List<ImplMap> ImplMap {get; set;}
+        public List<FieldRVA> FieldRVA {get; set;}
     }
 }

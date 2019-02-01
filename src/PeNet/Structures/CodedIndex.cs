@@ -31,7 +31,7 @@ namespace PeNet.Test.Structures
 		ModuleReference = 0x1A,
 		TypeSpecification = 0x1B,
 		ImplementationMap = 0x1C,
-		FieldRva = 0x1D,
+		FieldRVA = 0x1D,
 		Assembly = 0x20,
 		AssemblyProcessor = 0x21,
 		AssemblyOS = 0x22,

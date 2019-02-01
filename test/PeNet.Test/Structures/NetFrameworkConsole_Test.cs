@@ -434,5 +434,13 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x002Bu, typeSpec[0].Signature);
             Assert.Equal(0x003Au, typeSpec[1].Signature);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_FieldRVA()
+        {
+            var fieldRVA = _peFile.MetaDataStreamTablesHeader.Tables.FieldRVA;
+
+            Assert.Null(fieldRVA);
+        }
     }
 }

@@ -220,7 +220,7 @@ namespace PeNet.Structures
             tables[(int)MetadataToken.ModuleReference].BytesPerRow = heapSizes.String;
             tables[(int)MetadataToken.TypeSpecification].BytesPerRow = heapSizes.Blob;
             tables[(int)MetadataToken.ImplementationMap].BytesPerRow = 2 + indexSizes[Index.MemberForwarded] + heapSizes.String + GetIndexSize(MetadataToken.ModuleReference, tables);
-            tables[(int)MetadataToken.FieldRva].BytesPerRow = 4 + GetIndexSize(MetadataToken.Field, tables);
+            tables[(int)MetadataToken.FieldRVA].BytesPerRow = 4 + GetIndexSize(MetadataToken.Field, tables);
             tables[(int)MetadataToken.Assembly].BytesPerRow = 16 + heapSizes.Blob + heapSizes.String * 2;
             tables[(int)MetadataToken.AssemblyProcessor].BytesPerRow = 4;
             tables[(int)MetadataToken.AssemblyOS].BytesPerRow = 12;
@@ -274,7 +274,8 @@ namespace PeNet.Structures
                 MethodImpl      = ParseTable<MethodImpl>(MetadataToken.MethodImplementation),
                 ModuleRef       = ParseTable<ModuleRef>(MetadataToken.ModuleReference),
                 TypeSpec        = ParseTable<TypeSpec>(MetadataToken.TypeSpecification),
-                ImplMap         = ParseTable<ImplMap>(MetadataToken.ImplementationMap)
+                ImplMap         = ParseTable<ImplMap>(MetadataToken.ImplementationMap),
+                FieldRVA        = ParseTable<FieldRVA>(MetadataToken.FieldRVA)
             };
 
             return tables;
