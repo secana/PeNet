@@ -468,5 +468,12 @@ namespace PeNet.Test.Structures
 
             Assert.Null(assemblyProcessor);
         }
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_AssemblyOS()
+        {
+            var assemblyOS = _peFile.MetaDataStreamTablesHeader.Tables.AssemblyOS;
+
+            Assert.Null(assemblyOS);
+        }
     }
 }

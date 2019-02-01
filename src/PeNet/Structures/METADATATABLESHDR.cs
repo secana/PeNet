@@ -277,7 +277,8 @@ namespace PeNet.Structures
                 ImplMap         = ParseTable<ImplMap>(MetadataToken.ImplementationMap),
                 FieldRVA        = ParseTable<FieldRVA>(MetadataToken.FieldRVA),
                 Assembly        = ParseTable<Assembly>(MetadataToken.Assembly),
-                AssemblyProcessor = ParseTable<AssemblyProcessor>(MetadataToken.AssemblyProcessor)
+                AssemblyProcessor = ParseTable<AssemblyProcessor>(MetadataToken.AssemblyProcessor),
+                AssemblyOS      = ParseTable<AssemblyOS>(MetadataToken.AssemblyOS)
             };
 
             return tables;
