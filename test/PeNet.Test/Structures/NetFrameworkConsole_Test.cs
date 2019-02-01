@@ -475,5 +475,23 @@ namespace PeNet.Test.Structures
 
             Assert.Null(assemblyOS);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_AssemblyRef()
+        {
+            var assemblyRef = _peFile.MetaDataStreamTablesHeader.Tables.AssemblyRef;
+
+            Assert.Single(assemblyRef);
+
+            Assert.Equal(0x0004u, assemblyRef[0].MajorVersion);
+            Assert.Equal(0x0000u, assemblyRef[0].MinorVersion);
+            Assert.Equal(0x0000u, assemblyRef[0].BuildNumber);
+            Assert.Equal(0x0000u, assemblyRef[0].RevisionNumber);
+            Assert.Equal(0x00000000u, assemblyRef[0].Flags);
+            Assert.Equal(0x0053u, assemblyRef[0].PublicKeyOrToken);
+            Assert.Equal(0x0030u, assemblyRef[0].Name);
+            Assert.Equal(0x0000u, assemblyRef[0].Culture);
+            Assert.Equal(0x0000u, assemblyRef[0].HashValue);
+        }
     }
 }

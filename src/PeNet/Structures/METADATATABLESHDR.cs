@@ -278,7 +278,8 @@ namespace PeNet.Structures
                 FieldRVA        = ParseTable<FieldRVA>(MetadataToken.FieldRVA),
                 Assembly        = ParseTable<Assembly>(MetadataToken.Assembly),
                 AssemblyProcessor = ParseTable<AssemblyProcessor>(MetadataToken.AssemblyProcessor),
-                AssemblyOS      = ParseTable<AssemblyOS>(MetadataToken.AssemblyOS)
+                AssemblyOS      = ParseTable<AssemblyOS>(MetadataToken.AssemblyOS),
+                AssemblyRef     = ParseTable<AssemblyRef>(MetadataToken.AssemblyReference)
             };
 
             return tables;
