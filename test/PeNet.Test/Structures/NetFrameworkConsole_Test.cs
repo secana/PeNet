@@ -468,6 +468,7 @@ namespace PeNet.Test.Structures
 
             Assert.Null(assemblyProcessor);
         }
+
         [Fact]
         public void NetFrameworkConsole_MetaDataTable_AssemblyOS()
         {
@@ -492,6 +493,14 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x0030u, assemblyRef[0].Name);
             Assert.Equal(0x0000u, assemblyRef[0].Culture);
             Assert.Equal(0x0000u, assemblyRef[0].HashValue);
+        }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_AssemblyRefProcessor()
+        {
+            var assemblyRefProcessor = _peFile.MetaDataStreamTablesHeader.Tables.AssemblyRefProcessor;
+
+            Assert.Null(assemblyRefProcessor);
         }
     }
 }
