@@ -383,5 +383,13 @@ namespace PeNet.Test.Structures
 
             Assert.Null(ev);
         }
+
+        [Fact]
+        public void NetFrameworkConsole_MetaDataTable_PropertyMap()
+        {
+            var popertyMap = _peFile.MetaDataStreamTablesHeader.Tables.PropertyMap;
+
+            Assert.Null(popertyMap);
+        }
     }
 }
