@@ -15,3 +15,5 @@ variables:
 steps:
 - script: dotnet tool install -g Cake.Tool --version 0.30.0
   displayName: 'Install Cake'
+- script: dotnet cake --target=pack
+  displayName: 'Build and package PeNet and PEditor'
