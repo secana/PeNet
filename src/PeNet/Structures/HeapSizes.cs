@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PeNet.Structures
+﻿namespace PeNet.Structures
 {
     /// <summary>
     /// Size of the meta data heaps.
