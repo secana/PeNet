@@ -13,7 +13,8 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: dotnet tool install -g Cake.Tool --version 0.30.0
+- powershell: |
+   dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
   displayName: 'Install Cake'
-- script: dotnet cake --target=pack
+- powershell: ./tools/dotnet-cake --target=pack --verbosity=verbose
   displayName: 'Build and package PeNet and PEditor'
