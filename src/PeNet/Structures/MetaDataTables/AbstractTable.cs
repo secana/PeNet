@@ -1,5 +1,6 @@
 ﻿using PeNet.Test.Structures;
 using PeNet.Utilities;
+using System;
 
 namespace PeNet.Structures.MetaDataTables
 {
@@ -19,14 +20,20 @@ namespace PeNet.Structures.MetaDataTables
 
         private uint ReadSize(uint size, ref uint offset)
         {
-            if(size == 2)
+            switch(size)
             {
-                offset += 2;
-                return Buff.BytesToUInt16(offset - 2);
+                case 1: 
+                    offset += 1;
+                    return Buff[offset - 1];
+                case 2:
+                    offset += 2;
+                    return Buff.BytesToUInt16(offset - 2);
+                case 4:
+                    offset += 4;
+                    return Buff.BytesToUInt32(offset - 4);
+                default:
+                    throw new ArgumentException("Unsupported offset size.");
             }
-            
-            offset += 4;
-            return Buff.BytesToUInt32(offset - 4);
         }
 
         protected uint ReadSize(uint size)

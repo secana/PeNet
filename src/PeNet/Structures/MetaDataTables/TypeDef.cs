@@ -11,8 +11,8 @@ namespace PeNet.Structures.MetaDataTables
             : base(buff, offset, heapSizes, indexSizes)
         {
             Flags = ReadSize(4);
-            TypeName = ReadSize(HeapSizes.String);
-            TypeNamespace = ReadSize(HeapSizes.String);
+            Name = ReadSize(HeapSizes.String);
+            Namespace = ReadSize(HeapSizes.String);
             Extends = ReadSize(IndexSizes[Index.TypeDefOrRef]);
             FieldList = ReadSize(IndexSizes[Index.Field]);
             MethodList = ReadSize(IndexSizes[Index.MethodDef]);
@@ -20,9 +20,9 @@ namespace PeNet.Structures.MetaDataTables
 
         public uint Flags {get;}
 
-        public uint TypeName {get;}
+        public uint Name {get;}
 
-        public uint TypeNamespace {get;}
+        public uint Namespace {get;}
 
         public uint Extends {get;}
 

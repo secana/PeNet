@@ -148,7 +148,7 @@ namespace PeNet.Test.Structures
 
             Assert.Single(module);
             Assert.Equal(0x0000, module[0].Generation);
-            Assert.Equal(0x01EBu, module[0].Name);
+            Assert.Equal(0x0F92u, module[0].Name);
             Assert.Equal(0x0001u, module[0].Mvid);
             Assert.Equal(0x0000u, module[0].EncId);
             Assert.Equal(0x0000u, module[0].EncBaseId);
@@ -160,17 +160,23 @@ namespace PeNet.Test.Structures
         {
             var typeRef = _peFile.MetaDataStreamTablesHeader.Tables.TypeRef;
 
-            Assert.Equal(23, typeRef.Count);
+            Assert.Equal(141, typeRef.Count);
 
             Assert.Equal(0x0006u, typeRef[0].ResolutionScope);
-            Assert.Equal(0x0160u, typeRef[0].TypeName);
-            Assert.Equal(0x02A4u, typeRef[0].TypeNamespace);
+            Assert.Equal(0x0CA3u, typeRef[0].TypeName);
+            Assert.Equal(0x182Fu, typeRef[0].TypeNamespace);
 
             // ... More rows ...
 
-            Assert.Equal(0x0006u, typeRef[22].ResolutionScope);
-            Assert.Equal(0x0243u, typeRef[22].TypeName);
-            Assert.Equal(0x0225u, typeRef[22].TypeNamespace);
+            Assert.Equal(0x000Eu, typeRef[22].ResolutionScope);
+            Assert.Equal(0x17D1u, typeRef[22].TypeName);
+            Assert.Equal(0x0E57u, typeRef[22].TypeNamespace);
+
+            // ... More rows ...
+
+            Assert.Equal(0x0036u, typeRef[140].ResolutionScope);
+            Assert.Equal(0x0172u, typeRef[140].TypeName);
+            Assert.Equal(0x01E3u, typeRef[140].TypeNamespace);
         }
 
         [Fact]
@@ -178,21 +184,23 @@ namespace PeNet.Test.Structures
         {
             var typeDef = _peFile.MetaDataStreamTablesHeader.Tables.TypeDef;
 
-            Assert.Equal(2, typeDef.Count);
+            Assert.Equal(45, typeDef.Count);
 
             Assert.Equal(0x00000000u, typeDef[0].Flags);
-            Assert.Equal(0x001Du, typeDef[0].TypeName);
-            Assert.Equal(0x0000u, typeDef[0].TypeNamespace);
+            Assert.Equal(0x0229u, typeDef[0].Name);
+            Assert.Equal(0x0000u, typeDef[0].Namespace);
             Assert.Equal(0x0000u, typeDef[0].Extends);
             Assert.Equal(0x0001u, typeDef[0].FieldList);
             Assert.Equal(0x0001u, typeDef[0].MethodList);
 
-            Assert.Equal(0x00100000u, typeDef[1].Flags);
-            Assert.Equal(0x021Du, typeDef[1].TypeName);
-            Assert.Equal(0x0060u, typeDef[1].TypeNamespace);
-            Assert.Equal(0x0041u, typeDef[1].Extends);
-            Assert.Equal(0x0001u, typeDef[1].FieldList);
-            Assert.Equal(0x0001u, typeDef[1].MethodList);
+            // ... More rows ...
+
+            Assert.Equal(0x00100182u, typeDef[44].Flags);
+            Assert.Equal(0x0AA6u, typeDef[44].Name);
+            Assert.Equal(0x0000u, typeDef[44].Namespace);
+            Assert.Equal(0x0035u, typeDef[44].Extends);
+            Assert.Equal(0x005Au, typeDef[44].FieldList);
+            Assert.Equal(0x006Eu, typeDef[44].MethodList);
         }
 
         [Fact]
@@ -200,7 +208,17 @@ namespace PeNet.Test.Structures
         {
             var field = _peFile.MetaDataStreamTablesHeader.Tables.Field;
 
-            Assert.Null(field);
+            Assert.Equal(92, field.Count);
+
+            Assert.Equal(0x8056u, field[0].Flags);
+            Assert.Equal(0x049Du, field[0].Name);
+            Assert.Equal(0x088Cu, field[0].Signature);
+
+            // ... More rows ...
+
+            Assert.Equal(0x0031u, field[91].Flags);
+            Assert.Equal(0x0727u, field[91].Name);
+            Assert.Equal(0x088Cu, field[91].Signature);
         }
 
         [Fact]
@@ -208,21 +226,23 @@ namespace PeNet.Test.Structures
         {
             var methodDef = _peFile.MetaDataStreamTablesHeader.Tables.MethodDef;
 
-            Assert.Equal(2, methodDef.Count);
+            Assert.Equal(113, methodDef.Count);
 
-            Assert.Equal(0x00002050u, methodDef[0].RVA);
+            Assert.Equal(0x0000u, methodDef[0].RVA);
             Assert.Equal(0x0000u, methodDef[0].ImplFlags);
-            Assert.Equal(0x0091u, methodDef[0].Flags);
-            Assert.Equal(0x022Cu, methodDef[0].Name);
-            Assert.Equal(0x005Cu, methodDef[0].Signature);
+            Assert.Equal(0x05C6u, methodDef[0].Flags);
+            Assert.Equal(0x0F24u, methodDef[0].Name);
+            Assert.Equal(0x09D3u, methodDef[0].Signature);
             Assert.Equal(0x0001u, methodDef[0].ParamList);
 
-            Assert.Equal(0x000020A4u, methodDef[1].RVA);
-            Assert.Equal(0x0000u, methodDef[1].ImplFlags);
-            Assert.Equal(0x1886u, methodDef[1].Flags);
-            Assert.Equal(0x026Cu, methodDef[1].Name);
-            Assert.Equal(0x0006u, methodDef[1].Signature);
-            Assert.Equal(0x0002u, methodDef[1].ParamList);
+            // ... More rows ...
+
+            Assert.Equal(0x39E0u, methodDef[112].RVA);
+            Assert.Equal(0x0000u, methodDef[112].ImplFlags);
+            Assert.Equal(0x1891u, methodDef[112].Flags);
+            Assert.Equal(0x1806u, methodDef[112].Name);
+            Assert.Equal(0x0A15u, methodDef[112].Signature);
+            Assert.Equal(0x007Eu, methodDef[112].ParamList);
         }
 
         [Fact]
@@ -230,11 +250,17 @@ namespace PeNet.Test.Structures
         {
             var param = _peFile.MetaDataStreamTablesHeader.Tables.Param;
 
-            Assert.Single(param);
+            Assert.Equal(125, param.Count);
 
             Assert.Equal(0x0000u, param[0].Flags);
             Assert.Equal(0x0001u, param[0].Sequence);
-            Assert.Equal(0x02E8u, param[0].Name);
+            Assert.Equal(0x1085u, param[0].Name);
+
+            // ... More rows ...
+
+            Assert.Equal(0x0000u, param[124].Flags);
+            Assert.Equal(0x0001u, param[124].Sequence);
+            Assert.Equal(0x0D4Cu, param[124].Name);
         }
 
         [Fact]
@@ -242,7 +268,16 @@ namespace PeNet.Test.Structures
         {
             var interfaceImpl = _peFile.MetaDataStreamTablesHeader.Tables.InterfaceImpl;
 
-            Assert.Null(interfaceImpl);
+            Assert.Equal(3, interfaceImpl.Count);
+
+            Assert.Equal(0x0005u, interfaceImpl[0].Class);
+            Assert.Equal(0x004Du, interfaceImpl[0].Interface);
+
+            Assert.Equal(0x0006u, interfaceImpl[1].Class);
+            Assert.Equal(0x000Cu, interfaceImpl[1].Interface);
+
+            Assert.Equal(0x0019u, interfaceImpl[2].Class);
+            Assert.Equal(0x0068u, interfaceImpl[2].Interface);
         }
 
         [Fact]
@@ -250,17 +285,17 @@ namespace PeNet.Test.Structures
         {
             var memberRef = _peFile.MetaDataStreamTablesHeader.Tables.MemberRef;
 
-            Assert.Equal(22, memberRef.Count);
+            Assert.Equal(216, memberRef.Count);
 
             Assert.Equal(0x0009u, memberRef[0].Class);
-            Assert.Equal(0x026Cu, memberRef[0].Name);
+            Assert.Equal(0x1800u, memberRef[0].Name);
             Assert.Equal(0x0001u, memberRef[0].Signature);
 
             // ... More rows ...
 
-            Assert.Equal(0x0081u, memberRef[21].Class);
-            Assert.Equal(0x026Cu, memberRef[21].Name);
-            Assert.Equal(0x0006u, memberRef[21].Signature);
+            Assert.Equal(0x0409u, memberRef[215].Class);
+            Assert.Equal(0x01A8u, memberRef[215].Name);
+            Assert.Equal(0x07D7u, memberRef[215].Signature);
         }
 
         [Fact]
@@ -268,7 +303,17 @@ namespace PeNet.Test.Structures
         {
             var constant = _peFile.MetaDataStreamTablesHeader.Tables.Constant;
 
-            Assert.Null(constant);
+            Assert.Equal(38, constant.Count);
+
+            Assert.Equal(0x08, constant[0].Type);
+            Assert.Equal(0x0004u, constant[0].Parent);
+            Assert.Equal(0x0800u, constant[0].Value);
+            
+            // ... More rows ...
+
+            Assert.Equal(0x12, constant[37].Type);
+            Assert.Equal(0x0195u, constant[37].Parent);
+            Assert.Equal(0x0887u, constant[37].Value);
         }
 
         [Fact]
@@ -276,17 +321,17 @@ namespace PeNet.Test.Structures
         {
             var customAttribute = _peFile.MetaDataStreamTablesHeader.Tables.CustomAttribute;
 
-            Assert.Equal(14, customAttribute.Count);
+            Assert.Equal(97, customAttribute.Count);
 
             Assert.Equal(0x002Eu, customAttribute[0].Parent);
             Assert.Equal(0x000Bu, customAttribute[0].Type);
-            Assert.Equal(0x0062u, customAttribute[0].Value);
+            Assert.Equal(0x0B31u, customAttribute[0].Value);
 
             // ... More rows ...
 
-            Assert.Equal(0x002Eu, customAttribute[13].Parent);
-            Assert.Equal(0x0073u, customAttribute[13].Type);
-            Assert.Equal(0x00101u, customAttribute[13].Value);
+            Assert.Equal(0x0F44u, customAttribute[96].Parent);
+            Assert.Equal(0x0073u, customAttribute[96].Type);
+            Assert.Equal(0x0BFDu, customAttribute[96].Value);
         }
 
         [Fact]
@@ -326,9 +371,13 @@ namespace PeNet.Test.Structures
         {
             var standAloneSig = _peFile.MetaDataStreamTablesHeader.Tables.StandAloneSig;
 
-            Assert.Single(standAloneSig);
+            Assert.Equal(30, standAloneSig.Count);
 
-            Assert.Equal(0x001Au, standAloneSig[0].Signature);
+            Assert.Equal(0x0027u, standAloneSig[0].Signature);
+
+            // ... More rows ...
+
+            Assert.Equal(0x07C4u, standAloneSig[29].Signature);
         }
 
         [Fact]
@@ -350,17 +399,36 @@ namespace PeNet.Test.Structures
         [Fact]
         public void MetaDataTable_PropertyMap()
         {
-            var popertyMap = _peFile.MetaDataStreamTablesHeader.Tables.PropertyMap;
+            var propertyMap = _peFile.MetaDataStreamTablesHeader.Tables.PropertyMap;
 
-            Assert.Null(popertyMap);
+            Assert.Equal(6, propertyMap.Count);
+
+            Assert.Equal(0x0005u, propertyMap[0].Parent);
+            Assert.Equal(0x0001u, propertyMap[0].PropertyList);
+
+            // ... More rows ...
+
+            Assert.Equal(0x002Du, propertyMap[5].Parent);
+            Assert.Equal(0x0017u, propertyMap[5].PropertyList);
+
         }
 
         [Fact]
         public void MetaDataTable_Property()
         {
-            var poperty = _peFile.MetaDataStreamTablesHeader.Tables.Property;
+            var property = _peFile.MetaDataStreamTablesHeader.Tables.Property;
 
-            Assert.Null(poperty);
+            Assert.Equal(25, property.Count);
+
+            Assert.Equal(0x0000u, property[0].Flags);
+            Assert.Equal(0x0521u, property[0].Name);
+            Assert.Equal(0x0B1Bu, property[0].Type);
+
+            // ... More rows ...
+
+            Assert.Equal(0x0000u, property[24].Flags);
+            Assert.Equal(0x18BBu, property[24].Name);
+            Assert.Equal(0x0B2Du, property[24].Type);
         }
 
         [Fact]
@@ -368,7 +436,17 @@ namespace PeNet.Test.Structures
         {
             var methodSemantics = _peFile.MetaDataStreamTablesHeader.Tables.MethodSemantic;
 
-            Assert.Null(methodSemantics);
+            Assert.Equal(27, methodSemantics.Count);
+
+            Assert.Equal(0x0002u, methodSemantics[0].Semantics);
+            Assert.Equal(0x0002u, methodSemantics[0].Method);
+            Assert.Equal(0x0003u, methodSemantics[0].Association);
+
+            // ... More rows ...
+
+            Assert.Equal(0x0002u, methodSemantics[26].Semantics);
+            Assert.Equal(0x0070u, methodSemantics[26].Method);
+            Assert.Equal(0x00033u, methodSemantics[26].Association);
         }
 
         [Fact]
@@ -392,10 +470,13 @@ namespace PeNet.Test.Structures
         {
             var typeSpec = _peFile.MetaDataStreamTablesHeader.Tables.TypeSpec;
 
-            Assert.Equal(2, typeSpec.Count);
+            Assert.Equal(43, typeSpec.Count);
 
-            Assert.Equal(0x002Bu, typeSpec[0].Signature);
-            Assert.Equal(0x003Au, typeSpec[1].Signature);
+            Assert.Equal(0x001Bu, typeSpec[0].Signature);
+
+            // ... More rows ...
+
+            Assert.Equal(0x07B5u, typeSpec[42].Signature);
         }
 
         [Fact]
@@ -415,12 +496,12 @@ namespace PeNet.Test.Structures
 
             Assert.Equal(0x00008004u, assembly[0].HashAlgId);
             Assert.Equal(0x0001u, assembly[0].MajorVersion);
-            Assert.Equal(0x0000u, assembly[0].MinorVersion);
-            Assert.Equal(0x0000u, assembly[0].BuildNumber);
+            Assert.Equal(0x0009u, assembly[0].MinorVersion);
+            Assert.Equal(0x0007u, assembly[0].BuildNumber);
             Assert.Equal(0x0000u, assembly[0].RevisionNumber);
             Assert.Equal(0x00000000u, assembly[0].Flags);
             Assert.Equal(0x0000u, assembly[0].PublicKey);
-            Assert.Equal(0x0060u, assembly[0].Name);
+            Assert.Equal(0x08CFu, assembly[0].Name);
             Assert.Equal(0x0000u, assembly[0].Culture);
         }
 
@@ -445,17 +526,29 @@ namespace PeNet.Test.Structures
         {
             var assemblyRef = _peFile.MetaDataStreamTablesHeader.Tables.AssemblyRef;
 
-            Assert.Single(assemblyRef);
+            Assert.Equal(30, assemblyRef.Count);
 
             Assert.Equal(0x0004u, assemblyRef[0].MajorVersion);
-            Assert.Equal(0x0000u, assemblyRef[0].MinorVersion);
+            Assert.Equal(0x0002u, assemblyRef[0].MinorVersion);
             Assert.Equal(0x0000u, assemblyRef[0].BuildNumber);
             Assert.Equal(0x0000u, assemblyRef[0].RevisionNumber);
             Assert.Equal(0x00000000u, assemblyRef[0].Flags);
-            Assert.Equal(0x0053u, assemblyRef[0].PublicKeyOrToken);
-            Assert.Equal(0x0030u, assemblyRef[0].Name);
+            Assert.Equal(0x07DCu, assemblyRef[0].PublicKeyOrToken);
+            Assert.Equal(0x0A33u, assemblyRef[0].Name);
             Assert.Equal(0x0000u, assemblyRef[0].Culture);
             Assert.Equal(0x0000u, assemblyRef[0].HashValue);
+
+            // ... More rows ...
+
+            Assert.Equal(0x0001u, assemblyRef[29].MajorVersion);
+            Assert.Equal(0x0001u, assemblyRef[29].MinorVersion);
+            Assert.Equal(0x0002u, assemblyRef[29].BuildNumber);
+            Assert.Equal(0x0000u, assemblyRef[29].RevisionNumber);
+            Assert.Equal(0x00000000u, assemblyRef[29].Flags);
+            Assert.Equal(0x07E5u, assemblyRef[29].PublicKeyOrToken);
+            Assert.Equal(0x1A98u, assemblyRef[29].Name);
+            Assert.Equal(0x0000u, assemblyRef[29].Culture);
+            Assert.Equal(0x0000u, assemblyRef[29].HashValue);
         }
 
         [Fact]
@@ -503,7 +596,15 @@ namespace PeNet.Test.Structures
         {
             var nestedClass = _peFile.MetaDataStreamTablesHeader.Tables.NestedClass;
 
-            Assert.Null(nestedClass);
+            Assert.Equal(19, nestedClass.Count);
+
+            Assert.Equal(0x001Bu, nestedClass[0].NestedClassType);
+            Assert.Equal(0x0002u, nestedClass[0].EnclosingClassType);
+
+            // ... More rows ...
+
+            Assert.Equal(0x002Du, nestedClass[18].NestedClassType);
+            Assert.Equal(0x002Cu, nestedClass[18].EnclosingClassType);
         }
 
         [Fact]
@@ -511,7 +612,12 @@ namespace PeNet.Test.Structures
         {
             var genericParam = _peFile.MetaDataStreamTablesHeader.Tables.GenericParam;
 
-            Assert.Null(genericParam);
+            Assert.Single(genericParam);
+
+            Assert.Equal(0x0000u, genericParam[0].Number);
+            Assert.Equal(0x0010u, genericParam[0].Flags);
+            Assert.Equal(0x0047u, genericParam[0].Owner);
+            Assert.Equal(0x0835u, genericParam[0].Name);
         }
 
         [Fact]
@@ -519,7 +625,9 @@ namespace PeNet.Test.Structures
         {
             var genericParamConstraint = _peFile.MetaDataStreamTablesHeader.Tables.GenericParamConstraints;
 
-            Assert.Null(genericParamConstraint);
+            Assert.Single(genericParamConstraint);
+            Assert.Equal(0x0001u, genericParamConstraint[0].Owner);
+            Assert.Equal(0x0000u, genericParamConstraint[0].Constraint);
         }
     }
 }

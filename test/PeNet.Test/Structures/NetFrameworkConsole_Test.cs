@@ -218,15 +218,15 @@ namespace PeNet.Test.Structures
             Assert.Equal(2, typeDef.Count);
 
             Assert.Equal(0x00000000u, typeDef[0].Flags);
-            Assert.Equal(0x001Du, typeDef[0].TypeName);
-            Assert.Equal(0x0000u, typeDef[0].TypeNamespace);
+            Assert.Equal(0x001Du, typeDef[0].Name);
+            Assert.Equal(0x0000u, typeDef[0].Namespace);
             Assert.Equal(0x0000u, typeDef[0].Extends);
             Assert.Equal(0x0001u, typeDef[0].FieldList);
             Assert.Equal(0x0001u, typeDef[0].MethodList);
 
             Assert.Equal(0x00100000u, typeDef[1].Flags);
-            Assert.Equal(0x021Du, typeDef[1].TypeName);
-            Assert.Equal(0x0060u, typeDef[1].TypeNamespace);
+            Assert.Equal(0x021Du, typeDef[1].Name);
+            Assert.Equal(0x0060u, typeDef[1].Namespace);
             Assert.Equal(0x0041u, typeDef[1].Extends);
             Assert.Equal(0x0001u, typeDef[1].FieldList);
             Assert.Equal(0x0001u, typeDef[1].MethodList);
