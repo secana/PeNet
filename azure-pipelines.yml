@@ -20,7 +20,7 @@ steps:
     projects: '**/*test/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
-- task: VersionTaskReader
+- task: VersionTaskReader@1
   displayName: Get Version
   inputs:
     searchPattern: '**/*src/*.csproj'
