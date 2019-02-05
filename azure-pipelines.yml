@@ -12,16 +12,21 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
-
-
 steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: test
     projects: '**/*test/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
-# - powershell: |
-#    dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
-#   displayName: 'Install Cake'
-# - powershell: ./tools/dotnet-cake --target=pack --verbosity=verbose
-#   displayName: 'Build and package PeNet and PEditor'
+
+- task: NuGetCommand@2
+  inputs:
+    command: pack
+    packagesToPack: '**/*src/*.csproj'
+    configuration: $(buildConfiguration)
+
+- task: NuGetCommand@2
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: 'Nuget.org'
