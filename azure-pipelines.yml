@@ -24,7 +24,7 @@ steps:
   displayName: 'Pack Nuget Package'
   inputs:
     command: pack
-    packagesToPack: '**/*src/PeNet/PeNet.csproj'
+    packagesToPack: '**/*src/*.csproj'
     configuration: $(buildConfiguration)
 
 - task: NuGetCommand@2
