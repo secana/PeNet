@@ -16,7 +16,7 @@ For help see the [Wiki](https://github.com/secana/PeNet/wiki).
 
 ## API Reference
 
-The API reference can be found here: [PeNet API Reference](http://secana.github.io/PeNet)
+The API reference can be found here: [PeNet API Reference](http://secana.github.io/PeNet)e .
 
 ## Continuous Integration
 
