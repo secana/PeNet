@@ -4,6 +4,7 @@
 # VS Code
 .vs/
 .vscode/
+symbolCache.db
 
 # Cake
 tools/
