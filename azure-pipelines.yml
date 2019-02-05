@@ -22,7 +22,7 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: pack
-    packagesToPack: '**/*src/*.csproj'
+    packagesToPack: '**/*src/PeNet/PeNet.csproj'
     configuration: $(buildConfiguration)
 
 - task: NuGetCommand@2
@@ -30,3 +30,4 @@ steps:
     command: push
     nuGetFeedType: external
     publishFeedCredentials: 'Nuget.org'
+    packagesToPush: '**/*src/PeNet/bin/$(buildConfiguration)/*.nupkg'
