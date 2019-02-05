@@ -33,4 +33,4 @@ steps:
     command: push
     nuGetFeedType: external
     publishFeedCredentials: 'Nuget.org'
-    packagesToPush: '**/*src/*.nupkg'
+    packagesToPush: '**/*.nupkg'
