@@ -14,20 +14,23 @@ variables:
 
 steps:
 - task: DotNetCoreCLI@2
+  displayName: 'Run Unit-Tests'
   inputs:
     command: test
     projects: '**/*test/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
 - task: NuGetCommand@2
+  displayName: 'Pack Nuget Package'
   inputs:
     command: pack
     packagesToPack: '**/*src/PeNet/PeNet.csproj'
     configuration: $(buildConfiguration)
 
 - task: NuGetCommand@2
+  displayName: 'Publish Nuget Package'
   inputs:
     command: push
     nuGetFeedType: external
     publishFeedCredentials: 'Nuget.org'
-    packagesToPush: '**/*src/PeNet/bin/$(buildConfiguration)/*.nupkg'
+    packagesToPush: '**/*src/*.nupkg'
