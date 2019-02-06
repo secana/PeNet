@@ -27,10 +27,17 @@ steps:
     packagesToPack: '**\src\**\*.csproj'
     configuration: $(buildConfiguration)
 
-- task: DotNetCoreCLI@2
-  displayName: 'Publish Nuget Package'
+- task: NuGetCommand@2
   inputs:
     command: push
     nuGetFeedType: external
     publishFeedCredentials: 'Nuget.org'
     packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
+    
+# - task: DotNetCoreCLI@2
+#   displayName: 'Publish Nuget Package'
+#   inputs:
+#     command: push
+#     nuGetFeedType: external
+#     publishFeedCredentials: 'Nuget.org'
+#     packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
