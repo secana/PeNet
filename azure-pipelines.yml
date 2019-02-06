@@ -20,26 +20,18 @@ steps:
 #    projects: '**/*test/*.csproj'
 #    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 #
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   displayName: 'Pack Nuget Package'
   inputs:
-    command: pack
-    packagesToPack: '**/*src/*.csproj'
+    command: 'pack'
+    packagesToPack: '**\*src\*.csproj'
     configuration: $(buildConfiguration)
-    packDestination: $(Build.ArtifactStagingDirectory)
-    versioningScheme: byPrereleaseNumber
-    majorVersion: '0'
-    minorVersion: '9'
-    patchVersion: '0-alpha'
+    verbosityPack: 'diagnostic'
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   displayName: 'Publish Nuget Package'
   inputs:
     command: push
     nuGetFeedType: external
     publishFeedCredentials: 'Nuget.org'
-    versioningScheme: byPrereleaseNumber
-    majorVersion: '0'
-    minorVersion: '9'
-    patchVersion: '0-alpha'
-    #packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    packagesToPush: '**\*.nupkg'
