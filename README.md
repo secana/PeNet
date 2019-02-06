@@ -1,7 +1,4 @@
 # PeNet
-<p align="center">
-    <img src="https://github.com/secana/PeNet/blob/master/src/PEditor/Icons/PEditor.png" />
-</p>
 
 [![license](https://img.shields.io/github/license/secana/penet.svg)](https://raw.githubusercontent.com/secana/PeNet/master/LICENSE)
 [![NuGet](https://img.shields.io/nuget/v/PeNet.svg)](https://www.nuget.org/packages/PeNet/)
