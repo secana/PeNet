@@ -13,13 +13,13 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-#- task: DotNetCoreCLI@2
-#  displayName: 'Run Unit-Tests'
-#  inputs:
-#    command: test
-#    projects: '**/*test/*.csproj'
-#    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
-#
+- task: DotNetCoreCLI@2
+  displayName: 'Run Unit-Tests'
+  inputs:
+   command: test
+   projects: '**/*test/*.csproj'
+   arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+
 - task: DotNetCoreCLI@2
   displayName: 'Pack Nuget Package'
   inputs:
@@ -33,11 +33,3 @@ steps:
     nuGetFeedType: external
     publishFeedCredentials: 'Nuget.org'
     packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
-    
-# - task: DotNetCoreCLI@2
-#   displayName: 'Publish Nuget Package'
-#   inputs:
-#     command: push
-#     nuGetFeedType: external
-#     publishFeedCredentials: 'Nuget.org'
-#     packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
