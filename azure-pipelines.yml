@@ -22,7 +22,15 @@ steps:
 #    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
 - script: choco install docfx
-  displayName: Install docfx
+  displayName: Install DocFX
+
+- script: docfx metadata
+  displayName: Build Documentation Meta-Data
+  workingDirectory: '$(Build.SourcesDirectory)/docfx'
+
+- script: docfx build
+  displayName: Build Documentation
+  workingDirectory: '$(Build.SourcesDirectory)/docfx'
 
 # - task: DotNetCoreCLI@2
 #   displayName: 'Pack Nuget Package'
