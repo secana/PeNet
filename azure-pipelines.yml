@@ -20,11 +20,6 @@ steps:
     projects: '**/*test/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
-- task: VersionTaskReader@1.9
-  displayName: Get Version
-  inputs:
-    searchPattern: '**/*src/*.csproj'
-
 - task: NuGetCommand@2
   displayName: 'Pack Nuget Package'
   inputs:
@@ -32,8 +27,10 @@ steps:
     packagesToPack: '**/*src/*.csproj'
     configuration: $(buildConfiguration)
     packDestination: $(Build.ArtifactStagingDirectory)
-    versioningScheme: byEnvVar
-    versionEnvVar: 'VERSION'
+    versioningScheme: byPrereleaseNumber
+    majorVersion: '0'
+    minorVersion: '9'
+    patchVersion: '0-alpha'
 
 - task: NuGetCommand@2
   displayName: 'Publish Nuget Package'
