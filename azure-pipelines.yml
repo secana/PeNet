@@ -24,7 +24,7 @@ steps:
   displayName: 'Pack Nuget Package'
   inputs:
     command: 'pack'
-    packagesToPack: '**\*src\*.csproj'
+    packagesToPack: '**\src\**\*.csproj'
     configuration: $(buildConfiguration)
     verbosityPack: 'diagnostic'
 
