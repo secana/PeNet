@@ -14,25 +14,28 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: DotNetCoreCLI@2
-  displayName: 'Run Unit-Tests'
-  inputs:
-   command: test
-   projects: '**/*test/*.csproj'
-   arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+# - task: DotNetCoreCLI@2
+#   displayName: 'Run Unit-Tests'
+#   inputs:
+#    command: test
+#    projects: '**/*test/*.csproj'
+#    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Pack Nuget Package'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  inputs:
-    command: 'pack'
-    packagesToPack: '**\src\**\*.csproj'
-    configuration: $(buildConfiguration)
+- script: choco install docfx
+  displayName: Install docfx
 
-- task: NuGetCommand@2
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  inputs:
-    command: push
-    nuGetFeedType: external
-    publishFeedCredentials: 'Nuget.org'
-    packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
+# - task: DotNetCoreCLI@2
+#   displayName: 'Pack Nuget Package'
+#   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+#   inputs:
+#     command: 'pack'
+#     packagesToPack: '**\src\**\*.csproj'
+#     configuration: $(buildConfiguration)
+
+# - task: NuGetCommand@2
+#   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+#   inputs:
+#     command: push
+#     nuGetFeedType: external
+#     publishFeedCredentials: 'Nuget.org'
+#     packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
