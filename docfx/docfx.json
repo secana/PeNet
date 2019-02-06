@@ -4,7 +4,10 @@
       "src": [
         {
           "files": ["**/PeNet.csproj"],
-          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "exclude": [
+            "**/bin/**",
+            "**/obj/**"
+          ],
           "src": "../src"
         }
       ],
@@ -48,11 +51,11 @@
         ],
         "exclude": [
           "obj/**",
-          "_site/**"
+          "../docs/**"
         ]
       }
     ],
-    "dest": "_site",
+    "dest": "../docs",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
