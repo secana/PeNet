@@ -14,6 +14,9 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- checkout: self
+  persistCredentials: true
+
 # - task: DotNetCoreCLI@2
 #   displayName: 'Run Unit-Tests'
 #   inputs:
@@ -22,15 +25,25 @@ steps:
 #    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
 - script: choco install docfx
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   displayName: Install DocFX
 
 - script: docfx metadata
   displayName: Build Documentation Meta-Data
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   workingDirectory: '$(Build.SourcesDirectory)/docfx'
 
 - script: docfx build
   displayName: Build Documentation
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   workingDirectory: '$(Build.SourcesDirectory)/docfx'
+
+- powershell: |
+    git config user.email azure-bot@penet.org
+    git config user.name "Azure Bot"
+    git add .
+    git commit -m "Update documentation"
+    git push
 
 # - task: DotNetCoreCLI@2
 #   displayName: 'Pack Nuget Package'
