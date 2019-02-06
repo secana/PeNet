@@ -33,5 +33,4 @@ steps:
     command: push
     nuGetFeedType: external
     publishFeedCredentials: 'Nuget.org'
-    packagesToPush: '**\*.nupkg'
-    verbosityPack: 'diagnostic'
+    packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
