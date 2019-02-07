@@ -48,6 +48,8 @@ steps:
     
 - powershell: |
     ls
+    ls .\tmp
+    ls .\tmp\PeNet
     Copy-Item -Recurse .\docs\* .\tmp\PeNet\
     ls .\tmp\PeNet
     # git add .
