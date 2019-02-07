@@ -14,10 +14,6 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- checkout: self
-  persistCredentials: true
-  clean: true
-
 # - task: DotNetCoreCLI@2
 #   displayName: 'Run Unit-Tests'
 #   inputs:
@@ -40,11 +36,16 @@ steps:
   workingDirectory: '$(Build.SourcesDirectory)/docfx'
 
 - powershell: |
+    New-Item -Type Directory tmp
+    Set-LocationEx tmp
     git config user.email azure-bot@penet.org
     git config user.name "Azure Bot"
-    git add .
-    git commit -m "Update documentation"
-    git push
+    git clone https://azure-bot:$Env:TOKEN_GITHUB_PENET_GH-PAGES)@github.com/secana/PeNet.git --single-branch --branch gh-pages 
+    Copy-Item -Recurse ..\docs\* .\
+    ls PeNet
+    # git add .
+    # git commit -m "Update documentation"
+    # git push
 
 # - task: DotNetCoreCLI@2
 #   displayName: 'Pack Nuget Package'
