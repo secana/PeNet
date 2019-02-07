@@ -35,14 +35,18 @@ steps:
 #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 #   workingDirectory: '$(Build.SourcesDirectory)/docfx'
 
-- powershell:
-    env: 
-      TOKEN: $(token.github.penet.gh-pages) |
+- powershell: |
     New-Item -Type Directory tmp
     Set-Location tmp
     git config user.email azure-bot@penet.org
     git config user.name "Azure Bot"
-    git clone https://azure-bot:$Env:TOKEN@github.com/secana/PeNet.git --single-branch --branch gh-pages 
+
+- powershell:
+    git clone https://azure-bot:$Env:TOKEN@github.com/secana/PeNet.git --single-branch --branch gh-pages
+  env: 
+    TOKEN: $(token.github.penet.gh-pages)
+    
+- powershell: |
     Copy-Item -Recurse ..\docs\* .\
     ls PeNet
     # git add .
