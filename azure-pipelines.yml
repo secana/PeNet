@@ -47,6 +47,7 @@ steps:
     TOKEN: $(token.github.penet.gh-pages)
     
 - powershell: |
+    ls
     Copy-Item -Recurse .\docs\* .\tmp\PeNet\
     ls .\tmp\PeNet
     # git add .
