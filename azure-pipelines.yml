@@ -35,9 +35,9 @@ steps:
 #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 #   workingDirectory: '$(Build.SourcesDirectory)/docfx'
 
-- powershell: |
+- powershell:
     env: 
-      TOKEN: $(token.github.penet.gh-pages) 
+      TOKEN: $(token.github.penet.gh-pages) |
     New-Item -Type Directory tmp
     Set-Location tmp
     git config user.email azure-bot@penet.org
