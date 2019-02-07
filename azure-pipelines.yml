@@ -14,26 +14,26 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-# - task: DotNetCoreCLI@2
-#   displayName: 'Run Unit-Tests'
-#   inputs:
-#    command: test
-#    projects: '**/*test/*.csproj'
-#    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+- task: DotNetCoreCLI@2
+  displayName: 'Run Unit-Tests'
+  inputs:
+   command: test
+   projects: '**/*test/*.csproj'
+   arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
-# - script: choco install docfx
-#   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-#   displayName: Install DocFX
+- script: choco install docfx
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  displayName: Install DocFX
 
-# - script: docfx metadata
-#   displayName: Build Documentation Meta-Data
-#   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-#   workingDirectory: '$(Build.SourcesDirectory)/docfx'
+- script: docfx metadata
+  displayName: Build Documentation Meta-Data
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  workingDirectory: '$(Build.SourcesDirectory)/docfx'
 
-# - script: docfx build
-#   displayName: Build Documentation
-#   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-#   workingDirectory: '$(Build.SourcesDirectory)/docfx'
+- script: docfx build
+  displayName: Build Documentation
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  workingDirectory: '$(Build.SourcesDirectory)/docfx'
 
 - powershell: |
     New-Item -Type Directory tmp
@@ -60,18 +60,19 @@ steps:
     git add .
     git commit -m "Update documentation"
     git push --set-upstream origin gh-pages
-# - task: DotNetCoreCLI@2
-#   displayName: 'Pack Nuget Package'
-#   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-#   inputs:
-#     command: 'pack'
-#     packagesToPack: '**\src\**\*.csproj'
-#     configuration: $(buildConfiguration)
+    
+- task: DotNetCoreCLI@2
+  displayName: 'Pack Nuget Package'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    command: 'pack'
+    packagesToPack: '**\src\**\*.csproj'
+    configuration: $(buildConfiguration)
 
-# - task: NuGetCommand@2
-#   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-#   inputs:
-#     command: push
-#     nuGetFeedType: external
-#     publishFeedCredentials: 'Nuget.org'
-#     packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
+- task: NuGetCommand@2
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: 'Nuget.org'
+    packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
