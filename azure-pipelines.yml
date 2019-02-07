@@ -58,7 +58,7 @@ steps:
     git config user.name "Azure Bot"
     git add .
     git commit -m "Update documentation"
-    git push --set-upstream origin gh-pages
+    git push
 
 # - task: DotNetCoreCLI@2
 #   displayName: 'Pack Nuget Package'
