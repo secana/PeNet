@@ -46,14 +46,10 @@ steps:
     TOKEN: $(token.github.penet.gh-pages)
     
 - powershell: |
-    ls
-    ls .\tmp
-    ls .\tmp\PeNet
     Copy-Item -Recurse .\docs\* .\tmp\PeNet\
-    ls .\tmp\PeNet
-    # git add .
-    # git commit -m "Update documentation"
-    # git push
+    git add .
+    git commit -m "Update documentation"
+    git push
 
 # - task: DotNetCoreCLI@2
 #   displayName: 'Pack Nuget Package'
