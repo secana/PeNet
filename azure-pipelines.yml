@@ -54,6 +54,7 @@ steps:
     TOKEN: $(token.github.penet.gh-pages)
 
 - powershell: |
+    cd .\tmp\PeNet
     git config user.email azure-bot@penet.org
     git config user.name "Azure Bot"
     git add .
