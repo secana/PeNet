@@ -49,7 +49,7 @@ steps:
     git remote rm origin
 
 - powershell:
-    git remote add origin https://azure-bot:$Env:TOKEN@github.com/secana/PeNet.git
+    cd .\tmp\PeNet; git remote add origin https://azure-bot:$Env:TOKEN@github.com/secana/PeNet.git
   env: 
     TOKEN: $(token.github.penet.gh-pages)
 
