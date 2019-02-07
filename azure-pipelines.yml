@@ -37,8 +37,6 @@ steps:
 
 - powershell: |
     New-Item -Type Directory tmp
-    git config user.email azure-bot@penet.org
-    git config user.name "Azure Bot"
 
 - powershell:
     git clone https://azure-bot:$Env:TOKEN@github.com/secana/PeNet.git .\tmp\PeNet --single-branch --branch gh-pages
@@ -50,6 +48,8 @@ steps:
     cd .\tmp\PeNet
     git remote rm origin
     git remote add origin https://azure-bot:$Env:TOKEN@github.com/secana/PeNet.git
+    git config user.email azure-bot@penet.org
+    git config user.name "Azure Bot"
     git add .
     git commit -m "Update documentation"
     git push
