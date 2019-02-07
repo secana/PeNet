@@ -44,7 +44,7 @@ steps:
     TOKEN: $(token.github.penet.gh-pages)
     
 - powershell: |
-    Copy-Item -Recurse .\docs\* .\tmp\PeNet\
+    Copy-Item -Recurse -Force .\docs\* .\tmp\PeNet\
     cd .\tmp\PeNet
     git remote rm origin
 
@@ -60,7 +60,7 @@ steps:
     git add .
     git commit -m "Update documentation"
     git push --set-upstream origin gh-pages
-    
+
 - task: DotNetCoreCLI@2
   displayName: 'Pack Nuget Package'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
