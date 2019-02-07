@@ -47,7 +47,13 @@ steps:
     Copy-Item -Recurse .\docs\* .\tmp\PeNet\
     cd .\tmp\PeNet
     git remote rm origin
+
+- powershell:
     git remote add origin https://azure-bot:$Env:TOKEN@github.com/secana/PeNet.git
+  env: 
+    TOKEN: $(token.github.penet.gh-pages)
+
+- powershell: |
     git config user.email azure-bot@penet.org
     git config user.name "Azure Bot"
     git add .
