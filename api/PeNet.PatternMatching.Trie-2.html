@@ -83,35 +83,11 @@ for each string or phrase found.</p>
     <div class="level1"><span class="xref">Trie&lt;T, TValue&gt;</span></div>
       <div class="level2"><a class="xref" href="PeNet.PatternMatching.Trie.html">Trie</a></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="PeNet.PatternMatching.html">PeNet.PatternMatching</a></h6>
   <h6><strong>Assembly</strong>: PeNet.dll</h6>
   <h5 id="PeNet_PatternMatching_Trie_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Trie&lt;T, TValue&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class Trie&lt;T, TValue&gt; : object</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -142,13 +118,13 @@ or a string for finding phrases or whole words.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PatternMatching_Trie_2_Add_System_Collections_Generic_IEnumerable__0___1_.md&amp;value=---%0Auid%3A%20PeNet.PatternMatching.Trie%602.Add(System.Collections.Generic.IEnumerable%7B%600%7D%2C%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PatternMatching_Trie_2_Add_IEnumerable__0___1_.md&amp;value=---%0Auid%3A%20PeNet.PatternMatching.Trie%602.Add(IEnumerable%7B%600%7D%2C%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PatternMatching/AhoCorasick.cs/#L94">View Source</a>
   </span>
   <a id="PeNet_PatternMatching_Trie_2_Add_" data-uid="PeNet.PatternMatching.Trie`2.Add*"></a>
-  <h4 id="PeNet_PatternMatching_Trie_2_Add_System_Collections_Generic_IEnumerable__0___1_" data-uid="PeNet.PatternMatching.Trie`2.Add(System.Collections.Generic.IEnumerable{`0},`1)">Add(IEnumerable&lt;T&gt;, TValue)</h4>
+  <h4 id="PeNet_PatternMatching_Trie_2_Add_IEnumerable__0___1_" data-uid="PeNet.PatternMatching.Trie`2.Add(IEnumerable{`0},`1)">Add(IEnumerable&lt;T&gt;, TValue)</h4>
   <div class="markdown level1 summary"><p>Adds a word to the tree.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -167,7 +143,7 @@ or a string for finding phrases or whole words.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
         <td><span class="parametername">word</span></td>
         <td><p>The word that will be searched.</p>
 </td>
@@ -180,7 +156,7 @@ or a string for finding phrases or whole words.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="PeNet_PatternMatching_Trie_2_Add_System_Collections_Generic_IEnumerable__0___1__remarks">Remarks</h5>
+  <h5 id="PeNet_PatternMatching_Trie_2_Add_IEnumerable__0___1__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>A word consists of letters. A node is built for each letter.
 If the letter type is char, then the word will be a string, since it consists of letters.
 But a letter could also be a string which means that a node will be added
@@ -188,13 +164,13 @@ for each word and so the word is actually a phrase.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PatternMatching_Trie_2_Find_System_Collections_Generic_IEnumerable__0__.md&amp;value=---%0Auid%3A%20PeNet.PatternMatching.Trie%602.Find(System.Collections.Generic.IEnumerable%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PatternMatching_Trie_2_Find_IEnumerable__0__.md&amp;value=---%0Auid%3A%20PeNet.PatternMatching.Trie%602.Find(IEnumerable%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PatternMatching/AhoCorasick.cs/#L157">View Source</a>
   </span>
   <a id="PeNet_PatternMatching_Trie_2_Find_" data-uid="PeNet.PatternMatching.Trie`2.Find*"></a>
-  <h4 id="PeNet_PatternMatching_Trie_2_Find_System_Collections_Generic_IEnumerable__0__" data-uid="PeNet.PatternMatching.Trie`2.Find(System.Collections.Generic.IEnumerable{`0})">Find(IEnumerable&lt;T&gt;)</h4>
+  <h4 id="PeNet_PatternMatching_Trie_2_Find_IEnumerable__0__" data-uid="PeNet.PatternMatching.Trie`2.Find(IEnumerable{`0})">Find(IEnumerable&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Finds all added words in a text.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -213,7 +189,7 @@ for each word and so the word is actually a phrase.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
         <td><span class="parametername">text</span></td>
         <td><p>The text to search in.</p>
 </td>
@@ -230,7 +206,7 @@ for each word and so the word is actually a phrase.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.Tuple</span>&lt;TValue, <span class="xref">System.Int32</span>&gt;&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<span class="xref">Tuple</span>&lt;TValue, <span class="xref">System.Int32</span>&gt;&gt;</td>
         <td><p>The values that were added for the found words and the position of the
 last matching character in the word.</p>
 </td>

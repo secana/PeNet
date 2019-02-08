@@ -90,11 +90,11 @@ references:
   commentId: T:PeNet.Authenticode.ContentInfo
   fullName: PeNet.Authenticode.ContentInfo
   nameWithType: ContentInfo
-- uid: PeNet.Authenticode.ContentInfo.#ctor(PeNet.Asn1.Asn1Node)
+- uid: PeNet.Authenticode.ContentInfo.#ctor(Asn1Node)
   name: ContentInfo(Asn1Node)
-  href: api/PeNet.Authenticode.ContentInfo.html#PeNet_Authenticode_ContentInfo__ctor_PeNet_Asn1_Asn1Node_
-  commentId: M:PeNet.Authenticode.ContentInfo.#ctor(PeNet.Asn1.Asn1Node)
-  fullName: PeNet.Authenticode.ContentInfo.ContentInfo(PeNet.Asn1.Asn1Node)
+  href: api/PeNet.Authenticode.ContentInfo.html#PeNet_Authenticode_ContentInfo__ctor_Asn1Node_
+  commentId: M:PeNet.Authenticode.ContentInfo.#ctor(Asn1Node)
+  fullName: PeNet.Authenticode.ContentInfo.ContentInfo(Asn1Node)
   nameWithType: ContentInfo.ContentInfo(Asn1Node)
 - uid: PeNet.Authenticode.ContentInfo.#ctor(System.Byte[])
   name: ContentInfo(Byte[])
@@ -144,11 +144,11 @@ references:
   commentId: T:PeNet.Authenticode.SignedData
   fullName: PeNet.Authenticode.SignedData
   nameWithType: SignedData
-- uid: PeNet.Authenticode.SignedData.#ctor(PeNet.Asn1.Asn1Node)
+- uid: PeNet.Authenticode.SignedData.#ctor(Asn1Node)
   name: SignedData(Asn1Node)
-  href: api/PeNet.Authenticode.SignedData.html#PeNet_Authenticode_SignedData__ctor_PeNet_Asn1_Asn1Node_
-  commentId: M:PeNet.Authenticode.SignedData.#ctor(PeNet.Asn1.Asn1Node)
-  fullName: PeNet.Authenticode.SignedData.SignedData(PeNet.Asn1.Asn1Node)
+  href: api/PeNet.Authenticode.SignedData.html#PeNet_Authenticode_SignedData__ctor_Asn1Node_
+  commentId: M:PeNet.Authenticode.SignedData.#ctor(Asn1Node)
+  fullName: PeNet.Authenticode.SignedData.SignedData(Asn1Node)
   nameWithType: SignedData.SignedData(Asn1Node)
 - uid: PeNet.Authenticode.SignedData.#ctor*
   name: SignedData
@@ -1139,11 +1139,11 @@ references:
   fullName.vb: PeNet.CrlUrlList.CrlUrlList(System.Byte())
   nameWithType: CrlUrlList.CrlUrlList(Byte[])
   nameWithType.vb: CrlUrlList.CrlUrlList(Byte())
-- uid: PeNet.CrlUrlList.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2)
+- uid: PeNet.CrlUrlList.#ctor(X509Certificate2)
   name: CrlUrlList(X509Certificate2)
-  href: api/PeNet.CrlUrlList.html#PeNet_CrlUrlList__ctor_System_Security_Cryptography_X509Certificates_X509Certificate2_
-  commentId: M:PeNet.CrlUrlList.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2)
-  fullName: PeNet.CrlUrlList.CrlUrlList(System.Security.Cryptography.X509Certificates.X509Certificate2)
+  href: api/PeNet.CrlUrlList.html#PeNet_CrlUrlList__ctor_X509Certificate2_
+  commentId: M:PeNet.CrlUrlList.#ctor(X509Certificate2)
+  fullName: PeNet.CrlUrlList.CrlUrlList(X509Certificate2)
   nameWithType: CrlUrlList.CrlUrlList(X509Certificate2)
 - uid: PeNet.CrlUrlList.#ctor*
   name: CrlUrlList
@@ -2136,13 +2136,13 @@ references:
   commentId: T:PeNet.ImpHash.ImportHash
   fullName: PeNet.ImpHash.ImportHash
   nameWithType: ImportHash
-- uid: PeNet.ImpHash.ImportHash.#ctor(System.Collections.Generic.ICollection{PeNet.ImportFunction})
+- uid: PeNet.ImpHash.ImportHash.#ctor(ICollection{PeNet.ImportFunction})
   name: ImportHash(ICollection<ImportFunction>)
-  href: api/PeNet.ImpHash.ImportHash.html#PeNet_ImpHash_ImportHash__ctor_System_Collections_Generic_ICollection_PeNet_ImportFunction__
-  commentId: M:PeNet.ImpHash.ImportHash.#ctor(System.Collections.Generic.ICollection{PeNet.ImportFunction})
+  href: api/PeNet.ImpHash.ImportHash.html#PeNet_ImpHash_ImportHash__ctor_ICollection_PeNet_ImportFunction__
+  commentId: M:PeNet.ImpHash.ImportHash.#ctor(ICollection{PeNet.ImportFunction})
   name.vb: ImportHash(ICollection(Of ImportFunction))
-  fullName: PeNet.ImpHash.ImportHash.ImportHash(System.Collections.Generic.ICollection<PeNet.ImportFunction>)
-  fullName.vb: PeNet.ImpHash.ImportHash.ImportHash(System.Collections.Generic.ICollection(Of PeNet.ImportFunction))
+  fullName: PeNet.ImpHash.ImportHash.ImportHash(ICollection<PeNet.ImportFunction>)
+  fullName.vb: PeNet.ImpHash.ImportHash.ImportHash(ICollection(Of PeNet.ImportFunction))
   nameWithType: ImportHash.ImportHash(ICollection<ImportFunction>)
   nameWithType.vb: ImportHash.ImportHash(ICollection(Of ImportFunction))
 - uid: PeNet.ImpHash.ImportHash.#ctor*
@@ -2257,11 +2257,11 @@ references:
   fullName.vb: PeNet.PatternMatching.Trie.Add(System.Byte(), System.String)
   nameWithType: Trie.Add(Byte[], String)
   nameWithType.vb: Trie.Add(Byte(), String)
-- uid: PeNet.PatternMatching.Trie.Add(System.String,System.Text.Encoding,System.String)
+- uid: PeNet.PatternMatching.Trie.Add(System.String,Encoding,System.String)
   name: Add(String, Encoding, String)
-  href: api/PeNet.PatternMatching.Trie.html#PeNet_PatternMatching_Trie_Add_System_String_System_Text_Encoding_System_String_
-  commentId: M:PeNet.PatternMatching.Trie.Add(System.String,System.Text.Encoding,System.String)
-  fullName: PeNet.PatternMatching.Trie.Add(System.String, System.Text.Encoding, System.String)
+  href: api/PeNet.PatternMatching.Trie.html#PeNet_PatternMatching_Trie_Add_System_String_Encoding_System_String_
+  commentId: M:PeNet.PatternMatching.Trie.Add(System.String,Encoding,System.String)
+  fullName: PeNet.PatternMatching.Trie.Add(System.String, Encoding, System.String)
   nameWithType: Trie.Add(String, Encoding, String)
 - uid: PeNet.PatternMatching.Trie.Add*
   name: Add
@@ -2279,13 +2279,13 @@ references:
   fullName.vb: PeNet.PatternMatching.Trie(Of T, TValue)
   nameWithType: Trie<T, TValue>
   nameWithType.vb: Trie(Of T, TValue)
-- uid: PeNet.PatternMatching.Trie`2.Add(System.Collections.Generic.IEnumerable{`0},`1)
+- uid: PeNet.PatternMatching.Trie`2.Add(IEnumerable{`0},`1)
   name: Add(IEnumerable<T>, TValue)
-  href: api/PeNet.PatternMatching.Trie-2.html#PeNet_PatternMatching_Trie_2_Add_System_Collections_Generic_IEnumerable__0___1_
-  commentId: M:PeNet.PatternMatching.Trie`2.Add(System.Collections.Generic.IEnumerable{`0},`1)
+  href: api/PeNet.PatternMatching.Trie-2.html#PeNet_PatternMatching_Trie_2_Add_IEnumerable__0___1_
+  commentId: M:PeNet.PatternMatching.Trie`2.Add(IEnumerable{`0},`1)
   name.vb: Add(IEnumerable(Of T), TValue)
-  fullName: PeNet.PatternMatching.Trie<T, TValue>.Add(System.Collections.Generic.IEnumerable<T>, TValue)
-  fullName.vb: PeNet.PatternMatching.Trie(Of T, TValue).Add(System.Collections.Generic.IEnumerable(Of T), TValue)
+  fullName: PeNet.PatternMatching.Trie<T, TValue>.Add(IEnumerable<T>, TValue)
+  fullName.vb: PeNet.PatternMatching.Trie(Of T, TValue).Add(IEnumerable(Of T), TValue)
   nameWithType: Trie<T, TValue>.Add(IEnumerable<T>, TValue)
   nameWithType.vb: Trie(Of T, TValue).Add(IEnumerable(Of T), TValue)
 - uid: PeNet.PatternMatching.Trie`2.Add*
@@ -2297,13 +2297,13 @@ references:
   fullName.vb: PeNet.PatternMatching.Trie(Of T, TValue).Add
   nameWithType: Trie<T, TValue>.Add
   nameWithType.vb: Trie(Of T, TValue).Add
-- uid: PeNet.PatternMatching.Trie`2.Find(System.Collections.Generic.IEnumerable{`0})
+- uid: PeNet.PatternMatching.Trie`2.Find(IEnumerable{`0})
   name: Find(IEnumerable<T>)
-  href: api/PeNet.PatternMatching.Trie-2.html#PeNet_PatternMatching_Trie_2_Find_System_Collections_Generic_IEnumerable__0__
-  commentId: M:PeNet.PatternMatching.Trie`2.Find(System.Collections.Generic.IEnumerable{`0})
+  href: api/PeNet.PatternMatching.Trie-2.html#PeNet_PatternMatching_Trie_2_Find_IEnumerable__0__
+  commentId: M:PeNet.PatternMatching.Trie`2.Find(IEnumerable{`0})
   name.vb: Find(IEnumerable(Of T))
-  fullName: PeNet.PatternMatching.Trie<T, TValue>.Find(System.Collections.Generic.IEnumerable<T>)
-  fullName.vb: PeNet.PatternMatching.Trie(Of T, TValue).Find(System.Collections.Generic.IEnumerable(Of T))
+  fullName: PeNet.PatternMatching.Trie<T, TValue>.Find(IEnumerable<T>)
+  fullName.vb: PeNet.PatternMatching.Trie(Of T, TValue).Find(IEnumerable(Of T))
   nameWithType: Trie<T, TValue>.Find(IEnumerable<T>)
   nameWithType.vb: Trie(Of T, TValue).Find(IEnumerable(Of T))
 - uid: PeNet.PatternMatching.Trie`2.Find*
@@ -10962,11 +10962,11 @@ references:
   isSpec: "True"
   fullName: PeNet.Utilities.ExtensionMethods.GetUnicodeString
   nameWithType: ExtensionMethods.GetUnicodeString
-- uid: PeNet.Utilities.ExtensionMethods.MetaDataTableIndexSize(System.Type)
+- uid: PeNet.Utilities.ExtensionMethods.MetaDataTableIndexSize(Type)
   name: MetaDataTableIndexSize(Type)
-  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_MetaDataTableIndexSize_System_Type_
-  commentId: M:PeNet.Utilities.ExtensionMethods.MetaDataTableIndexSize(System.Type)
-  fullName: PeNet.Utilities.ExtensionMethods.MetaDataTableIndexSize(System.Type)
+  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_MetaDataTableIndexSize_Type_
+  commentId: M:PeNet.Utilities.ExtensionMethods.MetaDataTableIndexSize(Type)
+  fullName: PeNet.Utilities.ExtensionMethods.MetaDataTableIndexSize(Type)
   nameWithType: ExtensionMethods.MetaDataTableIndexSize(Type)
 - uid: PeNet.Utilities.ExtensionMethods.MetaDataTableIndexSize*
   name: MetaDataTableIndexSize
@@ -10975,22 +10975,22 @@ references:
   isSpec: "True"
   fullName: PeNet.Utilities.ExtensionMethods.MetaDataTableIndexSize
   nameWithType: ExtensionMethods.MetaDataTableIndexSize
-- uid: PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt32,System.Collections.Generic.ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
+- uid: PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt32,ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
   name: RVAtoFileMapping(UInt32, ICollection<IMAGE_SECTION_HEADER>)
-  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_RVAtoFileMapping_System_UInt32_System_Collections_Generic_ICollection_PeNet_Structures_IMAGE_SECTION_HEADER__
-  commentId: M:PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt32,System.Collections.Generic.ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
+  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_RVAtoFileMapping_System_UInt32_ICollection_PeNet_Structures_IMAGE_SECTION_HEADER__
+  commentId: M:PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt32,ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
   name.vb: RVAtoFileMapping(UInt32, ICollection(Of IMAGE_SECTION_HEADER))
-  fullName: PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt32, System.Collections.Generic.ICollection<PeNet.Structures.IMAGE_SECTION_HEADER>)
-  fullName.vb: PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt32, System.Collections.Generic.ICollection(Of PeNet.Structures.IMAGE_SECTION_HEADER))
+  fullName: PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt32, ICollection<PeNet.Structures.IMAGE_SECTION_HEADER>)
+  fullName.vb: PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt32, ICollection(Of PeNet.Structures.IMAGE_SECTION_HEADER))
   nameWithType: ExtensionMethods.RVAtoFileMapping(UInt32, ICollection<IMAGE_SECTION_HEADER>)
   nameWithType.vb: ExtensionMethods.RVAtoFileMapping(UInt32, ICollection(Of IMAGE_SECTION_HEADER))
-- uid: PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt64,System.Collections.Generic.ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
+- uid: PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt64,ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
   name: RVAtoFileMapping(UInt64, ICollection<IMAGE_SECTION_HEADER>)
-  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_RVAtoFileMapping_System_UInt64_System_Collections_Generic_ICollection_PeNet_Structures_IMAGE_SECTION_HEADER__
-  commentId: M:PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt64,System.Collections.Generic.ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
+  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_RVAtoFileMapping_System_UInt64_ICollection_PeNet_Structures_IMAGE_SECTION_HEADER__
+  commentId: M:PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt64,ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
   name.vb: RVAtoFileMapping(UInt64, ICollection(Of IMAGE_SECTION_HEADER))
-  fullName: PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt64, System.Collections.Generic.ICollection<PeNet.Structures.IMAGE_SECTION_HEADER>)
-  fullName.vb: PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt64, System.Collections.Generic.ICollection(Of PeNet.Structures.IMAGE_SECTION_HEADER))
+  fullName: PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt64, ICollection<PeNet.Structures.IMAGE_SECTION_HEADER>)
+  fullName.vb: PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt64, ICollection(Of PeNet.Structures.IMAGE_SECTION_HEADER))
   nameWithType: ExtensionMethods.RVAtoFileMapping(UInt64, ICollection<IMAGE_SECTION_HEADER>)
   nameWithType.vb: ExtensionMethods.RVAtoFileMapping(UInt64, ICollection(Of IMAGE_SECTION_HEADER))
 - uid: PeNet.Utilities.ExtensionMethods.RVAtoFileMapping*
@@ -11000,13 +11000,13 @@ references:
   isSpec: "True"
   fullName: PeNet.Utilities.ExtensionMethods.RVAtoFileMapping
   nameWithType: ExtensionMethods.RVAtoFileMapping
-- uid: PeNet.Utilities.ExtensionMethods.SafeRVAtoFileMapping(System.UInt32,System.Collections.Generic.ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
+- uid: PeNet.Utilities.ExtensionMethods.SafeRVAtoFileMapping(System.UInt32,ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
   name: SafeRVAtoFileMapping(UInt32, ICollection<IMAGE_SECTION_HEADER>)
-  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_SafeRVAtoFileMapping_System_UInt32_System_Collections_Generic_ICollection_PeNet_Structures_IMAGE_SECTION_HEADER__
-  commentId: M:PeNet.Utilities.ExtensionMethods.SafeRVAtoFileMapping(System.UInt32,System.Collections.Generic.ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
+  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_SafeRVAtoFileMapping_System_UInt32_ICollection_PeNet_Structures_IMAGE_SECTION_HEADER__
+  commentId: M:PeNet.Utilities.ExtensionMethods.SafeRVAtoFileMapping(System.UInt32,ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
   name.vb: SafeRVAtoFileMapping(UInt32, ICollection(Of IMAGE_SECTION_HEADER))
-  fullName: PeNet.Utilities.ExtensionMethods.SafeRVAtoFileMapping(System.UInt32, System.Collections.Generic.ICollection<PeNet.Structures.IMAGE_SECTION_HEADER>)
-  fullName.vb: PeNet.Utilities.ExtensionMethods.SafeRVAtoFileMapping(System.UInt32, System.Collections.Generic.ICollection(Of PeNet.Structures.IMAGE_SECTION_HEADER))
+  fullName: PeNet.Utilities.ExtensionMethods.SafeRVAtoFileMapping(System.UInt32, ICollection<PeNet.Structures.IMAGE_SECTION_HEADER>)
+  fullName.vb: PeNet.Utilities.ExtensionMethods.SafeRVAtoFileMapping(System.UInt32, ICollection(Of PeNet.Structures.IMAGE_SECTION_HEADER))
   nameWithType: ExtensionMethods.SafeRVAtoFileMapping(UInt32, ICollection<IMAGE_SECTION_HEADER>)
   nameWithType.vb: ExtensionMethods.SafeRVAtoFileMapping(UInt32, ICollection(Of IMAGE_SECTION_HEADER))
 - uid: PeNet.Utilities.ExtensionMethods.SafeRVAtoFileMapping*
@@ -11064,6 +11064,24 @@ references:
   isSpec: "True"
   fullName: PeNet.Utilities.ExtensionMethods.SetUInt64
   nameWithType: ExtensionMethods.SetUInt64
+- uid: PeNet.Utilities.ExtensionMethods.ToHexString(ICollection{System.Byte})
+  name: ToHexString(ICollection<Byte>)
+  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_ToHexString_ICollection_System_Byte__
+  commentId: M:PeNet.Utilities.ExtensionMethods.ToHexString(ICollection{System.Byte})
+  name.vb: ToHexString(ICollection(Of Byte))
+  fullName: PeNet.Utilities.ExtensionMethods.ToHexString(ICollection<System.Byte>)
+  fullName.vb: PeNet.Utilities.ExtensionMethods.ToHexString(ICollection(Of System.Byte))
+  nameWithType: ExtensionMethods.ToHexString(ICollection<Byte>)
+  nameWithType.vb: ExtensionMethods.ToHexString(ICollection(Of Byte))
+- uid: PeNet.Utilities.ExtensionMethods.ToHexString(ICollection{System.UInt16})
+  name: ToHexString(ICollection<UInt16>)
+  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_ToHexString_ICollection_System_UInt16__
+  commentId: M:PeNet.Utilities.ExtensionMethods.ToHexString(ICollection{System.UInt16})
+  name.vb: ToHexString(ICollection(Of UInt16))
+  fullName: PeNet.Utilities.ExtensionMethods.ToHexString(ICollection<System.UInt16>)
+  fullName.vb: PeNet.Utilities.ExtensionMethods.ToHexString(ICollection(Of System.UInt16))
+  nameWithType: ExtensionMethods.ToHexString(ICollection<UInt16>)
+  nameWithType.vb: ExtensionMethods.ToHexString(ICollection(Of UInt16))
 - uid: PeNet.Utilities.ExtensionMethods.ToHexString(System.Byte)
   name: ToHexString(Byte)
   href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_ToHexString_System_Byte_
@@ -11079,24 +11097,6 @@ references:
   fullName.vb: PeNet.Utilities.ExtensionMethods.ToHexString(System.Byte(), System.UInt64, System.UInt64)
   nameWithType: ExtensionMethods.ToHexString(Byte[], UInt64, UInt64)
   nameWithType.vb: ExtensionMethods.ToHexString(Byte(), UInt64, UInt64)
-- uid: PeNet.Utilities.ExtensionMethods.ToHexString(System.Collections.Generic.ICollection{System.Byte})
-  name: ToHexString(ICollection<Byte>)
-  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_ToHexString_System_Collections_Generic_ICollection_System_Byte__
-  commentId: M:PeNet.Utilities.ExtensionMethods.ToHexString(System.Collections.Generic.ICollection{System.Byte})
-  name.vb: ToHexString(ICollection(Of Byte))
-  fullName: PeNet.Utilities.ExtensionMethods.ToHexString(System.Collections.Generic.ICollection<System.Byte>)
-  fullName.vb: PeNet.Utilities.ExtensionMethods.ToHexString(System.Collections.Generic.ICollection(Of System.Byte))
-  nameWithType: ExtensionMethods.ToHexString(ICollection<Byte>)
-  nameWithType.vb: ExtensionMethods.ToHexString(ICollection(Of Byte))
-- uid: PeNet.Utilities.ExtensionMethods.ToHexString(System.Collections.Generic.ICollection{System.UInt16})
-  name: ToHexString(ICollection<UInt16>)
-  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_ToHexString_System_Collections_Generic_ICollection_System_UInt16__
-  commentId: M:PeNet.Utilities.ExtensionMethods.ToHexString(System.Collections.Generic.ICollection{System.UInt16})
-  name.vb: ToHexString(ICollection(Of UInt16))
-  fullName: PeNet.Utilities.ExtensionMethods.ToHexString(System.Collections.Generic.ICollection<System.UInt16>)
-  fullName.vb: PeNet.Utilities.ExtensionMethods.ToHexString(System.Collections.Generic.ICollection(Of System.UInt16))
-  nameWithType: ExtensionMethods.ToHexString(ICollection<UInt16>)
-  nameWithType.vb: ExtensionMethods.ToHexString(ICollection(Of UInt16))
 - uid: PeNet.Utilities.ExtensionMethods.ToHexString(System.UInt16)
   name: ToHexString(UInt16)
   href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_ToHexString_System_UInt16_
@@ -11135,22 +11135,22 @@ references:
   isSpec: "True"
   fullName: PeNet.Utilities.ExtensionMethods.ToIntFromHexString
   nameWithType: ExtensionMethods.ToIntFromHexString
-- uid: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt32,System.Collections.Generic.ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
+- uid: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt32,ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
   name: VAtoFileMapping(UInt32, ICollection<IMAGE_SECTION_HEADER>)
-  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_VAtoFileMapping_System_UInt32_System_Collections_Generic_ICollection_PeNet_Structures_IMAGE_SECTION_HEADER__
-  commentId: M:PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt32,System.Collections.Generic.ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
+  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_VAtoFileMapping_System_UInt32_ICollection_PeNet_Structures_IMAGE_SECTION_HEADER__
+  commentId: M:PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt32,ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
   name.vb: VAtoFileMapping(UInt32, ICollection(Of IMAGE_SECTION_HEADER))
-  fullName: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt32, System.Collections.Generic.ICollection<PeNet.Structures.IMAGE_SECTION_HEADER>)
-  fullName.vb: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt32, System.Collections.Generic.ICollection(Of PeNet.Structures.IMAGE_SECTION_HEADER))
+  fullName: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt32, ICollection<PeNet.Structures.IMAGE_SECTION_HEADER>)
+  fullName.vb: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt32, ICollection(Of PeNet.Structures.IMAGE_SECTION_HEADER))
   nameWithType: ExtensionMethods.VAtoFileMapping(UInt32, ICollection<IMAGE_SECTION_HEADER>)
   nameWithType.vb: ExtensionMethods.VAtoFileMapping(UInt32, ICollection(Of IMAGE_SECTION_HEADER))
-- uid: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt64,System.Collections.Generic.ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
+- uid: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt64,ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
   name: VAtoFileMapping(UInt64, ICollection<IMAGE_SECTION_HEADER>)
-  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_VAtoFileMapping_System_UInt64_System_Collections_Generic_ICollection_PeNet_Structures_IMAGE_SECTION_HEADER__
-  commentId: M:PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt64,System.Collections.Generic.ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
+  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_VAtoFileMapping_System_UInt64_ICollection_PeNet_Structures_IMAGE_SECTION_HEADER__
+  commentId: M:PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt64,ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
   name.vb: VAtoFileMapping(UInt64, ICollection(Of IMAGE_SECTION_HEADER))
-  fullName: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt64, System.Collections.Generic.ICollection<PeNet.Structures.IMAGE_SECTION_HEADER>)
-  fullName.vb: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt64, System.Collections.Generic.ICollection(Of PeNet.Structures.IMAGE_SECTION_HEADER))
+  fullName: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt64, ICollection<PeNet.Structures.IMAGE_SECTION_HEADER>)
+  fullName.vb: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt64, ICollection(Of PeNet.Structures.IMAGE_SECTION_HEADER))
   nameWithType: ExtensionMethods.VAtoFileMapping(UInt64, ICollection<IMAGE_SECTION_HEADER>)
   nameWithType.vb: ExtensionMethods.VAtoFileMapping(UInt64, ICollection(Of IMAGE_SECTION_HEADER))
 - uid: PeNet.Utilities.ExtensionMethods.VAtoFileMapping*
@@ -11370,13 +11370,13 @@ references:
   commentId: M:PeNet.Utilities.SignatureInformation.IsSigned(System.String)
   fullName: PeNet.Utilities.SignatureInformation.IsSigned(System.String)
   nameWithType: SignatureInformation.IsSigned(String)
-- uid: PeNet.Utilities.SignatureInformation.IsSigned(System.String,System.Security.Cryptography.X509Certificates.X509Certificate2@)
+- uid: PeNet.Utilities.SignatureInformation.IsSigned(System.String,X509Certificate2@)
   name: IsSigned(String, out X509Certificate2)
-  href: api/PeNet.Utilities.SignatureInformation.html#PeNet_Utilities_SignatureInformation_IsSigned_System_String_System_Security_Cryptography_X509Certificates_X509Certificate2__
-  commentId: M:PeNet.Utilities.SignatureInformation.IsSigned(System.String,System.Security.Cryptography.X509Certificates.X509Certificate2@)
+  href: api/PeNet.Utilities.SignatureInformation.html#PeNet_Utilities_SignatureInformation_IsSigned_System_String_X509Certificate2__
+  commentId: M:PeNet.Utilities.SignatureInformation.IsSigned(System.String,X509Certificate2@)
   name.vb: IsSigned(String, ByRef X509Certificate2)
-  fullName: PeNet.Utilities.SignatureInformation.IsSigned(System.String, out System.Security.Cryptography.X509Certificates.X509Certificate2)
-  fullName.vb: PeNet.Utilities.SignatureInformation.IsSigned(System.String, ByRef System.Security.Cryptography.X509Certificates.X509Certificate2)
+  fullName: PeNet.Utilities.SignatureInformation.IsSigned(System.String, out X509Certificate2)
+  fullName.vb: PeNet.Utilities.SignatureInformation.IsSigned(System.String, ByRef X509Certificate2)
   nameWithType: SignatureInformation.IsSigned(String, out X509Certificate2)
   nameWithType.vb: SignatureInformation.IsSigned(String, ByRef X509Certificate2)
 - uid: PeNet.Utilities.SignatureInformation.IsSigned*
@@ -11386,30 +11386,30 @@ references:
   isSpec: "True"
   fullName: PeNet.Utilities.SignatureInformation.IsSigned
   nameWithType: SignatureInformation.IsSigned
-- uid: PeNet.Utilities.SignatureInformation.IsValidCertChain(System.Security.Cryptography.X509Certificates.X509Certificate2,System.Boolean)
-  name: IsValidCertChain(X509Certificate2, Boolean)
-  href: api/PeNet.Utilities.SignatureInformation.html#PeNet_Utilities_SignatureInformation_IsValidCertChain_System_Security_Cryptography_X509Certificates_X509Certificate2_System_Boolean_
-  commentId: M:PeNet.Utilities.SignatureInformation.IsValidCertChain(System.Security.Cryptography.X509Certificates.X509Certificate2,System.Boolean)
-  fullName: PeNet.Utilities.SignatureInformation.IsValidCertChain(System.Security.Cryptography.X509Certificates.X509Certificate2, System.Boolean)
-  nameWithType: SignatureInformation.IsValidCertChain(X509Certificate2, Boolean)
-- uid: PeNet.Utilities.SignatureInformation.IsValidCertChain(System.Security.Cryptography.X509Certificates.X509Certificate2,System.TimeSpan,System.Boolean)
-  name: IsValidCertChain(X509Certificate2, TimeSpan, Boolean)
-  href: api/PeNet.Utilities.SignatureInformation.html#PeNet_Utilities_SignatureInformation_IsValidCertChain_System_Security_Cryptography_X509Certificates_X509Certificate2_System_TimeSpan_System_Boolean_
-  commentId: M:PeNet.Utilities.SignatureInformation.IsValidCertChain(System.Security.Cryptography.X509Certificates.X509Certificate2,System.TimeSpan,System.Boolean)
-  fullName: PeNet.Utilities.SignatureInformation.IsValidCertChain(System.Security.Cryptography.X509Certificates.X509Certificate2, System.TimeSpan, System.Boolean)
-  nameWithType: SignatureInformation.IsValidCertChain(X509Certificate2, TimeSpan, Boolean)
 - uid: PeNet.Utilities.SignatureInformation.IsValidCertChain(System.String,System.Boolean)
   name: IsValidCertChain(String, Boolean)
   href: api/PeNet.Utilities.SignatureInformation.html#PeNet_Utilities_SignatureInformation_IsValidCertChain_System_String_System_Boolean_
   commentId: M:PeNet.Utilities.SignatureInformation.IsValidCertChain(System.String,System.Boolean)
   fullName: PeNet.Utilities.SignatureInformation.IsValidCertChain(System.String, System.Boolean)
   nameWithType: SignatureInformation.IsValidCertChain(String, Boolean)
-- uid: PeNet.Utilities.SignatureInformation.IsValidCertChain(System.String,System.TimeSpan,System.Boolean)
+- uid: PeNet.Utilities.SignatureInformation.IsValidCertChain(System.String,TimeSpan,System.Boolean)
   name: IsValidCertChain(String, TimeSpan, Boolean)
-  href: api/PeNet.Utilities.SignatureInformation.html#PeNet_Utilities_SignatureInformation_IsValidCertChain_System_String_System_TimeSpan_System_Boolean_
-  commentId: M:PeNet.Utilities.SignatureInformation.IsValidCertChain(System.String,System.TimeSpan,System.Boolean)
-  fullName: PeNet.Utilities.SignatureInformation.IsValidCertChain(System.String, System.TimeSpan, System.Boolean)
+  href: api/PeNet.Utilities.SignatureInformation.html#PeNet_Utilities_SignatureInformation_IsValidCertChain_System_String_TimeSpan_System_Boolean_
+  commentId: M:PeNet.Utilities.SignatureInformation.IsValidCertChain(System.String,TimeSpan,System.Boolean)
+  fullName: PeNet.Utilities.SignatureInformation.IsValidCertChain(System.String, TimeSpan, System.Boolean)
   nameWithType: SignatureInformation.IsValidCertChain(String, TimeSpan, Boolean)
+- uid: PeNet.Utilities.SignatureInformation.IsValidCertChain(X509Certificate2,System.Boolean)
+  name: IsValidCertChain(X509Certificate2, Boolean)
+  href: api/PeNet.Utilities.SignatureInformation.html#PeNet_Utilities_SignatureInformation_IsValidCertChain_X509Certificate2_System_Boolean_
+  commentId: M:PeNet.Utilities.SignatureInformation.IsValidCertChain(X509Certificate2,System.Boolean)
+  fullName: PeNet.Utilities.SignatureInformation.IsValidCertChain(X509Certificate2, System.Boolean)
+  nameWithType: SignatureInformation.IsValidCertChain(X509Certificate2, Boolean)
+- uid: PeNet.Utilities.SignatureInformation.IsValidCertChain(X509Certificate2,TimeSpan,System.Boolean)
+  name: IsValidCertChain(X509Certificate2, TimeSpan, Boolean)
+  href: api/PeNet.Utilities.SignatureInformation.html#PeNet_Utilities_SignatureInformation_IsValidCertChain_X509Certificate2_TimeSpan_System_Boolean_
+  commentId: M:PeNet.Utilities.SignatureInformation.IsValidCertChain(X509Certificate2,TimeSpan,System.Boolean)
+  fullName: PeNet.Utilities.SignatureInformation.IsValidCertChain(X509Certificate2, TimeSpan, System.Boolean)
+  nameWithType: SignatureInformation.IsValidCertChain(X509Certificate2, TimeSpan, Boolean)
 - uid: PeNet.Utilities.SignatureInformation.IsValidCertChain*
   name: IsValidCertChain
   href: api/PeNet.Utilities.SignatureInformation.html#PeNet_Utilities_SignatureInformation_IsValidCertChain_

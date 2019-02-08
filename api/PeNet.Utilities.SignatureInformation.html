@@ -81,35 +81,11 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">SignatureInformation</span></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="PeNet.Utilities.html">PeNet.Utilities</a></h6>
   <h6><strong>Assembly</strong>: PeNet.dll</h6>
   <h5 id="PeNet_Utilities_SignatureInformation_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class SignatureInformation</code></pre>
+    <pre><code class="lang-csharp hljs">public static class SignatureInformation : object</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
@@ -127,8 +103,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;use `new PeFile(filePath).IsSignatureValid`&quot;, true)]
-public static bool IsSignatureValid(string filePath)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsSignatureValid(string filePath)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -217,13 +192,13 @@ verify the signature!</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Utilities_SignatureInformation_IsSigned_System_String_System_Security_Cryptography_X509Certificates_X509Certificate2__.md&amp;value=---%0Auid%3A%20PeNet.Utilities.SignatureInformation.IsSigned(System.String%2CSystem.Security.Cryptography.X509Certificates.X509Certificate2%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Utilities_SignatureInformation_IsSigned_System_String_X509Certificate2__.md&amp;value=---%0Auid%3A%20PeNet.Utilities.SignatureInformation.IsSigned(System.String%2CX509Certificate2%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Utilities/SignatureInformation.cs/#L29">View Source</a>
   </span>
   <a id="PeNet_Utilities_SignatureInformation_IsSigned_" data-uid="PeNet.Utilities.SignatureInformation.IsSigned*"></a>
-  <h4 id="PeNet_Utilities_SignatureInformation_IsSigned_System_String_System_Security_Cryptography_X509Certificates_X509Certificate2__" data-uid="PeNet.Utilities.SignatureInformation.IsSigned(System.String,System.Security.Cryptography.X509Certificates.X509Certificate2@)">IsSigned(String, out X509Certificate2)</h4>
+  <h4 id="PeNet_Utilities_SignatureInformation_IsSigned_System_String_X509Certificate2__" data-uid="PeNet.Utilities.SignatureInformation.IsSigned(System.String,X509Certificate2@)">IsSigned(String, out X509Certificate2)</h4>
   <div class="markdown level1 summary"><p>Checks is a PE file is digitally signed. It does not
 verify the signature!</p>
 </div>
@@ -249,7 +224,7 @@ verify the signature!</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Security.Cryptography.X509Certificates.X509Certificate2</span></td>
+        <td><span class="xref">X509Certificate2</span></td>
         <td><span class="parametername">cert</span></td>
         <td><p>The certificate used to sign the binary.</p>
 </td>
@@ -268,124 +243,6 @@ verify the signature!</p>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><p>True if signed, false if not.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Utilities_SignatureInformation_IsValidCertChain_System_Security_Cryptography_X509Certificates_X509Certificate2_System_Boolean_.md&amp;value=---%0Auid%3A%20PeNet.Utilities.SignatureInformation.IsValidCertChain(System.Security.Cryptography.X509Certificates.X509Certificate2%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Utilities/SignatureInformation.cs/#L82">View Source</a>
-  </span>
-  <a id="PeNet_Utilities_SignatureInformation_IsValidCertChain_" data-uid="PeNet.Utilities.SignatureInformation.IsValidCertChain*"></a>
-  <h4 id="PeNet_Utilities_SignatureInformation_IsValidCertChain_System_Security_Cryptography_X509Certificates_X509Certificate2_System_Boolean_" data-uid="PeNet.Utilities.SignatureInformation.IsValidCertChain(System.Security.Cryptography.X509Certificates.X509Certificate2,System.Boolean)">IsValidCertChain(X509Certificate2, Boolean)</h4>
-  <div class="markdown level1 summary"><p>Checks if cert is from a trusted CA with a valid certificate chain.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsValidCertChain(X509Certificate2 cert, bool online)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Security.Cryptography.X509Certificates.X509Certificate2</span></td>
-        <td><span class="parametername">cert</span></td>
-        <td><p>X509 Certificate</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">online</span></td>
-        <td><p>Check certificate chain online or offline. The online check defaults to a one minute timeout.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><p>True of cert chain is valid and from a trusted CA.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Utilities_SignatureInformation_IsValidCertChain_System_Security_Cryptography_X509Certificates_X509Certificate2_System_TimeSpan_System_Boolean_.md&amp;value=---%0Auid%3A%20PeNet.Utilities.SignatureInformation.IsValidCertChain(System.Security.Cryptography.X509Certificates.X509Certificate2%2CSystem.TimeSpan%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Utilities/SignatureInformation.cs/#L104">View Source</a>
-  </span>
-  <a id="PeNet_Utilities_SignatureInformation_IsValidCertChain_" data-uid="PeNet.Utilities.SignatureInformation.IsValidCertChain*"></a>
-  <h4 id="PeNet_Utilities_SignatureInformation_IsValidCertChain_System_Security_Cryptography_X509Certificates_X509Certificate2_System_TimeSpan_System_Boolean_" data-uid="PeNet.Utilities.SignatureInformation.IsValidCertChain(System.Security.Cryptography.X509Certificates.X509Certificate2,System.TimeSpan,System.Boolean)">IsValidCertChain(X509Certificate2, TimeSpan, Boolean)</h4>
-  <div class="markdown level1 summary"><p>Checks if cert is from a trusted CA with a valid certificate chain.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsValidCertChain(X509Certificate2 cert, TimeSpan urlRetrievalTimeout, bool excludeRoot = true)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Security.Cryptography.X509Certificates.X509Certificate2</span></td>
-        <td><span class="parametername">cert</span></td>
-        <td><p>X509 Certificate</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.TimeSpan</span></td>
-        <td><span class="parametername">urlRetrievalTimeout</span></td>
-        <td><p>Timout to validate the certificate online.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">excludeRoot</span></td>
-        <td><p>True if the root certificate should not be validatet. False if the whole chain should be validated.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><p>True of cert chain is valid and from a trusted CA.</p>
 </td>
       </tr>
     </tbody>
@@ -448,13 +305,13 @@ verify the signature!</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Utilities_SignatureInformation_IsValidCertChain_System_String_System_TimeSpan_System_Boolean_.md&amp;value=---%0Auid%3A%20PeNet.Utilities.SignatureInformation.IsValidCertChain(System.String%2CSystem.TimeSpan%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Utilities_SignatureInformation_IsValidCertChain_System_String_TimeSpan_System_Boolean_.md&amp;value=---%0Auid%3A%20PeNet.Utilities.SignatureInformation.IsValidCertChain(System.String%2CTimeSpan%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Utilities/SignatureInformation.cs/#L70">View Source</a>
   </span>
   <a id="PeNet_Utilities_SignatureInformation_IsValidCertChain_" data-uid="PeNet.Utilities.SignatureInformation.IsValidCertChain*"></a>
-  <h4 id="PeNet_Utilities_SignatureInformation_IsValidCertChain_System_String_System_TimeSpan_System_Boolean_" data-uid="PeNet.Utilities.SignatureInformation.IsValidCertChain(System.String,System.TimeSpan,System.Boolean)">IsValidCertChain(String, TimeSpan, Boolean)</h4>
+  <h4 id="PeNet_Utilities_SignatureInformation_IsValidCertChain_System_String_TimeSpan_System_Boolean_" data-uid="PeNet.Utilities.SignatureInformation.IsValidCertChain(System.String,TimeSpan,System.Boolean)">IsValidCertChain(String, TimeSpan, Boolean)</h4>
   <div class="markdown level1 summary"><p>Checks if cert is from a trusted CA with a valid certificate chain.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -479,7 +336,125 @@ verify the signature!</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.TimeSpan</span></td>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">urlRetrievalTimeout</span></td>
+        <td><p>Timout to validate the certificate online.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">excludeRoot</span></td>
+        <td><p>True if the root certificate should not be validatet. False if the whole chain should be validated.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True of cert chain is valid and from a trusted CA.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Utilities_SignatureInformation_IsValidCertChain_X509Certificate2_System_Boolean_.md&amp;value=---%0Auid%3A%20PeNet.Utilities.SignatureInformation.IsValidCertChain(X509Certificate2%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Utilities/SignatureInformation.cs/#L82">View Source</a>
+  </span>
+  <a id="PeNet_Utilities_SignatureInformation_IsValidCertChain_" data-uid="PeNet.Utilities.SignatureInformation.IsValidCertChain*"></a>
+  <h4 id="PeNet_Utilities_SignatureInformation_IsValidCertChain_X509Certificate2_System_Boolean_" data-uid="PeNet.Utilities.SignatureInformation.IsValidCertChain(X509Certificate2,System.Boolean)">IsValidCertChain(X509Certificate2, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Checks if cert is from a trusted CA with a valid certificate chain.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsValidCertChain(X509Certificate2 cert, bool online)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">X509Certificate2</span></td>
+        <td><span class="parametername">cert</span></td>
+        <td><p>X509 Certificate</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">online</span></td>
+        <td><p>Check certificate chain online or offline. The online check defaults to a one minute timeout.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True of cert chain is valid and from a trusted CA.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Utilities_SignatureInformation_IsValidCertChain_X509Certificate2_TimeSpan_System_Boolean_.md&amp;value=---%0Auid%3A%20PeNet.Utilities.SignatureInformation.IsValidCertChain(X509Certificate2%2CTimeSpan%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Utilities/SignatureInformation.cs/#L104">View Source</a>
+  </span>
+  <a id="PeNet_Utilities_SignatureInformation_IsValidCertChain_" data-uid="PeNet.Utilities.SignatureInformation.IsValidCertChain*"></a>
+  <h4 id="PeNet_Utilities_SignatureInformation_IsValidCertChain_X509Certificate2_TimeSpan_System_Boolean_" data-uid="PeNet.Utilities.SignatureInformation.IsValidCertChain(X509Certificate2,TimeSpan,System.Boolean)">IsValidCertChain(X509Certificate2, TimeSpan, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Checks if cert is from a trusted CA with a valid certificate chain.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsValidCertChain(X509Certificate2 cert, TimeSpan urlRetrievalTimeout, bool excludeRoot = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">X509Certificate2</span></td>
+        <td><span class="parametername">cert</span></td>
+        <td><p>X509 Certificate</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
         <td><span class="parametername">urlRetrievalTimeout</span></td>
         <td><p>Timout to validate the certificate online.</p>
 </td>
