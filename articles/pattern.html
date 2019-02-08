@@ -84,14 +84,14 @@ trie.Add(new byte[] {0x54, 0x40, 0x00, 0x00, 0xe0, 0x41}, &quot;pattern4&quot;);
 
 // Match all pattern in the PE file.
 var matches = trie.Find(pe.Buff);
-            
+
 foreach (var match in matches)
 {
     Console.WriteLine($&quot;Pattern {match.Item1} at offset {match.Item2}&quot;);
 }
 </code></pre>
 <p>The output for this code would be:</p>
-<pre><code>Pattern pattern1 at offset 2538
+<pre><code class="lang-none">Pattern pattern1 at offset 2538
 Pattern pattern4 at offset 9993
 Pattern pattern2 at offset 12450
 Pattern pattern2 at offset 12675
