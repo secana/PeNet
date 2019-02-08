@@ -1637,6 +1637,18 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "4fqzMYpm8GuhrNHHGOJ3Xg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "articles/pattern.md",
       "output": {
         ".html": {
@@ -1653,7 +1665,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/toc.html",
-          "hash": "XtPh5gG7/vfsGGXmDsgHXw=="
+          "hash": "LGYRIU1+Y6b8vCANXTTWOg=="
         }
       },
       "is_incremental": false,
@@ -1677,7 +1689,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "jVROr7Qjhhd4EwoRNQIhvw=="
+          "hash": "k+/dkjFuwAVS32HduMpmBw=="
         }
       },
       "is_incremental": false,
@@ -1704,7 +1716,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 5,
+          "total_file_count": 6,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
