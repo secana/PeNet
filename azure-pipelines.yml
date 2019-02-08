@@ -57,5 +57,6 @@ steps:
   inputs:
     command: push
     nuGetFeedType: external
+    allowPackageConflicts: true
     publishFeedCredentials: 'Nuget.org'
     packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
