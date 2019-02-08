@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>PeNet API Documentation </title>
+    <title>File Hashes </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="PeNet API Documentation ">
+    <meta name="title" content="File Hashes ">
     <meta name="generator" content="docfx 2.40.10.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -67,9 +67,21 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="penet-api-documentation">PeNet API Documentation</h1>
+<h1 id="file-hashes">File Hashes</h1>
 
-<p>In the left panel, you find the API documentation for all accessible structures and functionality of the PeNet library.</p>
+<p>When comparing PE files for equality, file hashes come in handy. <strong>PeNet</strong> exports the following file hashes for convenience reasons.</p>
+<p>The MD5 can be accessed with the property MD5</p>
+<pre><code class="lang-csharp">var pe = new PeNet.PeFile(@&quot;c:\windows\system32\calc.exe&quot;);
+Console.WriteLine($&quot;MD5: {pe.MD5}&quot;);
+</code></pre>
+<p>The SHA-1 can be accessed with the property SHA1</p>
+<pre><code class="lang-csharp">var pe = new PeNet.PeFile(@&quot;c:\windows\system32\calc.exe&quot;);
+Console.WriteLine($&quot;SHA-1: {pe.SHA1}&quot;);
+</code></pre>
+<p>The SHA-256 can be accessed with the property SHA256</p>
+<pre><code class="lang-csharp">var pe = new PeNet.PeFile(@&quot;c:\windows\system32\calc.exe&quot;);
+Console.WriteLine($&quot;MD5: {pe.MD5}&quot;);
+</code></pre>
 </article>
           </div>
           
@@ -78,7 +90,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/secana/PeNet/blob/master/docfx/api/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/secana/PeNet/blob/master/docfx/articles/filehash.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

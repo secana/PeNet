@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Documentation for PeNet. </title>
+    <title>About PeNet </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Documentation for PeNet. ">
+    <meta name="title" content="About PeNet ">
     <meta name="generator" content="docfx 2.40.10.0">
     
     <link rel="shortcut icon" href="favicon.ico">
@@ -60,13 +60,33 @@
         <div class="article row grid">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="documentation-for-penet">Documentation for <strong>PeNet</strong>.</h1>
+<h1 id="about-penet">About <strong>PeNet</strong></h1>
 
-<p>Refer to <a href="http://daringfireball.net/projects/markdown/">Markdown</a> for how to write markdown files.</p>
-<h2 id="quick-start-notes">Quick Start Notes:</h2>
-<ol>
-<li>Add images to the <em>images</em> folder if the file is referencing an image.</li>
-</ol>
+<p>PeNet is a library to parse and analyse Windows <a href="https://docs.microsoft.com/en-us/windows/desktop/Debug/pe-format">Portable Executables (PE)</a> files. It is completely written in C# and compiles to a cross-platform conform .Net Standard library.</p>
+<p>Besides access to all typical PE structures (native and .Net header), some utility function like the <a href="https://www.fireeye.com/blog/threat-research/2014/01/tracking-malware-import-hashing.html">Import Hash</a> used in malware-analysis are provided.</p>
+<h2 id="quick-start">Quick Start</h2>
+<p>This paragraph gives a short introduction on how to use PeNet with a few examples. For a full API documentation, see the link in the header. For more example check the Article link in the header.</p>
+<h3 id="install-the-library">Install the library</h3>
+<p>You can install PeNet into your project directly from <a href="https://www.nuget.org/packages/PeNet/">Nuget</a>.</p>
+<h3 id="open-a-pe-file">Open a PE file</h3>
+<p>You can open a file on disk or parse a byte array of a PE file.</p>
+<pre><code class="lang-csharp">var peHeader1 = new PeNet.PeFile(@&quot;C:\Windows\System32\kernel32.dll&quot;);
+</code></pre>
+<pre><code class="lang-csharp">var bin = File.ReadAllBytes(@&quot;C:\Windows\System32\kernel32.dll&quot;);
+var peHeader2 = new PeNet.PeFile(bin);
+</code></pre>
+<h3 id="work-with-the-pe-header">Work with the PE header</h3>
+<p>The parsed PE header is split into multiple modules and sub-modules. To see how the parser structures the PE header and which information can be found where see the API documentation page (link in header). Here are a few examples on how to access different parts of the PE header. For more examples, check the Article link in the header.</p>
+<p>Get the file alignment of the PE file:</p>
+<pre><code class="lang-csharp">var fileAlignment = peHeader.WindowsSpecificFields.FileAlignment;
+</code></pre>
+<p>Get the import descriptors of the PE file:</p>
+<pre><code class="lang-csharp">var if = peHeader.DataDirectories.ImageImportDescriptors;
+</code></pre>
+<p>Get the imported and exported functions of the PE file in a parsed form:</p>
+<pre><code class="lang-csharp">var if = peHeader.ImportedFunctions;
+var ef = peHeader.ExportedFunctions;
+</code></pre>
 </article>
           </div>
           
