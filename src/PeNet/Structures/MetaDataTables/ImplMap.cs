@@ -1,6 +1,4 @@
-﻿using PeNet.Test.Structures;
-
-namespace PeNet.Structures.MetaDataTables
+﻿namespace PeNet.Structures.MetaDataTables
 {
     public class ImplMap : AbstractTable
     {

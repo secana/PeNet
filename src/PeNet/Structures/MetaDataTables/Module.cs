@@ -1,7 +1,4 @@
-﻿using PeNet.Test.Structures;
-using PeNet.Utilities;
-
-namespace PeNet.Structures.MetaDataTables
+﻿namespace PeNet.Structures.MetaDataTables
 {
     public class Module : AbstractTable
     {

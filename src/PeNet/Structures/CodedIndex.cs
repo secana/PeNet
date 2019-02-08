@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using PeNet.Structures;
 using static PeNet.Structures.METADATATABLESHDR;
 
-namespace PeNet.Test.Structures
+namespace PeNet.Structures
 {
 	internal enum MetadataToken
 	{

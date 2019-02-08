@@ -1,5 +1,4 @@
-﻿using PeNet.Test.Structures;
-using PeNet.Utilities;
+﻿using PeNet.Utilities;
 using System;
 
 namespace PeNet.Structures.MetaDataTables

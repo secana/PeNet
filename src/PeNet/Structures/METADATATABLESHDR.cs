@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using PeNet.Structures.MetaDataTables;
-using PeNet.Test.Structures;
 using PeNet.Utilities;
 
 namespace PeNet.Structures
