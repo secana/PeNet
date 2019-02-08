@@ -1,2 +1,3 @@
-# PLACEHOLDER
-TODO: Add .NET projects to the *src* folder and run `docfx` to generate **REAL** *API Documentation*!
+# PeNet API Documentation
+
+In the left panel, you find the API documentation for all accessible structures and functionality of the PeNet library.
