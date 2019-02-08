@@ -14,12 +14,12 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-# - task: DotNetCoreCLI@2
-#   displayName: 'Run Unit-Tests'
-#   inputs:
-#    command: test
-#    projects: '**/*test/*.csproj'
-#    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+- task: DotNetCoreCLI@2
+  displayName: 'Run Unit-Tests'
+  inputs:
+   command: test
+   projects: '**/*test/*.csproj'
+   arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
 - script: choco install docfx
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
@@ -36,50 +36,26 @@ steps:
   workingDirectory: '$(Build.SourcesDirectory)/docfx'
 
 - task: PowerShell@2
+  displayName: Update Documentation (gh-branch)
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     targetType: filePath
     failOnStderr: false
     filePath: .\update-gh-pages.ps1
     arguments: $(token.github.penet.gh-pages)
 
-# - powershell: |
-#     New-Item -Type Directory tmp
+- task: DotNetCoreCLI@2
+  displayName: 'Pack Nuget Package'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    command: 'pack'
+    packagesToPack: '**\src\**\*.csproj'
+    configuration: $(buildConfiguration)
 
-# - powershell:
-#     git clone https://azure-bot:$Env:TOKEN@github.com/secana/PeNet.git .\tmp\PeNet --single-branch --branch gh-pages
-#   env: 
-#     TOKEN: $(token.github.penet.gh-pages)
-    
-# - powershell: |
-#     Copy-Item -Recurse -Force .\docs\* .\tmp\PeNet\
-#     cd .\tmp\PeNet
-#     git remote rm origin
-
-# - powershell:
-#     cd .\tmp\PeNet; git remote add origin https://azure-bot:$Env:TOKEN@github.com/secana/PeNet.git
-#   env: 
-#     TOKEN: $(token.github.penet.gh-pages)
-
-# - powershell: |
-#     cd .\tmp\PeNet
-#     git config user.email azure-bot@penet.org
-#     git config user.name "Azure Bot"
-#     git add .
-#     git commit -m "Update documentation"
-#     git push --set-upstream origin gh-pages
-
-# - task: DotNetCoreCLI@2
-#   displayName: 'Pack Nuget Package'
-#   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-#   inputs:
-#     command: 'pack'
-#     packagesToPack: '**\src\**\*.csproj'
-#     configuration: $(buildConfiguration)
-
-# - task: NuGetCommand@2
-#   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-#   inputs:
-#     command: push
-#     nuGetFeedType: external
-#     publishFeedCredentials: 'Nuget.org'
-#     packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
+- task: NuGetCommand@2
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: 'Nuget.org'
+    packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
