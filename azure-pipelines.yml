@@ -38,7 +38,7 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: filePath
-    failOnStderr: true
+    failOnStderr: false
     filePath: .\update-gh-pages.ps1
     arguments: $(token.github.penet.gh-pages)
 
