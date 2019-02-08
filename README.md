@@ -7,13 +7,9 @@
 PeNet is a parser for Windows Portable Executable headers. It completely written in C# and does not rely on any native Windows APIs.
 Furthermore it supports the creation of Import Hashes (ImpHash), which is a feature often used in malware analysis. You can extract Certificate Revocation List, compute different hash sums and other useful stuff for working with PE files.
 
-## Getting started
+## Getting Started & API Reference
 
-For help see the [Wiki](https://github.com/secana/PeNet/wiki).
-
-## API Reference
-
-The API reference can be found here: [PeNet API Reference](http://secana.github.io/PeNet).
+The API reference can be found here: [PeNet Documentation & API Reference](http://secana.github.io/PeNet).
 
 ## Continuous Integration
 
