@@ -209,143 +209,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.DotNetConstants.CustomAttributeType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.DotNetConstants.CustomAttributeType.html",
-          "hash": "+7bFZzyhcUuRnjJjewM0Cw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.DotNetConstants.HasConstant.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.DotNetConstants.HasConstant.html",
-          "hash": "uDKmC4761s6AOGnXx0a6nA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.DotNetConstants.HasCustomAttribute.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.DotNetConstants.HasCustomAttribute.html",
-          "hash": "jyM+aVmSPbxTfL64MoNJRw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.DotNetConstants.HasDeclSecurity.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.DotNetConstants.HasDeclSecurity.html",
-          "hash": "uk52s4XpWiBzGw1iP14hTA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.DotNetConstants.HasFieldMarshall.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.DotNetConstants.HasFieldMarshall.html",
-          "hash": "p3ljoSnsfBSzHEVO4epLpw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.DotNetConstants.HasSemantics.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.DotNetConstants.HasSemantics.html",
-          "hash": "pts/HCMgkBZaHE5GljP2FA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/PeNet.DotNetConstants.MaskValidFlags.yml",
       "output": {
         ".html": {
           "relative_path": "api/PeNet.DotNetConstants.MaskValidFlags.html",
           "hash": "L1jFrReePsoqYoC56AzENw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.DotNetConstants.MemberForwarded.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.DotNetConstants.MemberForwarded.html",
-          "hash": "rKrVRcpmt/bsncOq5eNssA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.DotNetConstants.MemberRefParent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.DotNetConstants.MemberRefParent.html",
-          "hash": "2+xNdwwGD40dIY/ZmV6xlw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.DotNetConstants.MethodDefOrRef.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.DotNetConstants.MethodDefOrRef.html",
-          "hash": "JQjxNkBSjaCiuujN+UDqMA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.DotNetConstants.ResolutionScope.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.DotNetConstants.ResolutionScope.html",
-          "hash": "zRQn2/pcZaSa8GoH2fDCMA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.DotNetConstants.TypeDefOrRef.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.DotNetConstants.TypeDefOrRef.html",
-          "hash": "19+o1VYSbP2AXuyvevIIyg=="
         }
       },
       "is_incremental": false,
@@ -837,7 +705,31 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.IMETADATATABLESHDR.html",
-          "hash": "vDg953+gssJu1PbQe5j6UQ=="
+          "hash": "RrSx2NSqMHdRV5God/mjtQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Structures.Index.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Structures.Index.html",
+          "hash": "hOugroHsNxyLHcs3kqb+zw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Structures.IndexSize.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Structures.IndexSize.html",
+          "hash": "/57pzlXA82iU9nG9hoguqg=="
         }
       },
       "is_incremental": false,
@@ -921,7 +813,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo.html",
-          "hash": "t8C/s9MbHl29ZnsTzuSztA=="
+          "hash": "Ur2n2F5guXB0VkDzRp77wA=="
         }
       },
       "is_incremental": false,
@@ -933,7 +825,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.METADATATABLESHDR.html",
-          "hash": "CaOwaljYkjEYmkijkdA0hg=="
+          "hash": "ZjaP4THk6VGKFZNbqdNDkQ=="
         }
       },
       "is_incremental": false,
@@ -945,7 +837,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.AbstractTable.html",
-          "hash": "njavRxG5BA22xEZvZSydAw=="
+          "hash": "7Az99yNlJnn2K2yLUBSffg=="
         }
       },
       "is_incremental": false,
@@ -957,7 +849,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.Assembly.html",
-          "hash": "aLYuaffMRSN1sEnRCxxOpw=="
+          "hash": "VQEc2WlPUkgIG1lHh3SHfw=="
         }
       },
       "is_incremental": false,
@@ -969,7 +861,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.AssemblyOS.html",
-          "hash": "4IaQ2IN6+3C7AD8wlsn6UQ=="
+          "hash": "6HTBWHgYmOvzq/ujc83TUQ=="
         }
       },
       "is_incremental": false,
@@ -981,7 +873,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.AssemblyProcessor.html",
-          "hash": "PLzv+afBxOsgHp99L13eoQ=="
+          "hash": "sykikAgeRTwvW8TZbNsP1A=="
         }
       },
       "is_incremental": false,
@@ -993,7 +885,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.AssemblyRef.html",
-          "hash": "KMcHXg3OaGl3DKapwtZa6Q=="
+          "hash": "4oia7yIzn/mAk8fwk0iNGw=="
         }
       },
       "is_incremental": false,
@@ -1005,7 +897,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.AssemblyRefOS.html",
-          "hash": "qtbNX3RMjigavowKWt4dMQ=="
+          "hash": "Y5fiI076eBQvlKBClFsE4g=="
         }
       },
       "is_incremental": false,
@@ -1017,7 +909,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.AssemblyRefProcessor.html",
-          "hash": "piw9Y4k1KJJiUuLKjqMZ3Q=="
+          "hash": "X089RNX61SYoaEP3rSAEiQ=="
         }
       },
       "is_incremental": false,
@@ -1029,7 +921,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.ClassLayout.html",
-          "hash": "AEEwe1ufbbRYg/gc+1lM3g=="
+          "hash": "HmzEGCTMwLzxURSdh2x74Q=="
         }
       },
       "is_incremental": false,
@@ -1041,7 +933,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.Constant.html",
-          "hash": "Clv0SfVb4fxF3LTOXfyvCQ=="
+          "hash": "s1Ux3IT+QNsIowHSiYEIGQ=="
         }
       },
       "is_incremental": false,
@@ -1053,7 +945,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.CustomAttribute.html",
-          "hash": "ddB3jlJNZpjtu++pcMq1AQ=="
+          "hash": "zlDiuGSAgrQr0BbAiTKtvA=="
         }
       },
       "is_incremental": false,
@@ -1065,7 +957,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.DeclSecurity.html",
-          "hash": "2aAPFvwNTjVLbNPlANM7DA=="
+          "hash": "l4ToThc49Q+oYYHnL1LBoQ=="
         }
       },
       "is_incremental": false,
@@ -1077,7 +969,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.Event.html",
-          "hash": "RLrq123av4GD31oaOwyN5w=="
+          "hash": "g0qLK4PqALJ2WscVfnmDow=="
         }
       },
       "is_incremental": false,
@@ -1089,7 +981,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.EventMap.html",
-          "hash": "d/Nnvrxly4lHzgDHZ/JRww=="
+          "hash": "PjIR9fjJ6wJk61VaLugxTQ=="
         }
       },
       "is_incremental": false,
@@ -1101,7 +993,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.ExportedType.html",
-          "hash": "dvG8a5GfuWvDb5o3RJlnHQ=="
+          "hash": "4TNoaIToR6qZC16904lurw=="
         }
       },
       "is_incremental": false,
@@ -1113,7 +1005,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.Field.html",
-          "hash": "GQ71RtFrbpCsEYoNrg+XkQ=="
+          "hash": "kEXtrNxIVQeh9tfCX71Xzg=="
         }
       },
       "is_incremental": false,
@@ -1125,7 +1017,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.FieldLayout.html",
-          "hash": "uiui2MJIz7ZV4zoD+xk8dg=="
+          "hash": "/cNd+OP6xX8tsr4/MWUN8Q=="
         }
       },
       "is_incremental": false,
@@ -1137,7 +1029,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.FieldMarshal.html",
-          "hash": "KdOo4+9I/0BlYK7m+6Un8w=="
+          "hash": "yQOEtEFwadhVOojQJuqUug=="
         }
       },
       "is_incremental": false,
@@ -1149,7 +1041,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.FieldRVA.html",
-          "hash": "4zvU+jzJnWjy8PhDcmypDg=="
+          "hash": "YI3zx8HooCpxDmR0NhTGAA=="
         }
       },
       "is_incremental": false,
@@ -1161,7 +1053,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.File.html",
-          "hash": "S/VJM3YQi5qkNXNcNTsOJg=="
+          "hash": "21GSQDkb6kWlJFJEAL65uQ=="
         }
       },
       "is_incremental": false,
@@ -1173,7 +1065,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.GenericParam.html",
-          "hash": "Ece64PAjrbl/brOLeU/T4w=="
+          "hash": "Hebj5ajyDJ61CkXm5MuPSw=="
         }
       },
       "is_incremental": false,
@@ -1185,7 +1077,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.GenericParamConstraint.html",
-          "hash": "H3ACtBDyuidDDfskiqPiPg=="
+          "hash": "IsOTGErxPfaPh/U7qBTCtA=="
         }
       },
       "is_incremental": false,
@@ -1197,7 +1089,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.ImplMap.html",
-          "hash": "0TbfGu0gyg0na2BjiVs1XA=="
+          "hash": "wrgGerYMmt1Ktkl5mKBZMQ=="
         }
       },
       "is_incremental": false,
@@ -1209,7 +1101,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.InterfaceImpl.html",
-          "hash": "j3i3pLisWke8uAWmxYK9dg=="
+          "hash": "Jygjeckwsn5YXzt/tFWhoA=="
         }
       },
       "is_incremental": false,
@@ -1221,7 +1113,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.ManifestResource.html",
-          "hash": "dVed4KkRaq84pRvshSJogA=="
+          "hash": "SXuE6Qb0jVR0V/h/NHdjZA=="
         }
       },
       "is_incremental": false,
@@ -1233,7 +1125,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.MemberRef.html",
-          "hash": "+gMVUKLLdozish8sKvgUEQ=="
+          "hash": "Z0fboI2sa+X4rE+I8P+v1w=="
         }
       },
       "is_incremental": false,
@@ -1245,7 +1137,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.MethodDef.html",
-          "hash": "aOf2ynl4z8mTxAL/DF6f2Q=="
+          "hash": "QxsIoDtKQy8VTkR1ifXSZA=="
         }
       },
       "is_incremental": false,
@@ -1257,7 +1149,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.MethodImpl.html",
-          "hash": "eCPLInST1eX7uA6ZOTjYeg=="
+          "hash": "wjGbQi1eIdtC5oT2bv/m2Q=="
         }
       },
       "is_incremental": false,
@@ -1269,7 +1161,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.MethodSemantics.html",
-          "hash": "oNxa7ZczXrEcdwP7D+eQ3A=="
+          "hash": "k5dVDb49dmIJ+M/VeK9xdw=="
         }
       },
       "is_incremental": false,
@@ -1281,7 +1173,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.Module.html",
-          "hash": "4Cjc1VAiBkJQP/gzj5uUew=="
+          "hash": "BlGBrMW2MIzy3rXctgqFMQ=="
         }
       },
       "is_incremental": false,
@@ -1293,7 +1185,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.ModuleRef.html",
-          "hash": "q9R4C64iNChu0q7EJy5wdA=="
+          "hash": "PPh2t8j2oHAPpu8sp2oWfQ=="
         }
       },
       "is_incremental": false,
@@ -1305,7 +1197,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.NestedClass.html",
-          "hash": "7/8mdImsAwNJYO5q76ienQ=="
+          "hash": "9n4DhrFlXdHU0/LUoRd4CA=="
         }
       },
       "is_incremental": false,
@@ -1317,7 +1209,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.Param.html",
-          "hash": "9W0i0dBgT8Jbv/A8HyHWLg=="
+          "hash": "yM2Y4g2YKr2Mi0oUmFKR2g=="
         }
       },
       "is_incremental": false,
@@ -1329,7 +1221,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.Property.html",
-          "hash": "drmhrzCl5QjPW2ay+3eF1Q=="
+          "hash": "E++UPcRdrd0e2xvHVcx7qA=="
         }
       },
       "is_incremental": false,
@@ -1341,7 +1233,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.PropertyMap.html",
-          "hash": "eqxjJTK7G66h0rHquORq1A=="
+          "hash": "Jno71tkaCoAh6LHdM8wYEA=="
         }
       },
       "is_incremental": false,
@@ -1353,7 +1245,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.StandAloneSig.html",
-          "hash": "+aHR93eVrK1iVKO6FoO5KQ=="
+          "hash": "LBSocGKOB8H2oh7uCR7fOA=="
         }
       },
       "is_incremental": false,
@@ -1377,7 +1269,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.TypeDef.html",
-          "hash": "xlg9pJd/ML2gDrSeYZL2sQ=="
+          "hash": "OfvMNaPdVEDfAAQvsGnDSA=="
         }
       },
       "is_incremental": false,
@@ -1389,7 +1281,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.TypeRef.html",
-          "hash": "Wytjj2nvib05b/SFfXOxdw=="
+          "hash": "mCCVWEQXQLrvV/p+oWFWQw=="
         }
       },
       "is_incremental": false,
@@ -1401,7 +1293,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.MetaDataTables.TypeSpec.html",
-          "hash": "QJHv5LY/R815liPl7/PyXw=="
+          "hash": "IxfMqp9TvfgdWAIvuP8uJQ=="
         }
       },
       "is_incremental": false,
@@ -1473,43 +1365,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Structures.html",
-          "hash": "mWFgXdWdau4aBhgSCJbQgg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.Test.Structures.Index.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.Test.Structures.Index.html",
-          "hash": "CGIyJnqHnMPPGXxt3vFK6g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.Test.Structures.IndexSize.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.Test.Structures.IndexSize.html",
-          "hash": "zSKYQXy0t2DTUleySCZOIA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.Test.Structures.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.Test.Structures.html",
-          "hash": "QJ2fLZJoVVXvnL8xNzoJBw=="
+          "hash": "EiSgkw2z8FsjrS/lEouC0A=="
         }
       },
       "is_incremental": false,
@@ -1581,7 +1437,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.html",
-          "hash": "kLGnFsULJrcPjmE0l+TvbA=="
+          "hash": "IDC6Os3kFFW9420JU7BN9A=="
         }
       },
       "is_incremental": false,
@@ -1605,7 +1461,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "rtKpS0gpyLNhK00gOFHc/A=="
+          "hash": "J6YaZefxviT3pRE/eTvPvQ=="
         }
       },
       "is_incremental": false,
@@ -1722,7 +1578,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 132,
+          "total_file_count": 120,
           "skipped_file_count": 0
         }
       }

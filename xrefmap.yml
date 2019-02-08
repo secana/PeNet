@@ -1226,246 +1226,6 @@ references:
   commentId: F:PeNet.DotNetConstants.COMImageFlag.COMIMAGE_FLAGS_TRACKDEBUGDATA
   fullName: PeNet.DotNetConstants.COMImageFlag.COMIMAGE_FLAGS_TRACKDEBUGDATA
   nameWithType: DotNetConstants.COMImageFlag.COMIMAGE_FLAGS_TRACKDEBUGDATA
-- uid: PeNet.DotNetConstants.CustomAttributeType
-  name: DotNetConstants.CustomAttributeType
-  href: api/PeNet.DotNetConstants.CustomAttributeType.html
-  commentId: T:PeNet.DotNetConstants.CustomAttributeType
-  fullName: PeNet.DotNetConstants.CustomAttributeType
-  nameWithType: DotNetConstants.CustomAttributeType
-- uid: PeNet.DotNetConstants.CustomAttributeType.MemberRef
-  name: MemberRef
-  href: api/PeNet.DotNetConstants.CustomAttributeType.html#PeNet_DotNetConstants_CustomAttributeType_MemberRef
-  commentId: F:PeNet.DotNetConstants.CustomAttributeType.MemberRef
-  fullName: PeNet.DotNetConstants.CustomAttributeType.MemberRef
-  nameWithType: DotNetConstants.CustomAttributeType.MemberRef
-- uid: PeNet.DotNetConstants.CustomAttributeType.MethodDef
-  name: MethodDef
-  href: api/PeNet.DotNetConstants.CustomAttributeType.html#PeNet_DotNetConstants_CustomAttributeType_MethodDef
-  commentId: F:PeNet.DotNetConstants.CustomAttributeType.MethodDef
-  fullName: PeNet.DotNetConstants.CustomAttributeType.MethodDef
-  nameWithType: DotNetConstants.CustomAttributeType.MethodDef
-- uid: PeNet.DotNetConstants.CustomAttributeType.NotUsed1
-  name: NotUsed1
-  href: api/PeNet.DotNetConstants.CustomAttributeType.html#PeNet_DotNetConstants_CustomAttributeType_NotUsed1
-  commentId: F:PeNet.DotNetConstants.CustomAttributeType.NotUsed1
-  fullName: PeNet.DotNetConstants.CustomAttributeType.NotUsed1
-  nameWithType: DotNetConstants.CustomAttributeType.NotUsed1
-- uid: PeNet.DotNetConstants.CustomAttributeType.NotUsed2
-  name: NotUsed2
-  href: api/PeNet.DotNetConstants.CustomAttributeType.html#PeNet_DotNetConstants_CustomAttributeType_NotUsed2
-  commentId: F:PeNet.DotNetConstants.CustomAttributeType.NotUsed2
-  fullName: PeNet.DotNetConstants.CustomAttributeType.NotUsed2
-  nameWithType: DotNetConstants.CustomAttributeType.NotUsed2
-- uid: PeNet.DotNetConstants.CustomAttributeType.NotUsed3
-  name: NotUsed3
-  href: api/PeNet.DotNetConstants.CustomAttributeType.html#PeNet_DotNetConstants_CustomAttributeType_NotUsed3
-  commentId: F:PeNet.DotNetConstants.CustomAttributeType.NotUsed3
-  fullName: PeNet.DotNetConstants.CustomAttributeType.NotUsed3
-  nameWithType: DotNetConstants.CustomAttributeType.NotUsed3
-- uid: PeNet.DotNetConstants.HasConstant
-  name: DotNetConstants.HasConstant
-  href: api/PeNet.DotNetConstants.HasConstant.html
-  commentId: T:PeNet.DotNetConstants.HasConstant
-  fullName: PeNet.DotNetConstants.HasConstant
-  nameWithType: DotNetConstants.HasConstant
-- uid: PeNet.DotNetConstants.HasConstant.FieldDef
-  name: FieldDef
-  href: api/PeNet.DotNetConstants.HasConstant.html#PeNet_DotNetConstants_HasConstant_FieldDef
-  commentId: F:PeNet.DotNetConstants.HasConstant.FieldDef
-  fullName: PeNet.DotNetConstants.HasConstant.FieldDef
-  nameWithType: DotNetConstants.HasConstant.FieldDef
-- uid: PeNet.DotNetConstants.HasConstant.ParamDef
-  name: ParamDef
-  href: api/PeNet.DotNetConstants.HasConstant.html#PeNet_DotNetConstants_HasConstant_ParamDef
-  commentId: F:PeNet.DotNetConstants.HasConstant.ParamDef
-  fullName: PeNet.DotNetConstants.HasConstant.ParamDef
-  nameWithType: DotNetConstants.HasConstant.ParamDef
-- uid: PeNet.DotNetConstants.HasConstant.Property
-  name: Property
-  href: api/PeNet.DotNetConstants.HasConstant.html#PeNet_DotNetConstants_HasConstant_Property
-  commentId: F:PeNet.DotNetConstants.HasConstant.Property
-  fullName: PeNet.DotNetConstants.HasConstant.Property
-  nameWithType: DotNetConstants.HasConstant.Property
-- uid: PeNet.DotNetConstants.HasCustomAttribute
-  name: DotNetConstants.HasCustomAttribute
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html
-  commentId: T:PeNet.DotNetConstants.HasCustomAttribute
-  fullName: PeNet.DotNetConstants.HasCustomAttribute
-  nameWithType: DotNetConstants.HasCustomAttribute
-- uid: PeNet.DotNetConstants.HasCustomAttribute.Assembly
-  name: Assembly
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_Assembly
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.Assembly
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.Assembly
-  nameWithType: DotNetConstants.HasCustomAttribute.Assembly
-- uid: PeNet.DotNetConstants.HasCustomAttribute.AssemblyRef
-  name: AssemblyRef
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_AssemblyRef
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.AssemblyRef
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.AssemblyRef
-  nameWithType: DotNetConstants.HasCustomAttribute.AssemblyRef
-- uid: PeNet.DotNetConstants.HasCustomAttribute.Event
-  name: Event
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_Event
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.Event
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.Event
-  nameWithType: DotNetConstants.HasCustomAttribute.Event
-- uid: PeNet.DotNetConstants.HasCustomAttribute.ExportedType
-  name: ExportedType
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_ExportedType
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.ExportedType
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.ExportedType
-  nameWithType: DotNetConstants.HasCustomAttribute.ExportedType
-- uid: PeNet.DotNetConstants.HasCustomAttribute.FieldDef
-  name: FieldDef
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_FieldDef
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.FieldDef
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.FieldDef
-  nameWithType: DotNetConstants.HasCustomAttribute.FieldDef
-- uid: PeNet.DotNetConstants.HasCustomAttribute.File
-  name: File
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_File
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.File
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.File
-  nameWithType: DotNetConstants.HasCustomAttribute.File
-- uid: PeNet.DotNetConstants.HasCustomAttribute.InterfaceImpl
-  name: InterfaceImpl
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_InterfaceImpl
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.InterfaceImpl
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.InterfaceImpl
-  nameWithType: DotNetConstants.HasCustomAttribute.InterfaceImpl
-- uid: PeNet.DotNetConstants.HasCustomAttribute.ManifestResource
-  name: ManifestResource
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_ManifestResource
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.ManifestResource
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.ManifestResource
-  nameWithType: DotNetConstants.HasCustomAttribute.ManifestResource
-- uid: PeNet.DotNetConstants.HasCustomAttribute.MemberRef
-  name: MemberRef
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_MemberRef
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.MemberRef
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.MemberRef
-  nameWithType: DotNetConstants.HasCustomAttribute.MemberRef
-- uid: PeNet.DotNetConstants.HasCustomAttribute.MethodDef
-  name: MethodDef
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_MethodDef
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.MethodDef
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.MethodDef
-  nameWithType: DotNetConstants.HasCustomAttribute.MethodDef
-- uid: PeNet.DotNetConstants.HasCustomAttribute.Module
-  name: Module
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_Module
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.Module
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.Module
-  nameWithType: DotNetConstants.HasCustomAttribute.Module
-- uid: PeNet.DotNetConstants.HasCustomAttribute.ModuleRef
-  name: ModuleRef
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_ModuleRef
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.ModuleRef
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.ModuleRef
-  nameWithType: DotNetConstants.HasCustomAttribute.ModuleRef
-- uid: PeNet.DotNetConstants.HasCustomAttribute.ParamDef
-  name: ParamDef
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_ParamDef
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.ParamDef
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.ParamDef
-  nameWithType: DotNetConstants.HasCustomAttribute.ParamDef
-- uid: PeNet.DotNetConstants.HasCustomAttribute.Permission
-  name: Permission
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_Permission
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.Permission
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.Permission
-  nameWithType: DotNetConstants.HasCustomAttribute.Permission
-- uid: PeNet.DotNetConstants.HasCustomAttribute.Property
-  name: Property
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_Property
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.Property
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.Property
-  nameWithType: DotNetConstants.HasCustomAttribute.Property
-- uid: PeNet.DotNetConstants.HasCustomAttribute.StandAloneSig
-  name: StandAloneSig
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_StandAloneSig
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.StandAloneSig
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.StandAloneSig
-  nameWithType: DotNetConstants.HasCustomAttribute.StandAloneSig
-- uid: PeNet.DotNetConstants.HasCustomAttribute.TypeDef
-  name: TypeDef
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_TypeDef
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.TypeDef
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.TypeDef
-  nameWithType: DotNetConstants.HasCustomAttribute.TypeDef
-- uid: PeNet.DotNetConstants.HasCustomAttribute.TypeRef
-  name: TypeRef
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_TypeRef
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.TypeRef
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.TypeRef
-  nameWithType: DotNetConstants.HasCustomAttribute.TypeRef
-- uid: PeNet.DotNetConstants.HasCustomAttribute.TypeSpec
-  name: TypeSpec
-  href: api/PeNet.DotNetConstants.HasCustomAttribute.html#PeNet_DotNetConstants_HasCustomAttribute_TypeSpec
-  commentId: F:PeNet.DotNetConstants.HasCustomAttribute.TypeSpec
-  fullName: PeNet.DotNetConstants.HasCustomAttribute.TypeSpec
-  nameWithType: DotNetConstants.HasCustomAttribute.TypeSpec
-- uid: PeNet.DotNetConstants.HasDeclSecurity
-  name: DotNetConstants.HasDeclSecurity
-  href: api/PeNet.DotNetConstants.HasDeclSecurity.html
-  commentId: T:PeNet.DotNetConstants.HasDeclSecurity
-  fullName: PeNet.DotNetConstants.HasDeclSecurity
-  nameWithType: DotNetConstants.HasDeclSecurity
-- uid: PeNet.DotNetConstants.HasDeclSecurity.Assembly
-  name: Assembly
-  href: api/PeNet.DotNetConstants.HasDeclSecurity.html#PeNet_DotNetConstants_HasDeclSecurity_Assembly
-  commentId: F:PeNet.DotNetConstants.HasDeclSecurity.Assembly
-  fullName: PeNet.DotNetConstants.HasDeclSecurity.Assembly
-  nameWithType: DotNetConstants.HasDeclSecurity.Assembly
-- uid: PeNet.DotNetConstants.HasDeclSecurity.MethodDef
-  name: MethodDef
-  href: api/PeNet.DotNetConstants.HasDeclSecurity.html#PeNet_DotNetConstants_HasDeclSecurity_MethodDef
-  commentId: F:PeNet.DotNetConstants.HasDeclSecurity.MethodDef
-  fullName: PeNet.DotNetConstants.HasDeclSecurity.MethodDef
-  nameWithType: DotNetConstants.HasDeclSecurity.MethodDef
-- uid: PeNet.DotNetConstants.HasDeclSecurity.TypeDef
-  name: TypeDef
-  href: api/PeNet.DotNetConstants.HasDeclSecurity.html#PeNet_DotNetConstants_HasDeclSecurity_TypeDef
-  commentId: F:PeNet.DotNetConstants.HasDeclSecurity.TypeDef
-  fullName: PeNet.DotNetConstants.HasDeclSecurity.TypeDef
-  nameWithType: DotNetConstants.HasDeclSecurity.TypeDef
-- uid: PeNet.DotNetConstants.HasFieldMarshall
-  name: DotNetConstants.HasFieldMarshall
-  href: api/PeNet.DotNetConstants.HasFieldMarshall.html
-  commentId: T:PeNet.DotNetConstants.HasFieldMarshall
-  fullName: PeNet.DotNetConstants.HasFieldMarshall
-  nameWithType: DotNetConstants.HasFieldMarshall
-- uid: PeNet.DotNetConstants.HasFieldMarshall.FieldDef
-  name: FieldDef
-  href: api/PeNet.DotNetConstants.HasFieldMarshall.html#PeNet_DotNetConstants_HasFieldMarshall_FieldDef
-  commentId: F:PeNet.DotNetConstants.HasFieldMarshall.FieldDef
-  fullName: PeNet.DotNetConstants.HasFieldMarshall.FieldDef
-  nameWithType: DotNetConstants.HasFieldMarshall.FieldDef
-- uid: PeNet.DotNetConstants.HasFieldMarshall.ParamDef
-  name: ParamDef
-  href: api/PeNet.DotNetConstants.HasFieldMarshall.html#PeNet_DotNetConstants_HasFieldMarshall_ParamDef
-  commentId: F:PeNet.DotNetConstants.HasFieldMarshall.ParamDef
-  fullName: PeNet.DotNetConstants.HasFieldMarshall.ParamDef
-  nameWithType: DotNetConstants.HasFieldMarshall.ParamDef
-- uid: PeNet.DotNetConstants.HasSemantics
-  name: DotNetConstants.HasSemantics
-  href: api/PeNet.DotNetConstants.HasSemantics.html
-  commentId: T:PeNet.DotNetConstants.HasSemantics
-  fullName: PeNet.DotNetConstants.HasSemantics
-  nameWithType: DotNetConstants.HasSemantics
-- uid: PeNet.DotNetConstants.HasSemantics.Event
-  name: Event
-  href: api/PeNet.DotNetConstants.HasSemantics.html#PeNet_DotNetConstants_HasSemantics_Event
-  commentId: F:PeNet.DotNetConstants.HasSemantics.Event
-  fullName: PeNet.DotNetConstants.HasSemantics.Event
-  nameWithType: DotNetConstants.HasSemantics.Event
-- uid: PeNet.DotNetConstants.HasSemantics.Property
-  name: Property
-  href: api/PeNet.DotNetConstants.HasSemantics.html#PeNet_DotNetConstants_HasSemantics_Property
-  commentId: F:PeNet.DotNetConstants.HasSemantics.Property
-  fullName: PeNet.DotNetConstants.HasSemantics.Property
-  nameWithType: DotNetConstants.HasSemantics.Property
 - uid: PeNet.DotNetConstants.MaskValidFlags
   name: DotNetConstants.MaskValidFlags
   href: api/PeNet.DotNetConstants.MaskValidFlags.html
@@ -1700,132 +1460,6 @@ references:
   commentId: F:PeNet.DotNetConstants.MaskValidFlags.TypeSpec
   fullName: PeNet.DotNetConstants.MaskValidFlags.TypeSpec
   nameWithType: DotNetConstants.MaskValidFlags.TypeSpec
-- uid: PeNet.DotNetConstants.MemberForwarded
-  name: DotNetConstants.MemberForwarded
-  href: api/PeNet.DotNetConstants.MemberForwarded.html
-  commentId: T:PeNet.DotNetConstants.MemberForwarded
-  fullName: PeNet.DotNetConstants.MemberForwarded
-  nameWithType: DotNetConstants.MemberForwarded
-- uid: PeNet.DotNetConstants.MemberForwarded.FieldDef
-  name: FieldDef
-  href: api/PeNet.DotNetConstants.MemberForwarded.html#PeNet_DotNetConstants_MemberForwarded_FieldDef
-  commentId: F:PeNet.DotNetConstants.MemberForwarded.FieldDef
-  fullName: PeNet.DotNetConstants.MemberForwarded.FieldDef
-  nameWithType: DotNetConstants.MemberForwarded.FieldDef
-- uid: PeNet.DotNetConstants.MemberForwarded.MethodDef
-  name: MethodDef
-  href: api/PeNet.DotNetConstants.MemberForwarded.html#PeNet_DotNetConstants_MemberForwarded_MethodDef
-  commentId: F:PeNet.DotNetConstants.MemberForwarded.MethodDef
-  fullName: PeNet.DotNetConstants.MemberForwarded.MethodDef
-  nameWithType: DotNetConstants.MemberForwarded.MethodDef
-- uid: PeNet.DotNetConstants.MemberRefParent
-  name: DotNetConstants.MemberRefParent
-  href: api/PeNet.DotNetConstants.MemberRefParent.html
-  commentId: T:PeNet.DotNetConstants.MemberRefParent
-  fullName: PeNet.DotNetConstants.MemberRefParent
-  nameWithType: DotNetConstants.MemberRefParent
-- uid: PeNet.DotNetConstants.MemberRefParent.MethodDef
-  name: MethodDef
-  href: api/PeNet.DotNetConstants.MemberRefParent.html#PeNet_DotNetConstants_MemberRefParent_MethodDef
-  commentId: F:PeNet.DotNetConstants.MemberRefParent.MethodDef
-  fullName: PeNet.DotNetConstants.MemberRefParent.MethodDef
-  nameWithType: DotNetConstants.MemberRefParent.MethodDef
-- uid: PeNet.DotNetConstants.MemberRefParent.ModuleRef
-  name: ModuleRef
-  href: api/PeNet.DotNetConstants.MemberRefParent.html#PeNet_DotNetConstants_MemberRefParent_ModuleRef
-  commentId: F:PeNet.DotNetConstants.MemberRefParent.ModuleRef
-  fullName: PeNet.DotNetConstants.MemberRefParent.ModuleRef
-  nameWithType: DotNetConstants.MemberRefParent.ModuleRef
-- uid: PeNet.DotNetConstants.MemberRefParent.TypeDef
-  name: TypeDef
-  href: api/PeNet.DotNetConstants.MemberRefParent.html#PeNet_DotNetConstants_MemberRefParent_TypeDef
-  commentId: F:PeNet.DotNetConstants.MemberRefParent.TypeDef
-  fullName: PeNet.DotNetConstants.MemberRefParent.TypeDef
-  nameWithType: DotNetConstants.MemberRefParent.TypeDef
-- uid: PeNet.DotNetConstants.MemberRefParent.TypeRef
-  name: TypeRef
-  href: api/PeNet.DotNetConstants.MemberRefParent.html#PeNet_DotNetConstants_MemberRefParent_TypeRef
-  commentId: F:PeNet.DotNetConstants.MemberRefParent.TypeRef
-  fullName: PeNet.DotNetConstants.MemberRefParent.TypeRef
-  nameWithType: DotNetConstants.MemberRefParent.TypeRef
-- uid: PeNet.DotNetConstants.MemberRefParent.TypeSpec
-  name: TypeSpec
-  href: api/PeNet.DotNetConstants.MemberRefParent.html#PeNet_DotNetConstants_MemberRefParent_TypeSpec
-  commentId: F:PeNet.DotNetConstants.MemberRefParent.TypeSpec
-  fullName: PeNet.DotNetConstants.MemberRefParent.TypeSpec
-  nameWithType: DotNetConstants.MemberRefParent.TypeSpec
-- uid: PeNet.DotNetConstants.MethodDefOrRef
-  name: DotNetConstants.MethodDefOrRef
-  href: api/PeNet.DotNetConstants.MethodDefOrRef.html
-  commentId: T:PeNet.DotNetConstants.MethodDefOrRef
-  fullName: PeNet.DotNetConstants.MethodDefOrRef
-  nameWithType: DotNetConstants.MethodDefOrRef
-- uid: PeNet.DotNetConstants.MethodDefOrRef.MemberRef
-  name: MemberRef
-  href: api/PeNet.DotNetConstants.MethodDefOrRef.html#PeNet_DotNetConstants_MethodDefOrRef_MemberRef
-  commentId: F:PeNet.DotNetConstants.MethodDefOrRef.MemberRef
-  fullName: PeNet.DotNetConstants.MethodDefOrRef.MemberRef
-  nameWithType: DotNetConstants.MethodDefOrRef.MemberRef
-- uid: PeNet.DotNetConstants.MethodDefOrRef.MethodDef
-  name: MethodDef
-  href: api/PeNet.DotNetConstants.MethodDefOrRef.html#PeNet_DotNetConstants_MethodDefOrRef_MethodDef
-  commentId: F:PeNet.DotNetConstants.MethodDefOrRef.MethodDef
-  fullName: PeNet.DotNetConstants.MethodDefOrRef.MethodDef
-  nameWithType: DotNetConstants.MethodDefOrRef.MethodDef
-- uid: PeNet.DotNetConstants.ResolutionScope
-  name: DotNetConstants.ResolutionScope
-  href: api/PeNet.DotNetConstants.ResolutionScope.html
-  commentId: T:PeNet.DotNetConstants.ResolutionScope
-  fullName: PeNet.DotNetConstants.ResolutionScope
-  nameWithType: DotNetConstants.ResolutionScope
-- uid: PeNet.DotNetConstants.ResolutionScope.AssemblyRef
-  name: AssemblyRef
-  href: api/PeNet.DotNetConstants.ResolutionScope.html#PeNet_DotNetConstants_ResolutionScope_AssemblyRef
-  commentId: F:PeNet.DotNetConstants.ResolutionScope.AssemblyRef
-  fullName: PeNet.DotNetConstants.ResolutionScope.AssemblyRef
-  nameWithType: DotNetConstants.ResolutionScope.AssemblyRef
-- uid: PeNet.DotNetConstants.ResolutionScope.Module
-  name: Module
-  href: api/PeNet.DotNetConstants.ResolutionScope.html#PeNet_DotNetConstants_ResolutionScope_Module
-  commentId: F:PeNet.DotNetConstants.ResolutionScope.Module
-  fullName: PeNet.DotNetConstants.ResolutionScope.Module
-  nameWithType: DotNetConstants.ResolutionScope.Module
-- uid: PeNet.DotNetConstants.ResolutionScope.ModuleRef
-  name: ModuleRef
-  href: api/PeNet.DotNetConstants.ResolutionScope.html#PeNet_DotNetConstants_ResolutionScope_ModuleRef
-  commentId: F:PeNet.DotNetConstants.ResolutionScope.ModuleRef
-  fullName: PeNet.DotNetConstants.ResolutionScope.ModuleRef
-  nameWithType: DotNetConstants.ResolutionScope.ModuleRef
-- uid: PeNet.DotNetConstants.ResolutionScope.TypeRef
-  name: TypeRef
-  href: api/PeNet.DotNetConstants.ResolutionScope.html#PeNet_DotNetConstants_ResolutionScope_TypeRef
-  commentId: F:PeNet.DotNetConstants.ResolutionScope.TypeRef
-  fullName: PeNet.DotNetConstants.ResolutionScope.TypeRef
-  nameWithType: DotNetConstants.ResolutionScope.TypeRef
-- uid: PeNet.DotNetConstants.TypeDefOrRef
-  name: DotNetConstants.TypeDefOrRef
-  href: api/PeNet.DotNetConstants.TypeDefOrRef.html
-  commentId: T:PeNet.DotNetConstants.TypeDefOrRef
-  fullName: PeNet.DotNetConstants.TypeDefOrRef
-  nameWithType: DotNetConstants.TypeDefOrRef
-- uid: PeNet.DotNetConstants.TypeDefOrRef.TypeDef
-  name: TypeDef
-  href: api/PeNet.DotNetConstants.TypeDefOrRef.html#PeNet_DotNetConstants_TypeDefOrRef_TypeDef
-  commentId: F:PeNet.DotNetConstants.TypeDefOrRef.TypeDef
-  fullName: PeNet.DotNetConstants.TypeDefOrRef.TypeDef
-  nameWithType: DotNetConstants.TypeDefOrRef.TypeDef
-- uid: PeNet.DotNetConstants.TypeDefOrRef.TypeRef
-  name: TypeRef
-  href: api/PeNet.DotNetConstants.TypeDefOrRef.html#PeNet_DotNetConstants_TypeDefOrRef_TypeRef
-  commentId: F:PeNet.DotNetConstants.TypeDefOrRef.TypeRef
-  fullName: PeNet.DotNetConstants.TypeDefOrRef.TypeRef
-  nameWithType: DotNetConstants.TypeDefOrRef.TypeRef
-- uid: PeNet.DotNetConstants.TypeDefOrRef.TypeSpec
-  name: TypeSpec
-  href: api/PeNet.DotNetConstants.TypeDefOrRef.html#PeNet_DotNetConstants_TypeDefOrRef_TypeSpec
-  commentId: F:PeNet.DotNetConstants.TypeDefOrRef.TypeSpec
-  fullName: PeNet.DotNetConstants.TypeDefOrRef.TypeSpec
-  nameWithType: DotNetConstants.TypeDefOrRef.TypeSpec
 - uid: PeNet.ExportFunction
   name: ExportFunction
   href: api/PeNet.ExportFunction.html
@@ -6566,6 +6200,194 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMETADATATABLESHDR.TableDefinitions
   nameWithType: IMETADATATABLESHDR.TableDefinitions
+- uid: PeNet.Structures.Index
+  name: Index
+  href: api/PeNet.Structures.Index.html
+  commentId: T:PeNet.Structures.Index
+  fullName: PeNet.Structures.Index
+  nameWithType: Index
+- uid: PeNet.Structures.Index.AssemblyRef
+  name: AssemblyRef
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_AssemblyRef
+  commentId: F:PeNet.Structures.Index.AssemblyRef
+  fullName: PeNet.Structures.Index.AssemblyRef
+  nameWithType: Index.AssemblyRef
+- uid: PeNet.Structures.Index.CustomAttributeType
+  name: CustomAttributeType
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_CustomAttributeType
+  commentId: F:PeNet.Structures.Index.CustomAttributeType
+  fullName: PeNet.Structures.Index.CustomAttributeType
+  nameWithType: Index.CustomAttributeType
+- uid: PeNet.Structures.Index.Event
+  name: Event
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_Event
+  commentId: F:PeNet.Structures.Index.Event
+  fullName: PeNet.Structures.Index.Event
+  nameWithType: Index.Event
+- uid: PeNet.Structures.Index.Field
+  name: Field
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_Field
+  commentId: F:PeNet.Structures.Index.Field
+  fullName: PeNet.Structures.Index.Field
+  nameWithType: Index.Field
+- uid: PeNet.Structures.Index.GenericParam
+  name: GenericParam
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_GenericParam
+  commentId: F:PeNet.Structures.Index.GenericParam
+  fullName: PeNet.Structures.Index.GenericParam
+  nameWithType: Index.GenericParam
+- uid: PeNet.Structures.Index.Guid
+  name: Guid
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_Guid
+  commentId: F:PeNet.Structures.Index.Guid
+  fullName: PeNet.Structures.Index.Guid
+  nameWithType: Index.Guid
+- uid: PeNet.Structures.Index.HasConstant
+  name: HasConstant
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_HasConstant
+  commentId: F:PeNet.Structures.Index.HasConstant
+  fullName: PeNet.Structures.Index.HasConstant
+  nameWithType: Index.HasConstant
+- uid: PeNet.Structures.Index.HasCustomAttribute
+  name: HasCustomAttribute
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_HasCustomAttribute
+  commentId: F:PeNet.Structures.Index.HasCustomAttribute
+  fullName: PeNet.Structures.Index.HasCustomAttribute
+  nameWithType: Index.HasCustomAttribute
+- uid: PeNet.Structures.Index.HasDeclSecurity
+  name: HasDeclSecurity
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_HasDeclSecurity
+  commentId: F:PeNet.Structures.Index.HasDeclSecurity
+  fullName: PeNet.Structures.Index.HasDeclSecurity
+  nameWithType: Index.HasDeclSecurity
+- uid: PeNet.Structures.Index.HasFieldMarshal
+  name: HasFieldMarshal
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_HasFieldMarshal
+  commentId: F:PeNet.Structures.Index.HasFieldMarshal
+  fullName: PeNet.Structures.Index.HasFieldMarshal
+  nameWithType: Index.HasFieldMarshal
+- uid: PeNet.Structures.Index.HasSemantics
+  name: HasSemantics
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_HasSemantics
+  commentId: F:PeNet.Structures.Index.HasSemantics
+  fullName: PeNet.Structures.Index.HasSemantics
+  nameWithType: Index.HasSemantics
+- uid: PeNet.Structures.Index.Implementation
+  name: Implementation
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_Implementation
+  commentId: F:PeNet.Structures.Index.Implementation
+  fullName: PeNet.Structures.Index.Implementation
+  nameWithType: Index.Implementation
+- uid: PeNet.Structures.Index.MemberForwarded
+  name: MemberForwarded
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_MemberForwarded
+  commentId: F:PeNet.Structures.Index.MemberForwarded
+  fullName: PeNet.Structures.Index.MemberForwarded
+  nameWithType: Index.MemberForwarded
+- uid: PeNet.Structures.Index.MemberRefParent
+  name: MemberRefParent
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_MemberRefParent
+  commentId: F:PeNet.Structures.Index.MemberRefParent
+  fullName: PeNet.Structures.Index.MemberRefParent
+  nameWithType: Index.MemberRefParent
+- uid: PeNet.Structures.Index.MethodDef
+  name: MethodDef
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_MethodDef
+  commentId: F:PeNet.Structures.Index.MethodDef
+  fullName: PeNet.Structures.Index.MethodDef
+  nameWithType: Index.MethodDef
+- uid: PeNet.Structures.Index.MethodDefOrRef
+  name: MethodDefOrRef
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_MethodDefOrRef
+  commentId: F:PeNet.Structures.Index.MethodDefOrRef
+  fullName: PeNet.Structures.Index.MethodDefOrRef
+  nameWithType: Index.MethodDefOrRef
+- uid: PeNet.Structures.Index.ModuleRef
+  name: ModuleRef
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_ModuleRef
+  commentId: F:PeNet.Structures.Index.ModuleRef
+  fullName: PeNet.Structures.Index.ModuleRef
+  nameWithType: Index.ModuleRef
+- uid: PeNet.Structures.Index.Param
+  name: Param
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_Param
+  commentId: F:PeNet.Structures.Index.Param
+  fullName: PeNet.Structures.Index.Param
+  nameWithType: Index.Param
+- uid: PeNet.Structures.Index.Property
+  name: Property
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_Property
+  commentId: F:PeNet.Structures.Index.Property
+  fullName: PeNet.Structures.Index.Property
+  nameWithType: Index.Property
+- uid: PeNet.Structures.Index.ResolutionScope
+  name: ResolutionScope
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_ResolutionScope
+  commentId: F:PeNet.Structures.Index.ResolutionScope
+  fullName: PeNet.Structures.Index.ResolutionScope
+  nameWithType: Index.ResolutionScope
+- uid: PeNet.Structures.Index.String
+  name: String
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_String
+  commentId: F:PeNet.Structures.Index.String
+  fullName: PeNet.Structures.Index.String
+  nameWithType: Index.String
+- uid: PeNet.Structures.Index.TypeDef
+  name: TypeDef
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_TypeDef
+  commentId: F:PeNet.Structures.Index.TypeDef
+  fullName: PeNet.Structures.Index.TypeDef
+  nameWithType: Index.TypeDef
+- uid: PeNet.Structures.Index.TypeDefOrRef
+  name: TypeDefOrRef
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_TypeDefOrRef
+  commentId: F:PeNet.Structures.Index.TypeDefOrRef
+  fullName: PeNet.Structures.Index.TypeDefOrRef
+  nameWithType: Index.TypeDefOrRef
+- uid: PeNet.Structures.Index.TypeOrMethodDef
+  name: TypeOrMethodDef
+  href: api/PeNet.Structures.Index.html#PeNet_Structures_Index_TypeOrMethodDef
+  commentId: F:PeNet.Structures.Index.TypeOrMethodDef
+  fullName: PeNet.Structures.Index.TypeOrMethodDef
+  nameWithType: Index.TypeOrMethodDef
+- uid: PeNet.Structures.IndexSize
+  name: IndexSize
+  href: api/PeNet.Structures.IndexSize.html
+  commentId: T:PeNet.Structures.IndexSize
+  fullName: PeNet.Structures.IndexSize
+  nameWithType: IndexSize
+- uid: PeNet.Structures.IndexSize.#ctor(PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo[])
+  name: IndexSize(METADATATABLESHDR.MetaDataTableInfo[])
+  href: api/PeNet.Structures.IndexSize.html#PeNet_Structures_IndexSize__ctor_PeNet_Structures_METADATATABLESHDR_MetaDataTableInfo___
+  commentId: M:PeNet.Structures.IndexSize.#ctor(PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo[])
+  name.vb: IndexSize(METADATATABLESHDR.MetaDataTableInfo())
+  fullName: PeNet.Structures.IndexSize.IndexSize(PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo[])
+  fullName.vb: PeNet.Structures.IndexSize.IndexSize(PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo())
+  nameWithType: IndexSize.IndexSize(METADATATABLESHDR.MetaDataTableInfo[])
+  nameWithType.vb: IndexSize.IndexSize(METADATATABLESHDR.MetaDataTableInfo())
+- uid: PeNet.Structures.IndexSize.#ctor*
+  name: IndexSize
+  href: api/PeNet.Structures.IndexSize.html#PeNet_Structures_IndexSize__ctor_
+  commentId: Overload:PeNet.Structures.IndexSize.#ctor
+  isSpec: "True"
+  fullName: PeNet.Structures.IndexSize.IndexSize
+  nameWithType: IndexSize.IndexSize
+- uid: PeNet.Structures.IndexSize.Item(PeNet.Structures.Index)
+  name: Item[Index]
+  href: api/PeNet.Structures.IndexSize.html#PeNet_Structures_IndexSize_Item_PeNet_Structures_Index_
+  commentId: P:PeNet.Structures.IndexSize.Item(PeNet.Structures.Index)
+  name.vb: Item(Index)
+  fullName: PeNet.Structures.IndexSize.Item[PeNet.Structures.Index]
+  fullName.vb: PeNet.Structures.IndexSize.Item(PeNet.Structures.Index)
+  nameWithType: IndexSize.Item[Index]
+  nameWithType.vb: IndexSize.Item(Index)
+- uid: PeNet.Structures.IndexSize.Item*
+  name: Item
+  href: api/PeNet.Structures.IndexSize.html#PeNet_Structures_IndexSize_Item_
+  commentId: Overload:PeNet.Structures.IndexSize.Item
+  isSpec: "True"
+  fullName: PeNet.Structures.IndexSize.Item
+  nameWithType: IndexSize.Item
 - uid: PeNet.Structures.METADATAHDR
   name: METADATAHDR
   href: api/PeNet.Structures.METADATAHDR.html
@@ -7032,13 +6854,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.AbstractTable
   fullName: PeNet.Structures.MetaDataTables.AbstractTable
   nameWithType: AbstractTable
-- uid: PeNet.Structures.MetaDataTables.AbstractTable.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.AbstractTable.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: AbstractTable(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.AbstractTable.html#PeNet_Structures_MetaDataTables_AbstractTable__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.AbstractTable.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.AbstractTable.html#PeNet_Structures_MetaDataTables_AbstractTable__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.AbstractTable.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: AbstractTable(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.AbstractTable.AbstractTable(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.AbstractTable.AbstractTable(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.AbstractTable.AbstractTable(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.AbstractTable.AbstractTable(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: AbstractTable.AbstractTable(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: AbstractTable.AbstractTable(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.AbstractTable.#ctor*
@@ -7099,13 +6921,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.Assembly
   fullName: PeNet.Structures.MetaDataTables.Assembly
   nameWithType: Assembly
-- uid: PeNet.Structures.MetaDataTables.Assembly.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.Assembly.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: Assembly(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.Assembly.html#PeNet_Structures_MetaDataTables_Assembly__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.Assembly.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.Assembly.html#PeNet_Structures_MetaDataTables_Assembly__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.Assembly.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: Assembly(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.Assembly.Assembly(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.Assembly.Assembly(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.Assembly.Assembly(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.Assembly.Assembly(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: Assembly.Assembly(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: Assembly.Assembly(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.Assembly.#ctor*
@@ -7238,13 +7060,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.AssemblyOS
   fullName: PeNet.Structures.MetaDataTables.AssemblyOS
   nameWithType: AssemblyOS
-- uid: PeNet.Structures.MetaDataTables.AssemblyOS.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.AssemblyOS.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: AssemblyOS(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.AssemblyOS.html#PeNet_Structures_MetaDataTables_AssemblyOS__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.AssemblyOS.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.AssemblyOS.html#PeNet_Structures_MetaDataTables_AssemblyOS__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.AssemblyOS.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: AssemblyOS(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.AssemblyOS.AssemblyOS(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.AssemblyOS.AssemblyOS(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.AssemblyOS.AssemblyOS(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.AssemblyOS.AssemblyOS(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: AssemblyOS.AssemblyOS(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: AssemblyOS.AssemblyOS(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.AssemblyOS.#ctor*
@@ -7299,13 +7121,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.AssemblyProcessor
   fullName: PeNet.Structures.MetaDataTables.AssemblyProcessor
   nameWithType: AssemblyProcessor
-- uid: PeNet.Structures.MetaDataTables.AssemblyProcessor.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.AssemblyProcessor.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: AssemblyProcessor(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.AssemblyProcessor.html#PeNet_Structures_MetaDataTables_AssemblyProcessor__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.AssemblyProcessor.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.AssemblyProcessor.html#PeNet_Structures_MetaDataTables_AssemblyProcessor__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.AssemblyProcessor.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: AssemblyProcessor(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.AssemblyProcessor.AssemblyProcessor(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.AssemblyProcessor.AssemblyProcessor(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.AssemblyProcessor.AssemblyProcessor(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.AssemblyProcessor.AssemblyProcessor(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: AssemblyProcessor.AssemblyProcessor(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: AssemblyProcessor.AssemblyProcessor(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.AssemblyProcessor.#ctor*
@@ -7334,13 +7156,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.AssemblyRef
   fullName: PeNet.Structures.MetaDataTables.AssemblyRef
   nameWithType: AssemblyRef
-- uid: PeNet.Structures.MetaDataTables.AssemblyRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.AssemblyRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: AssemblyRef(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.AssemblyRef.html#PeNet_Structures_MetaDataTables_AssemblyRef__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.AssemblyRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.AssemblyRef.html#PeNet_Structures_MetaDataTables_AssemblyRef__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.AssemblyRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: AssemblyRef(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.AssemblyRef.AssemblyRef(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.AssemblyRef.AssemblyRef(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.AssemblyRef.AssemblyRef(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.AssemblyRef.AssemblyRef(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: AssemblyRef.AssemblyRef(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: AssemblyRef.AssemblyRef(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.AssemblyRef.#ctor*
@@ -7473,13 +7295,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.AssemblyRefOS
   fullName: PeNet.Structures.MetaDataTables.AssemblyRefOS
   nameWithType: AssemblyRefOS
-- uid: PeNet.Structures.MetaDataTables.AssemblyRefOS.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.AssemblyRefOS.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: AssemblyRefOS(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.AssemblyRefOS.html#PeNet_Structures_MetaDataTables_AssemblyRefOS__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.AssemblyRefOS.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.AssemblyRefOS.html#PeNet_Structures_MetaDataTables_AssemblyRefOS__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.AssemblyRefOS.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: AssemblyRefOS(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.AssemblyRefOS.AssemblyRefOS(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.AssemblyRefOS.AssemblyRefOS(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.AssemblyRefOS.AssemblyRefOS(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.AssemblyRefOS.AssemblyRefOS(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: AssemblyRefOS.AssemblyRefOS(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: AssemblyRefOS.AssemblyRefOS(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.AssemblyRefOS.#ctor*
@@ -7547,13 +7369,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.AssemblyRefProcessor
   fullName: PeNet.Structures.MetaDataTables.AssemblyRefProcessor
   nameWithType: AssemblyRefProcessor
-- uid: PeNet.Structures.MetaDataTables.AssemblyRefProcessor.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.AssemblyRefProcessor.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: AssemblyRefProcessor(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.AssemblyRefProcessor.html#PeNet_Structures_MetaDataTables_AssemblyRefProcessor__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.AssemblyRefProcessor.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.AssemblyRefProcessor.html#PeNet_Structures_MetaDataTables_AssemblyRefProcessor__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.AssemblyRefProcessor.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: AssemblyRefProcessor(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.AssemblyRefProcessor.AssemblyRefProcessor(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.AssemblyRefProcessor.AssemblyRefProcessor(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.AssemblyRefProcessor.AssemblyRefProcessor(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.AssemblyRefProcessor.AssemblyRefProcessor(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: AssemblyRefProcessor.AssemblyRefProcessor(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: AssemblyRefProcessor.AssemblyRefProcessor(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.AssemblyRefProcessor.#ctor*
@@ -7595,13 +7417,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.ClassLayout
   fullName: PeNet.Structures.MetaDataTables.ClassLayout
   nameWithType: ClassLayout
-- uid: PeNet.Structures.MetaDataTables.ClassLayout.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.ClassLayout.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: ClassLayout(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.ClassLayout.html#PeNet_Structures_MetaDataTables_ClassLayout__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.ClassLayout.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.ClassLayout.html#PeNet_Structures_MetaDataTables_ClassLayout__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.ClassLayout.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: ClassLayout(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.ClassLayout.ClassLayout(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.ClassLayout.ClassLayout(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.ClassLayout.ClassLayout(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.ClassLayout.ClassLayout(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: ClassLayout.ClassLayout(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: ClassLayout.ClassLayout(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.ClassLayout.#ctor*
@@ -7656,13 +7478,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.Constant
   fullName: PeNet.Structures.MetaDataTables.Constant
   nameWithType: Constant
-- uid: PeNet.Structures.MetaDataTables.Constant.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.Constant.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: Constant(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.Constant.html#PeNet_Structures_MetaDataTables_Constant__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.Constant.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.Constant.html#PeNet_Structures_MetaDataTables_Constant__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.Constant.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: Constant(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.Constant.Constant(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.Constant.Constant(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.Constant.Constant(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.Constant.Constant(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: Constant.Constant(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: Constant.Constant(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.Constant.#ctor*
@@ -7717,13 +7539,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.CustomAttribute
   fullName: PeNet.Structures.MetaDataTables.CustomAttribute
   nameWithType: CustomAttribute
-- uid: PeNet.Structures.MetaDataTables.CustomAttribute.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.CustomAttribute.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: CustomAttribute(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.CustomAttribute.html#PeNet_Structures_MetaDataTables_CustomAttribute__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.CustomAttribute.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.CustomAttribute.html#PeNet_Structures_MetaDataTables_CustomAttribute__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.CustomAttribute.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: CustomAttribute(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.CustomAttribute.CustomAttribute(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.CustomAttribute.CustomAttribute(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.CustomAttribute.CustomAttribute(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.CustomAttribute.CustomAttribute(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: CustomAttribute.CustomAttribute(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: CustomAttribute.CustomAttribute(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.CustomAttribute.#ctor*
@@ -7778,13 +7600,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.DeclSecurity
   fullName: PeNet.Structures.MetaDataTables.DeclSecurity
   nameWithType: DeclSecurity
-- uid: PeNet.Structures.MetaDataTables.DeclSecurity.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.DeclSecurity.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: DeclSecurity(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.DeclSecurity.html#PeNet_Structures_MetaDataTables_DeclSecurity__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.DeclSecurity.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.DeclSecurity.html#PeNet_Structures_MetaDataTables_DeclSecurity__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.DeclSecurity.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: DeclSecurity(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.DeclSecurity.DeclSecurity(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.DeclSecurity.DeclSecurity(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.DeclSecurity.DeclSecurity(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.DeclSecurity.DeclSecurity(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: DeclSecurity.DeclSecurity(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: DeclSecurity.DeclSecurity(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.DeclSecurity.#ctor*
@@ -7839,13 +7661,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.Event
   fullName: PeNet.Structures.MetaDataTables.Event
   nameWithType: Event
-- uid: PeNet.Structures.MetaDataTables.Event.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.Event.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: Event(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.Event.html#PeNet_Structures_MetaDataTables_Event__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.Event.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.Event.html#PeNet_Structures_MetaDataTables_Event__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.Event.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: Event(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.Event.Event(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.Event.Event(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.Event.Event(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.Event.Event(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: Event.Event(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: Event.Event(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.Event.#ctor*
@@ -7900,13 +7722,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.EventMap
   fullName: PeNet.Structures.MetaDataTables.EventMap
   nameWithType: EventMap
-- uid: PeNet.Structures.MetaDataTables.EventMap.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.EventMap.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: EventMap(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.EventMap.html#PeNet_Structures_MetaDataTables_EventMap__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.EventMap.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.EventMap.html#PeNet_Structures_MetaDataTables_EventMap__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.EventMap.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: EventMap(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.EventMap.EventMap(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.EventMap.EventMap(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.EventMap.EventMap(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.EventMap.EventMap(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: EventMap.EventMap(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: EventMap.EventMap(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.EventMap.#ctor*
@@ -7948,13 +7770,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.ExportedType
   fullName: PeNet.Structures.MetaDataTables.ExportedType
   nameWithType: ExportedType
-- uid: PeNet.Structures.MetaDataTables.ExportedType.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.ExportedType.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: ExportedType(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.ExportedType.html#PeNet_Structures_MetaDataTables_ExportedType__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.ExportedType.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.ExportedType.html#PeNet_Structures_MetaDataTables_ExportedType__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.ExportedType.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: ExportedType(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.ExportedType.ExportedType(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.ExportedType.ExportedType(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.ExportedType.ExportedType(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.ExportedType.ExportedType(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: ExportedType.ExportedType(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: ExportedType.ExportedType(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.ExportedType.#ctor*
@@ -8022,13 +7844,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.Field
   fullName: PeNet.Structures.MetaDataTables.Field
   nameWithType: Field
-- uid: PeNet.Structures.MetaDataTables.Field.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.Field.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: Field(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.Field.html#PeNet_Structures_MetaDataTables_Field__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.Field.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.Field.html#PeNet_Structures_MetaDataTables_Field__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.Field.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: Field(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.Field.Field(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.Field.Field(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.Field.Field(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.Field.Field(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: Field.Field(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: Field.Field(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.Field.#ctor*
@@ -8083,13 +7905,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.FieldLayout
   fullName: PeNet.Structures.MetaDataTables.FieldLayout
   nameWithType: FieldLayout
-- uid: PeNet.Structures.MetaDataTables.FieldLayout.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.FieldLayout.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: FieldLayout(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.FieldLayout.html#PeNet_Structures_MetaDataTables_FieldLayout__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.FieldLayout.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.FieldLayout.html#PeNet_Structures_MetaDataTables_FieldLayout__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.FieldLayout.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: FieldLayout(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.FieldLayout.FieldLayout(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.FieldLayout.FieldLayout(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.FieldLayout.FieldLayout(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.FieldLayout.FieldLayout(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: FieldLayout.FieldLayout(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: FieldLayout.FieldLayout(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.FieldLayout.#ctor*
@@ -8131,13 +7953,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.FieldMarshal
   fullName: PeNet.Structures.MetaDataTables.FieldMarshal
   nameWithType: FieldMarshal
-- uid: PeNet.Structures.MetaDataTables.FieldMarshal.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.FieldMarshal.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: FieldMarshal(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.FieldMarshal.html#PeNet_Structures_MetaDataTables_FieldMarshal__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.FieldMarshal.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.FieldMarshal.html#PeNet_Structures_MetaDataTables_FieldMarshal__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.FieldMarshal.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: FieldMarshal(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.FieldMarshal.FieldMarshal(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.FieldMarshal.FieldMarshal(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.FieldMarshal.FieldMarshal(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.FieldMarshal.FieldMarshal(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: FieldMarshal.FieldMarshal(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: FieldMarshal.FieldMarshal(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.FieldMarshal.#ctor*
@@ -8179,13 +8001,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.FieldRVA
   fullName: PeNet.Structures.MetaDataTables.FieldRVA
   nameWithType: FieldRVA
-- uid: PeNet.Structures.MetaDataTables.FieldRVA.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.FieldRVA.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: FieldRVA(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.FieldRVA.html#PeNet_Structures_MetaDataTables_FieldRVA__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.FieldRVA.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.FieldRVA.html#PeNet_Structures_MetaDataTables_FieldRVA__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.FieldRVA.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: FieldRVA(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.FieldRVA.FieldRVA(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.FieldRVA.FieldRVA(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.FieldRVA.FieldRVA(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.FieldRVA.FieldRVA(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: FieldRVA.FieldRVA(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: FieldRVA.FieldRVA(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.FieldRVA.#ctor*
@@ -8227,13 +8049,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.File
   fullName: PeNet.Structures.MetaDataTables.File
   nameWithType: File
-- uid: PeNet.Structures.MetaDataTables.File.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.File.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: File(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.File.html#PeNet_Structures_MetaDataTables_File__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.File.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.File.html#PeNet_Structures_MetaDataTables_File__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.File.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: File(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.File.File(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.File.File(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.File.File(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.File.File(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: File.File(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: File.File(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.File.#ctor*
@@ -8288,13 +8110,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.GenericParam
   fullName: PeNet.Structures.MetaDataTables.GenericParam
   nameWithType: GenericParam
-- uid: PeNet.Structures.MetaDataTables.GenericParam.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.GenericParam.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: GenericParam(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.GenericParam.html#PeNet_Structures_MetaDataTables_GenericParam__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.GenericParam.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.GenericParam.html#PeNet_Structures_MetaDataTables_GenericParam__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.GenericParam.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: GenericParam(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.GenericParam.GenericParam(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.GenericParam.GenericParam(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.GenericParam.GenericParam(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.GenericParam.GenericParam(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: GenericParam.GenericParam(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: GenericParam.GenericParam(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.GenericParam.#ctor*
@@ -8362,13 +8184,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.GenericParamConstraint
   fullName: PeNet.Structures.MetaDataTables.GenericParamConstraint
   nameWithType: GenericParamConstraint
-- uid: PeNet.Structures.MetaDataTables.GenericParamConstraint.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.GenericParamConstraint.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: GenericParamConstraint(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.GenericParamConstraint.html#PeNet_Structures_MetaDataTables_GenericParamConstraint__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.GenericParamConstraint.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.GenericParamConstraint.html#PeNet_Structures_MetaDataTables_GenericParamConstraint__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.GenericParamConstraint.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: GenericParamConstraint(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.GenericParamConstraint.GenericParamConstraint(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.GenericParamConstraint.GenericParamConstraint(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.GenericParamConstraint.GenericParamConstraint(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.GenericParamConstraint.GenericParamConstraint(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: GenericParamConstraint.GenericParamConstraint(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: GenericParamConstraint.GenericParamConstraint(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.GenericParamConstraint.#ctor*
@@ -8410,13 +8232,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.ImplMap
   fullName: PeNet.Structures.MetaDataTables.ImplMap
   nameWithType: ImplMap
-- uid: PeNet.Structures.MetaDataTables.ImplMap.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.ImplMap.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: ImplMap(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.ImplMap.html#PeNet_Structures_MetaDataTables_ImplMap__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.ImplMap.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.ImplMap.html#PeNet_Structures_MetaDataTables_ImplMap__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.ImplMap.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: ImplMap(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.ImplMap.ImplMap(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.ImplMap.ImplMap(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.ImplMap.ImplMap(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.ImplMap.ImplMap(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: ImplMap.ImplMap(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: ImplMap.ImplMap(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.ImplMap.#ctor*
@@ -8484,13 +8306,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.InterfaceImpl
   fullName: PeNet.Structures.MetaDataTables.InterfaceImpl
   nameWithType: InterfaceImpl
-- uid: PeNet.Structures.MetaDataTables.InterfaceImpl.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.InterfaceImpl.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: InterfaceImpl(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.InterfaceImpl.html#PeNet_Structures_MetaDataTables_InterfaceImpl__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.InterfaceImpl.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.InterfaceImpl.html#PeNet_Structures_MetaDataTables_InterfaceImpl__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.InterfaceImpl.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: InterfaceImpl(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.InterfaceImpl.InterfaceImpl(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.InterfaceImpl.InterfaceImpl(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.InterfaceImpl.InterfaceImpl(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.InterfaceImpl.InterfaceImpl(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: InterfaceImpl.InterfaceImpl(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: InterfaceImpl.InterfaceImpl(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.InterfaceImpl.#ctor*
@@ -8532,13 +8354,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.ManifestResource
   fullName: PeNet.Structures.MetaDataTables.ManifestResource
   nameWithType: ManifestResource
-- uid: PeNet.Structures.MetaDataTables.ManifestResource.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.ManifestResource.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: ManifestResource(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.ManifestResource.html#PeNet_Structures_MetaDataTables_ManifestResource__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.ManifestResource.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.ManifestResource.html#PeNet_Structures_MetaDataTables_ManifestResource__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.ManifestResource.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: ManifestResource(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.ManifestResource.ManifestResource(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.ManifestResource.ManifestResource(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.ManifestResource.ManifestResource(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.ManifestResource.ManifestResource(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: ManifestResource.ManifestResource(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: ManifestResource.ManifestResource(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.ManifestResource.#ctor*
@@ -8606,13 +8428,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.MemberRef
   fullName: PeNet.Structures.MetaDataTables.MemberRef
   nameWithType: MemberRef
-- uid: PeNet.Structures.MetaDataTables.MemberRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.MemberRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: MemberRef(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.MemberRef.html#PeNet_Structures_MetaDataTables_MemberRef__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.MemberRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.MemberRef.html#PeNet_Structures_MetaDataTables_MemberRef__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.MemberRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: MemberRef(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.MemberRef.MemberRef(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.MemberRef.MemberRef(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.MemberRef.MemberRef(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.MemberRef.MemberRef(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: MemberRef.MemberRef(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: MemberRef.MemberRef(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.MemberRef.#ctor*
@@ -8667,13 +8489,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.MethodDef
   fullName: PeNet.Structures.MetaDataTables.MethodDef
   nameWithType: MethodDef
-- uid: PeNet.Structures.MetaDataTables.MethodDef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.MethodDef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: MethodDef(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.MethodDef.html#PeNet_Structures_MetaDataTables_MethodDef__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.MethodDef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.MethodDef.html#PeNet_Structures_MetaDataTables_MethodDef__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.MethodDef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: MethodDef(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.MethodDef.MethodDef(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.MethodDef.MethodDef(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.MethodDef.MethodDef(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.MethodDef.MethodDef(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: MethodDef.MethodDef(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: MethodDef.MethodDef(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.MethodDef.#ctor*
@@ -8767,13 +8589,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.MethodImpl
   fullName: PeNet.Structures.MetaDataTables.MethodImpl
   nameWithType: MethodImpl
-- uid: PeNet.Structures.MetaDataTables.MethodImpl.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.MethodImpl.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: MethodImpl(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.MethodImpl.html#PeNet_Structures_MetaDataTables_MethodImpl__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.MethodImpl.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.MethodImpl.html#PeNet_Structures_MetaDataTables_MethodImpl__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.MethodImpl.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: MethodImpl(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.MethodImpl.MethodImpl(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.MethodImpl.MethodImpl(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.MethodImpl.MethodImpl(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.MethodImpl.MethodImpl(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: MethodImpl.MethodImpl(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: MethodImpl.MethodImpl(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.MethodImpl.#ctor*
@@ -8828,13 +8650,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.MethodSemantics
   fullName: PeNet.Structures.MetaDataTables.MethodSemantics
   nameWithType: MethodSemantics
-- uid: PeNet.Structures.MetaDataTables.MethodSemantics.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.MethodSemantics.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: MethodSemantics(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.MethodSemantics.html#PeNet_Structures_MetaDataTables_MethodSemantics__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.MethodSemantics.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.MethodSemantics.html#PeNet_Structures_MetaDataTables_MethodSemantics__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.MethodSemantics.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: MethodSemantics(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.MethodSemantics.MethodSemantics(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.MethodSemantics.MethodSemantics(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.MethodSemantics.MethodSemantics(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.MethodSemantics.MethodSemantics(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: MethodSemantics.MethodSemantics(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: MethodSemantics.MethodSemantics(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.MethodSemantics.#ctor*
@@ -8889,13 +8711,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.Module
   fullName: PeNet.Structures.MetaDataTables.Module
   nameWithType: Module
-- uid: PeNet.Structures.MetaDataTables.Module.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.Module.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: Module(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.Module.html#PeNet_Structures_MetaDataTables_Module__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.Module.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.Module.html#PeNet_Structures_MetaDataTables_Module__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.Module.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: Module(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.Module.Module(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.Module.Module(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.Module.Module(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.Module.Module(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: Module.Module(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: Module.Module(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.Module.#ctor*
@@ -8976,13 +8798,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.ModuleRef
   fullName: PeNet.Structures.MetaDataTables.ModuleRef
   nameWithType: ModuleRef
-- uid: PeNet.Structures.MetaDataTables.ModuleRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.ModuleRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: ModuleRef(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.ModuleRef.html#PeNet_Structures_MetaDataTables_ModuleRef__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.ModuleRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.ModuleRef.html#PeNet_Structures_MetaDataTables_ModuleRef__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.ModuleRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: ModuleRef(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.ModuleRef.ModuleRef(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.ModuleRef.ModuleRef(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.ModuleRef.ModuleRef(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.ModuleRef.ModuleRef(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: ModuleRef.ModuleRef(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: ModuleRef.ModuleRef(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.ModuleRef.#ctor*
@@ -9011,13 +8833,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.NestedClass
   fullName: PeNet.Structures.MetaDataTables.NestedClass
   nameWithType: NestedClass
-- uid: PeNet.Structures.MetaDataTables.NestedClass.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.NestedClass.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: NestedClass(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.NestedClass.html#PeNet_Structures_MetaDataTables_NestedClass__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.NestedClass.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.NestedClass.html#PeNet_Structures_MetaDataTables_NestedClass__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.NestedClass.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: NestedClass(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.NestedClass.NestedClass(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.NestedClass.NestedClass(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.NestedClass.NestedClass(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.NestedClass.NestedClass(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: NestedClass.NestedClass(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: NestedClass.NestedClass(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.NestedClass.#ctor*
@@ -9059,13 +8881,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.Param
   fullName: PeNet.Structures.MetaDataTables.Param
   nameWithType: Param
-- uid: PeNet.Structures.MetaDataTables.Param.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.Param.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: Param(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.Param.html#PeNet_Structures_MetaDataTables_Param__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.Param.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.Param.html#PeNet_Structures_MetaDataTables_Param__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.Param.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: Param(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.Param.Param(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.Param.Param(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.Param.Param(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.Param.Param(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: Param.Param(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: Param.Param(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.Param.#ctor*
@@ -9120,13 +8942,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.Property
   fullName: PeNet.Structures.MetaDataTables.Property
   nameWithType: Property
-- uid: PeNet.Structures.MetaDataTables.Property.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.Property.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: Property(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.Property.html#PeNet_Structures_MetaDataTables_Property__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.Property.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.Property.html#PeNet_Structures_MetaDataTables_Property__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.Property.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: Property(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.Property.Property(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.Property.Property(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.Property.Property(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.Property.Property(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: Property.Property(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: Property.Property(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.Property.#ctor*
@@ -9181,13 +9003,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.PropertyMap
   fullName: PeNet.Structures.MetaDataTables.PropertyMap
   nameWithType: PropertyMap
-- uid: PeNet.Structures.MetaDataTables.PropertyMap.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.PropertyMap.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: PropertyMap(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.PropertyMap.html#PeNet_Structures_MetaDataTables_PropertyMap__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.PropertyMap.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.PropertyMap.html#PeNet_Structures_MetaDataTables_PropertyMap__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.PropertyMap.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: PropertyMap(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.PropertyMap.PropertyMap(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.PropertyMap.PropertyMap(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.PropertyMap.PropertyMap(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.PropertyMap.PropertyMap(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: PropertyMap.PropertyMap(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: PropertyMap.PropertyMap(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.PropertyMap.#ctor*
@@ -9229,13 +9051,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.StandAloneSig
   fullName: PeNet.Structures.MetaDataTables.StandAloneSig
   nameWithType: StandAloneSig
-- uid: PeNet.Structures.MetaDataTables.StandAloneSig.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.StandAloneSig.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: StandAloneSig(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.StandAloneSig.html#PeNet_Structures_MetaDataTables_StandAloneSig__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.StandAloneSig.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.StandAloneSig.html#PeNet_Structures_MetaDataTables_StandAloneSig__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.StandAloneSig.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: StandAloneSig(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.StandAloneSig.StandAloneSig(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.StandAloneSig.StandAloneSig(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.StandAloneSig.StandAloneSig(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.StandAloneSig.StandAloneSig(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: StandAloneSig.StandAloneSig(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: StandAloneSig.StandAloneSig(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.StandAloneSig.#ctor*
@@ -9751,13 +9573,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.TypeDef
   fullName: PeNet.Structures.MetaDataTables.TypeDef
   nameWithType: TypeDef
-- uid: PeNet.Structures.MetaDataTables.TypeDef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.TypeDef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: TypeDef(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.TypeDef.html#PeNet_Structures_MetaDataTables_TypeDef__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.TypeDef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.TypeDef.html#PeNet_Structures_MetaDataTables_TypeDef__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.TypeDef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: TypeDef(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.TypeDef.TypeDef(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.TypeDef.TypeDef(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.TypeDef.TypeDef(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.TypeDef.TypeDef(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: TypeDef.TypeDef(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: TypeDef.TypeDef(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.TypeDef.#ctor*
@@ -9851,13 +9673,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.TypeRef
   fullName: PeNet.Structures.MetaDataTables.TypeRef
   nameWithType: TypeRef
-- uid: PeNet.Structures.MetaDataTables.TypeRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.TypeRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: TypeRef(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.TypeRef.html#PeNet_Structures_MetaDataTables_TypeRef__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.TypeRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.TypeRef.html#PeNet_Structures_MetaDataTables_TypeRef__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.TypeRef.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: TypeRef(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.TypeRef.TypeRef(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.TypeRef.TypeRef(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.TypeRef.TypeRef(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.TypeRef.TypeRef(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: TypeRef.TypeRef(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: TypeRef.TypeRef(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.TypeRef.#ctor*
@@ -9912,13 +9734,13 @@ references:
   commentId: T:PeNet.Structures.MetaDataTables.TypeSpec
   fullName: PeNet.Structures.MetaDataTables.TypeSpec
   nameWithType: TypeSpec
-- uid: PeNet.Structures.MetaDataTables.TypeSpec.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+- uid: PeNet.Structures.MetaDataTables.TypeSpec.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name: TypeSpec(Byte[], UInt32, HeapSizes, IndexSize)
-  href: api/PeNet.Structures.MetaDataTables.TypeSpec.html#PeNet_Structures_MetaDataTables_TypeSpec__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Test_Structures_IndexSize_
-  commentId: M:PeNet.Structures.MetaDataTables.TypeSpec.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Test.Structures.IndexSize)
+  href: api/PeNet.Structures.MetaDataTables.TypeSpec.html#PeNet_Structures_MetaDataTables_TypeSpec__ctor_System_Byte___System_UInt32_PeNet_Structures_HeapSizes_PeNet_Structures_IndexSize_
+  commentId: M:PeNet.Structures.MetaDataTables.TypeSpec.#ctor(System.Byte[],System.UInt32,PeNet.Structures.HeapSizes,PeNet.Structures.IndexSize)
   name.vb: TypeSpec(Byte(), UInt32, HeapSizes, IndexSize)
-  fullName: PeNet.Structures.MetaDataTables.TypeSpec.TypeSpec(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
-  fullName.vb: PeNet.Structures.MetaDataTables.TypeSpec.TypeSpec(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Test.Structures.IndexSize)
+  fullName: PeNet.Structures.MetaDataTables.TypeSpec.TypeSpec(System.Byte[], System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
+  fullName.vb: PeNet.Structures.MetaDataTables.TypeSpec.TypeSpec(System.Byte(), System.UInt32, PeNet.Structures.HeapSizes, PeNet.Structures.IndexSize)
   nameWithType: TypeSpec.TypeSpec(Byte[], UInt32, HeapSizes, IndexSize)
   nameWithType.vb: TypeSpec.TypeSpec(Byte(), UInt32, HeapSizes, IndexSize)
 - uid: PeNet.Structures.MetaDataTables.TypeSpec.#ctor*
@@ -10590,200 +10412,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.WIN_CERTIFICATE.wRevision
   nameWithType: WIN_CERTIFICATE.wRevision
-- uid: PeNet.Test.Structures
-  name: PeNet.Test.Structures
-  href: api/PeNet.Test.Structures.html
-  commentId: N:PeNet.Test.Structures
-  fullName: PeNet.Test.Structures
-  nameWithType: PeNet.Test.Structures
-- uid: PeNet.Test.Structures.Index
-  name: Index
-  href: api/PeNet.Test.Structures.Index.html
-  commentId: T:PeNet.Test.Structures.Index
-  fullName: PeNet.Test.Structures.Index
-  nameWithType: Index
-- uid: PeNet.Test.Structures.Index.AssemblyRef
-  name: AssemblyRef
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_AssemblyRef
-  commentId: F:PeNet.Test.Structures.Index.AssemblyRef
-  fullName: PeNet.Test.Structures.Index.AssemblyRef
-  nameWithType: Index.AssemblyRef
-- uid: PeNet.Test.Structures.Index.CustomAttributeType
-  name: CustomAttributeType
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_CustomAttributeType
-  commentId: F:PeNet.Test.Structures.Index.CustomAttributeType
-  fullName: PeNet.Test.Structures.Index.CustomAttributeType
-  nameWithType: Index.CustomAttributeType
-- uid: PeNet.Test.Structures.Index.Event
-  name: Event
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_Event
-  commentId: F:PeNet.Test.Structures.Index.Event
-  fullName: PeNet.Test.Structures.Index.Event
-  nameWithType: Index.Event
-- uid: PeNet.Test.Structures.Index.Field
-  name: Field
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_Field
-  commentId: F:PeNet.Test.Structures.Index.Field
-  fullName: PeNet.Test.Structures.Index.Field
-  nameWithType: Index.Field
-- uid: PeNet.Test.Structures.Index.GenericParam
-  name: GenericParam
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_GenericParam
-  commentId: F:PeNet.Test.Structures.Index.GenericParam
-  fullName: PeNet.Test.Structures.Index.GenericParam
-  nameWithType: Index.GenericParam
-- uid: PeNet.Test.Structures.Index.Guid
-  name: Guid
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_Guid
-  commentId: F:PeNet.Test.Structures.Index.Guid
-  fullName: PeNet.Test.Structures.Index.Guid
-  nameWithType: Index.Guid
-- uid: PeNet.Test.Structures.Index.HasConstant
-  name: HasConstant
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_HasConstant
-  commentId: F:PeNet.Test.Structures.Index.HasConstant
-  fullName: PeNet.Test.Structures.Index.HasConstant
-  nameWithType: Index.HasConstant
-- uid: PeNet.Test.Structures.Index.HasCustomAttribute
-  name: HasCustomAttribute
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_HasCustomAttribute
-  commentId: F:PeNet.Test.Structures.Index.HasCustomAttribute
-  fullName: PeNet.Test.Structures.Index.HasCustomAttribute
-  nameWithType: Index.HasCustomAttribute
-- uid: PeNet.Test.Structures.Index.HasDeclSecurity
-  name: HasDeclSecurity
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_HasDeclSecurity
-  commentId: F:PeNet.Test.Structures.Index.HasDeclSecurity
-  fullName: PeNet.Test.Structures.Index.HasDeclSecurity
-  nameWithType: Index.HasDeclSecurity
-- uid: PeNet.Test.Structures.Index.HasFieldMarshal
-  name: HasFieldMarshal
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_HasFieldMarshal
-  commentId: F:PeNet.Test.Structures.Index.HasFieldMarshal
-  fullName: PeNet.Test.Structures.Index.HasFieldMarshal
-  nameWithType: Index.HasFieldMarshal
-- uid: PeNet.Test.Structures.Index.HasSemantics
-  name: HasSemantics
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_HasSemantics
-  commentId: F:PeNet.Test.Structures.Index.HasSemantics
-  fullName: PeNet.Test.Structures.Index.HasSemantics
-  nameWithType: Index.HasSemantics
-- uid: PeNet.Test.Structures.Index.Implementation
-  name: Implementation
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_Implementation
-  commentId: F:PeNet.Test.Structures.Index.Implementation
-  fullName: PeNet.Test.Structures.Index.Implementation
-  nameWithType: Index.Implementation
-- uid: PeNet.Test.Structures.Index.MemberForwarded
-  name: MemberForwarded
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_MemberForwarded
-  commentId: F:PeNet.Test.Structures.Index.MemberForwarded
-  fullName: PeNet.Test.Structures.Index.MemberForwarded
-  nameWithType: Index.MemberForwarded
-- uid: PeNet.Test.Structures.Index.MemberRefParent
-  name: MemberRefParent
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_MemberRefParent
-  commentId: F:PeNet.Test.Structures.Index.MemberRefParent
-  fullName: PeNet.Test.Structures.Index.MemberRefParent
-  nameWithType: Index.MemberRefParent
-- uid: PeNet.Test.Structures.Index.MethodDef
-  name: MethodDef
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_MethodDef
-  commentId: F:PeNet.Test.Structures.Index.MethodDef
-  fullName: PeNet.Test.Structures.Index.MethodDef
-  nameWithType: Index.MethodDef
-- uid: PeNet.Test.Structures.Index.MethodDefOrRef
-  name: MethodDefOrRef
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_MethodDefOrRef
-  commentId: F:PeNet.Test.Structures.Index.MethodDefOrRef
-  fullName: PeNet.Test.Structures.Index.MethodDefOrRef
-  nameWithType: Index.MethodDefOrRef
-- uid: PeNet.Test.Structures.Index.ModuleRef
-  name: ModuleRef
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_ModuleRef
-  commentId: F:PeNet.Test.Structures.Index.ModuleRef
-  fullName: PeNet.Test.Structures.Index.ModuleRef
-  nameWithType: Index.ModuleRef
-- uid: PeNet.Test.Structures.Index.Param
-  name: Param
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_Param
-  commentId: F:PeNet.Test.Structures.Index.Param
-  fullName: PeNet.Test.Structures.Index.Param
-  nameWithType: Index.Param
-- uid: PeNet.Test.Structures.Index.Property
-  name: Property
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_Property
-  commentId: F:PeNet.Test.Structures.Index.Property
-  fullName: PeNet.Test.Structures.Index.Property
-  nameWithType: Index.Property
-- uid: PeNet.Test.Structures.Index.ResolutionScope
-  name: ResolutionScope
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_ResolutionScope
-  commentId: F:PeNet.Test.Structures.Index.ResolutionScope
-  fullName: PeNet.Test.Structures.Index.ResolutionScope
-  nameWithType: Index.ResolutionScope
-- uid: PeNet.Test.Structures.Index.String
-  name: String
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_String
-  commentId: F:PeNet.Test.Structures.Index.String
-  fullName: PeNet.Test.Structures.Index.String
-  nameWithType: Index.String
-- uid: PeNet.Test.Structures.Index.TypeDef
-  name: TypeDef
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_TypeDef
-  commentId: F:PeNet.Test.Structures.Index.TypeDef
-  fullName: PeNet.Test.Structures.Index.TypeDef
-  nameWithType: Index.TypeDef
-- uid: PeNet.Test.Structures.Index.TypeDefOrRef
-  name: TypeDefOrRef
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_TypeDefOrRef
-  commentId: F:PeNet.Test.Structures.Index.TypeDefOrRef
-  fullName: PeNet.Test.Structures.Index.TypeDefOrRef
-  nameWithType: Index.TypeDefOrRef
-- uid: PeNet.Test.Structures.Index.TypeOrMethodDef
-  name: TypeOrMethodDef
-  href: api/PeNet.Test.Structures.Index.html#PeNet_Test_Structures_Index_TypeOrMethodDef
-  commentId: F:PeNet.Test.Structures.Index.TypeOrMethodDef
-  fullName: PeNet.Test.Structures.Index.TypeOrMethodDef
-  nameWithType: Index.TypeOrMethodDef
-- uid: PeNet.Test.Structures.IndexSize
-  name: IndexSize
-  href: api/PeNet.Test.Structures.IndexSize.html
-  commentId: T:PeNet.Test.Structures.IndexSize
-  fullName: PeNet.Test.Structures.IndexSize
-  nameWithType: IndexSize
-- uid: PeNet.Test.Structures.IndexSize.#ctor(PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo[])
-  name: IndexSize(METADATATABLESHDR.MetaDataTableInfo[])
-  href: api/PeNet.Test.Structures.IndexSize.html#PeNet_Test_Structures_IndexSize__ctor_PeNet_Structures_METADATATABLESHDR_MetaDataTableInfo___
-  commentId: M:PeNet.Test.Structures.IndexSize.#ctor(PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo[])
-  name.vb: IndexSize(METADATATABLESHDR.MetaDataTableInfo())
-  fullName: PeNet.Test.Structures.IndexSize.IndexSize(PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo[])
-  fullName.vb: PeNet.Test.Structures.IndexSize.IndexSize(PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo())
-  nameWithType: IndexSize.IndexSize(METADATATABLESHDR.MetaDataTableInfo[])
-  nameWithType.vb: IndexSize.IndexSize(METADATATABLESHDR.MetaDataTableInfo())
-- uid: PeNet.Test.Structures.IndexSize.#ctor*
-  name: IndexSize
-  href: api/PeNet.Test.Structures.IndexSize.html#PeNet_Test_Structures_IndexSize__ctor_
-  commentId: Overload:PeNet.Test.Structures.IndexSize.#ctor
-  isSpec: "True"
-  fullName: PeNet.Test.Structures.IndexSize.IndexSize
-  nameWithType: IndexSize.IndexSize
-- uid: PeNet.Test.Structures.IndexSize.Item(PeNet.Test.Structures.Index)
-  name: Item[Index]
-  href: api/PeNet.Test.Structures.IndexSize.html#PeNet_Test_Structures_IndexSize_Item_PeNet_Test_Structures_Index_
-  commentId: P:PeNet.Test.Structures.IndexSize.Item(PeNet.Test.Structures.Index)
-  name.vb: Item(Index)
-  fullName: PeNet.Test.Structures.IndexSize.Item[PeNet.Test.Structures.Index]
-  fullName.vb: PeNet.Test.Structures.IndexSize.Item(PeNet.Test.Structures.Index)
-  nameWithType: IndexSize.Item[Index]
-  nameWithType.vb: IndexSize.Item(Index)
-- uid: PeNet.Test.Structures.IndexSize.Item*
-  name: Item
-  href: api/PeNet.Test.Structures.IndexSize.html#PeNet_Test_Structures_IndexSize_Item_
-  commentId: Overload:PeNet.Test.Structures.IndexSize.Item
-  isSpec: "True"
-  fullName: PeNet.Test.Structures.IndexSize.Item
-  nameWithType: IndexSize.Item
 - uid: PeNet.Utilities
   name: PeNet.Utilities
   href: api/PeNet.Utilities.html
