@@ -34,6 +34,10 @@ namespace PeNet.Structures
             Offset = offset;
         }
 
+        /// <summary>
+        /// Create a printable string representation of the object.
+        /// </summary>
+        /// <returns>String containing all property-value pairs.</returns>
         public override string ToString()
         {
             var obj = this;
