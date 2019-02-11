@@ -54,18 +54,5 @@ namespace PeNet.Structures
             get { return Buff.BytesToUInt32(Offset + 0xC); }
             set { Buff.SetUInt32(Offset + 0xC, value); }
         }
-
-        /// <summary>
-        ///     Returns a string that represents the current object.
-        /// </summary>
-        /// <returns>
-        ///     A string that represents the current object.
-        /// </returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("IMAGE_RESOURCE_DATA_ENTRY\n");
-            sb.Append(this.PropertiesToString("{0,-20}:\t{1,10:X}\n"));
-            return sb.ToString();
-        }
     }
 }

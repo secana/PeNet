@@ -40,19 +40,5 @@ namespace PeNet.Structures
             get { return Buff.BytesToUInt32(Offset); }
             set { Buff.SetUInt32(Offset, value); }
         }
-
-        /// <summary>
-        ///     Creates a string representation of the objects properties.
-        /// </summary>
-        /// <returns>The NT header properties as a string.</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("IMAGE_NT_HEADERS\n");
-            sb.Append(this.PropertiesToString("{0,-10}:\t{1,10:X}\n"));
-            sb.Append(FileHeader);
-            sb.Append(OptionalHeader);
-
-            return sb.ToString();
-        }
     }
 }

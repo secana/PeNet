@@ -138,16 +138,5 @@ namespace PeNet
         ///     (OBSOLETE) Reserved.
         /// </summary>
         public bool BytesReversedHi { get; private set; }
-
-        /// <summary>
-        ///     Return string representation of all characteristics.
-        /// </summary>
-        /// <returns>Return string representation of all characteristics.</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("File Characteristics\n");
-            sb.Append(ExtensionMethods.PropertiesToString(this, "{0,-30}:{1,10:X}\n"));
-            return sb.ToString();
-        }
     }
 }

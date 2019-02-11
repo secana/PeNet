@@ -166,23 +166,5 @@ namespace PeNet.Structures
             }
             return ucList.ToArray();
         }
-
-        /// <summary>
-        ///     Creates a string representation if the of the
-        ///     objects properties.
-        /// </summary>
-        /// <returns>The unwind information properties as a string.</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("UNWIND_INFO\n");
-            sb.Append(this.PropertiesToString("{0,-20}:\t{1,10:X}\n"));
-            sb.Append("UnwindCodes\n");
-            foreach (var uw in UnwindCode)
-            {
-                sb.Append(uw);
-                sb.Append("\n");
-            }
-            return sb.ToString();
-        }
     }
 }

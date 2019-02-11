@@ -89,17 +89,5 @@ namespace PeNet.Structures
             get { return Buff.BytesToUInt32(Offset + 0x1c); }
             set { Buff.SetUInt32(Offset + 0x1c, value); }
         }
-
-        /// <summary>
-        ///     Convert all object properties to strings.
-        /// </summary>
-        /// <returns>String representation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("IMAGE_DELAY_IMPORT_DESCRIPTOR\n");
-            sb.Append(this.PropertiesToString("{0,-10}:\t{1,10:X}\n"));
-
-            return sb.ToString();
-        }
     }
 }

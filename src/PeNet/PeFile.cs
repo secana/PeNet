@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using PeNet.Authenticode;
 using PeNet.ImpHash;
 using PeNet.Structures;
@@ -14,7 +12,7 @@ namespace PeNet
     ///     This class represents a Portable Executable (PE) file and makes the different
     ///     header and properties accessible.
     /// </summary>
-    public partial class PeFile
+    public partial class PeFile : AbstractStructure
     {
         private readonly DataDirectoryParsers _dataDirectoryParsers;
         private readonly NativeStructureParsers _nativeStructureParsers;
@@ -24,7 +22,7 @@ namespace PeNet
         /// <summary>
         ///     The PE binary as a byte array.
         /// </summary>
-        public readonly byte[] Buff;
+        public new byte[] Buff => base.Buff;
 
         private Stream _stream = null;
 
@@ -42,9 +40,8 @@ namespace PeNet
         ///     Create a new PeFile object.
         /// </summary>
         /// <param name="buff">A PE file a byte array.</param>
-        public PeFile(byte[] buff)
+        public PeFile(byte[] buff) : base(buff, 0)
         {
-            Buff = buff;
             _nativeStructureParsers = new NativeStructureParsers(Buff);
 
             _dataDirectoryParsers = new DataDirectoryParsers(
@@ -450,19 +447,6 @@ namespace PeNet
 
 
             return fileType;
-        }
-
-
-        /// <summary>
-        ///     Creates a string representation of the objects
-        ///     properties.
-        /// </summary>
-        /// <returns>PE Header properties as a string.</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("PE HEADER:\n");
-            sb.Append(this.PropertiesToString("{0,-15}:\t{1,10:X}\n"));
-            return sb.ToString();
         }
     }
 }

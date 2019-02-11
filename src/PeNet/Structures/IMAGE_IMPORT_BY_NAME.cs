@@ -34,16 +34,5 @@ namespace PeNet.Structures
         ///     Name of the function to import as a C-string (null terminated).
         /// </summary>
         public string Name => Buff.GetCString(Offset + 0x2);
-
-        /// <summary>
-        ///     Creates a string representation of the objects properties.
-        /// </summary>
-        /// <returns>The IMAGE_IMPORT_BY_NAME properties as a string.</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("IMAGE_IMPORT_BY_NAME\n");
-            sb.Append(this.PropertiesToString("{0,-10}:\t{1,10:X}\n"));
-            return sb.ToString();
-        }
     }
 }

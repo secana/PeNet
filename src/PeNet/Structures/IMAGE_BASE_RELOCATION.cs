@@ -69,19 +69,6 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     Convert all object properties to strings.
-        /// </summary>
-        /// <returns>String representation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("IMAGE_BASE_RELOCATION\n");
-            sb.Append(this.PropertiesToString("{0,-10}:\t{1,10:X}\n"));
-            TypeOffsets.ToList().ForEach(to => sb.AppendLine(to.ToString()));
-
-            return sb.ToString();
-        }
-
-        /// <summary>
         ///     Represents the type and offset in an
         ///     IMAGE_BASE_RELOCATION structure.
         /// </summary>
@@ -125,18 +112,6 @@ namespace PeNet.Structures
                     var to = _buff.BytesToUInt16(_offset);
                     return (ushort) (to & 0xFFF);
                 }
-            }
-
-            /// <summary>
-            ///     Convert all object properties to strings.
-            /// </summary>
-            /// <returns>String representation of the object</returns>
-            public override string ToString()
-            {
-                var sb = new StringBuilder("TypeOffset\n");
-                sb.Append(this.PropertiesToString("{0,-10}:\t{1,10:X}\n"));
-
-                return sb.ToString();
             }
         }
     }

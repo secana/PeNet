@@ -79,18 +79,5 @@ namespace PeNet.Structures
             }
             set { Array.Copy(value, 0, Buff, Offset + 0x8, value.Length); }
         }
-
-        /// <summary>
-        ///     Create a string representation of the objects
-        ///     properties.
-        /// </summary>
-        /// <returns>The WIN_CERTIFICATE properties as a string.</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("WIN_CERTIFICATE\n");
-            sb.Append(this.PropertiesToString("{0,-10}:\t{1,10:X}\n"));
-
-            return sb.ToString();
-        }
     }
 }

@@ -65,18 +65,5 @@ namespace PeNet.Structures
             get { return AddressOfData; }
             set { AddressOfData = value; }
         }
-
-
-        /// <summary>
-        ///     Create a string representation of the objects
-        ///     properties.
-        /// </summary>
-        /// <returns>The thunk data properties as a string.</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("IMAGE_THUNK_DATA\n");
-            sb.Append(this.PropertiesToString("{0,-15}:\t{1,10:X}\n"));
-            return sb.ToString();
-        }
     }
 }

@@ -138,16 +138,5 @@ namespace PeNet.Structures
             get { return Buff.BytesToUInt32(Offset + 0x24); }
             set { Buff.SetUInt32(Offset + 0x24, value); }
         }
-
-        /// <summary>
-        ///     Create a string from all object properties.
-        /// </summary>
-        /// <returns>Section header properties as a string.</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("IMAGE_SECTION_HEADER\n");
-            sb.Append(this.PropertiesToString("{0,-10}:\t{1,10:X}\n"));
-            return sb.ToString();
-        }
     }
 }

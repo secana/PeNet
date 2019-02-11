@@ -64,16 +64,5 @@ namespace PeNet.Structures
             get { return Buff.BytesToUInt32(Offset + 0x10); }
             set { Buff.SetUInt32(Offset + 0x10, value); }
         }
-
-        /// <summary>
-        ///     Creates a string representation of the objects properties.
-        /// </summary>
-        /// <returns>The import descriptors properties as a string.</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("IMAGE_IMPORT_DESCRIPTOR\n");
-            sb.Append(this.PropertiesToString("{0,-20}:\t{1,10:X}\n"));
-            return sb.ToString();
-        }
     }
 }

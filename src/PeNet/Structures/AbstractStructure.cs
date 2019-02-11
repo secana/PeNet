@@ -1,4 +1,10 @@
-﻿namespace PeNet.Structures
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+
+namespace PeNet.Structures
 {
     /// <summary>
     ///     Abstract class for a Windows structure.
@@ -26,6 +32,37 @@
         {
             Buff = buff;
             Offset = offset;
+        }
+
+        public override string ToString()
+        {
+            var obj = this;
+            var properties = obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            var sb = new StringBuilder();
+            sb.Append($"{obj.GetType().Name}\n");
+
+            foreach (var p in properties)
+            {
+                if (p.PropertyType.IsArray)
+                {
+                    if(p.GetValue(obj, null) == null)
+                        continue;
+
+                    foreach(var entry in (IEnumerable) p.GetValue(obj, null))
+                    {
+                        if(entry.GetType().IsSubclassOf(typeof(AbstractStructure)) == false)
+                            continue;
+
+                        sb.Append(entry.ToString());
+                    }
+                }
+                else
+                {
+                    sb.AppendFormat("{0}: {1}\n", p.Name, p.GetValue(obj, null));
+                }
+            }
+
+            return sb.ToString();
         }
     }
 }

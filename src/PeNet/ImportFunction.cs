@@ -35,17 +35,5 @@ namespace PeNet
         ///     Function hint.
         /// </summary>
         public ushort Hint { get; }
-
-        /// <summary>
-        ///     Creates a string representation of all
-        ///     properties of the object.
-        /// </summary>
-        /// <returns>The imported function as a string.</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("ImportFunction\n");
-            sb.Append(ExtensionMethods.PropertiesToString(this, "{0,-20}:\t{1,10:X}\n"));
-            return sb.ToString();
-        }
     }
 }

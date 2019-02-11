@@ -117,18 +117,5 @@ namespace PeNet.Structures
             get { return Buff.BytesToUInt32(Offset + 0x24); }
             set { Buff.SetUInt32(Offset + 0x24, value); }
         }
-
-        /// <summary>
-        ///     Creates a string representation of all object
-        ///     properties.
-        /// </summary>
-        /// <returns>The export directory properties as a string.</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("IMAGE_EXPORT_DIRECTORY\n");
-            sb.Append(this.PropertiesToString("{0,-15}:\t{1,10:X}\n"));
-
-            return sb.ToString();
-        }
     }
 }
