@@ -163,27 +163,5 @@ namespace PeNet.Structures
             // Remove padding and return.
             return paddedString.Replace("\0", string.Empty);
         }
-
-        /// <summary>
-        ///     Convert all object properties to strings.
-        /// </summary>
-        /// <returns>String representation of the object</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("METADATAHDR\n");
-            sb.Append(this.PropertiesToString("{0,-10}:\t{1,10:X}\n"));
-
-            if (MetaDataStreamsHdrs != null)
-            {
-                sb.AppendLine("Meta Data Stream Headers");
-                foreach (var metaDataStreamsHdr in MetaDataStreamsHdrs)
-                {
-                    sb.Append(metaDataStreamsHdr);
-                }
-            }
-            
-
-            return sb.ToString();
-        }
     }
 }

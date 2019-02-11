@@ -514,21 +514,6 @@ namespace PeNet.Utilities
             return (long) new Int64Converter().ConvertFromString(hexString);
         }
 
-        internal static string PropertiesToString(this object obj, string format)
-        {
-            var properties = obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            var sb = new StringBuilder();
-            foreach (var p in properties)
-            {
-                if (p.PropertyType.IsArray)
-                    continue;
-
-                sb.AppendFormat(format, p.Name, p.GetValue(obj, null));
-            }
-
-            return sb.ToString();
-        }
-
         internal static ushort GetOrdinal(this byte[] buff, uint ordinal)
         {
             return BitConverter.ToUInt16(new[] {buff[ordinal], buff[ordinal + 1]}, 0);

@@ -60,19 +60,6 @@ namespace PeNet.Structures
             /// Byter per row in the table.
             /// </summary>
             public uint BytesPerRow { get; set;}
-
-            /// <summary>
-            ///     Create a string representation of the objects
-            ///     properties.
-            /// </summary>
-            /// <returns>The TableDefinition properties as a string.</returns>
-            public override string ToString()
-            {
-                var sb = new StringBuilder("Table Definition\n");
-                sb.Append(this.PropertiesToString("{0,-10}:\t{1,10:X}\n"));
-
-                return sb.ToString();
-            }
         }
 
         /// <summary>
@@ -347,19 +334,6 @@ namespace PeNet.Structures
         private uint GetIndexSize(MetadataToken table, MetaDataTableInfo[] tables)
         {
             return tables[(int)table].RowCount <= ushort.MaxValue ? 2U : 4U;
-        }
-
-        /// <summary>
-        ///     Create a string representation of the objects
-        ///     properties.
-        /// </summary>
-        /// <returns>The METADATATABLESHDR properties as a string.</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("METADATATABLESHDR\n");
-            sb.Append(this.PropertiesToString("{0,-10}:\t{1,10:X}\n"));
-
-            return sb.ToString();
         }
     }
 }

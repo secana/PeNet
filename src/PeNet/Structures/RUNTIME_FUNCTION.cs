@@ -83,17 +83,5 @@ namespace PeNet.Structures
             var uw = new UNWIND_INFO(Buff, uwAddress.RVAtoFileMapping(sh));
             return uw;
         }
-
-        /// <summary>
-        ///     Creates a string representation of the objects
-        ///     properties.
-        /// </summary>
-        /// <returns>The runtime function properties as a string.</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("RUNTIME_FUNCTION\n");
-            sb.Append(this.PropertiesToString("{0,-20}:\t{1,10:X}\n"));
-            return sb.ToString();
-        }
     }
 }

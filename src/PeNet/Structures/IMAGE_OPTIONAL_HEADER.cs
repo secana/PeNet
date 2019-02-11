@@ -396,19 +396,5 @@ namespace PeNet.Structures
                     Buff.SetUInt32(Offset + 0x6C, value);
             }
         }
-
-        /// <summary>
-        ///     Creates a string representation of the objects
-        ///     properties.
-        /// </summary>
-        /// <returns>Optional header properties as a string.</returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("IMAGE_OPTIONAL_HEADER\n");
-            sb.Append(this.PropertiesToString("{0,-15}:\t{1,10:X}\n"));
-            foreach (var dd in DataDirectory)
-                sb.Append(dd);
-            return sb.ToString();
-        }
     }
 }

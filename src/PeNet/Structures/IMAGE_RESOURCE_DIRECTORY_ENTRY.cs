@@ -118,20 +118,5 @@ namespace PeNet.Structures
         ///     True if the entry is a resource with an ID instead of a name.
         /// </summary>
         public bool IsIdEntry => !IsNamedEntry;
-
-        /// <summary>
-        ///     Returns a string that represents the current object.
-        /// </summary>
-        /// <returns>
-        ///     A string that represents the current object.
-        /// </returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("IMAGE_RESOURCE_DIRECTORY_ENTRY\n");
-            sb.Append(this.PropertiesToString("{0,-20}:\t{1,10:X}\n"));
-            if (ResourceDirectory != null)
-                sb.Append(ResourceDirectory);
-            return sb.ToString();
-        }
     }
 }

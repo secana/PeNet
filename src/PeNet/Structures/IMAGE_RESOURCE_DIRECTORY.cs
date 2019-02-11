@@ -81,22 +81,6 @@ namespace PeNet.Structures
             set { Buff.SetUInt16(Offset + 0xe, value); }
         }
 
-        /// <summary>
-        ///     Returns a string that represents the current object.
-        /// </summary>
-        /// <returns>
-        ///     A string that represents the current object.
-        /// </returns>
-        public override string ToString()
-        {
-            var sb = new StringBuilder("IMAGE_RESOURCE_DIRECTORY\n");
-            sb.Append(this.PropertiesToString("{0,-20}:\t{1,10:X}\n"));
-            if (DirectoryEntries != null)
-                foreach (var de in DirectoryEntries)
-                    sb.Append($"{de}");
-            return sb.ToString();
-        }
-
         private IMAGE_RESOURCE_DIRECTORY_ENTRY[] ParseDirectoryEntries(uint resourceDirOffset)
         {
             if (SanityCheckFailed())

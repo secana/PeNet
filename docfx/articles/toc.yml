@@ -4,5 +4,7 @@
   href: imphash.md
 - name: File Hashes
   href: filehash.md
+- name: Export Data
+  href: export.md
 - name: Pattern Matching
   href: pattern.md

@@ -58,15 +58,6 @@ namespace PeNet.Structures
             return GuidsAndIndices.FirstOrDefault(x => x.Item2 == index)?.Item1;
         }
 
-        public override string ToString()
-        {
-            var sb = new StringBuilder("METADATASTREAM_GUID\n");
-            sb.Append(this.PropertiesToString("{0,-15}:\t{1,10:X}\n"));
-            foreach (var strings in GuidsAndIndices)
-                sb.Append($"{strings.Item2}\t{strings.Item1}");
-            return sb.ToString();
-        }
-
         private List<Tuple<Guid, uint>> ParseGuidsAndIndices()
         {
             // A GUID is an 128 bit (16 bytes) long identifier

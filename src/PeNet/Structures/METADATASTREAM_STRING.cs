@@ -60,15 +60,6 @@ namespace PeNet.Structures
             return StringsAndIndices.FirstOrDefault(x => x.Item2 == index)?.Item1;
         }
 
-        public override string ToString()
-        {
-            var sb = new StringBuilder("METADATASTREAM_STRING\n");
-            sb.Append(this.PropertiesToString("{0,-15}:\t{1,10:X}\n"));
-            foreach (var strings in StringsAndIndices)
-                sb.Append($"{strings.Item2}\t{strings.Item1}");
-            return sb.ToString();
-        }
-
         private List<Tuple<string, uint>> ParseStringsAndIndices()
         {
             var stringsAndIndices = new List<Tuple<string, uint>>();
