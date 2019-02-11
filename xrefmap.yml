@@ -1518,19 +1518,6 @@ references:
   isSpec: "True"
   fullName: PeNet.ExportFunction.Ordinal
   nameWithType: ExportFunction.Ordinal
-- uid: PeNet.ExportFunction.ToString
-  name: ToString()
-  href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_ToString
-  commentId: M:PeNet.ExportFunction.ToString
-  fullName: PeNet.ExportFunction.ToString()
-  nameWithType: ExportFunction.ToString()
-- uid: PeNet.ExportFunction.ToString*
-  name: ToString
-  href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_ToString_
-  commentId: Overload:PeNet.ExportFunction.ToString
-  isSpec: "True"
-  fullName: PeNet.ExportFunction.ToString
-  nameWithType: ExportFunction.ToString
 - uid: PeNet.FileCharacteristics
   name: FileCharacteristics
   href: api/PeNet.FileCharacteristics.html
@@ -1732,19 +1719,6 @@ references:
   isSpec: "True"
   fullName: PeNet.FileCharacteristics.System
   nameWithType: FileCharacteristics.System
-- uid: PeNet.FileCharacteristics.ToString
-  name: ToString()
-  href: api/PeNet.FileCharacteristics.html#PeNet_FileCharacteristics_ToString
-  commentId: M:PeNet.FileCharacteristics.ToString
-  fullName: PeNet.FileCharacteristics.ToString()
-  nameWithType: FileCharacteristics.ToString()
-- uid: PeNet.FileCharacteristics.ToString*
-  name: ToString
-  href: api/PeNet.FileCharacteristics.html#PeNet_FileCharacteristics_ToString_
-  commentId: Overload:PeNet.FileCharacteristics.ToString
-  isSpec: "True"
-  fullName: PeNet.FileCharacteristics.ToString
-  nameWithType: FileCharacteristics.ToString
 - uid: PeNet.FileCharacteristics.UpSystemOnly
   name: UpSystemOnly
   href: api/PeNet.FileCharacteristics.html#PeNet_FileCharacteristics_UpSystemOnly
@@ -1857,19 +1831,6 @@ references:
   isSpec: "True"
   fullName: PeNet.ImportFunction.Name
   nameWithType: ImportFunction.Name
-- uid: PeNet.ImportFunction.ToString
-  name: ToString()
-  href: api/PeNet.ImportFunction.html#PeNet_ImportFunction_ToString
-  commentId: M:PeNet.ImportFunction.ToString
-  fullName: PeNet.ImportFunction.ToString()
-  nameWithType: ImportFunction.ToString()
-- uid: PeNet.ImportFunction.ToString*
-  name: ToString
-  href: api/PeNet.ImportFunction.html#PeNet_ImportFunction_ToString_
-  commentId: Overload:PeNet.ImportFunction.ToString
-  isSpec: "True"
-  fullName: PeNet.ImportFunction.ToString
-  nameWithType: ImportFunction.ToString
 - uid: PeNet.PatternMatching
   name: PeNet.PatternMatching
   href: api/PeNet.PatternMatching.html
@@ -1993,7 +1954,14 @@ references:
 - uid: PeNet.PeFile.Buff
   name: Buff
   href: api/PeNet.PeFile.html#PeNet_PeFile_Buff
-  commentId: F:PeNet.PeFile.Buff
+  commentId: P:PeNet.PeFile.Buff
+  fullName: PeNet.PeFile.Buff
+  nameWithType: PeFile.Buff
+- uid: PeNet.PeFile.Buff*
+  name: Buff
+  href: api/PeNet.PeFile.html#PeNet_PeFile_Buff_
+  commentId: Overload:PeNet.PeFile.Buff
+  isSpec: "True"
   fullName: PeNet.PeFile.Buff
   nameWithType: PeFile.Buff
 - uid: PeNet.PeFile.ExceptionDirectory
@@ -2646,19 +2614,6 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.Stream
   nameWithType: PeFile.Stream
-- uid: PeNet.PeFile.ToString
-  name: ToString()
-  href: api/PeNet.PeFile.html#PeNet_PeFile_ToString
-  commentId: M:PeNet.PeFile.ToString
-  fullName: PeNet.PeFile.ToString()
-  nameWithType: PeFile.ToString()
-- uid: PeNet.PeFile.ToString*
-  name: ToString
-  href: api/PeNet.PeFile.html#PeNet_PeFile_ToString_
-  commentId: Overload:PeNet.PeFile.ToString
-  isSpec: "True"
-  fullName: PeNet.PeFile.ToString
-  nameWithType: PeFile.ToString
 - uid: PeNet.PeFile.WinCertificate
   name: WinCertificate
   href: api/PeNet.PeFile.html#PeNet_PeFile_WinCertificate
@@ -2700,6 +2655,32 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.AbstractStructure.AbstractStructure
   nameWithType: AbstractStructure.AbstractStructure
+- uid: PeNet.Structures.AbstractStructure.ToJson(System.Boolean)
+  name: ToJson(Boolean)
+  href: api/PeNet.Structures.AbstractStructure.html#PeNet_Structures_AbstractStructure_ToJson_System_Boolean_
+  commentId: M:PeNet.Structures.AbstractStructure.ToJson(System.Boolean)
+  fullName: PeNet.Structures.AbstractStructure.ToJson(System.Boolean)
+  nameWithType: AbstractStructure.ToJson(Boolean)
+- uid: PeNet.Structures.AbstractStructure.ToJson*
+  name: ToJson
+  href: api/PeNet.Structures.AbstractStructure.html#PeNet_Structures_AbstractStructure_ToJson_
+  commentId: Overload:PeNet.Structures.AbstractStructure.ToJson
+  isSpec: "True"
+  fullName: PeNet.Structures.AbstractStructure.ToJson
+  nameWithType: AbstractStructure.ToJson
+- uid: PeNet.Structures.AbstractStructure.ToString
+  name: ToString()
+  href: api/PeNet.Structures.AbstractStructure.html#PeNet_Structures_AbstractStructure_ToString
+  commentId: M:PeNet.Structures.AbstractStructure.ToString
+  fullName: PeNet.Structures.AbstractStructure.ToString()
+  nameWithType: AbstractStructure.ToString()
+- uid: PeNet.Structures.AbstractStructure.ToString*
+  name: ToString
+  href: api/PeNet.Structures.AbstractStructure.html#PeNet_Structures_AbstractStructure_ToString_
+  commentId: Overload:PeNet.Structures.AbstractStructure.ToString
+  isSpec: "True"
+  fullName: PeNet.Structures.AbstractStructure.ToString
+  nameWithType: AbstractStructure.ToString
 - uid: PeNet.Structures.Copyright
   name: Copyright
   href: api/PeNet.Structures.Copyright.html
@@ -2735,19 +2716,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.Copyright.CopyrightString
   nameWithType: Copyright.CopyrightString
-- uid: PeNet.Structures.Copyright.ToString
-  name: ToString()
-  href: api/PeNet.Structures.Copyright.html#PeNet_Structures_Copyright_ToString
-  commentId: M:PeNet.Structures.Copyright.ToString
-  fullName: PeNet.Structures.Copyright.ToString()
-  nameWithType: Copyright.ToString()
-- uid: PeNet.Structures.Copyright.ToString*
-  name: ToString
-  href: api/PeNet.Structures.Copyright.html#PeNet_Structures_Copyright_ToString_
-  commentId: Overload:PeNet.Structures.Copyright.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.Copyright.ToString
-  nameWithType: Copyright.ToString
 - uid: PeNet.Structures.HeapSizes
   name: HeapSizes
   href: api/PeNet.Structures.HeapSizes.html
@@ -2841,19 +2809,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_BASE_RELOCATION.SizeOfBlock
   nameWithType: IMAGE_BASE_RELOCATION.SizeOfBlock
-- uid: PeNet.Structures.IMAGE_BASE_RELOCATION.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_BASE_RELOCATION.html#PeNet_Structures_IMAGE_BASE_RELOCATION_ToString
-  commentId: M:PeNet.Structures.IMAGE_BASE_RELOCATION.ToString
-  fullName: PeNet.Structures.IMAGE_BASE_RELOCATION.ToString()
-  nameWithType: IMAGE_BASE_RELOCATION.ToString()
-- uid: PeNet.Structures.IMAGE_BASE_RELOCATION.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_BASE_RELOCATION.html#PeNet_Structures_IMAGE_BASE_RELOCATION_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_BASE_RELOCATION.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_BASE_RELOCATION.ToString
-  nameWithType: IMAGE_BASE_RELOCATION.ToString
 - uid: PeNet.Structures.IMAGE_BASE_RELOCATION.TypeOffset
   name: IMAGE_BASE_RELOCATION.TypeOffset
   href: api/PeNet.Structures.IMAGE_BASE_RELOCATION.TypeOffset.html
@@ -2889,19 +2844,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_BASE_RELOCATION.TypeOffset.Offset
   nameWithType: IMAGE_BASE_RELOCATION.TypeOffset.Offset
-- uid: PeNet.Structures.IMAGE_BASE_RELOCATION.TypeOffset.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_BASE_RELOCATION.TypeOffset.html#PeNet_Structures_IMAGE_BASE_RELOCATION_TypeOffset_ToString
-  commentId: M:PeNet.Structures.IMAGE_BASE_RELOCATION.TypeOffset.ToString
-  fullName: PeNet.Structures.IMAGE_BASE_RELOCATION.TypeOffset.ToString()
-  nameWithType: IMAGE_BASE_RELOCATION.TypeOffset.ToString()
-- uid: PeNet.Structures.IMAGE_BASE_RELOCATION.TypeOffset.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_BASE_RELOCATION.TypeOffset.html#PeNet_Structures_IMAGE_BASE_RELOCATION_TypeOffset_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_BASE_RELOCATION.TypeOffset.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_BASE_RELOCATION.TypeOffset.ToString
-  nameWithType: IMAGE_BASE_RELOCATION.TypeOffset.ToString
 - uid: PeNet.Structures.IMAGE_BASE_RELOCATION.TypeOffset.Type
   name: Type
   href: api/PeNet.Structures.IMAGE_BASE_RELOCATION.TypeOffset.html#PeNet_Structures_IMAGE_BASE_RELOCATION_TypeOffset_Type
@@ -3180,19 +3122,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_COR20_HEADER.StrongNameSignature
   nameWithType: IMAGE_COR20_HEADER.StrongNameSignature
-- uid: PeNet.Structures.IMAGE_COR20_HEADER.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_COR20_HEADER.html#PeNet_Structures_IMAGE_COR20_HEADER_ToString
-  commentId: M:PeNet.Structures.IMAGE_COR20_HEADER.ToString
-  fullName: PeNet.Structures.IMAGE_COR20_HEADER.ToString()
-  nameWithType: IMAGE_COR20_HEADER.ToString()
-- uid: PeNet.Structures.IMAGE_COR20_HEADER.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_COR20_HEADER.html#PeNet_Structures_IMAGE_COR20_HEADER_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_COR20_HEADER.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_COR20_HEADER.ToString
-  nameWithType: IMAGE_COR20_HEADER.ToString
 - uid: PeNet.Structures.IMAGE_COR20_HEADER.VTableFixups
   name: VTableFixups
   href: api/PeNet.Structures.IMAGE_COR20_HEADER.html#PeNet_Structures_IMAGE_COR20_HEADER_VTableFixups
@@ -3241,19 +3170,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_DATA_DIRECTORY.Size
   nameWithType: IMAGE_DATA_DIRECTORY.Size
-- uid: PeNet.Structures.IMAGE_DATA_DIRECTORY.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_DATA_DIRECTORY.html#PeNet_Structures_IMAGE_DATA_DIRECTORY_ToString
-  commentId: M:PeNet.Structures.IMAGE_DATA_DIRECTORY.ToString
-  fullName: PeNet.Structures.IMAGE_DATA_DIRECTORY.ToString()
-  nameWithType: IMAGE_DATA_DIRECTORY.ToString()
-- uid: PeNet.Structures.IMAGE_DATA_DIRECTORY.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_DATA_DIRECTORY.html#PeNet_Structures_IMAGE_DATA_DIRECTORY_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_DATA_DIRECTORY.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_DATA_DIRECTORY.ToString
-  nameWithType: IMAGE_DATA_DIRECTORY.ToString
 - uid: PeNet.Structures.IMAGE_DATA_DIRECTORY.VirtualAddress
   name: VirtualAddress
   href: api/PeNet.Structures.IMAGE_DATA_DIRECTORY.html#PeNet_Structures_IMAGE_DATA_DIRECTORY_VirtualAddress
@@ -3419,19 +3335,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.TimeDateStamp
   nameWithType: IMAGE_DEBUG_DIRECTORY.TimeDateStamp
-- uid: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_DEBUG_DIRECTORY.html#PeNet_Structures_IMAGE_DEBUG_DIRECTORY_ToString
-  commentId: M:PeNet.Structures.IMAGE_DEBUG_DIRECTORY.ToString
-  fullName: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.ToString()
-  nameWithType: IMAGE_DEBUG_DIRECTORY.ToString()
-- uid: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_DEBUG_DIRECTORY.html#PeNet_Structures_IMAGE_DEBUG_DIRECTORY_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_DEBUG_DIRECTORY.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.ToString
-  nameWithType: IMAGE_DEBUG_DIRECTORY.ToString
 - uid: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.Type
   name: Type
   href: api/PeNet.Structures.IMAGE_DEBUG_DIRECTORY.html#PeNet_Structures_IMAGE_DEBUG_DIRECTORY_Type
@@ -3571,19 +3474,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_DELAY_IMPORT_DESCRIPTOR.szName
   nameWithType: IMAGE_DELAY_IMPORT_DESCRIPTOR.szName
-- uid: PeNet.Structures.IMAGE_DELAY_IMPORT_DESCRIPTOR.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_DELAY_IMPORT_DESCRIPTOR.html#PeNet_Structures_IMAGE_DELAY_IMPORT_DESCRIPTOR_ToString
-  commentId: M:PeNet.Structures.IMAGE_DELAY_IMPORT_DESCRIPTOR.ToString
-  fullName: PeNet.Structures.IMAGE_DELAY_IMPORT_DESCRIPTOR.ToString()
-  nameWithType: IMAGE_DELAY_IMPORT_DESCRIPTOR.ToString()
-- uid: PeNet.Structures.IMAGE_DELAY_IMPORT_DESCRIPTOR.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_DELAY_IMPORT_DESCRIPTOR.html#PeNet_Structures_IMAGE_DELAY_IMPORT_DESCRIPTOR_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_DELAY_IMPORT_DESCRIPTOR.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_DELAY_IMPORT_DESCRIPTOR.ToString
-  nameWithType: IMAGE_DELAY_IMPORT_DESCRIPTOR.ToString
 - uid: PeNet.Structures.IMAGE_DOS_HEADER
   name: IMAGE_DOS_HEADER
   href: api/PeNet.Structures.IMAGE_DOS_HEADER.html
@@ -3853,19 +3743,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_DOS_HEADER.e_ss
   nameWithType: IMAGE_DOS_HEADER.e_ss
-- uid: PeNet.Structures.IMAGE_DOS_HEADER.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_DOS_HEADER.html#PeNet_Structures_IMAGE_DOS_HEADER_ToString
-  commentId: M:PeNet.Structures.IMAGE_DOS_HEADER.ToString
-  fullName: PeNet.Structures.IMAGE_DOS_HEADER.ToString()
-  nameWithType: IMAGE_DOS_HEADER.ToString()
-- uid: PeNet.Structures.IMAGE_DOS_HEADER.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_DOS_HEADER.html#PeNet_Structures_IMAGE_DOS_HEADER_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_DOS_HEADER.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_DOS_HEADER.ToString
-  nameWithType: IMAGE_DOS_HEADER.ToString
 - uid: PeNet.Structures.IMAGE_EXPORT_DIRECTORY
   name: IMAGE_EXPORT_DIRECTORY
   href: api/PeNet.Structures.IMAGE_EXPORT_DIRECTORY.html
@@ -4031,19 +3908,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_EXPORT_DIRECTORY.TimeDateStamp
   nameWithType: IMAGE_EXPORT_DIRECTORY.TimeDateStamp
-- uid: PeNet.Structures.IMAGE_EXPORT_DIRECTORY.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_EXPORT_DIRECTORY.html#PeNet_Structures_IMAGE_EXPORT_DIRECTORY_ToString
-  commentId: M:PeNet.Structures.IMAGE_EXPORT_DIRECTORY.ToString
-  fullName: PeNet.Structures.IMAGE_EXPORT_DIRECTORY.ToString()
-  nameWithType: IMAGE_EXPORT_DIRECTORY.ToString()
-- uid: PeNet.Structures.IMAGE_EXPORT_DIRECTORY.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_EXPORT_DIRECTORY.html#PeNet_Structures_IMAGE_EXPORT_DIRECTORY_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_EXPORT_DIRECTORY.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_EXPORT_DIRECTORY.ToString
-  nameWithType: IMAGE_EXPORT_DIRECTORY.ToString
 - uid: PeNet.Structures.IMAGE_FILE_HEADER
   name: IMAGE_FILE_HEADER
   href: api/PeNet.Structures.IMAGE_FILE_HEADER.html
@@ -4157,19 +4021,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_FILE_HEADER.TimeDateStamp
   nameWithType: IMAGE_FILE_HEADER.TimeDateStamp
-- uid: PeNet.Structures.IMAGE_FILE_HEADER.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_FILE_HEADER.html#PeNet_Structures_IMAGE_FILE_HEADER_ToString
-  commentId: M:PeNet.Structures.IMAGE_FILE_HEADER.ToString
-  fullName: PeNet.Structures.IMAGE_FILE_HEADER.ToString()
-  nameWithType: IMAGE_FILE_HEADER.ToString()
-- uid: PeNet.Structures.IMAGE_FILE_HEADER.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_FILE_HEADER.html#PeNet_Structures_IMAGE_FILE_HEADER_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_FILE_HEADER.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_FILE_HEADER.ToString
-  nameWithType: IMAGE_FILE_HEADER.ToString
 - uid: PeNet.Structures.IMAGE_IMPORT_BY_NAME
   name: IMAGE_IMPORT_BY_NAME
   href: api/PeNet.Structures.IMAGE_IMPORT_BY_NAME.html
@@ -4218,19 +4069,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_IMPORT_BY_NAME.Name
   nameWithType: IMAGE_IMPORT_BY_NAME.Name
-- uid: PeNet.Structures.IMAGE_IMPORT_BY_NAME.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_IMPORT_BY_NAME.html#PeNet_Structures_IMAGE_IMPORT_BY_NAME_ToString
-  commentId: M:PeNet.Structures.IMAGE_IMPORT_BY_NAME.ToString
-  fullName: PeNet.Structures.IMAGE_IMPORT_BY_NAME.ToString()
-  nameWithType: IMAGE_IMPORT_BY_NAME.ToString()
-- uid: PeNet.Structures.IMAGE_IMPORT_BY_NAME.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_IMPORT_BY_NAME.html#PeNet_Structures_IMAGE_IMPORT_BY_NAME_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_IMPORT_BY_NAME.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_IMPORT_BY_NAME.ToString
-  nameWithType: IMAGE_IMPORT_BY_NAME.ToString
 - uid: PeNet.Structures.IMAGE_IMPORT_DESCRIPTOR
   name: IMAGE_IMPORT_DESCRIPTOR
   href: api/PeNet.Structures.IMAGE_IMPORT_DESCRIPTOR.html
@@ -4318,19 +4156,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_IMPORT_DESCRIPTOR.TimeDateStamp
   nameWithType: IMAGE_IMPORT_DESCRIPTOR.TimeDateStamp
-- uid: PeNet.Structures.IMAGE_IMPORT_DESCRIPTOR.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_IMPORT_DESCRIPTOR.html#PeNet_Structures_IMAGE_IMPORT_DESCRIPTOR_ToString
-  commentId: M:PeNet.Structures.IMAGE_IMPORT_DESCRIPTOR.ToString
-  fullName: PeNet.Structures.IMAGE_IMPORT_DESCRIPTOR.ToString()
-  nameWithType: IMAGE_IMPORT_DESCRIPTOR.ToString()
-- uid: PeNet.Structures.IMAGE_IMPORT_DESCRIPTOR.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_IMPORT_DESCRIPTOR.html#PeNet_Structures_IMAGE_IMPORT_DESCRIPTOR_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_IMPORT_DESCRIPTOR.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_IMPORT_DESCRIPTOR.ToString
-  nameWithType: IMAGE_IMPORT_DESCRIPTOR.ToString
 - uid: PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY
   name: IMAGE_LOAD_CONFIG_DIRECTORY
   href: api/PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.html
@@ -4725,19 +4550,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_NT_HEADERS.Signature
   nameWithType: IMAGE_NT_HEADERS.Signature
-- uid: PeNet.Structures.IMAGE_NT_HEADERS.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_NT_HEADERS.html#PeNet_Structures_IMAGE_NT_HEADERS_ToString
-  commentId: M:PeNet.Structures.IMAGE_NT_HEADERS.ToString
-  fullName: PeNet.Structures.IMAGE_NT_HEADERS.ToString()
-  nameWithType: IMAGE_NT_HEADERS.ToString()
-- uid: PeNet.Structures.IMAGE_NT_HEADERS.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_NT_HEADERS.html#PeNet_Structures_IMAGE_NT_HEADERS_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_NT_HEADERS.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_NT_HEADERS.ToString
-  nameWithType: IMAGE_NT_HEADERS.ToString
 - uid: PeNet.Structures.IMAGE_OPTIONAL_HEADER
   name: IMAGE_OPTIONAL_HEADER
   href: api/PeNet.Structures.IMAGE_OPTIONAL_HEADER.html
@@ -5143,19 +4955,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_OPTIONAL_HEADER.Subsystem
   nameWithType: IMAGE_OPTIONAL_HEADER.Subsystem
-- uid: PeNet.Structures.IMAGE_OPTIONAL_HEADER.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_OPTIONAL_HEADER.html#PeNet_Structures_IMAGE_OPTIONAL_HEADER_ToString
-  commentId: M:PeNet.Structures.IMAGE_OPTIONAL_HEADER.ToString
-  fullName: PeNet.Structures.IMAGE_OPTIONAL_HEADER.ToString()
-  nameWithType: IMAGE_OPTIONAL_HEADER.ToString()
-- uid: PeNet.Structures.IMAGE_OPTIONAL_HEADER.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_OPTIONAL_HEADER.html#PeNet_Structures_IMAGE_OPTIONAL_HEADER_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_OPTIONAL_HEADER.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_OPTIONAL_HEADER.ToString
-  nameWithType: IMAGE_OPTIONAL_HEADER.ToString
 - uid: PeNet.Structures.IMAGE_OPTIONAL_HEADER.Win32VersionValue
   name: Win32VersionValue
   href: api/PeNet.Structures.IMAGE_OPTIONAL_HEADER.html#PeNet_Structures_IMAGE_OPTIONAL_HEADER_Win32VersionValue
@@ -5243,19 +5042,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_RESOURCE_DATA_ENTRY.Size1
   nameWithType: IMAGE_RESOURCE_DATA_ENTRY.Size1
-- uid: PeNet.Structures.IMAGE_RESOURCE_DATA_ENTRY.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_RESOURCE_DATA_ENTRY.html#PeNet_Structures_IMAGE_RESOURCE_DATA_ENTRY_ToString
-  commentId: M:PeNet.Structures.IMAGE_RESOURCE_DATA_ENTRY.ToString
-  fullName: PeNet.Structures.IMAGE_RESOURCE_DATA_ENTRY.ToString()
-  nameWithType: IMAGE_RESOURCE_DATA_ENTRY.ToString()
-- uid: PeNet.Structures.IMAGE_RESOURCE_DATA_ENTRY.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_RESOURCE_DATA_ENTRY.html#PeNet_Structures_IMAGE_RESOURCE_DATA_ENTRY_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_RESOURCE_DATA_ENTRY.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_RESOURCE_DATA_ENTRY.ToString
-  nameWithType: IMAGE_RESOURCE_DATA_ENTRY.ToString
 - uid: PeNet.Structures.IMAGE_RESOURCE_DIR_STRING_U
   name: IMAGE_RESOURCE_DIR_STRING_U
   href: api/PeNet.Structures.IMAGE_RESOURCE_DIR_STRING_U.html
@@ -5410,19 +5196,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_RESOURCE_DIRECTORY.TimeDateStamp
   nameWithType: IMAGE_RESOURCE_DIRECTORY.TimeDateStamp
-- uid: PeNet.Structures.IMAGE_RESOURCE_DIRECTORY.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_RESOURCE_DIRECTORY.html#PeNet_Structures_IMAGE_RESOURCE_DIRECTORY_ToString
-  commentId: M:PeNet.Structures.IMAGE_RESOURCE_DIRECTORY.ToString
-  fullName: PeNet.Structures.IMAGE_RESOURCE_DIRECTORY.ToString()
-  nameWithType: IMAGE_RESOURCE_DIRECTORY.ToString()
-- uid: PeNet.Structures.IMAGE_RESOURCE_DIRECTORY.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_RESOURCE_DIRECTORY.html#PeNet_Structures_IMAGE_RESOURCE_DIRECTORY_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_RESOURCE_DIRECTORY.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_RESOURCE_DIRECTORY.ToString
-  nameWithType: IMAGE_RESOURCE_DIRECTORY.ToString
 - uid: PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY
   name: IMAGE_RESOURCE_DIRECTORY_ENTRY
   href: api/PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY.html
@@ -5575,19 +5348,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY.ResourceDirectory
   nameWithType: IMAGE_RESOURCE_DIRECTORY_ENTRY.ResourceDirectory
-- uid: PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY.html#PeNet_Structures_IMAGE_RESOURCE_DIRECTORY_ENTRY_ToString
-  commentId: M:PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY.ToString
-  fullName: PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY.ToString()
-  nameWithType: IMAGE_RESOURCE_DIRECTORY_ENTRY.ToString()
-- uid: PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY.html#PeNet_Structures_IMAGE_RESOURCE_DIRECTORY_ENTRY_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_RESOURCE_DIRECTORY_ENTRY.ToString
-  nameWithType: IMAGE_RESOURCE_DIRECTORY_ENTRY.ToString
 - uid: PeNet.Structures.IMAGE_SECTION_HEADER
   name: IMAGE_SECTION_HEADER
   href: api/PeNet.Structures.IMAGE_SECTION_HEADER.html
@@ -5714,19 +5474,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_SECTION_HEADER.SizeOfRawData
   nameWithType: IMAGE_SECTION_HEADER.SizeOfRawData
-- uid: PeNet.Structures.IMAGE_SECTION_HEADER.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_SECTION_HEADER.html#PeNet_Structures_IMAGE_SECTION_HEADER_ToString
-  commentId: M:PeNet.Structures.IMAGE_SECTION_HEADER.ToString
-  fullName: PeNet.Structures.IMAGE_SECTION_HEADER.ToString()
-  nameWithType: IMAGE_SECTION_HEADER.ToString()
-- uid: PeNet.Structures.IMAGE_SECTION_HEADER.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_SECTION_HEADER.html#PeNet_Structures_IMAGE_SECTION_HEADER_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_SECTION_HEADER.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_SECTION_HEADER.ToString
-  nameWithType: IMAGE_SECTION_HEADER.ToString
 - uid: PeNet.Structures.IMAGE_SECTION_HEADER.VirtualAddress
   name: VirtualAddress
   href: api/PeNet.Structures.IMAGE_SECTION_HEADER.html#PeNet_Structures_IMAGE_SECTION_HEADER_VirtualAddress
@@ -5827,19 +5574,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_THUNK_DATA.Ordinal
   nameWithType: IMAGE_THUNK_DATA.Ordinal
-- uid: PeNet.Structures.IMAGE_THUNK_DATA.ToString
-  name: ToString()
-  href: api/PeNet.Structures.IMAGE_THUNK_DATA.html#PeNet_Structures_IMAGE_THUNK_DATA_ToString
-  commentId: M:PeNet.Structures.IMAGE_THUNK_DATA.ToString
-  fullName: PeNet.Structures.IMAGE_THUNK_DATA.ToString()
-  nameWithType: IMAGE_THUNK_DATA.ToString()
-- uid: PeNet.Structures.IMAGE_THUNK_DATA.ToString*
-  name: ToString
-  href: api/PeNet.Structures.IMAGE_THUNK_DATA.html#PeNet_Structures_IMAGE_THUNK_DATA_ToString_
-  commentId: Overload:PeNet.Structures.IMAGE_THUNK_DATA.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_THUNK_DATA.ToString
-  nameWithType: IMAGE_THUNK_DATA.ToString
 - uid: PeNet.Structures.IMAGE_TLS_CALLBACK
   name: IMAGE_TLS_CALLBACK
   href: api/PeNet.Structures.IMAGE_TLS_CALLBACK.html
@@ -6501,19 +6235,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.METADATAHDR.Streams
   nameWithType: METADATAHDR.Streams
-- uid: PeNet.Structures.METADATAHDR.ToString
-  name: ToString()
-  href: api/PeNet.Structures.METADATAHDR.html#PeNet_Structures_METADATAHDR_ToString
-  commentId: M:PeNet.Structures.METADATAHDR.ToString
-  fullName: PeNet.Structures.METADATAHDR.ToString()
-  nameWithType: METADATAHDR.ToString()
-- uid: PeNet.Structures.METADATAHDR.ToString*
-  name: ToString
-  href: api/PeNet.Structures.METADATAHDR.html#PeNet_Structures_METADATAHDR_ToString_
-  commentId: Overload:PeNet.Structures.METADATAHDR.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.METADATAHDR.ToString
-  nameWithType: METADATAHDR.ToString
 - uid: PeNet.Structures.METADATAHDR.Version
   name: Version
   href: api/PeNet.Structures.METADATAHDR.html#PeNet_Structures_METADATAHDR_Version
@@ -6607,19 +6328,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.METADATASTREAM_GUID.GuidsAndIndices
   nameWithType: METADATASTREAM_GUID.GuidsAndIndices
-- uid: PeNet.Structures.METADATASTREAM_GUID.ToString
-  name: ToString()
-  href: api/PeNet.Structures.METADATASTREAM_GUID.html#PeNet_Structures_METADATASTREAM_GUID_ToString
-  commentId: M:PeNet.Structures.METADATASTREAM_GUID.ToString
-  fullName: PeNet.Structures.METADATASTREAM_GUID.ToString()
-  nameWithType: METADATASTREAM_GUID.ToString()
-- uid: PeNet.Structures.METADATASTREAM_GUID.ToString*
-  name: ToString
-  href: api/PeNet.Structures.METADATASTREAM_GUID.html#PeNet_Structures_METADATASTREAM_GUID_ToString_
-  commentId: Overload:PeNet.Structures.METADATASTREAM_GUID.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.METADATASTREAM_GUID.ToString
-  nameWithType: METADATASTREAM_GUID.ToString
 - uid: PeNet.Structures.METADATASTREAM_STRING
   name: METADATASTREAM_STRING
   href: api/PeNet.Structures.METADATASTREAM_STRING.html
@@ -6681,19 +6389,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.METADATASTREAM_STRING.StringsAndIndices
   nameWithType: METADATASTREAM_STRING.StringsAndIndices
-- uid: PeNet.Structures.METADATASTREAM_STRING.ToString
-  name: ToString()
-  href: api/PeNet.Structures.METADATASTREAM_STRING.html#PeNet_Structures_METADATASTREAM_STRING_ToString
-  commentId: M:PeNet.Structures.METADATASTREAM_STRING.ToString
-  fullName: PeNet.Structures.METADATASTREAM_STRING.ToString()
-  nameWithType: METADATASTREAM_STRING.ToString()
-- uid: PeNet.Structures.METADATASTREAM_STRING.ToString*
-  name: ToString
-  href: api/PeNet.Structures.METADATASTREAM_STRING.html#PeNet_Structures_METADATASTREAM_STRING_ToString_
-  commentId: Overload:PeNet.Structures.METADATASTREAM_STRING.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.METADATASTREAM_STRING.ToString
-  nameWithType: METADATASTREAM_STRING.ToString
 - uid: PeNet.Structures.METADATASTREAM_US
   name: METADATASTREAM_US
   href: api/PeNet.Structures.METADATASTREAM_US.html
@@ -6729,19 +6424,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.METADATASTREAM_US.GetUserStringAtIndex
   nameWithType: METADATASTREAM_US.GetUserStringAtIndex
-- uid: PeNet.Structures.METADATASTREAM_US.ToString
-  name: ToString()
-  href: api/PeNet.Structures.METADATASTREAM_US.html#PeNet_Structures_METADATASTREAM_US_ToString
-  commentId: M:PeNet.Structures.METADATASTREAM_US.ToString
-  fullName: PeNet.Structures.METADATASTREAM_US.ToString()
-  nameWithType: METADATASTREAM_US.ToString()
-- uid: PeNet.Structures.METADATASTREAM_US.ToString*
-  name: ToString
-  href: api/PeNet.Structures.METADATASTREAM_US.html#PeNet_Structures_METADATASTREAM_US_ToString_
-  commentId: Overload:PeNet.Structures.METADATASTREAM_US.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.METADATASTREAM_US.ToString
-  nameWithType: METADATASTREAM_US.ToString
 - uid: PeNet.Structures.METADATASTREAM_US.UserStrings
   name: UserStrings
   href: api/PeNet.Structures.METADATASTREAM_US.html#PeNet_Structures_METADATASTREAM_US_UserStrings
@@ -6829,19 +6511,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.METADATASTREAMHDR.streamName
   nameWithType: METADATASTREAMHDR.streamName
-- uid: PeNet.Structures.METADATASTREAMHDR.ToString
-  name: ToString()
-  href: api/PeNet.Structures.METADATASTREAMHDR.html#PeNet_Structures_METADATASTREAMHDR_ToString
-  commentId: M:PeNet.Structures.METADATASTREAMHDR.ToString
-  fullName: PeNet.Structures.METADATASTREAMHDR.ToString()
-  nameWithType: METADATASTREAMHDR.ToString()
-- uid: PeNet.Structures.METADATASTREAMHDR.ToString*
-  name: ToString
-  href: api/PeNet.Structures.METADATASTREAMHDR.html#PeNet_Structures_METADATASTREAMHDR_ToString_
-  commentId: Overload:PeNet.Structures.METADATASTREAMHDR.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.METADATASTREAMHDR.ToString
-  nameWithType: METADATASTREAMHDR.ToString
 - uid: PeNet.Structures.MetaDataTables
   name: PeNet.Structures.MetaDataTables
   href: api/PeNet.Structures.MetaDataTables.html
@@ -9882,19 +9551,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo.RowCount
   nameWithType: METADATATABLESHDR.MetaDataTableInfo.RowCount
-- uid: PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo.ToString
-  name: ToString()
-  href: api/PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo.html#PeNet_Structures_METADATATABLESHDR_MetaDataTableInfo_ToString
-  commentId: M:PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo.ToString
-  fullName: PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo.ToString()
-  nameWithType: METADATATABLESHDR.MetaDataTableInfo.ToString()
-- uid: PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo.ToString*
-  name: ToString
-  href: api/PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo.html#PeNet_Structures_METADATATABLESHDR_MetaDataTableInfo_ToString_
-  commentId: Overload:PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.METADATATABLESHDR.MetaDataTableInfo.ToString
-  nameWithType: METADATATABLESHDR.MetaDataTableInfo.ToString
 - uid: PeNet.Structures.METADATATABLESHDR.MinorVersion
   name: MinorVersion
   href: api/PeNet.Structures.METADATATABLESHDR.html#PeNet_Structures_METADATATABLESHDR_MinorVersion
@@ -9960,19 +9616,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.METADATATABLESHDR.Tables
   nameWithType: METADATATABLESHDR.Tables
-- uid: PeNet.Structures.METADATATABLESHDR.ToString
-  name: ToString()
-  href: api/PeNet.Structures.METADATATABLESHDR.html#PeNet_Structures_METADATATABLESHDR_ToString
-  commentId: M:PeNet.Structures.METADATATABLESHDR.ToString
-  fullName: PeNet.Structures.METADATATABLESHDR.ToString()
-  nameWithType: METADATATABLESHDR.ToString()
-- uid: PeNet.Structures.METADATATABLESHDR.ToString*
-  name: ToString
-  href: api/PeNet.Structures.METADATATABLESHDR.html#PeNet_Structures_METADATATABLESHDR_ToString_
-  commentId: Overload:PeNet.Structures.METADATATABLESHDR.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.METADATATABLESHDR.ToString
-  nameWithType: METADATATABLESHDR.ToString
 - uid: PeNet.Structures.METADATATABLESHDR.Valid
   name: Valid
   href: api/PeNet.Structures.METADATATABLESHDR.html#PeNet_Structures_METADATATABLESHDR_Valid
@@ -10047,19 +9690,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.RUNTIME_FUNCTION.ResolvedUnwindInfo
   nameWithType: RUNTIME_FUNCTION.ResolvedUnwindInfo
-- uid: PeNet.Structures.RUNTIME_FUNCTION.ToString
-  name: ToString()
-  href: api/PeNet.Structures.RUNTIME_FUNCTION.html#PeNet_Structures_RUNTIME_FUNCTION_ToString
-  commentId: M:PeNet.Structures.RUNTIME_FUNCTION.ToString
-  fullName: PeNet.Structures.RUNTIME_FUNCTION.ToString()
-  nameWithType: RUNTIME_FUNCTION.ToString()
-- uid: PeNet.Structures.RUNTIME_FUNCTION.ToString*
-  name: ToString
-  href: api/PeNet.Structures.RUNTIME_FUNCTION.html#PeNet_Structures_RUNTIME_FUNCTION_ToString_
-  commentId: Overload:PeNet.Structures.RUNTIME_FUNCTION.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.RUNTIME_FUNCTION.ToString
-  nameWithType: RUNTIME_FUNCTION.ToString
 - uid: PeNet.Structures.RUNTIME_FUNCTION.UnwindInfo
   name: UnwindInfo
   href: api/PeNet.Structures.RUNTIME_FUNCTION.html#PeNet_Structures_RUNTIME_FUNCTION_UnwindInfo
@@ -10134,19 +9764,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.UNWIND_CODE.Opinfo
   nameWithType: UNWIND_CODE.Opinfo
-- uid: PeNet.Structures.UNWIND_CODE.ToString
-  name: ToString()
-  href: api/PeNet.Structures.UNWIND_CODE.html#PeNet_Structures_UNWIND_CODE_ToString
-  commentId: M:PeNet.Structures.UNWIND_CODE.ToString
-  fullName: PeNet.Structures.UNWIND_CODE.ToString()
-  nameWithType: UNWIND_CODE.ToString()
-- uid: PeNet.Structures.UNWIND_CODE.ToString*
-  name: ToString
-  href: api/PeNet.Structures.UNWIND_CODE.html#PeNet_Structures_UNWIND_CODE_ToString_
-  commentId: Overload:PeNet.Structures.UNWIND_CODE.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.UNWIND_CODE.ToString
-  nameWithType: UNWIND_CODE.ToString
 - uid: PeNet.Structures.UNWIND_CODE.UnwindOp
   name: UnwindOp
   href: api/PeNet.Structures.UNWIND_CODE.html#PeNet_Structures_UNWIND_CODE_UnwindOp
@@ -10286,19 +9903,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.UNWIND_INFO.SizeOfProlog
   nameWithType: UNWIND_INFO.SizeOfProlog
-- uid: PeNet.Structures.UNWIND_INFO.ToString
-  name: ToString()
-  href: api/PeNet.Structures.UNWIND_INFO.html#PeNet_Structures_UNWIND_INFO_ToString
-  commentId: M:PeNet.Structures.UNWIND_INFO.ToString
-  fullName: PeNet.Structures.UNWIND_INFO.ToString()
-  nameWithType: UNWIND_INFO.ToString()
-- uid: PeNet.Structures.UNWIND_INFO.ToString*
-  name: ToString
-  href: api/PeNet.Structures.UNWIND_INFO.html#PeNet_Structures_UNWIND_INFO_ToString_
-  commentId: Overload:PeNet.Structures.UNWIND_INFO.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.UNWIND_INFO.ToString
-  nameWithType: UNWIND_INFO.ToString
 - uid: PeNet.Structures.UNWIND_INFO.UnwindCode
   name: UnwindCode
   href: api/PeNet.Structures.UNWIND_INFO.html#PeNet_Structures_UNWIND_INFO_UnwindCode
@@ -10373,19 +9977,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.WIN_CERTIFICATE.dwLength
   nameWithType: WIN_CERTIFICATE.dwLength
-- uid: PeNet.Structures.WIN_CERTIFICATE.ToString
-  name: ToString()
-  href: api/PeNet.Structures.WIN_CERTIFICATE.html#PeNet_Structures_WIN_CERTIFICATE_ToString
-  commentId: M:PeNet.Structures.WIN_CERTIFICATE.ToString
-  fullName: PeNet.Structures.WIN_CERTIFICATE.ToString()
-  nameWithType: WIN_CERTIFICATE.ToString()
-- uid: PeNet.Structures.WIN_CERTIFICATE.ToString*
-  name: ToString
-  href: api/PeNet.Structures.WIN_CERTIFICATE.html#PeNet_Structures_WIN_CERTIFICATE_ToString_
-  commentId: Overload:PeNet.Structures.WIN_CERTIFICATE.ToString
-  isSpec: "True"
-  fullName: PeNet.Structures.WIN_CERTIFICATE.ToString
-  nameWithType: WIN_CERTIFICATE.ToString
 - uid: PeNet.Structures.WIN_CERTIFICATE.wCertificateType
   name: wCertificateType
   href: api/PeNet.Structures.WIN_CERTIFICATE.html#PeNet_Structures_WIN_CERTIFICATE_wCertificateType

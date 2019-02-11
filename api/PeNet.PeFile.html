@@ -80,10 +80,17 @@ header and properties accessible.</p>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">PeFile</span></div>
+    <div class="level1"><a class="xref" href="PeNet.Structures.AbstractStructure.html">AbstractStructure</a></div>
+    <div class="level2"><span class="xref">PeFile</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="PeNet.Structures.AbstractStructure.html#PeNet_Structures_AbstractStructure_ToString">AbstractStructure.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="PeNet.Structures.AbstractStructure.html#PeNet_Structures_AbstractStructure_ToJson_System_Boolean_">AbstractStructure.ToJson(Boolean)</a>
+    </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
     </div>
@@ -107,7 +114,7 @@ header and properties accessible.</p>
   <h6><strong>Assembly</strong>: PeNet.dll</h6>
   <h5 id="PeNet_PeFile_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PeFile</code></pre>
+    <pre><code class="lang-csharp hljs">public class PeFile : AbstractStructure</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -116,7 +123,7 @@ header and properties accessible.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile__ctor_System_Byte___.md&amp;value=---%0Auid%3A%20PeNet.PeFile.%23ctor(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L45">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L46">View Source</a>
   </span>
   <a id="PeNet_PeFile__ctor_" data-uid="PeNet.PeFile.#ctor*"></a>
   <h4 id="PeNet_PeFile__ctor_System_Byte___" data-uid="PeNet.PeFile.#ctor(System.Byte[])">PeFile(Byte[])</h4>
@@ -179,38 +186,6 @@ header and properties accessible.</p>
       </tr>
     </tbody>
   </table>
-  <h3 id="fields">Fields
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Buff.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Buff%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L27">View Source</a>
-  </span>
-  <h4 id="PeNet_PeFile_Buff" data-uid="PeNet.PeFile.Buff">Buff</h4>
-  <div class="markdown level1 summary"><p>The PE binary as a byte array.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly byte[] Buff</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Byte</span>[]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
@@ -240,6 +215,38 @@ header and properties accessible.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="PeNet.Authenticode.AuthenticodeInfo.html">AuthenticodeInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Buff.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Buff%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L26">View Source</a>
+  </span>
+  <a id="PeNet_PeFile_Buff_" data-uid="PeNet.PeFile.Buff*"></a>
+  <h4 id="PeNet_PeFile_Buff" data-uid="PeNet.PeFile.Buff">Buff</h4>
+  <div class="markdown level1 summary"><p>The PE binary as a byte array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public byte[] Buff { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
         <td></td>
       </tr>
     </tbody>
@@ -1597,7 +1604,8 @@ Meta Data Streams of the .Net header.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Stream Stream { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public Stream Stream { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1919,41 +1927,6 @@ in all other parts.</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ToString.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L461">View Source</a>
-  </span>
-  <a id="PeNet_PeFile_ToString_" data-uid="PeNet.PeFile.ToString*"></a>
-  <h4 id="PeNet_PeFile_ToString" data-uid="PeNet.PeFile.ToString">ToString()</h4>
-  <div class="markdown level1 summary"><p>Creates a string representation of the objects
-properties.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><p>PE Header properties as a string.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">System.Object.ToString()</span></div>
 </article>
           </div>
           
@@ -1965,7 +1938,7 @@ properties.</p>
                     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile.md&amp;value=---%0Auid%3A%20PeNet.PeFile%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L17" class="contribution-link">View Source</a>
+                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L16" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
