@@ -17,6 +17,7 @@ limitations under the License.
 
 using System;
 using System.Text;
+using Newtonsoft.Json;
 using PeNet.Utilities;
 
 namespace PeNet.Structures
@@ -69,6 +70,7 @@ namespace PeNet.Structures
         /// <summary>
         ///     The certificate as a byte array.
         /// </summary>
+        [JsonIgnore]
         public byte[] bCertificate
         {
             get

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using Newtonsoft.Json;
 using PeNet.Authenticode;
 using PeNet.ImpHash;
 using PeNet.Structures;
@@ -22,6 +23,7 @@ namespace PeNet
         /// <summary>
         ///     The PE binary as a byte array.
         /// </summary>
+        [JsonIgnore]
         public new byte[] Buff => base.Buff;
 
         private Stream _stream = null;
@@ -29,6 +31,7 @@ namespace PeNet
         /// <summary>
         ///     The PE binary as a stream.
         /// </summary>
+        [JsonIgnore]
         public Stream Stream => _stream ?? (_stream = new MemoryStream(Buff));
 
         private string _impHash;
