@@ -9,7 +9,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageSectionHeaderConstructorWorks_Test()
         {
-            var sectionHeader = new IMAGE_SECTION_HEADER(RawStructures.RawSectionHeader, 2);
+            var sectionHeader = new IMAGE_SECTION_HEADER(RawStructures.RawSectionHeader, 2, 0);
 
             Assert.Equal(".data", PeNet.Utilities.FlagResolver.ResolveSectionName(sectionHeader.Name));
             Assert.Equal((uint) 0x33221100, sectionHeader.VirtualSize);
