@@ -118,8 +118,7 @@ namespace PeNet
             return rawAddress == null ? null : new ImageBoundImportDescriptorParser(_buff, rawAddress.Value);
         }
 
-        private ImportedFunctionsParser InitImportedFunctionsParser()
-        {
+        private ImportedFunctionsParser InitImportedFunctionsParser() {
             return new ImportedFunctionsParser(
                 _buff,
                 ImageImportDescriptors,

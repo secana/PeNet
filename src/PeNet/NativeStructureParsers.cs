@@ -33,7 +33,11 @@ namespace PeNet
 
         private ImageSectionHeadersParser InitImageSectionHeadersParser()
         {
-            return new ImageSectionHeadersParser(_buff, GetSecHeaderOffset(), ImageNtHeaders.FileHeader.NumberOfSections);
+            return new ImageSectionHeadersParser(
+                _buff, GetSecHeaderOffset(), 
+                ImageNtHeaders.FileHeader.NumberOfSections, 
+                ImageNtHeaders.OptionalHeader.ImageBase
+                );
         }
 
         private ImageNtHeadersParser InitNtHeadersParser()

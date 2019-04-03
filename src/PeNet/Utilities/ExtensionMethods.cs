@@ -300,7 +300,7 @@ namespace PeNet.Utilities
         /// <returns>Raw file address.</returns>
         public static ulong VAtoFileMapping(this ulong VA, ICollection<IMAGE_SECTION_HEADER> sh)
         {
-            VA -= 0x00400000;
+            VA -= sh.FirstOrDefault().ImageBaseAddress;
             var sortedSt = sh.OrderBy(x => x.VirtualAddress).ToList();
             uint vOffset = 0, rOffset = 0;
             var secFound = false;
