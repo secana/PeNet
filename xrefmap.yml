@@ -5354,15 +5354,15 @@ references:
   commentId: T:PeNet.Structures.IMAGE_SECTION_HEADER
   fullName: PeNet.Structures.IMAGE_SECTION_HEADER
   nameWithType: IMAGE_SECTION_HEADER
-- uid: PeNet.Structures.IMAGE_SECTION_HEADER.#ctor(System.Byte[],System.UInt32)
-  name: IMAGE_SECTION_HEADER(Byte[], UInt32)
-  href: api/PeNet.Structures.IMAGE_SECTION_HEADER.html#PeNet_Structures_IMAGE_SECTION_HEADER__ctor_System_Byte___System_UInt32_
-  commentId: M:PeNet.Structures.IMAGE_SECTION_HEADER.#ctor(System.Byte[],System.UInt32)
-  name.vb: IMAGE_SECTION_HEADER(Byte(), UInt32)
-  fullName: PeNet.Structures.IMAGE_SECTION_HEADER.IMAGE_SECTION_HEADER(System.Byte[], System.UInt32)
-  fullName.vb: PeNet.Structures.IMAGE_SECTION_HEADER.IMAGE_SECTION_HEADER(System.Byte(), System.UInt32)
-  nameWithType: IMAGE_SECTION_HEADER.IMAGE_SECTION_HEADER(Byte[], UInt32)
-  nameWithType.vb: IMAGE_SECTION_HEADER.IMAGE_SECTION_HEADER(Byte(), UInt32)
+- uid: PeNet.Structures.IMAGE_SECTION_HEADER.#ctor(System.Byte[],System.UInt32,System.UInt64)
+  name: IMAGE_SECTION_HEADER(Byte[], UInt32, UInt64)
+  href: api/PeNet.Structures.IMAGE_SECTION_HEADER.html#PeNet_Structures_IMAGE_SECTION_HEADER__ctor_System_Byte___System_UInt32_System_UInt64_
+  commentId: M:PeNet.Structures.IMAGE_SECTION_HEADER.#ctor(System.Byte[],System.UInt32,System.UInt64)
+  name.vb: IMAGE_SECTION_HEADER(Byte(), UInt32, UInt64)
+  fullName: PeNet.Structures.IMAGE_SECTION_HEADER.IMAGE_SECTION_HEADER(System.Byte[], System.UInt32, System.UInt64)
+  fullName.vb: PeNet.Structures.IMAGE_SECTION_HEADER.IMAGE_SECTION_HEADER(System.Byte(), System.UInt32, System.UInt64)
+  nameWithType: IMAGE_SECTION_HEADER.IMAGE_SECTION_HEADER(Byte[], UInt32, UInt64)
+  nameWithType.vb: IMAGE_SECTION_HEADER.IMAGE_SECTION_HEADER(Byte(), UInt32, UInt64)
 - uid: PeNet.Structures.IMAGE_SECTION_HEADER.#ctor*
   name: IMAGE_SECTION_HEADER
   href: api/PeNet.Structures.IMAGE_SECTION_HEADER.html#PeNet_Structures_IMAGE_SECTION_HEADER__ctor_
@@ -5383,6 +5383,19 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_SECTION_HEADER.Characteristics
   nameWithType: IMAGE_SECTION_HEADER.Characteristics
+- uid: PeNet.Structures.IMAGE_SECTION_HEADER.ImageBaseAddress
+  name: ImageBaseAddress
+  href: api/PeNet.Structures.IMAGE_SECTION_HEADER.html#PeNet_Structures_IMAGE_SECTION_HEADER_ImageBaseAddress
+  commentId: P:PeNet.Structures.IMAGE_SECTION_HEADER.ImageBaseAddress
+  fullName: PeNet.Structures.IMAGE_SECTION_HEADER.ImageBaseAddress
+  nameWithType: IMAGE_SECTION_HEADER.ImageBaseAddress
+- uid: PeNet.Structures.IMAGE_SECTION_HEADER.ImageBaseAddress*
+  name: ImageBaseAddress
+  href: api/PeNet.Structures.IMAGE_SECTION_HEADER.html#PeNet_Structures_IMAGE_SECTION_HEADER_ImageBaseAddress_
+  commentId: Overload:PeNet.Structures.IMAGE_SECTION_HEADER.ImageBaseAddress
+  isSpec: "True"
+  fullName: PeNet.Structures.IMAGE_SECTION_HEADER.ImageBaseAddress
+  nameWithType: IMAGE_SECTION_HEADER.ImageBaseAddress
 - uid: PeNet.Structures.IMAGE_SECTION_HEADER.Name
   name: Name
   href: api/PeNet.Structures.IMAGE_SECTION_HEADER.html#PeNet_Structures_IMAGE_SECTION_HEADER_Name
