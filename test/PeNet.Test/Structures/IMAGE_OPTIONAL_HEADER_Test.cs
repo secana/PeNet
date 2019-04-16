@@ -113,5 +113,29 @@ namespace PeNet.Test.Structures
             Assert.Equal(0xffcc2211, dataDirectories[(int) Constants.DataDirectoryIndex.Reserved].VirtualAddress);
             Assert.Equal((uint) 0x44cc2211, dataDirectories[(int) Constants.DataDirectoryIndex.Reserved].Size);
         }
+
+        [Fact]
+        public void DllCharacteristics_Missing_NoSEH_Flag()
+        {
+            var peFile = new PeFile("./Binaries/firefox_x64.exe");
+            var File_Characteristics = peFile.ImageNtHeaders.OptionalHeader.DllCharacteristics;
+
+            Constants.OptionalHeaderDllCharacteristics safe_seh = (Constants.OptionalHeaderDllCharacteristics)File_Characteristics;
+
+            Assert.Equal((ushort)0xC160, peFile.ImageNtHeaders.OptionalHeader.DllCharacteristics);
+            Assert.False(safe_seh.HasFlag(Constants.OptionalHeaderDllCharacteristics.IMAGE_DLLCHARACTERISTICS_NO_SEH));
+        }
+
+        [Fact]
+        public void DllCharacteristics_Set_NoSEH_Flag()
+        {
+            var peFile = new PeFile("./Binaries/No_SEH.exe");
+            var File_Characteristics = peFile.ImageNtHeaders.OptionalHeader.DllCharacteristics;
+
+            Constants.OptionalHeaderDllCharacteristics safe_seh = (Constants.OptionalHeaderDllCharacteristics)File_Characteristics;
+
+            Assert.Equal((ushort)0x08540, peFile.ImageNtHeaders.OptionalHeader.DllCharacteristics);
+            Assert.True(safe_seh.HasFlag(Constants.OptionalHeaderDllCharacteristics.IMAGE_DLLCHARACTERISTICS_NO_SEH));
+        }
     }
 }
