@@ -1,4 +1,8 @@
-![PeNet Logo](https://raw.githubusercontent.com/secana/PeNet/master/resource/linkedin_banner_image_2.png "PeNet - PE analysis made eady")
+<p align="center">
+    <img src="https://raw.githubusercontent.com/secana/PeNet/master/resource/logo_transparent.png" alt="PeNet Logo" witdh="200" height="200"  />
+</p>
+# PeNet
+
 [![license](https://img.shields.io/github/license/secana/penet.svg)](https://raw.githubusercontent.com/secana/PeNet/master/LICENSE)
 [![NuGet](https://img.shields.io/nuget/v/PeNet.svg)](https://www.nuget.org/packages/PeNet/)
 [![NuGet](https://img.shields.io/nuget/dt/PeNet.svg)](https://www.nuget.org/packages/PeNet/)
