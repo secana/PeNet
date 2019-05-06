@@ -2575,6 +2575,19 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.PKCS7
   nameWithType: PeFile.PKCS7
+- uid: PeNet.PeFile.SaveAs(System.String)
+  name: SaveAs(String)
+  href: api/PeNet.PeFile.html#PeNet_PeFile_SaveAs_System_String_
+  commentId: M:PeNet.PeFile.SaveAs(System.String)
+  fullName: PeNet.PeFile.SaveAs(System.String)
+  nameWithType: PeFile.SaveAs(String)
+- uid: PeNet.PeFile.SaveAs*
+  name: SaveAs
+  href: api/PeNet.PeFile.html#PeNet_PeFile_SaveAs_
+  commentId: Overload:PeNet.PeFile.SaveAs
+  isSpec: "True"
+  fullName: PeNet.PeFile.SaveAs
+  nameWithType: PeFile.SaveAs
 - uid: PeNet.PeFile.SHA1
   name: SHA1
   href: api/PeNet.PeFile.html#PeNet_PeFile_SHA1
