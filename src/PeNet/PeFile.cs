@@ -74,6 +74,17 @@ namespace PeNet
         }
 
         /// <summary>
+        /// Save the current PE file as 
+        /// a new file on disk.
+        /// </summary>
+        /// <param name="path"></param>
+        public void SaveAs(string path)
+        {
+            File.WriteAllBytes(path, Buff);
+        }
+
+
+        /// <summary>
         ///     Returns true if the Export directory is valid.
         /// </summary>
         public bool HasValidExportDir => ImageExportDirectory != null;
