@@ -1667,19 +1667,19 @@ references:
   isSpec: "True"
   fullName: PeNet.FileCharacteristics.Machine32Bit
   nameWithType: FileCharacteristics.Machine32Bit
-- uid: PeNet.FileCharacteristics.NetRunFroMSwap
-  name: NetRunFroMSwap
-  href: api/PeNet.FileCharacteristics.html#PeNet_FileCharacteristics_NetRunFroMSwap
-  commentId: P:PeNet.FileCharacteristics.NetRunFroMSwap
-  fullName: PeNet.FileCharacteristics.NetRunFroMSwap
-  nameWithType: FileCharacteristics.NetRunFroMSwap
-- uid: PeNet.FileCharacteristics.NetRunFroMSwap*
-  name: NetRunFroMSwap
-  href: api/PeNet.FileCharacteristics.html#PeNet_FileCharacteristics_NetRunFroMSwap_
-  commentId: Overload:PeNet.FileCharacteristics.NetRunFroMSwap
+- uid: PeNet.FileCharacteristics.NetRunFromSwap
+  name: NetRunFromSwap
+  href: api/PeNet.FileCharacteristics.html#PeNet_FileCharacteristics_NetRunFromSwap
+  commentId: P:PeNet.FileCharacteristics.NetRunFromSwap
+  fullName: PeNet.FileCharacteristics.NetRunFromSwap
+  nameWithType: FileCharacteristics.NetRunFromSwap
+- uid: PeNet.FileCharacteristics.NetRunFromSwap*
+  name: NetRunFromSwap
+  href: api/PeNet.FileCharacteristics.html#PeNet_FileCharacteristics_NetRunFromSwap_
+  commentId: Overload:PeNet.FileCharacteristics.NetRunFromSwap
   isSpec: "True"
-  fullName: PeNet.FileCharacteristics.NetRunFroMSwap
-  nameWithType: FileCharacteristics.NetRunFroMSwap
+  fullName: PeNet.FileCharacteristics.NetRunFromSwap
+  nameWithType: FileCharacteristics.NetRunFromSwap
 - uid: PeNet.FileCharacteristics.RelocStripped
   name: RelocStripped
   href: api/PeNet.FileCharacteristics.html#PeNet_FileCharacteristics_RelocStripped
