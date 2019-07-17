@@ -204,7 +204,7 @@ namespace PeNet
         /// <summary>
         ///     Access the IMAGE_DEBUG_DIRECTORY of the PE file.
         /// </summary>
-        public IMAGE_DEBUG_DIRECTORY ImageDebugDirectory => _dataDirectoryParsers.ImageDebugDirectory;
+        public IMAGE_DEBUG_DIRECTORY[] ImageDebugDirectory => _dataDirectoryParsers.ImageDebugDirectory;
 
         /// <summary>
         ///     Access the exported functions as an array of parsed objects.
