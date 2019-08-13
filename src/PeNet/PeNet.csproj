@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <PackageProjectUrl>https://github.com/secana/PeNet</PackageProjectUrl>
-    <Version>1.0.8</Version>
+    <Version>1.0.9</Version>
     <Authors>Stefan Hausotte</Authors>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
     <Description>PeNet is a Windows PE (Portable Executable) parser written in C#. It parses all PE header structures for x32 and x64. It supports the ImpHash algorithm which is popular in malware analysis. You can use it for string and pattern matching in PE files.</Description>
