@@ -24,5 +24,18 @@ namespace PeNet.Test.PeFile_Test
             Assert.Equal(180, forwardExports.Count);
             Assert.Equal("NTDLL.RtlEnterCriticalSection", forwardExports.First(e => e.Name == "EnterCriticalSection").ForwardName);
         }
+
+        [Theory]
+        [InlineData(@"Binaries/firefox_x64.exe", false)]
+        [InlineData(@"Binaries/TLSCallback_x86.exe", false)]
+        [InlineData(@"Binaries/NetCoreConsole.dll", false)]
+        [InlineData(@"Binaries/win_test.dll", false)]
+        [InlineData(@"Binaries/krnl_test.sys", true)]
+        public void IsDriver_GivenAPeFile_ReturnsDriverOrNot(string file, bool isDriver)
+        {
+            var peFile = new PeNet.PeFile(file);
+
+            Assert.Equal(isDriver, peFile.IsDriver);
+        }
     }
 }
