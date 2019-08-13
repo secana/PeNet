@@ -7,16 +7,19 @@ namespace PeNet.Parser
     {
         private readonly IMAGE_EXPORT_DIRECTORY _exportDirectory;
         private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
+        private readonly IMAGE_DATA_DIRECTORY _exportDataDir;
 
         internal ExportedFunctionsParser(
             byte[] buff,
             IMAGE_EXPORT_DIRECTORY exportDirectory,
-            IMAGE_SECTION_HEADER[] sectionHeaders
+            IMAGE_SECTION_HEADER[] sectionHeaders,
+            IMAGE_DATA_DIRECTORY exportDataDir
             )
             : base(buff, 0)
         {
             _exportDirectory = exportDirectory;
             _sectionHeaders = sectionHeaders;
+            _exportDataDir = exportDataDir;
         }
 
         protected override ExportFunction[] ParseTarget()
@@ -35,7 +38,6 @@ namespace PeNet.Parser
             {
                 var ordinal = i + _exportDirectory.Base;
                 var address = _buff.BytesToUInt32(funcOffsetPointer + sizeof(uint)*i);
-
                 expFuncs[i] = new ExportFunction(null, address, (ushort) ordinal);
             }
 
@@ -47,11 +49,36 @@ namespace PeNet.Parser
                 var name = _buff.GetCString(nameAdr);
                 var ordinalIndex = (uint) _buff.GetOrdinal(ordOffset + sizeof(ushort)*i);
 
-                expFuncs[ordinalIndex] = new ExportFunction(name, expFuncs[ordinalIndex].Address,
-                    expFuncs[ordinalIndex].Ordinal);
+                if (IsForwardedExport(expFuncs[ordinalIndex].Address))
+                {
+                    var forwardNameAdr = expFuncs[ordinalIndex].Address.RVAtoFileMapping(_sectionHeaders);
+                    var forwardName = _buff.GetCString(forwardNameAdr);
+
+                    expFuncs[ordinalIndex] = new ExportFunction(
+                        name,
+                        expFuncs[ordinalIndex].Address,
+                        expFuncs[ordinalIndex].Ordinal,
+                        forwardName);
+                }
+                else
+                {
+                    expFuncs[ordinalIndex] = new ExportFunction(
+                        name, 
+                        expFuncs[ordinalIndex].Address,
+                        expFuncs[ordinalIndex].Ordinal);
+                }
             }
 
             return expFuncs;
+        }
+
+        // Some exported functions are not directly provided by the DLL but forwarded to
+        // another DLL, where the code resides. This functions test, if an export
+        // is a forwarded one.
+        private bool IsForwardedExport(uint address)
+        {
+            return _exportDataDir.VirtualAddress <= address 
+                && address < _exportDataDir.VirtualAddress + _exportDataDir.Size;
         }
     }
 }

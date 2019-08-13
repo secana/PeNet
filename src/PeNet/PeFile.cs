@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using Newtonsoft.Json;
 using PeNet.Authenticode;
@@ -142,7 +143,8 @@ namespace PeNet
         ///     based on the Subsytem = 0x1 value in the Optional Header.
         /// </summary>
         public bool IsDriver => ImageNtHeaders.OptionalHeader.Subsystem ==
-                                (ushort) Constants.OptionalHeaderSubsystem.IMAGE_SUBSYSTEM_NATIVE;
+                                (ushort)Constants.OptionalHeaderSubsystem.IMAGE_SUBSYSTEM_NATIVE
+                                && ImportedFunctions.FirstOrDefault(i => i.DLL == "ntoskrnl.exe") != null;
 
         /// <summary>
         ///     Returns true if the PE file is signed. It

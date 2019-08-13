@@ -129,7 +129,11 @@ namespace PeNet
 
         private ExportedFunctionsParser InitExportFunctionParser()
         {
-            return new ExportedFunctionsParser(_buff, ImageExportDirectories, _sectionHeaders);
+            return new ExportedFunctionsParser(
+                _buff, 
+                ImageExportDirectories, 
+                _sectionHeaders, 
+                _dataDirectories[(int) Constants.DataDirectoryIndex.Export]);
         }
 
         private WinCertificateParser InitWinCertificateParser()
