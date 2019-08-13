@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class ExportFunction
    ">
-    <meta name="generator" content="docfx 2.43.3.0">
+    <meta name="generator" content="docfx 2.44.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -159,6 +159,58 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExportFunction__ctor_System_String_System_UInt32_System_UInt16_System_String_.md&amp;value=---%0Auid%3A%20PeNet.ExportFunction.%23ctor(System.String%2CSystem.UInt32%2CSystem.UInt16%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExportFunction.cs/#L31">View Source</a>
+  </span>
+  <a id="PeNet_ExportFunction__ctor_" data-uid="PeNet.ExportFunction.#ctor*"></a>
+  <h4 id="PeNet_ExportFunction__ctor_System_String_System_UInt32_System_UInt16_System_String_" data-uid="PeNet.ExportFunction.#ctor(System.String,System.UInt32,System.UInt16,System.String)">ExportFunction(String, UInt32, UInt16, String)</h4>
+  <div class="markdown level1 summary"><p>Create a new ExportFunction object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ExportFunction(string name, uint address, ushort ordinal, string forwardName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>Name of the function.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">address</span></td>
+        <td><p>Address of function.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt16</span></td>
+        <td><span class="parametername">ordinal</span></td>
+        <td><p>Ordinal of the function.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">forwardName</span></td>
+        <td><p>Name of the DLL and function this export forwards to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
@@ -166,7 +218,7 @@
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExportFunction_Address.md&amp;value=---%0Auid%3A%20PeNet.ExportFunction.Address%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExportFunction.cs/#L32">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExportFunction.cs/#L47">View Source</a>
   </span>
   <a id="PeNet_ExportFunction_Address_" data-uid="PeNet.ExportFunction.Address*"></a>
   <h4 id="PeNet_ExportFunction_Address" data-uid="PeNet.ExportFunction.Address">Address</h4>
@@ -194,10 +246,137 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExportFunction_ForwardName.md&amp;value=---%0Auid%3A%20PeNet.ExportFunction.ForwardName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExportFunction.cs/#L59">View Source</a>
+  </span>
+  <a id="PeNet_ExportFunction_ForwardName_" data-uid="PeNet.ExportFunction.ForwardName*"></a>
+  <h4 id="PeNet_ExportFunction_ForwardName" data-uid="PeNet.ExportFunction.ForwardName">ForwardName</h4>
+  <div class="markdown level1 summary"><p>Function name if the function is
+forwarded to another DLL.
+Format &quot;DLLName.ExportName&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ForwardName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExportFunction_HasForwad.md&amp;value=---%0Auid%3A%20PeNet.ExportFunction.HasForwad%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExportFunction.cs/#L76">View Source</a>
+  </span>
+  <a id="PeNet_ExportFunction_HasForwad_" data-uid="PeNet.ExportFunction.HasForwad*"></a>
+  <h4 id="PeNet_ExportFunction_HasForwad" data-uid="PeNet.ExportFunction.HasForwad">HasForwad</h4>
+  <div class="markdown level1 summary"><p>True if the export is forwared and has
+a ForwardName.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasForwad { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExportFunction_HasName.md&amp;value=---%0Auid%3A%20PeNet.ExportFunction.HasName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExportFunction.cs/#L65">View Source</a>
+  </span>
+  <a id="PeNet_ExportFunction_HasName_" data-uid="PeNet.ExportFunction.HasName*"></a>
+  <h4 id="PeNet_ExportFunction_HasName" data-uid="PeNet.ExportFunction.HasName">HasName</h4>
+  <div class="markdown level1 summary"><p>True if the export has a name and is not forwarded.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExportFunction_HasOrdinal.md&amp;value=---%0Auid%3A%20PeNet.ExportFunction.HasOrdinal%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExportFunction.cs/#L70">View Source</a>
+  </span>
+  <a id="PeNet_ExportFunction_HasOrdinal_" data-uid="PeNet.ExportFunction.HasOrdinal*"></a>
+  <h4 id="PeNet_ExportFunction_HasOrdinal" data-uid="PeNet.ExportFunction.HasOrdinal">HasOrdinal</h4>
+  <div class="markdown level1 summary"><p>True if the export has an ordinal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasOrdinal { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExportFunction_Name.md&amp;value=---%0Auid%3A%20PeNet.ExportFunction.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExportFunction.cs/#L27">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExportFunction.cs/#L42">View Source</a>
   </span>
   <a id="PeNet_ExportFunction_Name_" data-uid="PeNet.ExportFunction.Name*"></a>
   <h4 id="PeNet_ExportFunction_Name" data-uid="PeNet.ExportFunction.Name">Name</h4>
@@ -228,7 +407,7 @@
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExportFunction_Ordinal.md&amp;value=---%0Auid%3A%20PeNet.ExportFunction.Ordinal%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExportFunction.cs/#L37">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExportFunction.cs/#L52">View Source</a>
   </span>
   <a id="PeNet_ExportFunction_Ordinal_" data-uid="PeNet.ExportFunction.Ordinal*"></a>
   <h4 id="PeNet_ExportFunction_Ordinal" data-uid="PeNet.ExportFunction.Ordinal">Ordinal</h4>

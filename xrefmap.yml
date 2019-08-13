@@ -1472,6 +1472,12 @@ references:
   commentId: M:PeNet.ExportFunction.#ctor(System.String,System.UInt32,System.UInt16)
   fullName: PeNet.ExportFunction.ExportFunction(System.String, System.UInt32, System.UInt16)
   nameWithType: ExportFunction.ExportFunction(String, UInt32, UInt16)
+- uid: PeNet.ExportFunction.#ctor(System.String,System.UInt32,System.UInt16,System.String)
+  name: ExportFunction(String, UInt32, UInt16, String)
+  href: api/PeNet.ExportFunction.html#PeNet_ExportFunction__ctor_System_String_System_UInt32_System_UInt16_System_String_
+  commentId: M:PeNet.ExportFunction.#ctor(System.String,System.UInt32,System.UInt16,System.String)
+  fullName: PeNet.ExportFunction.ExportFunction(System.String, System.UInt32, System.UInt16, System.String)
+  nameWithType: ExportFunction.ExportFunction(String, UInt32, UInt16, String)
 - uid: PeNet.ExportFunction.#ctor*
   name: ExportFunction
   href: api/PeNet.ExportFunction.html#PeNet_ExportFunction__ctor_
@@ -1492,6 +1498,58 @@ references:
   isSpec: "True"
   fullName: PeNet.ExportFunction.Address
   nameWithType: ExportFunction.Address
+- uid: PeNet.ExportFunction.ForwardName
+  name: ForwardName
+  href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_ForwardName
+  commentId: P:PeNet.ExportFunction.ForwardName
+  fullName: PeNet.ExportFunction.ForwardName
+  nameWithType: ExportFunction.ForwardName
+- uid: PeNet.ExportFunction.ForwardName*
+  name: ForwardName
+  href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_ForwardName_
+  commentId: Overload:PeNet.ExportFunction.ForwardName
+  isSpec: "True"
+  fullName: PeNet.ExportFunction.ForwardName
+  nameWithType: ExportFunction.ForwardName
+- uid: PeNet.ExportFunction.HasForwad
+  name: HasForwad
+  href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_HasForwad
+  commentId: P:PeNet.ExportFunction.HasForwad
+  fullName: PeNet.ExportFunction.HasForwad
+  nameWithType: ExportFunction.HasForwad
+- uid: PeNet.ExportFunction.HasForwad*
+  name: HasForwad
+  href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_HasForwad_
+  commentId: Overload:PeNet.ExportFunction.HasForwad
+  isSpec: "True"
+  fullName: PeNet.ExportFunction.HasForwad
+  nameWithType: ExportFunction.HasForwad
+- uid: PeNet.ExportFunction.HasName
+  name: HasName
+  href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_HasName
+  commentId: P:PeNet.ExportFunction.HasName
+  fullName: PeNet.ExportFunction.HasName
+  nameWithType: ExportFunction.HasName
+- uid: PeNet.ExportFunction.HasName*
+  name: HasName
+  href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_HasName_
+  commentId: Overload:PeNet.ExportFunction.HasName
+  isSpec: "True"
+  fullName: PeNet.ExportFunction.HasName
+  nameWithType: ExportFunction.HasName
+- uid: PeNet.ExportFunction.HasOrdinal
+  name: HasOrdinal
+  href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_HasOrdinal
+  commentId: P:PeNet.ExportFunction.HasOrdinal
+  fullName: PeNet.ExportFunction.HasOrdinal
+  nameWithType: ExportFunction.HasOrdinal
+- uid: PeNet.ExportFunction.HasOrdinal*
+  name: HasOrdinal
+  href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_HasOrdinal_
+  commentId: Overload:PeNet.ExportFunction.HasOrdinal
+  isSpec: "True"
+  fullName: PeNet.ExportFunction.HasOrdinal
+  nameWithType: ExportFunction.HasOrdinal
 - uid: PeNet.ExportFunction.Name
   name: Name
   href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_Name
