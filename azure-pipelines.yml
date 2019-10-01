@@ -46,29 +46,19 @@ steps:
     commitmessage: 'Automated gh-pages update'
     cleanRepository: false
 
-#- task: PowerShell@2
-#  displayName: Update Documentation (gh-branch)
-#  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-#  inputs:
-#    targetType: filePath
-#    failOnStderr: false
-#    filePath: .\update-gh-pages.ps1
-#    arguments: $(token.github.penet.gh-pages)
+- task: DotNetCoreCLI@2
+  displayName: 'Pack Nuget Package'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    command: 'pack'
+    packagesToPack: '**\src\**\*.csproj'
+    configuration: $(buildConfiguration)
 
-#- task: DotNetCoreCLI@2
-#  displayName: 'Pack Nuget Package'
-#  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-#  inputs:
-#    command: 'pack'
-#    packagesToPack: '**\src\**\*.csproj'
-#    configuration: $(buildConfiguration)
-
-#- task: NuGetCommand@2
-#  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-#  inputs:
-#    command: push
-#    nuGetFeedType: external
-#    allowPackageConflicts: true
-#    publishFeedCredentials: 'Nuget.org'
-#    packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
-#
+- task: NuGetCommand@2
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    command: push
+    nuGetFeedType: external
+    allowPackageConflicts: true
+    publishFeedCredentials: 'Nuget.org'
+    packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
