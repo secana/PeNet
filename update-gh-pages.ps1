@@ -12,6 +12,6 @@ git remote rm origin
 git remote add origin $url
 git config user.email azure-bot@penet.org
 git config user.name "Azure Bot"
-git add .
+git add . 2>&1
 git commit -m "Update documentation"
 git push --set-upstream origin gh-pages
