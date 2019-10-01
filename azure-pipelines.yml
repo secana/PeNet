@@ -35,28 +35,40 @@ steps:
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   workingDirectory: '$(Build.SourcesDirectory)/docfx'
 
-- task: PowerShell@2
-  displayName: Update Documentation (gh-branch)
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+- task: GitHubPagesPublish@1
   inputs:
-    targetType: filePath
-    failOnStderr: false
-    filePath: .\update-gh-pages.ps1
-    arguments: $(token.github.penet.gh-pages)
+    docPath: '$(System.DefaultWorkingDirectory)\docs\*'
+    githubusername: "secana"
+    githubemail: 'azure-bot@penet.org'
+    githubaccesstoken: $(token.github.penet.gh-pages)
+    repositoryname: 'PeNet'
+    branchname: 'gh-pages'
+    commitmessage: 'Automated gh-pages update'
+    cleanRepository: false
 
-- task: DotNetCoreCLI@2
-  displayName: 'Pack Nuget Package'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  inputs:
-    command: 'pack'
-    packagesToPack: '**\src\**\*.csproj'
-    configuration: $(buildConfiguration)
+#- task: PowerShell@2
+#  displayName: Update Documentation (gh-branch)
+#  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+#  inputs:
+#    targetType: filePath
+#    failOnStderr: false
+#    filePath: .\update-gh-pages.ps1
+#    arguments: $(token.github.penet.gh-pages)
 
-- task: NuGetCommand@2
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  inputs:
-    command: push
-    nuGetFeedType: external
-    allowPackageConflicts: true
-    publishFeedCredentials: 'Nuget.org'
-    packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
+#- task: DotNetCoreCLI@2
+#  displayName: 'Pack Nuget Package'
+#  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+#  inputs:
+#    command: 'pack'
+#    packagesToPack: '**\src\**\*.csproj'
+#    configuration: $(buildConfiguration)
+
+#- task: NuGetCommand@2
+#  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+#  inputs:
+#    command: push
+#    nuGetFeedType: external
+#    allowPackageConflicts: true
+#    publishFeedCredentials: 'Nuget.org'
+#    packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
+#
