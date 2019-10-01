@@ -14,7 +14,7 @@ namespace PeNet
     ///     This class represents a Portable Executable (PE) file and makes the different
     ///     header and properties accessible.
     /// </summary>
-    public partial class PeFile : AbstractStructure
+    public class PeFile : AbstractStructure
     {
         private readonly DataDirectoryParsers _dataDirectoryParsers;
         private readonly NativeStructureParsers _nativeStructureParsers;
