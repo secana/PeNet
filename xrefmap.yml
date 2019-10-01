@@ -1511,19 +1511,19 @@ references:
   isSpec: "True"
   fullName: PeNet.ExportFunction.ForwardName
   nameWithType: ExportFunction.ForwardName
-- uid: PeNet.ExportFunction.HasForwad
-  name: HasForwad
-  href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_HasForwad
-  commentId: P:PeNet.ExportFunction.HasForwad
-  fullName: PeNet.ExportFunction.HasForwad
-  nameWithType: ExportFunction.HasForwad
-- uid: PeNet.ExportFunction.HasForwad*
-  name: HasForwad
-  href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_HasForwad_
-  commentId: Overload:PeNet.ExportFunction.HasForwad
+- uid: PeNet.ExportFunction.HasForward
+  name: HasForward
+  href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_HasForward
+  commentId: P:PeNet.ExportFunction.HasForward
+  fullName: PeNet.ExportFunction.HasForward
+  nameWithType: ExportFunction.HasForward
+- uid: PeNet.ExportFunction.HasForward*
+  name: HasForward
+  href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_HasForward_
+  commentId: Overload:PeNet.ExportFunction.HasForward
   isSpec: "True"
-  fullName: PeNet.ExportFunction.HasForwad
-  nameWithType: ExportFunction.HasForwad
+  fullName: PeNet.ExportFunction.HasForward
+  nameWithType: ExportFunction.HasForward
 - uid: PeNet.ExportFunction.HasName
   name: HasName
   href: api/PeNet.ExportFunction.html#PeNet_ExportFunction_HasName
