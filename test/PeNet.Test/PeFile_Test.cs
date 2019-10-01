@@ -19,7 +19,7 @@ namespace PeNet.Test.PeFile_Test
         public void ExportedFunctions_WithForwardedFunctions_ParsedFordwardedFunctions()
         {
             var peFile = new PeNet.PeFile(@"Binaries/win_test.dll");
-            var forwardExports = peFile.ExportedFunctions.Where(e => e.HasForwad).ToList();
+            var forwardExports = peFile.ExportedFunctions.Where(e => e.HasForward).ToList();
 
             Assert.Equal(180, forwardExports.Count);
             Assert.Equal("NTDLL.RtlEnterCriticalSection", forwardExports.First(e => e.Name == "EnterCriticalSection").ForwardName);

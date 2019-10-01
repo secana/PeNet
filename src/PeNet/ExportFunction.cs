@@ -70,9 +70,9 @@ namespace PeNet
         public bool HasOrdinal => Ordinal != 0;
 
         /// <summary>
-        ///     True if the export is forwared and has 
+        ///     True if the export is forwarded and has 
         ///     a ForwardName.
         /// </summary>
-        public bool HasForwad => !string.IsNullOrEmpty(ForwardName);
+        public bool HasForward => !string.IsNullOrEmpty(ForwardName);
     }
 }
