@@ -8,7 +8,7 @@ trigger:
 - features/*
 
 pool:
-  vmImage: 'vs2019-win2019'
+  vmImage: 'windows-2019'
 
 variables:
   buildConfiguration: 'Release'
