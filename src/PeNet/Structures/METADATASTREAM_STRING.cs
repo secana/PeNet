@@ -57,7 +57,13 @@ namespace PeNet.Structures
 
         public string GetStringAtIndex(uint index)
         {
-            return StringsAndIndices.FirstOrDefault(x => x.Item2 == index)?.Item1;
+            var fstTry = StringsAndIndices.FirstOrDefault(x => x.Item2 == index)?.Item1;
+
+            // For some reason, if the string starts with "_" like a private variable
+            // the index is of by one. 
+            if (fstTry == null)
+                return StringsAndIndices.FirstOrDefault(x => x.Item2 == index - 1)?.Item1;
+            else return fstTry;
         }
 
         private List<Tuple<string, uint>> ParseStringsAndIndices()

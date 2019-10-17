@@ -255,12 +255,19 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x0000u, param[0].Flags);
             Assert.Equal(0x0001u, param[0].Sequence);
             Assert.Equal(0x1085u, param[0].Name);
+            Assert.Equal("fqhn", _peFile.MetaDataStreamString.GetStringAtIndex(param[0].Name));
+
+            Assert.Equal(0x0000u, param[1].Flags);
+            Assert.Equal(0x0001u, param[1].Sequence);
+            Assert.Equal(0x148Eu, param[1].Name);
+            Assert.Equal("_logger", _peFile.MetaDataStreamString.GetStringAtIndex(param[1].Name));
 
             // ... More rows ...
 
             Assert.Equal(0x0000u, param[124].Flags);
             Assert.Equal(0x0001u, param[124].Sequence);
             Assert.Equal(0x0D4Cu, param[124].Name);
+            Assert.Equal("value", _peFile.MetaDataStreamString.GetStringAtIndex(param[124].Name));
         }
 
         [Fact]
