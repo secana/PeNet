@@ -30,8 +30,8 @@ namespace PeNet.Parser
             var expFuncs = new ExportFunction[_exportDirectory.NumberOfFunctions];
 
             var funcOffsetPointer = _exportDirectory.AddressOfFunctions.RVAtoFileMapping(_sectionHeaders);
-            var ordOffset = _exportDirectory.AddressOfNameOrdinals.RVAtoFileMapping(_sectionHeaders);
-            var nameOffsetPointer = _exportDirectory.AddressOfNames.RVAtoFileMapping(_sectionHeaders);
+            var ordOffset = _exportDirectory.NumberOfNames == 0 ? 0 : _exportDirectory.AddressOfNameOrdinals.RVAtoFileMapping(_sectionHeaders);
+            var nameOffsetPointer = _exportDirectory.NumberOfNames == 0 ? 0 : _exportDirectory.AddressOfNames.RVAtoFileMapping(_sectionHeaders);
 
             //Get addresses
             for (uint i = 0; i < expFuncs.Length; i++)
