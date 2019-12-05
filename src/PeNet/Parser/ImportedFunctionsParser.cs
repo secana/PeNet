@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using PeNet.Structures;
 using PeNet.Utilities;
+using static PeNet.Constants;
 
 namespace PeNet.Parser
 {
@@ -10,16 +11,19 @@ namespace PeNet.Parser
         private readonly IMAGE_IMPORT_DESCRIPTOR[] _importDescriptors;
         private readonly bool _is64Bit;
         private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
+        private readonly IMAGE_DATA_DIRECTORY[] _dataDirectories;
 
         internal ImportedFunctionsParser(
             byte[] buff,
             IMAGE_IMPORT_DESCRIPTOR[] importDescriptors,
             IMAGE_SECTION_HEADER[] sectionHeaders,
+            IMAGE_DATA_DIRECTORY[] dataDirectories,
             bool is64Bit) :
                 base(buff, 0)
         {
             _importDescriptors = importDescriptors;
             _sectionHeaders = sectionHeaders;
+            _dataDirectories = dataDirectories;
             _is64Bit = is64Bit;
         }
 
@@ -32,6 +36,7 @@ namespace PeNet.Parser
             var sizeOfThunk = (uint) (_is64Bit ? 0x8 : 0x4); // Size of IMAGE_THUNK_DATA
             var ordinalBit = _is64Bit ? 0x8000000000000000 : 0x80000000;
             var ordinalMask = (ulong) (_is64Bit ? 0x7FFFFFFFFFFFFFFF : 0x7FFFFFFF);
+            var iat = _dataDirectories[(int)DataDirectoryIndex.IAT];
 
             foreach (var idesc in _importDescriptors)
             {
@@ -48,6 +53,7 @@ namespace PeNet.Parser
                 while (true)
                 {
                     var t = new IMAGE_THUNK_DATA(_buff, thunkAdr + round*sizeOfThunk, _is64Bit);
+                    var iatOffset = idesc.FirstThunk + round * sizeOfThunk - iat.VirtualAddress;
 
                     if (t.AddressOfData == 0)
                         break;
@@ -59,13 +65,13 @@ namespace PeNet.Parser
 
                     if ((t.Ordinal & ordinalBit) == ordinalBit) // Import by ordinal
                     {
-                        impFuncs.Add(new ImportFunction(null, dll, (ushort) (t.Ordinal & ordinalMask)));
+                        impFuncs.Add(new ImportFunction(null, dll, (ushort) (t.Ordinal & ordinalMask), iatOffset) );
                     }
                     else // Import by name
                     {
                         var ibn = new IMAGE_IMPORT_BY_NAME(_buff,
                             ((uint) t.AddressOfData).RVAtoFileMapping(_sectionHeaders));
-                        impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint));
+                        impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint, iatOffset));
                     }
 
                     round++;

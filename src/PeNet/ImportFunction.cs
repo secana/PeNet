@@ -14,11 +14,12 @@ namespace PeNet
         /// <param name="name">Function name.</param>
         /// <param name="dll">DLL where the function comes from.</param>
         /// <param name="hint">Function hint.</param>
-        public ImportFunction(string name, string dll, ushort hint)
+        public ImportFunction(string name, string dll, ushort hint, uint iatOffset)
         {
             Name = name;
             DLL = dll;
             Hint = hint;
+            IATOffset = iatOffset;
         }
 
         /// <summary>
@@ -35,5 +36,10 @@ namespace PeNet
         ///     Function hint.
         /// </summary>
         public ushort Hint { get; }
+
+        /// <summary>
+        ///     Offset into the Import Address Table.
+        /// </summary>
+        public uint IATOffset { get; }
     }
 }

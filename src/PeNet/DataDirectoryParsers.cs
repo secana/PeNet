@@ -123,6 +123,7 @@ namespace PeNet
                 _buff,
                 ImageImportDescriptors,
                 _sectionHeaders,
+                _dataDirectories,
                 !_is32Bit
                 );
         }
