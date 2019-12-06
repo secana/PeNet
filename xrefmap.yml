@@ -1837,12 +1837,12 @@ references:
   commentId: T:PeNet.ImportFunction
   fullName: PeNet.ImportFunction
   nameWithType: ImportFunction
-- uid: PeNet.ImportFunction.#ctor(System.String,System.String,System.UInt16)
-  name: ImportFunction(String, String, UInt16)
-  href: api/PeNet.ImportFunction.html#PeNet_ImportFunction__ctor_System_String_System_String_System_UInt16_
-  commentId: M:PeNet.ImportFunction.#ctor(System.String,System.String,System.UInt16)
-  fullName: PeNet.ImportFunction.ImportFunction(System.String, System.String, System.UInt16)
-  nameWithType: ImportFunction.ImportFunction(String, String, UInt16)
+- uid: PeNet.ImportFunction.#ctor(System.String,System.String,System.UInt16,System.UInt32)
+  name: ImportFunction(String, String, UInt16, UInt32)
+  href: api/PeNet.ImportFunction.html#PeNet_ImportFunction__ctor_System_String_System_String_System_UInt16_System_UInt32_
+  commentId: M:PeNet.ImportFunction.#ctor(System.String,System.String,System.UInt16,System.UInt32)
+  fullName: PeNet.ImportFunction.ImportFunction(System.String, System.String, System.UInt16, System.UInt32)
+  nameWithType: ImportFunction.ImportFunction(String, String, UInt16, UInt32)
 - uid: PeNet.ImportFunction.#ctor*
   name: ImportFunction
   href: api/PeNet.ImportFunction.html#PeNet_ImportFunction__ctor_
@@ -1876,6 +1876,19 @@ references:
   isSpec: "True"
   fullName: PeNet.ImportFunction.Hint
   nameWithType: ImportFunction.Hint
+- uid: PeNet.ImportFunction.IATOffset
+  name: IATOffset
+  href: api/PeNet.ImportFunction.html#PeNet_ImportFunction_IATOffset
+  commentId: P:PeNet.ImportFunction.IATOffset
+  fullName: PeNet.ImportFunction.IATOffset
+  nameWithType: ImportFunction.IATOffset
+- uid: PeNet.ImportFunction.IATOffset*
+  name: IATOffset
+  href: api/PeNet.ImportFunction.html#PeNet_ImportFunction_IATOffset_
+  commentId: Overload:PeNet.ImportFunction.IATOffset
+  isSpec: "True"
+  fullName: PeNet.ImportFunction.IATOffset
+  nameWithType: ImportFunction.IATOffset
 - uid: PeNet.ImportFunction.Name
   name: Name
   href: api/PeNet.ImportFunction.html#PeNet_ImportFunction_Name
