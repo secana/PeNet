@@ -561,12 +561,22 @@ namespace PeNet.Utilities
         /// </summary>
         /// <param name="buff">Containing buffer.</param>
         /// <param name="stringOffset">Offset of the string.</param>
-        /// <param name="length">Lengh of the string to parse.</param>
         /// <returns>The parsed unicode string.</returns>
-        public static string GetUnicodeString(this byte[] buff, ulong stringOffset, int length)
+        public static string GetUnicodeString(this byte[] buff, ulong stringOffset)
         {
-            var bytes = new byte[length];
-            Array.Copy(buff, (int)stringOffset, bytes, 0, length);
+            var size = 0;
+            for (var i = 0; i < (buff.Length - (int) stringOffset) - 1; i++)
+            {
+                if (buff[(int) stringOffset + i] == 0 && buff[(int) stringOffset + (i + 1)] == 0)
+                {
+                    size = i + 1;
+                    break;
+                }
+            }
+
+            var bytes = new byte[size];
+
+            Array.Copy(buff, (int)stringOffset, bytes, 0, size);
             return Encoding.Unicode.GetString(bytes);
         }
 
