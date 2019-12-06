@@ -11,6 +11,8 @@ namespace PeNet.Test.Structures
             var vsVersionInfo = peFile.Resources.VsVersionInfo;
 
             Assert.Equal((ushort) 0x03E8, vsVersionInfo.wLength);
+            Assert.Equal((ushort) 0x0034, vsVersionInfo.wValueLength);
+            Assert.Equal((ushort) 0x0000, vsVersionInfo.wType);
         }
     }
 }

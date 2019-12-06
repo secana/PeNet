@@ -4,13 +4,16 @@ namespace PeNet.Parser
 {
     internal class ResourcesParser : SafeParser<Resources>
     {
-        public ResourcesParser(byte[] buff, uint offset) : base(buff, offset)
+        private readonly uint _vsVersionOffset;
+
+        public ResourcesParser(byte[] buff, uint offset, uint vsVersionOffset) : base(buff, offset)
         {
+            _vsVersionOffset = vsVersionOffset;
         }
 
         protected override Resources ParseTarget()
         {
-            return new Resources(_buff, _offset);
+            return new Resources(_buff, _offset, _vsVersionOffset);
         }
     }
 }

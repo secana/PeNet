@@ -6,10 +6,10 @@ namespace PeNet.Structures
     {
         public VsVersionInfo VsVersionInfo { get; }
 
-        public Resources(byte[] buff, uint offset) 
+        public Resources(byte[] buff, uint offset, uint vsVersionOffset) 
             : base(buff, offset)
         {
-            VsVersionInfo = new VsVersionInfo(Buff, Offset);
+            VsVersionInfo = new VsVersionInfo(Buff, vsVersionOffset);
         }
     }
 

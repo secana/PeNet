@@ -83,18 +83,18 @@ namespace PeNet
 
         private ResourcesParser InitResourcesParser()
         {
-            var resourceOffset = ImageResourceDirectory
+            var vsVersionOffset = ImageResourceDirectory
                 ?.DirectoryEntries?.FirstOrDefault(e => e.ID == (int) Constants.ResourceGroupIDs.Version) // Root
                 ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault(e => e.ID == 1) // Type
                 ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault(e => e.ID == 1033) // Name
                 ?.ResourceDataEntry?.OffsetToData; // Language
 
-            if (resourceOffset is null)
+            if (vsVersionOffset is null)
                 return null;
 
-            var rawAddress = resourceOffset.Value.SafeRVAtoFileMapping(_sectionHeaders);
+            var rawVsVersionOffset = vsVersionOffset.Value.SafeRVAtoFileMapping(_sectionHeaders);
 
-            return rawAddress is null ? null : new ResourcesParser(_buff, rawAddress.Value);
+            return rawVsVersionOffset is null ? null : new ResourcesParser(_buff, 0, rawVsVersionOffset.Value);
         }
 
         private ImageCor20HeaderParser InitImageComDescriptorParser()
