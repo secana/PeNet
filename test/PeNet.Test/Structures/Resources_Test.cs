@@ -29,6 +29,11 @@ namespace PeNet.Test.Structures
             Assert.Equal<uint>(0x00000000, vsVersionInfo.VsFixedFileInfo.dwFileSubType);
             Assert.Equal<uint>(0x00000000, vsVersionInfo.VsFixedFileInfo.dwFileDateMS);
             Assert.Equal<uint>(0x00000000, vsVersionInfo.VsFixedFileInfo.dwFileDateLS);
+
+            Assert.Equal((ushort) 0x0346, vsVersionInfo.StringFileInfo.wLength);
+            Assert.Equal((ushort) 0x0000, vsVersionInfo.StringFileInfo.wValueLength);
+            Assert.Equal((ushort) 0x0001, vsVersionInfo.StringFileInfo.wType);
+            Assert.Equal("StringFileInfo", vsVersionInfo.StringFileInfo.szKey);
         }
     }
 }
