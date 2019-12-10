@@ -3,21 +3,19 @@
 namespace PeNet.Structures
 {
     /// <summary>
-    /// Describes the data representation in a file-version resource.
-    /// Information about different languages and codes pages is contained in
-    /// this structure.
+    /// One ore more StringTable structures, where each tables szKey indicates
+    /// the language and code page for displaying the text in the StringTable.
     /// </summary>
-    public class StringFileInfo : AbstractStructure
+    public class StringTable : AbstractStructure
     {
-        public StringFileInfo(byte[] buff, uint offset) 
+        public StringTable(byte[] buff, uint offset) 
             : base(buff, offset)
         {
-            StringTable = new StringTable[1];
-            StringTable[0] = new StringTable(buff, offset + 36);
         }
 
         /// <summary>
-        /// Length of the StringFileInfo in bytes, including all children.
+        /// Length of the StringTable structure in bytes,
+        /// including its children.
         /// </summary>
         public ushort wLength
         {
@@ -45,14 +43,11 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// Contains the Unicode string "StringFileInfo".
+        /// Unicode string which contains a 8-digit hexadecimal number.
+        /// The most significant digits represent the language identifier and
+        /// the four least significant digits the code page for which the
+        /// data is formatted.
         /// </summary>
         public string szKey => Buff.GetUnicodeString(Offset + 0x6);
-
-        /// <summary>
-        /// One ore more StringTable structures, where each tables szKey indicates
-        /// the language and code page for displaying the text in the StringTable.
-        /// </summary>
-        public StringTable[] StringTable { get; }
     }
 }
