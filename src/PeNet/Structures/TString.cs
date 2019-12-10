@@ -1,24 +1,19 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using PeNet.Utilities;
+﻿using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
     /// <summary>
-    /// One ore more StringTable structures, where each tables szKey indicates
-    /// the language and code page for displaying the text in the StringTable.
+    /// Contains a string that describes specifics of a file. For example
+    /// the version, copyright information or original file name.
     /// </summary>
-    public class StringTable : AbstractStructure
+    public class TString : AbstractStructure
     {
-        public StringTable(byte[] buff, uint offset) 
-            : base(buff, offset)
+        public TString(byte[] buff, uint offset) : base(buff, offset)
         {
-            String = new TString[1];
-            String[0] = new TString(buff, offset + 0x8 + (uint) szKey.Length * 2);
         }
 
         /// <summary>
-        /// Length of the StringTable structure in bytes,
-        /// including its children.
+        /// Length of the String structure in bytes.
         /// </summary>
         public ushort wLength
         {
@@ -27,7 +22,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// Always zero.
+        /// Size of the Value member in words.
         /// </summary>
         public ushort wValueLength
         {
@@ -46,16 +41,16 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// Unicode string which contains a 8-digit hexadecimal number.
-        /// The most significant digits represent the language identifier and
-        /// the four least significant digits the code page for which the
-        /// data is formatted.
+        /// Arbitrary Unicode string, which describes the kind of
+        /// the following data, e.g. "Comments", "CompanyName" and so
+        /// on.
         /// </summary>
         public string szKey => Buff.GetUnicodeString(Offset + 0x6);
 
         /// <summary>
-        /// Array of String structures.
+        /// Arbitrary string which contains the information for the
+        /// szKey member.
         /// </summary>
-        public TString[] String { get; }
+        public string Value => Buff.GetUnicodeString(Offset + 0x8 + (ulong) szKey.Length * 2);
     }
 }

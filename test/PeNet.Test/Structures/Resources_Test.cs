@@ -39,6 +39,10 @@ namespace PeNet.Test.Structures
             Assert.Equal((ushort) 0x0000, vsVersionInfo.StringFileInfo.StringTable[0].wValueLength);
             Assert.Equal((ushort) 0x0001, vsVersionInfo.StringFileInfo.StringTable[0].wType);
             Assert.Equal("000004b0", vsVersionInfo.StringFileInfo.StringTable[0].szKey);
+
+            Assert.Equal((ushort) 0x0018, vsVersionInfo.StringFileInfo.StringTable[0].String[0].wLength);
+            Assert.Equal((ushort)0x0000, vsVersionInfo.StringFileInfo.StringTable[0].String[0].wValueLength);
+            Assert.Equal((ushort)0x0001, vsVersionInfo.StringFileInfo.StringTable[0].String[0].wType);
         }
     }
 }
