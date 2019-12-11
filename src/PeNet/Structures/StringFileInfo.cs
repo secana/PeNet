@@ -11,10 +11,11 @@ namespace PeNet.Structures
     /// </summary>
     public class StringFileInfo : AbstractStructure
     {
+        private StringTable[] _stringTable;
+
         public StringFileInfo(byte[] buff, uint offset) 
             : base(buff, offset)
         {
-            StringTable = ReadChildren();
         }
 
         /// <summary>
@@ -54,7 +55,13 @@ namespace PeNet.Structures
         /// One ore more StringTable structures, where each tables szKey indicates
         /// the language and code page for displaying the text in the StringTable.
         /// </summary>
-        public StringTable[] StringTable { get; }
+        public StringTable[] StringTable {
+            get
+            {
+                _stringTable ??= ReadChildren();
+                return _stringTable;
+            }
+        }
 
         private StringTable[] ReadChildren()
         {

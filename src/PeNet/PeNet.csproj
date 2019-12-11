@@ -12,6 +12,7 @@
     <PackageIconUrl>https://raw.githubusercontent.com/secana/PeNet/master/resource/icon.png</PackageIconUrl>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>PeNet.snk</AssemblyOriginatorKeyFile>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
     <NoWarn>1701;1702;1705</NoWarn>

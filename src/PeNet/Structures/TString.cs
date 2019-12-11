@@ -10,9 +10,10 @@ namespace PeNet.Structures
     /// </summary>
     public class TString : AbstractStructure
     {
+        private string[] _value;
+
         public TString(byte[] buff, uint offset) : base(buff, offset)
         {
-            Value = GetValues();
         }
 
         /// <summary>
@@ -54,9 +55,15 @@ namespace PeNet.Structures
         /// Arbitrary string which contains the information for the
         /// szKey member.
         /// </summary>
-        public string[] Value { get; }
+        public string[] Value {
+            get
+            {
+                _value ??= ReadValues();
+                return _value;
+            }
+        }
 
-        private string[] GetValues()
+        private string[] ReadValues()
         {
             var currentOffset = Offset + 0x6 + szKey.LengthInByte() +
                                 (Offset + 0x6 + szKey.LengthInByte()).PaddingBytes(32);

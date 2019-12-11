@@ -10,10 +10,11 @@ namespace PeNet.Structures
     /// </summary>
     public class StringTable : AbstractStructure
     {
+        private TString[] _children;
+
         public StringTable(byte[] buff, uint offset) 
             : base(buff, offset)
         {
-            String = ReadChildren();
         }
 
         /// <summary>
@@ -56,7 +57,13 @@ namespace PeNet.Structures
         /// <summary>
         /// Array of String structures.
         /// </summary>
-        public TString[] String { get; }
+        public TString[] String {
+            get
+            {
+                _children ??= ReadChildren();
+                return _children;
+            }
+        }
 
         private TString[] ReadChildren()
         {
