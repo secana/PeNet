@@ -75,8 +75,8 @@ namespace PeNet.Structures
                     break;                                              // of the list is reached.
 
                 i += 1;                                                 // Add "length byte" to current offset.
-                var tmpString = Buff.GetUnicodeString(i, length - 1);  // Read the UTF-16 string
-                i += (uint)length - 1;                                 // Add the string length to the current offset.
+                var tmpString = Buff.GetUnicodeString(i);               // Read the UTF-16 string
+                i += (uint)length - 1;                                  // Add the string length to the current offset.
 
                 stringsAndIncides.Add(new Tuple<string, uint>(tmpString, i - (uint)length - Offset));
             }

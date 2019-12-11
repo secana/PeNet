@@ -29,6 +29,7 @@ namespace PeNet
         private ImageDelayImportDescriptorParser _imageDelayImportDescriptorParser;
         private ImageLoadConfigDirectoryParser _imageLoadConfigDirectoryParser;
         private ImageCor20HeaderParser _imageCor20HeaderParser;
+        private ResourcesParser _resourcesParser;
 
         public DataDirectoryParsers(
             byte[] buff,
@@ -59,6 +60,7 @@ namespace PeNet
         public IMAGE_DELAY_IMPORT_DESCRIPTOR ImageDelayImportDescriptor => _imageDelayImportDescriptorParser?.GetParserTarget();
         public IMAGE_LOAD_CONFIG_DIRECTORY ImageLoadConfigDirectory => _imageLoadConfigDirectoryParser?.GetParserTarget();
         public IMAGE_COR20_HEADER ImageComDescriptor => _imageCor20HeaderParser?.GetParserTarget();
+        public Resources Resources => _resourcesParser?.GetParserTarget();
 
         private void InitAllParsers()
         {
@@ -76,6 +78,23 @@ namespace PeNet
             _imageDelayImportDescriptorParser = InitImageDelayImportDescriptorParser();
             _imageLoadConfigDirectoryParser = InitImageLoadConfigDirectoryParser();
             _imageCor20HeaderParser = InitImageComDescriptorParser();
+            _resourcesParser = InitResourcesParser();
+        }
+
+        private ResourcesParser InitResourcesParser()
+        {
+            var vsVersionOffset = ImageResourceDirectory
+                ?.DirectoryEntries?.FirstOrDefault(e => e.ID == (int) Constants.ResourceGroupIDs.Version) // Root
+                ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault(e => e.ID == 1) // Type
+                ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault(e => e.ID == 1033) // Name
+                ?.ResourceDataEntry?.OffsetToData; // Language
+
+            if (vsVersionOffset is null)
+                return null;
+
+            var rawVsVersionOffset = vsVersionOffset.Value.SafeRVAtoFileMapping(_sectionHeaders);
+
+            return rawVsVersionOffset is null ? null : new ResourcesParser(_buff, 0, rawVsVersionOffset.Value);
         }
 
         private ImageCor20HeaderParser InitImageComDescriptorParser()
