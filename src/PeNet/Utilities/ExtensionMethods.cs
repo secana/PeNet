@@ -561,14 +561,32 @@ namespace PeNet.Utilities
         /// </summary>
         /// <param name="buff">Containing buffer.</param>
         /// <param name="stringOffset">Offset of the string.</param>
-        /// <param name="length">Lengh of the string to parse.</param>
         /// <returns>The parsed unicode string.</returns>
-        public static string GetUnicodeString(this byte[] buff, ulong stringOffset, int length)
+        public static string GetUnicodeString(this byte[] buff, ulong stringOffset)
         {
-            var bytes = new byte[length];
-            Array.Copy(buff, (int)stringOffset, bytes, 0, length);
+            var size = 0;
+            for (var i = 0; i < (buff.Length - (int) stringOffset) - 1; i++)
+            {
+                if (buff[(int) stringOffset + i] == 0 && buff[(int) stringOffset + (i + 1)] == 0)
+                {
+                    size = i + 1;
+                    break;
+                }
+            }
+
+            var bytes = new byte[size];
+
+            Array.Copy(buff, (int)stringOffset, bytes, 0, size);
             return Encoding.Unicode.GetString(bytes);
         }
+
+
+        /// <summary>
+        /// Get the length of a unicode string in bytes.
+        /// </summary>
+        /// <param name="s">A unicode string.</param>
+        /// <returns>Length in bytes.</returns>
+        public static int LengthInByte(this string s) => s.Length * 2 + 2;
 
         /// <summary>
         /// Computes the number of bits needed by an MetaData Table index 
@@ -581,5 +599,25 @@ namespace PeNet.Utilities
             var numOfTags = Enum.GetNames(indexEnum).Length;
             return (uint) Math.Ceiling(Math.Log(numOfTags, 2));
         }
+
+        /// <summary>
+        /// Compute the padding to align a
+        /// data structure.
+        /// </summary>
+        /// <param name="offset">Offset to start the alignment of
+        /// the next member.</param>
+        /// <param name="alignment">Bitness of the alignment, e.g. "32".</param>
+        /// <returns>Number of bytes needed to align the next structure.</returns>
+        public static uint PaddingBytes(this long offset, int alignment) => (uint) offset % (uint) (alignment / 8);
+
+        /// <summary>
+        /// Compute the padding to align a
+        /// data structure.
+        /// </summary>
+        /// <param name="offset">Offset to start the alignment of
+        /// the next member.</param>
+        /// <param name="alignment">Bitness of the alignment, e.g. "32".</param>
+        /// <returns>Number of bytes needed to align the next structure.</returns>
+        public static uint PaddingBytes(this uint offset, int alignment) => (uint)offset % (uint)(alignment / 8);
     }
 }

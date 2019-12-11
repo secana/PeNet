@@ -224,6 +224,11 @@ namespace PeNet
         public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory => _dataDirectoryParsers.ImageResourceDirectory;
 
         /// <summary>
+        ///     Access resources of the PE file.
+        /// </summary>
+        public Resources Resources => _dataDirectoryParsers.Resources; 
+
+        /// <summary>
         ///     Access the array of RUNTIME_FUNCTION from the Exception header.
         /// </summary>
         public RUNTIME_FUNCTION[] ExceptionDirectory => _dataDirectoryParsers.RuntimeFunctions;
