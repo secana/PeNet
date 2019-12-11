@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-#if NETSTANDARD2_0
-using System.Runtime.InteropServices;
-#elif NETSTANDARD2_1
+#if NET461
+// No import needed
+#else
 using System.Runtime.InteropServices;
 #endif
 using System.Security.Cryptography;
@@ -52,15 +52,11 @@ namespace PeNet.Authenticode
             // when using .Net Core.
             // Under Windows with .Net Core the class works as intended.
             // See issue: https://github.com/dotnet/corefx/issues/25828
-
-#if NETSTANDARD2_0
-            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? 
-                new X509Certificate2(pkcs7) : GetSigningCertificateNonWindows(_peFile);
-#elif NETSTANDARD2_1
-            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? 
-                new X509Certificate2(pkcs7) : GetSigningCertificateNonWindows(_peFile);
+#if NET461
+    return new X509Certificate2(pkcs7);
 #else
-            return new X509Certificate2(pkcs7);
+            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? 
+                new X509Certificate2(pkcs7) : GetSigningCertificateNonWindows(_peFile);
 #endif
         }
 
