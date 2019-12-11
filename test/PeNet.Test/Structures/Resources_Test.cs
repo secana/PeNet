@@ -5,7 +5,7 @@ namespace PeNet.Test.Structures
     public class Resources_Test
     {
         [Fact]
-        public void Resources_GivenAPEFile_VsVersionInfoSet()
+        public void Resources_GivenAPEFile1_VsVersionInfoSet()
         {
             var peFile = new PeFile("./Binaries/firefox_invalid_x64.exe");
             var vsVersionInfo = peFile.Resources.VsVersionInfo;
@@ -69,6 +69,67 @@ namespace PeNet.Test.Structures
             Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.Children[0].wType);
             Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].szKey);
             Assert.Equal((uint) 0x04b00000, vsVersionInfo.VarFileInfo.Children[0].Value[0]);
+        }
+
+        [Fact]
+        public void Resources_GivenAPEFile2_VsVersionInfoSet()
+        {
+            var peFile = new PeFile("./Binaries/pidgin.exe");
+            var vsVersionInfo = peFile.Resources.VsVersionInfo;
+
+            Assert.Equal((ushort)0x0374, vsVersionInfo.wLength);
+            Assert.Equal((ushort)0x0034, vsVersionInfo.wValueLength);
+            Assert.Equal((ushort)0x0000, vsVersionInfo.wType);
+            Assert.Equal("VS_VERSION_INFO", vsVersionInfo.szKey);
+
+            Assert.Equal(0xFEEF04BD, vsVersionInfo.VsFixedFileInfo.dwSignature);
+            Assert.Equal((uint)0x00010000, vsVersionInfo.VsFixedFileInfo.dwStrucVersion);
+            Assert.Equal((uint)0x0002000A, vsVersionInfo.VsFixedFileInfo.dwFileVersionMS);
+            Assert.Equal((uint)0x000B0000, vsVersionInfo.VsFixedFileInfo.dwFileVersionLS);
+            Assert.Equal((uint)0x0002000A, vsVersionInfo.VsFixedFileInfo.dwProductVersionMS);
+            Assert.Equal((uint)0x000B0000, vsVersionInfo.VsFixedFileInfo.dwProductVersionLS);
+            Assert.Equal((uint)0x00000000, vsVersionInfo.VsFixedFileInfo.dwFileFlagsMask);
+            Assert.Equal((uint)0x00000000, vsVersionInfo.VsFixedFileInfo.dwFileFlags);
+            Assert.Equal((uint)0x00000004, vsVersionInfo.VsFixedFileInfo.dwFileOS);
+            Assert.Equal((uint)0x00000001, vsVersionInfo.VsFixedFileInfo.dwFileType);
+            Assert.Equal((uint)0x00000000, vsVersionInfo.VsFixedFileInfo.dwFileSubType);
+            Assert.Equal((uint)0x00000000, vsVersionInfo.VsFixedFileInfo.dwFileDateMS);
+            Assert.Equal((uint)0x00000000, vsVersionInfo.VsFixedFileInfo.dwFileDateLS);
+
+            Assert.Equal((ushort)0x02D4, vsVersionInfo.StringFileInfo.wLength);
+            Assert.Equal((ushort)0x0000, vsVersionInfo.StringFileInfo.wValueLength);
+            Assert.Equal((ushort)0x0001, vsVersionInfo.StringFileInfo.wType);
+            Assert.Equal("StringFileInfo", vsVersionInfo.StringFileInfo.szKey);
+
+            Assert.Equal((ushort)0x02B0, vsVersionInfo.StringFileInfo.StringTable[0].wLength);
+            Assert.Equal((ushort)0x0000, vsVersionInfo.StringFileInfo.StringTable[0].wValueLength);
+            Assert.Equal((ushort)0x0001, vsVersionInfo.StringFileInfo.StringTable[0].wType);
+            Assert.Equal("040904B0", vsVersionInfo.StringFileInfo.StringTable[0].szKey);
+
+            Assert.Equal((ushort)0x005E, vsVersionInfo.StringFileInfo.StringTable[0].String[0].wLength);
+            Assert.Equal((ushort)0x001F, vsVersionInfo.StringFileInfo.StringTable[0].String[0].wValueLength);
+            Assert.Equal((ushort)0x0001, vsVersionInfo.StringFileInfo.StringTable[0].String[0].wType);
+            Assert.Equal("CompanyName", vsVersionInfo.StringFileInfo.StringTable[0].String[0].szKey);
+            Assert.Equal("The Pidgin developer community", vsVersionInfo.StringFileInfo.StringTable[0].String[0].Value[0]);
+
+            // ... more String entries ...
+
+            Assert.Equal((ushort) 0x0034, vsVersionInfo.StringFileInfo.StringTable[0].String[7].wLength);
+            Assert.Equal((ushort) 0x0008, vsVersionInfo.StringFileInfo.StringTable[0].String[7].wValueLength);
+            Assert.Equal((ushort) 0x0001, vsVersionInfo.StringFileInfo.StringTable[0].String[7].wType);
+            Assert.Equal("ProductVersion", vsVersionInfo.StringFileInfo.StringTable[0].String[7].szKey);
+            Assert.Equal("2.10.11", vsVersionInfo.StringFileInfo.StringTable[0].String[7].Value[0]);
+
+            Assert.Equal((ushort) 0x0044, vsVersionInfo.VarFileInfo.wLength);
+            Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.wValueLength);
+            Assert.Equal((ushort) 0x0001, vsVersionInfo.VarFileInfo.wType);
+            Assert.Equal("VarFileInfo", vsVersionInfo.VarFileInfo.szKey);
+
+            Assert.Equal((ushort) 0x0024, vsVersionInfo.VarFileInfo.Children[0].wLength);
+            Assert.Equal((ushort) 0x0004, vsVersionInfo.VarFileInfo.Children[0].wValueLength);
+            Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.Children[0].wType);
+            Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].szKey);
+            Assert.Equal((uint) 0x04b00409, vsVersionInfo.VarFileInfo.Children[0].Value[0]);
         }
     }
 }
