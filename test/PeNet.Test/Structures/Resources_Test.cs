@@ -14,7 +14,6 @@ namespace PeNet.Test.Structures
             Assert.Equal((ushort) 0x0034, vsVersionInfo.wValueLength);
             Assert.Equal((ushort) 0x0000, vsVersionInfo.wType);
             Assert.Equal("VS_VERSION_INFO", vsVersionInfo.szKey);
-            Assert.Equal((ushort) 0x0000, vsVersionInfo.Padding1);
 
             Assert.Equal(0xFEEF04BD, vsVersionInfo.VsFixedFileInfo.dwSignature);
             Assert.Equal((uint) 0x00010000, vsVersionInfo.VsFixedFileInfo.dwStrucVersion);
@@ -59,6 +58,17 @@ namespace PeNet.Test.Structures
             Assert.Equal((ushort)0x0001, vsVersionInfo.StringFileInfo.StringTable[0].String[10].wType);
             Assert.Equal("BuildID", vsVersionInfo.StringFileInfo.StringTable[0].String[10].szKey);
             Assert.Equal("20171206182557", vsVersionInfo.StringFileInfo.StringTable[0].String[10].Value[0]);
+
+            Assert.Equal((ushort) 0x0044, vsVersionInfo.VarFileInfo.wLength);
+            Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.wValueLength);
+            Assert.Equal((ushort) 0x0001, vsVersionInfo.VarFileInfo.wType);
+            Assert.Equal("VarFileInfo", vsVersionInfo.VarFileInfo.szKey);
+
+            Assert.Equal((ushort) 0x0024, vsVersionInfo.VarFileInfo.Children[0].wLength);
+            Assert.Equal((ushort) 0x0004, vsVersionInfo.VarFileInfo.Children[0].wValueLength);
+            Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.Children[0].wType);
+            Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].szKey);
+            Assert.Equal((uint) 0x04b00000, vsVersionInfo.VarFileInfo.Children[0].Value[0]);
         }
     }
 }

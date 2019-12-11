@@ -600,6 +600,24 @@ namespace PeNet.Utilities
             return (uint) Math.Ceiling(Math.Log(numOfTags, 2));
         }
 
+        /// <summary>
+        /// Compute the padding to align a
+        /// data structure.
+        /// </summary>
+        /// <param name="offset">Offset to start the alignment of
+        /// the next member.</param>
+        /// <param name="alignment">Bitness of the alignment, e.g. "32".</param>
+        /// <returns>Number of bytes needed to align the next structure.</returns>
         public static uint PaddingBytes(this long offset, int alignment) => (uint) offset % (uint) (alignment / 8);
+
+        /// <summary>
+        /// Compute the padding to align a
+        /// data structure.
+        /// </summary>
+        /// <param name="offset">Offset to start the alignment of
+        /// the next member.</param>
+        /// <param name="alignment">Bitness of the alignment, e.g. "32".</param>
+        /// <returns>Number of bytes needed to align the next structure.</returns>
+        public static uint PaddingBytes(this uint offset, int alignment) => (uint)offset % (uint)(alignment / 8);
     }
 }
