@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Collections.Generic;
+using System.Linq;
 using PeNet.Utilities;
 
 namespace PeNet.Structures
@@ -12,8 +13,7 @@ namespace PeNet.Structures
         public StringTable(byte[] buff, uint offset) 
             : base(buff, offset)
         {
-            String = new TString[1];
-            String[0] = new TString(buff, offset + 0x8 + (uint) szKey.Length * 2);
+            String = ReadChildren();
         }
 
         /// <summary>
@@ -57,5 +57,21 @@ namespace PeNet.Structures
         /// Array of String structures.
         /// </summary>
         public TString[] String { get; }
+
+        private TString[] ReadChildren()
+        {
+            var currentOffset = Offset + 6 + (szKey.Length * 2 + 2) +
+                                (Offset + 6 + (szKey.Length * 2 + 2)).PaddingBytes(32);
+            var children = new List<TString>();
+
+            while (currentOffset < Offset + wLength)
+            {
+                currentOffset += currentOffset.PaddingBytes(32);
+                children.Add(new TString(Buff, (uint) currentOffset));
+                currentOffset += children.Last().wLength;
+            }
+
+            return children.ToArray();
+        }
     }
 }

@@ -580,6 +580,14 @@ namespace PeNet.Utilities
             return Encoding.Unicode.GetString(bytes);
         }
 
+
+        /// <summary>
+        /// Get the length of a unicode string in bytes.
+        /// </summary>
+        /// <param name="s">A unicode string.</param>
+        /// <returns>Length in bytes.</returns>
+        public static int LengthInByte(this string s) => s.Length * 2 + 2;
+
         /// <summary>
         /// Computes the number of bits needed by an MetaData Table index 
         /// based on the number of fields which the enum of the index has.
@@ -591,5 +599,7 @@ namespace PeNet.Utilities
             var numOfTags = Enum.GetNames(indexEnum).Length;
             return (uint) Math.Ceiling(Math.Log(numOfTags, 2));
         }
+
+        public static uint PaddingBytes(this long offset, int alignment) => (uint) offset % (uint) (alignment / 8);
     }
 }

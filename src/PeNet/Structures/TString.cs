@@ -1,4 +1,6 @@
-﻿using PeNet.Utilities;
+﻿using System.Collections.Generic;
+using System.Linq;
+using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
@@ -10,6 +12,7 @@ namespace PeNet.Structures
     {
         public TString(byte[] buff, uint offset) : base(buff, offset)
         {
+            Value = GetValues();
         }
 
         /// <summary>
@@ -51,6 +54,22 @@ namespace PeNet.Structures
         /// Arbitrary string which contains the information for the
         /// szKey member.
         /// </summary>
-        public string Value => Buff.GetUnicodeString(Offset + 0x8 + (ulong) szKey.Length * 2);
+        public string[] Value { get; }
+
+        private string[] GetValues()
+        {
+            var currentOffset = Offset + 0x6 + szKey.LengthInByte() +
+                                (Offset + 0x6 + szKey.LengthInByte()).PaddingBytes(32);
+
+            var values = new List<string>();
+
+            while (currentOffset < Offset + 6 + szKey.LengthInByte() + wValueLength)
+            {
+                values.Add(Buff.GetUnicodeString((ulong) currentOffset));
+                currentOffset += values.Last().LengthInByte();
+            }
+
+            return values.ToArray();
+        } 
     }
 }
