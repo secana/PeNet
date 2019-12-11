@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 #if NETSTANDARD2_0
 using System.Runtime.InteropServices;
+#elif NETSTANDARD2_1
+using System.Runtime.InteropServices;
 #endif
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -53,7 +55,10 @@ namespace PeNet.Authenticode
 
 #if NETSTANDARD2_0
             return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? 
-                new X509Certificate2(pkcs7) : GetSigningCertificateNonWindows(_peFile); 
+                new X509Certificate2(pkcs7) : GetSigningCertificateNonWindows(_peFile);
+#elif NETSTANDARD2_1
+            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? 
+                new X509Certificate2(pkcs7) : GetSigningCertificateNonWindows(_peFile);
 #else
             return new X509Certificate2(pkcs7);
 #endif
