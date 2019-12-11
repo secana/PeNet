@@ -51,6 +51,14 @@ namespace PeNet.Test.Structures
             Assert.Equal((ushort)0x0001, vsVersionInfo.StringFileInfo.StringTable[0].String[1].wType);
             Assert.Equal("LegalCopyright", vsVersionInfo.StringFileInfo.StringTable[0].String[1].szKey);
             Assert.Equal("\u00a9Firefox and Mozilla Developers; available under the MPL 2 license.", vsVersionInfo.StringFileInfo.StringTable[0].String[1].Value[0]);
+
+            // ... more String entries ...
+
+            Assert.Equal((ushort)0x0036, vsVersionInfo.StringFileInfo.StringTable[0].String[10].wLength);
+            Assert.Equal((ushort)0x000F, vsVersionInfo.StringFileInfo.StringTable[0].String[10].wValueLength);
+            Assert.Equal((ushort)0x0001, vsVersionInfo.StringFileInfo.StringTable[0].String[10].wType);
+            Assert.Equal("BuildID", vsVersionInfo.StringFileInfo.StringTable[0].String[10].szKey);
+            Assert.Equal("20171206182557", vsVersionInfo.StringFileInfo.StringTable[0].String[10].Value[0]);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using PeNet.Utilities;
+﻿using System.Collections.Generic;
+using System.Linq;
+using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
@@ -12,8 +14,7 @@ namespace PeNet.Structures
         public StringFileInfo(byte[] buff, uint offset) 
             : base(buff, offset)
         {
-            StringTable = new StringTable[1];
-            StringTable[0] = new StringTable(buff, offset + 36);
+            StringTable = ReadChildren();
         }
 
         /// <summary>
@@ -54,5 +55,22 @@ namespace PeNet.Structures
         /// the language and code page for displaying the text in the StringTable.
         /// </summary>
         public StringTable[] StringTable { get; }
+
+        private StringTable[] ReadChildren()
+        {
+            var currentOffset =
+                Offset + 6 + szKey.LengthInByte() 
+                + (Offset + 6 + szKey.LengthInByte()).PaddingBytes(32);
+
+            var children = new List<StringTable>();
+
+            while (currentOffset < Offset + wLength)
+            {
+                children.Add(new StringTable(Buff, (uint) currentOffset));
+                currentOffset += children.Last().wLength;
+            }
+
+            return children.ToArray();
+        }
     }
 }
