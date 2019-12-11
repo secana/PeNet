@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace PeNet.Structures
    ">
-    <meta name="generator" content="docfx 2.47.0.0">
+    <meta name="generator" content="docfx 2.48.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -203,10 +203,26 @@ in a .Net assembly.</p>
       <section><p>The Meta Data Tables Header contains information about all present
 data tables in the .Net assembly.</p>
 </section>
+      <h4><a class="xref" href="PeNet.Structures.Resources.html">Resources</a></h4>
+      <section><p>Parsed version of the Resource data directory.</p>
+</section>
       <h4><a class="xref" href="PeNet.Structures.RUNTIME_FUNCTION.html">RUNTIME_FUNCTION</a></h4>
       <section><p>The runtime function struct is represents
 a function in the exception header for x64
 applications.</p>
+</section>
+      <h4><a class="xref" href="PeNet.Structures.StringFileInfo.html">StringFileInfo</a></h4>
+      <section><p>Describes the data representation in a file-version resource.
+Information about different languages and codes pages is contained in
+this structure.</p>
+</section>
+      <h4><a class="xref" href="PeNet.Structures.StringTable.html">StringTable</a></h4>
+      <section><p>One ore more StringTable structures, where each tables szKey indicates
+the language and code page for displaying the text in the StringTable.</p>
+</section>
+      <h4><a class="xref" href="PeNet.Structures.TString.html">TString</a></h4>
+      <section><p>Contains a string that describes specifics of a file. For example
+the version, copyright information or original file name.</p>
 </section>
       <h4><a class="xref" href="PeNet.Structures.UNWIND_CODE.html">UNWIND_CODE</a></h4>
       <section><p>The UNWIND_CODE is a struct in
@@ -218,6 +234,21 @@ and to walk the stack.</p>
       <section><p>The UNWIND_INFO is used for x64 exception
 handling and to unwind the stack. It is
 pointed to by the RUNTIME_FUNCTION struct.</p>
+</section>
+      <h4><a class="xref" href="PeNet.Structures.Var.html">Var</a></h4>
+      <section><p>Usually a list of languages that the
+application or DLL supports.</p>
+</section>
+      <h4><a class="xref" href="PeNet.Structures.VarFileInfo.html">VarFileInfo</a></h4>
+      <section><p>Information about the file not dependent on any language and code page
+combination.</p>
+</section>
+      <h4><a class="xref" href="PeNet.Structures.VS_FIXEDFILEINFO.html">VS_FIXEDFILEINFO</a></h4>
+      <section><p>Language and code page independent version information about the PE file.</p>
+</section>
+      <h4><a class="xref" href="PeNet.Structures.VS_VERSIONINFO.html">VS_VERSIONINFO</a></h4>
+      <section><p>Optional Resource member which contains version information
+and compile time information about the PE file.</p>
 </section>
       <h4><a class="xref" href="PeNet.Structures.WIN_CERTIFICATE.html">WIN_CERTIFICATE</a></h4>
       <section><p>The WIN_CERTIFICATE the information

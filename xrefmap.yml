@@ -2646,6 +2646,19 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.PKCS7
   nameWithType: PeFile.PKCS7
+- uid: PeNet.PeFile.Resources
+  name: Resources
+  href: api/PeNet.PeFile.html#PeNet_PeFile_Resources
+  commentId: P:PeNet.PeFile.Resources
+  fullName: PeNet.PeFile.Resources
+  nameWithType: PeFile.Resources
+- uid: PeNet.PeFile.Resources*
+  name: Resources
+  href: api/PeNet.PeFile.html#PeNet_PeFile_Resources_
+  commentId: Overload:PeNet.PeFile.Resources
+  isSpec: "True"
+  fullName: PeNet.PeFile.Resources
+  nameWithType: PeFile.Resources
 - uid: PeNet.PeFile.SaveAs(System.String)
   name: SaveAs(String)
   href: api/PeNet.PeFile.html#PeNet_PeFile_SaveAs_System_String_
@@ -9726,6 +9739,41 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.METADATATABLESHDR.Valid
   nameWithType: METADATATABLESHDR.Valid
+- uid: PeNet.Structures.Resources
+  name: Resources
+  href: api/PeNet.Structures.Resources.html
+  commentId: T:PeNet.Structures.Resources
+  fullName: PeNet.Structures.Resources
+  nameWithType: Resources
+- uid: PeNet.Structures.Resources.#ctor(System.Byte[],System.UInt32,System.UInt32)
+  name: Resources(Byte[], UInt32, UInt32)
+  href: api/PeNet.Structures.Resources.html#PeNet_Structures_Resources__ctor_System_Byte___System_UInt32_System_UInt32_
+  commentId: M:PeNet.Structures.Resources.#ctor(System.Byte[],System.UInt32,System.UInt32)
+  name.vb: Resources(Byte(), UInt32, UInt32)
+  fullName: PeNet.Structures.Resources.Resources(System.Byte[], System.UInt32, System.UInt32)
+  fullName.vb: PeNet.Structures.Resources.Resources(System.Byte(), System.UInt32, System.UInt32)
+  nameWithType: Resources.Resources(Byte[], UInt32, UInt32)
+  nameWithType.vb: Resources.Resources(Byte(), UInt32, UInt32)
+- uid: PeNet.Structures.Resources.#ctor*
+  name: Resources
+  href: api/PeNet.Structures.Resources.html#PeNet_Structures_Resources__ctor_
+  commentId: Overload:PeNet.Structures.Resources.#ctor
+  isSpec: "True"
+  fullName: PeNet.Structures.Resources.Resources
+  nameWithType: Resources.Resources
+- uid: PeNet.Structures.Resources.VsVersionInfo
+  name: VsVersionInfo
+  href: api/PeNet.Structures.Resources.html#PeNet_Structures_Resources_VsVersionInfo
+  commentId: P:PeNet.Structures.Resources.VsVersionInfo
+  fullName: PeNet.Structures.Resources.VsVersionInfo
+  nameWithType: Resources.VsVersionInfo
+- uid: PeNet.Structures.Resources.VsVersionInfo*
+  name: VsVersionInfo
+  href: api/PeNet.Structures.Resources.html#PeNet_Structures_Resources_VsVersionInfo_
+  commentId: Overload:PeNet.Structures.Resources.VsVersionInfo
+  isSpec: "True"
+  fullName: PeNet.Structures.Resources.VsVersionInfo
+  nameWithType: Resources.VsVersionInfo
 - uid: PeNet.Structures.RUNTIME_FUNCTION
   name: RUNTIME_FUNCTION
   href: api/PeNet.Structures.RUNTIME_FUNCTION.html
@@ -9800,6 +9848,267 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.RUNTIME_FUNCTION.UnwindInfo
   nameWithType: RUNTIME_FUNCTION.UnwindInfo
+- uid: PeNet.Structures.StringFileInfo
+  name: StringFileInfo
+  href: api/PeNet.Structures.StringFileInfo.html
+  commentId: T:PeNet.Structures.StringFileInfo
+  fullName: PeNet.Structures.StringFileInfo
+  nameWithType: StringFileInfo
+- uid: PeNet.Structures.StringFileInfo.#ctor(System.Byte[],System.UInt32)
+  name: StringFileInfo(Byte[], UInt32)
+  href: api/PeNet.Structures.StringFileInfo.html#PeNet_Structures_StringFileInfo__ctor_System_Byte___System_UInt32_
+  commentId: M:PeNet.Structures.StringFileInfo.#ctor(System.Byte[],System.UInt32)
+  name.vb: StringFileInfo(Byte(), UInt32)
+  fullName: PeNet.Structures.StringFileInfo.StringFileInfo(System.Byte[], System.UInt32)
+  fullName.vb: PeNet.Structures.StringFileInfo.StringFileInfo(System.Byte(), System.UInt32)
+  nameWithType: StringFileInfo.StringFileInfo(Byte[], UInt32)
+  nameWithType.vb: StringFileInfo.StringFileInfo(Byte(), UInt32)
+- uid: PeNet.Structures.StringFileInfo.#ctor*
+  name: StringFileInfo
+  href: api/PeNet.Structures.StringFileInfo.html#PeNet_Structures_StringFileInfo__ctor_
+  commentId: Overload:PeNet.Structures.StringFileInfo.#ctor
+  isSpec: "True"
+  fullName: PeNet.Structures.StringFileInfo.StringFileInfo
+  nameWithType: StringFileInfo.StringFileInfo
+- uid: PeNet.Structures.StringFileInfo.StringTable
+  name: StringTable
+  href: api/PeNet.Structures.StringFileInfo.html#PeNet_Structures_StringFileInfo_StringTable
+  commentId: P:PeNet.Structures.StringFileInfo.StringTable
+  fullName: PeNet.Structures.StringFileInfo.StringTable
+  nameWithType: StringFileInfo.StringTable
+- uid: PeNet.Structures.StringFileInfo.StringTable*
+  name: StringTable
+  href: api/PeNet.Structures.StringFileInfo.html#PeNet_Structures_StringFileInfo_StringTable_
+  commentId: Overload:PeNet.Structures.StringFileInfo.StringTable
+  isSpec: "True"
+  fullName: PeNet.Structures.StringFileInfo.StringTable
+  nameWithType: StringFileInfo.StringTable
+- uid: PeNet.Structures.StringFileInfo.szKey
+  name: szKey
+  href: api/PeNet.Structures.StringFileInfo.html#PeNet_Structures_StringFileInfo_szKey
+  commentId: P:PeNet.Structures.StringFileInfo.szKey
+  fullName: PeNet.Structures.StringFileInfo.szKey
+  nameWithType: StringFileInfo.szKey
+- uid: PeNet.Structures.StringFileInfo.szKey*
+  name: szKey
+  href: api/PeNet.Structures.StringFileInfo.html#PeNet_Structures_StringFileInfo_szKey_
+  commentId: Overload:PeNet.Structures.StringFileInfo.szKey
+  isSpec: "True"
+  fullName: PeNet.Structures.StringFileInfo.szKey
+  nameWithType: StringFileInfo.szKey
+- uid: PeNet.Structures.StringFileInfo.wLength
+  name: wLength
+  href: api/PeNet.Structures.StringFileInfo.html#PeNet_Structures_StringFileInfo_wLength
+  commentId: P:PeNet.Structures.StringFileInfo.wLength
+  fullName: PeNet.Structures.StringFileInfo.wLength
+  nameWithType: StringFileInfo.wLength
+- uid: PeNet.Structures.StringFileInfo.wLength*
+  name: wLength
+  href: api/PeNet.Structures.StringFileInfo.html#PeNet_Structures_StringFileInfo_wLength_
+  commentId: Overload:PeNet.Structures.StringFileInfo.wLength
+  isSpec: "True"
+  fullName: PeNet.Structures.StringFileInfo.wLength
+  nameWithType: StringFileInfo.wLength
+- uid: PeNet.Structures.StringFileInfo.wType
+  name: wType
+  href: api/PeNet.Structures.StringFileInfo.html#PeNet_Structures_StringFileInfo_wType
+  commentId: P:PeNet.Structures.StringFileInfo.wType
+  fullName: PeNet.Structures.StringFileInfo.wType
+  nameWithType: StringFileInfo.wType
+- uid: PeNet.Structures.StringFileInfo.wType*
+  name: wType
+  href: api/PeNet.Structures.StringFileInfo.html#PeNet_Structures_StringFileInfo_wType_
+  commentId: Overload:PeNet.Structures.StringFileInfo.wType
+  isSpec: "True"
+  fullName: PeNet.Structures.StringFileInfo.wType
+  nameWithType: StringFileInfo.wType
+- uid: PeNet.Structures.StringFileInfo.wValueLength
+  name: wValueLength
+  href: api/PeNet.Structures.StringFileInfo.html#PeNet_Structures_StringFileInfo_wValueLength
+  commentId: P:PeNet.Structures.StringFileInfo.wValueLength
+  fullName: PeNet.Structures.StringFileInfo.wValueLength
+  nameWithType: StringFileInfo.wValueLength
+- uid: PeNet.Structures.StringFileInfo.wValueLength*
+  name: wValueLength
+  href: api/PeNet.Structures.StringFileInfo.html#PeNet_Structures_StringFileInfo_wValueLength_
+  commentId: Overload:PeNet.Structures.StringFileInfo.wValueLength
+  isSpec: "True"
+  fullName: PeNet.Structures.StringFileInfo.wValueLength
+  nameWithType: StringFileInfo.wValueLength
+- uid: PeNet.Structures.StringTable
+  name: StringTable
+  href: api/PeNet.Structures.StringTable.html
+  commentId: T:PeNet.Structures.StringTable
+  fullName: PeNet.Structures.StringTable
+  nameWithType: StringTable
+- uid: PeNet.Structures.StringTable.#ctor(System.Byte[],System.UInt32)
+  name: StringTable(Byte[], UInt32)
+  href: api/PeNet.Structures.StringTable.html#PeNet_Structures_StringTable__ctor_System_Byte___System_UInt32_
+  commentId: M:PeNet.Structures.StringTable.#ctor(System.Byte[],System.UInt32)
+  name.vb: StringTable(Byte(), UInt32)
+  fullName: PeNet.Structures.StringTable.StringTable(System.Byte[], System.UInt32)
+  fullName.vb: PeNet.Structures.StringTable.StringTable(System.Byte(), System.UInt32)
+  nameWithType: StringTable.StringTable(Byte[], UInt32)
+  nameWithType.vb: StringTable.StringTable(Byte(), UInt32)
+- uid: PeNet.Structures.StringTable.#ctor*
+  name: StringTable
+  href: api/PeNet.Structures.StringTable.html#PeNet_Structures_StringTable__ctor_
+  commentId: Overload:PeNet.Structures.StringTable.#ctor
+  isSpec: "True"
+  fullName: PeNet.Structures.StringTable.StringTable
+  nameWithType: StringTable.StringTable
+- uid: PeNet.Structures.StringTable.String
+  name: String
+  href: api/PeNet.Structures.StringTable.html#PeNet_Structures_StringTable_String
+  commentId: P:PeNet.Structures.StringTable.String
+  fullName: PeNet.Structures.StringTable.String
+  nameWithType: StringTable.String
+- uid: PeNet.Structures.StringTable.String*
+  name: String
+  href: api/PeNet.Structures.StringTable.html#PeNet_Structures_StringTable_String_
+  commentId: Overload:PeNet.Structures.StringTable.String
+  isSpec: "True"
+  fullName: PeNet.Structures.StringTable.String
+  nameWithType: StringTable.String
+- uid: PeNet.Structures.StringTable.szKey
+  name: szKey
+  href: api/PeNet.Structures.StringTable.html#PeNet_Structures_StringTable_szKey
+  commentId: P:PeNet.Structures.StringTable.szKey
+  fullName: PeNet.Structures.StringTable.szKey
+  nameWithType: StringTable.szKey
+- uid: PeNet.Structures.StringTable.szKey*
+  name: szKey
+  href: api/PeNet.Structures.StringTable.html#PeNet_Structures_StringTable_szKey_
+  commentId: Overload:PeNet.Structures.StringTable.szKey
+  isSpec: "True"
+  fullName: PeNet.Structures.StringTable.szKey
+  nameWithType: StringTable.szKey
+- uid: PeNet.Structures.StringTable.wLength
+  name: wLength
+  href: api/PeNet.Structures.StringTable.html#PeNet_Structures_StringTable_wLength
+  commentId: P:PeNet.Structures.StringTable.wLength
+  fullName: PeNet.Structures.StringTable.wLength
+  nameWithType: StringTable.wLength
+- uid: PeNet.Structures.StringTable.wLength*
+  name: wLength
+  href: api/PeNet.Structures.StringTable.html#PeNet_Structures_StringTable_wLength_
+  commentId: Overload:PeNet.Structures.StringTable.wLength
+  isSpec: "True"
+  fullName: PeNet.Structures.StringTable.wLength
+  nameWithType: StringTable.wLength
+- uid: PeNet.Structures.StringTable.wType
+  name: wType
+  href: api/PeNet.Structures.StringTable.html#PeNet_Structures_StringTable_wType
+  commentId: P:PeNet.Structures.StringTable.wType
+  fullName: PeNet.Structures.StringTable.wType
+  nameWithType: StringTable.wType
+- uid: PeNet.Structures.StringTable.wType*
+  name: wType
+  href: api/PeNet.Structures.StringTable.html#PeNet_Structures_StringTable_wType_
+  commentId: Overload:PeNet.Structures.StringTable.wType
+  isSpec: "True"
+  fullName: PeNet.Structures.StringTable.wType
+  nameWithType: StringTable.wType
+- uid: PeNet.Structures.StringTable.wValueLength
+  name: wValueLength
+  href: api/PeNet.Structures.StringTable.html#PeNet_Structures_StringTable_wValueLength
+  commentId: P:PeNet.Structures.StringTable.wValueLength
+  fullName: PeNet.Structures.StringTable.wValueLength
+  nameWithType: StringTable.wValueLength
+- uid: PeNet.Structures.StringTable.wValueLength*
+  name: wValueLength
+  href: api/PeNet.Structures.StringTable.html#PeNet_Structures_StringTable_wValueLength_
+  commentId: Overload:PeNet.Structures.StringTable.wValueLength
+  isSpec: "True"
+  fullName: PeNet.Structures.StringTable.wValueLength
+  nameWithType: StringTable.wValueLength
+- uid: PeNet.Structures.TString
+  name: TString
+  href: api/PeNet.Structures.TString.html
+  commentId: T:PeNet.Structures.TString
+  fullName: PeNet.Structures.TString
+  nameWithType: TString
+- uid: PeNet.Structures.TString.#ctor(System.Byte[],System.UInt32)
+  name: TString(Byte[], UInt32)
+  href: api/PeNet.Structures.TString.html#PeNet_Structures_TString__ctor_System_Byte___System_UInt32_
+  commentId: M:PeNet.Structures.TString.#ctor(System.Byte[],System.UInt32)
+  name.vb: TString(Byte(), UInt32)
+  fullName: PeNet.Structures.TString.TString(System.Byte[], System.UInt32)
+  fullName.vb: PeNet.Structures.TString.TString(System.Byte(), System.UInt32)
+  nameWithType: TString.TString(Byte[], UInt32)
+  nameWithType.vb: TString.TString(Byte(), UInt32)
+- uid: PeNet.Structures.TString.#ctor*
+  name: TString
+  href: api/PeNet.Structures.TString.html#PeNet_Structures_TString__ctor_
+  commentId: Overload:PeNet.Structures.TString.#ctor
+  isSpec: "True"
+  fullName: PeNet.Structures.TString.TString
+  nameWithType: TString.TString
+- uid: PeNet.Structures.TString.szKey
+  name: szKey
+  href: api/PeNet.Structures.TString.html#PeNet_Structures_TString_szKey
+  commentId: P:PeNet.Structures.TString.szKey
+  fullName: PeNet.Structures.TString.szKey
+  nameWithType: TString.szKey
+- uid: PeNet.Structures.TString.szKey*
+  name: szKey
+  href: api/PeNet.Structures.TString.html#PeNet_Structures_TString_szKey_
+  commentId: Overload:PeNet.Structures.TString.szKey
+  isSpec: "True"
+  fullName: PeNet.Structures.TString.szKey
+  nameWithType: TString.szKey
+- uid: PeNet.Structures.TString.Value
+  name: Value
+  href: api/PeNet.Structures.TString.html#PeNet_Structures_TString_Value
+  commentId: P:PeNet.Structures.TString.Value
+  fullName: PeNet.Structures.TString.Value
+  nameWithType: TString.Value
+- uid: PeNet.Structures.TString.Value*
+  name: Value
+  href: api/PeNet.Structures.TString.html#PeNet_Structures_TString_Value_
+  commentId: Overload:PeNet.Structures.TString.Value
+  isSpec: "True"
+  fullName: PeNet.Structures.TString.Value
+  nameWithType: TString.Value
+- uid: PeNet.Structures.TString.wLength
+  name: wLength
+  href: api/PeNet.Structures.TString.html#PeNet_Structures_TString_wLength
+  commentId: P:PeNet.Structures.TString.wLength
+  fullName: PeNet.Structures.TString.wLength
+  nameWithType: TString.wLength
+- uid: PeNet.Structures.TString.wLength*
+  name: wLength
+  href: api/PeNet.Structures.TString.html#PeNet_Structures_TString_wLength_
+  commentId: Overload:PeNet.Structures.TString.wLength
+  isSpec: "True"
+  fullName: PeNet.Structures.TString.wLength
+  nameWithType: TString.wLength
+- uid: PeNet.Structures.TString.wType
+  name: wType
+  href: api/PeNet.Structures.TString.html#PeNet_Structures_TString_wType
+  commentId: P:PeNet.Structures.TString.wType
+  fullName: PeNet.Structures.TString.wType
+  nameWithType: TString.wType
+- uid: PeNet.Structures.TString.wType*
+  name: wType
+  href: api/PeNet.Structures.TString.html#PeNet_Structures_TString_wType_
+  commentId: Overload:PeNet.Structures.TString.wType
+  isSpec: "True"
+  fullName: PeNet.Structures.TString.wType
+  nameWithType: TString.wType
+- uid: PeNet.Structures.TString.wValueLength
+  name: wValueLength
+  href: api/PeNet.Structures.TString.html#PeNet_Structures_TString_wValueLength
+  commentId: P:PeNet.Structures.TString.wValueLength
+  fullName: PeNet.Structures.TString.wValueLength
+  nameWithType: TString.wValueLength
+- uid: PeNet.Structures.TString.wValueLength*
+  name: wValueLength
+  href: api/PeNet.Structures.TString.html#PeNet_Structures_TString_wValueLength_
+  commentId: Overload:PeNet.Structures.TString.wValueLength
+  isSpec: "True"
+  fullName: PeNet.Structures.TString.wValueLength
+  nameWithType: TString.wValueLength
 - uid: PeNet.Structures.UNWIND_CODE
   name: UNWIND_CODE
   href: api/PeNet.Structures.UNWIND_CODE.html
@@ -10026,6 +10335,484 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.UNWIND_INFO.Version
   nameWithType: UNWIND_INFO.Version
+- uid: PeNet.Structures.Var
+  name: Var
+  href: api/PeNet.Structures.Var.html
+  commentId: T:PeNet.Structures.Var
+  fullName: PeNet.Structures.Var
+  nameWithType: Var
+- uid: PeNet.Structures.Var.#ctor(System.Byte[],System.UInt32)
+  name: Var(Byte[], UInt32)
+  href: api/PeNet.Structures.Var.html#PeNet_Structures_Var__ctor_System_Byte___System_UInt32_
+  commentId: M:PeNet.Structures.Var.#ctor(System.Byte[],System.UInt32)
+  name.vb: Var(Byte(), UInt32)
+  fullName: PeNet.Structures.Var.Var(System.Byte[], System.UInt32)
+  fullName.vb: PeNet.Structures.Var.Var(System.Byte(), System.UInt32)
+  nameWithType: Var.Var(Byte[], UInt32)
+  nameWithType.vb: Var.Var(Byte(), UInt32)
+- uid: PeNet.Structures.Var.#ctor*
+  name: Var
+  href: api/PeNet.Structures.Var.html#PeNet_Structures_Var__ctor_
+  commentId: Overload:PeNet.Structures.Var.#ctor
+  isSpec: "True"
+  fullName: PeNet.Structures.Var.Var
+  nameWithType: Var.Var
+- uid: PeNet.Structures.Var.szKey
+  name: szKey
+  href: api/PeNet.Structures.Var.html#PeNet_Structures_Var_szKey
+  commentId: P:PeNet.Structures.Var.szKey
+  fullName: PeNet.Structures.Var.szKey
+  nameWithType: Var.szKey
+- uid: PeNet.Structures.Var.szKey*
+  name: szKey
+  href: api/PeNet.Structures.Var.html#PeNet_Structures_Var_szKey_
+  commentId: Overload:PeNet.Structures.Var.szKey
+  isSpec: "True"
+  fullName: PeNet.Structures.Var.szKey
+  nameWithType: Var.szKey
+- uid: PeNet.Structures.Var.Value
+  name: Value
+  href: api/PeNet.Structures.Var.html#PeNet_Structures_Var_Value
+  commentId: P:PeNet.Structures.Var.Value
+  fullName: PeNet.Structures.Var.Value
+  nameWithType: Var.Value
+- uid: PeNet.Structures.Var.Value*
+  name: Value
+  href: api/PeNet.Structures.Var.html#PeNet_Structures_Var_Value_
+  commentId: Overload:PeNet.Structures.Var.Value
+  isSpec: "True"
+  fullName: PeNet.Structures.Var.Value
+  nameWithType: Var.Value
+- uid: PeNet.Structures.Var.wLength
+  name: wLength
+  href: api/PeNet.Structures.Var.html#PeNet_Structures_Var_wLength
+  commentId: P:PeNet.Structures.Var.wLength
+  fullName: PeNet.Structures.Var.wLength
+  nameWithType: Var.wLength
+- uid: PeNet.Structures.Var.wLength*
+  name: wLength
+  href: api/PeNet.Structures.Var.html#PeNet_Structures_Var_wLength_
+  commentId: Overload:PeNet.Structures.Var.wLength
+  isSpec: "True"
+  fullName: PeNet.Structures.Var.wLength
+  nameWithType: Var.wLength
+- uid: PeNet.Structures.Var.wType
+  name: wType
+  href: api/PeNet.Structures.Var.html#PeNet_Structures_Var_wType
+  commentId: P:PeNet.Structures.Var.wType
+  fullName: PeNet.Structures.Var.wType
+  nameWithType: Var.wType
+- uid: PeNet.Structures.Var.wType*
+  name: wType
+  href: api/PeNet.Structures.Var.html#PeNet_Structures_Var_wType_
+  commentId: Overload:PeNet.Structures.Var.wType
+  isSpec: "True"
+  fullName: PeNet.Structures.Var.wType
+  nameWithType: Var.wType
+- uid: PeNet.Structures.Var.wValueLength
+  name: wValueLength
+  href: api/PeNet.Structures.Var.html#PeNet_Structures_Var_wValueLength
+  commentId: P:PeNet.Structures.Var.wValueLength
+  fullName: PeNet.Structures.Var.wValueLength
+  nameWithType: Var.wValueLength
+- uid: PeNet.Structures.Var.wValueLength*
+  name: wValueLength
+  href: api/PeNet.Structures.Var.html#PeNet_Structures_Var_wValueLength_
+  commentId: Overload:PeNet.Structures.Var.wValueLength
+  isSpec: "True"
+  fullName: PeNet.Structures.Var.wValueLength
+  nameWithType: Var.wValueLength
+- uid: PeNet.Structures.VarFileInfo
+  name: VarFileInfo
+  href: api/PeNet.Structures.VarFileInfo.html
+  commentId: T:PeNet.Structures.VarFileInfo
+  fullName: PeNet.Structures.VarFileInfo
+  nameWithType: VarFileInfo
+- uid: PeNet.Structures.VarFileInfo.#ctor(System.Byte[],System.UInt32)
+  name: VarFileInfo(Byte[], UInt32)
+  href: api/PeNet.Structures.VarFileInfo.html#PeNet_Structures_VarFileInfo__ctor_System_Byte___System_UInt32_
+  commentId: M:PeNet.Structures.VarFileInfo.#ctor(System.Byte[],System.UInt32)
+  name.vb: VarFileInfo(Byte(), UInt32)
+  fullName: PeNet.Structures.VarFileInfo.VarFileInfo(System.Byte[], System.UInt32)
+  fullName.vb: PeNet.Structures.VarFileInfo.VarFileInfo(System.Byte(), System.UInt32)
+  nameWithType: VarFileInfo.VarFileInfo(Byte[], UInt32)
+  nameWithType.vb: VarFileInfo.VarFileInfo(Byte(), UInt32)
+- uid: PeNet.Structures.VarFileInfo.#ctor*
+  name: VarFileInfo
+  href: api/PeNet.Structures.VarFileInfo.html#PeNet_Structures_VarFileInfo__ctor_
+  commentId: Overload:PeNet.Structures.VarFileInfo.#ctor
+  isSpec: "True"
+  fullName: PeNet.Structures.VarFileInfo.VarFileInfo
+  nameWithType: VarFileInfo.VarFileInfo
+- uid: PeNet.Structures.VarFileInfo.Children
+  name: Children
+  href: api/PeNet.Structures.VarFileInfo.html#PeNet_Structures_VarFileInfo_Children
+  commentId: P:PeNet.Structures.VarFileInfo.Children
+  fullName: PeNet.Structures.VarFileInfo.Children
+  nameWithType: VarFileInfo.Children
+- uid: PeNet.Structures.VarFileInfo.Children*
+  name: Children
+  href: api/PeNet.Structures.VarFileInfo.html#PeNet_Structures_VarFileInfo_Children_
+  commentId: Overload:PeNet.Structures.VarFileInfo.Children
+  isSpec: "True"
+  fullName: PeNet.Structures.VarFileInfo.Children
+  nameWithType: VarFileInfo.Children
+- uid: PeNet.Structures.VarFileInfo.szKey
+  name: szKey
+  href: api/PeNet.Structures.VarFileInfo.html#PeNet_Structures_VarFileInfo_szKey
+  commentId: P:PeNet.Structures.VarFileInfo.szKey
+  fullName: PeNet.Structures.VarFileInfo.szKey
+  nameWithType: VarFileInfo.szKey
+- uid: PeNet.Structures.VarFileInfo.szKey*
+  name: szKey
+  href: api/PeNet.Structures.VarFileInfo.html#PeNet_Structures_VarFileInfo_szKey_
+  commentId: Overload:PeNet.Structures.VarFileInfo.szKey
+  isSpec: "True"
+  fullName: PeNet.Structures.VarFileInfo.szKey
+  nameWithType: VarFileInfo.szKey
+- uid: PeNet.Structures.VarFileInfo.wLength
+  name: wLength
+  href: api/PeNet.Structures.VarFileInfo.html#PeNet_Structures_VarFileInfo_wLength
+  commentId: P:PeNet.Structures.VarFileInfo.wLength
+  fullName: PeNet.Structures.VarFileInfo.wLength
+  nameWithType: VarFileInfo.wLength
+- uid: PeNet.Structures.VarFileInfo.wLength*
+  name: wLength
+  href: api/PeNet.Structures.VarFileInfo.html#PeNet_Structures_VarFileInfo_wLength_
+  commentId: Overload:PeNet.Structures.VarFileInfo.wLength
+  isSpec: "True"
+  fullName: PeNet.Structures.VarFileInfo.wLength
+  nameWithType: VarFileInfo.wLength
+- uid: PeNet.Structures.VarFileInfo.wType
+  name: wType
+  href: api/PeNet.Structures.VarFileInfo.html#PeNet_Structures_VarFileInfo_wType
+  commentId: P:PeNet.Structures.VarFileInfo.wType
+  fullName: PeNet.Structures.VarFileInfo.wType
+  nameWithType: VarFileInfo.wType
+- uid: PeNet.Structures.VarFileInfo.wType*
+  name: wType
+  href: api/PeNet.Structures.VarFileInfo.html#PeNet_Structures_VarFileInfo_wType_
+  commentId: Overload:PeNet.Structures.VarFileInfo.wType
+  isSpec: "True"
+  fullName: PeNet.Structures.VarFileInfo.wType
+  nameWithType: VarFileInfo.wType
+- uid: PeNet.Structures.VarFileInfo.wValueLength
+  name: wValueLength
+  href: api/PeNet.Structures.VarFileInfo.html#PeNet_Structures_VarFileInfo_wValueLength
+  commentId: P:PeNet.Structures.VarFileInfo.wValueLength
+  fullName: PeNet.Structures.VarFileInfo.wValueLength
+  nameWithType: VarFileInfo.wValueLength
+- uid: PeNet.Structures.VarFileInfo.wValueLength*
+  name: wValueLength
+  href: api/PeNet.Structures.VarFileInfo.html#PeNet_Structures_VarFileInfo_wValueLength_
+  commentId: Overload:PeNet.Structures.VarFileInfo.wValueLength
+  isSpec: "True"
+  fullName: PeNet.Structures.VarFileInfo.wValueLength
+  nameWithType: VarFileInfo.wValueLength
+- uid: PeNet.Structures.VS_FIXEDFILEINFO
+  name: VS_FIXEDFILEINFO
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html
+  commentId: T:PeNet.Structures.VS_FIXEDFILEINFO
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO
+  nameWithType: VS_FIXEDFILEINFO
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.#ctor(System.Byte[],System.UInt32)
+  name: VS_FIXEDFILEINFO(Byte[], UInt32)
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO__ctor_System_Byte___System_UInt32_
+  commentId: M:PeNet.Structures.VS_FIXEDFILEINFO.#ctor(System.Byte[],System.UInt32)
+  name.vb: VS_FIXEDFILEINFO(Byte(), UInt32)
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.VS_FIXEDFILEINFO(System.Byte[], System.UInt32)
+  fullName.vb: PeNet.Structures.VS_FIXEDFILEINFO.VS_FIXEDFILEINFO(System.Byte(), System.UInt32)
+  nameWithType: VS_FIXEDFILEINFO.VS_FIXEDFILEINFO(Byte[], UInt32)
+  nameWithType.vb: VS_FIXEDFILEINFO.VS_FIXEDFILEINFO(Byte(), UInt32)
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.#ctor*
+  name: VS_FIXEDFILEINFO
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO__ctor_
+  commentId: Overload:PeNet.Structures.VS_FIXEDFILEINFO.#ctor
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.VS_FIXEDFILEINFO
+  nameWithType: VS_FIXEDFILEINFO.VS_FIXEDFILEINFO
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileDateLS
+  name: dwFileDateLS
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileDateLS
+  commentId: P:PeNet.Structures.VS_FIXEDFILEINFO.dwFileDateLS
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileDateLS
+  nameWithType: VS_FIXEDFILEINFO.dwFileDateLS
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileDateLS*
+  name: dwFileDateLS
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileDateLS_
+  commentId: Overload:PeNet.Structures.VS_FIXEDFILEINFO.dwFileDateLS
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileDateLS
+  nameWithType: VS_FIXEDFILEINFO.dwFileDateLS
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileDateMS
+  name: dwFileDateMS
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileDateMS
+  commentId: P:PeNet.Structures.VS_FIXEDFILEINFO.dwFileDateMS
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileDateMS
+  nameWithType: VS_FIXEDFILEINFO.dwFileDateMS
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileDateMS*
+  name: dwFileDateMS
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileDateMS_
+  commentId: Overload:PeNet.Structures.VS_FIXEDFILEINFO.dwFileDateMS
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileDateMS
+  nameWithType: VS_FIXEDFILEINFO.dwFileDateMS
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileFlags
+  name: dwFileFlags
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileFlags
+  commentId: P:PeNet.Structures.VS_FIXEDFILEINFO.dwFileFlags
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileFlags
+  nameWithType: VS_FIXEDFILEINFO.dwFileFlags
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileFlags*
+  name: dwFileFlags
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileFlags_
+  commentId: Overload:PeNet.Structures.VS_FIXEDFILEINFO.dwFileFlags
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileFlags
+  nameWithType: VS_FIXEDFILEINFO.dwFileFlags
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileFlagsMask
+  name: dwFileFlagsMask
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileFlagsMask
+  commentId: P:PeNet.Structures.VS_FIXEDFILEINFO.dwFileFlagsMask
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileFlagsMask
+  nameWithType: VS_FIXEDFILEINFO.dwFileFlagsMask
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileFlagsMask*
+  name: dwFileFlagsMask
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileFlagsMask_
+  commentId: Overload:PeNet.Structures.VS_FIXEDFILEINFO.dwFileFlagsMask
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileFlagsMask
+  nameWithType: VS_FIXEDFILEINFO.dwFileFlagsMask
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileOS
+  name: dwFileOS
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileOS
+  commentId: P:PeNet.Structures.VS_FIXEDFILEINFO.dwFileOS
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileOS
+  nameWithType: VS_FIXEDFILEINFO.dwFileOS
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileOS*
+  name: dwFileOS
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileOS_
+  commentId: Overload:PeNet.Structures.VS_FIXEDFILEINFO.dwFileOS
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileOS
+  nameWithType: VS_FIXEDFILEINFO.dwFileOS
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileSubType
+  name: dwFileSubType
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileSubType
+  commentId: P:PeNet.Structures.VS_FIXEDFILEINFO.dwFileSubType
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileSubType
+  nameWithType: VS_FIXEDFILEINFO.dwFileSubType
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileSubType*
+  name: dwFileSubType
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileSubType_
+  commentId: Overload:PeNet.Structures.VS_FIXEDFILEINFO.dwFileSubType
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileSubType
+  nameWithType: VS_FIXEDFILEINFO.dwFileSubType
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileType
+  name: dwFileType
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileType
+  commentId: P:PeNet.Structures.VS_FIXEDFILEINFO.dwFileType
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileType
+  nameWithType: VS_FIXEDFILEINFO.dwFileType
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileType*
+  name: dwFileType
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileType_
+  commentId: Overload:PeNet.Structures.VS_FIXEDFILEINFO.dwFileType
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileType
+  nameWithType: VS_FIXEDFILEINFO.dwFileType
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileVersionLS
+  name: dwFileVersionLS
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileVersionLS
+  commentId: P:PeNet.Structures.VS_FIXEDFILEINFO.dwFileVersionLS
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileVersionLS
+  nameWithType: VS_FIXEDFILEINFO.dwFileVersionLS
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileVersionLS*
+  name: dwFileVersionLS
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileVersionLS_
+  commentId: Overload:PeNet.Structures.VS_FIXEDFILEINFO.dwFileVersionLS
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileVersionLS
+  nameWithType: VS_FIXEDFILEINFO.dwFileVersionLS
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileVersionMS
+  name: dwFileVersionMS
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileVersionMS
+  commentId: P:PeNet.Structures.VS_FIXEDFILEINFO.dwFileVersionMS
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileVersionMS
+  nameWithType: VS_FIXEDFILEINFO.dwFileVersionMS
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwFileVersionMS*
+  name: dwFileVersionMS
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwFileVersionMS_
+  commentId: Overload:PeNet.Structures.VS_FIXEDFILEINFO.dwFileVersionMS
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwFileVersionMS
+  nameWithType: VS_FIXEDFILEINFO.dwFileVersionMS
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwProductVersionLS
+  name: dwProductVersionLS
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwProductVersionLS
+  commentId: P:PeNet.Structures.VS_FIXEDFILEINFO.dwProductVersionLS
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwProductVersionLS
+  nameWithType: VS_FIXEDFILEINFO.dwProductVersionLS
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwProductVersionLS*
+  name: dwProductVersionLS
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwProductVersionLS_
+  commentId: Overload:PeNet.Structures.VS_FIXEDFILEINFO.dwProductVersionLS
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwProductVersionLS
+  nameWithType: VS_FIXEDFILEINFO.dwProductVersionLS
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwProductVersionMS
+  name: dwProductVersionMS
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwProductVersionMS
+  commentId: P:PeNet.Structures.VS_FIXEDFILEINFO.dwProductVersionMS
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwProductVersionMS
+  nameWithType: VS_FIXEDFILEINFO.dwProductVersionMS
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwProductVersionMS*
+  name: dwProductVersionMS
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwProductVersionMS_
+  commentId: Overload:PeNet.Structures.VS_FIXEDFILEINFO.dwProductVersionMS
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwProductVersionMS
+  nameWithType: VS_FIXEDFILEINFO.dwProductVersionMS
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwSignature
+  name: dwSignature
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwSignature
+  commentId: P:PeNet.Structures.VS_FIXEDFILEINFO.dwSignature
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwSignature
+  nameWithType: VS_FIXEDFILEINFO.dwSignature
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwSignature*
+  name: dwSignature
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwSignature_
+  commentId: Overload:PeNet.Structures.VS_FIXEDFILEINFO.dwSignature
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwSignature
+  nameWithType: VS_FIXEDFILEINFO.dwSignature
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwStrucVersion
+  name: dwStrucVersion
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwStrucVersion
+  commentId: P:PeNet.Structures.VS_FIXEDFILEINFO.dwStrucVersion
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwStrucVersion
+  nameWithType: VS_FIXEDFILEINFO.dwStrucVersion
+- uid: PeNet.Structures.VS_FIXEDFILEINFO.dwStrucVersion*
+  name: dwStrucVersion
+  href: api/PeNet.Structures.VS_FIXEDFILEINFO.html#PeNet_Structures_VS_FIXEDFILEINFO_dwStrucVersion_
+  commentId: Overload:PeNet.Structures.VS_FIXEDFILEINFO.dwStrucVersion
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_FIXEDFILEINFO.dwStrucVersion
+  nameWithType: VS_FIXEDFILEINFO.dwStrucVersion
+- uid: PeNet.Structures.VS_VERSIONINFO
+  name: VS_VERSIONINFO
+  href: api/PeNet.Structures.VS_VERSIONINFO.html
+  commentId: T:PeNet.Structures.VS_VERSIONINFO
+  fullName: PeNet.Structures.VS_VERSIONINFO
+  nameWithType: VS_VERSIONINFO
+- uid: PeNet.Structures.VS_VERSIONINFO.#ctor(System.Byte[],System.UInt32)
+  name: VS_VERSIONINFO(Byte[], UInt32)
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO__ctor_System_Byte___System_UInt32_
+  commentId: M:PeNet.Structures.VS_VERSIONINFO.#ctor(System.Byte[],System.UInt32)
+  name.vb: VS_VERSIONINFO(Byte(), UInt32)
+  fullName: PeNet.Structures.VS_VERSIONINFO.VS_VERSIONINFO(System.Byte[], System.UInt32)
+  fullName.vb: PeNet.Structures.VS_VERSIONINFO.VS_VERSIONINFO(System.Byte(), System.UInt32)
+  nameWithType: VS_VERSIONINFO.VS_VERSIONINFO(Byte[], UInt32)
+  nameWithType.vb: VS_VERSIONINFO.VS_VERSIONINFO(Byte(), UInt32)
+- uid: PeNet.Structures.VS_VERSIONINFO.#ctor*
+  name: VS_VERSIONINFO
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO__ctor_
+  commentId: Overload:PeNet.Structures.VS_VERSIONINFO.#ctor
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_VERSIONINFO.VS_VERSIONINFO
+  nameWithType: VS_VERSIONINFO.VS_VERSIONINFO
+- uid: PeNet.Structures.VS_VERSIONINFO.StringFileInfo
+  name: StringFileInfo
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO_StringFileInfo
+  commentId: P:PeNet.Structures.VS_VERSIONINFO.StringFileInfo
+  fullName: PeNet.Structures.VS_VERSIONINFO.StringFileInfo
+  nameWithType: VS_VERSIONINFO.StringFileInfo
+- uid: PeNet.Structures.VS_VERSIONINFO.StringFileInfo*
+  name: StringFileInfo
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO_StringFileInfo_
+  commentId: Overload:PeNet.Structures.VS_VERSIONINFO.StringFileInfo
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_VERSIONINFO.StringFileInfo
+  nameWithType: VS_VERSIONINFO.StringFileInfo
+- uid: PeNet.Structures.VS_VERSIONINFO.szKey
+  name: szKey
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO_szKey
+  commentId: P:PeNet.Structures.VS_VERSIONINFO.szKey
+  fullName: PeNet.Structures.VS_VERSIONINFO.szKey
+  nameWithType: VS_VERSIONINFO.szKey
+- uid: PeNet.Structures.VS_VERSIONINFO.szKey*
+  name: szKey
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO_szKey_
+  commentId: Overload:PeNet.Structures.VS_VERSIONINFO.szKey
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_VERSIONINFO.szKey
+  nameWithType: VS_VERSIONINFO.szKey
+- uid: PeNet.Structures.VS_VERSIONINFO.VarFileInfo
+  name: VarFileInfo
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO_VarFileInfo
+  commentId: P:PeNet.Structures.VS_VERSIONINFO.VarFileInfo
+  fullName: PeNet.Structures.VS_VERSIONINFO.VarFileInfo
+  nameWithType: VS_VERSIONINFO.VarFileInfo
+- uid: PeNet.Structures.VS_VERSIONINFO.VarFileInfo*
+  name: VarFileInfo
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO_VarFileInfo_
+  commentId: Overload:PeNet.Structures.VS_VERSIONINFO.VarFileInfo
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_VERSIONINFO.VarFileInfo
+  nameWithType: VS_VERSIONINFO.VarFileInfo
+- uid: PeNet.Structures.VS_VERSIONINFO.VsFixedFileInfo
+  name: VsFixedFileInfo
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO_VsFixedFileInfo
+  commentId: P:PeNet.Structures.VS_VERSIONINFO.VsFixedFileInfo
+  fullName: PeNet.Structures.VS_VERSIONINFO.VsFixedFileInfo
+  nameWithType: VS_VERSIONINFO.VsFixedFileInfo
+- uid: PeNet.Structures.VS_VERSIONINFO.VsFixedFileInfo*
+  name: VsFixedFileInfo
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO_VsFixedFileInfo_
+  commentId: Overload:PeNet.Structures.VS_VERSIONINFO.VsFixedFileInfo
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_VERSIONINFO.VsFixedFileInfo
+  nameWithType: VS_VERSIONINFO.VsFixedFileInfo
+- uid: PeNet.Structures.VS_VERSIONINFO.wLength
+  name: wLength
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO_wLength
+  commentId: P:PeNet.Structures.VS_VERSIONINFO.wLength
+  fullName: PeNet.Structures.VS_VERSIONINFO.wLength
+  nameWithType: VS_VERSIONINFO.wLength
+- uid: PeNet.Structures.VS_VERSIONINFO.wLength*
+  name: wLength
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO_wLength_
+  commentId: Overload:PeNet.Structures.VS_VERSIONINFO.wLength
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_VERSIONINFO.wLength
+  nameWithType: VS_VERSIONINFO.wLength
+- uid: PeNet.Structures.VS_VERSIONINFO.wType
+  name: wType
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO_wType
+  commentId: P:PeNet.Structures.VS_VERSIONINFO.wType
+  fullName: PeNet.Structures.VS_VERSIONINFO.wType
+  nameWithType: VS_VERSIONINFO.wType
+- uid: PeNet.Structures.VS_VERSIONINFO.wType*
+  name: wType
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO_wType_
+  commentId: Overload:PeNet.Structures.VS_VERSIONINFO.wType
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_VERSIONINFO.wType
+  nameWithType: VS_VERSIONINFO.wType
+- uid: PeNet.Structures.VS_VERSIONINFO.wValueLength
+  name: wValueLength
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO_wValueLength
+  commentId: P:PeNet.Structures.VS_VERSIONINFO.wValueLength
+  fullName: PeNet.Structures.VS_VERSIONINFO.wValueLength
+  nameWithType: VS_VERSIONINFO.wValueLength
+- uid: PeNet.Structures.VS_VERSIONINFO.wValueLength*
+  name: wValueLength
+  href: api/PeNet.Structures.VS_VERSIONINFO.html#PeNet_Structures_VS_VERSIONINFO_wValueLength_
+  commentId: Overload:PeNet.Structures.VS_VERSIONINFO.wValueLength
+  isSpec: "True"
+  fullName: PeNet.Structures.VS_VERSIONINFO.wValueLength
+  nameWithType: VS_VERSIONINFO.wValueLength
 - uid: PeNet.Structures.WIN_CERTIFICATE
   name: WIN_CERTIFICATE
   href: api/PeNet.Structures.WIN_CERTIFICATE.html
@@ -10262,15 +11049,15 @@ references:
   isSpec: "True"
   fullName: PeNet.Utilities.ExtensionMethods.GetCStringLength
   nameWithType: ExtensionMethods.GetCStringLength
-- uid: PeNet.Utilities.ExtensionMethods.GetUnicodeString(System.Byte[],System.UInt64,System.Int32)
-  name: GetUnicodeString(Byte[], UInt64, Int32)
-  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_GetUnicodeString_System_Byte___System_UInt64_System_Int32_
-  commentId: M:PeNet.Utilities.ExtensionMethods.GetUnicodeString(System.Byte[],System.UInt64,System.Int32)
-  name.vb: GetUnicodeString(Byte(), UInt64, Int32)
-  fullName: PeNet.Utilities.ExtensionMethods.GetUnicodeString(System.Byte[], System.UInt64, System.Int32)
-  fullName.vb: PeNet.Utilities.ExtensionMethods.GetUnicodeString(System.Byte(), System.UInt64, System.Int32)
-  nameWithType: ExtensionMethods.GetUnicodeString(Byte[], UInt64, Int32)
-  nameWithType.vb: ExtensionMethods.GetUnicodeString(Byte(), UInt64, Int32)
+- uid: PeNet.Utilities.ExtensionMethods.GetUnicodeString(System.Byte[],System.UInt64)
+  name: GetUnicodeString(Byte[], UInt64)
+  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_GetUnicodeString_System_Byte___System_UInt64_
+  commentId: M:PeNet.Utilities.ExtensionMethods.GetUnicodeString(System.Byte[],System.UInt64)
+  name.vb: GetUnicodeString(Byte(), UInt64)
+  fullName: PeNet.Utilities.ExtensionMethods.GetUnicodeString(System.Byte[], System.UInt64)
+  fullName.vb: PeNet.Utilities.ExtensionMethods.GetUnicodeString(System.Byte(), System.UInt64)
+  nameWithType: ExtensionMethods.GetUnicodeString(Byte[], UInt64)
+  nameWithType.vb: ExtensionMethods.GetUnicodeString(Byte(), UInt64)
 - uid: PeNet.Utilities.ExtensionMethods.GetUnicodeString*
   name: GetUnicodeString
   href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_GetUnicodeString_
@@ -10278,6 +11065,19 @@ references:
   isSpec: "True"
   fullName: PeNet.Utilities.ExtensionMethods.GetUnicodeString
   nameWithType: ExtensionMethods.GetUnicodeString
+- uid: PeNet.Utilities.ExtensionMethods.LengthInByte(System.String)
+  name: LengthInByte(String)
+  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_LengthInByte_System_String_
+  commentId: M:PeNet.Utilities.ExtensionMethods.LengthInByte(System.String)
+  fullName: PeNet.Utilities.ExtensionMethods.LengthInByte(System.String)
+  nameWithType: ExtensionMethods.LengthInByte(String)
+- uid: PeNet.Utilities.ExtensionMethods.LengthInByte*
+  name: LengthInByte
+  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_LengthInByte_
+  commentId: Overload:PeNet.Utilities.ExtensionMethods.LengthInByte
+  isSpec: "True"
+  fullName: PeNet.Utilities.ExtensionMethods.LengthInByte
+  nameWithType: ExtensionMethods.LengthInByte
 - uid: PeNet.Utilities.ExtensionMethods.MetaDataTableIndexSize(System.Type)
   name: MetaDataTableIndexSize(Type)
   href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_MetaDataTableIndexSize_System_Type_
@@ -10291,6 +11091,25 @@ references:
   isSpec: "True"
   fullName: PeNet.Utilities.ExtensionMethods.MetaDataTableIndexSize
   nameWithType: ExtensionMethods.MetaDataTableIndexSize
+- uid: PeNet.Utilities.ExtensionMethods.PaddingBytes(System.Int64,System.Int32)
+  name: PaddingBytes(Int64, Int32)
+  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_PaddingBytes_System_Int64_System_Int32_
+  commentId: M:PeNet.Utilities.ExtensionMethods.PaddingBytes(System.Int64,System.Int32)
+  fullName: PeNet.Utilities.ExtensionMethods.PaddingBytes(System.Int64, System.Int32)
+  nameWithType: ExtensionMethods.PaddingBytes(Int64, Int32)
+- uid: PeNet.Utilities.ExtensionMethods.PaddingBytes(System.UInt32,System.Int32)
+  name: PaddingBytes(UInt32, Int32)
+  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_PaddingBytes_System_UInt32_System_Int32_
+  commentId: M:PeNet.Utilities.ExtensionMethods.PaddingBytes(System.UInt32,System.Int32)
+  fullName: PeNet.Utilities.ExtensionMethods.PaddingBytes(System.UInt32, System.Int32)
+  nameWithType: ExtensionMethods.PaddingBytes(UInt32, Int32)
+- uid: PeNet.Utilities.ExtensionMethods.PaddingBytes*
+  name: PaddingBytes
+  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_PaddingBytes_
+  commentId: Overload:PeNet.Utilities.ExtensionMethods.PaddingBytes
+  isSpec: "True"
+  fullName: PeNet.Utilities.ExtensionMethods.PaddingBytes
+  nameWithType: ExtensionMethods.PaddingBytes
 - uid: PeNet.Utilities.ExtensionMethods.RVAtoFileMapping(System.UInt32,System.Collections.Generic.ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
   name: RVAtoFileMapping(UInt32, ICollection<IMAGE_SECTION_HEADER>)
   href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_RVAtoFileMapping_System_UInt32_System_Collections_Generic_ICollection_PeNet_Structures_IMAGE_SECTION_HEADER__
