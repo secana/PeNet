@@ -34,29 +34,35 @@ NumberOfIdEntries: 1
 
 ## As JSON
 
-All structures in PeNet support a `ToJson()` method, which returns the members of the structure with their values as a JSON string. Some byte arrays are omitted.
+Include `Newtonsoft.Json` to your project. You can serialize the PE structures your interested in, or the whole PE file.
 
 Print the whole PE file as a JSON string:
 
 ```csharp
+using Newtonsoft.Json;
+
 var pefile = new PeNet.PeFile(@"c:\windows\system32\kernel32.dll");
-var json = pefile.ToJson();
+var json = JsonConvert.SerializeObject(pefile);
 Console.WriteLine(json);
 ```
 
 Print the whole PE file as a **formatted** JSON string:
 
 ```csharp
+using Newtonsoft.Json;
+
 var pefile = new PeNet.PeFile(@"c:\windows\system32\kernel32.dll");
-var json = pefile.ToJson(true);
+var json = JsonConvert.SerializeObject(pefile, Formatting.Indented);
 Console.WriteLine(json);
 ```
 
 Print one specific structure as a **formatted** JSON string:
 
 ```csharp
+using Newtonsoft.Json;
+
 var pefile = new PeNet.PeFile(@"c:\windows\system32\kernel32.dll");
-var json = pefile.ImageResourceDirectory.ToJson(true);
+JsonConvert.SerializeObject(pefile.ImageResourceDirectory, Formatting.Indented);
 Console.WriteLine(json);
 ```
 
