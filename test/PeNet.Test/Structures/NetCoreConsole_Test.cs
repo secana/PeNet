@@ -254,7 +254,7 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x0000u, param[1].Flags);
             Assert.Equal(0x0001u, param[1].Sequence);
             Assert.Equal(0x148Eu, param[1].Name);
-            Assert.Equal("_logger", _peFile.MetaDataStreamString.GetStringAtIndex(param[1].Name));
+            Assert.Equal("logger", _peFile.MetaDataStreamString.GetStringAtIndex(param[1].Name));
 
             // ... More rows ...
 

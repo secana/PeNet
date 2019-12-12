@@ -34,27 +34,8 @@ NumberOfIdEntries: 1
 
 ## As JSON
 
-Include `Newtonsoft.Json` to your project. You can serialize the PE structures your interested in, or the whole PE file.
-
-Print the whole PE file as a JSON string:
-
-```csharp
-using Newtonsoft.Json;
-
-var pefile = new PeNet.PeFile(@"c:\windows\system32\kernel32.dll");
-var json = JsonConvert.SerializeObject(pefile);
-Console.WriteLine(json);
-```
-
-Print the whole PE file as a **formatted** JSON string:
-
-```csharp
-using Newtonsoft.Json;
-
-var pefile = new PeNet.PeFile(@"c:\windows\system32\kernel32.dll");
-var json = JsonConvert.SerializeObject(pefile, Formatting.Indented);
-Console.WriteLine(json);
-```
+You can export structures of the PE file as Json. Be aware that structures that contains `Stream` object,
+cannot be exported to Json and that structures containing `byte[]` will contain the binary blob on export.
 
 Print one specific structure as a **formatted** JSON string:
 
