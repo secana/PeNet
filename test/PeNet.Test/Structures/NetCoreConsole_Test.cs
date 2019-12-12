@@ -78,19 +78,6 @@ namespace PeNet.Test.Structures
         }
 
         [Fact]
-        public void MetaDataStreamStrings_ParseCorrectValues()
-        {
-            var strings = _peFile.MetaDataStreamString.Strings;
-
-            Assert.Equal(465, strings.Count);
-            Assert.Equal("<>9__0_0", strings[0]);
-            // ... More strings ...
-            Assert.Equal("get_GdcLoudCheck", strings[228]);
-            // ... More strings ...
-            Assert.Equal("IsNullOrEmpty", strings[464]);
-        }
-
-        [Fact]
         public void MetaDataStreamUS_ParseCorrectValues()
         {
             var us = _peFile.MetaDataStreamUS;

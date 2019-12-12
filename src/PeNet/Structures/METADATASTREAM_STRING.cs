@@ -1,23 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using PeNet.Utilities;
+﻿using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
     public interface IMETADATASTREAM_STRING
     {
-        /// <summary>
-        /// List with strings in the Meta Data stream "String".
-        /// </summary>
-        List<string> Strings { get; }
-
-        /// <summary>
-        /// List with strings and their index in the Meta Data stream "String".
-        /// </summary>
-        List<Tuple<string, uint>> StringsAndIndices { get; }
-
         /// <summary>
         /// Return the string at the index from the stream.
         /// </summary>
@@ -42,47 +28,15 @@ namespace PeNet.Structures
     {
         private readonly uint _size;
         
-        public List<string> Strings { get; }
-
-        public List<Tuple<string, uint>> StringsAndIndices { get; }
-
         public METADATASTREAM_STRING(byte[] buff, uint offset, uint size) 
             : base(buff, offset)
         {
             _size = size;
-
-            StringsAndIndices = ParseStringsAndIndices();
-            Strings = StringsAndIndices.Select(x => x.Item1).ToList();
         }
 
         public string GetStringAtIndex(uint index)
         {
-            var fstTry = StringsAndIndices.FirstOrDefault(x => x.Item2 == index)?.Item1;
-
-            // For some reason, if the string starts with "_" like a private variable
-            // the index is of by one. 
-            if (fstTry == null)
-                return StringsAndIndices.FirstOrDefault(x => x.Item2 == index - 1)?.Item1;
-            else return fstTry;
-        }
-
-        private List<Tuple<string, uint>> ParseStringsAndIndices()
-        {
-            var stringsAndIndices = new List<Tuple<string, uint>>();
-
-            for (var i = Offset; i < Offset + _size; i++)
-            {
-                var index = i - Offset;
-                var tmpString = Buff.GetCString(i);
-                i += (uint)tmpString.Length;
-
-                if (String.IsNullOrWhiteSpace(tmpString))
-                    continue;
-
-                stringsAndIndices.Add(new Tuple<string, uint>(tmpString, index));
-            }
-
-            return stringsAndIndices;
+            return Buff.GetCString(Offset + index);
         }
     }
 }
