@@ -2752,19 +2752,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.AbstractStructure.AbstractStructure
   nameWithType: AbstractStructure.AbstractStructure
-- uid: PeNet.Structures.AbstractStructure.ToJson(System.Boolean)
-  name: ToJson(Boolean)
-  href: api/PeNet.Structures.AbstractStructure.html#PeNet_Structures_AbstractStructure_ToJson_System_Boolean_
-  commentId: M:PeNet.Structures.AbstractStructure.ToJson(System.Boolean)
-  fullName: PeNet.Structures.AbstractStructure.ToJson(System.Boolean)
-  nameWithType: AbstractStructure.ToJson(Boolean)
-- uid: PeNet.Structures.AbstractStructure.ToJson*
-  name: ToJson
-  href: api/PeNet.Structures.AbstractStructure.html#PeNet_Structures_AbstractStructure_ToJson_
-  commentId: Overload:PeNet.Structures.AbstractStructure.ToJson
-  isSpec: "True"
-  fullName: PeNet.Structures.AbstractStructure.ToJson
-  nameWithType: AbstractStructure.ToJson
 - uid: PeNet.Structures.AbstractStructure.ToString
   name: ToString()
   href: api/PeNet.Structures.AbstractStructure.html#PeNet_Structures_AbstractStructure_ToString
@@ -5915,32 +5902,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMETADATASTREAM_STRING.GetStringAtIndex
   nameWithType: IMETADATASTREAM_STRING.GetStringAtIndex
-- uid: PeNet.Structures.IMETADATASTREAM_STRING.Strings
-  name: Strings
-  href: api/PeNet.Structures.IMETADATASTREAM_STRING.html#PeNet_Structures_IMETADATASTREAM_STRING_Strings
-  commentId: P:PeNet.Structures.IMETADATASTREAM_STRING.Strings
-  fullName: PeNet.Structures.IMETADATASTREAM_STRING.Strings
-  nameWithType: IMETADATASTREAM_STRING.Strings
-- uid: PeNet.Structures.IMETADATASTREAM_STRING.Strings*
-  name: Strings
-  href: api/PeNet.Structures.IMETADATASTREAM_STRING.html#PeNet_Structures_IMETADATASTREAM_STRING_Strings_
-  commentId: Overload:PeNet.Structures.IMETADATASTREAM_STRING.Strings
-  isSpec: "True"
-  fullName: PeNet.Structures.IMETADATASTREAM_STRING.Strings
-  nameWithType: IMETADATASTREAM_STRING.Strings
-- uid: PeNet.Structures.IMETADATASTREAM_STRING.StringsAndIndices
-  name: StringsAndIndices
-  href: api/PeNet.Structures.IMETADATASTREAM_STRING.html#PeNet_Structures_IMETADATASTREAM_STRING_StringsAndIndices
-  commentId: P:PeNet.Structures.IMETADATASTREAM_STRING.StringsAndIndices
-  fullName: PeNet.Structures.IMETADATASTREAM_STRING.StringsAndIndices
-  nameWithType: IMETADATASTREAM_STRING.StringsAndIndices
-- uid: PeNet.Structures.IMETADATASTREAM_STRING.StringsAndIndices*
-  name: StringsAndIndices
-  href: api/PeNet.Structures.IMETADATASTREAM_STRING.html#PeNet_Structures_IMETADATASTREAM_STRING_StringsAndIndices_
-  commentId: Overload:PeNet.Structures.IMETADATASTREAM_STRING.StringsAndIndices
-  isSpec: "True"
-  fullName: PeNet.Structures.IMETADATASTREAM_STRING.StringsAndIndices
-  nameWithType: IMETADATASTREAM_STRING.StringsAndIndices
 - uid: PeNet.Structures.IMETADATASTREAM_STRING.ToString
   name: ToString()
   href: api/PeNet.Structures.IMETADATASTREAM_STRING.html#PeNet_Structures_IMETADATASTREAM_STRING_ToString
@@ -6473,32 +6434,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.METADATASTREAM_STRING.GetStringAtIndex
   nameWithType: METADATASTREAM_STRING.GetStringAtIndex
-- uid: PeNet.Structures.METADATASTREAM_STRING.Strings
-  name: Strings
-  href: api/PeNet.Structures.METADATASTREAM_STRING.html#PeNet_Structures_METADATASTREAM_STRING_Strings
-  commentId: P:PeNet.Structures.METADATASTREAM_STRING.Strings
-  fullName: PeNet.Structures.METADATASTREAM_STRING.Strings
-  nameWithType: METADATASTREAM_STRING.Strings
-- uid: PeNet.Structures.METADATASTREAM_STRING.Strings*
-  name: Strings
-  href: api/PeNet.Structures.METADATASTREAM_STRING.html#PeNet_Structures_METADATASTREAM_STRING_Strings_
-  commentId: Overload:PeNet.Structures.METADATASTREAM_STRING.Strings
-  isSpec: "True"
-  fullName: PeNet.Structures.METADATASTREAM_STRING.Strings
-  nameWithType: METADATASTREAM_STRING.Strings
-- uid: PeNet.Structures.METADATASTREAM_STRING.StringsAndIndices
-  name: StringsAndIndices
-  href: api/PeNet.Structures.METADATASTREAM_STRING.html#PeNet_Structures_METADATASTREAM_STRING_StringsAndIndices
-  commentId: P:PeNet.Structures.METADATASTREAM_STRING.StringsAndIndices
-  fullName: PeNet.Structures.METADATASTREAM_STRING.StringsAndIndices
-  nameWithType: METADATASTREAM_STRING.StringsAndIndices
-- uid: PeNet.Structures.METADATASTREAM_STRING.StringsAndIndices*
-  name: StringsAndIndices
-  href: api/PeNet.Structures.METADATASTREAM_STRING.html#PeNet_Structures_METADATASTREAM_STRING_StringsAndIndices_
-  commentId: Overload:PeNet.Structures.METADATASTREAM_STRING.StringsAndIndices
-  isSpec: "True"
-  fullName: PeNet.Structures.METADATASTREAM_STRING.StringsAndIndices
-  nameWithType: METADATASTREAM_STRING.StringsAndIndices
 - uid: PeNet.Structures.METADATASTREAM_US
   name: METADATASTREAM_US
   href: api/PeNet.Structures.METADATASTREAM_US.html

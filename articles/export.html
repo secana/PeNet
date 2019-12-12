@@ -90,20 +90,13 @@ NumberOfNameEntries: 0
 NumberOfIdEntries: 1
 </code></pre>
 <h2 id="as-json">As JSON</h2>
-<p>All structures in PeNet support a <code>ToJson()</code> method, which returns the members of the structure with their values as a JSON string. Some byte arrays are omitted.</p>
-<p>Print the whole PE file as a JSON string:</p>
-<pre><code class="lang-csharp">var pefile = new PeNet.PeFile(@&quot;c:\windows\system32\kernel32.dll&quot;);
-var json = pefile.ToJson();
-Console.WriteLine(json);
-</code></pre>
-<p>Print the whole PE file as a <strong>formatted</strong> JSON string:</p>
-<pre><code class="lang-csharp">var pefile = new PeNet.PeFile(@&quot;c:\windows\system32\kernel32.dll&quot;);
-var json = pefile.ToJson(true);
-Console.WriteLine(json);
-</code></pre>
+<p>You can export structures of the PE file as Json. Be aware that structures that contains <code>Stream</code> object,
+cannot be exported to Json and that structures containing <code>byte[]</code> will contain the binary blob on export.</p>
 <p>Print one specific structure as a <strong>formatted</strong> JSON string:</p>
-<pre><code class="lang-csharp">var pefile = new PeNet.PeFile(@&quot;c:\windows\system32\kernel32.dll&quot;);
-var json = pefile.ImageResourceDirectory.ToJson(true);
+<pre><code class="lang-csharp">using Newtonsoft.Json;
+
+var pefile = new PeNet.PeFile(@&quot;c:\windows\system32\kernel32.dll&quot;);
+JsonConvert.SerializeObject(pefile.ImageResourceDirectory, Formatting.Indented);
 Console.WriteLine(json);
 </code></pre>
 <p>Output:</p>
