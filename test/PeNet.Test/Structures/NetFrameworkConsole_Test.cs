@@ -77,61 +77,7 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x000016003301FA00u, tablesHeader.MaskSorted);
         }
 
-        [Fact]
-        public void MetaDataStreamStrings_ParseCorrectValues()
-        {
-            var strings = _peFile.MetaDataStreamString.Strings;
-
-            Assert.Equal(46, strings.Count);
-            Assert.Equal("IEnumerable`1", strings[0]);
-            Assert.Equal("IEnumerator`1", strings[1]);
-            Assert.Equal("<Module>", strings[2]);
-            Assert.Equal("System.IO", strings[3]);
-            Assert.Equal("mscorlib", strings[4]);
-            Assert.Equal("System.Collections.Generic", strings[5]);
-            Assert.Equal("IDisposable", strings[6]);
-            Assert.Equal("NetFrameworkConsole", strings[7]);
-            Assert.Equal("WriteLine", strings[8]);
-            Assert.Equal("Dispose", strings[9]);
-            Assert.Equal("GuidAttribute", strings[10]);
-            Assert.Equal("DebuggableAttribute", strings[11]);
-            Assert.Equal("ComVisibleAttribute", strings[12]);
-            Assert.Equal("AssemblyTitleAttribute", strings[13]);
-            Assert.Equal("AssemblyTrademarkAttribute", strings[14]);
-            Assert.Equal("TargetFrameworkAttribute", strings[15]);
-            Assert.Equal("AssemblyFileVersionAttribute", strings[16]);
-            Assert.Equal("AssemblyConfigurationAttribute", strings[17]);
-            Assert.Equal("AssemblyDescriptionAttribute", strings[18]);
-            Assert.Equal("CompilationRelaxationsAttribute", strings[19]);
-            Assert.Equal("AssemblyProductAttribute", strings[20]);
-            Assert.Equal("AssemblyCopyrightAttribute", strings[21]);
-            Assert.Equal("AssemblyCompanyAttribute", strings[22]);
-            Assert.Equal("RuntimeCompatibilityAttribute", strings[23]);
-            Assert.Equal("NetFrameworkConsole.exe", strings[24]);
-            Assert.Equal("System.Runtime.Versioning", strings[25]);
-            Assert.Equal("Program", strings[26]);
-            Assert.Equal("System", strings[27]);
-            Assert.Equal("Main", strings[28]);
-            Assert.Equal("System.Reflection", strings[29]);
-            Assert.Equal("ConsoleKeyInfo", strings[30]);
-            Assert.Equal("IEnumerator", strings[31]);
-            Assert.Equal("GetEnumerator", strings[32]);
-            Assert.Equal(".ctor", strings[33]);
-            Assert.Equal("System.Diagnostics", strings[34]);
-            Assert.Equal("System.Runtime.InteropServices", strings[35]);
-            Assert.Equal("System.Runtime.CompilerServices", strings[36]);
-            Assert.Equal("DebuggingModes", strings[37]);
-            Assert.Equal("EnumerateDirectories", strings[38]);
-            Assert.Equal("args", strings[39]);
-            Assert.Equal("System.Collections", strings[40]);
-            Assert.Equal("Object", strings[41]);
-            Assert.Equal("get_Current", strings[42]);
-            Assert.Equal("MoveNext", strings[43]);
-            Assert.Equal("ReadKey", strings[44]);
-            Assert.Equal("Directory", strings[45]);
-        }
-
-        [Fact]
+      [Fact]
         public void MetaDataStreamUS_ParseCorrectValues()
         {
             var us = _peFile.MetaDataStreamUS;

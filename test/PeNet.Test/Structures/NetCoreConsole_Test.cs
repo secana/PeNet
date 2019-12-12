@@ -78,19 +78,6 @@ namespace PeNet.Test.Structures
         }
 
         [Fact]
-        public void MetaDataStreamStrings_ParseCorrectValues()
-        {
-            var strings = _peFile.MetaDataStreamString.Strings;
-
-            Assert.Equal(465, strings.Count);
-            Assert.Equal("<>9__0_0", strings[0]);
-            // ... More strings ...
-            Assert.Equal("get_GdcLoudCheck", strings[228]);
-            // ... More strings ...
-            Assert.Equal("IsNullOrEmpty", strings[464]);
-        }
-
-        [Fact]
         public void MetaDataStreamUS_ParseCorrectValues()
         {
             var us = _peFile.MetaDataStreamUS;
@@ -159,24 +146,31 @@ namespace PeNet.Test.Structures
         public void MetaDataTable_TypeRef()
         {
             var typeRef = _peFile.MetaDataStreamTablesHeader.Tables.TypeRef;
+            var stringStream = _peFile.MetaDataStreamString;
 
             Assert.Equal(141, typeRef.Count);
 
             Assert.Equal(0x0006u, typeRef[0].ResolutionScope);
             Assert.Equal(0x0CA3u, typeRef[0].TypeName);
             Assert.Equal(0x182Fu, typeRef[0].TypeNamespace);
+            Assert.Equal("CompilationRelaxationsAttribute", stringStream.GetStringAtIndex(typeRef[0].TypeName));
+            Assert.Equal("System.Runtime.CompilerServices", stringStream.GetStringAtIndex(typeRef[0].TypeNamespace));
 
             // ... More rows ...
 
             Assert.Equal(0x000Eu, typeRef[22].ResolutionScope);
             Assert.Equal(0x17D1u, typeRef[22].TypeName);
             Assert.Equal(0x0E57u, typeRef[22].TypeNamespace);
+            Assert.Equal("NormalizedUniformResourceLocator", stringStream.GetStringAtIndex(typeRef[22].TypeName));
+            Assert.Equal("GData.Messages.UrlProcessing", stringStream.GetStringAtIndex(typeRef[22].TypeNamespace));
 
             // ... More rows ...
 
             Assert.Equal(0x0036u, typeRef[140].ResolutionScope);
             Assert.Equal(0x0172u, typeRef[140].TypeName);
             Assert.Equal(0x01E3u, typeRef[140].TypeNamespace);
+            Assert.Equal("Proto3Common`1", stringStream.GetStringAtIndex(typeRef[140].TypeName));
+            Assert.Equal("Jumpstart.Messages.Proto3", stringStream.GetStringAtIndex(typeRef[140].TypeNamespace));
         }
 
         [Fact]
@@ -260,7 +254,7 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x0000u, param[1].Flags);
             Assert.Equal(0x0001u, param[1].Sequence);
             Assert.Equal(0x148Eu, param[1].Name);
-            Assert.Equal("_logger", _peFile.MetaDataStreamString.GetStringAtIndex(param[1].Name));
+            Assert.Equal("logger", _peFile.MetaDataStreamString.GetStringAtIndex(param[1].Name));
 
             // ... More rows ...
 

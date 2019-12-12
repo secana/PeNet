@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Reflection;
 using System.Text;
 
@@ -68,15 +65,6 @@ namespace PeNet.Structures
             }
 
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// Create a JSON string representation of the object.
-        /// </summary>
-        /// <returns>JSON string containing all property-value pairs.</returns>
-        public string ToJson(bool formatted = false)
-        {
-            return JsonConvert.SerializeObject(this, formatted ? Formatting.Indented : Formatting.None);
         }
     }
 }

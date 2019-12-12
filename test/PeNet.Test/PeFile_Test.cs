@@ -38,19 +38,5 @@ namespace PeNet.Test
 
             Assert.Equal(isDriver, peFile.IsDriver);
         }
-
-        [Fact]
-        public void ToJson_GivenAPeFile_ReturnsAJsonRepesentation()
-        {
-            var peFile = new PeFile(@"Binaries/firefox_x64.exe");
-
-            var json = peFile.ToJson(true);
-            var jObject = JObject.Parse(json);
-
-            Assert.NotNull(peFile);
-            Assert.True(condition: bool.Parse(jObject["HasValidSecurityDir"].ToString()));
-            Assert.True(condition: bool.Parse(jObject["Is64Bit"].ToString()));
-            Assert.False(bool.Parse(jObject["Is32Bit"].ToString()));
-        }
     }
 }
