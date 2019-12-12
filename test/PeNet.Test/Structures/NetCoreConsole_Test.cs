@@ -159,24 +159,31 @@ namespace PeNet.Test.Structures
         public void MetaDataTable_TypeRef()
         {
             var typeRef = _peFile.MetaDataStreamTablesHeader.Tables.TypeRef;
+            var stringStream = _peFile.MetaDataStreamString;
 
             Assert.Equal(141, typeRef.Count);
 
             Assert.Equal(0x0006u, typeRef[0].ResolutionScope);
             Assert.Equal(0x0CA3u, typeRef[0].TypeName);
             Assert.Equal(0x182Fu, typeRef[0].TypeNamespace);
+            Assert.Equal("CompilationRelaxationsAttribute", stringStream.GetStringAtIndex(typeRef[0].TypeName));
+            Assert.Equal("System.Runtime.CompilerServices", stringStream.GetStringAtIndex(typeRef[0].TypeNamespace));
 
             // ... More rows ...
 
             Assert.Equal(0x000Eu, typeRef[22].ResolutionScope);
             Assert.Equal(0x17D1u, typeRef[22].TypeName);
             Assert.Equal(0x0E57u, typeRef[22].TypeNamespace);
+            Assert.Equal("NormalizedUniformResourceLocator", stringStream.GetStringAtIndex(typeRef[22].TypeName));
+            Assert.Equal("GData.Messages.UrlProcessing", stringStream.GetStringAtIndex(typeRef[22].TypeNamespace));
 
             // ... More rows ...
 
             Assert.Equal(0x0036u, typeRef[140].ResolutionScope);
             Assert.Equal(0x0172u, typeRef[140].TypeName);
             Assert.Equal(0x01E3u, typeRef[140].TypeNamespace);
+            Assert.Equal("Proto3Common`1", stringStream.GetStringAtIndex(typeRef[140].TypeName));
+            Assert.Equal("Jumpstart.Messages.Proto3", stringStream.GetStringAtIndex(typeRef[140].TypeNamespace));
         }
 
         [Fact]
