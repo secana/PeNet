@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using PeNet.Utilities;
+﻿using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
@@ -10,8 +8,6 @@ namespace PeNet.Structures
     /// </summary>
     public class TString : AbstractStructure
     {
-        private string[] _value;
-
         public TString(byte[] buff, uint offset) : base(buff, offset)
         {
         }
@@ -55,28 +51,14 @@ namespace PeNet.Structures
         /// Arbitrary string which contains the information for the
         /// szKey member.
         /// </summary>
-        public string[] Value {
+        public string Value {
             get
             {
-                _value ??= ReadValues();
-                return _value;
+                var currentOffset = Offset + 0x6 + szKey.LengthInByte() +
+                                    (Offset + 0x6 + szKey.LengthInByte()).PaddingBytes(32);
+
+                return Buff.GetUnicodeString((ulong) currentOffset);
             }
         }
-
-        private string[] ReadValues()
-        {
-            var currentOffset = Offset + 0x6 + szKey.LengthInByte() +
-                                (Offset + 0x6 + szKey.LengthInByte()).PaddingBytes(32);
-
-            var values = new List<string>();
-
-            while (currentOffset < Offset + 6 + szKey.LengthInByte() + wValueLength)
-            {
-                values.Add(Buff.GetUnicodeString((ulong) currentOffset));
-                currentOffset += values.Last().LengthInByte();
-            }
-
-            return values.ToArray();
-        } 
     }
 }

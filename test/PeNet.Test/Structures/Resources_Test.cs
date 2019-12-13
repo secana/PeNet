@@ -49,7 +49,7 @@ namespace PeNet.Test.Structures
             Assert.Equal((ushort)0x0044, vsVersionInfo.StringFileInfo.StringTable[0].String[1].wValueLength);
             Assert.Equal((ushort)0x0001, vsVersionInfo.StringFileInfo.StringTable[0].String[1].wType);
             Assert.Equal("LegalCopyright", vsVersionInfo.StringFileInfo.StringTable[0].String[1].szKey);
-            Assert.Equal("\u00a9Firefox and Mozilla Developers; available under the MPL 2 license.", vsVersionInfo.StringFileInfo.StringTable[0].String[1].Value[0]);
+            Assert.Equal("\u00a9Firefox and Mozilla Developers; available under the MPL 2 license.", vsVersionInfo.StringFileInfo.StringTable[0].String[1].Value);
 
             // ... more String entries ...
 
@@ -57,7 +57,17 @@ namespace PeNet.Test.Structures
             Assert.Equal((ushort)0x000F, vsVersionInfo.StringFileInfo.StringTable[0].String[10].wValueLength);
             Assert.Equal((ushort)0x0001, vsVersionInfo.StringFileInfo.StringTable[0].String[10].wType);
             Assert.Equal("BuildID", vsVersionInfo.StringFileInfo.StringTable[0].String[10].szKey);
-            Assert.Equal("20171206182557", vsVersionInfo.StringFileInfo.StringTable[0].String[10].Value[0]);
+            Assert.Equal("20171206182557", vsVersionInfo.StringFileInfo.StringTable[0].String[10].Value);
+
+            Assert.Equal("\u00a9Firefox and Mozilla Developers; available under the MPL 2 license.", vsVersionInfo.StringFileInfo.StringTable[0].LegalCopyright);
+            Assert.Equal("Mozilla Corporation", vsVersionInfo.StringFileInfo.StringTable[0].CompanyName);
+            Assert.Equal("Firefox", vsVersionInfo.StringFileInfo.StringTable[0].FileDescription);
+            Assert.Equal("57.0.2", vsVersionInfo.StringFileInfo.StringTable[0].FileVersion);
+            Assert.Equal("57.0.2", vsVersionInfo.StringFileInfo.StringTable[0].ProductVersion);
+            Assert.Equal("Firefox", vsVersionInfo.StringFileInfo.StringTable[0].InternalName);
+            Assert.Equal("Firefox is a Trademark of The Mozilla Foundation.", vsVersionInfo.StringFileInfo.StringTable[0].LegalTrademarks);
+            Assert.Equal("firefox.exe", vsVersionInfo.StringFileInfo.StringTable[0].OriginalFilename);
+            Assert.Equal("Firefox", vsVersionInfo.StringFileInfo.StringTable[0].ProductName);
 
             Assert.Equal((ushort) 0x0044, vsVersionInfo.VarFileInfo.wLength);
             Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.wValueLength);
@@ -110,7 +120,7 @@ namespace PeNet.Test.Structures
             Assert.Equal((ushort)0x001F, vsVersionInfo.StringFileInfo.StringTable[0].String[0].wValueLength);
             Assert.Equal((ushort)0x0001, vsVersionInfo.StringFileInfo.StringTable[0].String[0].wType);
             Assert.Equal("CompanyName", vsVersionInfo.StringFileInfo.StringTable[0].String[0].szKey);
-            Assert.Equal("The Pidgin developer community", vsVersionInfo.StringFileInfo.StringTable[0].String[0].Value[0]);
+            Assert.Equal("The Pidgin developer community", vsVersionInfo.StringFileInfo.StringTable[0].String[0].Value);
 
             // ... more String entries ...
 
@@ -118,7 +128,7 @@ namespace PeNet.Test.Structures
             Assert.Equal((ushort) 0x0008, vsVersionInfo.StringFileInfo.StringTable[0].String[7].wValueLength);
             Assert.Equal((ushort) 0x0001, vsVersionInfo.StringFileInfo.StringTable[0].String[7].wType);
             Assert.Equal("ProductVersion", vsVersionInfo.StringFileInfo.StringTable[0].String[7].szKey);
-            Assert.Equal("2.10.11", vsVersionInfo.StringFileInfo.StringTable[0].String[7].Value[0]);
+            Assert.Equal("2.10.11", vsVersionInfo.StringFileInfo.StringTable[0].String[7].Value);
 
             Assert.Equal((ushort) 0x0044, vsVersionInfo.VarFileInfo.wLength);
             Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.wValueLength);
