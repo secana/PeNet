@@ -4593,15 +4593,15 @@ references:
   commentId: T:PeNet.Structures.IMAGE_NT_HEADERS
   fullName: PeNet.Structures.IMAGE_NT_HEADERS
   nameWithType: IMAGE_NT_HEADERS
-- uid: PeNet.Structures.IMAGE_NT_HEADERS.#ctor(System.Byte[],System.UInt32,System.Boolean)
-  name: IMAGE_NT_HEADERS(Byte[], UInt32, Boolean)
-  href: api/PeNet.Structures.IMAGE_NT_HEADERS.html#PeNet_Structures_IMAGE_NT_HEADERS__ctor_System_Byte___System_UInt32_System_Boolean_
-  commentId: M:PeNet.Structures.IMAGE_NT_HEADERS.#ctor(System.Byte[],System.UInt32,System.Boolean)
-  name.vb: IMAGE_NT_HEADERS(Byte(), UInt32, Boolean)
-  fullName: PeNet.Structures.IMAGE_NT_HEADERS.IMAGE_NT_HEADERS(System.Byte[], System.UInt32, System.Boolean)
-  fullName.vb: PeNet.Structures.IMAGE_NT_HEADERS.IMAGE_NT_HEADERS(System.Byte(), System.UInt32, System.Boolean)
-  nameWithType: IMAGE_NT_HEADERS.IMAGE_NT_HEADERS(Byte[], UInt32, Boolean)
-  nameWithType.vb: IMAGE_NT_HEADERS.IMAGE_NT_HEADERS(Byte(), UInt32, Boolean)
+- uid: PeNet.Structures.IMAGE_NT_HEADERS.#ctor(System.Byte[],System.UInt32)
+  name: IMAGE_NT_HEADERS(Byte[], UInt32)
+  href: api/PeNet.Structures.IMAGE_NT_HEADERS.html#PeNet_Structures_IMAGE_NT_HEADERS__ctor_System_Byte___System_UInt32_
+  commentId: M:PeNet.Structures.IMAGE_NT_HEADERS.#ctor(System.Byte[],System.UInt32)
+  name.vb: IMAGE_NT_HEADERS(Byte(), UInt32)
+  fullName: PeNet.Structures.IMAGE_NT_HEADERS.IMAGE_NT_HEADERS(System.Byte[], System.UInt32)
+  fullName.vb: PeNet.Structures.IMAGE_NT_HEADERS.IMAGE_NT_HEADERS(System.Byte(), System.UInt32)
+  nameWithType: IMAGE_NT_HEADERS.IMAGE_NT_HEADERS(Byte[], UInt32)
+  nameWithType.vb: IMAGE_NT_HEADERS.IMAGE_NT_HEADERS(Byte(), UInt32)
 - uid: PeNet.Structures.IMAGE_NT_HEADERS.#ctor*
   name: IMAGE_NT_HEADERS
   href: api/PeNet.Structures.IMAGE_NT_HEADERS.html#PeNet_Structures_IMAGE_NT_HEADERS__ctor_
