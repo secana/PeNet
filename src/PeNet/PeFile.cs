@@ -162,13 +162,13 @@ namespace PeNet
         /// <summary>
         ///     Returns true if the PE file is x64.
         /// </summary>
-        public bool Is64Bit => Buff.BytesToUInt16(ImageDosHeader.e_lfanew + 0x4) ==
-                               (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
+        public bool Is64Bit => !Is32Bit;
 
         /// <summary>
         ///     Returns true if the PE file is x32.
         /// </summary>
-        public bool Is32Bit => !Is64Bit;
+        public bool Is32Bit => FlagResolver.ResolveFileCharacteristics(ImageNtHeaders.FileHeader.Characteristics)
+            .Machine32Bit;
 
         /// <summary>
         ///     Access the IMAGE_DOS_HEADER of the PE file.
