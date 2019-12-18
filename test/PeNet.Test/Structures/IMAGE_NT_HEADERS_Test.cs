@@ -9,7 +9,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageNtHeadersConstructorWorks_Test()
         {
-            var ntHeaders = new IMAGE_NT_HEADERS(RawStructures.RawImageNtHeaders64, 2, true);
+            var ntHeaders = new IMAGE_NT_HEADERS(RawStructures.RawImageNtHeaders64, 2);
             Assert.Equal((uint) 0x33221100, ntHeaders.Signature);
         }
     }

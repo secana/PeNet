@@ -21,9 +21,6 @@ namespace PeNet
         public IMAGE_NT_HEADERS ImageNtHeaders => _imageNtHeadersParser?.GetParserTarget();
         public IMAGE_SECTION_HEADER[] ImageSectionHeaders => _imageSectionHeadersParser?.GetParserTarget();
 
-        private bool Is64Bit => _buff.BytesToUInt16(ImageDosHeader.e_lfanew + 0x4) ==
-                                (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
-
         private void InitAllParsers()
         {
             _imageDosHeaderParser = InitImageDosHeaderParser();
@@ -42,7 +39,7 @@ namespace PeNet
 
         private ImageNtHeadersParser InitNtHeadersParser()
         {
-            return new ImageNtHeadersParser(_buff, ImageDosHeader.e_lfanew, Is64Bit);
+            return new ImageNtHeadersParser(_buff, ImageDosHeader.e_lfanew);
         }
 
         private ImageDosHeaderParser InitImageDosHeaderParser()

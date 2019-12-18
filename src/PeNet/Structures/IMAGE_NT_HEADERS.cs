@@ -24,12 +24,14 @@ namespace PeNet.Structures
         /// </summary>
         /// <param name="buff">A PE file as a byte array.</param>
         /// <param name="offset">Raw offset of the NT header.</param>
-        /// <param name="is64Bit">Flag if the header is for a x64 application.</param>
-        public IMAGE_NT_HEADERS(byte[] buff, uint offset, bool is64Bit)
+        public IMAGE_NT_HEADERS(byte[] buff, uint offset)
             : base(buff, offset)
         {
             FileHeader = new IMAGE_FILE_HEADER(buff, offset + 0x4);
-            OptionalHeader = new IMAGE_OPTIONAL_HEADER(buff, offset + 0x18, is64Bit);
+
+            var is32Bit = FileHeader.Machine == (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386;
+
+            OptionalHeader = new IMAGE_OPTIONAL_HEADER(buff, offset + 0x18, !is32Bit);
         }
 
         /// <summary>

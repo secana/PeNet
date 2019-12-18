@@ -30,7 +30,7 @@ namespace PeNet
         /// <summary>
         ///     The PE binary as a stream.
         /// </summary>
-        public Stream Stream => _stream ?? (_stream = new MemoryStream(Buff));
+        public Stream Stream => _stream ??= new MemoryStream(Buff);
 
         private string _impHash;
         private string _md5;
@@ -167,9 +167,8 @@ namespace PeNet
         /// <summary>
         ///     Returns true if the PE file is x32.
         /// </summary>
-        public bool Is32Bit => FlagResolver.ResolveFileCharacteristics(ImageNtHeaders.FileHeader.Characteristics)
-            .Machine32Bit;
-
+        public bool Is32Bit => ImageNtHeaders.FileHeader.Machine 
+                               == (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386;
         /// <summary>
         ///     Access the IMAGE_DOS_HEADER of the PE file.
         /// </summary>
