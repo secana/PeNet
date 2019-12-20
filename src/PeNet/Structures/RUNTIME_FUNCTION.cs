@@ -57,10 +57,7 @@ namespace PeNet.Structures
         public UNWIND_INFO ResolvedUnwindInfo {
             get
             {
-                if (_resolvedUnwindInfo != null)
-                    return _resolvedUnwindInfo;
-
-                _resolvedUnwindInfo = GetUnwindInfo(_sectionHeaders);
+                _resolvedUnwindInfo ??= GetUnwindInfo(_sectionHeaders);
                 return _resolvedUnwindInfo;
             }
         }

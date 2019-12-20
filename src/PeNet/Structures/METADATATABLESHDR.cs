@@ -300,7 +300,7 @@ namespace PeNet.Structures
         {
             var heapSizes = new HeapSizes(HeapSizes);
             var indexSizes = new IndexSize(TableDefinitions.ToArray());
-            uint tablesOffset = (uint)(Offset + 0x18u + HammingWeight(Valid) * 4u);
+            var tablesOffset = (uint)(Offset + 0x18u + HammingWeight(Valid) * 4u);
 
             var tableInfo = TableDefinitions[(int)token];
             var rows = new List<T>();
