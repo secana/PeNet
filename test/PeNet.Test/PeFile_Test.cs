@@ -38,5 +38,13 @@ namespace PeNet.Test
 
             Assert.Equal(isDriver, peFile.IsDriver);
         }
+
+        [Fact]
+        public void TMP_MALWARE()
+        {
+            var peFile = new PeFile(@"C:\malware\9d5eb5ac899764d5ed30cc93df8d645e598e2cbce53ae7bb081ded2c38286d1e");
+
+            Assert.NotNull(peFile.ImageResourceDirectory);
+        }
     }
 }
