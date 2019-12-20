@@ -200,22 +200,6 @@ namespace PeNet.Utilities
         }
 
         /// <summary>
-        ///     Convert up to 8 bytes out of a buffer to an 64 bit unsigned integer.
-        /// </summary>
-        /// <param name="buff">Byte buffer.</param>
-        /// <param name="offset">Offset of the highest byte.</param>
-        /// <param name="numOfBytes">Number of bytes to read.</param>
-        /// <returns>UInt64 of numOfBytes bytes.</returns>
-        public static ulong BytesToUInt64(this byte[] buff, uint offset, uint numOfBytes)
-        {
-            var bytes = new byte[8];
-            for (var i = 0; i < numOfBytes; i++)
-                bytes[i] = buff[offset + i];
-
-            return BitConverter.ToUInt64(bytes, 0);
-        }
-
-        /// <summary>
         ///     Convert an UIn16 to an byte array.
         /// </summary>
         /// <param name="value">Value</param>
@@ -302,7 +286,6 @@ namespace PeNet.Utilities
         {
             var rva= virtualAddress - sh.FirstOrDefault().ImageBaseAddress;
             return RVAtoFileMapping(rva, sh);
-
         }
 
         /// <summary>
@@ -313,7 +296,7 @@ namespace PeNet.Utilities
         /// <returns>Raw file address.</returns>
         public static ulong RVAtoFileMapping(this ulong relativeVirtualAddress, ICollection<IMAGE_SECTION_HEADER> sh)
         {
-            IMAGE_SECTION_HEADER? GetSectionForRva(ulong rva)
+            IMAGE_SECTION_HEADER GetSectionForRva(ulong rva)
             {
                 var sectionsByRva = sh.OrderBy(s => s.VirtualAddress).ToList();
                 return sectionsByRva.FirstOrDefault(t =>
