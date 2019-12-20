@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PeNet.Structures.MetaDataTables
+﻿namespace PeNet.Structures.MetaDataTables
 {
     public class TypeDef : AbstractTable
     {
