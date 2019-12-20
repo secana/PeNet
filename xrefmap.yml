@@ -10999,24 +10999,6 @@ references:
   fullName.vb: PeNet.Utilities.ExtensionMethods.BytesToInt32(System.Byte(), System.UInt32)
   nameWithType: ExtensionMethods.BytesToInt32(Byte[], UInt32)
   nameWithType.vb: ExtensionMethods.BytesToInt32(Byte(), UInt32)
-- uid: PeNet.Utilities.ExtensionMethods.BytesToInt32(System.Byte[],System.UInt32,System.UInt32)
-  name: BytesToInt32(Byte[], UInt32, UInt32)
-  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_BytesToInt32_System_Byte___System_UInt32_System_UInt32_
-  commentId: M:PeNet.Utilities.ExtensionMethods.BytesToInt32(System.Byte[],System.UInt32,System.UInt32)
-  name.vb: BytesToInt32(Byte(), UInt32, UInt32)
-  fullName: PeNet.Utilities.ExtensionMethods.BytesToInt32(System.Byte[], System.UInt32, System.UInt32)
-  fullName.vb: PeNet.Utilities.ExtensionMethods.BytesToInt32(System.Byte(), System.UInt32, System.UInt32)
-  nameWithType: ExtensionMethods.BytesToInt32(Byte[], UInt32, UInt32)
-  nameWithType.vb: ExtensionMethods.BytesToInt32(Byte(), UInt32, UInt32)
-- uid: PeNet.Utilities.ExtensionMethods.BytesToInt32(System.Byte[],System.UInt32,System.UInt32,System.UInt32@)
-  name: BytesToInt32(Byte[], UInt32, UInt32, ref UInt32)
-  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_BytesToInt32_System_Byte___System_UInt32_System_UInt32_System_UInt32__
-  commentId: M:PeNet.Utilities.ExtensionMethods.BytesToInt32(System.Byte[],System.UInt32,System.UInt32,System.UInt32@)
-  name.vb: BytesToInt32(Byte(), UInt32, UInt32, ByRef UInt32)
-  fullName: PeNet.Utilities.ExtensionMethods.BytesToInt32(System.Byte[], System.UInt32, System.UInt32, ref System.UInt32)
-  fullName.vb: PeNet.Utilities.ExtensionMethods.BytesToInt32(System.Byte(), System.UInt32, System.UInt32, ByRef System.UInt32)
-  nameWithType: ExtensionMethods.BytesToInt32(Byte[], UInt32, UInt32, ref UInt32)
-  nameWithType.vb: ExtensionMethods.BytesToInt32(Byte(), UInt32, UInt32, ByRef UInt32)
 - uid: PeNet.Utilities.ExtensionMethods.BytesToInt32*
   name: BytesToInt32
   href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_BytesToInt32_
@@ -11058,24 +11040,6 @@ references:
   fullName.vb: PeNet.Utilities.ExtensionMethods.BytesToUInt32(System.Byte(), System.UInt32)
   nameWithType: ExtensionMethods.BytesToUInt32(Byte[], UInt32)
   nameWithType.vb: ExtensionMethods.BytesToUInt32(Byte(), UInt32)
-- uid: PeNet.Utilities.ExtensionMethods.BytesToUInt32(System.Byte[],System.UInt32,System.UInt32)
-  name: BytesToUInt32(Byte[], UInt32, UInt32)
-  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_BytesToUInt32_System_Byte___System_UInt32_System_UInt32_
-  commentId: M:PeNet.Utilities.ExtensionMethods.BytesToUInt32(System.Byte[],System.UInt32,System.UInt32)
-  name.vb: BytesToUInt32(Byte(), UInt32, UInt32)
-  fullName: PeNet.Utilities.ExtensionMethods.BytesToUInt32(System.Byte[], System.UInt32, System.UInt32)
-  fullName.vb: PeNet.Utilities.ExtensionMethods.BytesToUInt32(System.Byte(), System.UInt32, System.UInt32)
-  nameWithType: ExtensionMethods.BytesToUInt32(Byte[], UInt32, UInt32)
-  nameWithType.vb: ExtensionMethods.BytesToUInt32(Byte(), UInt32, UInt32)
-- uid: PeNet.Utilities.ExtensionMethods.BytesToUInt32(System.Byte[],System.UInt32,System.UInt32,System.UInt32@)
-  name: BytesToUInt32(Byte[], UInt32, UInt32, ref UInt32)
-  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_BytesToUInt32_System_Byte___System_UInt32_System_UInt32_System_UInt32__
-  commentId: M:PeNet.Utilities.ExtensionMethods.BytesToUInt32(System.Byte[],System.UInt32,System.UInt32,System.UInt32@)
-  name.vb: BytesToUInt32(Byte(), UInt32, UInt32, ByRef UInt32)
-  fullName: PeNet.Utilities.ExtensionMethods.BytesToUInt32(System.Byte[], System.UInt32, System.UInt32, ref System.UInt32)
-  fullName.vb: PeNet.Utilities.ExtensionMethods.BytesToUInt32(System.Byte(), System.UInt32, System.UInt32, ByRef System.UInt32)
-  nameWithType: ExtensionMethods.BytesToUInt32(Byte[], UInt32, UInt32, ref UInt32)
-  nameWithType.vb: ExtensionMethods.BytesToUInt32(Byte(), UInt32, UInt32, ByRef UInt32)
 - uid: PeNet.Utilities.ExtensionMethods.BytesToUInt32*
   name: BytesToUInt32
   href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_BytesToUInt32_
@@ -11083,15 +11047,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Utilities.ExtensionMethods.BytesToUInt32
   nameWithType: ExtensionMethods.BytesToUInt32
-- uid: PeNet.Utilities.ExtensionMethods.BytesToUInt64(System.Byte[],System.UInt32,System.UInt32)
-  name: BytesToUInt64(Byte[], UInt32, UInt32)
-  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_BytesToUInt64_System_Byte___System_UInt32_System_UInt32_
-  commentId: M:PeNet.Utilities.ExtensionMethods.BytesToUInt64(System.Byte[],System.UInt32,System.UInt32)
-  name.vb: BytesToUInt64(Byte(), UInt32, UInt32)
-  fullName: PeNet.Utilities.ExtensionMethods.BytesToUInt64(System.Byte[], System.UInt32, System.UInt32)
-  fullName.vb: PeNet.Utilities.ExtensionMethods.BytesToUInt64(System.Byte(), System.UInt32, System.UInt32)
-  nameWithType: ExtensionMethods.BytesToUInt64(Byte[], UInt32, UInt32)
-  nameWithType.vb: ExtensionMethods.BytesToUInt64(Byte(), UInt32, UInt32)
 - uid: PeNet.Utilities.ExtensionMethods.BytesToUInt64(System.Byte[],System.UInt64)
   name: BytesToUInt64(Byte[], UInt64)
   href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_BytesToUInt64_System_Byte___System_UInt64_
@@ -11361,15 +11316,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Utilities.ExtensionMethods.ToIntFromHexString
   nameWithType: ExtensionMethods.ToIntFromHexString
-- uid: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt32,System.Collections.Generic.ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
-  name: VAtoFileMapping(UInt32, ICollection<IMAGE_SECTION_HEADER>)
-  href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_VAtoFileMapping_System_UInt32_System_Collections_Generic_ICollection_PeNet_Structures_IMAGE_SECTION_HEADER__
-  commentId: M:PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt32,System.Collections.Generic.ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
-  name.vb: VAtoFileMapping(UInt32, ICollection(Of IMAGE_SECTION_HEADER))
-  fullName: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt32, System.Collections.Generic.ICollection<PeNet.Structures.IMAGE_SECTION_HEADER>)
-  fullName.vb: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt32, System.Collections.Generic.ICollection(Of PeNet.Structures.IMAGE_SECTION_HEADER))
-  nameWithType: ExtensionMethods.VAtoFileMapping(UInt32, ICollection<IMAGE_SECTION_HEADER>)
-  nameWithType.vb: ExtensionMethods.VAtoFileMapping(UInt32, ICollection(Of IMAGE_SECTION_HEADER))
 - uid: PeNet.Utilities.ExtensionMethods.VAtoFileMapping(System.UInt64,System.Collections.Generic.ICollection{PeNet.Structures.IMAGE_SECTION_HEADER})
   name: VAtoFileMapping(UInt64, ICollection<IMAGE_SECTION_HEADER>)
   href: api/PeNet.Utilities.ExtensionMethods.html#PeNet_Utilities_ExtensionMethods_VAtoFileMapping_System_UInt64_System_Collections_Generic_ICollection_PeNet_Structures_IMAGE_SECTION_HEADER__
