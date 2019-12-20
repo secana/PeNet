@@ -410,6 +410,18 @@ references:
   commentId: F:PeNet.Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARM
   fullName: PeNet.Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARM
   nameWithType: Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARM
+- uid: PeNet.Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARM64
+  name: IMAGE_FILE_MACHINE_ARM64
+  href: api/PeNet.Constants.FileHeaderMachine.html#PeNet_Constants_FileHeaderMachine_IMAGE_FILE_MACHINE_ARM64
+  commentId: F:PeNet.Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARM64
+  fullName: PeNet.Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARM64
+  nameWithType: Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARM64
+- uid: PeNet.Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARMNT
+  name: IMAGE_FILE_MACHINE_ARMNT
+  href: api/PeNet.Constants.FileHeaderMachine.html#PeNet_Constants_FileHeaderMachine_IMAGE_FILE_MACHINE_ARMNT
+  commentId: F:PeNet.Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARMNT
+  fullName: PeNet.Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARMNT
+  nameWithType: Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARMNT
 - uid: PeNet.Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AXP64
   name: IMAGE_FILE_MACHINE_AXP64
   href: api/PeNet.Constants.FileHeaderMachine.html#PeNet_Constants_FileHeaderMachine_IMAGE_FILE_MACHINE_AXP64
@@ -548,6 +560,12 @@ references:
   commentId: F:PeNet.Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH5
   fullName: PeNet.Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH5
   nameWithType: Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH5
+- uid: PeNet.Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_TARGET_HOST
+  name: IMAGE_FILE_MACHINE_TARGET_HOST
+  href: api/PeNet.Constants.FileHeaderMachine.html#PeNet_Constants_FileHeaderMachine_IMAGE_FILE_MACHINE_TARGET_HOST
+  commentId: F:PeNet.Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_TARGET_HOST
+  fullName: PeNet.Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_TARGET_HOST
+  nameWithType: Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_TARGET_HOST
 - uid: PeNet.Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_THUMB
   name: IMAGE_FILE_MACHINE_THUMB
   href: api/PeNet.Constants.FileHeaderMachine.html#PeNet_Constants_FileHeaderMachine_IMAGE_FILE_MACHINE_THUMB
@@ -2490,6 +2508,15 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.IsEXE
   nameWithType: PeFile.IsEXE
+- uid: PeNet.PeFile.IsPEFile(System.Byte[])
+  name: IsPEFile(Byte[])
+  href: api/PeNet.PeFile.html#PeNet_PeFile_IsPEFile_System_Byte___
+  commentId: M:PeNet.PeFile.IsPEFile(System.Byte[])
+  name.vb: IsPEFile(Byte())
+  fullName: PeNet.PeFile.IsPEFile(System.Byte[])
+  fullName.vb: PeNet.PeFile.IsPEFile(System.Byte())
+  nameWithType: PeFile.IsPEFile(Byte[])
+  nameWithType.vb: PeFile.IsPEFile(Byte())
 - uid: PeNet.PeFile.IsPEFile(System.String)
   name: IsPEFile(String)
   href: api/PeNet.PeFile.html#PeNet_PeFile_IsPEFile_System_String_
@@ -2711,6 +2738,31 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.Stream
   nameWithType: PeFile.Stream
+- uid: PeNet.PeFile.TryParse(System.Byte[],PeNet.PeFile@)
+  name: TryParse(Byte[], out PeFile)
+  href: api/PeNet.PeFile.html#PeNet_PeFile_TryParse_System_Byte___PeNet_PeFile__
+  commentId: M:PeNet.PeFile.TryParse(System.Byte[],PeNet.PeFile@)
+  name.vb: TryParse(Byte(), ByRef PeFile)
+  fullName: PeNet.PeFile.TryParse(System.Byte[], out PeNet.PeFile)
+  fullName.vb: PeNet.PeFile.TryParse(System.Byte(), ByRef PeNet.PeFile)
+  nameWithType: PeFile.TryParse(Byte[], out PeFile)
+  nameWithType.vb: PeFile.TryParse(Byte(), ByRef PeFile)
+- uid: PeNet.PeFile.TryParse(System.String,PeNet.PeFile@)
+  name: TryParse(String, out PeFile)
+  href: api/PeNet.PeFile.html#PeNet_PeFile_TryParse_System_String_PeNet_PeFile__
+  commentId: M:PeNet.PeFile.TryParse(System.String,PeNet.PeFile@)
+  name.vb: TryParse(String, ByRef PeFile)
+  fullName: PeNet.PeFile.TryParse(System.String, out PeNet.PeFile)
+  fullName.vb: PeNet.PeFile.TryParse(System.String, ByRef PeNet.PeFile)
+  nameWithType: PeFile.TryParse(String, out PeFile)
+  nameWithType.vb: PeFile.TryParse(String, ByRef PeFile)
+- uid: PeNet.PeFile.TryParse*
+  name: TryParse
+  href: api/PeNet.PeFile.html#PeNet_PeFile_TryParse_
+  commentId: Overload:PeNet.PeFile.TryParse
+  isSpec: "True"
+  fullName: PeNet.PeFile.TryParse
+  nameWithType: PeFile.TryParse
 - uid: PeNet.PeFile.WinCertificate
   name: WinCertificate
   href: api/PeNet.PeFile.html#PeNet_PeFile_WinCertificate
@@ -4574,19 +4626,19 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.TimeDateStamp
   nameWithType: IMAGE_LOAD_CONFIG_DIRECTORY.TimeDateStamp
-- uid: PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThershold
-  name: VirtualMemoryThershold
-  href: api/PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.html#PeNet_Structures_IMAGE_LOAD_CONFIG_DIRECTORY_VirtualMemoryThershold
-  commentId: P:PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThershold
-  fullName: PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThershold
-  nameWithType: IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThershold
-- uid: PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThershold*
-  name: VirtualMemoryThershold
-  href: api/PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.html#PeNet_Structures_IMAGE_LOAD_CONFIG_DIRECTORY_VirtualMemoryThershold_
-  commentId: Overload:PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThershold
+- uid: PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThreshold
+  name: VirtualMemoryThreshold
+  href: api/PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.html#PeNet_Structures_IMAGE_LOAD_CONFIG_DIRECTORY_VirtualMemoryThreshold
+  commentId: P:PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThreshold
+  fullName: PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThreshold
+  nameWithType: IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThreshold
+- uid: PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThreshold*
+  name: VirtualMemoryThreshold
+  href: api/PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.html#PeNet_Structures_IMAGE_LOAD_CONFIG_DIRECTORY_VirtualMemoryThreshold_
+  commentId: Overload:PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThreshold
   isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThershold
-  nameWithType: IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThershold
+  fullName: PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThreshold
+  nameWithType: IMAGE_LOAD_CONFIG_DIRECTORY.VirtualMemoryThreshold
 - uid: PeNet.Structures.IMAGE_NT_HEADERS
   name: IMAGE_NT_HEADERS
   href: api/PeNet.Structures.IMAGE_NT_HEADERS.html
@@ -5493,6 +5545,19 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_SECTION_HEADER.Name
   nameWithType: IMAGE_SECTION_HEADER.Name
+- uid: PeNet.Structures.IMAGE_SECTION_HEADER.NameResolved
+  name: NameResolved
+  href: api/PeNet.Structures.IMAGE_SECTION_HEADER.html#PeNet_Structures_IMAGE_SECTION_HEADER_NameResolved
+  commentId: P:PeNet.Structures.IMAGE_SECTION_HEADER.NameResolved
+  fullName: PeNet.Structures.IMAGE_SECTION_HEADER.NameResolved
+  nameWithType: IMAGE_SECTION_HEADER.NameResolved
+- uid: PeNet.Structures.IMAGE_SECTION_HEADER.NameResolved*
+  name: NameResolved
+  href: api/PeNet.Structures.IMAGE_SECTION_HEADER.html#PeNet_Structures_IMAGE_SECTION_HEADER_NameResolved_
+  commentId: Overload:PeNet.Structures.IMAGE_SECTION_HEADER.NameResolved
+  isSpec: "True"
+  fullName: PeNet.Structures.IMAGE_SECTION_HEADER.NameResolved
+  nameWithType: IMAGE_SECTION_HEADER.NameResolved
 - uid: PeNet.Structures.IMAGE_SECTION_HEADER.NumberOfLinenumbers
   name: NumberOfLinenumbers
   href: api/PeNet.Structures.IMAGE_SECTION_HEADER.html#PeNet_Structures_IMAGE_SECTION_HEADER_NumberOfLinenumbers
@@ -11523,19 +11588,6 @@ references:
   commentId: T:PeNet.Utilities.SignatureInformation
   fullName: PeNet.Utilities.SignatureInformation
   nameWithType: SignatureInformation
-- uid: PeNet.Utilities.SignatureInformation.IsSignatureValid(System.String)
-  name: IsSignatureValid(String)
-  href: api/PeNet.Utilities.SignatureInformation.html#PeNet_Utilities_SignatureInformation_IsSignatureValid_System_String_
-  commentId: M:PeNet.Utilities.SignatureInformation.IsSignatureValid(System.String)
-  fullName: PeNet.Utilities.SignatureInformation.IsSignatureValid(System.String)
-  nameWithType: SignatureInformation.IsSignatureValid(String)
-- uid: PeNet.Utilities.SignatureInformation.IsSignatureValid*
-  name: IsSignatureValid
-  href: api/PeNet.Utilities.SignatureInformation.html#PeNet_Utilities_SignatureInformation_IsSignatureValid_
-  commentId: Overload:PeNet.Utilities.SignatureInformation.IsSignatureValid
-  isSpec: "True"
-  fullName: PeNet.Utilities.SignatureInformation.IsSignatureValid
-  nameWithType: SignatureInformation.IsSignatureValid
 - uid: PeNet.Utilities.SignatureInformation.IsSigned(System.String)
   name: IsSigned(String)
   href: api/PeNet.Utilities.SignatureInformation.html#PeNet_Utilities_SignatureInformation_IsSigned_System_String_
