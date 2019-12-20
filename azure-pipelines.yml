@@ -36,6 +36,7 @@ steps:
   workingDirectory: '$(Build.SourcesDirectory)/docfx'
 
 - task: GitHubPagesPublish@1
+  displayName: Publish Documentation
   inputs:
     docPath: '$(System.DefaultWorkingDirectory)\docs\*'
     githubusername: "secana"
@@ -47,6 +48,7 @@ steps:
     cleanRepository: false
 
 - task: NuGetToolInstaller@0
+  displayName: Install NuGet
   inputs:
     versionSpec: '5.4.0'
 
