@@ -24,8 +24,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Characteristics
         {
-            get { return Buff.BytesToUInt32(Offset); }
-            set { Buff.SetUInt32(Offset, value); }
+            get => Buff.BytesToUInt32(Offset);
+            set => Buff.SetUInt32(Offset, value);
         }
 
         /// <summary>
@@ -33,8 +33,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get { return Buff.BytesToUInt32(Offset + 0x4); }
-            set { Buff.SetUInt32(Offset + 0x4, value); }
+            get => Buff.BytesToUInt32(Offset + 0x4);
+            set => Buff.SetUInt32(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -42,8 +42,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorVersion
         {
-            get { return Buff.BytesToUInt16(Offset + 0x8); }
-            set { Buff.SetUInt16(Offset + 0x8, value); }
+            get => Buff.BytesToUInt16(Offset + 0x8);
+            set => Buff.SetUInt16(Offset + 0x8, value);
         }
 
         /// <summary>
@@ -51,8 +51,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorVersion
         {
-            get { return Buff.BytesToUInt16(Offset + 0xA); }
-            set { Buff.SetUInt16(Offset + 0xA, value); }
+            get => Buff.BytesToUInt16(Offset + 0xA);
+            set => Buff.SetUInt16(Offset + 0xA, value);
         }
 
         /// <summary>
@@ -60,8 +60,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Name
         {
-            get { return Buff.BytesToUInt32(Offset + 0xC); }
-            set { Buff.SetUInt32(Offset + 0xC, value); }
+            get => Buff.BytesToUInt32(Offset + 0xC);
+            set => Buff.SetUInt32(Offset + 0xC, value);
         }
 
         /// <summary>
@@ -69,8 +69,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Base
         {
-            get { return Buff.BytesToUInt32(Offset + 0x10); }
-            set { Buff.SetUInt32(Offset + 0x10, value); }
+            get => Buff.BytesToUInt32(Offset + 0x10);
+            set => Buff.SetUInt32(Offset + 0x10, value);
         }
 
         /// <summary>
@@ -78,8 +78,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint NumberOfFunctions
         {
-            get { return Buff.BytesToUInt32(Offset + 0x14); }
-            set { Buff.SetUInt32(Offset + 0x14, value); }
+            get => Buff.BytesToUInt32(Offset + 0x14);
+            set => Buff.SetUInt32(Offset + 0x14, value);
         }
 
         /// <summary>
@@ -87,8 +87,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint NumberOfNames
         {
-            get { return Buff.BytesToUInt32(Offset + 0x18); }
-            set { Buff.SetUInt32(Offset + 0x18, value); }
+            get => Buff.BytesToUInt32(Offset + 0x18);
+            set => Buff.SetUInt32(Offset + 0x18, value);
         }
 
         /// <summary>
@@ -96,8 +96,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint AddressOfFunctions
         {
-            get { return Buff.BytesToUInt32(Offset + 0x1C); }
-            set { Buff.SetUInt32(Offset + 0x1C, value); }
+            get => Buff.BytesToUInt32(Offset + 0x1C);
+            set => Buff.SetUInt32(Offset + 0x1C, value);
         }
 
         /// <summary>
@@ -105,8 +105,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint AddressOfNames
         {
-            get { return Buff.BytesToUInt32(Offset + 0x20); }
-            set { Buff.SetUInt32(Offset + 0x20, value); }
+            get => Buff.BytesToUInt32(Offset + 0x20);
+            set => Buff.SetUInt32(Offset + 0x20, value);
         }
 
         /// <summary>
@@ -114,8 +114,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint AddressOfNameOrdinals
         {
-            get { return Buff.BytesToUInt32(Offset + 0x24); }
-            set { Buff.SetUInt32(Offset + 0x24, value); }
+            get => Buff.BytesToUInt32(Offset + 0x24);
+            set => Buff.SetUInt32(Offset + 0x24, value);
         }
     }
 }

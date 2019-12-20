@@ -33,8 +33,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint cb
         {
-            get { return Buff.BytesToUInt32(Offset); }
-            set { Buff.SetUInt32(Offset, value); }
+            get => Buff.BytesToUInt32(Offset);
+            set => Buff.SetUInt32(Offset, value);
         }
 
         /// <summary>
@@ -42,8 +42,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorRuntimeVersion
         {
-            get { return Buff.BytesToUInt16(Offset + 0x4); }
-            set { Buff.SetUInt16(Offset + 0x4, value); }
+            get => Buff.BytesToUInt16(Offset + 0x4);
+            set => Buff.SetUInt16(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -51,8 +51,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorRuntimeVersion
         {
-            get { return Buff.BytesToUInt16(Offset + 0x6); }
-            set { Buff.SetUInt16(Offset + 0x6, value); }
+            get => Buff.BytesToUInt16(Offset + 0x6);
+            set => Buff.SetUInt16(Offset + 0x6, value);
         }
 
         /// <summary>
@@ -75,8 +75,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Flags
         {
-            get { return Buff.BytesToUInt32(Offset + 0x10); }
-            set { Buff.SetUInt32(Offset + 0x10, value); }
+            get => Buff.BytesToUInt32(Offset + 0x10);
+            set => Buff.SetUInt32(Offset + 0x10, value);
         }
 
         /// <summary>
@@ -85,8 +85,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint EntryPointToken
         {
-            get { return Buff.BytesToUInt32(Offset + 0x14); }
-            set { Buff.SetUInt32(Offset + 0x14, value); }
+            get => Buff.BytesToUInt32(Offset + 0x14);
+            set => Buff.SetUInt32(Offset + 0x14, value);
         }
 
         /// <summary>
@@ -95,8 +95,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint EntryPointRVA
         {
-            get { return EntryPointToken; }
-            set { EntryPointToken = value; }
+            get => EntryPointToken;
+            set => EntryPointToken = value;
         }
 
         /// <summary>

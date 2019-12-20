@@ -127,13 +127,7 @@ namespace PeNet.Structures
 
         private Dictionary<Index, IMetaDataIndex> _index = null;
 
-        public uint this[Index index]
-        {
-            get
-            {
-                return _index[index].Size;
-            }
-        }
+        public uint this[Index index] => _index[index].Size;
     }
 
 

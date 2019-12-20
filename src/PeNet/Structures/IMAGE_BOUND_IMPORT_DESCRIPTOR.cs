@@ -22,8 +22,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get { return Buff.BytesToUInt32(Offset + 0); }
-            set { Buff.SetUInt32(Offset + 0, value); }
+            get => Buff.BytesToUInt32(Offset + 0);
+            set => Buff.SetUInt32(Offset + 0, value);
         }
 
         /// <summary>
@@ -31,8 +31,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort OffsetModuleName
         {
-            get { return Buff.BytesToUInt16(Offset + 4); }
-            set { Buff.SetUInt16(Offset + 2, value); }
+            get => Buff.BytesToUInt16(Offset + 4);
+            set => Buff.SetUInt16(Offset + 2, value);
         }
 
         /// <summary>
@@ -40,8 +40,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfModuleForwarderRefs
         {
-            get { return Buff.BytesToUInt16(Offset + 6); }
-            set { Buff.SetUInt16(Offset + 4, value); }
+            get => Buff.BytesToUInt16(Offset + 6);
+            set => Buff.SetUInt16(Offset + 4, value);
         }
     }
 }

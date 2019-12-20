@@ -25,7 +25,7 @@ namespace PeNet
         /// </summary>
         public new byte[] Buff => base.Buff;
 
-        private Stream _stream = null;
+        private Stream _stream;
 
         /// <summary>
         ///     The PE binary as a stream.
@@ -123,8 +123,8 @@ namespace PeNet
         /// </summary>
         public bool IsDLL
             =>
-                (ImageNtHeaders.FileHeader.Characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_DLL) >
-                0;
+                (ImageNtHeaders.FileHeader.Characteristics
+                 & (ushort)Constants.FileHeaderCharacteristics.IMAGE_FILE_DLL) > 0;
 
         /// <summary>
         ///     Returns true if the Executable flag in the
@@ -133,7 +133,7 @@ namespace PeNet
         public bool IsEXE
             =>
                 (ImageNtHeaders.FileHeader.Characteristics &
-                 (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) > 0;
+                 (ushort)Constants.FileHeaderCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) > 0;
 
         /// <summary>
         ///     Returns true if the PE file is a system driver
@@ -167,7 +167,7 @@ namespace PeNet
         /// <summary>
         ///     Returns true if the PE file is x32.
         /// </summary>
-        public bool Is32Bit => ImageNtHeaders.FileHeader.Machine 
+        public bool Is32Bit => ImageNtHeaders.FileHeader.Machine
                                == (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386;
         /// <summary>
         ///     Access the IMAGE_DOS_HEADER of the PE file.
@@ -222,7 +222,7 @@ namespace PeNet
         /// <summary>
         ///     Access resources of the PE file.
         /// </summary>
-        public Resources Resources => _dataDirectoryParsers.Resources; 
+        public Resources Resources => _dataDirectoryParsers.Resources;
 
         /// <summary>
         ///     Access the array of RUNTIME_FUNCTION from the Exception header.
@@ -253,7 +253,7 @@ namespace PeNet
         /// Access the IMAGE_LOAD_CONFIG_DIRECTORY from the data directory.
         /// </summary>
         public IMAGE_LOAD_CONFIG_DIRECTORY ImageLoadConfigDirectory => _dataDirectoryParsers.ImageLoadConfigDirectory;
-    
+
         /// <summary>
         /// Access the IMAGE_COR20_HEADER (COM Descriptor/CLI) from the data directory.
         /// </summary>
@@ -324,7 +324,7 @@ namespace PeNet
         /// <summary>
         ///     FileLocation of the PE file if it was opened by location.
         /// </summary>
-        public string FileLocation { get; private set; }
+        public string FileLocation { get; }
 
         /// <summary>
         ///     Checks if cert is from a trusted CA with a valid certificate chain.
@@ -390,7 +390,7 @@ namespace PeNet
             {
                 dosHeader = new IMAGE_DOS_HEADER(buff, 0);
                 is64 = buff.BytesToUInt16(dosHeader.e_lfanew + 0x4) ==
-                       (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
+                       (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
             }
             catch (Exception)
             {
@@ -414,7 +414,7 @@ namespace PeNet
             {
                 dosHeader = new IMAGE_DOS_HEADER(buff, 0);
                 is32 = buff.BytesToUInt16(dosHeader.e_lfanew + 0x4) ==
-                       (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386;
+                       (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386;
             }
             catch (Exception)
             {
@@ -427,39 +427,61 @@ namespace PeNet
         /// <summary>
         ///     Returns if the PE file is a EXE, DLL and which architecture
         ///     is used (32/64).
-        ///     Architectures: "I386", "AMD64", "UNKNOWN"
+        ///     Architectures: "I386", "AMD64", ...
         ///     DllOrExe: "DLL", "EXE", "UNKNOWN"
         /// </summary>
         /// <returns>
         ///     A string "architecture_dllOrExe".
-        ///     E.g. "AMD64_DLL"
+        ///     E.g. "AMD64_DLL", "ALPHA_EXE"
         /// </returns>
         public string GetFileType()
         {
-            string fileType;
-
-            switch (ImageNtHeaders.FileHeader.Machine)
+            var fileType = ImageNtHeaders.FileHeader.Machine switch
             {
-                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386:
-                    fileType = "I386";
-                    break;
-                case (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64:
-                    fileType = "AMD64";
-                    break;
-                default:
-                    fileType = "UNKNOWN";
-                    break;
-            }
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386 => "I386",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I860 => "I860",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_R3000 => "R3000",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_R4000 => "R4000",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_R10000 => "R10000",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_WCEMIPSV2 => "WCEMIPSV2",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_OLDALPHA => "OLDALPHA",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ALPHA => "ALPHA",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH3 => "SH3",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH3DSP => "SH3DSP",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH3E => "SH3E",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH4 => "SH4",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH5 => "SH5",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARM => "ARM",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_THUMB => "THUMB",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AM33 => "M33",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_POWERPC => "POWERPC",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_POWERPCFP => "POWERPCFP",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_IA64 => "IA64",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_MIPS16 => "MIPS16",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_M68K => "M68K",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ALPHA64 => "ALPHA64",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_MIPSFPU => "MIPSFPU",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_MIPSFPU16 => "MIPSFPU16",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_TRICORE => "TRICORE",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_CEF => "CEF",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_EBC => "EBC",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64 => "AMD64",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_M32R => "M32R",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_CEE => "CEE",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARM64 => "ARM64",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARMNT => "ARMNT",
+                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_TARGET_HOST => "TARGETHOST",
+                _ => "UNKNOWN"
+            };
 
-            if ((ImageNtHeaders.FileHeader.Characteristics & (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_DLL) !=
-                0)
+            if ((ImageNtHeaders.FileHeader.Characteristics 
+                 & (ushort)Constants.FileHeaderCharacteristics.IMAGE_FILE_DLL) != 0)
                 fileType += "_DLL";
-            else if ((ImageNtHeaders.FileHeader.Characteristics &
-                      (ushort) Constants.FileHeaderCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) != 0)
+            else if ((ImageNtHeaders.FileHeader.Characteristics 
+                      & (ushort)Constants.FileHeaderCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) != 0)
                 fileType += "_EXE";
             else
                 fileType += "_UNKNOWN";
-
 
             return fileType;
         }

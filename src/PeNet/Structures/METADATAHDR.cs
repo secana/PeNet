@@ -32,8 +32,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Signature
         {
-            get { return Buff.BytesToUInt32(Offset); }
-            set { Buff.SetUInt32(Offset, value); }
+            get => Buff.BytesToUInt32(Offset);
+            set => Buff.SetUInt32(Offset, value);
         }
 
         /// <summary>
@@ -41,8 +41,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorVersion
         {
-            get { return Buff.BytesToUInt16(Offset + 0x4); }
-            set { Buff.SetUInt16(Offset + 0x4, value); }
+            get => Buff.BytesToUInt16(Offset + 0x4);
+            set => Buff.SetUInt16(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -50,8 +50,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorVersion
         {
-            get { return Buff.BytesToUInt16(Offset + 0x6); }
-            set { Buff.SetUInt16(Offset + 0x6, value); }
+            get => Buff.BytesToUInt16(Offset + 0x6);
+            set => Buff.SetUInt16(Offset + 0x6, value);
         }
 
         /// <summary>
@@ -59,8 +59,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Reserved
         {
-            get { return Buff.BytesToUInt32(Offset + 0x8); }
-            set { Buff.SetUInt32(Offset + 0x8, value); }
+            get => Buff.BytesToUInt32(Offset + 0x8);
+            set => Buff.SetUInt32(Offset + 0x8, value);
         }
 
         /// <summary>
@@ -69,8 +69,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint VersionLength
         {
-            get { return Buff.BytesToUInt32(Offset + 0xC); }
-            set { Buff.SetUInt32(Offset + 0xC, value); }
+            get => Buff.BytesToUInt32(Offset + 0xC);
+            set => Buff.SetUInt32(Offset + 0xC, value);
         }
 
         /// <summary>
@@ -103,8 +103,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Flags
         {
-            get { return Buff.BytesToUInt16(VersionLength + Offset +  0x10); }
-            set { Buff.SetUInt16(VersionLength + Offset + 0x10, value); }
+            get => Buff.BytesToUInt16(VersionLength + Offset +  0x10);
+            set => Buff.SetUInt16(VersionLength + Offset + 0x10, value);
         }
 
         /// <summary>
@@ -112,8 +112,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Streams
         {
-            get { return Buff.BytesToUInt16(VersionLength + Offset + 0x12); }
-            set { Buff.SetUInt16(VersionLength + Offset + 0x12, value); }
+            get => Buff.BytesToUInt16(VersionLength + Offset + 0x12);
+            set => Buff.SetUInt16(VersionLength + Offset + 0x12, value);
         }
 
         /// <summary>

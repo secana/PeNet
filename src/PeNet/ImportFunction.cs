@@ -1,7 +1,4 @@
-﻿using System.Text;
-using ExtensionMethods = PeNet.Utilities.ExtensionMethods;
-
-namespace PeNet
+﻿namespace PeNet
 {
     /// <summary>
     ///     Represents an imported function.
@@ -14,6 +11,7 @@ namespace PeNet
         /// <param name="name">Function name.</param>
         /// <param name="dll">DLL where the function comes from.</param>
         /// <param name="hint">Function hint.</param>
+        /// <param name="iatOffset">Offset into the Import Address Table.</param>
         public ImportFunction(string name, string dll, ushort hint, uint iatOffset)
         {
             Name = name;

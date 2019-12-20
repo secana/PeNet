@@ -26,10 +26,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong StartAddressOfRawData
         {
-            get
-            {
-                return _is64Bit ? Buff.BytesToUInt64(Offset + 0) : Buff.BytesToUInt32(Offset + 0);
-            }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0) : Buff.BytesToUInt32(Offset + 0);
             set
             {
                 if (_is64Bit)
@@ -44,10 +41,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong EndAddressOfRawData
         {
-            get
-            {
-                return _is64Bit ? Buff.BytesToUInt64(Offset + 8) : Buff.BytesToUInt32(Offset + 4);
-            }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 8) : Buff.BytesToUInt32(Offset + 4);
             set
             {
                 if(_is64Bit)
@@ -62,10 +56,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong AddressOfIndex
         {
-            get
-            {
-                return _is64Bit ? Buff.BytesToUInt64(Offset + 0x10) : Buff.BytesToUInt32(Offset + 8);
-            }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x10) : Buff.BytesToUInt32(Offset + 8);
             set
             {
                 if(_is64Bit)
@@ -80,10 +71,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong AddressOfCallBacks
         {
-            get
-            {
-                return _is64Bit ? Buff.BytesToUInt64(Offset + 0x18) : Buff.BytesToUInt32(Offset + 0x0c);
-            }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x18) : Buff.BytesToUInt32(Offset + 0x0c);
             set
             {
                 if(_is64Bit)
@@ -98,10 +86,7 @@ namespace PeNet.Structures
         /// </summary>
         public uint SizeOfZeroFill
         {
-            get
-            {
-                return _is64Bit ? Buff.BytesToUInt32(Offset + 0x20) : Buff.BytesToUInt32(Offset + 0x10);
-            }
+            get => _is64Bit ? Buff.BytesToUInt32(Offset + 0x20) : Buff.BytesToUInt32(Offset + 0x10);
             set
             {
                 if(_is64Bit)
@@ -116,10 +101,7 @@ namespace PeNet.Structures
         /// </summary>
         public uint Characteristics
         {
-            get
-            {
-                return _is64Bit ? Buff.BytesToUInt32(Offset + 0x24) : Buff.BytesToUInt32(Offset + 0x14);
-            }
+            get => _is64Bit ? Buff.BytesToUInt32(Offset + 0x24) : Buff.BytesToUInt32(Offset + 0x14);
             set
             {
                 if(_is64Bit)

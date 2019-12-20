@@ -1,7 +1,4 @@
-﻿using System.Text;
-using ExtensionMethods = PeNet.Utilities.ExtensionMethods;
-
-namespace PeNet
+﻿namespace PeNet
 {
     /// <summary>
     ///     Represents an exported function.
@@ -39,7 +36,7 @@ namespace PeNet
         /// <summary>
         ///     Function name.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         /// <summary>
         ///     Function RVA.

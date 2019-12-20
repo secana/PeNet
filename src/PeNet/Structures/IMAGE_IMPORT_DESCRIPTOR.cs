@@ -24,8 +24,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint OriginalFirstThunk
         {
-            get { return Buff.BytesToUInt32(Offset); }
-            set { Buff.SetUInt32(Offset, value); }
+            get => Buff.BytesToUInt32(Offset);
+            set => Buff.SetUInt32(Offset, value);
         }
 
         /// <summary>
@@ -33,8 +33,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get { return Buff.BytesToUInt32(Offset + 0x4); }
-            set { Buff.SetUInt32(Offset + 0x4, value); }
+            get => Buff.BytesToUInt32(Offset + 0x4);
+            set => Buff.SetUInt32(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -42,8 +42,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint ForwarderChain
         {
-            get { return Buff.BytesToUInt32(Offset + 0x8); }
-            set { Buff.SetUInt32(Offset + 0x8, value); }
+            get => Buff.BytesToUInt32(Offset + 0x8);
+            set => Buff.SetUInt32(Offset + 0x8, value);
         }
 
         /// <summary>
@@ -51,8 +51,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Name
         {
-            get { return Buff.BytesToUInt32(Offset + 0xC); }
-            set { Buff.SetUInt32(Offset + 0xC, value); }
+            get => Buff.BytesToUInt32(Offset + 0xC);
+            set => Buff.SetUInt32(Offset + 0xC, value);
         }
 
         /// <summary>
@@ -61,8 +61,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint FirstThunk
         {
-            get { return Buff.BytesToUInt32(Offset + 0x10); }
-            set { Buff.SetUInt32(Offset + 0x10, value); }
+            get => Buff.BytesToUInt32(Offset + 0x10);
+            set => Buff.SetUInt32(Offset + 0x10, value);
         }
     }
 }

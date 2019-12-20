@@ -77,8 +77,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Reserved1
         {
-            get { return Buff.BytesToUInt32(Offset); }
-            set { Buff.SetUInt32(Offset, value); }
+            get => Buff.BytesToUInt32(Offset);
+            set => Buff.SetUInt32(Offset, value);
         }
 
         /// <summary>
@@ -86,8 +86,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte MajorVersion
         {
-            get { return Buff[Offset + 0x4]; }
-            set { Buff[Offset + 0x4] = value; }
+            get => Buff[Offset + 0x4];
+            set => Buff[Offset + 0x4] = value;
         }
 
         /// <summary>
@@ -95,8 +95,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte MinorVersion
         {
-            get { return Buff[Offset + 0x5]; }
-            set { Buff[Offset + 0x5] = value; }
+            get => Buff[Offset + 0x5];
+            set => Buff[Offset + 0x5] = value;
         }
 
         /// <summary>
@@ -108,8 +108,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte HeapSizes
         {
-            get { return Buff[Offset + 0x6]; }
-            set { Buff[Offset + 0x6] = value; }
+            get => Buff[Offset + 0x6];
+            set => Buff[Offset + 0x6] = value;
         }
 
         /// <summary>
@@ -117,8 +117,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte Reserved2
         {
-            get { return Buff[Offset + 0x7]; }
-            set { Buff[Offset + 0x7] = value; }
+            get => Buff[Offset + 0x7];
+            set => Buff[Offset + 0x7] = value;
         }
 
         /// <summary>
@@ -128,8 +128,8 @@ namespace PeNet.Structures
         /// </summary>
         public ulong Valid
         {
-            get { return Buff.BytesToUInt64(Offset + 0x8); }
-            set { Buff.SetUInt64(Offset + 0x8, value); }
+            get => Buff.BytesToUInt64(Offset + 0x8);
+            set => Buff.SetUInt64(Offset + 0x8, value);
         }
 
         /// <summary>
@@ -137,8 +137,8 @@ namespace PeNet.Structures
         /// </summary>
         public ulong MaskSorted
         {
-            get { return Buff.BytesToUInt64(Offset + 0x10); }
-            set { Buff.SetUInt64(Offset + 0x10, value); }
+            get => Buff.BytesToUInt64(Offset + 0x10);
+            set => Buff.SetUInt64(Offset + 0x10, value);
         }
 
         /// <summary>

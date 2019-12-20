@@ -26,8 +26,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint dwLength
         {
-            get { return Buff.BytesToUInt32(Offset); }
-            set { Buff.SetUInt32(Offset, value); }
+            get => Buff.BytesToUInt32(Offset);
+            set => Buff.SetUInt32(Offset, value);
         }
 
         /// <summary>
@@ -35,8 +35,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wRevision
         {
-            get { return Buff.BytesToUInt16(Offset + 0x4); }
-            set { Buff.SetUInt16(Offset + 0x4, value); }
+            get => Buff.BytesToUInt16(Offset + 0x4);
+            set => Buff.SetUInt16(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -44,8 +44,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wCertificateType
         {
-            get { return Buff.BytesToUInt16(Offset + 0x6); }
-            set { Buff.SetUInt16(Offset + 0x6, value); }
+            get => Buff.BytesToUInt16(Offset + 0x6);
+            set => Buff.SetUInt16(Offset + 0x6, value);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace PeNet.Structures
                 Array.Copy(Buff, Offset + 0x8, cert, 0, dwLength - 8);
                 return cert;
             }
-            set { Array.Copy(value, 0, Buff, Offset + 0x8, value.Length); }
+            set => Array.Copy(value, 0, Buff, Offset + 0x8, value.Length);
         }
     }
 }

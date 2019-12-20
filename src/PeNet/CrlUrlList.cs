@@ -55,29 +55,28 @@ namespace PeNet
             for (var i = 0; i < rawLength - 5; i++)
             {
                 // Find a HTTP(s) string.
-                if ((rawData[i] == 'h'
-                     && rawData[i + 1] == 't'
-                     && rawData[i + 2] == 't'
-                     && rawData[i + 3] == 'p'
-                     && rawData[i + 4] == ':')
-                    || (rawData[i] == 'l'
-                        && rawData[i + 1] == 'd'
-                        && rawData[i + 2] == 'a'
-                        && rawData[i + 3] == 'p'
-                        && rawData[i + 4] == ':'))
+                if (rawData[i] == 'h'
+                    && rawData[i + 1] == 't'
+                    && rawData[i + 2] == 't'
+                    && rawData[i + 3] == 'p'
+                    && rawData[i + 4] == ':'
+                    || rawData[i] == 'l'
+                    && rawData[i + 1] == 'd'
+                    && rawData[i + 2] == 'a'
+                    && rawData[i + 3] == 'p'
+                    && rawData[i + 4] == ':')
                 {
                     var bytes = new List<byte>();
                     for (var j = i; j < rawLength; j++)
                     {
-                        if ((rawData[j - 4] == '.'
-                             && rawData[j - 3] == 'c'
-                             && rawData[j - 2] == 'r'
-                             && rawData[j - 1] == 'l')
-                            || (rawData[j] == 'b'
-                                && rawData[j + 1] == 'a'
-                                && rawData[j + 2] == 's'
-                                && rawData[j + 3] == 'e'
-                                ))
+                        if (rawData[j - 4] == '.'
+                            && rawData[j - 3] == 'c'
+                            && rawData[j - 2] == 'r'
+                            && rawData[j - 1] == 'l'
+                            || rawData[j] == 'b'
+                            && rawData[j + 1] == 'a'
+                            && rawData[j + 2] == 's'
+                            && rawData[j + 3] == 'e')
                         {
                             i = j;
                             break;
@@ -108,8 +107,7 @@ namespace PeNet
 
         private bool IsValidUri(string uri)
         {
-            Uri uriResult;
-            return Uri.TryCreate(uri, UriKind.Absolute, out uriResult)
+            return Uri.TryCreate(uri, UriKind.Absolute, out var uriResult)
                    && (uriResult.Scheme == Uri.UriSchemeHttp
                        || uriResult.Scheme == Uri.UriSchemeHttps);
         }

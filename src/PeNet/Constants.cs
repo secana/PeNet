@@ -357,7 +357,23 @@ namespace PeNet
             /// <summary>
             ///     File header -> machine (CPU): clr pure MSIL (.Net)
             /// </summary>
-            IMAGE_FILE_MACHINE_CEE = 0xc0ee
+            IMAGE_FILE_MACHINE_CEE = 0xc0ee,
+
+            /// <summary>
+            ///     File header -> machine (CPU): ARM65 Little-Endian
+            /// </summary>
+            IMAGE_FILE_MACHINE_ARM64 = 0xAA64,
+
+            /// <summary>
+            ///     File header -> machine (CPU): ARM Thumb-2 Little-Endian
+            /// </summary>
+            IMAGE_FILE_MACHINE_ARMNT = 0x01C4,
+
+            /// <summary>
+            ///     File header -> machine (CPU): Interacts with the host and not
+            ///     a WOW64 guest
+            /// </summary>
+            IMAGE_FILE_MACHINE_TARGET_HOST = 0x0001
         }
 
         /// <summary>

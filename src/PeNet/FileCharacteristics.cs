@@ -1,7 +1,4 @@
-﻿using System.Text;
-using ExtensionMethods = PeNet.Utilities.ExtensionMethods;
-
-namespace PeNet
+﻿namespace PeNet
 {
     /// <summary>
     ///     Describes which file characteristics based on the
@@ -66,77 +63,77 @@ namespace PeNet
         /// <summary>
         ///     Relocation stripped,
         /// </summary>
-        public bool RelocStripped { get; private set; }
+        public bool RelocStripped { get; }
 
         /// <summary>
         ///     Is an executable image.
         /// </summary>
-        public bool ExecutableImage { get; private set; }
+        public bool ExecutableImage { get; }
 
         /// <summary>
         ///     Line numbers stripped.
         /// </summary>
-        public bool LineNumbersStripped { get; private set; }
+        public bool LineNumbersStripped { get; }
 
         /// <summary>
         ///     Local symbols stripped.
         /// </summary>
-        public bool LocalSymbolsStripped { get; private set; }
+        public bool LocalSymbolsStripped { get; }
 
         /// <summary>
         ///     (OBSOLTETE) Aggressively trim the working set.
         /// </summary>
-        public bool AggressiveWsTrim { get; private set; }
+        public bool AggressiveWsTrim { get; }
 
         /// <summary>
         ///     Application can handle addresses larger than 2 GB.
         /// </summary>
-        public bool LargeAddressAware { get; private set; }
+        public bool LargeAddressAware { get; }
 
         /// <summary>
         ///     (OBSOLTETE) Bytes of word are reversed.
         /// </summary>
-        public bool BytesReversedLo { get; private set; }
+        public bool BytesReversedLo { get; }
 
         /// <summary>
         ///     Supports 32 Bit words.
         /// </summary>
-        public bool Machine32Bit { get; private set; }
+        public bool Machine32Bit { get; }
 
         /// <summary>
         ///     Debug stripped and stored in a separate file.
         /// </summary>
-        public bool DebugStripped { get; private set; }
+        public bool DebugStripped { get; }
 
         /// <summary>
         ///     If the image is on a removable media, copy and run it from the swap file.
         /// </summary>
-        public bool RemovableRunFromSwap { get; private set; }
+        public bool RemovableRunFromSwap { get; }
 
         /// <summary>
         ///     If the image is on the network, copy and run it from the swap file.
         /// </summary>
-        public bool NetRunFromSwap { get; private set; }
+        public bool NetRunFromSwap { get; }
 
         /// <summary>
         ///     The image is a system file.
         /// </summary>
-        public bool System { get; private set; }
+        public bool System { get; }
 
         /// <summary>
         ///     Is a dynamic loaded library and executable but cannot
         ///     be run on its own.
         /// </summary>
-        public bool DLL { get; private set; }
+        public bool DLL { get; }
 
         /// <summary>
         ///     Image should be run only on uniprocessor.
         /// </summary>
-        public bool UpSystemOnly { get; private set; }
+        public bool UpSystemOnly { get; }
 
         /// <summary>
         ///     (OBSOLETE) Reserved.
         /// </summary>
-        public bool BytesReversedHi { get; private set; }
+        public bool BytesReversedHi { get; }
     }
 }

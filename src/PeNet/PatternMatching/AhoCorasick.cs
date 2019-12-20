@@ -230,8 +230,8 @@ namespace PeNet.PatternMatching
             /// <returns>Child node.</returns>
             public Node<TNode, TNodeValue> this[TNode c]
             {
-                get { return children.ContainsKey(c) ? children[c] : null; }
-                set { children[c] = value; }
+                get => children.ContainsKey(c) ? children[c] : null;
+                set => children[c] = value;
             }
 
             /// <summary>

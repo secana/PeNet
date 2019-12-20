@@ -27,8 +27,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Size
         {
-            get { return Buff.BytesToUInt32(Offset); }
-            set { Buff.SetUInt32(Offset, value); }
+            get => Buff.BytesToUInt32(Offset);
+            set => Buff.SetUInt32(Offset, value);
         }
 
         /// <summary>
@@ -37,8 +37,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get { return Buff.BytesToUInt32(Offset + 0x4); }
-            set { Buff.SetUInt32(Offset + 0x4, value); }
+            get => Buff.BytesToUInt32(Offset + 0x4);
+            set => Buff.SetUInt32(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -46,8 +46,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorVesion
         {
-            get { return Buff.BytesToUInt16(Offset + 0x8); }
-            set { Buff.SetUInt16(Offset + 0x8, value); }
+            get => Buff.BytesToUInt16(Offset + 0x8);
+            set => Buff.SetUInt16(Offset + 0x8, value);
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorVersion
         {
-            get { return Buff.BytesToUInt16(Offset + 0xA); }
-            set { Buff.SetUInt16(Offset + 0xA, value); }
+            get => Buff.BytesToUInt16(Offset + 0xA);
+            set => Buff.SetUInt16(Offset + 0xA, value);
         }
 
         /// <summary>
@@ -64,8 +64,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint GlobalFlagsClear
         {
-            get { return Buff.BytesToUInt32(Offset + 0xC); }
-            set { Buff.SetUInt32(Offset + 0xC, value); }
+            get => Buff.BytesToUInt32(Offset + 0xC);
+            set => Buff.SetUInt32(Offset + 0xC, value);
         }
 
         /// <summary>
@@ -73,8 +73,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint GlobalFlagsSet
         {
-            get { return Buff.BytesToUInt32(Offset + 0x10); }
-            set { Buff.SetUInt32(Offset + 0x10, value); }
+            get => Buff.BytesToUInt32(Offset + 0x10);
+            set => Buff.SetUInt32(Offset + 0x10, value);
         }
 
         /// <summary>
@@ -82,8 +82,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint CriticalSectionDefaultTimeout
         {
-            get { return Buff.BytesToUInt32(Offset + 0x14); }
-            set { Buff.SetUInt32(Offset + 0x14, value); }
+            get => Buff.BytesToUInt32(Offset + 0x14);
+            set => Buff.SetUInt32(Offset + 0x14, value);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong DeCommitFreeBlockThreshold
         {
-            get { return _is64Bit ? Buff.BytesToUInt64(Offset + 0x18) : Buff.BytesToUInt32(Offset + 0x18); }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x18) : Buff.BytesToUInt32(Offset + 0x18);
             set
             {
                 if (_is64Bit)
@@ -106,7 +106,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong DeCommitTotalFreeThreshold
         {
-            get { return _is64Bit ? Buff.BytesToUInt64(Offset + 0x20) : Buff.BytesToUInt32(Offset + 0x1c); }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x20) : Buff.BytesToUInt32(Offset + 0x1c);
             set
             {
                 if(_is64Bit)
@@ -122,7 +122,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong LockPrefixTable
         {
-            get { return _is64Bit ? Buff.BytesToUInt64(Offset + 0x28) : Buff.BytesToUInt32(Offset + 0x20); }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x28) : Buff.BytesToUInt32(Offset + 0x20);
             set
             {
                 if (_is64Bit)
@@ -137,7 +137,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong MaximumAllocationSize
         {
-            get { return _is64Bit ? Buff.BytesToUInt64(Offset + 0x30) : Buff.BytesToUInt32(Offset + 0x24); }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x30) : Buff.BytesToUInt32(Offset + 0x24);
             set
             {
                 if(_is64Bit)
@@ -152,7 +152,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong VirtualMemoryThershold
         {
-            get { return _is64Bit ? Buff.BytesToUInt64(Offset + 0x38) : Buff.BytesToUInt32(Offset + 0x28); }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x38) : Buff.BytesToUInt32(Offset + 0x28);
             set
             {
                 if(_is64Bit)
@@ -167,7 +167,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong ProcessAffinityMask
         {
-            get { return _is64Bit ? Buff.BytesToUInt64(Offset + 0x40) : Buff.BytesToUInt32(Offset + 0x30); }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x40) : Buff.BytesToUInt32(Offset + 0x30);
             set
             {
                 if(_is64Bit)
@@ -182,7 +182,7 @@ namespace PeNet.Structures
         /// </summary>
         public uint ProcessHeapFlags
         {
-            get { return _is64Bit ? Buff.BytesToUInt32(Offset + 0x48) : Buff.BytesToUInt32(Offset + 0x2C); }
+            get => _is64Bit ? Buff.BytesToUInt32(Offset + 0x48) : Buff.BytesToUInt32(Offset + 0x2C);
             set
             {
                 if(_is64Bit)
@@ -197,7 +197,7 @@ namespace PeNet.Structures
         /// </summary>
         public ushort CSDVersion
         {
-            get { return _is64Bit ? Buff.BytesToUInt16(Offset + 0x4C) : Buff.BytesToUInt16(Offset + 0x34); }
+            get => _is64Bit ? Buff.BytesToUInt16(Offset + 0x4C) : Buff.BytesToUInt16(Offset + 0x34);
             set
             {
                 if(_is64Bit)
@@ -212,7 +212,7 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Reserved1
         {
-            get { return _is64Bit ? Buff.BytesToUInt16(Offset + 0x4E) : Buff.BytesToUInt16(Offset + 0x36); }
+            get => _is64Bit ? Buff.BytesToUInt16(Offset + 0x4E) : Buff.BytesToUInt16(Offset + 0x36);
             set
             {
                 if(_is64Bit)
@@ -227,7 +227,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong EditList
         {
-            get { return _is64Bit ? Buff.BytesToUInt64(Offset + 0x50) : Buff.BytesToUInt32(Offset + 0x38); }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x50) : Buff.BytesToUInt32(Offset + 0x38);
             set
             {
                 if (_is64Bit)
@@ -242,7 +242,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong SecurityCoockie
         {
-            get { return _is64Bit ? Buff.BytesToUInt64(Offset + 0x58) : Buff.BytesToUInt32(Offset + 0x3C); }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x58) : Buff.BytesToUInt32(Offset + 0x3C);
             set
             {
                 if (_is64Bit)
@@ -258,7 +258,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong SEHandlerTable
         {
-            get { return _is64Bit ? Buff.BytesToUInt64(Offset + 0x60) : Buff.BytesToUInt32(Offset + 0x40); }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x60) : Buff.BytesToUInt32(Offset + 0x40);
             set
             {
                 if(_is64Bit)
@@ -273,7 +273,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong SEHandlerCount
         {
-            get { return _is64Bit ? Buff.BytesToUInt64(Offset + 0x68) : Buff.BytesToUInt32(Offset + 0x44); }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x68) : Buff.BytesToUInt32(Offset + 0x44);
             set
             {
                 if(_is64Bit)
@@ -288,7 +288,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong GuardCFCheckFunctionPointer
         {
-            get { return _is64Bit ? Buff.BytesToUInt64(Offset + 0x70) : Buff.BytesToUInt32(Offset + 0x48); }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x70) : Buff.BytesToUInt32(Offset + 0x48);
             set
             {
                 if(_is64Bit)
@@ -303,7 +303,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong Reserved2
         {
-            get { return _is64Bit ? Buff.BytesToUInt64(Offset + 0x78) : Buff.BytesToUInt32(Offset + 0x4C); }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x78) : Buff.BytesToUInt32(Offset + 0x4C);
             set
             {
                 if(_is64Bit)
@@ -318,7 +318,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong GuardCFFunctionTable
         {
-            get { return _is64Bit ? Buff.BytesToUInt64(Offset + 0x80) : Buff.BytesToUInt32(Offset + 0x50); }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x80) : Buff.BytesToUInt32(Offset + 0x50);
             set
             {
                 if(_is64Bit)
@@ -333,7 +333,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong GuardCFFunctionCount
         {
-            get { return _is64Bit ? Buff.BytesToUInt64(Offset + 0x88) : Buff.BytesToUInt32(Offset + 0x54); }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x88) : Buff.BytesToUInt32(Offset + 0x54);
             set
             {
                 if(_is64Bit)
@@ -348,7 +348,7 @@ namespace PeNet.Structures
         /// </summary>
         public uint GuardFlags
         {
-            get { return _is64Bit ? Buff.BytesToUInt32(Offset + 0x90) : Buff.BytesToUInt32(Offset + 0x58); }
+            get => _is64Bit ? Buff.BytesToUInt32(Offset + 0x90) : Buff.BytesToUInt32(Offset + 0x58);
             set
             {
                 if(_is64Bit)

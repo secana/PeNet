@@ -31,8 +31,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Characteristics
         {
-            get { return Buff.BytesToUInt32(Offset); }
-            set { Buff.SetUInt32(Offset, value); }
+            get => Buff.BytesToUInt32(Offset);
+            set => Buff.SetUInt32(Offset, value);
         }
 
         /// <summary>
@@ -40,8 +40,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get { return Buff.BytesToUInt32(Offset + 0x4); }
-            set { Buff.SetUInt32(Offset + 0x4, value); }
+            get => Buff.BytesToUInt32(Offset + 0x4);
+            set => Buff.SetUInt32(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -49,8 +49,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorVersion
         {
-            get { return Buff.BytesToUInt16(Offset + 0x8); }
-            set { Buff.SetUInt16(Offset + 0x8, value); }
+            get => Buff.BytesToUInt16(Offset + 0x8);
+            set => Buff.SetUInt16(Offset + 0x8, value);
         }
 
         /// <summary>
@@ -58,8 +58,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorVersion
         {
-            get { return Buff.BytesToUInt16(Offset + 0xa); }
-            set { Buff.SetUInt16(Offset + 0xa, value); }
+            get => Buff.BytesToUInt16(Offset + 0xa);
+            set => Buff.SetUInt16(Offset + 0xa, value);
         }
 
         /// <summary>
@@ -67,8 +67,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfNameEntries
         {
-            get { return Buff.BytesToUInt16(Offset + 0xc); }
-            set { Buff.SetUInt16(Offset + 0xc, value); }
+            get => Buff.BytesToUInt16(Offset + 0xc);
+            set => Buff.SetUInt16(Offset + 0xc, value);
         }
 
         /// <summary>
@@ -76,8 +76,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfIdEntries
         {
-            get { return Buff.BytesToUInt16(Offset + 0xe); }
-            set { Buff.SetUInt16(Offset + 0xe, value); }
+            get => Buff.BytesToUInt16(Offset + 0xe);
+            set => Buff.SetUInt16(Offset + 0xe, value);
         }
 
         private IMAGE_RESOURCE_DIRECTORY_ENTRY[] ParseDirectoryEntries(uint resourceDirOffset)

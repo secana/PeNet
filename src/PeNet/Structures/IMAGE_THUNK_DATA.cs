@@ -29,7 +29,7 @@ namespace PeNet.Structures
         /// </summary>
         public ulong AddressOfData
         {
-            get { return _is64Bit ? Buff.BytesToUInt64(Offset) : Buff.BytesToUInt32(Offset); }
+            get => _is64Bit ? Buff.BytesToUInt64(Offset) : Buff.BytesToUInt32(Offset);
             set
             {
                 if (!_is64Bit)
@@ -44,8 +44,8 @@ namespace PeNet.Structures
         /// </summary>
         public ulong Ordinal
         {
-            get { return AddressOfData; }
-            set { AddressOfData = value; }
+            get => AddressOfData;
+            set => AddressOfData = value;
         }
 
         /// <summary>
@@ -53,8 +53,8 @@ namespace PeNet.Structures
         /// </summary>
         public ulong ForwarderString
         {
-            get { return AddressOfData; }
-            set { AddressOfData = value; }
+            get => AddressOfData;
+            set => AddressOfData = value;
         }
 
         /// <summary>
@@ -62,8 +62,8 @@ namespace PeNet.Structures
         /// </summary>
         public ulong Function
         {
-            get { return AddressOfData; }
-            set { AddressOfData = value; }
+            get => AddressOfData;
+            set => AddressOfData = value;
         }
     }
 }

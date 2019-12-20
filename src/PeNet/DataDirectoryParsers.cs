@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using PeNet.Authenticode;
 using PeNet.Parser;
 using PeNet.Structures;
 using PeNet.Utilities;
@@ -33,8 +31,8 @@ namespace PeNet
 
         public DataDirectoryParsers(
             byte[] buff,
-            ICollection<IMAGE_DATA_DIRECTORY> dataDirectories,
-            ICollection<IMAGE_SECTION_HEADER> sectionHeaders,
+            IEnumerable<IMAGE_DATA_DIRECTORY> dataDirectories,
+            IEnumerable<IMAGE_SECTION_HEADER> sectionHeaders,
             bool is32Bit
             )
         {

@@ -59,13 +59,19 @@ namespace PeNet.Structures
         }
 
         /// <summary>
+        /// The section name byte array resolved to
+        /// a string.
+        /// </summary>
+        public string NameResolved => FlagResolver.ResolveSectionName(Name);
+
+        /// <summary>
         ///     Size of the section when loaded into memory. If it's bigger than
         ///     the raw data size, the rest of the section is filled with zeros.
         /// </summary>
         public uint VirtualSize
         {
-            get { return Buff.BytesToUInt32(Offset + 0x8); }
-            set { Buff.SetUInt32(Offset + 0x8, value); }
+            get => Buff.BytesToUInt32(Offset + 0x8);
+            set => Buff.SetUInt32(Offset + 0x8, value);
         }
 
 
@@ -74,8 +80,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint VirtualAddress
         {
-            get { return Buff.BytesToUInt32(Offset + 0xC); }
-            set { Buff.SetUInt32(Offset + 0xC, value); }
+            get => Buff.BytesToUInt32(Offset + 0xC);
+            set => Buff.SetUInt32(Offset + 0xC, value);
         }
 
         /// <summary>
@@ -85,8 +91,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint SizeOfRawData
         {
-            get { return Buff.BytesToUInt32(Offset + 0x10); }
-            set { Buff.SetUInt32(Offset + 0x10, value); }
+            get => Buff.BytesToUInt32(Offset + 0x10);
+            set => Buff.SetUInt32(Offset + 0x10, value);
         }
 
         /// <summary>
@@ -94,8 +100,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint PointerToRawData
         {
-            get { return Buff.BytesToUInt32(Offset + 0x14); }
-            set { Buff.SetUInt32(Offset + 0x14, value); }
+            get => Buff.BytesToUInt32(Offset + 0x14);
+            set => Buff.SetUInt32(Offset + 0x14, value);
         }
 
         /// <summary>
@@ -104,8 +110,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint PointerToRelocations
         {
-            get { return Buff.BytesToUInt32(Offset + 0x18); }
-            set { Buff.SetUInt32(Offset + 0x18, value); }
+            get => Buff.BytesToUInt32(Offset + 0x18);
+            set => Buff.SetUInt32(Offset + 0x18, value);
         }
 
         /// <summary>
@@ -114,8 +120,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint PointerToLinenumbers
         {
-            get { return Buff.BytesToUInt32(Offset + 0x1C); }
-            set { Buff.SetUInt32(Offset + 0x1C, value); }
+            get => Buff.BytesToUInt32(Offset + 0x1C);
+            set => Buff.SetUInt32(Offset + 0x1C, value);
         }
 
         /// <summary>
@@ -123,8 +129,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfRelocations
         {
-            get { return Buff.BytesToUInt16(Offset + 0x20); }
-            set { Buff.SetUInt16(Offset + 0x20, value); }
+            get => Buff.BytesToUInt16(Offset + 0x20);
+            set => Buff.SetUInt16(Offset + 0x20, value);
         }
 
         /// <summary>
@@ -132,8 +138,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfLinenumbers
         {
-            get { return Buff.BytesToUInt16(Offset + 0x22); }
-            set { Buff.SetUInt16(Offset + 0x22, value); }
+            get => Buff.BytesToUInt16(Offset + 0x22);
+            set => Buff.SetUInt16(Offset + 0x22, value);
         }
 
         /// <summary>
@@ -141,8 +147,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Characteristics
         {
-            get { return Buff.BytesToUInt32(Offset + 0x24); }
-            set { Buff.SetUInt32(Offset + 0x24, value); }
+            get => Buff.BytesToUInt32(Offset + 0x24);
+            set => Buff.SetUInt32(Offset + 0x24, value);
         }
     }
 }
