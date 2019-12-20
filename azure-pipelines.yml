@@ -61,6 +61,7 @@ steps:
     configuration: $(buildConfiguration)
 
 - task: NuGetCommand@2
+  displayName: 'Publish NuGet Packages'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     command: push
