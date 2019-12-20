@@ -46,6 +46,10 @@ steps:
     commitmessage: 'Automated gh-pages update'
     cleanRepository: false
 
+- task: NuGetToolInstaller@0
+  inputs:
+    versionSpec: '5.4.0'
+
 - task: DotNetCoreCLI@2
   displayName: 'Pack Nuget Package'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
