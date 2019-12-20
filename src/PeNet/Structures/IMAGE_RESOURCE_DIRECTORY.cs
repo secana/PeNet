@@ -105,7 +105,7 @@ namespace PeNet.Structures
 
         private bool SanityCheckFailed()
         {
-            // There exists the case that only some second stage directories are valid and others
+            // There exists the case that only some second/third stage directories are valid and others
             // are not. For this case try to parse at least the valid ones. In that case
             // accessing properties throws an "IndexOutOfRange" exception.
             // Example (malicious!): 9d5eb5ac899764d5ed30cc93df8d645e598e2cbce53ae7bb081ded2c38286d1e

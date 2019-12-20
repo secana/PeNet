@@ -295,117 +295,63 @@ namespace PeNet.Utilities
         /// <summary>
         ///     Map an virtual address to the raw file address.
         /// </summary>
-        /// <param name="VA">Virtual Address</param>
+        /// <param name="virtualAddress">Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static ulong VAtoFileMapping(this ulong VA, ICollection<IMAGE_SECTION_HEADER> sh)
+        public static ulong VAtoFileMapping(this ulong virtualAddress, ICollection<IMAGE_SECTION_HEADER> sh)
         {
-            VA -= sh.FirstOrDefault().ImageBaseAddress;
-            var sortedSt = sh.OrderBy(x => x.VirtualAddress).ToList();
-            uint vOffset = 0, rOffset = 0;
-            var secFound = false;
-            for (var i = 0; i < sortedSt.Count - 1; i++)
-            {
-                if (sortedSt[i].VirtualAddress <= VA && sortedSt[i + 1].VirtualAddress > VA)
-                {
-                    vOffset = sortedSt[i].VirtualAddress;
-                    rOffset = sortedSt[i].PointerToRawData;
-                    secFound = true;
-                    break;
-                }
-            }
+            var rva= virtualAddress - sh.FirstOrDefault().ImageBaseAddress;
+            return RVAtoFileMapping(rva, sh);
 
-            // try last section
-            if (secFound == false)
-            {
-                if (VA >= sortedSt.Last().VirtualAddress &&
-                    VA <= sortedSt.Last().VirtualSize + sortedSt.Last().VirtualAddress)
-                {
-                    vOffset = sortedSt.Last().VirtualAddress;
-                    rOffset = sortedSt.Last().PointerToRawData;
-                }
-                else
-                {
-                    throw new Exception("Cannot find corresponding section.");
-                }
-            }
-
-            return VA - vOffset + rOffset;
-        }
-
-        /// <summary>
-        ///     Map an virtual address to the raw file address.
-        /// </summary>
-        /// <param name="VA">Virtual Address</param>
-        /// <param name="sh">Section Headers</param>
-        /// <returns>Raw file address.</returns>
-        public static uint VAtoFileMapping(this uint VA, ICollection<IMAGE_SECTION_HEADER> sh)
-        {
-            return (uint)VAtoFileMapping((uint) (ulong)VA, sh);
         }
 
         /// <summary>
         ///     Map an relative virtual address to the raw file address.
         /// </summary>
-        /// <param name="RVA">Relative Virtual Address</param>
+        /// <param name="relativeVirtualAddress">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static ulong RVAtoFileMapping(this ulong RVA, ICollection<IMAGE_SECTION_HEADER> sh)
+        public static ulong RVAtoFileMapping(this ulong relativeVirtualAddress, ICollection<IMAGE_SECTION_HEADER> sh)
         {
-            var sortedSt = sh.OrderBy(x => x.VirtualAddress).ToList();
-            uint vOffset = 0, rOffset = 0;
-            var secFound = false;
-            for (var i = 0; i < sortedSt.Count - 1; i++)
+            IMAGE_SECTION_HEADER? GetSectionForRva(ulong rva)
             {
-                if (sortedSt[i].VirtualAddress <= RVA && sortedSt[i + 1].VirtualAddress > RVA)
-                {
-                    vOffset = sortedSt[i].VirtualAddress;
-                    rOffset = sortedSt[i].PointerToRawData;
-                    secFound = true;
-                    break;
-                }
+                var sectionsByRva = sh.OrderBy(s => s.VirtualAddress).ToList();
+                return sectionsByRva.FirstOrDefault(t =>
+                    rva >= t.VirtualAddress && rva < t.VirtualAddress + t.VirtualSize);
             }
 
-            // try last section
-            if (secFound == false)
+            var section = GetSectionForRva(relativeVirtualAddress);
+
+            if (section is null)
             {
-                if (RVA >= sortedSt.Last().VirtualAddress &&
-                    RVA <= sortedSt.Last().VirtualSize + sortedSt.Last().VirtualAddress)
-                {
-                    vOffset = sortedSt.Last().VirtualAddress;
-                    rOffset = sortedSt.Last().PointerToRawData;
-                }
-                else
-                {
-                    throw new Exception("Cannot find corresponding section.");
-                }
+                throw new Exception("Cannot find corresponding section.");
             }
 
-            return RVA - vOffset + rOffset;
+            return relativeVirtualAddress - section.VirtualAddress + section.PointerToRawData;
         }
 
         /// <summary>
         ///     Map an relative virtual address to the raw file address.
         /// </summary>
-        /// <param name="RVA">Relative Virtual Address</param>
+        /// <param name="relativeVirtualAddress">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static uint RVAtoFileMapping(this uint RVA, ICollection<IMAGE_SECTION_HEADER> sh)
+        public static uint RVAtoFileMapping(this uint relativeVirtualAddress, ICollection<IMAGE_SECTION_HEADER> sh)
         {
-            return (uint) RVAtoFileMapping((ulong) RVA, sh);
+            return (uint) RVAtoFileMapping((ulong) relativeVirtualAddress, sh);
         }
 
         /// <summary>
         ///     Map an relative virtual address to the raw file address.
         /// </summary>
-        /// <param name="rva">Relative Virtual Address</param>
+        /// <param name="RelativeVirtualAddress">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw address of null if error occurred.</returns>
-        public static uint? SafeRVAtoFileMapping(this uint rva, ICollection<IMAGE_SECTION_HEADER> sh)
+        public static uint? SafeRVAtoFileMapping(this uint RelativeVirtualAddress, ICollection<IMAGE_SECTION_HEADER> sh)
         {
             try
             {
-                return rva.RVAtoFileMapping(sh);
+                return RelativeVirtualAddress.RVAtoFileMapping(sh);
             }
             catch (Exception)
             {
