@@ -41,8 +41,6 @@ namespace PeNet.Parser
             }
             catch (Exception)
             {
-                // Silently catch the exception
-                // TODO: Add global list with exception
                 _target = null;
             }
 

@@ -298,23 +298,23 @@ namespace PeNet
         /// <summary>
         ///     The SHA-256 hash sum of the binary.
         /// </summary>
-        public string SHA256 => _sha256 ?? (_sha256 = Hashes.Sha256(Buff));
+        public string SHA256 => _sha256 ??= Hashes.Sha256(Buff);
 
         /// <summary>
         ///     The SHA-1 hash sum of the binary.
         /// </summary>
-        public string SHA1 => _sha1 ?? (_sha1 = Hashes.Sha1(Buff));
+        public string SHA1 => _sha1 ??= Hashes.Sha1(Buff);
 
         /// <summary>
         ///     The MD5 of hash sum of the binary.
         /// </summary>
-        public string MD5 => _md5 ?? (_md5 = Hashes.MD5(Buff));
+        public string MD5 => _md5 ??= Hashes.MD5(Buff);
 
         /// <summary>
         ///     The Import Hash of the binary if any imports are
         ///     given else null;
         /// </summary>
-        public string ImpHash => _impHash ?? (_impHash = new ImportHash(ImportedFunctions).ImpHash);
+        public string ImpHash => _impHash ??= new ImportHash(ImportedFunctions).ImpHash;
 
         /// <summary>
         ///     Returns the file size in bytes.
@@ -353,8 +353,6 @@ namespace PeNet
             }
             catch (Exception)
             {
-                // Silently catch exceptions.
-                // TODO: Add to global exception list.
                 return null;
             }
         }
