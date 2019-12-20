@@ -18,7 +18,7 @@ namespace PeNet.Parser
         protected override byte[] ParseTarget()
         {
             var blob = new byte[_size];
-            Array.Copy(_buff, _offset, blob, 0, _size);
+            Array.Copy(Buff, Offset, blob, 0, _size);
 
             return blob;
         }

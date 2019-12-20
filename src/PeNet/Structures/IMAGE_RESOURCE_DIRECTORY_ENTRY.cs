@@ -61,7 +61,7 @@ namespace PeNet.Structures
         /// <summary>
         ///     The resolved name as a string if its a named resource.
         /// </summary>
-        public string ResolvedName { get; private set; }
+        public string ResolvedName { get; }
 
         /// <summary>
         ///     The ID if its a ID resource.

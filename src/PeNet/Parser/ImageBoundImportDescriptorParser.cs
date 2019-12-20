@@ -11,7 +11,7 @@ namespace PeNet.Parser
 
         protected override IMAGE_BOUND_IMPORT_DESCRIPTOR ParseTarget()
         {
-            return new IMAGE_BOUND_IMPORT_DESCRIPTOR(_buff, _offset);
+            return new IMAGE_BOUND_IMPORT_DESCRIPTOR(Buff, Offset);
         }
     }
 }

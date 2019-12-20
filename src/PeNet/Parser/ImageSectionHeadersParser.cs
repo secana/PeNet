@@ -17,10 +17,10 @@ namespace PeNet.Parser
         protected override IMAGE_SECTION_HEADER[] ParseTarget()
         {
             var sh = new IMAGE_SECTION_HEADER[_numOfSections];
-            uint secSize = 0x28; // Every section header is 40 bytes in size.
+            const uint secSize = 0x28; // Every section header is 40 bytes in size.
             for (uint i = 0; i < _numOfSections; i++)
             {
-                sh[i] = new IMAGE_SECTION_HEADER(_buff, _offset + i*secSize, _imageBaseAddress);
+                sh[i] = new IMAGE_SECTION_HEADER(Buff, Offset + i*secSize, _imageBaseAddress);
             }
 
             return sh;

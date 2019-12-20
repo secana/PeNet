@@ -12,7 +12,7 @@ namespace PeNet.Parser
 
         protected override IMAGE_IMPORT_DESCRIPTOR[] ParseTarget()
         {
-            if (_offset == 0)
+            if (Offset == 0)
                 return null;
 
             var idescs = new List<IMAGE_IMPORT_DESCRIPTOR>();
@@ -21,7 +21,7 @@ namespace PeNet.Parser
 
             while (true)
             {
-                var idesc = new IMAGE_IMPORT_DESCRIPTOR(_buff, _offset + idescSize*round);
+                var idesc = new IMAGE_IMPORT_DESCRIPTOR(Buff, Offset + idescSize*round);
 
                 // Found the last IMAGE_IMPORT_DESCRIPTOR which is completely null (except TimeDateStamp).
                 if (idesc.OriginalFirstThunk == 0

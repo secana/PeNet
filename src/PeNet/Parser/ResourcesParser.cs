@@ -13,7 +13,7 @@ namespace PeNet.Parser
 
         protected override Resources ParseTarget()
         {
-            return new Resources(_buff, _offset, _vsVersionOffset);
+            return new Resources(Buff, Offset, _vsVersionOffset);
         }
     }
 }

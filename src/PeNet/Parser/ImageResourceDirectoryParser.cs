@@ -1,5 +1,4 @@
-﻿using System;
-using PeNet.Structures;
+﻿using PeNet.Structures;
 
 namespace PeNet.Parser
 {
@@ -12,20 +11,20 @@ namespace PeNet.Parser
 
         protected override IMAGE_RESOURCE_DIRECTORY ParseTarget()
         {
-            if (_offset == 0)
+            if (Offset == 0)
                 return null;
 
             // Parse the root directory.
-            var root = new IMAGE_RESOURCE_DIRECTORY(_buff, _offset, _offset);
+            var root = new IMAGE_RESOURCE_DIRECTORY(Buff, Offset, Offset);
 
             // Parse the second stage (type)
             foreach (var de in root.DirectoryEntries)
             {
 
                 de.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
-                    _buff,
-                    _offset + de.OffsetToDirectory,
-                    _offset
+                    Buff,
+                    Offset + de.OffsetToDirectory,
+                    Offset
                 );
 
                 var sndLevel = de?.ResourceDirectory?.DirectoryEntries;
@@ -36,9 +35,9 @@ namespace PeNet.Parser
                 foreach (var de2 in sndLevel)
                 {
                     de2.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
-                        _buff,
-                        _offset + de2.OffsetToDirectory,
-                        _offset
+                        Buff,
+                        Offset + de2.OffsetToDirectory,
+                        Offset
                         );
 
                     var thrdLevel = de2?.ResourceDirectory?.DirectoryEntries;
@@ -48,8 +47,8 @@ namespace PeNet.Parser
                     // Parse the forth stage (language) with the data.
                     foreach (var de3 in thrdLevel)
                     {
-                        de3.ResourceDataEntry = new IMAGE_RESOURCE_DATA_ENTRY(_buff,
-                            _offset + de3.OffsetToData);
+                        de3.ResourceDataEntry = new IMAGE_RESOURCE_DATA_ENTRY(Buff,
+                            Offset + de3.OffsetToData);
                     }
                 }
             }

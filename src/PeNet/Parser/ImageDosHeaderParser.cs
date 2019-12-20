@@ -11,7 +11,7 @@ namespace PeNet.Parser
 
         protected override IMAGE_DOS_HEADER ParseTarget()
         {
-            return new IMAGE_DOS_HEADER(_buff, _offset);
+            return new IMAGE_DOS_HEADER(Buff, Offset);
         }
     }
 }

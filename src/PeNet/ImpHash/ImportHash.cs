@@ -30,7 +30,7 @@ namespace PeNet.ImpHash
         /// <summary>
         ///     The import hash of the PE file as a string.
         /// </summary>
-        public string ImpHash { get; private set; }
+        public string ImpHash { get; }
 
 
         private string ComputeImpHash(ICollection<ImportFunction> importedFunctions)

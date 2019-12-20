@@ -5,21 +5,21 @@ namespace PeNet.Parser
     internal abstract class SafeParser<T>
         where T : class
     {
-        protected readonly byte[] _buff;
-        protected readonly uint _offset;
+        protected readonly byte[] Buff;
+        protected readonly uint Offset;
         private bool _alreadyParsed;
 
         private T _target;
 
         internal SafeParser(byte[] buff, uint offset)
         {
-            _buff = buff;
-            _offset = offset;
+            Buff = buff;
+            Offset = offset;
         }
 
         private bool SanityCheckFailed()
         {
-            return _offset > _buff?.Length;
+            return Offset > Buff?.Length;
         }
 
 

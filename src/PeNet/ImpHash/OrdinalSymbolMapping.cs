@@ -542,21 +542,12 @@ namespace PeNet.ImpHash
         };
 
         public static string Lookup(Modul module, uint ordinal)
-        {
-            string name;
-            switch (module)
+            => module switch
             {
-                case Modul.oleaut32:
-                    name = oleaut32.ContainsKey(ordinal) ? oleaut32[ordinal] : $"ord{ordinal}";
-                    break;
-                case Modul.wsock32:
-                case Modul.ws2_32:
-                    name = ws2_32.ContainsKey(ordinal) ? ws2_32[ordinal] : $"ord{ordinal}";
-                    break;
-                default:
-                    throw new Exception("Unknown module chosen for ordinal/name lookup.");
-            }
-            return name;
-        }
+                Modul.oleaut32 => (oleaut32.ContainsKey(ordinal) ? oleaut32[ordinal] : $"ord{ordinal}"),
+                Modul.wsock32 => (ws2_32.ContainsKey(ordinal) ? ws2_32[ordinal] : $"ord{ordinal}"),
+                Modul.ws2_32 => (ws2_32.ContainsKey(ordinal) ? ws2_32[ordinal] : $"ord{ordinal}"),
+                _ => throw new Exception("Unknown module chosen for ordinal/name lookup.")
+            };
     }
 }

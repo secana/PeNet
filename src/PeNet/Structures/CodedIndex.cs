@@ -85,7 +85,7 @@ namespace PeNet.Structures
 
     public class IndexSize
     {
-        private const byte unused = 0xFF;
+        private const byte Unused = 0xFF;
         public IndexSize(MetaDataTableInfo[] tables)
         {
             _index = new Dictionary<Index, IMetaDataIndex>
@@ -117,7 +117,7 @@ namespace PeNet.Structures
                 {Index.MethodDefOrRef, new CodedIndex(tables, (byte)MetadataToken.MethodDef, (byte)MetadataToken.MemberReference)},
                 {Index.MemberForwarded, new CodedIndex(tables, (byte)MetadataToken.Field, (byte)MetadataToken.MethodDef)},
                 {Index.Implementation, new CodedIndex(tables, (byte)MetadataToken.Field, (byte)MetadataToken.AssemblyReference, (byte)MetadataToken.ExportedType)},
-                {Index.CustomAttributeType, new CodedIndex(tables, unused, unused, (byte)MetadataToken.MethodDef, (byte)MetadataToken.MemberReference, unused)},
+                {Index.CustomAttributeType, new CodedIndex(tables, Unused, Unused, (byte)MetadataToken.MethodDef, (byte)MetadataToken.MemberReference, Unused)},
                 {Index.ResolutionScope, new CodedIndex(tables, (byte)MetadataToken.Module, (byte)MetadataToken.ModuleReference, (byte)MetadataToken.AssemblyReference, (byte)MetadataToken.TypeReference)},
                 {Index.TypeOrMethodDef, new CodedIndex(tables, (byte)MetadataToken.TypeDef, (byte)MetadataToken.MethodDef)}
 
@@ -125,7 +125,7 @@ namespace PeNet.Structures
         }
     
 
-        private Dictionary<Index, IMetaDataIndex> _index = null;
+        private readonly Dictionary<Index, IMetaDataIndex> _index = null;
 
         public uint this[Index index] => _index[index].Size;
     }
@@ -134,8 +134,8 @@ namespace PeNet.Structures
 
     class SingleIndex : IMetaDataIndex
     {
-        private MetadataToken _token;
-        private MetaDataTableInfo[] _tables;
+        private readonly MetadataToken _token;
+        private readonly MetaDataTableInfo[] _tables;
 
         public SingleIndex(MetadataToken token, MetaDataTableInfo[] tables)
         {
@@ -148,7 +148,7 @@ namespace PeNet.Structures
 
     class CodedIndex : IMetaDataIndex
     {
-		private const byte unused = 0xFF;
+		private const byte Unused = 0xFF;
 		private readonly byte[] _tokens;
         private readonly MetaDataTableInfo[] _tables;
         private readonly int _tagBitCount;
@@ -165,7 +165,7 @@ namespace PeNet.Structures
             get
             {
                 uint maxRowCount = 0;
-		        for (int i = 0; i < _tokens.Length; ++i)
+		        for (var i = 0; i < _tokens.Length; ++i)
 			    {
 				    var table = GetTable(i);
 				    if (table.HasValue)
@@ -175,7 +175,7 @@ namespace PeNet.Structures
 				    }
 			    }
 
-			    int valueBitCount = 16 - _tagBitCount;
+			    var valueBitCount = 16 - _tagBitCount;
 			    return maxRowCount < (1U << valueBitCount) ? 2U : 4U;
                 }
         }
@@ -183,7 +183,7 @@ namespace PeNet.Structures
 		private MetadataToken? GetTable(int tag)
 		{
 			var table = _tokens[tag];
-			return table == unused ? null : (MetadataToken?)table;
+			return table == Unused ? null : (MetadataToken?)table;
 		}
     }
 }

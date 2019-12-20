@@ -11,7 +11,7 @@ namespace PeNet.Parser
 
         protected override IMAGE_NT_HEADERS ParseTarget()
         {
-            return new IMAGE_NT_HEADERS(_buff, _offset);
+            return new IMAGE_NT_HEADERS(Buff, Offset);
         }
     }
 }

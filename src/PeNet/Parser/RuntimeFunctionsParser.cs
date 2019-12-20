@@ -24,15 +24,15 @@ namespace PeNet.Parser
 
         protected override RUNTIME_FUNCTION[] ParseTarget()
         {
-            if (_is32Bit || _offset == 0)
+            if (_is32Bit || Offset == 0)
                 return null;
 
-            var sizeOfRuntimeFunction = 0xC;
+            const int sizeOfRuntimeFunction = 0xC;
             var rf = new RUNTIME_FUNCTION[_directorySize/sizeOfRuntimeFunction];
 
             for (var i = 0; i < rf.Length; i++)
             {
-                rf[i] = new RUNTIME_FUNCTION(_buff, (uint) (_offset + i*sizeOfRuntimeFunction), _sectionHeaders);
+                rf[i] = new RUNTIME_FUNCTION(Buff, (uint) (Offset + i*sizeOfRuntimeFunction), _sectionHeaders);
             }
 
             return rf;

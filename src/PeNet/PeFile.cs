@@ -72,6 +72,36 @@ namespace PeNet
         }
 
         /// <summary>
+        /// Try to parse the PE file.
+        /// </summary>
+        /// <param name="file">Path to a possible PE file.</param>
+        /// <param name="peFile">Parsed PE file or Null.</param>
+        /// <returns>True if parable PE file and false if not.</returns>
+        public static bool TryParse(string file, out PeFile peFile)
+        {
+            return TryParse(File.ReadAllBytes(file), out peFile);
+        }
+
+        /// <summary>
+        /// Try to parse the PE file.
+        /// </summary>
+        /// <param name="buf">Buffer containing a possible PE file.</param>
+        /// <param name="peFile">Parsed PE file or Null.</param>
+        /// <returns>True if parable PE file and false if not.</returns>
+        public static bool TryParse(byte[] buf, out PeFile peFile)
+        {
+            peFile = null;
+
+            if (!IsPEFile(buf))
+                return false;
+
+            try { peFile = new PeFile(buf); }
+            catch { return false; }
+
+            return true;
+        }
+
+        /// <summary>
         /// Save the current PE file as 
         /// a new file on disk.
         /// </summary>
@@ -373,7 +403,22 @@ namespace PeNet
                 fs.Read(buffer, 0, buffer.Length);
             }
 
-            return buffer[1] == 0x5a && buffer[0] == 0x4d; // MZ Header
+            return IsPEFile(buffer);
+        }
+
+        /// <summary>
+        ///     Tests is a buffer is a PE file based on the MZ
+        ///     header. It is not checked if the PE file is correct
+        ///     in all other parts.
+        /// </summary>
+        /// <param name="buf">Byte array containing a possible PE file.</param>
+        /// <returns>True if the MZ header is set.</returns>
+        public static bool IsPEFile(byte[] buf)
+        {
+            if (buf.Length < 2)
+                return false;
+
+            return buf[1] == 0x5a && buf[0] == 0x4d; // MZ Header
         }
 
         /// <summary>

@@ -19,7 +19,7 @@ namespace PeNet.Parser
 
         protected override IMETADATASTREAM_GUID ParseTarget()
         {
-            return new METADATASTREAM_GUID(_buff, _offset, _size);
+            return new METADATASTREAM_GUID(Buff, Offset, _size);
         }
     }
 }

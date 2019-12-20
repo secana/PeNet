@@ -37,22 +37,22 @@ namespace PeNet.Parser
             for (uint i = 0; i < expFuncs.Length; i++)
             {
                 var ordinal = i + _exportDirectory.Base;
-                var address = _buff.BytesToUInt32(funcOffsetPointer + sizeof(uint)*i);
+                var address = Buff.BytesToUInt32(funcOffsetPointer + sizeof(uint)*i);
                 expFuncs[i] = new ExportFunction(null, address, (ushort) ordinal);
             }
 
             //Associate names
             for (uint i = 0; i < _exportDirectory.NumberOfNames; i++)
             {
-                var namePtr = _buff.BytesToUInt32(nameOffsetPointer + sizeof(uint)*i);
+                var namePtr = Buff.BytesToUInt32(nameOffsetPointer + sizeof(uint)*i);
                 var nameAdr = namePtr.RVAtoFileMapping(_sectionHeaders);
-                var name = _buff.GetCString(nameAdr);
-                var ordinalIndex = (uint) _buff.GetOrdinal(ordOffset + sizeof(ushort)*i);
+                var name = Buff.GetCString(nameAdr);
+                var ordinalIndex = (uint) Buff.GetOrdinal(ordOffset + sizeof(ushort)*i);
 
                 if (IsForwardedExport(expFuncs[ordinalIndex].Address))
                 {
                     var forwardNameAdr = expFuncs[ordinalIndex].Address.RVAtoFileMapping(_sectionHeaders);
-                    var forwardName = _buff.GetCString(forwardNameAdr);
+                    var forwardName = Buff.GetCString(forwardNameAdr);
 
                     expFuncs[ordinalIndex] = new ExportFunction(
                         name,

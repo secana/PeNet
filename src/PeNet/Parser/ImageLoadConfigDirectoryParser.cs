@@ -14,7 +14,7 @@ namespace PeNet.Parser
 
         protected override IMAGE_LOAD_CONFIG_DIRECTORY ParseTarget()
         {
-            return new IMAGE_LOAD_CONFIG_DIRECTORY(_buff, _offset, _is64Bit);
+            return new IMAGE_LOAD_CONFIG_DIRECTORY(Buff, Offset, _is64Bit);
         }
     }
 }

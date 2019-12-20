@@ -64,8 +64,8 @@ namespace PeNet.Utilities
         ///     Checks if cert is from a trusted CA with a valid certificate chain.
         /// </summary>
         /// <param name="filePath">Path to a PE file.</param>
-        /// <param name="urlRetrievalTimeout">Timout to validate the certificate online.</param>
-        /// <param name="excludeRoot">True if the root certificate should not be validatet. False if the whole chain should be validated.</param>
+        /// <param name="urlRetrievalTimeout">Timeout to validate the certificate online.</param>
+        /// <param name="excludeRoot">True if the root certificate should not be validated. False if the whole chain should be validated.</param>
         /// <returns>True of cert chain is valid and from a trusted CA.</returns>
         public static bool IsValidCertChain(string filePath, TimeSpan urlRetrievalTimeout, bool excludeRoot = true)
         {
@@ -98,8 +98,8 @@ namespace PeNet.Utilities
         ///     Checks if cert is from a trusted CA with a valid certificate chain.
         /// </summary>
         /// <param name="cert">X509 Certificate</param>
-        /// <param name="urlRetrievalTimeout">Timout to validate the certificate online.</param>
-        /// <param name="excludeRoot">True if the root certificate should not be validatet. False if the whole chain should be validated.</param>
+        /// <param name="urlRetrievalTimeout">Timeout to validate the certificate online.</param>
+        /// <param name="excludeRoot">True if the root certificate should not be validated. False if the whole chain should be validated.</param>
         /// <returns>True of cert chain is valid and from a trusted CA.</returns>
         public static bool IsValidCertChain(X509Certificate2 cert, TimeSpan urlRetrievalTimeout, bool excludeRoot = true)
         {
@@ -114,17 +114,6 @@ namespace PeNet.Utilities
                 }
             };
             return chain.Build(cert);
-        }
-
-        /// <summary>
-        ///     Checks if the digital signature of a PE file is valid.
-        /// </summary>
-        /// <param name="filePath">Path to a PE file.</param>
-        /// <returns>True if the signature is valid, else false.</returns>
-        [Obsolete("use `new PeFile(filePath).IsSignatureValid`", true)]
-        public static bool IsSignatureValid(string filePath)
-        {
-            return new PeFile(filePath).IsSignatureValid;
         }
     }
 }

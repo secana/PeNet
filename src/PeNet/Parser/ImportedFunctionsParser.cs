@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using PeNet.Structures;
 using PeNet.Utilities;
 using static PeNet.Constants;
@@ -41,7 +40,7 @@ namespace PeNet.Parser
             foreach (var idesc in _importDescriptors)
             {
                 var dllAdr = idesc.Name.RVAtoFileMapping(_sectionHeaders);
-                var dll = _buff.GetCString(dllAdr);
+                var dll = Buff.GetCString(dllAdr);
                 if (IsModuleNameTooLong(dll))
                     continue;
                 var tmpAdr = idesc.OriginalFirstThunk != 0 ? idesc.OriginalFirstThunk : idesc.FirstThunk;
@@ -52,7 +51,7 @@ namespace PeNet.Parser
                 uint round = 0;
                 while (true)
                 {
-                    var t = new IMAGE_THUNK_DATA(_buff, thunkAdr + round*sizeOfThunk, _is64Bit);
+                    var t = new IMAGE_THUNK_DATA(Buff, thunkAdr + round*sizeOfThunk, _is64Bit);
                     var iatOffset = idesc.FirstThunk + round * sizeOfThunk - iat.VirtualAddress;
 
                     if (t.AddressOfData == 0)
@@ -69,7 +68,7 @@ namespace PeNet.Parser
                     }
                     else // Import by name
                     {
-                        var ibn = new IMAGE_IMPORT_BY_NAME(_buff,
+                        var ibn = new IMAGE_IMPORT_BY_NAME(Buff,
                             ((uint) t.AddressOfData).RVAtoFileMapping(_sectionHeaders));
                         impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint, iatOffset));
                     }

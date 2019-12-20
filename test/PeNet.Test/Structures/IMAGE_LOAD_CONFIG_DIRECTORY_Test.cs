@@ -26,7 +26,7 @@ namespace PeNet.Test.Structures
             Assert.Equal((uint) 0x00ffeedd, imageLoadConfigDirectory.DeCommitTotalFreeThreshold);
             Assert.Equal((uint) 0x55443322, imageLoadConfigDirectory.LockPrefixTable);
             Assert.Equal((uint) 0x99887766, imageLoadConfigDirectory.MaximumAllocationSize);
-            Assert.Equal((uint) 0xddccbbaa, imageLoadConfigDirectory.VirtualMemoryThershold);
+            Assert.Equal((uint) 0xddccbbaa, imageLoadConfigDirectory.VirtualMemoryThreshold);
             Assert.Equal((uint) 0x221100ff, imageLoadConfigDirectory.ProcessHeapFlags);
             Assert.Equal((uint) 0x66554433, imageLoadConfigDirectory.ProcessAffinityMask);
             Assert.Equal((ushort) 0x8877, imageLoadConfigDirectory.CSDVersion);
@@ -62,7 +62,7 @@ namespace PeNet.Test.Structures
             Assert.Equal((ulong)0xddccbbaa00ffeedd, imageLoadConfigDirectory.DeCommitTotalFreeThreshold);
             Assert.Equal((ulong)0xddccbbaa55443322, imageLoadConfigDirectory.LockPrefixTable);
             Assert.Equal((ulong)0xddccbbaa99887766, imageLoadConfigDirectory.MaximumAllocationSize);
-            Assert.Equal((ulong)0xddccbbaaddccbbaa, imageLoadConfigDirectory.VirtualMemoryThershold);
+            Assert.Equal((ulong)0xddccbbaaddccbbaa, imageLoadConfigDirectory.VirtualMemoryThreshold);
             Assert.Equal((ulong)0xddccbbaa66554433, imageLoadConfigDirectory.ProcessAffinityMask);
             Assert.Equal((uint)0x221100ff, imageLoadConfigDirectory.ProcessHeapFlags);
             Assert.Equal((ushort)0x8877, imageLoadConfigDirectory.CSDVersion);

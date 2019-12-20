@@ -36,7 +36,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// Number of moduke forwarder references.
+        /// Number of module forwarder references.
         /// </summary>
         public ushort NumberOfModuleForwarderRefs
         {

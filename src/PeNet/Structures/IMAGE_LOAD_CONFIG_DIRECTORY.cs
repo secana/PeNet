@@ -150,7 +150,7 @@ namespace PeNet.Structures
         /// <summary>
         /// The maximum block size that can be allocated from heap segments in bytes.
         /// </summary>
-        public ulong VirtualMemoryThershold
+        public ulong VirtualMemoryThreshold
         {
             get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x38) : Buff.BytesToUInt32(Offset + 0x28);
             set
