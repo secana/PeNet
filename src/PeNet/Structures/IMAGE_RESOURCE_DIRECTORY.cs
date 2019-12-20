@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using PeNet.Utilities;
 
 namespace PeNet.Structures
@@ -106,8 +105,19 @@ namespace PeNet.Structures
 
         private bool SanityCheckFailed()
         {
-            if (NumberOfIdEntries + NumberOfNameEntries >= 1000)
+            // There exists the case that only some second stage directories are valid and others
+            // are not. For this case try to parse at least the valid ones. In that case
+            // accessing properties throws an "IndexOutOfRange" exception.
+            // Example (malicious!): 9d5eb5ac899764d5ed30cc93df8d645e598e2cbce53ae7bb081ded2c38286d1e
+            try
+            {
+                if (NumberOfIdEntries + NumberOfNameEntries >= 1000)
+                    return true;
+            }
+            catch (Exception)
+            {
                 return true;
+            }
 
             return false;
         }
