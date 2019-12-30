@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -36,6 +37,7 @@ namespace PeNet
         private string _md5;
         private string _sha1;
         private string _sha256;
+        private NetGuids _netGuids;
 
         /// <summary>
         ///     Create a new PeFile object.
@@ -345,6 +347,18 @@ namespace PeNet
         ///     given else null;
         /// </summary>
         public string ImpHash => _impHash ??= new ImportHash(ImportedFunctions).ImpHash;
+
+        /// <summary>
+        ///     The Version ID of each module
+        ///     if the PE is a CLR assembly.
+        /// </summary>
+        public List<Guid> ClrModuleVersionIds => (_netGuids ??= new NetGuids(this)).ModuleVersionIds;
+
+        /// <summary>
+        ///     The COM TypeLib ID of the assembly, if specified,
+        ///     and if the PE is a CLR assembly.
+        /// </summary>
+        public string ClrComTypeLibId => (_netGuids ??= new NetGuids(this)).ComTypeLibId;
 
         /// <summary>
         ///     Returns the file size in bytes.
