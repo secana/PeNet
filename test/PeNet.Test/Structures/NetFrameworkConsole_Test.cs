@@ -504,5 +504,20 @@ namespace PeNet.Test.Structures
 
             Assert.Null(genericParamConstraint);
         }
+
+        [Fact]
+        public void NetGuid_ModuleVersionId()
+        {
+            var mvids = _peFile.ClrModuleVersionIds;
+
+            Assert.Single(mvids);
+            Assert.Equal(new Guid("5250e853-c17a-4e76-adb3-0a716ec8af5d"), mvids[0]);
+        }
+
+        [Fact]
+        public void NetGuid_ComTypeLibId()
+        {
+            Assert.Equal("a782d109-aa8f-427b-8dcf-1c786054c7e0", _peFile.ClrComTypeLibId);
+        }
     }
 }

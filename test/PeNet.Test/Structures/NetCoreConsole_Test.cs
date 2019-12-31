@@ -630,5 +630,20 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x0001u, genericParamConstraint[0].Owner);
             Assert.Equal(0x0000u, genericParamConstraint[0].Constraint);
         }
+
+        [Fact]
+        public void NetGuid_ModuleVersionId()
+        {
+            var mvids = _peFile.ClrModuleVersionIds;
+
+            Assert.Single(mvids);
+            Assert.Equal(new Guid("42f102e3-93ed-453b-bb95-d932c33520d4"), mvids[0]);
+        }
+
+        [Fact]
+        public void NetGuid_ComTypeLibId()
+        {
+            Assert.Equal(string.Empty, _peFile.ClrComTypeLibId);
+        }
     }
 }

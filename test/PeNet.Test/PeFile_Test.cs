@@ -1,11 +1,34 @@
-﻿using System.Linq;
-using Newtonsoft.Json.Linq;
+﻿using System;
+using System.Linq;
 using Xunit;
 
 namespace PeNet.Test
 {
     public class PeFileTest
     {
+        private readonly PeFile _peFile = new PeFile(@"Binaries/win_test.dll");
+
+        [Fact]
+        public void ExportedFunctions_WithForwardedFunctions_ParsedFordwardedFunctions()
+        {
+            var forwardExports = _peFile.ExportedFunctions.Where(e => e.HasForward).ToList();
+
+            Assert.Equal(180, forwardExports.Count);
+            Assert.Equal("NTDLL.RtlEnterCriticalSection", forwardExports.First(e => e.Name == "EnterCriticalSection").ForwardName);
+        }
+
+        [Fact]
+        public void NetGuidModuleVersionId_NotClrPE_Empty()
+        {
+            Assert.Empty(_peFile.ClrModuleVersionIds);
+        }
+
+        [Fact]
+        public void NetGuidComTypeLibId_NotClrPE_Empty()
+        {
+            Assert.Equal(string.Empty, _peFile.ClrComTypeLibId);
+        }
+
         [Theory]
         [InlineData(@"Binaries/firefox_x64.exe", true)]
         [InlineData(@"Binaries/firefox_x86.exe", true)]
@@ -14,16 +37,6 @@ namespace PeNet.Test
         public void IsPEFile_DifferentFiles_TrueOrFalse(string file, bool expected)
         {
             Assert.Equal(expected, PeFile.IsPEFile(file));
-        }
-
-        [Fact]
-        public void ExportedFunctions_WithForwardedFunctions_ParsedFordwardedFunctions()
-        {
-            var peFile = new PeFile(@"Binaries/win_test.dll");
-            var forwardExports = peFile.ExportedFunctions.Where(e => e.HasForward).ToList();
-
-            Assert.Equal(180, forwardExports.Count);
-            Assert.Equal("NTDLL.RtlEnterCriticalSection", forwardExports.First(e => e.Name == "EnterCriticalSection").ForwardName);
         }
 
         [Theory]
