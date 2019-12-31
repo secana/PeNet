@@ -23,7 +23,7 @@ steps:
   displayName: Get version from tag
   condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
 
-- powershell: ((Get-Content -path .\src\PeNet\PeNet.csproj -Raw) -replace '0.0.0',$env:version) | Set-Content -Path .\src\PeNet\PeNet.csprojj
+- powershell: ((Get-Content -path .\src\PeNet\PeNet.csproj -Raw) -replace '0.0.0',$env:version) | Set-Content -Path .\src\PeNet\PeNet.csproj
   displayName: Replace version with git tag
   condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
 
