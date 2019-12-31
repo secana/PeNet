@@ -2053,6 +2053,32 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.Buff
   nameWithType: PeFile.Buff
+- uid: PeNet.PeFile.ClrComTypeLibId
+  name: ClrComTypeLibId
+  href: api/PeNet.PeFile.html#PeNet_PeFile_ClrComTypeLibId
+  commentId: P:PeNet.PeFile.ClrComTypeLibId
+  fullName: PeNet.PeFile.ClrComTypeLibId
+  nameWithType: PeFile.ClrComTypeLibId
+- uid: PeNet.PeFile.ClrComTypeLibId*
+  name: ClrComTypeLibId
+  href: api/PeNet.PeFile.html#PeNet_PeFile_ClrComTypeLibId_
+  commentId: Overload:PeNet.PeFile.ClrComTypeLibId
+  isSpec: "True"
+  fullName: PeNet.PeFile.ClrComTypeLibId
+  nameWithType: PeFile.ClrComTypeLibId
+- uid: PeNet.PeFile.ClrModuleVersionIds
+  name: ClrModuleVersionIds
+  href: api/PeNet.PeFile.html#PeNet_PeFile_ClrModuleVersionIds
+  commentId: P:PeNet.PeFile.ClrModuleVersionIds
+  fullName: PeNet.PeFile.ClrModuleVersionIds
+  nameWithType: PeFile.ClrModuleVersionIds
+- uid: PeNet.PeFile.ClrModuleVersionIds*
+  name: ClrModuleVersionIds
+  href: api/PeNet.PeFile.html#PeNet_PeFile_ClrModuleVersionIds_
+  commentId: Overload:PeNet.PeFile.ClrModuleVersionIds
+  isSpec: "True"
+  fullName: PeNet.PeFile.ClrModuleVersionIds
+  nameWithType: PeFile.ClrModuleVersionIds
 - uid: PeNet.PeFile.ExceptionDirectory
   name: ExceptionDirectory
   href: api/PeNet.PeFile.html#PeNet_PeFile_ExceptionDirectory
