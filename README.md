@@ -11,6 +11,15 @@ Furthermore it supports the creation of Import Hashes (ImpHash), which is a feat
 
 The API reference can be found here: [PeNet Documentation & API Reference](http://secana.github.io/PeNet).
 
+For an overview of *PeNet* or to analyze PE files go to: [penet.io](http://penet.io)
+
 ## Continuous Integration
 
 The project is automatically build, tested and released with an [Azure Pipeline](https://dev.azure.com/secana/PeNet).
+
+To release a new version, push a tagged commit. For example:
+
+ ```powershell
+ git tag -a v1.0.0 -m 'Release version 1.0.0'
+ git push origin v1.0.0
+ ```
