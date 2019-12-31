@@ -78,4 +78,4 @@ steps:
     nuGetFeedType: external
     allowPackageConflicts: true
     publishFeedCredentials: 'Nuget.org'
-    packagesToPush: '$(build.artifactStagingDirectory)/*.*nupkg'
+    packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
