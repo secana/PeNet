@@ -9,7 +9,7 @@ namespace PeNet.Test
         private readonly PeFile _peFile = new PeFile(@"Binaries/win_test.dll");
 
         [Fact]
-        public void ExportedFunctions_WithForwardedFunctions_ParsedFordwardedFunctions()
+        public void ExportedFunctions_WithForwardedFunctions_ParsedForwardedFunctions()
         {
             var forwardExports = _peFile.ExportedFunctions.Where(e => e.HasForward).ToList();
 
@@ -24,10 +24,27 @@ namespace PeNet.Test
         }
 
         [Fact]
+        public void NetGuidModuleVersionId_ClrPE_NotEmpty()
+        {
+            var peFile = new PeFile(@"Binaries/NetFrameworkConsole.exe");
+            Assert.Equal(new Guid("5250e853-c17a-4e76-adb3-0a716ec8af5d"), peFile.ClrModuleVersionIds.First());
+        }
+
+        [Fact]
         public void NetGuidComTypeLibId_NotClrPE_Empty()
         {
             Assert.Equal(string.Empty, _peFile.ClrComTypeLibId);
         }
+
+        [Fact]
+        public void NetGuidComTypeLibId_ClrPE_NotEmpty()
+        {
+            var peFile = new PeFile(@"Binaries/NetFrameworkConsole.exe");
+            Assert.Equal("a782d109-aa8f-427b-8dcf-1c786054c7e0", peFile.ClrComTypeLibId);
+        }
+
+
+
 
         [Theory]
         [InlineData(@"Binaries/firefox_x64.exe", true)]
