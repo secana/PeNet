@@ -32,9 +32,9 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'Run Unit-Tests'
     inputs:
-    command: test
-    projects: '**/*test/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+      command: test
+      projects: '**/*test/*.csproj'
+      arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
   - script: choco install docfx
     displayName: Install DocFX
