@@ -22,6 +22,7 @@
     <PackageReference Include="PeNet.Asn1" Version="1.3.3" />
     <PackageReference Include="System.Security.Cryptography.Pkcs" Version="4.7.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+    <PackageReference Include="Xunit.SkippableFact" Version="1.3.12" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\resource\icon.png" Pack="true" PackagePath="\" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using Xunit;
 
 namespace PeNet.Test.Utilities
@@ -17,15 +18,21 @@ namespace PeNet.Test.Utilities
             Assert.True(PeNet.Utilities.SignatureInformation.IsSigned(@"../../../Binaries/firefox_x64.exe"));
         }
 
-        [Fact]
+        [SkippableFact]
         void IsSigned_PathToSignedBinary3_ReturnsTrue()
         {
+            Skip.IfNot(System.Runtime.InteropServices.RuntimeInformation
+                                               .IsOSPlatform(OSPlatform.Windows));
+
             Assert.True(PeNet.Utilities.SignatureInformation.IsSigned(@"C:\Windows\System32\kernel32.dll"));
         }
 
-        [Fact]
+        [SkippableFact]
         void IsSigned_PathToSignedBinary4_ReturnsTrue()
         {
+            Skip.IfNot(System.Runtime.InteropServices.RuntimeInformation
+                                               .IsOSPlatform(OSPlatform.Windows));
+
             Assert.True(PeNet.Utilities.SignatureInformation.IsSigned(@"C:\Windows\explorer.exe"));
         }
 
