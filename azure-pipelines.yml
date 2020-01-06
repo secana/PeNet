@@ -11,71 +11,94 @@ trigger:
     include:
     - '*'
 
-pool:
-  vmImage: 'windows-2019'
+jobs:
+- job: LinuxTest
+  displayName: Linux Tests
+  pool:
+    vmImage: 'ubuntu-latest'
+  variables:
+    buildConfiguration: 'Release'
 
-variables:
-  buildConfiguration: 'Release'
+  steps:
+  - task: UseDotNet@2 
+    displayName: ".NET Core 3.1.x"
+    inputs:
+      version: '3.1.x'
+      packageType: sdk
 
-steps:
+  - task: DotNetCoreCLI@2
+    displayName: 'Run Unit-Tests'
+    inputs: 
+      command: test
+      projects: '**/*Test/*.csproj'
+      arguments: '--configuration $(buildConfiguration)'
 
-- powershell: $version = ($env:Build_SourceBranch -replace 'refs/tags/v',''); echo $version; echo "##vso[task.setvariable variable=version]$version"
-  displayName: Get version from tag
-  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
+- job: WindowsBuildAndDeploy
+  displayName: Windows CI/CD
+  dependsOn: 'LinuxTest'
+  pool:
+    vmImage: 'windows-latest'
+  variables:
+    buildConfiguration: 'Release'
 
-- powershell: ((Get-Content -path .\src\PeNet\PeNet.csproj -Raw) -replace '0.0.0',$env:version) | Set-Content -Path .\src\PeNet\PeNet.csproj
-  displayName: Replace version with git tag
-  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
+  steps:
+  - powershell: $version = ($env:Build_SourceBranch -replace 'refs/tags/v',''); echo $version; echo "##vso[task.setvariable variable=version]$version"
+    displayName: Get version from tag
+    condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
 
-- task: DotNetCoreCLI@2
-  displayName: 'Run Unit-Tests'
-  inputs:
-   command: test
-   projects: '**/*test/*.csproj'
-   arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+  - powershell: ((Get-Content -path .\src\PeNet\PeNet.csproj -Raw) -replace '0.0.0',$env:version) | Set-Content -Path .\src\PeNet\PeNet.csproj
+    displayName: Replace version with git tag
+    condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
 
-- script: choco install docfx
-  displayName: Install DocFX
+  - task: DotNetCoreCLI@2
+    displayName: 'Run Unit-Tests'
+    inputs:
+      command: test
+      projects: '**/*test/*.csproj'
+      arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
-- script: docfx metadata
-  displayName: Build Documentation Meta-Data
-  workingDirectory: '$(Build.SourcesDirectory)/docfx'
+  - script: choco install docfx
+    displayName: Install DocFX
 
-- script: docfx build
-  displayName: Build Documentation
-  workingDirectory: '$(Build.SourcesDirectory)/docfx'
+  - script: docfx metadata
+    displayName: Build Documentation Meta-Data
+    workingDirectory: '$(Build.SourcesDirectory)/docfx'
 
-- task: GitHubPagesPublish@1
-  displayName: Publish Documentation
-  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
-  inputs:
-    docPath: '$(System.DefaultWorkingDirectory)\docs\*'
-    githubusername: "secana"
-    githubemail: 'azure-bot@penet.org'
-    githubaccesstoken: $(token.github.penet.gh-pages)
-    repositoryname: 'PeNet'
-    branchname: 'gh-pages'
-    commitmessage: 'Automated gh-pages update'
-    cleanRepository: false
+  - script: docfx build
+    displayName: Build Documentation
+    workingDirectory: '$(Build.SourcesDirectory)/docfx'
 
-- task: NuGetToolInstaller@0
-  displayName: Install NuGet
-  inputs:
-    versionSpec: '5.4.0'
+  - task: GitHubPagesPublish@1
+    displayName: Publish Documentation
+    condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
+    inputs:
+      docPath: '$(System.DefaultWorkingDirectory)\docs\*'
+      githubusername: "secana"
+      githubemail: 'azure-bot@penet.org'
+      githubaccesstoken: $(token.github.penet.gh-pages)
+      repositoryname: 'PeNet'
+      branchname: 'gh-pages'
+      commitmessage: 'Automated gh-pages update'
+      cleanRepository: false
 
-- task: DotNetCoreCLI@2
-  displayName: 'Pack Nuget Package'
-  inputs:
-    command: 'pack'
-    packagesToPack: '**\src\**\*.csproj'
-    configuration: $(buildConfiguration)
+  - task: NuGetToolInstaller@0
+    displayName: Install NuGet
+    inputs:
+      versionSpec: '5.4.0'
 
-- task: NuGetCommand@2
-  displayName: 'Publish NuGet Packages'
-  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
-  inputs:
-    command: push
-    nuGetFeedType: external
-    allowPackageConflicts: true
-    publishFeedCredentials: 'Nuget.org'
-    packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
+  - task: DotNetCoreCLI@2
+    displayName: 'Pack Nuget Package'
+    inputs:
+      command: 'pack'
+      packagesToPack: '**\src\**\*.csproj'
+      configuration: $(buildConfiguration)
+
+  - task: NuGetCommand@2
+    displayName: 'Publish NuGet Packages'
+    condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
+    inputs:
+      command: push
+      nuGetFeedType: external
+      allowPackageConflicts: true
+      publishFeedCredentials: 'Nuget.org'
+      packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
