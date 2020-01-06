@@ -20,9 +20,12 @@ jobs:
     buildConfiguration: 'Release'
 
   steps:
-  - script: ls 
-  - script: ls ./test
-  - script: ls ./test/PeNet.Test
+  - task: UseDotNet@2 
+      displayName: ".NET Core 3.1.x"
+      inputs:
+        version: '3.1.x'
+        packageType: sdk
+        
   - task: DotNetCoreCLI@2
     displayName: 'Run Unit-Tests'
     inputs: 
