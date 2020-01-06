@@ -12,16 +12,30 @@ trigger:
     - '*'
 
 jobs:
-- job: WindowsBuildAndDeploy
-  displayName: Windows CI/CD
+- job: LinuxTest
+  displayName: Linux Tests
   pool:
-    vmImage: 'windows-2019'
-
+    vmImage: 'ubuntu-latest'
   variables:
     buildConfiguration: 'Release'
 
   steps:
+  - task: DotNetCoreCLI@2
+    displayName: 'Run Unit-Tests'
+    inputs: 
+      command: test
+      projects: '**/*test/*.csproj'
+      arguments: '--configuration $(buildConfiguration)'
 
+- job: WindowsBuildAndDeploy
+  displayName: Windows CI/CD
+  dependsOn: 'LinuxTest'
+  pool:
+    vmImage: 'windows-latest'
+  variables:
+    buildConfiguration: 'Release'
+
+  steps:
   - powershell: $version = ($env:Build_SourceBranch -replace 'refs/tags/v',''); echo $version; echo "##vso[task.setvariable variable=version]$version"
     displayName: Get version from tag
     condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
