@@ -12,7 +12,8 @@ trigger:
     - '*'
 
 jobs:
-- job: Windows Build & Deploy
+- job: WindowsBuildAndDeploy
+  displayName: Windows CI/CD
   pool:
     vmImage: 'windows-2019'
 
