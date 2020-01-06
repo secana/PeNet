@@ -20,11 +20,14 @@ jobs:
     buildConfiguration: 'Release'
 
   steps:
+  - script: ls 
+  - script: ls ./test
+  - script: ls ./test/PeNet.Test
   - task: DotNetCoreCLI@2
     displayName: 'Run Unit-Tests'
     inputs: 
       command: test
-      projects: '**\*test\*.csproj'
+      projects: '**/*test/*.csproj'
       arguments: '--configuration $(buildConfiguration)'
 
 - job: WindowsBuildAndDeploy
