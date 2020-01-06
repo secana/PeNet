@@ -27,7 +27,7 @@ jobs:
     displayName: 'Run Unit-Tests'
     inputs: 
       command: test
-      projects: '**/*test/*.csproj'
+      projects: '**/*Test/*.csproj'
       arguments: '--configuration $(buildConfiguration)'
 
 - job: WindowsBuildAndDeploy
