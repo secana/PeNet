@@ -83,8 +83,8 @@ namespace PeNet
         {
             var vsVersionOffset = ImageResourceDirectory
                 ?.DirectoryEntries?.FirstOrDefault(e => e.ID == (int) Constants.ResourceGroupIDs.Version) // Root
-                ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault(e => e.ID == 1) // Type
-                ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault(e => e.ID == 1033) // Name
+                ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Type
+                ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Name
                 ?.ResourceDataEntry?.OffsetToData; // Language
 
             if (vsVersionOffset is null)
