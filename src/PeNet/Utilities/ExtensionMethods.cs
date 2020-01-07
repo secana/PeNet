@@ -231,7 +231,7 @@ namespace PeNet.Utilities
             {
                 var sectionsByRva = sh.OrderBy(s => s.VirtualAddress).ToList();
                 return sectionsByRva.FirstOrDefault(s =>
-                    rva >= s.VirtualAddress && rva <= s.VirtualAddress + s.VirtualSize);
+                    rva >= s.VirtualAddress && rva < s.VirtualAddress + s.VirtualSize);
             }
 
             var section = GetSectionForRva(relativeVirtualAddress);
