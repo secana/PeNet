@@ -230,8 +230,16 @@ namespace PeNet.Utilities
             IMAGE_SECTION_HEADER GetSectionForRva(ulong rva)
             {
                 var sectionsByRva = sh.OrderBy(s => s.VirtualAddress).ToList();
-                return sectionsByRva.FirstOrDefault(s =>
+                var notLastSection = sectionsByRva.FirstOrDefault(s =>
                     rva >= s.VirtualAddress && rva < s.VirtualAddress + s.VirtualSize);
+
+                if (notLastSection != null)
+                    return notLastSection;
+
+                var lastSection = sectionsByRva.LastOrDefault(s => 
+                        rva >= s.VirtualAddress && rva <= s.VirtualAddress + s.VirtualSize);
+
+                return lastSection;
             }
 
             var section = GetSectionForRva(relativeVirtualAddress);
