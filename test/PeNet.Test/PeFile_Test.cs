@@ -6,12 +6,11 @@ namespace PeNet.Test
 {
     public class PeFileTest
     {
-        private readonly PeFile _peFile = new PeFile(@"Binaries/win_test.dll");
-
         [Fact]
         public void ExportedFunctions_WithForwardedFunctions_ParsedForwardedFunctions()
         {
-            var forwardExports = _peFile.ExportedFunctions.Where(e => e.HasForward).ToList();
+            var peFile = new PeFile(@"Binaries/win_test.dll");
+            var forwardExports = peFile.ExportedFunctions.Where(e => e.HasForward).ToList();
 
             Assert.Equal(180, forwardExports.Count);
             Assert.Equal("NTDLL.RtlEnterCriticalSection", forwardExports.First(e => e.Name == "EnterCriticalSection").ForwardName);
@@ -20,7 +19,8 @@ namespace PeNet.Test
         [Fact]
         public void NetGuidModuleVersionId_NotClrPE_Empty()
         {
-            Assert.Empty(_peFile.ClrModuleVersionIds);
+            var peFile = new PeFile(@"Binaries/win_test.dll");
+            Assert.Empty(peFile.ClrModuleVersionIds);
         }
 
         [Fact]
@@ -33,7 +33,8 @@ namespace PeNet.Test
         [Fact]
         public void NetGuidComTypeLibId_NotClrPE_Empty()
         {
-            Assert.Equal(string.Empty, _peFile.ClrComTypeLibId);
+            var peFile = new PeFile(@"Binaries/win_test.dll");
+            Assert.Equal(string.Empty, peFile.ClrComTypeLibId);
         }
 
         [Fact]
@@ -42,8 +43,6 @@ namespace PeNet.Test
             var peFile = new PeFile(@"Binaries/NetFrameworkConsole.exe");
             Assert.Equal("a782d109-aa8f-427b-8dcf-1c786054c7e0", peFile.ClrComTypeLibId);
         }
-
-
 
 
         [Theory]
