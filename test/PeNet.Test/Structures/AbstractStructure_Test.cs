@@ -20,8 +20,8 @@ namespace PeNet.Test.Structures
             public string String { get; } = "Hello";
             public long Long { get; } = 20;
             public string[] StringArray { get; } = new string[] { "Hello", "World" }; // Must not be in the results
-            public int[]? NullArray { get; } = null; // Must not be in the results
-            public string? NullString { get; } = null;
+            public int[] NullArray { get; } = null; // Must not be in the results
+            public string NullString { get; } = null;
             public SubStructure[] SubStructure { get; } = new SubStructure[] { new SubStructure(), new SubStructure() };
 
             private string PrivString { get; } = "ShallNotSee"; // Must not be in the results
