@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
     <PackageProjectUrl>https://github.com/secana/PeNet</PackageProjectUrl>
     <Version>0.0.0</Version>
     <Authors>Stefan Hausotte</Authors>
