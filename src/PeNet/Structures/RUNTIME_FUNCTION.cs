@@ -9,7 +9,7 @@ namespace PeNet.Structures
     /// </summary>
     public class RUNTIME_FUNCTION : AbstractStructure
     {
-        private UNWIND_INFO _resolvedUnwindInfo;
+        private UNWIND_INFO? _resolvedUnwindInfo;
         private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
 
         /// <summary>

@@ -10,7 +10,7 @@ namespace PeNet.Parser
         {
         }
 
-        protected override IMAGE_IMPORT_DESCRIPTOR[] ParseTarget()
+        protected override IMAGE_IMPORT_DESCRIPTOR[]? ParseTarget()
         {
             if (Offset == 0)
                 return null;

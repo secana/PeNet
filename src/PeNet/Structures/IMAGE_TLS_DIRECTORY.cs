@@ -114,6 +114,6 @@ namespace PeNet.Structures
         /// <summary>
         /// List with parsed TLS callback structures.
         /// </summary>
-        public IMAGE_TLS_CALLBACK[] TlsCallbacks { get; set; }
+        public IMAGE_TLS_CALLBACK[]? TlsCallbacks { get; set; }
     }
 }

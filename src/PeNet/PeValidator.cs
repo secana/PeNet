@@ -36,7 +36,7 @@ namespace PeNet
             try
             {
                 PeFile peFile = new PeFile(buff);
-                return peFile.ImageNtHeaders.OptionalHeader.NumberOfRvaAndSizes <= 16;
+                return peFile.ImageNtHeaders?.OptionalHeader.NumberOfRvaAndSizes <= 16;
             }
             catch (Exception)
             {

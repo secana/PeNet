@@ -269,8 +269,11 @@ namespace PeNet.Utilities
         /// <param name="RelativeVirtualAddress">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw address of null if error occurred.</returns>
-        public static uint? SafeRVAtoFileMapping(this uint RelativeVirtualAddress, ICollection<IMAGE_SECTION_HEADER> sh)
+        public static uint? SafeRVAtoFileMapping(this uint RelativeVirtualAddress, ICollection<IMAGE_SECTION_HEADER>? sh)
         {
+            if (sh is null)
+                return null;
+
             try
             {
                 return RelativeVirtualAddress.RVAtoFileMapping(sh);
@@ -288,8 +291,6 @@ namespace PeNet.Utilities
         /// <returns>Hex-String</returns>
         public static string ToHexString(this ICollection<byte> bytes)
         {
-            if (bytes == null) return null;
-
             var hex = new StringBuilder(bytes.Count*2);
             foreach (var b in bytes)
                 hex.AppendFormat("{0:x2}", b);
@@ -303,8 +304,6 @@ namespace PeNet.Utilities
         /// <returns>Hex-String</returns>
         public static string ToHexString(this ICollection<ushort> values)
         {
-            if (values == null) return null;
-
             var hex = new StringBuilder(values.Count*2);
             foreach (var b in values)
                 hex.AppendFormat("{0:X4}", b);
@@ -362,8 +361,6 @@ namespace PeNet.Utilities
         /// <returns></returns>
         public static List<string> ToHexString(this byte[] input, ulong from, ulong length)
         {
-            if (input == null) return null;
-
             var hexList = new List<string>();
             for (var i = @from; i < @from + length; i++)
             {

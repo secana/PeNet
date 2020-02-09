@@ -30,8 +30,8 @@ namespace PeNet.Structures
     /// </summary>
     public class METADATATABLESHDR : AbstractStructure, IMETADATATABLESHDR
     {
-        private List<MetaDataTableInfo> _tableDefinitions;
-        private Tables _tables = null;
+        private List<MetaDataTableInfo>? _tableDefinitions;
+        private Tables? _tables = null;
 
         /// <summary>
         /// Represents an table definition entry from the list
@@ -316,7 +316,7 @@ namespace PeNet.Structures
                 }
             }
 
-            return rows.Count == 0 ? null : rows;
+            return rows.Count == 0 ? new List<T>(0) : rows;
         }
 
         private int HammingWeight(ulong value)

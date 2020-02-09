@@ -22,7 +22,7 @@ namespace PeNet.Structures
         /// </summary>
         /// <param name="index">Index of the user string to return.</param>
         /// <returns>User string at the position index.</returns>
-        string GetUserStringAtIndex(uint index);
+        string? GetUserStringAtIndex(uint index);
 
         /// <summary>
         ///     Creates a string representation of the objects
@@ -52,7 +52,7 @@ namespace PeNet.Structures
 
         }
 
-        public string GetUserStringAtIndex(uint index)
+        public string? GetUserStringAtIndex(uint index)
         {
             return UserStringsAndIndices.FirstOrDefault(x => x.Item2 == index)?.Item1;
         }

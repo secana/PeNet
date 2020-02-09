@@ -42,12 +42,12 @@ namespace PeNet.Structures
         ///     Get the Resource Directory which the Directory Entry points
         ///     to if the Directory Entry has DataIsDirectory set.
         /// </summary>
-        public IMAGE_RESOURCE_DIRECTORY ResourceDirectory { get; internal set; }
+        public IMAGE_RESOURCE_DIRECTORY? ResourceDirectory { get; internal set; }
 
         /// <summary>
         ///     Get the Resource Data Entry if the entry is no directory.
         /// </summary>
-        public IMAGE_RESOURCE_DATA_ENTRY ResourceDataEntry { get; internal set; }
+        public IMAGE_RESOURCE_DATA_ENTRY? ResourceDataEntry { get; internal set; }
 
         /// <summary>
         ///     Address of the name if its a named resource.
@@ -61,7 +61,7 @@ namespace PeNet.Structures
         /// <summary>
         ///     The resolved name as a string if its a named resource.
         /// </summary>
-        public string ResolvedName { get; }
+        public string? ResolvedName { get; }
 
         /// <summary>
         ///     The ID if its a ID resource.

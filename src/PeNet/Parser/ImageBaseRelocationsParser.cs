@@ -18,7 +18,7 @@ namespace PeNet.Parser
             _directorySize = directorySize;
         }
 
-        protected override IMAGE_BASE_RELOCATION[] ParseTarget()
+        protected override IMAGE_BASE_RELOCATION[]? ParseTarget()
         {
             if (Offset == 0)
                 return null;

@@ -7,7 +7,7 @@ namespace PeNet.Authenticode
         private readonly PeFile _peFile;
 
         internal AuthenticodeParser(PeFile peFile)
-            : base(null, 0)
+            : base(new byte[0], 0)
         {
             _peFile = peFile;
         }

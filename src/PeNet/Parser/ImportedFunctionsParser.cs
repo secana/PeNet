@@ -7,14 +7,14 @@ namespace PeNet.Parser
 {
     internal class ImportedFunctionsParser : SafeParser<ImportFunction[]>
     {
-        private readonly IMAGE_IMPORT_DESCRIPTOR[] _importDescriptors;
+        private readonly IMAGE_IMPORT_DESCRIPTOR[]? _importDescriptors;
         private readonly bool _is64Bit;
         private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
         private readonly IMAGE_DATA_DIRECTORY[] _dataDirectories;
 
         internal ImportedFunctionsParser(
             byte[] buff,
-            IMAGE_IMPORT_DESCRIPTOR[] importDescriptors,
+            IMAGE_IMPORT_DESCRIPTOR[]? importDescriptors,
             IMAGE_SECTION_HEADER[] sectionHeaders,
             IMAGE_DATA_DIRECTORY[] dataDirectories,
             bool is64Bit) :
@@ -26,7 +26,7 @@ namespace PeNet.Parser
             _is64Bit = is64Bit;
         }
 
-        protected override ImportFunction[] ParseTarget()
+        protected override ImportFunction[]? ParseTarget()
         {
             if (_importDescriptors == null)
                 return null;

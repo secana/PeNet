@@ -26,7 +26,7 @@ namespace PeNet.Utilities
         /// <param name="filePath">Path to a PE file.</param>
         /// <param name="cert">The certificate used to sign the binary.</param>
         /// <returns>True if signed, false if not. </returns>
-        public static bool IsSigned(string filePath, out X509Certificate2 cert)
+        public static bool IsSigned(string filePath, out X509Certificate2? cert)
         {
             cert = null;
             try
@@ -79,8 +79,11 @@ namespace PeNet.Utilities
         /// <param name="cert">X509 Certificate</param>
         /// <param name="online">Check certificate chain online or offline. The online check defaults to a one minute timeout.</param>
         /// <returns>True of cert chain is valid and from a trusted CA.</returns>
-        public static bool IsValidCertChain(X509Certificate2 cert, bool online)
+        public static bool IsValidCertChain(X509Certificate2? cert, bool online)
         {
+            if (cert is null)
+                return false;
+
             var chain = new X509Chain
             {
                 ChainPolicy =
@@ -101,7 +104,7 @@ namespace PeNet.Utilities
         /// <param name="urlRetrievalTimeout">Timeout to validate the certificate online.</param>
         /// <param name="excludeRoot">True if the root certificate should not be validated. False if the whole chain should be validated.</param>
         /// <returns>True of cert chain is valid and from a trusted CA.</returns>
-        public static bool IsValidCertChain(X509Certificate2 cert, TimeSpan urlRetrievalTimeout, bool excludeRoot = true)
+        public static bool IsValidCertChain(X509Certificate2? cert, TimeSpan urlRetrievalTimeout, bool excludeRoot = true)
         {
             var chain = new X509Chain
             {

@@ -340,7 +340,7 @@ namespace PeNet.Test.Structures
         {
             var fieldMarshall = _peFile.MetaDataStreamTablesHeader.Tables.FieldMarshal;
 
-            Assert.Null(fieldMarshall);
+            Assert.Empty(fieldMarshall);
         }
 
         [Fact]
@@ -348,7 +348,7 @@ namespace PeNet.Test.Structures
         {
             var declSecurity = _peFile.MetaDataStreamTablesHeader.Tables.DeclSecurity;
 
-            Assert.Null(declSecurity);
+            Assert.Empty(declSecurity);
         }
 
         [Fact]
@@ -356,7 +356,7 @@ namespace PeNet.Test.Structures
         {
             var classLayout = _peFile.MetaDataStreamTablesHeader.Tables.ClassLayout;
 
-            Assert.Null(classLayout);
+            Assert.Empty(classLayout);
         }
 
         [Fact]
@@ -364,7 +364,7 @@ namespace PeNet.Test.Structures
         {
             var fieldLayout = _peFile.MetaDataStreamTablesHeader.Tables.FieldLayout;
 
-            Assert.Null(fieldLayout);
+            Assert.Empty(fieldLayout);
         }
 
         [Fact]
@@ -386,7 +386,7 @@ namespace PeNet.Test.Structures
         {
             var eventMap = _peFile.MetaDataStreamTablesHeader.Tables.EventMap;
 
-            Assert.Null(eventMap);
+            Assert.Empty(eventMap);
         }
 
         [Fact]
@@ -394,7 +394,7 @@ namespace PeNet.Test.Structures
         {
             var ev = _peFile.MetaDataStreamTablesHeader.Tables.Event;
 
-            Assert.Null(ev);
+            Assert.Empty(ev);
         }
 
         [Fact]
@@ -455,7 +455,7 @@ namespace PeNet.Test.Structures
         {
             var methodImpl = _peFile.MetaDataStreamTablesHeader.Tables.MethodImpl;
 
-            Assert.Null(methodImpl);
+            Assert.Empty(methodImpl);
         }
 
         [Fact]
@@ -463,7 +463,7 @@ namespace PeNet.Test.Structures
         {
             var moduleRef = _peFile.MetaDataStreamTablesHeader.Tables.ModuleRef;
 
-            Assert.Null(moduleRef);
+            Assert.Empty(moduleRef);
         }
 
         [Fact]
@@ -485,7 +485,7 @@ namespace PeNet.Test.Structures
         {
             var fieldRVA = _peFile.MetaDataStreamTablesHeader.Tables.FieldRVA;
 
-            Assert.Null(fieldRVA);
+            Assert.Empty(fieldRVA);
         }
 
         [Fact]
@@ -511,7 +511,7 @@ namespace PeNet.Test.Structures
         {
             var assemblyProcessor = _peFile.MetaDataStreamTablesHeader.Tables.AssemblyProcessor;
 
-            Assert.Null(assemblyProcessor);
+            Assert.Empty(assemblyProcessor);
         }
 
         [Fact]
@@ -519,7 +519,7 @@ namespace PeNet.Test.Structures
         {
             var assemblyOS = _peFile.MetaDataStreamTablesHeader.Tables.AssemblyOS;
 
-            Assert.Null(assemblyOS);
+            Assert.Empty(assemblyOS);
         }
 
         [Fact]
@@ -557,7 +557,7 @@ namespace PeNet.Test.Structures
         {
             var assemblyRefProcessor = _peFile.MetaDataStreamTablesHeader.Tables.AssemblyRefProcessor;
 
-            Assert.Null(assemblyRefProcessor);
+            Assert.Empty(assemblyRefProcessor);
         }
 
         [Fact]
@@ -565,7 +565,7 @@ namespace PeNet.Test.Structures
         {
             var assemblyRefOS = _peFile.MetaDataStreamTablesHeader.Tables.AssemblyRefOS;
 
-            Assert.Null(assemblyRefOS);
+            Assert.Empty(assemblyRefOS);
         }
 
         [Fact]
@@ -573,7 +573,7 @@ namespace PeNet.Test.Structures
         {
             var file = _peFile.MetaDataStreamTablesHeader.Tables.File;
 
-            Assert.Null(file);
+            Assert.Empty(file);
         }
 
         [Fact]
@@ -581,7 +581,7 @@ namespace PeNet.Test.Structures
         {
             var exportedType = _peFile.MetaDataStreamTablesHeader.Tables.ExportedType;
 
-            Assert.Null(exportedType);
+            Assert.Empty(exportedType);
         }
 
         [Fact]
@@ -589,7 +589,7 @@ namespace PeNet.Test.Structures
         {
             var manifestResource = _peFile.MetaDataStreamTablesHeader.Tables.ManifestResource;
 
-            Assert.Null(manifestResource);
+            Assert.Empty(manifestResource);
         }
 
         [Fact]

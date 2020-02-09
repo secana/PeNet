@@ -5,7 +5,7 @@
     /// </summary>
     public class Resources : AbstractStructure
     {
-        private VS_VERSIONINFO _vsVersionInfo;
+        private VS_VERSIONINFO? _vsVersionInfo;
         private readonly uint _vsVersionOffset;
 
         /// <summary>

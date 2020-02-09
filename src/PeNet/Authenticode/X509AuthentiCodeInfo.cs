@@ -5,7 +5,7 @@ namespace PeNet.Authenticode
 {
     public class ContentInfo
     {
-        public Asn1Node Content { get; }
+        public Asn1Node? Content { get; }
         public string ContentType { get; }
 
         public ContentInfo(byte[] data)

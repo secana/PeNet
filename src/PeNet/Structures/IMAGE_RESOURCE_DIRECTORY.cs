@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using PeNet.Utilities;
 
 namespace PeNet.Structures
@@ -12,7 +13,7 @@ namespace PeNet.Structures
         /// <summary>
         ///     Array with the different directory entries.
         /// </summary>
-        public readonly IMAGE_RESOURCE_DIRECTORY_ENTRY[] DirectoryEntries;
+        public readonly List<IMAGE_RESOURCE_DIRECTORY_ENTRY?>? DirectoryEntries;
 
         /// <summary>
         ///     Create a new IMAGE_RESOURCE_DIRECTORY object.
@@ -80,19 +81,21 @@ namespace PeNet.Structures
             set => Buff.SetUInt16(Offset + 0xe, value);
         }
 
-        private IMAGE_RESOURCE_DIRECTORY_ENTRY[] ParseDirectoryEntries(uint resourceDirOffset)
+        private List<IMAGE_RESOURCE_DIRECTORY_ENTRY?>? ParseDirectoryEntries(uint resourceDirOffset)
         {
             if (SanityCheckFailed())
                 return null;
 
-            var entries = new IMAGE_RESOURCE_DIRECTORY_ENTRY[NumberOfIdEntries + NumberOfNameEntries];
+            var numEntries = NumberOfIdEntries + NumberOfNameEntries;
 
-            for (var index = 0; index < entries.Length; index++)
+            List<IMAGE_RESOURCE_DIRECTORY_ENTRY?> entries = new List<IMAGE_RESOURCE_DIRECTORY_ENTRY?>(numEntries);
+
+            for (var index = 0; index < numEntries; index++)
             {
                 try
                 {
-                    entries[index] = new IMAGE_RESOURCE_DIRECTORY_ENTRY(Buff, (uint) index*8 + Offset + 16,
-                        resourceDirOffset);
+                    entries.Add(new IMAGE_RESOURCE_DIRECTORY_ENTRY(Buff, (uint)index * 8 + Offset + 16,
+                        resourceDirOffset));
                 }
                 catch (IndexOutOfRangeException)
                 {

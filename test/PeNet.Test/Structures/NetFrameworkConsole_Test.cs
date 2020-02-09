@@ -183,7 +183,7 @@ namespace PeNet.Test.Structures
         {
             var field = _peFile.MetaDataStreamTablesHeader.Tables.Field;
 
-            Assert.Null(field);
+            Assert.Empty(field);
         }
 
         [Fact]
@@ -225,7 +225,7 @@ namespace PeNet.Test.Structures
         {
             var interfaceImpl = _peFile.MetaDataStreamTablesHeader.Tables.InterfaceImpl;
 
-            Assert.Null(interfaceImpl);
+            Assert.Empty(interfaceImpl);
         }
 
         [Fact]
@@ -251,7 +251,7 @@ namespace PeNet.Test.Structures
         {
             var constant = _peFile.MetaDataStreamTablesHeader.Tables.Constant;
 
-            Assert.Null(constant);
+            Assert.Empty(constant);
         }
 
         [Fact]
@@ -277,7 +277,7 @@ namespace PeNet.Test.Structures
         {
             var fieldMarshall = _peFile.MetaDataStreamTablesHeader.Tables.FieldMarshal;
 
-            Assert.Null(fieldMarshall);
+            Assert.Empty(fieldMarshall);
         }
 
         [Fact]
@@ -285,7 +285,7 @@ namespace PeNet.Test.Structures
         {
             var declSecurity = _peFile.MetaDataStreamTablesHeader.Tables.DeclSecurity;
 
-            Assert.Null(declSecurity);
+            Assert.Empty(declSecurity);
         }
 
         [Fact]
@@ -293,7 +293,7 @@ namespace PeNet.Test.Structures
         {
             var classLayout = _peFile.MetaDataStreamTablesHeader.Tables.ClassLayout;
 
-            Assert.Null(classLayout);
+            Assert.Empty(classLayout);
         }
 
         [Fact]
@@ -301,7 +301,7 @@ namespace PeNet.Test.Structures
         {
             var fieldLayout = _peFile.MetaDataStreamTablesHeader.Tables.FieldLayout;
 
-            Assert.Null(fieldLayout);
+            Assert.Empty(fieldLayout);
         }
 
         [Fact]
@@ -319,7 +319,7 @@ namespace PeNet.Test.Structures
         {
             var eventMap = _peFile.MetaDataStreamTablesHeader.Tables.EventMap;
 
-            Assert.Null(eventMap);
+            Assert.Empty(eventMap);
         }
 
         [Fact]
@@ -327,7 +327,7 @@ namespace PeNet.Test.Structures
         {
             var ev = _peFile.MetaDataStreamTablesHeader.Tables.Event;
 
-            Assert.Null(ev);
+            Assert.Empty(ev);
         }
 
         [Fact]
@@ -335,7 +335,7 @@ namespace PeNet.Test.Structures
         {
             var popertyMap = _peFile.MetaDataStreamTablesHeader.Tables.PropertyMap;
 
-            Assert.Null(popertyMap);
+            Assert.Empty(popertyMap);
         }
 
         [Fact]
@@ -343,7 +343,7 @@ namespace PeNet.Test.Structures
         {
             var poperty = _peFile.MetaDataStreamTablesHeader.Tables.Property;
 
-            Assert.Null(poperty);
+            Assert.Empty(poperty);
         }
 
         [Fact]
@@ -351,7 +351,7 @@ namespace PeNet.Test.Structures
         {
             var methodSemantics = _peFile.MetaDataStreamTablesHeader.Tables.MethodSemantic;
 
-            Assert.Null(methodSemantics);
+            Assert.Empty(methodSemantics);
         }
 
         [Fact]
@@ -359,7 +359,7 @@ namespace PeNet.Test.Structures
         {
             var methodImpl = _peFile.MetaDataStreamTablesHeader.Tables.MethodImpl;
 
-            Assert.Null(methodImpl);
+            Assert.Empty(methodImpl);
         }
 
         [Fact]
@@ -367,7 +367,7 @@ namespace PeNet.Test.Structures
         {
             var moduleRef = _peFile.MetaDataStreamTablesHeader.Tables.ModuleRef;
 
-            Assert.Null(moduleRef);
+            Assert.Empty(moduleRef);
         }
 
         [Fact]
@@ -386,7 +386,7 @@ namespace PeNet.Test.Structures
         {
             var fieldRVA = _peFile.MetaDataStreamTablesHeader.Tables.FieldRVA;
 
-            Assert.Null(fieldRVA);
+            Assert.Empty(fieldRVA);
         }
 
         [Fact]
@@ -412,7 +412,7 @@ namespace PeNet.Test.Structures
         {
             var assemblyProcessor = _peFile.MetaDataStreamTablesHeader.Tables.AssemblyProcessor;
 
-            Assert.Null(assemblyProcessor);
+            Assert.Empty(assemblyProcessor);
         }
 
         [Fact]
@@ -420,7 +420,7 @@ namespace PeNet.Test.Structures
         {
             var assemblyOS = _peFile.MetaDataStreamTablesHeader.Tables.AssemblyOS;
 
-            Assert.Null(assemblyOS);
+            Assert.Empty(assemblyOS);
         }
 
         [Fact]
@@ -446,7 +446,7 @@ namespace PeNet.Test.Structures
         {
             var assemblyRefProcessor = _peFile.MetaDataStreamTablesHeader.Tables.AssemblyRefProcessor;
 
-            Assert.Null(assemblyRefProcessor);
+            Assert.Empty(assemblyRefProcessor);
         }
 
         [Fact]
@@ -454,7 +454,7 @@ namespace PeNet.Test.Structures
         {
             var assemblyRefOS = _peFile.MetaDataStreamTablesHeader.Tables.AssemblyRefOS;
 
-            Assert.Null(assemblyRefOS);
+            Assert.Empty(assemblyRefOS);
         }
 
         [Fact]
@@ -462,7 +462,7 @@ namespace PeNet.Test.Structures
         {
             var file = _peFile.MetaDataStreamTablesHeader.Tables.File;
 
-            Assert.Null(file);
+            Assert.Empty(file);
         }
 
         [Fact]
@@ -470,7 +470,7 @@ namespace PeNet.Test.Structures
         {
             var exportedType = _peFile.MetaDataStreamTablesHeader.Tables.ExportedType;
 
-            Assert.Null(exportedType);
+            Assert.Empty(exportedType);
         }
 
         [Fact]
@@ -478,7 +478,7 @@ namespace PeNet.Test.Structures
         {
             var manifestResource = _peFile.MetaDataStreamTablesHeader.Tables.ManifestResource;
 
-            Assert.Null(manifestResource);
+            Assert.Empty(manifestResource);
         }
 
         [Fact]
@@ -486,7 +486,7 @@ namespace PeNet.Test.Structures
         {
             var nestedClass = _peFile.MetaDataStreamTablesHeader.Tables.NestedClass;
 
-            Assert.Null(nestedClass);
+            Assert.Empty(nestedClass);
         }
 
         [Fact]
@@ -494,7 +494,7 @@ namespace PeNet.Test.Structures
         {
             var genericParam = _peFile.MetaDataStreamTablesHeader.Tables.GenericParam;
 
-            Assert.Null(genericParam);
+            Assert.Empty(genericParam);
         }
 
         [Fact]
@@ -502,7 +502,7 @@ namespace PeNet.Test.Structures
         {
             var genericParamConstraint = _peFile.MetaDataStreamTablesHeader.Tables.GenericParamConstraints;
 
-            Assert.Null(genericParamConstraint);
+            Assert.Empty(genericParamConstraint);
         }
 
         [Fact]

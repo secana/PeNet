@@ -13,26 +13,26 @@ namespace PeNet
 
         private readonly bool _is32Bit;
         private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
-        private ExportedFunctionsParser _exportedFunctionsParser;
-        private ImageBaseRelocationsParser _imageBaseRelocationsParser;
-        private ImageDebugDirectoryParser _imageDebugDirectoryParser;
-        private ImageBoundImportDescriptorParser _imageBoundImportDescriptorParser;
-        private ImageExportDirectoriesParser _imageExportDirectoriesParser;
-        private ImageImportDescriptorsParser _imageImportDescriptorsParser;
-        private ImageResourceDirectoryParser _imageResourceDirectoryParser;
-        private ImportedFunctionsParser _importedFunctionsParser;
-        private RuntimeFunctionsParser _runtimeFunctionsParser;
-        private WinCertificateParser _winCertificateParser;
-        private ImageTlsDirectoryParser _imageTlsDirectoryParser;
-        private ImageDelayImportDescriptorParser _imageDelayImportDescriptorParser;
-        private ImageLoadConfigDirectoryParser _imageLoadConfigDirectoryParser;
-        private ImageCor20HeaderParser _imageCor20HeaderParser;
-        private ResourcesParser _resourcesParser;
+        private readonly ExportedFunctionsParser _exportedFunctionsParser;
+        private readonly ImageBaseRelocationsParser? _imageBaseRelocationsParser;
+        private readonly ImageDebugDirectoryParser? _imageDebugDirectoryParser;
+        private readonly ImageBoundImportDescriptorParser? _imageBoundImportDescriptorParser;
+        private readonly ImageExportDirectoriesParser? _imageExportDirectoriesParser;
+        private readonly ImageImportDescriptorsParser? _imageImportDescriptorsParser;
+        private readonly ImageResourceDirectoryParser? _imageResourceDirectoryParser;
+        private readonly ImportedFunctionsParser _importedFunctionsParser;
+        private readonly RuntimeFunctionsParser? _runtimeFunctionsParser;
+        private readonly WinCertificateParser? _winCertificateParser;
+        private readonly ImageTlsDirectoryParser? _imageTlsDirectoryParser;
+        private readonly ImageDelayImportDescriptorParser? _imageDelayImportDescriptorParser;
+        private readonly ImageLoadConfigDirectoryParser? _imageLoadConfigDirectoryParser;
+        private readonly ImageCor20HeaderParser? _imageCor20HeaderParser;
+        private readonly ResourcesParser? _resourcesParser;
 
         public DataDirectoryParsers(
             byte[] buff,
-            IEnumerable<IMAGE_DATA_DIRECTORY> dataDirectories,
-            IEnumerable<IMAGE_SECTION_HEADER> sectionHeaders,
+            IEnumerable<IMAGE_DATA_DIRECTORY>? dataDirectories,
+            IEnumerable<IMAGE_SECTION_HEADER>? sectionHeaders,
             bool is32Bit
             )
         {
@@ -41,27 +41,7 @@ namespace PeNet
             _sectionHeaders = sectionHeaders.ToArray();
             _is32Bit = is32Bit;
 
-            InitAllParsers();
-        }
-
-        public IMAGE_EXPORT_DIRECTORY ImageExportDirectories => _imageExportDirectoriesParser?.GetParserTarget();
-        public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors => _imageImportDescriptorsParser?.GetParserTarget();
-        public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory => _imageResourceDirectoryParser?.GetParserTarget();
-        public IMAGE_BASE_RELOCATION[] ImageBaseRelocations => _imageBaseRelocationsParser?.GetParserTarget();
-        public WIN_CERTIFICATE WinCertificate => _winCertificateParser?.GetParserTarget();
-        public IMAGE_DEBUG_DIRECTORY[] ImageDebugDirectory => _imageDebugDirectoryParser?.GetParserTarget();
-        public RUNTIME_FUNCTION[] RuntimeFunctions => _runtimeFunctionsParser?.GetParserTarget();
-        public ExportFunction[] ExportFunctions => _exportedFunctionsParser?.GetParserTarget();
-        public ImportFunction[] ImportFunctions => _importedFunctionsParser?.GetParserTarget();
-        public IMAGE_BOUND_IMPORT_DESCRIPTOR ImageBoundImportDescriptor => _imageBoundImportDescriptorParser?.GetParserTarget();
-        public IMAGE_TLS_DIRECTORY ImageTlsDirectory => _imageTlsDirectoryParser?.GetParserTarget();
-        public IMAGE_DELAY_IMPORT_DESCRIPTOR ImageDelayImportDescriptor => _imageDelayImportDescriptorParser?.GetParserTarget();
-        public IMAGE_LOAD_CONFIG_DIRECTORY ImageLoadConfigDirectory => _imageLoadConfigDirectoryParser?.GetParserTarget();
-        public IMAGE_COR20_HEADER ImageComDescriptor => _imageCor20HeaderParser?.GetParserTarget();
-        public Resources Resources => _resourcesParser?.GetParserTarget();
-
-        private void InitAllParsers()
-        {
+            // Init all parsers
             _imageExportDirectoriesParser = InitImageExportDirectoryParser();
             _runtimeFunctionsParser = InitRuntimeFunctionsParser();
             _imageImportDescriptorsParser = InitImageImportDescriptorsParser();
@@ -79,10 +59,26 @@ namespace PeNet
             _resourcesParser = InitResourcesParser();
         }
 
-        private ResourcesParser InitResourcesParser()
+        public IMAGE_EXPORT_DIRECTORY? ImageExportDirectories => _imageExportDirectoriesParser?.GetParserTarget();
+        public IMAGE_IMPORT_DESCRIPTOR[]? ImageImportDescriptors => _imageImportDescriptorsParser?.GetParserTarget();
+        public IMAGE_RESOURCE_DIRECTORY? ImageResourceDirectory => _imageResourceDirectoryParser?.GetParserTarget();
+        public IMAGE_BASE_RELOCATION[]? ImageBaseRelocations => _imageBaseRelocationsParser?.GetParserTarget();
+        public WIN_CERTIFICATE? WinCertificate => _winCertificateParser?.GetParserTarget();
+        public IMAGE_DEBUG_DIRECTORY[]? ImageDebugDirectory => _imageDebugDirectoryParser?.GetParserTarget();
+        public RUNTIME_FUNCTION[]? RuntimeFunctions => _runtimeFunctionsParser?.GetParserTarget();
+        public ExportFunction[]? ExportFunctions => _exportedFunctionsParser.GetParserTarget();
+        public ImportFunction[]? ImportFunctions => _importedFunctionsParser.GetParserTarget();
+        public IMAGE_BOUND_IMPORT_DESCRIPTOR? ImageBoundImportDescriptor => _imageBoundImportDescriptorParser?.GetParserTarget();
+        public IMAGE_TLS_DIRECTORY? ImageTlsDirectory => _imageTlsDirectoryParser?.GetParserTarget();
+        public IMAGE_DELAY_IMPORT_DESCRIPTOR? ImageDelayImportDescriptor => _imageDelayImportDescriptorParser?.GetParserTarget();
+        public IMAGE_LOAD_CONFIG_DIRECTORY? ImageLoadConfigDirectory => _imageLoadConfigDirectoryParser?.GetParserTarget();
+        public IMAGE_COR20_HEADER? ImageComDescriptor => _imageCor20HeaderParser?.GetParserTarget();
+        public Resources? Resources => _resourcesParser?.GetParserTarget();
+
+        private ResourcesParser? InitResourcesParser()
         {
             var vsVersionOffset = ImageResourceDirectory
-                ?.DirectoryEntries?.FirstOrDefault(e => e.ID == (int) Constants.ResourceGroupIDs.Version) // Root
+                ?.DirectoryEntries?.FirstOrDefault(e => e?.ID == (int) Constants.ResourceGroupIDs.Version) // Root
                 ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Type
                 ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Name
                 ?.ResourceDataEntry?.OffsetToData; // Language
@@ -95,7 +91,7 @@ namespace PeNet
             return rawVsVersionOffset is null ? null : new ResourcesParser(_buff, 0, rawVsVersionOffset.Value);
         }
 
-        private ImageCor20HeaderParser InitImageComDescriptorParser()
+        private ImageCor20HeaderParser? InitImageComDescriptorParser()
         {
             var rawAddress =
                 _dataDirectories[(int) Constants.DataDirectoryIndex.COM_Descriptor].VirtualAddress.SafeRVAtoFileMapping(_sectionHeaders);
@@ -103,7 +99,7 @@ namespace PeNet
             return rawAddress == null ? null : new ImageCor20HeaderParser(_buff, rawAddress.Value);
         }
 
-        private ImageLoadConfigDirectoryParser InitImageLoadConfigDirectoryParser()
+        private ImageLoadConfigDirectoryParser? InitImageLoadConfigDirectoryParser()
         {
             var rawAddress =
                 _dataDirectories[(int) Constants.DataDirectoryIndex.LoadConfig].VirtualAddress.SafeRVAtoFileMapping(_sectionHeaders);
@@ -111,7 +107,7 @@ namespace PeNet
             return rawAddress == null ? null : new ImageLoadConfigDirectoryParser(_buff, rawAddress.Value, !_is32Bit);
         }
 
-        private ImageDelayImportDescriptorParser InitImageDelayImportDescriptorParser()
+        private ImageDelayImportDescriptorParser? InitImageDelayImportDescriptorParser()
         {
             var rawAddress =
                 _dataDirectories[(int) Constants.DataDirectoryIndex.DelayImport].VirtualAddress.SafeRVAtoFileMapping(_sectionHeaders);
@@ -119,7 +115,7 @@ namespace PeNet
             return rawAddress == null ? null : new ImageDelayImportDescriptorParser(_buff, rawAddress.Value);
         }
 
-        private ImageTlsDirectoryParser InitImageTlsDirectoryParser()
+        private ImageTlsDirectoryParser? InitImageTlsDirectoryParser()
         {
             var rawAddress =
                 _dataDirectories[(int) Constants.DataDirectoryIndex.TLS].VirtualAddress.SafeRVAtoFileMapping(_sectionHeaders);
@@ -127,7 +123,7 @@ namespace PeNet
             return rawAddress == null ? null : new ImageTlsDirectoryParser(_buff, rawAddress.Value, !_is32Bit, _sectionHeaders);
         }
 
-        private ImageBoundImportDescriptorParser InitBoundImportDescriptorParser()
+        private ImageBoundImportDescriptorParser? InitBoundImportDescriptorParser()
         {
             var rawAddress =
                 _dataDirectories[(int) Constants.DataDirectoryIndex.BoundImport].VirtualAddress.SafeRVAtoFileMapping(_sectionHeaders);
@@ -154,7 +150,7 @@ namespace PeNet
                 _dataDirectories[(int) Constants.DataDirectoryIndex.Export]);
         }
 
-        private WinCertificateParser InitWinCertificateParser()
+        private WinCertificateParser? InitWinCertificateParser()
         {
             // The security directory is the only one where the DATA_DIRECTORY VirtualAddress
             // is not an RVA but an raw offset.
@@ -166,7 +162,7 @@ namespace PeNet
             return new WinCertificateParser(_buff, rawAddress);
         }
 
-        private ImageDebugDirectoryParser InitImageDebugDirectoryParser()
+        private ImageDebugDirectoryParser? InitImageDebugDirectoryParser()
         {
             var rawAddress =
                 _dataDirectories[(int) Constants.DataDirectoryIndex.Debug].VirtualAddress.SafeRVAtoFileMapping(_sectionHeaders);
@@ -175,7 +171,7 @@ namespace PeNet
             return rawAddress == null ? null : new ImageDebugDirectoryParser(_buff, rawAddress.Value, size);
         }
 
-        private ImageResourceDirectoryParser InitImageResourceDirectoryParser()
+        private ImageResourceDirectoryParser? InitImageResourceDirectoryParser()
         {
             var rawAddress =
                 _dataDirectories[(int) Constants.DataDirectoryIndex.Resource].VirtualAddress.SafeRVAtoFileMapping(_sectionHeaders);
@@ -183,7 +179,7 @@ namespace PeNet
             return rawAddress == null ? null : new ImageResourceDirectoryParser(_buff, rawAddress.Value);
         }
 
-        private ImageBaseRelocationsParser InitImageBaseRelocationsParser()
+        private ImageBaseRelocationsParser? InitImageBaseRelocationsParser()
         {
             var rawAddress =
                 _dataDirectories[(int) Constants.DataDirectoryIndex.BaseReloc].VirtualAddress.SafeRVAtoFileMapping(_sectionHeaders);
@@ -198,7 +194,7 @@ namespace PeNet
                 );
         }
 
-        private ImageExportDirectoriesParser InitImageExportDirectoryParser()
+        private ImageExportDirectoriesParser? InitImageExportDirectoryParser()
         {
             var rawAddress =
                 _dataDirectories[(int) Constants.DataDirectoryIndex.Export].VirtualAddress.SafeRVAtoFileMapping(_sectionHeaders);
@@ -208,7 +204,7 @@ namespace PeNet
             return new ImageExportDirectoriesParser(_buff, rawAddress.Value);
         }
 
-        private RuntimeFunctionsParser InitRuntimeFunctionsParser()
+        private RuntimeFunctionsParser? InitRuntimeFunctionsParser()
         {
             var rawAddress =
                 _dataDirectories[(int) Constants.DataDirectoryIndex.Exception].VirtualAddress.SafeRVAtoFileMapping(_sectionHeaders);
@@ -225,7 +221,7 @@ namespace PeNet
                 );
         }
 
-        private ImageImportDescriptorsParser InitImageImportDescriptorsParser()
+        private ImageImportDescriptorsParser? InitImageImportDescriptorsParser()
         {
             var rawAddress =
                 _dataDirectories[(int) Constants.DataDirectoryIndex.Import].VirtualAddress.SafeRVAtoFileMapping(_sectionHeaders);

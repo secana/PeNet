@@ -9,13 +9,13 @@ namespace PeNet.Structures
     /// </summary>
     public class IMAGE_COR20_HEADER : AbstractStructure
     {
-        private IMAGE_DATA_DIRECTORY _metaData;
-        private IMAGE_DATA_DIRECTORY _resources;
-        private IMAGE_DATA_DIRECTORY _strongSignatureNames;
-        private IMAGE_DATA_DIRECTORY _codeManagerTable;
-        private IMAGE_DATA_DIRECTORY _vTableFixups;
-        private IMAGE_DATA_DIRECTORY _exportAddressTableJumps;
-        private IMAGE_DATA_DIRECTORY _managedNativeHeader;
+        private IMAGE_DATA_DIRECTORY? _metaData;
+        private IMAGE_DATA_DIRECTORY? _resources;
+        private IMAGE_DATA_DIRECTORY? _strongSignatureNames;
+        private IMAGE_DATA_DIRECTORY? _codeManagerTable;
+        private IMAGE_DATA_DIRECTORY? _vTableFixups;
+        private IMAGE_DATA_DIRECTORY? _exportAddressTableJumps;
+        private IMAGE_DATA_DIRECTORY? _managedNativeHeader;
 
         /// <summary>
         /// Create a new instance of an COM+ 2 (CLI) header.
@@ -57,7 +57,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Meta data directory.
         /// </summary>
-        public IMAGE_DATA_DIRECTORY MetaData
+        public IMAGE_DATA_DIRECTORY? MetaData
         {
             get
             {
@@ -101,7 +101,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Resource data directory.
         /// </summary>
-        public IMAGE_DATA_DIRECTORY Resources
+        public IMAGE_DATA_DIRECTORY? Resources
         {
             get
             {
@@ -113,7 +113,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Strong names signature directory.
         /// </summary>
-        public IMAGE_DATA_DIRECTORY StrongNameSignature
+        public IMAGE_DATA_DIRECTORY? StrongNameSignature
         {
             get
             {
@@ -125,7 +125,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Code manager table directory.
         /// </summary>
-        public IMAGE_DATA_DIRECTORY CodeManagerTable
+        public IMAGE_DATA_DIRECTORY? CodeManagerTable
         {
             get
             {
@@ -137,7 +137,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Virtual table fix up directory.
         /// </summary>
-        public IMAGE_DATA_DIRECTORY VTableFixups
+        public IMAGE_DATA_DIRECTORY? VTableFixups
         {
             get
             {
@@ -149,7 +149,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Export address table jump directory.
         /// </summary>
-        public IMAGE_DATA_DIRECTORY ExportAddressTableJumps
+        public IMAGE_DATA_DIRECTORY? ExportAddressTableJumps
         {
             get
             {
@@ -161,7 +161,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Managed native header directory.
         /// </summary>
-        public IMAGE_DATA_DIRECTORY ManagedNativeHeader
+        public IMAGE_DATA_DIRECTORY? ManagedNativeHeader
         {
             get
             {
@@ -170,7 +170,7 @@ namespace PeNet.Structures
             }
         }
 
-        private IMAGE_DATA_DIRECTORY SetImageDataDirectory(byte[] buff, uint offset)
+        private IMAGE_DATA_DIRECTORY? SetImageDataDirectory(byte[] buff, uint offset)
         {
             try
             {

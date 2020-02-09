@@ -9,7 +9,7 @@ namespace PeNet.Parser
         protected readonly uint Offset;
         private bool _alreadyParsed;
 
-        private T _target;
+        private T? _target;
 
         internal SafeParser(byte[] buff, uint offset)
         {
@@ -23,9 +23,9 @@ namespace PeNet.Parser
         }
 
 
-        protected abstract T ParseTarget();
+        protected abstract T? ParseTarget();
 
-        public T GetParserTarget()
+        public T? GetParserTarget()
         {
             if (_alreadyParsed)
                 return _target;

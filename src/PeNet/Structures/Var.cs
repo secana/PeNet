@@ -9,7 +9,7 @@ namespace PeNet.Structures
     /// </summary>
     public class Var : AbstractStructure
     {
-        private uint[] _value;
+        private uint[]? _value;
 
         public Var(byte[] buff, uint offset) 
             : base(buff, offset)

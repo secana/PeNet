@@ -125,7 +125,7 @@ namespace PeNet.Structures
         }
     
 
-        private readonly Dictionary<Index, IMetaDataIndex> _index = null;
+        private readonly Dictionary<Index, IMetaDataIndex> _index;
 
         public uint this[Index index] => _index[index].Size;
     }

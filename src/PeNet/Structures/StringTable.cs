@@ -10,7 +10,7 @@ namespace PeNet.Structures
     /// </summary>
     public class StringTable : AbstractStructure
     {
-        private TString[] _children;
+        private TString[]? _children;
 
         public StringTable(byte[] buff, uint offset) 
             : base(buff, offset)
@@ -68,69 +68,69 @@ namespace PeNet.Structures
         /// <summary>
         /// Additional information that should be displayed for diagnostic purposes.
         /// </summary>
-        public string Comments => GetValue(nameof(Comments));
+        public string? Comments => GetValue(nameof(Comments));
 
         /// <summary>
         /// Name of the company that produced the file, e.g. "Microsoft Corporation".
         /// </summary>
-        public string CompanyName => GetValue(nameof(CompanyName));
+        public string? CompanyName => GetValue(nameof(CompanyName));
 
         /// <summary>
         /// Description of the file for users, e.g. "Keyboard driver for IBM keyboards".
         /// </summary>
-        public string FileDescription => GetValue(nameof(FileDescription));
+        public string? FileDescription => GetValue(nameof(FileDescription));
 
         /// <summary>
         /// Version of the file, e.g. "6.00.21".
         /// </summary>
-        public string FileVersion => GetValue(nameof(FileVersion));
+        public string? FileVersion => GetValue(nameof(FileVersion));
 
         /// <summary>
         /// Internal name of the file, like a module or DLL name.
         /// </summary>
-        public string InternalName => GetValue(nameof(InternalName));
+        public string? InternalName => GetValue(nameof(InternalName));
 
         /// <summary>
         /// Contains all legal copyright notices, registered trademarks
         /// and copyright dates for the file. E.g. "Copyright Microsoft Corp. 1990".
         /// </summary>
-        public string LegalCopyright => GetValue(nameof(LegalCopyright));
+        public string? LegalCopyright => GetValue(nameof(LegalCopyright));
 
         /// <summary>
         /// Contains all legal trademarks that apply to the file, e.g.
         /// "Windows is a trademark of Microsoft Corporation".
         /// </summary>
-        public string LegalTrademarks => GetValue(nameof(LegalTrademarks));
+        public string? LegalTrademarks => GetValue(nameof(LegalTrademarks));
 
         /// <summary>
         /// The original file name not including the path. Used to identify
         /// if a file was renamed by the user.
         /// </summary>
-        public string OriginalFilename => GetValue(nameof(OriginalFilename));
+        public string? OriginalFilename => GetValue(nameof(OriginalFilename));
 
         /// <summary>
         /// Contains by whom, where, and why this private version of the file was built.
         /// Should only be present if the VS_FF_PRIVATEBUILD flag is set in the dwFileFlags member of the VS_FIXEDFILEINFO structure.
         /// </summary>
-        public string PrivateBuild => GetValue(nameof(PrivateBuild));
+        public string? PrivateBuild => GetValue(nameof(PrivateBuild));
 
         /// <summary>
         /// Name of the product with which the file was distributed, e.g. "Firefox".
         /// </summary>
-        public string ProductName => GetValue(nameof(ProductName));
+        public string? ProductName => GetValue(nameof(ProductName));
 
         /// <summary>
         /// Contains the version of the product with which the file was distributed.
         /// </summary>
-        public string ProductVersion => GetValue(nameof(ProductVersion));
+        public string? ProductVersion => GetValue(nameof(ProductVersion));
 
         /// <summary>
         /// Contains how this version of the file differs from the normal version.
         /// This entry should only be present if the VS_FF_SPECIALBUILD flag is set in the dwFileFlags member of the VS_FIXEDFILEINFO structure.
         /// </summary>
-        public string SpecialBuild => GetValue(nameof(SpecialBuild));
+        public string? SpecialBuild => GetValue(nameof(SpecialBuild));
 
-        private string GetValue(string value) 
+        private string? GetValue(string value) 
             => String.FirstOrDefault(s => s.szKey == value)?.Value;
 
         private TString[] ReadChildren()

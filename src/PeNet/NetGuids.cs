@@ -50,36 +50,38 @@ namespace PeNet
         /// </summary>
         public string ParseComTypeLibId(PeFile peFile)
         {
-            var typeLibID = String.Empty;
+            var typeLibID = string.Empty;
             try
             {
                 // we need to walk a *lot* of .NET metadata to find this...
 
                 // 0. a bitfield in the #~ stream tells us the width of the index entries in the other streams
+                if (peFile.MetaDataStreamTablesHeader is null)
+                    throw new ArgumentException("Meta Data Stream Tables Header must not be null.", nameof(peFile.MetaDataStreamTablesHeader));
                 var blobIndexSize = new HeapSizes(peFile.MetaDataStreamTablesHeader.HeapSizes).Blob;
 
                 // 1. find the index of "GuidAttribute" in the TypeRef table
                 var typeRefTable = peFile.MetaDataStreamTablesHeader.Tables.TypeRef;
                 var stringsStream = peFile.MetaDataStreamString;
                 var typeRefTableIndex = 1;  // .NET metadata tables are 1-based...
-                for (; typeRefTableIndex <= typeRefTable.Count; typeRefTableIndex++)
+                for (; typeRefTableIndex <= typeRefTable?.Count; typeRefTableIndex++)
                 {
                     var typeRefTableRow = typeRefTable[typeRefTableIndex - 1];  // ...but .NET arrays are 0-based.
-                    if ("GuidAttribute" == stringsStream.GetStringAtIndex(typeRefTableRow.TypeName)
+                    if ("GuidAttribute" == stringsStream?.GetStringAtIndex(typeRefTableRow.TypeName)
                         && "System.Runtime.InteropServices" == stringsStream.GetStringAtIndex(typeRefTableRow.TypeNamespace))
                     {
                         break;
                     }
                 }
 
-                if (typeRefTableIndex < typeRefTable.Count)
+                if (typeRefTableIndex < typeRefTable?.Count)
                 {
                     // we found the TypeRef for "GuidAttribute"!
 
                     // 2. now find the row in the MemberRef table that points to this TypeRef
                     var memberRefTable = peFile.MetaDataStreamTablesHeader.Tables.MemberRef;
                     var memberRefTableindex = 1;
-                    for (; memberRefTableindex <= memberRefTable.Count; memberRefTableindex++)
+                    for (; memberRefTableindex <= memberRefTable?.Count; memberRefTableindex++)
                     {
                         var memberRefTableRow = memberRefTable[memberRefTableindex - 1];
                         if ((memberRefTableRow.Class & 0x7) == 0x1 // parent is a TypeRef
@@ -89,12 +91,15 @@ namespace PeNet
                         }
                     }
 
-                    if (memberRefTableindex < memberRefTable.Count)
+                    if (memberRefTableindex < memberRefTable?.Count)
                     {
                         // we found the MemberRef for the TypeRef for "GuidAttribute"!
 
                         // 3. now find the row in the CustomAttribute table whose Type points to this MemberRef
                         var customAttributeTable = peFile.MetaDataStreamTablesHeader.Tables.CustomAttribute;
+                        if (customAttributeTable is null)
+                            throw new ArgumentException("Custom Attribute Table must not be null.", nameof(customAttributeTable));
+
                         foreach (var row in customAttributeTable)
                         {
                             if ((row.Type & 0x7) == 0x3 // parent is a MemberRef
@@ -107,7 +112,7 @@ namespace PeNet
 
                                 var guidStart = blobIndex + blobIndexSize + 2; // +2 as stored as a counted string
                                 var guidLength = 36;
-                                if (guidStart + guidLength < peFile.MetaDataStreamBlob.Length
+                                if (guidStart + guidLength < peFile.MetaDataStreamBlob?.Length
                                     && peFile.MetaDataStreamBlob[guidStart - 1] == guidLength)  // check the count
                                 {
                                     var guidBytes = peFile.MetaDataStreamBlob.Skip((int)guidStart).Take(guidLength).ToArray();

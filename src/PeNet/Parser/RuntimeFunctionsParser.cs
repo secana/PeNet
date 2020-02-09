@@ -22,7 +22,7 @@ namespace PeNet.Parser
             _sectionHeaders = sectionHeaders;
         }
 
-        protected override RUNTIME_FUNCTION[] ParseTarget()
+        protected override RUNTIME_FUNCTION[]? ParseTarget()
         {
             if (_is32Bit || Offset == 0)
                 return null;

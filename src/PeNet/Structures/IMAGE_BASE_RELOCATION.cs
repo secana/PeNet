@@ -54,7 +54,7 @@ namespace PeNet.Structures
         /// <summary>
         ///     Array with the TypeOffsets for the relocation block.
         /// </summary>
-        public TypeOffset[] TypeOffsets { get; private set; }
+        public TypeOffset[]? TypeOffsets { get; private set; }
 
         private void ParseTypeOffsets()
         {

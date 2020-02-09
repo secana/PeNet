@@ -12,9 +12,9 @@ namespace PeNet.Structures
     /// </summary>
     public class METADATAHDR : AbstractStructure
     {
-        private METADATASTREAMHDR[] _metaDataStreamsHdrs;
+        private METADATASTREAMHDR[]? _metaDataStreamsHdrs;
         private bool _metaDataStreamsHdrsParsed;
-        private string _versionString;
+        private string? _versionString;
         private bool _versionStringParsed;
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Version number as an UTF-8 string.
         /// </summary>
-        public string Version {
+        public string? Version {
             get
             {
                 if (!_versionStringParsed)
@@ -119,7 +119,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Array with all Meta Data Stream Headers.
         /// </summary>
-        public METADATASTREAMHDR[] MetaDataStreamsHdrs
+        public METADATASTREAMHDR[]? MetaDataStreamsHdrs
         {
             get
             {

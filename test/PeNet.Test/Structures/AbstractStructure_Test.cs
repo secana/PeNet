@@ -10,7 +10,7 @@ namespace PeNet.Test.Structures
             public int SubInt { get; } = 11;
             public int SubString { get; } = 12;
             public SubStructure() 
-                : base(null, 0)
+                : base(new byte[0], 0)
             {
             }
         }
@@ -20,15 +20,15 @@ namespace PeNet.Test.Structures
             public string String { get; } = "Hello";
             public long Long { get; } = 20;
             public string[] StringArray { get; } = new string[] { "Hello", "World" }; // Must not be in the results
-            public int[] NullArray { get; } = null; // Must not be in the results
-            public string NullString { get; } = null;
+            public int[]? NullArray { get; } = null; // Must not be in the results
+            public string? NullString { get; } = null;
             public SubStructure[] SubStructure { get; } = new SubStructure[] { new SubStructure(), new SubStructure() };
 
             private string PrivString { get; } = "ShallNotSee"; // Must not be in the results
             protected int ProtInt { get; } = -1;
 
             public Structure() 
-                : base(null, 0)
+                : base(new byte[0], 0)
             {
             }
         }

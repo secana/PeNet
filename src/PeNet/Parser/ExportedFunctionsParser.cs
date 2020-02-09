@@ -5,13 +5,13 @@ namespace PeNet.Parser
 {
     internal class ExportedFunctionsParser : SafeParser<ExportFunction[]>
     {
-        private readonly IMAGE_EXPORT_DIRECTORY _exportDirectory;
+        private readonly IMAGE_EXPORT_DIRECTORY? _exportDirectory;
         private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
         private readonly IMAGE_DATA_DIRECTORY _exportDataDir;
 
         internal ExportedFunctionsParser(
             byte[] buff,
-            IMAGE_EXPORT_DIRECTORY exportDirectory,
+            IMAGE_EXPORT_DIRECTORY? exportDirectory,
             IMAGE_SECTION_HEADER[] sectionHeaders,
             IMAGE_DATA_DIRECTORY exportDataDir
             )
@@ -22,7 +22,7 @@ namespace PeNet.Parser
             _exportDataDir = exportDataDir;
         }
 
-        protected override ExportFunction[] ParseTarget()
+        protected override ExportFunction[]? ParseTarget()
         {
             if (_exportDirectory == null || _exportDirectory.AddressOfFunctions == 0)
                 return null;

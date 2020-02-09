@@ -94,13 +94,6 @@ namespace PeNet.Structures
             set => ExceptionHandler = value;
         }
 
-        // DONT KNOW HOW BIG
-        // TODO: Implement ExceptionData
-        /// <summary>
-        ///     Exception Data
-        /// </summary>
-        public uint[] ExceptionData => null;
-
         private UNWIND_CODE[] ParseUnwindCodes(byte[] buff, uint offset)
         {
             var ucList = new List<UNWIND_CODE>();

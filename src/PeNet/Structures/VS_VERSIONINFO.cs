@@ -8,9 +8,9 @@ namespace PeNet.Structures
     /// </summary>
     public class VS_VERSIONINFO : AbstractStructure
     {
-        private VS_FIXEDFILEINFO _vsFixedFileInfo;
-        private StringFileInfo _stringFileInfo;
-        private VarFileInfo _varFileInfo;
+        private VS_FIXEDFILEINFO? _vsFixedFileInfo;
+        private StringFileInfo? _stringFileInfo;
+        private VarFileInfo? _varFileInfo;
         private uint VsFixedFileInfoOffset =>
             (uint)(Offset + 6 + szKey.LengthInByte()
                    + (Offset + 6 + szKey.LengthInByte()).PaddingBytes(32));

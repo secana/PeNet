@@ -9,7 +9,7 @@ namespace PeNet.Parser
         {
         }
 
-        protected override IMAGE_RESOURCE_DIRECTORY ParseTarget()
+        protected override IMAGE_RESOURCE_DIRECTORY? ParseTarget()
         {
             if (Offset == 0)
                 return null;
@@ -17,9 +17,14 @@ namespace PeNet.Parser
             // Parse the root directory.
             var root = new IMAGE_RESOURCE_DIRECTORY(Buff, Offset, Offset);
 
+            if (root.DirectoryEntries is null)
+                return root;
+
             // Parse the second stage (type)
             foreach (var de in root.DirectoryEntries)
             {
+                if (de is null)
+                    continue;
 
                 de.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
                     Buff,
@@ -34,6 +39,9 @@ namespace PeNet.Parser
                 // Parse the third stage (name/IDs)
                 foreach (var de2 in sndLevel)
                 {
+                    if (de2 is null)
+                        continue;
+
                     de2.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
                         Buff,
                         Offset + de2.OffsetToDirectory,
@@ -47,6 +55,9 @@ namespace PeNet.Parser
                     // Parse the forth stage (language) with the data.
                     foreach (var de3 in thrdLevel)
                     {
+                        if (de3 is null)
+                            continue;
+
                         de3.ResourceDataEntry = new IMAGE_RESOURCE_DATA_ENTRY(Buff,
                             Offset + de3.OffsetToData);
                     }

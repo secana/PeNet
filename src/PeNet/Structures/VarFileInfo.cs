@@ -10,7 +10,7 @@ namespace PeNet.Structures
     /// </summary>
     public class VarFileInfo : AbstractStructure
     {
-        private Var[] _children;
+        private Var[]? _children;
 
         public VarFileInfo(byte[] buff, uint offset) 
             : base(buff, offset)

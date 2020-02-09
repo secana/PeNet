@@ -11,7 +11,7 @@
         /// <param name="name">Name of the function.</param>
         /// <param name="address">Address of function.</param>
         /// <param name="ordinal">Ordinal of the function.</param>
-        public ExportFunction(string name, uint address, ushort ordinal)
+        public ExportFunction(string? name, uint address, ushort ordinal)
         {
             Name = name;
             Address = address;
@@ -36,7 +36,7 @@
         /// <summary>
         ///     Function name.
         /// </summary>
-        public string Name { get; }
+        public string? Name { get; }
 
         /// <summary>
         ///     Function RVA.
@@ -53,7 +53,7 @@
         ///     forwarded to another DLL.
         ///     Format "DLLName.ExportName".
         /// </summary>
-        public string ForwardName { get; }
+        public string? ForwardName { get; }
 
 
         /// <summary>

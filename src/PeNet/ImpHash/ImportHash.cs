@@ -22,18 +22,21 @@ namespace PeNet.ImpHash
         ///     PE file.
         /// </summary>
         /// <param name="importedFunctions"></param>
-        public ImportHash(ICollection<ImportFunction> importedFunctions)
+        public ImportHash(ICollection<ImportFunction>? importedFunctions)
         {
-            ImpHash = ComputeImpHash(importedFunctions);
+            if (importedFunctions is null)
+                ImpHash = null;
+            else
+                ImpHash = ComputeImpHash(importedFunctions);
         }
 
         /// <summary>
         ///     The import hash of the PE file as a string.
         /// </summary>
-        public string ImpHash { get; }
+        public string? ImpHash { get; }
 
 
-        private string ComputeImpHash(ICollection<ImportFunction> importedFunctions)
+        private string? ComputeImpHash(ICollection<ImportFunction> importedFunctions)
         {
             if (importedFunctions == null || importedFunctions.Count == 0)
                 return null;

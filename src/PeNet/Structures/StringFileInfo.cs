@@ -11,7 +11,7 @@ namespace PeNet.Structures
     /// </summary>
     public class StringFileInfo : AbstractStructure
     {
-        private StringTable[] _stringTable;
+        private StringTable[]? _stringTable;
 
         public StringFileInfo(byte[] buff, uint offset) 
             : base(buff, offset)
