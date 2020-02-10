@@ -67,5 +67,29 @@ namespace PeNet.Test
 
             Assert.Equal(isDriver, peFile.IsDriver);
         }
+
+        [Fact]
+        public void Sha256_GivenAPeFile_ReturnsCorrectHash()
+        {
+            var peFile = new PeFile(@"Binaries/firefox_x64.exe");
+
+            Assert.Equal("377d3b741d8447b9bbd5f6fa700151a6ce8412ca15792ba4eaaa3174b1763ba4", peFile.SHA256);
+        }
+
+        [Fact]
+        public void Sha1_GivenAPeFile_ReturnsCorrectHash()
+        {
+            var peFile = new PeFile(@"Binaries/firefox_x64.exe");
+
+            Assert.Equal("5faf53976b7a4c2ffaf96581803c72cd09484b39", peFile.SHA1);
+        }
+
+        [Fact]
+        public void Md5_GivenAPeFile_ReturnsCorrectHash()
+        {
+            var peFile = new PeFile(@"Binaries/firefox_x64.exe");
+
+            Assert.Equal("fa64b4aeb420a6c292f877e90d0670a5", peFile.MD5);
+        }
     }
 }

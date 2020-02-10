@@ -505,6 +505,18 @@ namespace PeNet
             return fileType;
         }
 
+        private string ComputeHash(byte[] buff, Func<byte[], byte[]> hashFunction)
+        {
+            var sBuilder = new StringBuilder();
+
+            var hash = hashFunction.Invoke(buff);
+
+            foreach (var t in hash)
+                sBuilder.Append(t.ToString("x2"));
+
+            return sBuilder.ToString();
+        }
+
         private string ComputeSha256(byte[] buff)
         {
             var sBuilder = new StringBuilder();
