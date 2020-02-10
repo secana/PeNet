@@ -112,42 +112,6 @@ namespace PeNet
             File.WriteAllBytes(path, Buff);
         }
 
-
-        /// <summary>
-        ///     Returns true if the Export directory is valid.
-        /// </summary>
-        public bool HasValidExportDir => ImageExportDirectory != null;
-
-        /// <summary>
-        ///     Returns true if the Import directory is valid.
-        /// </summary>
-        public bool HasValidImportDir => ImageImportDescriptors != null;
-
-        /// <summary>
-        ///     Returns true if the Resource directory is valid.
-        /// </summary>
-        public bool HasValidResourceDir => ImageResourceDirectory != null;
-
-        /// <summary>
-        ///     Returns true if the Exception directory is valid.
-        /// </summary>
-        public bool HasValidDir => ExceptionDirectory != null;
-
-        /// <summary>
-        ///     Returns true if the Security directory is valid.
-        /// </summary>
-        public bool HasValidSecurityDir => WinCertificate != null;
-
-        /// <summary>
-        ///     Returns true if the Relocation Directory is valid.
-        /// </summary>
-        public bool HasValidRelocDir => ImageRelocationDirectory != null;
-
-        /// <summary>
-        ///     Returns true if the COM+ 2 (CLI) directory is valid.
-        /// </summary>
-        public bool HasValidComDescriptor => ImageComDescriptor != null;
-
         /// <summary>
         ///     Returns true if the DLL flag in the
         ///     File Header is set.
