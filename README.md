@@ -3,6 +3,10 @@
 [![NuGet](https://img.shields.io/nuget/dt/PeNet.svg)](https://www.nuget.org/packages/PeNet/)
 [![Build](https://img.shields.io/azure-devops/build/secana/PeNet/2.svg)](https://dev.azure.com/secana/PeNet/_build?definitionId=2)
 [![Test](https://img.shields.io/azure-devops/tests/secana/PeNet/2.svg)](https://dev.azure.com/secana/PeNet/_build?definitionId=2)
+
+You can support PeNet development on [Open Collective](https://opencollective.com/penet).
+[![Open Collective](https://opencollective.com/penet/donate/button.png?color=blue)](https://opencollective.com/penet)
+
 ![PeNet Logo](https://raw.githubusercontent.com/secana/PeNet/master/resource/linkedin_banner_image_2.png "PeNet - PE analysis made easy")
 PeNet is a parser for Windows Portable Executable headers. It completely written in C# and does not rely on any native Windows APIs.
 Furthermore it supports the creation of Import Hashes (ImpHash), which is a feature often used in malware analysis. You can extract Certificate Revocation List, compute different hash sums and other useful stuff for working with PE files.
