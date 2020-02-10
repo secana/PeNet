@@ -295,17 +295,20 @@ namespace PeNet
         /// <summary>
         ///     The SHA-256 hash sum of the binary.
         /// </summary>
-        public string SHA256 => _sha256 ??= ComputeSha256(Buff);
+        public string SHA256 
+            => _sha256 ??= ComputeHash(Buff, new SHA256Managed().ComputeHash);
 
         /// <summary>
         ///     The SHA-1 hash sum of the binary.
         /// </summary>
-        public string SHA1 => _sha1 ??= ComputeSha1(Buff);
+        public string SHA1 
+            => _sha1 ??= ComputeHash(Buff, new SHA1Managed().ComputeHash);
 
         /// <summary>
         ///     The MD5 of hash sum of the binary.
         /// </summary>
-        public string MD5 => _md5 ??= ComputeMD5(Buff);
+        public string MD5 
+            => _md5 ??= ComputeHash(Buff, new MD5CryptoServiceProvider().ComputeHash);
 
         /// <summary>
         ///     The Import Hash of the binary if any imports are
@@ -510,46 +513,6 @@ namespace PeNet
             var sBuilder = new StringBuilder();
 
             var hash = hashFunction.Invoke(buff);
-
-            foreach (var t in hash)
-                sBuilder.Append(t.ToString("x2"));
-
-            return sBuilder.ToString();
-        }
-
-        private string ComputeSha256(byte[] buff)
-        {
-            var sBuilder = new StringBuilder();
-
-            var sha = new SHA256Managed();
-            var hash = sha.ComputeHash(buff);
-
-            foreach (var t in hash)
-                sBuilder.Append(t.ToString("x2"));
-
-            return sBuilder.ToString();
-        }
-
-        private string ComputeSha1(byte[] buff)
-        {
-            var sBuilder = new StringBuilder();
-
-            var sha = new SHA1Managed();
-            var hash = sha.ComputeHash(buff);
-
-            foreach (var t in hash)
-                sBuilder.Append(t.ToString("x2"));
-
-            return sBuilder.ToString();
-        }
-
-
-        private string ComputeMD5(byte[] buff)
-        {
-            var sBuilder = new StringBuilder();
-
-            var sha = new MD5CryptoServiceProvider();
-            var hash = sha.ComputeHash(buff);
 
             foreach (var t in hash)
                 sBuilder.Append(t.ToString("x2"));
