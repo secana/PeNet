@@ -5,6 +5,7 @@
 [![Test](https://img.shields.io/azure-devops/tests/secana/PeNet/2.svg)](https://dev.azure.com/secana/PeNet/_build?definitionId=2)
 
 You can support PeNet development on [Open Collective](https://opencollective.com/penet).
+
 [![Open Collective](https://opencollective.com/penet/donate/button.png?color=blue)](https://opencollective.com/penet)
 
 ![PeNet Logo](https://raw.githubusercontent.com/secana/PeNet/master/resource/linkedin_banner_image_2.png "PeNet - PE analysis made easy")
