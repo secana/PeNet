@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using PeNet.Authenticode;
 using PeNet.ImpHash;
 using PeNet.Structures;
@@ -293,17 +295,17 @@ namespace PeNet
         /// <summary>
         ///     The SHA-256 hash sum of the binary.
         /// </summary>
-        public string SHA256 => _sha256 ??= Hashes.Sha256(Buff);
+        public string SHA256 => _sha256 ??= ComputeSha256(Buff);
 
         /// <summary>
         ///     The SHA-1 hash sum of the binary.
         /// </summary>
-        public string SHA1 => _sha1 ??= Hashes.Sha1(Buff);
+        public string SHA1 => _sha1 ??= ComputeSha1(Buff);
 
         /// <summary>
         ///     The MD5 of hash sum of the binary.
         /// </summary>
-        public string MD5 => _md5 ??= Hashes.MD5(Buff);
+        public string MD5 => _md5 ??= ComputeMD5(Buff);
 
         /// <summary>
         ///     The Import Hash of the binary if any imports are
@@ -501,6 +503,46 @@ namespace PeNet
                 fileType += "_UNKNOWN";
 
             return fileType;
+        }
+
+        private string ComputeSha256(byte[] buff)
+        {
+            var sBuilder = new StringBuilder();
+
+            var sha = new SHA256Managed();
+            var hash = sha.ComputeHash(buff);
+
+            foreach (var t in hash)
+                sBuilder.Append(t.ToString("x2"));
+
+            return sBuilder.ToString();
+        }
+
+        private string ComputeSha1(byte[] buff)
+        {
+            var sBuilder = new StringBuilder();
+
+            var sha = new SHA1Managed();
+            var hash = sha.ComputeHash(buff);
+
+            foreach (var t in hash)
+                sBuilder.Append(t.ToString("x2"));
+
+            return sBuilder.ToString();
+        }
+
+
+        private string ComputeMD5(byte[] buff)
+        {
+            var sBuilder = new StringBuilder();
+
+            var sha = new MD5CryptoServiceProvider();
+            var hash = sha.ComputeHash(buff);
+
+            foreach (var t in hash)
+                sBuilder.Append(t.ToString("x2"));
+
+            return sBuilder.ToString();
         }
     }
 }
