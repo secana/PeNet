@@ -105,16 +105,6 @@ namespace PeNet
         }
 
         /// <summary>
-        /// Save the current PE file as 
-        /// a new file on disk.
-        /// </summary>
-        /// <param name="path"></param>
-        public void SaveAs(string path)
-        {
-            File.WriteAllBytes(path, Buff);
-        }
-
-        /// <summary>
         ///     Returns true if the DLL flag in the
         ///     File Header is set.
         /// </summary>
@@ -314,19 +304,22 @@ namespace PeNet
         ///     The Import Hash of the binary if any imports are
         ///     given else null;
         /// </summary>
-        public string? ImpHash => _impHash ??= new ImportHash(ImportedFunctions)?.ImpHash;
+        public string? ImpHash 
+            => _impHash ??= new ImportHash(ImportedFunctions)?.ImpHash;
 
         /// <summary>
         ///     The Version ID of each module
         ///     if the PE is a CLR assembly.
         /// </summary>
-        public List<Guid> ClrModuleVersionIds => (_netGuids ??= new NetGuids(this)).ModuleVersionIds;
+        public List<Guid> ClrModuleVersionIds 
+            => (_netGuids ??= new NetGuids(this)).ModuleVersionIds;
 
         /// <summary>
         ///     The COM TypeLib ID of the assembly, if specified,
         ///     and if the PE is a CLR assembly.
         /// </summary>
-        public string ClrComTypeLibId => (_netGuids ??= new NetGuids(this)).ComTypeLibId;
+        public string ClrComTypeLibId 
+            => (_netGuids ??= new NetGuids(this)).ComTypeLibId;
 
         /// <summary>
         ///     Returns the file size in bytes.
@@ -365,7 +358,7 @@ namespace PeNet
         }
 
         /// <summary>
-        ///     Tests is a file is a PE file based on the MZ
+        ///     Tests if a file is a PE file based on the MZ
         ///     header. It is not checked if the PE file is correct
         ///     in all other parts.
         /// </summary>
