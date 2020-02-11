@@ -67,16 +67,5 @@ namespace PeNet.Test
 
             Assert.Equal(isDriver, peFile.IsDriver);
         }
-
-        [Fact]
-        public void MALWRE()
-        {
-            var file =
-                @"C:\Users\stefan.hausotte\source\repos\PeNet-Analyzer\test\PeNet.Analyzer.Test\Binaries\4d5bc8f3311079eadcc8031f5a648e7e1ec68b9d2aed0342d9ec426259603e96";
-            var peFile = new PeFile(file);
-
-            var rsc = peFile.ImageResourceDirectory;
-            var vs = peFile.Resources.VsVersionInfo;
-        }
     }
 }
