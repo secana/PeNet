@@ -16,7 +16,7 @@ namespace PeNet
     ///     This class represents a Portable Executable (PE) file and makes the different
     ///     header and properties accessible.
     /// </summary>
-    public class PeFile : AbstractStructure
+    public class PeFile
     {
         private readonly DataDirectoryParsers _dataDirectoryParsers;
         private readonly NativeStructureParsers _nativeStructureParsers;
@@ -26,7 +26,7 @@ namespace PeNet
         /// <summary>
         ///     The PE binary as a byte array.
         /// </summary>
-        public new byte[] Buff => base.Buff;
+        public byte[] Buff { get; }
 
         private Stream? _stream;
 
@@ -45,8 +45,10 @@ namespace PeNet
         ///     Create a new PeFile object.
         /// </summary>
         /// <param name="buff">A PE file a byte array.</param>
-        public PeFile(byte[] buff) : base(buff, 0)
+        public PeFile(byte[] buff)
         {
+            Buff = buff;
+
             _nativeStructureParsers = new NativeStructureParsers(Buff);
 
             _dataDirectoryParsers = new DataDirectoryParsers(
