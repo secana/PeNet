@@ -23,8 +23,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Characteristics
         {
-            get => Buff.BytesToUInt32(Offset);
-            set => Buff.SetUInt32(Offset, value);
+            get => PeFile.ReadUInt(Offset);
+            set => PeFile.WriteUInt(Offset, value);
         }
 
         /// <summary>
@@ -32,8 +32,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get => Buff.BytesToUInt32(Offset + 0x4);
-            set => Buff.SetUInt32(Offset + 0x4, value);
+            get => PeFile.ReadUInt(Offset + 0x4);
+            set => PeFile.WriteUInt(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -41,8 +41,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorVersion
         {
-            get => Buff.BytesToUInt16(Offset + 0x8);
-            set => Buff.SetUInt16(Offset + 0x8, value);
+            get => PeFile.ReadUShort(Offset + 0x8);
+            set => PeFile.WriteUShort(Offset + 0x8, value);
         }
 
         /// <summary>
@@ -50,8 +50,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorVersion
         {
-            get => Buff.BytesToUInt16(Offset + 0xA);
-            set => Buff.SetUInt16(Offset + 0xA, value);
+            get => PeFile.ReadUShort(Offset + 0xA);
+            set => PeFile.WriteUShort(Offset + 0xA, value);
         }
 
         /// <summary>
@@ -59,8 +59,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Name
         {
-            get => Buff.BytesToUInt32(Offset + 0xC);
-            set => Buff.SetUInt32(Offset + 0xC, value);
+            get => PeFile.ReadUInt(Offset + 0xC);
+            set => PeFile.WriteUInt(Offset + 0xC, value);
         }
 
         /// <summary>
@@ -68,8 +68,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Base
         {
-            get => Buff.BytesToUInt32(Offset + 0x10);
-            set => Buff.SetUInt32(Offset + 0x10, value);
+            get => PeFile.ReadUInt(Offset + 0x10);
+            set => PeFile.WriteUInt(Offset + 0x10, value);
         }
 
         /// <summary>
@@ -77,8 +77,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint NumberOfFunctions
         {
-            get => Buff.BytesToUInt32(Offset + 0x14);
-            set => Buff.SetUInt32(Offset + 0x14, value);
+            get => PeFile.ReadUInt(Offset + 0x14);
+            set => PeFile.WriteUInt(Offset + 0x14, value);
         }
 
         /// <summary>
@@ -86,8 +86,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint NumberOfNames
         {
-            get => Buff.BytesToUInt32(Offset + 0x18);
-            set => Buff.SetUInt32(Offset + 0x18, value);
+            get => PeFile.ReadUInt(Offset + 0x18);
+            set => PeFile.WriteUInt(Offset + 0x18, value);
         }
 
         /// <summary>
@@ -95,8 +95,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint AddressOfFunctions
         {
-            get => Buff.BytesToUInt32(Offset + 0x1C);
-            set => Buff.SetUInt32(Offset + 0x1C, value);
+            get => PeFile.ReadUInt(Offset + 0x1C);
+            set => PeFile.WriteUInt(Offset + 0x1C, value);
         }
 
         /// <summary>
@@ -104,8 +104,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint AddressOfNames
         {
-            get => Buff.BytesToUInt32(Offset + 0x20);
-            set => Buff.SetUInt32(Offset + 0x20, value);
+            get => PeFile.ReadUInt(Offset + 0x20);
+            set => PeFile.WriteUInt(Offset + 0x20, value);
         }
 
         /// <summary>
@@ -113,8 +113,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint AddressOfNameOrdinals
         {
-            get => Buff.BytesToUInt32(Offset + 0x24);
-            set => Buff.SetUInt32(Offset + 0x24, value);
+            get => PeFile.ReadUInt(Offset + 0x24);
+            set => PeFile.WriteUInt(Offset + 0x24, value);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace PeNet.Structures
                 else if (IsNamedEntry)
                 {
                     var nameAddress = resourceDirOffset + (Name & 0x7FFFFFFF);
-                    var unicodeName = new IMAGE_RESOURCE_DIR_STRING_U(Buff, nameAddress);
+                    var unicodeName = new IMAGE_RESOURCE_DIR_STRING_U(PeFile, nameAddress);
                     ResolvedName = unicodeName.NameString;
                 }
             }
@@ -54,8 +54,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Name
         {
-            get => Buff.BytesToUInt32(Offset);
-            set => Buff.SetUInt32(Offset, value);
+            get => PeFile.ReadUInt(Offset);
+            set => PeFile.WriteUInt(Offset, value);
         }
 
         /// <summary>
@@ -78,8 +78,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint OffsetToData
         {
-            get => Buff.BytesToUInt32(Offset + 0x4);
-            set => Buff.SetUInt32(Offset + 0x4, value);
+            get => PeFile.ReadUInt(Offset + 0x4);
+            set => PeFile.WriteUInt(Offset + 0x4, value);
         }
 
         /// <summary>

@@ -40,7 +40,7 @@ namespace PeNet.Parser
             foreach (var idesc in _importDescriptors)
             {
                 var dllAdr = idesc.Name.RVAtoFileMapping(_sectionHeaders);
-                var dll = Buff.GetCString(dllAdr);
+                var dll = PeFile.GetCString(dllAdr);
                 if (IsModuleNameTooLong(dll))
                     continue;
                 var tmpAdr = idesc.OriginalFirstThunk != 0 ? idesc.OriginalFirstThunk : idesc.FirstThunk;
@@ -51,7 +51,7 @@ namespace PeNet.Parser
                 uint round = 0;
                 while (true)
                 {
-                    var t = new IMAGE_THUNK_DATA(Buff, thunkAdr + round*sizeOfThunk, _is64Bit);
+                    var t = new IMAGE_THUNK_DATA(PeFile, thunkAdr + round*sizeOfThunk, _is64Bit);
                     var iatOffset = idesc.FirstThunk + round * sizeOfThunk - iat.VirtualAddress;
 
                     if (t.AddressOfData == 0)
@@ -68,7 +68,7 @@ namespace PeNet.Parser
                     }
                     else // Import by name
                     {
-                        var ibn = new IMAGE_IMPORT_BY_NAME(Buff,
+                        var ibn = new IMAGE_IMPORT_BY_NAME(PeFile,
                             ((uint) t.AddressOfData).RVAtoFileMapping(_sectionHeaders));
                         impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint, iatOffset));
                     }

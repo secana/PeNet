@@ -11,7 +11,7 @@ namespace PeNet.Parser
 
         protected override IMAGE_DELAY_IMPORT_DESCRIPTOR ParseTarget()
         {
-            return new IMAGE_DELAY_IMPORT_DESCRIPTOR(Buff, Offset);
+            return new IMAGE_DELAY_IMPORT_DESCRIPTOR(PeFile, Offset);
         }
     }
 }

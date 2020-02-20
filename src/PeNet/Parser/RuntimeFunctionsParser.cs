@@ -32,7 +32,7 @@ namespace PeNet.Parser
 
             for (var i = 0; i < rf.Length; i++)
             {
-                rf[i] = new RUNTIME_FUNCTION(Buff, (uint) (Offset + i*sizeOfRuntimeFunction), _sectionHeaders);
+                rf[i] = new RUNTIME_FUNCTION(PeFile, (uint) (Offset + i*sizeOfRuntimeFunction), _sectionHeaders);
             }
 
             return rf;

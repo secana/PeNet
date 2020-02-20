@@ -1,4 +1,5 @@
 ﻿using PeNet.Structures;
+using System.IO;
 
 namespace PeNet.Parser
 {
@@ -6,14 +7,14 @@ namespace PeNet.Parser
     {
         private readonly uint _vsVersionOffset;
 
-        public ResourcesParser(byte[] buff, uint offset, uint vsVersionOffset) : base(buff, offset)
+        public ResourcesParser(Stream peFile, uint offset, uint vsVersionOffset) : base(peFile, offset)
         {
             _vsVersionOffset = vsVersionOffset;
         }
 
         protected override Resources ParseTarget()
         {
-            return new Resources(Buff, Offset, _vsVersionOffset);
+            return new Resources(PeFile, Offset, _vsVersionOffset);
         }
     }
 }

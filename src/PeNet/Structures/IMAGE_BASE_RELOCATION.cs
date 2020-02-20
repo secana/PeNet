@@ -38,8 +38,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint VirtualAddress
         {
-            get => Buff.BytesToUInt32(Offset);
-            set => Buff.SetUInt32(Offset, value);
+            get => PeFile.ReadUInt(Offset);
+            set => PeFile.WriteUInt(Offset, value);
         }
 
         /// <summary>
@@ -47,8 +47,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint SizeOfBlock
         {
-            get => Buff.BytesToUInt32(Offset + 0x4);
-            set => Buff.SetUInt32(Offset + 0x4, value);
+            get => PeFile.ReadUInt(Offset + 0x4);
+            set => PeFile.WriteUInt(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace PeNet.Structures
             var list = new List<TypeOffset>();
             for (uint i = 0; i < (SizeOfBlock - 8)/2; i++)
             {
-                list.Add(new TypeOffset(Buff, Offset + 8 + i*2));
+                list.Add(new TypeOffset(PeFile, Offset + 8 + i*2));
             }
             TypeOffsets = list.ToArray();
         }

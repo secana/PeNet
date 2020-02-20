@@ -25,27 +25,27 @@ namespace PeNet.Structures
         /// </summary>
         public byte CodeOffset
         {
-            get => Buff[Offset];
-            set => Buff[Offset] = value;
+            get => PeFile[Offset];
+            set => PeFile[Offset] = value;
         }
 
         /// <summary>
         ///     Unwind operation.
         /// </summary>
-        public byte UnwindOp => (byte) (Buff[Offset + 0x1] >> 4);
+        public byte UnwindOp => (byte) (PeFile[Offset + 0x1] >> 4);
 
         /// <summary>
         ///     Operation information.
         /// </summary>
-        public byte Opinfo => (byte) (Buff[Offset + 0x1] & 0xF);
+        public byte Opinfo => (byte) (PeFile[Offset + 0x1] & 0xF);
 
         /// <summary>
         ///     Frame offset.
         /// </summary>
         public ushort FrameOffset
         {
-            get => Buff.BytesToUInt16(Offset + 0x2);
-            set => Buff.SetUInt16(Offset + 0x2, value);
+            get => PeFile.ReadUShort(Offset + 0x2);
+            set => PeFile.WriteUShort(Offset + 0x2, value);
         }
     }
 }

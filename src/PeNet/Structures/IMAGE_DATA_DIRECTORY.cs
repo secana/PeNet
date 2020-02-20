@@ -22,8 +22,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint VirtualAddress
         {
-            get => Buff.BytesToUInt32(Offset);
-            set => Buff.SetUInt32(Offset, value);
+            get => PeFile.ReadUInt(Offset);
+            set => PeFile.WriteUInt(Offset, value);
         }
 
         /// <summary>
@@ -31,8 +31,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Size
         {
-            get => Buff.BytesToUInt32(Offset + 0x4);
-            set => Buff.SetUInt32(Offset + 0x4, value);
+            get => PeFile.ReadUInt(Offset + 0x4);
+            set => PeFile.WriteUInt(Offset + 0x4, value);
         }
     }
 }

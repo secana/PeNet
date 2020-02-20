@@ -65,7 +65,7 @@ namespace PeNet.Structures
             for (var i = Offset; i < Offset + _size; i += 16)
             {
                 var bytes = new byte[16];
-                Array.Copy(Buff, i, bytes, 0, 16);
+                Array.Copy(PeFile, i, bytes, 0, 16);
 
                 guidsAndIndicies.Add(new Tuple<Guid, uint>(new Guid(bytes), (uint) guidsAndIndicies.Count + 1));
             }

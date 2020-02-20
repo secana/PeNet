@@ -1,4 +1,5 @@
 ﻿using PeNet.Utilities;
+using System.IO;
 
 namespace PeNet.Structures
 {
@@ -21,16 +22,16 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new IMAGE_NT_HEADERS object.
         /// </summary>
-        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="peFile">A PE file as a stream.</param>
         /// <param name="offset">Raw offset of the NT header.</param>
-        public IMAGE_NT_HEADERS(byte[] buff, uint offset)
-            : base(buff, offset)
+        public IMAGE_NT_HEADERS(Stream peFile, uint offset)
+            : base(peFile, offset)
         {
-            FileHeader = new IMAGE_FILE_HEADER(buff, offset + 0x4);
+            FileHeader = new IMAGE_FILE_HEADER(peFile, offset + 0x4);
 
             var is32Bit = FileHeader.Machine == (ushort) Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386;
 
-            OptionalHeader = new IMAGE_OPTIONAL_HEADER(buff, offset + 0x18, !is32Bit);
+            OptionalHeader = new IMAGE_OPTIONAL_HEADER(peFile, offset + 0x18, !is32Bit);
         }
 
         /// <summary>
@@ -38,8 +39,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Signature
         {
-            get => Buff.BytesToUInt32(Offset);
-            set => Buff.SetUInt32(Offset, value);
+            get => PeFile.ReadUInt(Offset);
+            set => PeFile.WriteUInt(Offset, value);
         }
     }
 }

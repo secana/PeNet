@@ -1,4 +1,5 @@
 ﻿using PeNet.Utilities;
+using System.IO;
 
 namespace PeNet.Structures
 {
@@ -10,10 +11,10 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new IMAGE_DOS_HEADER object.
         /// </summary>
-        /// <param name="buff">Byte buffer containing a PE file.</param>
-        /// <param name="offset">Offset in the buffer to the DOS header.</param>
-        public IMAGE_DOS_HEADER(byte[] buff, uint offset)
-            : base(buff, offset)
+        /// <param name="peFile">Stream containing a PE file.</param>
+        /// <param name="offset">Offset in the stream to the DOS header.</param>
+        public IMAGE_DOS_HEADER(Stream peFile, long offset)
+            : base(peFile, offset)
         {
         }
 
@@ -22,8 +23,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_magic
         {
-            get => Buff.BytesToUInt16(Offset + 0x00);
-            set => Buff.SetUInt16(Offset + 0x00, value);
+            get => PeFile.ReadUShort(Offset + 0x00);
+            set => PeFile.WriteUShort(Offset + 0x00, value);
         }
 
         /// <summary>
@@ -31,8 +32,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_cblp
         {
-            get => Buff.BytesToUInt16(Offset + 0x02);
-            set => Buff.SetUInt16(Offset + 0x02, value);
+            get => PeFile.ReadUShort(Offset + 0x02);
+            set => PeFile.WriteUShort(Offset + 0x02, value);
         }
 
         /// <summary>
@@ -40,8 +41,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_cp
         {
-            get => Buff.BytesToUInt16(Offset + 0x04);
-            set => Buff.SetUInt16(Offset + 0x04, value);
+            get => PeFile.ReadUShort(Offset + 0x04);
+            set => PeFile.WriteUShort(Offset + 0x04, value);
         }
 
         /// <summary>
@@ -49,8 +50,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_crlc
         {
-            get => Buff.BytesToUInt16(Offset + 0x06);
-            set => Buff.SetUInt16(Offset + 0x06, value);
+            get => PeFile.ReadUShort(Offset + 0x06);
+            set => PeFile.WriteUShort(Offset + 0x06, value);
         }
 
         /// <summary>
@@ -58,8 +59,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_cparhdr
         {
-            get => Buff.BytesToUInt16(Offset + 0x08);
-            set => Buff.SetUInt16(Offset + 0x08, value);
+            get => PeFile.ReadUShort(Offset + 0x08);
+            set => PeFile.WriteUShort(Offset + 0x08, value);
         }
 
         /// <summary>
@@ -67,8 +68,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_minalloc
         {
-            get => Buff.BytesToUInt16(Offset + 0x0A);
-            set => Buff.SetUInt16(Offset + 0x0A, value);
+            get => PeFile.ReadUShort(Offset + 0x0A);
+            set => PeFile.WriteUShort(Offset + 0x0A, value);
         }
 
         /// <summary>
@@ -76,8 +77,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_maxalloc
         {
-            get => Buff.BytesToUInt16(Offset + 0x0C);
-            set => Buff.SetUInt16(Offset + 0x0C, value);
+            get => PeFile.ReadUShort(Offset + 0x0C);
+            set => PeFile.WriteUShort(Offset + 0x0C, value);
         }
 
         /// <summary>
@@ -85,8 +86,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_ss
         {
-            get => Buff.BytesToUInt16(Offset + 0x0E);
-            set => Buff.SetUInt16(Offset + 0x0E, value);
+            get => PeFile.ReadUShort(Offset + 0x0E);
+            set => PeFile.WriteUShort(Offset + 0x0E, value);
         }
 
         /// <summary>
@@ -94,8 +95,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_sp
         {
-            get => Buff.BytesToUInt16(Offset + 0x10);
-            set => Buff.SetUInt16(Offset + 0x10, value);
+            get => PeFile.ReadUShort(Offset + 0x10);
+            set => PeFile.WriteUShort(Offset + 0x10, value);
         }
 
         /// <summary>
@@ -103,8 +104,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_csum
         {
-            get => Buff.BytesToUInt16(Offset + 0x12);
-            set => Buff.SetUInt16(Offset + 0x12, value);
+            get => PeFile.ReadUShort(Offset + 0x12);
+            set => PeFile.WriteUShort(Offset + 0x12, value);
         }
 
         /// <summary>
@@ -112,8 +113,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_ip
         {
-            get => Buff.BytesToUInt16(Offset + 0x14);
-            set => Buff.SetUInt16(Offset + 0x14, value);
+            get => PeFile.ReadUShort(Offset + 0x14);
+            set => PeFile.WriteUShort(Offset + 0x14, value);
         }
 
         /// <summary>
@@ -121,8 +122,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_cs
         {
-            get => Buff.BytesToUInt16(Offset + 0x16);
-            set => Buff.SetUInt16(Offset + 0x16, value);
+            get => PeFile.ReadUShort(Offset + 0x16);
+            set => PeFile.WriteUShort(Offset + 0x16, value);
         }
 
         /// <summary>
@@ -130,8 +131,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_lfarlc
         {
-            get => Buff.BytesToUInt16(Offset + 0x18);
-            set => Buff.SetUInt16(Offset + 0x18, value);
+            get => PeFile.ReadUShort(Offset + 0x18);
+            set => PeFile.WriteUShort(Offset + 0x18, value);
         }
 
         /// <summary>
@@ -139,8 +140,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_ovno
         {
-            get => Buff.BytesToUInt16(Offset + 0x1A);
-            set => Buff.SetUInt16(Offset + 0x1A, value);
+            get => PeFile.ReadUShort(Offset + 0x1A);
+            set => PeFile.WriteUShort(Offset + 0x1A, value);
         }
 
         /// <summary>
@@ -152,18 +153,18 @@ namespace PeNet.Structures
             {
                 return new[]
                 {
-                    Buff.BytesToUInt16(Offset + 0x1C),
-                    Buff.BytesToUInt16(Offset + 0x1E),
-                    Buff.BytesToUInt16(Offset + 0x20),
-                    Buff.BytesToUInt16(Offset + 0x22)
+                    PeFile.ReadUShort(Offset + 0x1C),
+                    PeFile.ReadUShort(Offset + 0x1E),
+                    PeFile.ReadUShort(Offset + 0x20),
+                    PeFile.ReadUShort(Offset + 0x22)
                 };
             }
             set
             {
-                Buff.SetUInt16(Offset + 0x1C, value[0]);
-                Buff.SetUInt16(Offset + 0x1E, value[1]);
-                Buff.SetUInt16(Offset + 0x20, value[2]);
-                Buff.SetUInt16(Offset + 0x22, value[3]);
+                PeFile.WriteUShort(Offset + 0x1C, value[0]);
+                PeFile.WriteUShort(Offset + 0x1E, value[1]);
+                PeFile.WriteUShort(Offset + 0x20, value[2]);
+                PeFile.WriteUShort(Offset + 0x22, value[3]);
             }
         }
 
@@ -172,8 +173,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_oemid
         {
-            get => Buff.BytesToUInt16(Offset + 0x24);
-            set => Buff.SetUInt16(Offset + 0x24, value);
+            get => PeFile.ReadUShort(Offset + 0x24);
+            set => PeFile.WriteUShort(Offset + 0x24, value);
         }
 
         /// <summary>
@@ -181,8 +182,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort e_oeminfo
         {
-            get => Buff.BytesToUInt16(Offset + 0x26);
-            set => Buff.SetUInt16(Offset + 0x26, value);
+            get => PeFile.ReadUShort(Offset + 0x26);
+            set => PeFile.WriteUShort(Offset + 0x26, value);
         }
 
         /// <summary>
@@ -194,30 +195,30 @@ namespace PeNet.Structures
             {
                 return new[]
                 {
-                    Buff.BytesToUInt16(Offset + 0x28),
-                    Buff.BytesToUInt16(Offset + 0x2A),
-                    Buff.BytesToUInt16(Offset + 0x2C),
-                    Buff.BytesToUInt16(Offset + 0x2E),
-                    Buff.BytesToUInt16(Offset + 0x30),
-                    Buff.BytesToUInt16(Offset + 0x32),
-                    Buff.BytesToUInt16(Offset + 0x34),
-                    Buff.BytesToUInt16(Offset + 0x36),
-                    Buff.BytesToUInt16(Offset + 0x38),
-                    Buff.BytesToUInt16(Offset + 0x3A)
+                    PeFile.ReadUShort(Offset + 0x28),
+                    PeFile.ReadUShort(Offset + 0x2A),
+                    PeFile.ReadUShort(Offset + 0x2C),
+                    PeFile.ReadUShort(Offset + 0x2E),
+                    PeFile.ReadUShort(Offset + 0x30),
+                    PeFile.ReadUShort(Offset + 0x32),
+                    PeFile.ReadUShort(Offset + 0x34),
+                    PeFile.ReadUShort(Offset + 0x36),
+                    PeFile.ReadUShort(Offset + 0x38),
+                    PeFile.ReadUShort(Offset + 0x3A)
                 };
             }
             set
             {
-                Buff.SetUInt16(Offset + 0x28, value[0]);
-                Buff.SetUInt16(Offset + 0x2A, value[1]);
-                Buff.SetUInt16(Offset + 0x2C, value[2]);
-                Buff.SetUInt16(Offset + 0x2E, value[3]);
-                Buff.SetUInt16(Offset + 0x30, value[4]);
-                Buff.SetUInt16(Offset + 0x32, value[5]);
-                Buff.SetUInt16(Offset + 0x34, value[6]);
-                Buff.SetUInt16(Offset + 0x36, value[7]);
-                Buff.SetUInt16(Offset + 0x38, value[8]);
-                Buff.SetUInt16(Offset + 0x3A, value[9]);
+                PeFile.WriteUShort(Offset + 0x28, value[0]);
+                PeFile.WriteUShort(Offset + 0x2A, value[1]);
+                PeFile.WriteUShort(Offset + 0x2C, value[2]);
+                PeFile.WriteUShort(Offset + 0x2E, value[3]);
+                PeFile.WriteUShort(Offset + 0x30, value[4]);
+                PeFile.WriteUShort(Offset + 0x32, value[5]);
+                PeFile.WriteUShort(Offset + 0x34, value[6]);
+                PeFile.WriteUShort(Offset + 0x36, value[7]);
+                PeFile.WriteUShort(Offset + 0x38, value[8]);
+                PeFile.WriteUShort(Offset + 0x3A, value[9]);
             }
         }
 
@@ -226,8 +227,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint e_lfanew
         {
-            get => Buff.BytesToUInt32(Offset + 0x3C);
-            set => Buff.SetUInt32(Offset + 0x3C, value);
+            get => PeFile.ReadUInt(Offset + 0x3C);
+            set => PeFile.WriteUInt(Offset + 0x3C, value);
         }
     }
 }

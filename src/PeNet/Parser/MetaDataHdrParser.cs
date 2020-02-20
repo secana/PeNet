@@ -11,7 +11,7 @@ namespace PeNet.Parser
 
         protected override METADATAHDR ParseTarget()
         {
-            return new METADATAHDR(Buff, Offset);
+            return new METADATAHDR(PeFile, Offset);
         }
     }
 }

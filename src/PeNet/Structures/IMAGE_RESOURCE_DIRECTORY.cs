@@ -32,8 +32,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Characteristics
         {
-            get => Buff.BytesToUInt32(Offset);
-            set => Buff.SetUInt32(Offset, value);
+            get => PeFile.ReadUInt(Offset);
+            set => PeFile.WriteUInt(Offset, value);
         }
 
         /// <summary>
@@ -41,8 +41,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get => Buff.BytesToUInt32(Offset + 0x4);
-            set => Buff.SetUInt32(Offset + 0x4, value);
+            get => PeFile.ReadUInt(Offset + 0x4);
+            set => PeFile.WriteUInt(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -50,8 +50,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorVersion
         {
-            get => Buff.BytesToUInt16(Offset + 0x8);
-            set => Buff.SetUInt16(Offset + 0x8, value);
+            get => PeFile.ReadUShort(Offset + 0x8);
+            set => PeFile.WriteUShort(Offset + 0x8, value);
         }
 
         /// <summary>
@@ -59,8 +59,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorVersion
         {
-            get => Buff.BytesToUInt16(Offset + 0xa);
-            set => Buff.SetUInt16(Offset + 0xa, value);
+            get => PeFile.ReadUShort(Offset + 0xa);
+            set => PeFile.WriteUShort(Offset + 0xa, value);
         }
 
         /// <summary>
@@ -68,8 +68,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfNameEntries
         {
-            get => Buff.BytesToUInt16(Offset + 0xc);
-            set => Buff.SetUInt16(Offset + 0xc, value);
+            get => PeFile.ReadUShort(Offset + 0xc);
+            set => PeFile.WriteUShort(Offset + 0xc, value);
         }
 
         /// <summary>
@@ -77,8 +77,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfIdEntries
         {
-            get => Buff.BytesToUInt16(Offset + 0xe);
-            set => Buff.SetUInt16(Offset + 0xe, value);
+            get => PeFile.ReadUShort(Offset + 0xe);
+            set => PeFile.WriteUShort(Offset + 0xe, value);
         }
 
         private List<IMAGE_RESOURCE_DIRECTORY_ENTRY?>? ParseDirectoryEntries(uint resourceDirOffset)
@@ -94,7 +94,7 @@ namespace PeNet.Structures
             {
                 try
                 {
-                    entries.Add(new IMAGE_RESOURCE_DIRECTORY_ENTRY(Buff, (uint)index * 8 + Offset + 16,
+                    entries.Add(new IMAGE_RESOURCE_DIRECTORY_ENTRY(PeFile, (uint)index * 8 + Offset + 16,
                         resourceDirOffset));
                 }
                 catch (IndexOutOfRangeException)

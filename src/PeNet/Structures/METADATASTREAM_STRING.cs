@@ -36,7 +36,7 @@ namespace PeNet.Structures
 
         public string GetStringAtIndex(uint index)
         {
-            return Buff.GetCString(Offset + index);
+            return PeFile.GetCString(Offset + index);
         }
     }
 }

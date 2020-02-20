@@ -21,7 +21,7 @@ namespace PeNet.Parser
 
             while (true)
             {
-                var idesc = new IMAGE_IMPORT_DESCRIPTOR(Buff, Offset + idescSize*round);
+                var idesc = new IMAGE_IMPORT_DESCRIPTOR(PeFile, Offset + idescSize*round);
 
                 // Found the last IMAGE_IMPORT_DESCRIPTOR which is completely null (except TimeDateStamp).
                 if (idesc.OriginalFirstThunk == 0

@@ -27,8 +27,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Size
         {
-            get => Buff.BytesToUInt32(Offset);
-            set => Buff.SetUInt32(Offset, value);
+            get => PeFile.ReadUInt(Offset);
+            set => PeFile.WriteUInt(Offset, value);
         }
 
         /// <summary>
@@ -37,8 +37,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get => Buff.BytesToUInt32(Offset + 0x4);
-            set => Buff.SetUInt32(Offset + 0x4, value);
+            get => PeFile.ReadUInt(Offset + 0x4);
+            set => PeFile.WriteUInt(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -46,8 +46,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorVesion
         {
-            get => Buff.BytesToUInt16(Offset + 0x8);
-            set => Buff.SetUInt16(Offset + 0x8, value);
+            get => PeFile.ReadUShort(Offset + 0x8);
+            set => PeFile.WriteUShort(Offset + 0x8, value);
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorVersion
         {
-            get => Buff.BytesToUInt16(Offset + 0xA);
-            set => Buff.SetUInt16(Offset + 0xA, value);
+            get => PeFile.ReadUShort(Offset + 0xA);
+            set => PeFile.WriteUShort(Offset + 0xA, value);
         }
 
         /// <summary>
@@ -64,8 +64,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint GlobalFlagsClear
         {
-            get => Buff.BytesToUInt32(Offset + 0xC);
-            set => Buff.SetUInt32(Offset + 0xC, value);
+            get => PeFile.ReadUInt(Offset + 0xC);
+            set => PeFile.WriteUInt(Offset + 0xC, value);
         }
 
         /// <summary>
@@ -73,8 +73,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint GlobalFlagsSet
         {
-            get => Buff.BytesToUInt32(Offset + 0x10);
-            set => Buff.SetUInt32(Offset + 0x10, value);
+            get => PeFile.ReadUInt(Offset + 0x10);
+            set => PeFile.WriteUInt(Offset + 0x10, value);
         }
 
         /// <summary>
@@ -82,8 +82,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint CriticalSectionDefaultTimeout
         {
-            get => Buff.BytesToUInt32(Offset + 0x14);
-            set => Buff.SetUInt32(Offset + 0x14, value);
+            get => PeFile.ReadUInt(Offset + 0x14);
+            set => PeFile.WriteUInt(Offset + 0x14, value);
         }
 
         /// <summary>
@@ -91,13 +91,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong DeCommitFreeBlockThreshold
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x18) : Buff.BytesToUInt32(Offset + 0x18);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x18) : PeFile.ReadUInt(Offset + 0x18);
             set
             {
                 if (_is64Bit)
-                    Buff.SetUInt64(Offset + 0x18, value);
+                    PeFile.SetUInt64(Offset + 0x18, value);
                 else
-                    Buff.SetUInt32(Offset + 0x18, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x18, (uint) value);
             }
         }
 
@@ -106,13 +106,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong DeCommitTotalFreeThreshold
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x20) : Buff.BytesToUInt32(Offset + 0x1c);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x20) : PeFile.ReadUInt(Offset + 0x1c);
             set
             {
                 if(_is64Bit)
-                    Buff.SetUInt64(Offset + 0x20, value);
+                    PeFile.SetUInt64(Offset + 0x20, value);
                 else
-                    Buff.SetUInt32(Offset + 0x1C, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x1C, (uint) value);
             }
         }
 
@@ -122,13 +122,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong LockPrefixTable
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x28) : Buff.BytesToUInt32(Offset + 0x20);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x28) : PeFile.ReadUInt(Offset + 0x20);
             set
             {
                 if (_is64Bit)
-                    Buff.SetUInt64(Offset + 0x28, value);
+                    PeFile.SetUInt64(Offset + 0x28, value);
                 else
-                    Buff.SetUInt32(Offset + 0x20, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x20, (uint) value);
             }
         }
 
@@ -137,13 +137,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong MaximumAllocationSize
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x30) : Buff.BytesToUInt32(Offset + 0x24);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x30) : PeFile.ReadUInt(Offset + 0x24);
             set
             {
                 if(_is64Bit)
-                    Buff.SetUInt64(Offset + 0x30, value);
+                    PeFile.SetUInt64(Offset + 0x30, value);
                 else
-                    Buff.SetUInt32(Offset + 0x24, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x24, (uint) value);
             }
         }
 
@@ -152,13 +152,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong VirtualMemoryThreshold
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x38) : Buff.BytesToUInt32(Offset + 0x28);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x38) : PeFile.ReadUInt(Offset + 0x28);
             set
             {
                 if(_is64Bit)
-                    Buff.SetUInt64(Offset + 0x38, value);
+                    PeFile.SetUInt64(Offset + 0x38, value);
                 else
-                    Buff.SetUInt32(Offset + 0x28, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x28, (uint) value);
             }
         }
 
@@ -167,13 +167,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong ProcessAffinityMask
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x40) : Buff.BytesToUInt32(Offset + 0x30);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x40) : PeFile.ReadUInt(Offset + 0x30);
             set
             {
                 if(_is64Bit)
-                    Buff.SetUInt64(Offset + 0x40, value);
+                    PeFile.SetUInt64(Offset + 0x40, value);
                 else
-                    Buff.SetUInt32(Offset + 0x30, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x30, (uint) value);
             }
         }
 
@@ -182,13 +182,13 @@ namespace PeNet.Structures
         /// </summary>
         public uint ProcessHeapFlags
         {
-            get => _is64Bit ? Buff.BytesToUInt32(Offset + 0x48) : Buff.BytesToUInt32(Offset + 0x2C);
+            get => _is64Bit ? PeFile.ReadUInt(Offset + 0x48) : PeFile.ReadUInt(Offset + 0x2C);
             set
             {
                 if(_is64Bit)
-                    Buff.SetUInt32(Offset + 0x48, value);
+                    PeFile.WriteUInt(Offset + 0x48, value);
                 else
-                    Buff.SetUInt32(Offset + 0x2C, value);
+                    PeFile.WriteUInt(Offset + 0x2C, value);
             }
         }
 
@@ -197,13 +197,13 @@ namespace PeNet.Structures
         /// </summary>
         public ushort CSDVersion
         {
-            get => _is64Bit ? Buff.BytesToUInt16(Offset + 0x4C) : Buff.BytesToUInt16(Offset + 0x34);
+            get => _is64Bit ? PeFile.ReadUShort(Offset + 0x4C) : PeFile.ReadUShort(Offset + 0x34);
             set
             {
                 if(_is64Bit)
-                    Buff.SetUInt16(Offset + 0x4C, value);
+                    PeFile.WriteUShort(Offset + 0x4C, value);
                 else
-                    Buff.SetUInt16(Offset + 0x34, value);
+                    PeFile.WriteUShort(Offset + 0x34, value);
             }
         }
 
@@ -212,13 +212,13 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Reserved1
         {
-            get => _is64Bit ? Buff.BytesToUInt16(Offset + 0x4E) : Buff.BytesToUInt16(Offset + 0x36);
+            get => _is64Bit ? PeFile.ReadUShort(Offset + 0x4E) : PeFile.ReadUShort(Offset + 0x36);
             set
             {
                 if(_is64Bit)
-                    Buff.SetUInt16(Offset + 0x4E, value);
+                    PeFile.WriteUShort(Offset + 0x4E, value);
                 else
-                    Buff.SetUInt16(Offset + 0x36, value);
+                    PeFile.WriteUShort(Offset + 0x36, value);
             }
         }
 
@@ -227,13 +227,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong EditList
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x50) : Buff.BytesToUInt32(Offset + 0x38);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x50) : PeFile.ReadUInt(Offset + 0x38);
             set
             {
                 if (_is64Bit)
-                    Buff.SetUInt64(Offset + 0x50, value);
+                    PeFile.SetUInt64(Offset + 0x50, value);
                 else
-                    Buff.SetUInt32(Offset + 0x38, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x38, (uint) value);
             }
         }
 
@@ -242,13 +242,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong SecurityCoockie
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x58) : Buff.BytesToUInt32(Offset + 0x3C);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x58) : PeFile.ReadUInt(Offset + 0x3C);
             set
             {
                 if (_is64Bit)
-                    Buff.SetUInt64(Offset + 0x58, value);
+                    PeFile.SetUInt64(Offset + 0x58, value);
                 else
-                    Buff.SetUInt32(Offset + 0x3C, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x3C, (uint) value);
             }
         }
 
@@ -258,13 +258,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong SEHandlerTable
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x60) : Buff.BytesToUInt32(Offset + 0x40);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x60) : PeFile.ReadUInt(Offset + 0x40);
             set
             {
                 if(_is64Bit)
-                    Buff.SetUInt64(Offset + 0x60, value);
+                    PeFile.SetUInt64(Offset + 0x60, value);
                 else
-                    Buff.SetUInt32(Offset + 0x40, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x40, (uint) value);
             }
         }
 
@@ -273,13 +273,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong SEHandlerCount
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x68) : Buff.BytesToUInt32(Offset + 0x44);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x68) : PeFile.ReadUInt(Offset + 0x44);
             set
             {
                 if(_is64Bit)
-                    Buff.SetUInt64(Offset + 0x68, value);
+                    PeFile.SetUInt64(Offset + 0x68, value);
                 else
-                    Buff.SetUInt32(Offset + 0x44, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x44, (uint) value);
             }
         }
 
@@ -288,13 +288,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong GuardCFCheckFunctionPointer
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x70) : Buff.BytesToUInt32(Offset + 0x48);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x70) : PeFile.ReadUInt(Offset + 0x48);
             set
             {
                 if(_is64Bit)
-                    Buff.SetUInt64(Offset + 0x70, value);
+                    PeFile.SetUInt64(Offset + 0x70, value);
                 else
-                    Buff.SetUInt32(Offset + 0x4C, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x4C, (uint) value);
             }
         }
 
@@ -303,13 +303,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong Reserved2
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x78) : Buff.BytesToUInt32(Offset + 0x4C);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x78) : PeFile.ReadUInt(Offset + 0x4C);
             set
             {
                 if(_is64Bit)
-                    Buff.SetUInt64(Offset + 0x78, value);
+                    PeFile.SetUInt64(Offset + 0x78, value);
                 else
-                    Buff.SetUInt32(Offset + 0x4C, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x4C, (uint) value);
             }
         }
 
@@ -318,13 +318,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong GuardCFFunctionTable
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x80) : Buff.BytesToUInt32(Offset + 0x50);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x80) : PeFile.ReadUInt(Offset + 0x50);
             set
             {
                 if(_is64Bit)
-                    Buff.SetUInt64(Offset + 0x80, value);
+                    PeFile.SetUInt64(Offset + 0x80, value);
                 else
-                    Buff.SetUInt32(Offset + 0x50, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x50, (uint) value);
             }
         }
 
@@ -333,13 +333,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong GuardCFFunctionCount
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0x88) : Buff.BytesToUInt32(Offset + 0x54);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x88) : PeFile.ReadUInt(Offset + 0x54);
             set
             {
                 if(_is64Bit)
-                    Buff.SetUInt64(Offset + 0x88, value);
+                    PeFile.SetUInt64(Offset + 0x88, value);
                 else
-                    Buff.SetUInt32(Offset + 0x54, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x54, (uint) value);
             }
         }
 
@@ -348,13 +348,13 @@ namespace PeNet.Structures
         /// </summary>
         public uint GuardFlags
         {
-            get => _is64Bit ? Buff.BytesToUInt32(Offset + 0x90) : Buff.BytesToUInt32(Offset + 0x58);
+            get => _is64Bit ? PeFile.ReadUInt(Offset + 0x90) : PeFile.ReadUInt(Offset + 0x58);
             set
             {
                 if(_is64Bit)
-                    Buff.SetUInt32(Offset + 0x90, value);
+                    PeFile.WriteUInt(Offset + 0x90, value);
                 else
-                    Buff.SetUInt32(Offset + 0x58, value);
+                    PeFile.WriteUInt(Offset + 0x58, value);
             }
         }
     }

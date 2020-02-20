@@ -15,7 +15,7 @@ namespace PeNet.Parser
                 return null;
 
             // Parse the root directory.
-            var root = new IMAGE_RESOURCE_DIRECTORY(Buff, Offset, Offset);
+            var root = new IMAGE_RESOURCE_DIRECTORY(PeFile, Offset, Offset);
 
             if (root.DirectoryEntries is null)
                 return root;
@@ -27,7 +27,7 @@ namespace PeNet.Parser
                     continue;
 
                 de.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
-                    Buff,
+                    PeFile,
                     Offset + de.OffsetToDirectory,
                     Offset
                 );
@@ -43,7 +43,7 @@ namespace PeNet.Parser
                         continue;
 
                     de2.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
-                        Buff,
+                        PeFile,
                         Offset + de2.OffsetToDirectory,
                         Offset
                         );
@@ -58,7 +58,7 @@ namespace PeNet.Parser
                         if (de3 is null)
                             continue;
 
-                        de3.ResourceDataEntry = new IMAGE_RESOURCE_DATA_ENTRY(Buff,
+                        de3.ResourceDataEntry = new IMAGE_RESOURCE_DATA_ENTRY(PeFile,
                             Offset + de3.OffsetToData);
                     }
                 }

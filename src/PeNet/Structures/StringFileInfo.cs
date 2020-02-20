@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using PeNet.Utilities;
 
@@ -13,8 +14,13 @@ namespace PeNet.Structures
     {
         private StringTable[]? _stringTable;
 
-        public StringFileInfo(byte[] buff, uint offset) 
-            : base(buff, offset)
+        /// <summary>
+        /// Create a new StringFileInfo instance.
+        /// </summary>
+        /// <param name="peFile">Stream containing a PE file.</param>
+        /// <param name="offset">Offset of a StringFileInfo structure in the stream.</param>
+        public StringFileInfo(Stream peFile, long offset) 
+            : base(peFile, offset)
         {
         }
 
@@ -23,8 +29,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wLength
         {
-            get => Buff.BytesToUInt16(Offset);
-            set => Buff.SetUInt16(Offset, value);
+            get => PeFile.ReadUShort(Offset);
+            set => PeFile.WriteUShort(Offset, value);
         }
 
         /// <summary>
@@ -32,8 +38,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wValueLength
         {
-            get => Buff.BytesToUInt16(Offset + 0x2);
-            set => Buff.SetUInt16(Offset + 0x2, value);
+            get => PeFile.ReadUShort(Offset + 0x2);
+            set => PeFile.WriteUShort(Offset + 0x2, value);
         }
 
         /// <summary>
@@ -42,14 +48,14 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wType
         {
-            get => Buff.BytesToUInt16(Offset + 0x4);
-            set => Buff.SetUInt16(Offset + 0x4, value);
+            get => PeFile.ReadUShort(Offset + 0x4);
+            set => PeFile.WriteUShort(Offset + 0x4, value);
         }
 
         /// <summary>
         /// Contains the Unicode string "StringFileInfo".
         /// </summary>
-        public string szKey => Buff.GetUnicodeString(Offset + 0x6);
+        public string szKey => PeFile.GetUnicodeString(Offset + 0x6);
 
         /// <summary>
         /// One ore more StringTable structures, where each tables szKey indicates
@@ -73,7 +79,7 @@ namespace PeNet.Structures
 
             while (currentOffset < Offset + wLength)
             {
-                children.Add(new StringTable(Buff, (uint) currentOffset));
+                children.Add(new StringTable(PeFile, currentOffset));
                 currentOffset += children.Last().wLength;
             }
 

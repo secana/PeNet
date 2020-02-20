@@ -1,4 +1,6 @@
-﻿namespace PeNet.Structures
+﻿using System.IO;
+
+namespace PeNet.Structures
 {
     /// <summary>
     /// Parsed version of the Resource data directory.
@@ -16,13 +18,19 @@
         {
             get
             {
-                _vsVersionInfo ??= new VS_VERSIONINFO(Buff, _vsVersionOffset);
+                _vsVersionInfo ??= new VS_VERSIONINFO(PeFile, _vsVersionOffset);
                 return _vsVersionInfo;
             }
         }
 
-        public Resources(byte[] buff, uint offset, uint vsVersionOffset) 
-            : base(buff, offset)
+        /// <summary>
+        /// Creates a new Resource data directory instance.
+        /// </summary>
+        /// <param name="peFile"></param>
+        /// <param name="offset"></param>
+        /// <param name="vsVersionOffset"></param>
+        public Resources(Stream peFile, long offset, uint vsVersionOffset) 
+            : base(peFile, offset)
         {
             _vsVersionOffset = vsVersionOffset;
         }

@@ -26,13 +26,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong Callback
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset + 0) : Buff.BytesToUInt32(Offset + 0);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0) : PeFile.ReadUInt(Offset + 0);
             set
             {
                 if(_is64Bit)
-                    Buff.SetUInt64(Offset + 0, value);
+                    PeFile.SetUInt64(Offset + 0, value);
                 else
-                    Buff.SetUInt32(Offset + 0, (uint) value);
+                    PeFile.WriteUInt(Offset + 0, (uint) value);
             }
         }
     }

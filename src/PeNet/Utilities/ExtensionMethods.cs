@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using PeNet.Structures;
@@ -14,41 +15,32 @@ namespace PeNet.Utilities
     public static class ExtensionMethods
     {
         /// <summary>
-        ///     Convert to bytes to an 16 bit unsigned integer.
+        ///     Convert a byte out of a stream to a 8 bit unsinged integer.
         /// </summary>
-        /// <param name="b1">High byte.</param>
-        /// <param name="b2">Low byte.</param>
-        /// <returns>UInt16 of the input bytes.</returns>
-        private static ushort BytesToUInt16(byte b1, byte b2)
+        /// <param name="stream">Stream object.</param>
+        /// <param name="offset">Offset of the byte to read.</param>
+        /// <returns></returns>
+        public static byte ReadByte(this Stream stream, long offset)
         {
-            return BitConverter.ToUInt16(new[] {b1, b2}, 0);
+            stream.Seek(offset, SeekOrigin.Begin);
+            return (byte)stream.ReadByte();
         }
 
-        /// <summary>
-        ///     Convert a two bytes in a byte array to an 16 bit unsigned integer.
-        /// </summary>
-        /// <param name="buff">Byte buffer.</param>
-        /// <param name="offset">Position of the high byte. Low byte is i+1.</param>
-        /// <returns>UInt16 of the bytes in the buffer at position i and i+1.</returns>
-        public static ushort BytesToUInt16(this byte[] buff, ulong offset)
-        {
-            return BytesToUInt16(buff[offset], buff[offset + 1]);
-        }
 
         /// <summary>
-        ///     Convert up to 2 bytes out of a buffer to an 16 bit unsigned integer.
+        ///     Convert up to 2 bytes out of a stream to an 16 bit unsigned integer.
         /// </summary>
-        /// <param name="buff">Byte buffer.</param>
+        /// <param name="stream">Stream object.</param>
         /// <param name="offset">Offset of the highest byte.</param>
         /// <param name="numOfBytes">Number of bytes to read.</param>
         /// <returns>UInt16 of numOfBytes bytes.</returns>
-        public static uint BytesToUInt16(this byte[] buff, uint offset, uint numOfBytes)
+        public static ushort ReadUShort(this Stream stream, long offset)
         {
-            var bytes = new byte[2];
-            for (var i = 0; i < numOfBytes; i++)
-                bytes[i] = buff[offset + i];
+            Span<byte> s = stackalloc byte[2];
+            stream.Seek(offset, SeekOrigin.Begin);
+            stream.Read(s);
 
-            return BitConverter.ToUInt16(bytes, 0);
+            return BitConverter.ToUInt16(s);
         }
 
         /// <summary>
@@ -65,14 +57,17 @@ namespace PeNet.Utilities
         }
 
         /// <summary>
-        ///     Convert 4 consecutive bytes out of a buffer to an 32 bit unsigned integer.
+        ///     Convert 4 consecutive bytes out of a stream to an 32 bit unsigned integer.
         /// </summary>
-        /// <param name="buff">Byte buffer.</param>
+        /// <param name="stream">Stream object.</param>
         /// <param name="offset">Offset of the highest byte.</param>
         /// <returns>UInt32 of 4 bytes.</returns>
-        public static uint BytesToUInt32(this byte[] buff, uint offset)
+        public static uint ReadUInt(this Stream stream, long offset)
         {
-            return BytesToUInt32(buff[offset], buff[offset + 1], buff[offset + 2], buff[offset + 3]);
+            Span<byte> s = stackalloc byte[4];
+            stream.Seek(offset, SeekOrigin.Begin);
+            stream.Read(s);
+            return BitConverter.ToUInt32(s);
         }
 
         /// <summary>
@@ -141,16 +136,15 @@ namespace PeNet.Utilities
         }
 
         /// <summary>
-        ///     Set an UInt16 value at an offset in an byte array.
+        ///     Set an UInt16 value at an offset in a stream.
         /// </summary>
-        /// <param name="buff">Buffer in which the value is set.</param>
+        /// <param name="stream">Stream in which the value is set.</param>
         /// <param name="offset">Offset where the value is set.</param>
         /// <param name="value">The value to set.</param>
-        public static void SetUInt16(this byte[] buff, ulong offset, ushort value)
+        public static void WriteUShort(this Stream stream, long offset, ushort value)
         {
             var x = UInt16ToBytes(value);
-            buff[offset] = x[0];
-            buff[offset + 1] = x[1];
+            stream.Write(x, (int) offset, x.Length);
         }
 
         /// <summary>
@@ -174,18 +168,15 @@ namespace PeNet.Utilities
         }
 
         /// <summary>
-        ///     Sets an UInt32 value at an offset in a buffer.
+        ///     Sets an UInt32 value at an offset in a stream.
         /// </summary>
-        /// <param name="buff">Buffer to set the value in.</param>
+        /// <param name="stream">Stream to set the value in.</param>
         /// <param name="offset">Offset in the array for the value.</param>
         /// <param name="value">Value to set.</param>
-        public static void SetUInt32(this byte[] buff, uint offset, uint value)
+        public static void WriteUInt(this Stream stream, long offset, uint value)
         {
             var x = UInt32ToBytes(value);
-            buff[offset] = x[0];
-            buff[offset + 1] = x[1];
-            buff[offset + 2] = x[2];
-            buff[offset + 3] = x[3];
+            stream.Write(x, (int) offset, 4);
         }
 
         /// <summary>
@@ -422,27 +413,47 @@ namespace PeNet.Utilities
         }
 
         /// <summary>
-        ///     Get a unicode string at a specific position in a buffer.
+        ///     Get a unicode string at a specific position in a stream.
         /// </summary>
-        /// <param name="buff">Containing buffer.</param>
-        /// <param name="stringOffset">Offset of the string.</param>
+        /// <param name="stream">Containing stream.</param>
+        /// <param name="offset">Offset of the string.</param>
         /// <returns>The parsed unicode string.</returns>
-        public static string GetUnicodeString(this byte[] buff, ulong stringOffset)
+        public static string GetUnicodeString(this Stream stream, long offset)
         {
-            var size = 0;
-            for (var i = 0; i < (buff.Length - (int) stringOffset) - 1; i++)
+            var bytes = new List<byte>();
+            stream.Seek(offset, SeekOrigin.Begin);
+
+            for(;;)
             {
-                if (buff[(int) stringOffset + i] == 0 && buff[(int) stringOffset + (i + 1)] == 0)
+                var b = stream.ReadByte();
+                if(b == 0)
                 {
-                    size = i + 1;
+                    var b1 = stream.ReadByte();
+                    if(b1 == 0)
+                    {
+                        break;
+                    }
+                    else if(b1 == -1)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        bytes.Add((byte) b);
+                        bytes.Add((byte) b1);
+                    }
+                }
+                else if(b == -1)
+                {
                     break;
+                }
+                else
+                {
+                    bytes.Add((byte) b);
                 }
             }
 
-            var bytes = new byte[size];
-
-            Array.Copy(buff, (int)stringOffset, bytes, 0, size);
-            return Encoding.Unicode.GetString(bytes);
+            return Encoding.Unicode.GetString(bytes.ToArray());
         }
 
 
@@ -473,7 +484,8 @@ namespace PeNet.Utilities
         /// the next member.</param>
         /// <param name="alignment">Bitness of the alignment, e.g. "32".</param>
         /// <returns>Number of bytes needed to align the next structure.</returns>
-        public static uint PaddingBytes(this long offset, int alignment) => (uint) offset % (uint) (alignment / 8);
+        public static uint PaddingBytes(this long offset, int alignment) 
+            => PaddingBytes((uint)offset, alignment);
 
         /// <summary>
         /// Compute the padding to align a
@@ -483,6 +495,18 @@ namespace PeNet.Utilities
         /// the next member.</param>
         /// <param name="alignment">Bitness of the alignment, e.g. "32".</param>
         /// <returns>Number of bytes needed to align the next structure.</returns>
-        public static uint PaddingBytes(this uint offset, int alignment) => (uint)offset % (uint)(alignment / 8);
+        public static uint PaddingBytes(this int offset, int alignment)
+            => PaddingBytes((uint)offset, alignment);
+
+        /// <summary>
+        /// Compute the padding to align a
+        /// data structure.
+        /// </summary>
+        /// <param name="offset">Offset to start the alignment of
+        /// the next member.</param>
+        /// <param name="alignment">Bitness of the alignment, e.g. "32".</param>
+        /// <returns>Number of bytes needed to align the next structure.</returns>
+        public static uint PaddingBytes(this uint offset, int alignment) 
+            => offset % (uint)(alignment / 8);
     }
 }

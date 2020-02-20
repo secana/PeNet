@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using PeNet.Utilities;
 
 namespace PeNet.Structures
@@ -11,8 +12,13 @@ namespace PeNet.Structures
     {
         private uint[]? _value;
 
-        public Var(byte[] buff, uint offset) 
-            : base(buff, offset)
+        /// <summary>
+        /// Create a new Var instance.
+        /// </summary>
+        /// <param name="peFile">Stream containing a PE file.</param>
+        /// <param name="offset">Offset of a Var structure in the stream.</param>
+        public Var(Stream peFile, long offset) 
+            : base(peFile, offset)
         {
         }
 
@@ -21,8 +27,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wLength
         {
-            get => Buff.BytesToUInt16(Offset);
-            set => Buff.SetUInt16(Offset, value);
+            get => PeFile.ReadUShort(Offset);
+            set => PeFile.WriteUShort(Offset, value);
         }
 
         /// <summary>
@@ -30,8 +36,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wValueLength
         {
-            get => Buff.BytesToUInt16(Offset + 0x2);
-            set => Buff.SetUInt16(Offset + 0x2, value);
+            get => PeFile.ReadUShort(Offset + 0x2);
+            set => PeFile.WriteUShort(Offset + 0x2, value);
         }
 
         /// <summary>
@@ -40,14 +46,14 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wType
         {
-            get => Buff.BytesToUInt16(Offset + 0x4);
-            set => Buff.SetUInt16(Offset + 04, value);
+            get => PeFile.ReadUShort(Offset + 0x4);
+            set => PeFile.WriteUShort(Offset + 04, value);
         }
 
         /// <summary>
         /// Unicode string "Translation"
         /// </summary>
-        public string szKey => Buff.GetUnicodeString(Offset + 0x6);
+        public string szKey => PeFile.GetUnicodeString(Offset + 0x6);
 
         /// <summary>
         /// DWORD value where the lower-order word contains the Microsoft
@@ -75,7 +81,7 @@ namespace PeNet.Structures
 
             while (currentOffset < startOfValues + wValueLength)
             {
-                values.Add(Buff.BytesToUInt32((uint) currentOffset));
+                values.Add(PeFile.ReadUInt(currentOffset));
                 currentOffset += sizeof(uint);
             }
 

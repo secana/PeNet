@@ -32,8 +32,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint cb
         {
-            get => Buff.BytesToUInt32(Offset);
-            set => Buff.SetUInt32(Offset, value);
+            get => PeFile.ReadUInt(Offset);
+            set => PeFile.WriteUInt(Offset, value);
         }
 
         /// <summary>
@@ -41,8 +41,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorRuntimeVersion
         {
-            get => Buff.BytesToUInt16(Offset + 0x4);
-            set => Buff.SetUInt16(Offset + 0x4, value);
+            get => PeFile.ReadUShort(Offset + 0x4);
+            set => PeFile.WriteUShort(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -50,8 +50,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorRuntimeVersion
         {
-            get => Buff.BytesToUInt16(Offset + 0x6);
-            set => Buff.SetUInt16(Offset + 0x6, value);
+            get => PeFile.ReadUShort(Offset + 0x6);
+            set => PeFile.WriteUShort(Offset + 0x6, value);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace PeNet.Structures
                 if (_metaData != null)
                     return _metaData;
 
-                _metaData = SetImageDataDirectory(Buff, Offset + 0x8);
+                _metaData = SetImageDataDirectory(PeFile, Offset + 0x8);
                 return _metaData;
             }
         }
@@ -74,8 +74,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Flags
         {
-            get => Buff.BytesToUInt32(Offset + 0x10);
-            set => Buff.SetUInt32(Offset + 0x10, value);
+            get => PeFile.ReadUInt(Offset + 0x10);
+            set => PeFile.WriteUInt(Offset + 0x10, value);
         }
 
         /// <summary>
@@ -84,8 +84,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint EntryPointToken
         {
-            get => Buff.BytesToUInt32(Offset + 0x14);
-            set => Buff.SetUInt32(Offset + 0x14, value);
+            get => PeFile.ReadUInt(Offset + 0x14);
+            set => PeFile.WriteUInt(Offset + 0x14, value);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace PeNet.Structures
         {
             get
             {
-                _resources ??= SetImageDataDirectory(Buff, Offset + 0x18);
+                _resources ??= SetImageDataDirectory(PeFile, Offset + 0x18);
                 return _resources;
             }
         }
@@ -117,7 +117,7 @@ namespace PeNet.Structures
         {
             get
             {
-                _strongSignatureNames ??= SetImageDataDirectory(Buff, Offset + 0x20);
+                _strongSignatureNames ??= SetImageDataDirectory(PeFile, Offset + 0x20);
                 return _strongSignatureNames;
             }
         }
@@ -129,7 +129,7 @@ namespace PeNet.Structures
         {
             get
             {
-                _codeManagerTable ??= SetImageDataDirectory(Buff, Offset + 0x28);
+                _codeManagerTable ??= SetImageDataDirectory(PeFile, Offset + 0x28);
                 return _codeManagerTable;
             }
         }
@@ -141,7 +141,7 @@ namespace PeNet.Structures
         {
             get
             {
-                _vTableFixups ??= SetImageDataDirectory(Buff, Offset + 0x30);
+                _vTableFixups ??= SetImageDataDirectory(PeFile, Offset + 0x30);
                 return _vTableFixups;
             }
         }
@@ -153,7 +153,7 @@ namespace PeNet.Structures
         {
             get
             {
-                _exportAddressTableJumps ??= SetImageDataDirectory(Buff, Offset + 0x38);
+                _exportAddressTableJumps ??= SetImageDataDirectory(PeFile, Offset + 0x38);
                 return _exportAddressTableJumps;
             }
         }
@@ -165,7 +165,7 @@ namespace PeNet.Structures
         {
             get
             {
-                _managedNativeHeader ??= SetImageDataDirectory(Buff, Offset + 0x40);
+                _managedNativeHeader ??= SetImageDataDirectory(PeFile, Offset + 0x40);
                 return _managedNativeHeader;
             }
         }

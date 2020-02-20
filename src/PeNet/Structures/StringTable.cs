@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using PeNet.Utilities;
 
@@ -12,8 +13,13 @@ namespace PeNet.Structures
     {
         private TString[]? _children;
 
-        public StringTable(byte[] buff, uint offset) 
-            : base(buff, offset)
+        /// <summary>
+        /// Create a new StringTable instance.
+        /// </summary>
+        /// <param name="peFile">Stream containing a PE file.</param>
+        /// <param name="offset">Offset of a StringTable structure in the stream.</param>
+        public StringTable(Stream peFile, long offset) 
+            : base(peFile, offset)
         {
         }
 
@@ -23,8 +29,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wLength
         {
-            get => Buff.BytesToUInt16(Offset);
-            set => Buff.SetUInt16(Offset, value);
+            get => PeFile.ReadUShort(Offset);
+            set => PeFile.WriteUShort(Offset, value);
         }
 
         /// <summary>
@@ -32,8 +38,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wValueLength
         {
-            get => Buff.BytesToUInt16(Offset + 0x2);
-            set => Buff.SetUInt16(Offset + 0x2, value);
+            get => PeFile.ReadUShort(Offset + 0x2);
+            set => PeFile.WriteUShort(Offset + 0x2, value);
         }
 
         /// <summary>
@@ -42,8 +48,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wType
         {
-            get => Buff.BytesToUInt16(Offset + 0x4);
-            set => Buff.SetUInt16(Offset + 0x4, value);
+            get => PeFile.ReadUShort(Offset + 0x4);
+            set => PeFile.WriteUShort(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -52,7 +58,7 @@ namespace PeNet.Structures
         /// the four least significant digits the code page for which the
         /// data is formatted.
         /// </summary>
-        public string szKey => Buff.GetUnicodeString(Offset + 0x6);
+        public string szKey => PeFile.GetUnicodeString(Offset + 0x6);
 
         /// <summary>
         /// Array of String structures.
@@ -142,7 +148,7 @@ namespace PeNet.Structures
             while (currentOffset < Offset + wLength)
             {
                 currentOffset += currentOffset.PaddingBytes(32);
-                children.Add(new TString(Buff, (uint) currentOffset));
+                children.Add(new TString(PeFile, currentOffset));
                 currentOffset += children.Last().wLength;
             }
 

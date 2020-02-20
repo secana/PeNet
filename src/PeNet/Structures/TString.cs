@@ -1,4 +1,5 @@
 ﻿using PeNet.Utilities;
+using System.IO;
 
 namespace PeNet.Structures
 {
@@ -8,7 +9,13 @@ namespace PeNet.Structures
     /// </summary>
     public class TString : AbstractStructure
     {
-        public TString(byte[] buff, uint offset) : base(buff, offset)
+        /// <summary>
+        /// Create a new TString structure.
+        /// </summary>
+        /// <param name="peFile">Stream containing a PE file.</param>
+        /// <param name="offset">Offset of a String structure in the stream.</param>
+        public TString(Stream peFile, long offset) 
+            : base(peFile, offset)
         {
         }
 
@@ -17,8 +24,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wLength
         {
-            get => Buff.BytesToUInt16(Offset);
-            set => Buff.SetUInt16(Offset, value);
+            get => PeFile.ReadUShort(Offset);
+            set => PeFile.WriteUShort(Offset, value);
         }
 
         /// <summary>
@@ -26,8 +33,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wValueLength
         {
-            get => Buff.BytesToUInt16(Offset + 0x2);
-            set => Buff.SetUInt16(Offset + 0x2, value);
+            get => PeFile.ReadUShort(Offset + 0x2);
+            set => PeFile.WriteUShort(Offset + 0x2, value);
         }
 
         /// <summary>
@@ -36,8 +43,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wType
         {
-            get => Buff.BytesToUInt16(Offset + 0x4);
-            set => Buff.SetUInt16(Offset + 0x4, value);
+            get => PeFile.ReadUShort(Offset + 0x4);
+            set => PeFile.WriteUShort(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -45,7 +52,7 @@ namespace PeNet.Structures
         /// the following data, e.g. "Comments", "CompanyName" and so
         /// on.
         /// </summary>
-        public string szKey => Buff.GetUnicodeString(Offset + 0x6);
+        public string szKey => PeFile.GetUnicodeString(Offset + 0x6);
 
         /// <summary>
         /// Arbitrary string which contains the information for the
@@ -57,7 +64,7 @@ namespace PeNet.Structures
                 var currentOffset = Offset + 0x6 + szKey.LengthInByte() +
                                     (Offset + 0x6 + szKey.LengthInByte()).PaddingBytes(32);
 
-                return Buff.GetUnicodeString((ulong) currentOffset);
+                return PeFile.GetUnicodeString(currentOffset);
             }
         }
     }

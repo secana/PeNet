@@ -65,16 +65,16 @@ namespace PeNet.Structures
             // we skip the first byte in the buffer
             for (var i = Offset + 1; i < Offset + _size; i++)
             {
-                if (Buff[i] >= 0x80) // Not sure why this works but it does.
+                if (PeFile[i] >= 0x80) // Not sure why this works but it does.
                     i++;
 
-                int length = Buff[i];
+                int length = PeFile[i];
 
                 if (length == 0)                                        // Stop if a string has the length 0 since the end 
                     break;                                              // of the list is reached.
 
                 i += 1;                                                 // Add "length byte" to current offset.
-                var tmpString = Buff.GetUnicodeString(i);               // Read the UTF-16 string
+                var tmpString = PeFile.GetUnicodeString(i);               // Read the UTF-16 string
                 i += (uint)length - 1;                                  // Add the string length to the current offset.
 
                 stringsAndIncides.Add(new Tuple<string, uint>(tmpString, i - (uint)length - Offset));

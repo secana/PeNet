@@ -1,18 +1,19 @@
 ﻿using PeNet.Parser;
 using PeNet.Structures;
+using System.IO;
 
 namespace PeNet
 {
     internal class NativeStructureParsers
     {
-        private readonly byte[] _buff;
+        private readonly Stream _peFile;
         private readonly ImageDosHeaderParser _imageDosHeaderParser;
         private readonly ImageNtHeadersParser? _imageNtHeadersParser;
         private readonly ImageSectionHeadersParser? _imageSectionHeadersParser;
 
-        internal NativeStructureParsers(byte[] buff)
+        internal NativeStructureParsers(Stream peFile)
         {
-            _buff = buff;
+            _peFile = peFile;
 
             // Init all parsers
             _imageDosHeaderParser = InitImageDosHeaderParser();
@@ -37,7 +38,7 @@ namespace PeNet
                 return null;
 
             return new ImageSectionHeadersParser(
-                _buff, GetSecHeaderOffset(), 
+                _peFile, GetSecHeaderOffset(), 
                 ImageNtHeaders.FileHeader.NumberOfSections, 
                 ImageNtHeaders.OptionalHeader.ImageBase
                 );
@@ -48,12 +49,12 @@ namespace PeNet
             if (ImageDosHeader is null)
                 return null;
 
-            return new ImageNtHeadersParser(_buff, ImageDosHeader.e_lfanew);
+            return new ImageNtHeadersParser(_peFile, ImageDosHeader.e_lfanew);
         }
 
         private ImageDosHeaderParser InitImageDosHeaderParser()
         {
-            return new ImageDosHeaderParser(_buff, 0);
+            return new ImageDosHeaderParser(_peFile, 0);
         }
     }
 }

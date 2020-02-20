@@ -28,13 +28,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong AddressOfData
         {
-            get => _is64Bit ? Buff.BytesToUInt64(Offset) : Buff.BytesToUInt32(Offset);
+            get => _is64Bit ? PeFile.BytesToUInt64(Offset) : PeFile.ReadUInt(Offset);
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32(Offset, (uint) value);
+                    PeFile.WriteUInt(Offset, (uint) value);
                 else
-                    Buff.SetUInt64(Offset, value);
+                    PeFile.SetUInt64(Offset, value);
             }
         }
 

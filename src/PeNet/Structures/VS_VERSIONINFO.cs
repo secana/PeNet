@@ -1,4 +1,5 @@
 ﻿using PeNet.Utilities;
+using System.IO;
 
 namespace PeNet.Structures
 {
@@ -20,8 +21,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wLength
         {
-            get => Buff.BytesToUInt16(Offset);
-            set => Buff.SetUInt16(Offset, value);
+            get => PeFile.ReadUShort(Offset);
+            set => PeFile.WriteUShort(Offset, value);
         }
 
         /// <summary>
@@ -30,8 +31,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wValueLength
         {
-            get => Buff.BytesToUInt16(Offset + 0x2);
-            set => Buff.SetUInt16(Offset + 0x2, value);
+            get => PeFile.ReadUShort(Offset + 0x2);
+            set => PeFile.WriteUShort(Offset + 0x2, value);
         }
 
         /// <summary>
@@ -40,14 +41,14 @@ namespace PeNet.Structures
         /// </summary>
         public ushort wType
         {
-            get => Buff.BytesToUInt16(Offset + 0x4);
-            set => Buff.SetUInt16(Offset + 0x4, value);
+            get => PeFile.ReadUShort(Offset + 0x4);
+            set => PeFile.WriteUShort(Offset + 0x4, value);
         }
 
         /// <summary>
         /// Contains the Unicode string "VS_VERSION_INFO"
         /// </summary>
-        public string szKey => Buff.GetUnicodeString(Offset + 0x6);
+        public string szKey => PeFile.GetUnicodeString(Offset + 0x6);
 
         /// <summary>
         /// Language and code page independent version information about the PE file.
@@ -57,7 +58,7 @@ namespace PeNet.Structures
             {
                 var currentOffset = VsFixedFileInfoOffset;
 
-                _vsFixedFileInfo ??= new VS_FIXEDFILEINFO(Buff, currentOffset);
+                _vsFixedFileInfo ??= new VS_FIXEDFILEINFO(PeFile, (int) currentOffset);
 
                 return _vsFixedFileInfo;
             }
@@ -73,7 +74,7 @@ namespace PeNet.Structures
                 currentOffset += wValueLength;
                 currentOffset += currentOffset.PaddingBytes(32);
 
-                _stringFileInfo ??= new StringFileInfo(Buff, currentOffset);
+                _stringFileInfo ??= new StringFileInfo(PeFile, currentOffset);
 
                 return _stringFileInfo;
             }
@@ -91,14 +92,19 @@ namespace PeNet.Structures
                 currentOffset += StringFileInfo.wLength;
                 currentOffset += currentOffset.PaddingBytes(32);
 
-                _varFileInfo ??= new VarFileInfo(Buff, currentOffset);
+                _varFileInfo ??= new VarFileInfo(PeFile, currentOffset);
 
                 return _varFileInfo;
             }
         }
 
-        public VS_VERSIONINFO(byte[] buff, uint offset) 
-            : base(buff, offset)
+        /// <summary>
+        /// Create a new VS_VERSIONINFO instance.
+        /// </summary>
+        /// <param name="peFile">Stream that contains a PE file.</param>
+        /// <param name="offset">Offset of the VS_VERSIONINFO in the stream.</param>
+        public VS_VERSIONINFO(Stream peFile, long offset) 
+            : base(peFile, offset)
         {
         }
     }

@@ -32,7 +32,7 @@ namespace PeNet.Parser
                 if (currentBlock >= Offset + _directorySize - 8)
                     break;
 
-                imageBaseRelocations.Add(new IMAGE_BASE_RELOCATION(Buff, currentBlock, _directorySize));
+                imageBaseRelocations.Add(new IMAGE_BASE_RELOCATION(PeFile, currentBlock, _directorySize));
                 currentBlock += imageBaseRelocations.Last().SizeOfBlock;
             }
 

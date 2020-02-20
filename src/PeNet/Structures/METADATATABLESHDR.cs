@@ -76,8 +76,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Reserved1
         {
-            get => Buff.BytesToUInt32(Offset);
-            set => Buff.SetUInt32(Offset, value);
+            get => PeFile.ReadUInt(Offset);
+            set => PeFile.WriteUInt(Offset, value);
         }
 
         /// <summary>
@@ -85,8 +85,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte MajorVersion
         {
-            get => Buff[Offset + 0x4];
-            set => Buff[Offset + 0x4] = value;
+            get => PeFile[Offset + 0x4];
+            set => PeFile[Offset + 0x4] = value;
         }
 
         /// <summary>
@@ -94,8 +94,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte MinorVersion
         {
-            get => Buff[Offset + 0x5];
-            set => Buff[Offset + 0x5] = value;
+            get => PeFile[Offset + 0x5];
+            set => PeFile[Offset + 0x5] = value;
         }
 
         /// <summary>
@@ -107,8 +107,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte HeapSizes
         {
-            get => Buff[Offset + 0x6];
-            set => Buff[Offset + 0x6] = value;
+            get => PeFile[Offset + 0x6];
+            set => PeFile[Offset + 0x6] = value;
         }
 
         /// <summary>
@@ -116,8 +116,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte Reserved2
         {
-            get => Buff[Offset + 0x7];
-            set => Buff[Offset + 0x7] = value;
+            get => PeFile[Offset + 0x7];
+            set => PeFile[Offset + 0x7] = value;
         }
 
         /// <summary>
@@ -127,8 +127,8 @@ namespace PeNet.Structures
         /// </summary>
         public ulong Valid
         {
-            get => Buff.BytesToUInt64(Offset + 0x8);
-            set => Buff.SetUInt64(Offset + 0x8, value);
+            get => PeFile.BytesToUInt64(Offset + 0x8);
+            set => PeFile.SetUInt64(Offset + 0x8, value);
         }
 
         /// <summary>
@@ -136,8 +136,8 @@ namespace PeNet.Structures
         /// </summary>
         public ulong MaskSorted
         {
-            get => Buff.BytesToUInt64(Offset + 0x10);
-            set => Buff.SetUInt64(Offset + 0x10, value);
+            get => PeFile.BytesToUInt64(Offset + 0x10);
+            set => PeFile.SetUInt64(Offset + 0x10, value);
         }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace PeNet.Structures
             {
                 if ((Valid & (1UL << i)) != 0)
                 {
-                    tables[i].RowCount = Buff.BytesToUInt32(startOfTableDefinitions + (uint)cnt * 4);
+                    tables[i].RowCount = PeFile.BytesToUInt32(startOfTableDefinitions + (uint)cnt * 4);
                     tables[i].Name = names[cnt];
                     cnt++;
                 }
@@ -311,7 +311,7 @@ namespace PeNet.Structures
                 {
                     rows.Add((T) Activator.CreateInstance(typeof(T), new object[] 
                         {
-                            Buff, tablesOffset + tableInfo.Offset + tableInfo.BytesPerRow * i, heapSizes, indexSizes
+                            PeFile, tablesOffset + tableInfo.Offset + tableInfo.BytesPerRow * i, heapSizes, indexSizes
                         }));
                 }
             }

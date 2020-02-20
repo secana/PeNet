@@ -43,8 +43,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Magic
         {
-            get => Buff.BytesToUInt16(Offset);
-            set => Buff.SetUInt16(Offset, value);
+            get => PeFile.ReadUShort(Offset);
+            set => PeFile.WriteUShort(Offset, value);
         }
 
         /// <summary>
@@ -52,8 +52,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte MajorLinkerVersion
         {
-            get => Buff[Offset + 0x2];
-            set => Buff[Offset + 0x2] = value;
+            get => PeFile[Offset + 0x2];
+            set => PeFile[Offset + 0x2] = value;
         }
 
         /// <summary>
@@ -61,8 +61,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte MinorLinkerVersion
         {
-            get => Buff[Offset + 0x3];
-            set => Buff[Offset + 03] = value;
+            get => PeFile[Offset + 0x3];
+            set => PeFile[Offset + 03] = value;
         }
 
         /// <summary>
@@ -70,8 +70,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint SizeOfCode
         {
-            get => Buff.BytesToUInt32(Offset + 0x4);
-            set => Buff.SetUInt32(Offset + 0x4, value);
+            get => PeFile.ReadUInt(Offset + 0x4);
+            set => PeFile.WriteUInt(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -79,8 +79,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint SizeOfInitializedData
         {
-            get => Buff.BytesToUInt32(Offset + 0x8);
-            set => Buff.SetUInt32(Offset + 0x8, value);
+            get => PeFile.ReadUInt(Offset + 0x8);
+            set => PeFile.WriteUInt(Offset + 0x8, value);
         }
 
         /// <summary>
@@ -88,8 +88,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint SizeOfUninitializedData
         {
-            get => Buff.BytesToUInt32(Offset + 0xC);
-            set => Buff.SetUInt32(Offset + 0xC, value);
+            get => PeFile.ReadUInt(Offset + 0xC);
+            set => PeFile.WriteUInt(Offset + 0xC, value);
         }
 
         /// <summary>
@@ -97,8 +97,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint AddressOfEntryPoint
         {
-            get => Buff.BytesToUInt32(Offset + 0x10);
-            set => Buff.SetUInt32(Offset + 0x10, value);
+            get => PeFile.ReadUInt(Offset + 0x10);
+            set => PeFile.WriteUInt(Offset + 0x10, value);
         }
 
         /// <summary>
@@ -106,8 +106,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint BaseOfCode
         {
-            get => Buff.BytesToUInt32(Offset + 0x14);
-            set => Buff.SetUInt32(Offset + 0x14, value);
+            get => PeFile.ReadUInt(Offset + 0x14);
+            set => PeFile.WriteUInt(Offset + 0x14, value);
         }
 
         /// <summary>
@@ -115,11 +115,11 @@ namespace PeNet.Structures
         /// </summary>
         public uint BaseOfData
         {
-            get => _is64Bit ? 0 : Buff.BytesToUInt32(Offset + 0x18);
+            get => _is64Bit ? 0 : PeFile.ReadUInt(Offset + 0x18);
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32(Offset + 0x18, value);
+                    PeFile.WriteUInt(Offset + 0x18, value);
                 else
                     throw new Exception("IMAGE_OPTIONAL_HEADER->BaseOfCode does not exist in 64 bit applications.");
             }
@@ -132,14 +132,14 @@ namespace PeNet.Structures
         {
             get =>
                 _is64Bit
-                    ? Buff.BytesToUInt64(Offset + 0x18)
-                    : Buff.BytesToUInt32(Offset + 0x1C);
+                    ? PeFile.BytesToUInt64(Offset + 0x18)
+                    : PeFile.ReadUInt(Offset + 0x1C);
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32(Offset + 0x1C, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x1C, (uint) value);
                 else
-                    Buff.SetUInt64(Offset + 0x18, value);
+                    PeFile.SetUInt64(Offset + 0x18, value);
             }
         }
 
@@ -148,8 +148,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint SectionAlignment
         {
-            get => Buff.BytesToUInt32(Offset + 0x20);
-            set => Buff.SetUInt32(Offset + 0x20, value);
+            get => PeFile.ReadUInt(Offset + 0x20);
+            set => PeFile.WriteUInt(Offset + 0x20, value);
         }
 
         /// <summary>
@@ -157,8 +157,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint FileAlignment
         {
-            get => Buff.BytesToUInt32(Offset + 0x24);
-            set => Buff.SetUInt32(Offset + 0x24, value);
+            get => PeFile.ReadUInt(Offset + 0x24);
+            set => PeFile.WriteUInt(Offset + 0x24, value);
         }
 
         /// <summary>
@@ -166,8 +166,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorOperatingSystemVersion
         {
-            get => Buff.BytesToUInt16(Offset + 0x28);
-            set => Buff.SetUInt16(Offset + 0x28, value);
+            get => PeFile.ReadUShort(Offset + 0x28);
+            set => PeFile.WriteUShort(Offset + 0x28, value);
         }
 
         /// <summary>
@@ -175,8 +175,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorOperatingSystemVersion
         {
-            get => Buff.BytesToUInt16(Offset + 0x2A);
-            set => Buff.SetUInt16(Offset + 0x2A, value);
+            get => PeFile.ReadUShort(Offset + 0x2A);
+            set => PeFile.WriteUShort(Offset + 0x2A, value);
         }
 
         /// <summary>
@@ -184,8 +184,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorImageVersion
         {
-            get => Buff.BytesToUInt16(Offset + 0x2C);
-            set => Buff.SetUInt16(Offset + 0x2C, value);
+            get => PeFile.ReadUShort(Offset + 0x2C);
+            set => PeFile.WriteUShort(Offset + 0x2C, value);
         }
 
         /// <summary>
@@ -193,8 +193,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorImageVersion
         {
-            get => Buff.BytesToUInt16(Offset + 0x2E);
-            set => Buff.SetUInt16(Offset + 0x2E, value);
+            get => PeFile.ReadUShort(Offset + 0x2E);
+            set => PeFile.WriteUShort(Offset + 0x2E, value);
         }
 
         /// <summary>
@@ -202,8 +202,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorSubsystemVersion
         {
-            get => Buff.BytesToUInt16(Offset + 0x30);
-            set => Buff.SetUInt16(Offset + 0x30, value);
+            get => PeFile.ReadUShort(Offset + 0x30);
+            set => PeFile.WriteUShort(Offset + 0x30, value);
         }
 
         /// <summary>
@@ -211,8 +211,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorSubsystemVersion
         {
-            get => Buff.BytesToUInt16(Offset + 0x32);
-            set => Buff.SetUInt16(Offset + 0x32, value);
+            get => PeFile.ReadUShort(Offset + 0x32);
+            set => PeFile.WriteUShort(Offset + 0x32, value);
         }
 
         /// <summary>
@@ -220,8 +220,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Win32VersionValue
         {
-            get => Buff.BytesToUInt32(Offset + 0x34);
-            set => Buff.SetUInt32(Offset + 0x34, value);
+            get => PeFile.ReadUInt(Offset + 0x34);
+            set => PeFile.WriteUInt(Offset + 0x34, value);
         }
 
         /// <summary>
@@ -230,8 +230,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint SizeOfImage
         {
-            get => Buff.BytesToUInt32(Offset + 0x38);
-            set => Buff.SetUInt32(Offset + 0x38, value);
+            get => PeFile.ReadUInt(Offset + 0x38);
+            set => PeFile.WriteUInt(Offset + 0x38, value);
         }
 
         /// <summary>
@@ -241,8 +241,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint SizeOfHeaders
         {
-            get => Buff.BytesToUInt32(Offset + 0x3C);
-            set => Buff.SetUInt32(Offset + 0x3C, value);
+            get => PeFile.ReadUInt(Offset + 0x3C);
+            set => PeFile.WriteUInt(Offset + 0x3C, value);
         }
 
         /// <summary>
@@ -251,8 +251,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint CheckSum
         {
-            get => Buff.BytesToUInt32(Offset + 0x40);
-            set => Buff.SetUInt32(Offset + 0x40, value);
+            get => PeFile.ReadUInt(Offset + 0x40);
+            set => PeFile.WriteUInt(Offset + 0x40, value);
         }
 
         /// <summary>
@@ -261,8 +261,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Subsystem
         {
-            get => Buff.BytesToUInt16(Offset + 0x44);
-            set => Buff.SetUInt16(Offset + 0x44, value);
+            get => PeFile.ReadUShort(Offset + 0x44);
+            set => PeFile.WriteUShort(Offset + 0x44, value);
         }
 
         /// <summary>
@@ -270,8 +270,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort DllCharacteristics
         {
-            get => Buff.BytesToUInt16(Offset + 0x46);
-            set => Buff.SetUInt16(Offset + 0x46, value);
+            get => PeFile.ReadUShort(Offset + 0x46);
+            set => PeFile.WriteUShort(Offset + 0x46, value);
         }
 
         /// <summary>
@@ -281,14 +281,14 @@ namespace PeNet.Structures
         {
             get =>
                 _is64Bit
-                    ? Buff.BytesToUInt64(Offset + 0x48)
-                    : Buff.BytesToUInt32(Offset + 0x48);
+                    ? PeFile.BytesToUInt64(Offset + 0x48)
+                    : PeFile.ReadUInt(Offset + 0x48);
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32(Offset + 0x48, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x48, (uint) value);
                 else
-                    Buff.SetUInt64(Offset + 0x48, value);
+                    PeFile.SetUInt64(Offset + 0x48, value);
             }
         }
 
@@ -299,14 +299,14 @@ namespace PeNet.Structures
         {
             get =>
                 _is64Bit
-                    ? Buff.BytesToUInt64(Offset + 0x50)
-                    : Buff.BytesToUInt32(Offset + 0x4C);
+                    ? PeFile.BytesToUInt64(Offset + 0x50)
+                    : PeFile.ReadUInt(Offset + 0x4C);
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32(Offset + 0x4C, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x4C, (uint) value);
                 else
-                    Buff.SetUInt64(Offset + 0x50, value);
+                    PeFile.SetUInt64(Offset + 0x50, value);
             }
         }
 
@@ -317,14 +317,14 @@ namespace PeNet.Structures
         {
             get =>
                 _is64Bit
-                    ? Buff.BytesToUInt64(Offset + 0x58)
-                    : Buff.BytesToUInt32(Offset + 0x50);
+                    ? PeFile.BytesToUInt64(Offset + 0x58)
+                    : PeFile.ReadUInt(Offset + 0x50);
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32(Offset + 0x50, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x50, (uint) value);
                 else
-                    Buff.SetUInt64(Offset + 0x58, value);
+                    PeFile.SetUInt64(Offset + 0x58, value);
             }
         }
 
@@ -335,14 +335,14 @@ namespace PeNet.Structures
         {
             get =>
                 _is64Bit
-                    ? Buff.BytesToUInt64(Offset + 0x60)
-                    : Buff.BytesToUInt32(Offset + 0x54);
+                    ? PeFile.BytesToUInt64(Offset + 0x60)
+                    : PeFile.ReadUInt(Offset + 0x54);
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32(Offset + 0x54, (uint) value);
+                    PeFile.WriteUInt(Offset + 0x54, (uint) value);
                 else
-                    Buff.SetUInt64(Offset + 0x60, value);
+                    PeFile.SetUInt64(Offset + 0x60, value);
             }
         }
 
@@ -353,14 +353,14 @@ namespace PeNet.Structures
         {
             get =>
                 _is64Bit
-                    ? Buff.BytesToUInt32(Offset + 0x68)
-                    : Buff.BytesToUInt32(Offset + 0x58);
+                    ? PeFile.ReadUInt(Offset + 0x68)
+                    : PeFile.ReadUInt(Offset + 0x58);
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32(Offset + 0x58, value);
+                    PeFile.WriteUInt(Offset + 0x58, value);
                 else
-                    Buff.SetUInt32(Offset + 0x68, value);
+                    PeFile.WriteUInt(Offset + 0x68, value);
             }
         }
 
@@ -371,14 +371,14 @@ namespace PeNet.Structures
         {
             get =>
                 _is64Bit
-                    ? Buff.BytesToUInt32(Offset + 0x6C)
-                    : Buff.BytesToUInt32(Offset + 0x5C);
+                    ? PeFile.ReadUInt(Offset + 0x6C)
+                    : PeFile.ReadUInt(Offset + 0x5C);
             set
             {
                 if (!_is64Bit)
-                    Buff.SetUInt32(Offset + 0x5C, value);
+                    PeFile.WriteUInt(Offset + 0x5C, value);
                 else
-                    Buff.SetUInt32(Offset + 0x6C, value);
+                    PeFile.WriteUInt(Offset + 0x6C, value);
             }
         }
     }

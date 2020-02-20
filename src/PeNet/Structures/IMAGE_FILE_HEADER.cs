@@ -1,4 +1,5 @@
 ﻿using PeNet.Utilities;
+using System.IO;
 
 namespace PeNet.Structures
 {
@@ -11,10 +12,10 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new IMAGE_FILE_HEADER object.
         /// </summary>
-        /// <param name="buff">A PE file as byte array.</param>
+        /// <param name="peFile">A PE file as stream.</param>
         /// <param name="offset">Raw offset to the file header.</param>
-        public IMAGE_FILE_HEADER(byte[] buff, uint offset)
-            : base(buff, offset)
+        public IMAGE_FILE_HEADER(Stream peFile, int offset)
+            : base(peFile, offset)
         {
         }
 
@@ -24,8 +25,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Machine
         {
-            get => Buff.BytesToUInt16(Offset);
-            set => Buff.SetUInt16(Offset, value);
+            get => PeFile.ReadUShort(Offset);
+            set => PeFile.WriteUShort(Offset, value);
         }
 
         /// <summary>
@@ -33,8 +34,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort NumberOfSections
         {
-            get => Buff.BytesToUInt16(Offset + 0x2);
-            set => Buff.SetUInt16(Offset + 0x2, value);
+            get => PeFile.ReadUShort(Offset + 0x2);
+            set => PeFile.WriteUShort(Offset + 0x2, value);
         }
 
         /// <summary>
@@ -42,8 +43,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get => Buff.BytesToUInt32(Offset + 0x4);
-            set => Buff.SetUInt32(Offset + 0x4, value);
+            get => PeFile.ReadUInt(Offset + 0x4);
+            set => PeFile.WriteUInt(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -52,8 +53,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint PointerToSymbolTable
         {
-            get => Buff.BytesToUInt32(Offset + 0x8);
-            set => Buff.SetUInt32(Offset + 0x8, value);
+            get => PeFile.ReadUInt(Offset + 0x8);
+            set => PeFile.WriteUInt(Offset + 0x8, value);
         }
 
         /// <summary>
@@ -61,8 +62,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint NumberOfSymbols
         {
-            get => Buff.BytesToUInt32(Offset + 0xC);
-            set => Buff.SetUInt32(Offset + 0xC, value);
+            get => PeFile.ReadUInt(Offset + 0xC);
+            set => PeFile.WriteUInt(Offset + 0xC, value);
         }
 
         /// <summary>
@@ -70,8 +71,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort SizeOfOptionalHeader
         {
-            get => Buff.BytesToUInt16(Offset + 0x10);
-            set => Buff.SetUInt16(Offset + 0x10, value);
+            get => PeFile.ReadUShort(Offset + 0x10);
+            set => PeFile.WriteUShort(Offset + 0x10, value);
         }
 
         /// <summary>
@@ -80,8 +81,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Characteristics
         {
-            get => Buff.BytesToUInt16(Offset + 0x12);
-            set => Buff.SetUInt16(Offset + 0x12, value);
+            get => PeFile.ReadUShort(Offset + 0x12);
+            set => PeFile.WriteUShort(Offset + 0x12, value);
         }
     }
 }

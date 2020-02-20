@@ -12,7 +12,7 @@ namespace PeNet.Parser
 
         protected override IMAGE_EXPORT_DIRECTORY ParseTarget()
         {
-            return new IMAGE_EXPORT_DIRECTORY(Buff, Offset);
+            return new IMAGE_EXPORT_DIRECTORY(PeFile, Offset);
         }
     }
 }

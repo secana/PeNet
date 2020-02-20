@@ -25,20 +25,20 @@ namespace PeNet.Structures
         /// <summary>
         ///     Version
         /// </summary>
-        public byte Version => (byte) (Buff[Offset] >> 5);
+        public byte Version => (byte) (PeFile[Offset] >> 5);
 
         /// <summary>
         ///     Flags
         /// </summary>
-        public byte Flags => (byte) (Buff[Offset] & 0x1F);
+        public byte Flags => (byte) (PeFile[Offset] & 0x1F);
 
         /// <summary>
         ///     Size of prolog.
         /// </summary>
         public byte SizeOfProlog
         {
-            get => Buff[Offset + 0x1];
-            set => Buff[Offset + 0x1] = value;
+            get => PeFile[Offset + 0x1];
+            set => PeFile[Offset + 0x1] = value;
         }
 
         /// <summary>
@@ -49,24 +49,24 @@ namespace PeNet.Structures
         /// </summary>
         public byte CountOfCodes
         {
-            get => Buff[Offset + 0x2];
-            set => Buff[Offset + 0x2] = value;
+            get => PeFile[Offset + 0x2];
+            set => PeFile[Offset + 0x2] = value;
         }
 
         /// <summary>
         ///     Frame register.
         /// </summary>
-        public byte FrameRegister => (byte) (Buff[Offset + 0x3] >> 4);
+        public byte FrameRegister => (byte) (PeFile[Offset + 0x3] >> 4);
 
         /// <summary>
         ///     Frame offset.
         /// </summary>
-        public byte FrameOffset => (byte) (Buff[Offset + 0x3] & 0xF);
+        public byte FrameOffset => (byte) (PeFile[Offset + 0x3] & 0xF);
 
         /// <summary>
         ///     UnwindCode structure.
         /// </summary>
-        public UNWIND_CODE[] UnwindCode => ParseUnwindCodes(Buff, Offset + 0x4);
+        public UNWIND_CODE[] UnwindCode => ParseUnwindCodes(PeFile, Offset + 0x4);
 
         /// <summary>
         ///     The exception handler for the function.
@@ -76,12 +76,12 @@ namespace PeNet.Structures
             get
             {
                 var off = (uint) (Offset + 0x4 + sizeOfUnwindeCode*CountOfCodes);
-                return Buff.BytesToUInt32(off);
+                return PeFile.BytesToUInt32(off);
             }
             set
             {
                 var off = (uint) (Offset + 0x4 + sizeOfUnwindeCode*CountOfCodes);
-                Buff.SetUInt32(off, value);
+                PeFile.SetUInt32(off, value);
             }
         }
 

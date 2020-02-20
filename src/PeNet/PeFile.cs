@@ -23,17 +23,11 @@ namespace PeNet
         private readonly DotNetStructureParsers _dotNetStructureParsers;
         private readonly AuthenticodeParser _authenticodeParser;
 
-        /// <summary>
-        ///     The PE binary as a byte array.
-        /// </summary>
-        public byte[] Buff { get; }
-
-        private Stream? _stream;
 
         /// <summary>
         ///     The PE binary as a stream.
         /// </summary>
-        public Stream Stream => _stream ??= new MemoryStream(Buff);
+        public Stream Stream { get; }
 
         private string? _impHash;
         private string? _md5;
@@ -41,15 +35,12 @@ namespace PeNet
         private string? _sha256;
         private NetGuids? _netGuids;
 
-        /// <summary>
-        ///     Create a new PeFile object.
-        /// </summary>
-        /// <param name="buff">A PE file a byte array.</param>
-        public PeFile(byte[] buff)
-        {
-            Buff = buff;
 
-            _nativeStructureParsers = new NativeStructureParsers(Buff);
+        public PeFile(Stream peFile)
+        {
+            Stream = peFile;
+
+            _nativeStructureParsers = new NativeStructureParsers(Stream);
 
             _dataDirectoryParsers = new DataDirectoryParsers(
                 Buff,
@@ -70,9 +61,18 @@ namespace PeNet
         /// <summary>
         ///     Create a new PeFile object.
         /// </summary>
+        /// <param name="buff">A PE file a byte array.</param>
+        public PeFile(byte[] buff)
+            : this(new MemoryStream(buff))
+        {
+        }
+
+        /// <summary>
+        ///     Create a new PeFile object.
+        /// </summary>
         /// <param name="peFile">Path to a PE file.</param>
         public PeFile(string peFile)
-            : this(File.ReadAllBytes(peFile))
+            : this(File.Open(peFile, FileMode.Open))
         {
         }
 
@@ -288,19 +288,19 @@ namespace PeNet
         ///     The SHA-256 hash sum of the binary.
         /// </summary>
         public string SHA256 
-            => _sha256 ??= ComputeHash(Buff, new SHA256Managed().ComputeHash);
+            => _sha256 ??= ComputeHash(Stream, new SHA256Managed().ComputeHash);
 
         /// <summary>
         ///     The SHA-1 hash sum of the binary.
         /// </summary>
         public string SHA1 
-            => _sha1 ??= ComputeHash(Buff, new SHA1Managed().ComputeHash);
+            => _sha1 ??= ComputeHash(Stream, new SHA1Managed().ComputeHash);
 
         /// <summary>
         ///     The MD5 of hash sum of the binary.
         /// </summary>
         public string MD5 
-            => _md5 ??= ComputeHash(Buff, new MD5CryptoServiceProvider().ComputeHash);
+            => _md5 ??= ComputeHash(Stream, new MD5CryptoServiceProvider().ComputeHash);
 
         /// <summary>
         ///     The Import Hash of the binary if any imports are
@@ -326,7 +326,7 @@ namespace PeNet
         /// <summary>
         ///     Returns the file size in bytes.
         /// </summary>
-        public int FileSize => Buff.Length;
+        public long FileSize => Stream.Length;
 
         /// <summary>
         ///     Checks if cert is from a trusted CA with a valid certificate chain.
@@ -394,54 +394,6 @@ namespace PeNet
         }
 
         /// <summary>
-        ///     Returns if the file is a PE file and 64 Bit.
-        /// </summary>
-        /// <param name="file">Path to a possible PE file.</param>
-        /// <returns>True if file is PE and x64.</returns>
-        public static bool Is64BitPeFile(string file)
-        {
-            var buff = File.ReadAllBytes(file);
-            IMAGE_DOS_HEADER dosHeader;
-            bool is64;
-            try
-            {
-                dosHeader = new IMAGE_DOS_HEADER(buff, 0);
-                is64 = buff.BytesToUInt16(dosHeader.e_lfanew + 0x4) ==
-                       (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return (dosHeader.e_magic == 0x5a4d) && is64;
-        }
-
-        /// <summary>
-        ///     Returns if the file is a PE file and 32 Bit.
-        /// </summary>
-        /// <param name="file">Path to a possible PE file.</param>
-        /// <returns>True if file is PE and x32.</returns>
-        public static bool Is32BitPeFile(string file)
-        {
-            var buff = File.ReadAllBytes(file);
-            IMAGE_DOS_HEADER dosHeader;
-            bool is32;
-            try
-            {
-                dosHeader = new IMAGE_DOS_HEADER(buff, 0);
-                is32 = buff.BytesToUInt16(dosHeader.e_lfanew + 0x4) ==
-                       (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return (dosHeader.e_magic == 0x5a4d) && is32;
-        }
-
-        /// <summary>
         ///     Returns if the PE file is a EXE, DLL and which architecture
         ///     is used (32/64).
         ///     Architectures: "I386", "AMD64", ...
@@ -503,11 +455,10 @@ namespace PeNet
             return fileType;
         }
 
-        private string ComputeHash(byte[] buff, Func<byte[], byte[]> hashFunction)
+        private string ComputeHash(Stream peFile, Func<Stream, byte[]> hashFunction)
         {
             var sBuilder = new StringBuilder();
-
-            var hash = hashFunction.Invoke(buff);
+            var hash = hashFunction.Invoke(peFile);
 
             foreach (var t in hash)
                 sBuilder.Append(t.ToString("x2"));

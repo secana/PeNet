@@ -26,8 +26,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Length
         {
-            get => Buff.BytesToUInt16(Offset);
-            set => Buff.SetUInt16(Offset, value);
+            get => PeFile.ReadUShort(Offset);
+            set => PeFile.WriteUShort(Offset, value);
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace PeNet.Structures
             get
             {
                 var subarray = new byte[Length*2];
-                Array.Copy(Buff, Offset + 2, subarray, 0, Length*2);
+                Array.Copy(PeFile, Offset + 2, subarray, 0, Length*2);
 
                 return Encoding.Unicode.GetString(subarray);
             }

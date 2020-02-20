@@ -1,25 +1,26 @@
 ﻿using System;
+using System.IO;
 
 namespace PeNet.Parser
 {
     internal abstract class SafeParser<T>
         where T : class
     {
-        protected readonly byte[] Buff;
+        protected readonly Stream PeFile;
         protected readonly uint Offset;
         private bool _alreadyParsed;
 
         private T? _target;
 
-        internal SafeParser(byte[] buff, uint offset)
+        internal SafeParser(Stream peFile, uint offset)
         {
-            Buff = buff;
+            PeFile = peFile;
             Offset = offset;
         }
 
         private bool SanityCheckFailed()
         {
-            return Offset > Buff?.Length;
+            return Offset > PeFile?.Length;
         }
 
 

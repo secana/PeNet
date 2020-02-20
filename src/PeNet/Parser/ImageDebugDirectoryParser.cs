@@ -19,7 +19,7 @@ namespace PeNet.Parser
 
             for(uint i = 0; i < numEntries; i++)
             {
-                entries[i] = new IMAGE_DEBUG_DIRECTORY(Buff, Offset + (i * 28));
+                entries[i] = new IMAGE_DEBUG_DIRECTORY(PeFile, Offset + (i * 28));
             }
 
             return entries;

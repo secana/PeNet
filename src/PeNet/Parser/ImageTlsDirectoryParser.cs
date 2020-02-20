@@ -23,7 +23,7 @@ namespace PeNet.Parser
 
         protected override IMAGE_TLS_DIRECTORY ParseTarget()
         {
-            var tlsDir = new IMAGE_TLS_DIRECTORY(Buff, Offset, _is64Bit);
+            var tlsDir = new IMAGE_TLS_DIRECTORY(PeFile, Offset, _is64Bit);
             tlsDir.TlsCallbacks = ParseTlsCallbacks(tlsDir.AddressOfCallBacks);
             return tlsDir;
         }
@@ -38,7 +38,7 @@ namespace PeNet.Parser
             {
                 if (_is64Bit)
                 {
-                    var cb = new IMAGE_TLS_CALLBACK(Buff, rawAddressOfCallbacks + count*8, _is64Bit);
+                    var cb = new IMAGE_TLS_CALLBACK(PeFile, rawAddressOfCallbacks + count*8, _is64Bit);
                     if (cb.Callback == 0)
                         break;
 
@@ -47,7 +47,7 @@ namespace PeNet.Parser
                 }
                 else
                 {
-                    var cb = new IMAGE_TLS_CALLBACK(Buff, rawAddressOfCallbacks + count*4, _is64Bit);
+                    var cb = new IMAGE_TLS_CALLBACK(PeFile, rawAddressOfCallbacks + count*4, _is64Bit);
                     if (cb.Callback == 0)
                         break;
 

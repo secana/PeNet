@@ -25,13 +25,13 @@ namespace PeNet.Structures
         /// </summary>
         public ushort Hint
         {
-            get => Buff.BytesToUInt16(Offset);
-            set => Buff.SetUInt16(Offset, value);
+            get => PeFile.ReadUShort(Offset);
+            set => PeFile.WriteUShort(Offset, value);
         }
 
         /// <summary>
         ///     Name of the function to import as a C-string (null terminated).
         /// </summary>
-        public string Name => Buff.GetCString(Offset + 0x2);
+        public string Name => PeFile.GetCString(Offset + 0x2);
     }
 }

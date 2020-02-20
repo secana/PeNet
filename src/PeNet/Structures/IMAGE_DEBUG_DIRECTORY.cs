@@ -26,8 +26,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Characteristics
         {
-            get => Buff.BytesToUInt32(Offset);
-            set => Buff.SetUInt32(Offset, value);
+            get => PeFile.ReadUInt(Offset);
+            set => PeFile.WriteUInt(Offset, value);
         }
 
         /// <summary>
@@ -35,8 +35,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint TimeDateStamp
         {
-            get => Buff.BytesToUInt32(Offset + 0x4);
-            set => Buff.SetUInt32(Offset + 0x4, value);
+            get => PeFile.ReadUInt(Offset + 0x4);
+            set => PeFile.WriteUInt(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -44,8 +44,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MajorVersion
         {
-            get => Buff.BytesToUInt16(Offset + 0x8);
-            set => Buff.SetUInt16(Offset + 0x8, value);
+            get => PeFile.ReadUShort(Offset + 0x8);
+            set => PeFile.WriteUShort(Offset + 0x8, value);
         }
 
         /// <summary>
@@ -53,8 +53,8 @@ namespace PeNet.Structures
         /// </summary>
         public ushort MinorVersion
         {
-            get => Buff.BytesToUInt16(Offset + 0xa);
-            set => Buff.SetUInt16(Offset + 0xa, value);
+            get => PeFile.ReadUShort(Offset + 0xa);
+            set => PeFile.WriteUShort(Offset + 0xa, value);
         }
 
         /// <summary>
@@ -65,8 +65,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint Type
         {
-            get => Buff.BytesToUInt32(Offset + 0xc);
-            set => Buff.SetUInt32(Offset + 0xc, value);
+            get => PeFile.ReadUInt(Offset + 0xc);
+            set => PeFile.WriteUInt(Offset + 0xc, value);
         }
 
         /// <summary>
@@ -74,8 +74,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint SizeOfData
         {
-            get => Buff.BytesToUInt32(Offset + 0x10);
-            set => Buff.SetUInt32(Offset + 0x10, value);
+            get => PeFile.ReadUInt(Offset + 0x10);
+            set => PeFile.WriteUInt(Offset + 0x10, value);
         }
 
         /// <summary>
@@ -83,8 +83,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint AddressOfRawData
         {
-            get => Buff.BytesToUInt32(Offset + 0x14);
-            set => Buff.SetUInt32(Offset + 0x14, value);
+            get => PeFile.ReadUInt(Offset + 0x14);
+            set => PeFile.WriteUInt(Offset + 0x14, value);
         }
 
         /// <summary>
@@ -92,8 +92,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint PointerToRawData
         {
-            get => Buff.BytesToUInt32(Offset + 0x18);
-            set => Buff.SetUInt32(Offset + 0x18, value);
+            get => PeFile.ReadUInt(Offset + 0x18);
+            set => PeFile.WriteUInt(Offset + 0x18, value);
         }
 
         public Guid PdbSignature
@@ -101,23 +101,23 @@ namespace PeNet.Structures
             get
             {
                 var bytes = new byte[16];
-                Array.Copy(Buff, PointerToRawData + 4, bytes, 0, 16);
+                Array.Copy(PeFile, PointerToRawData + 4, bytes, 0, 16);
                 return new Guid(bytes);
             }
-            set => Array.Copy(value.ToByteArray(), 0, Buff, PointerToRawData + 4, 16);
+            set => Array.Copy(value.ToByteArray(), 0, PeFile, PointerToRawData + 4, 16);
         }
 
         public uint PdbAge
         {
-            get => Buff.BytesToUInt32(PointerToRawData + 0x14);
-            set => Buff.SetUInt32(PointerToRawData + 0x14, value);
+            get => PeFile.BytesToUInt32(PointerToRawData + 0x14);
+            set => PeFile.SetUInt32(PointerToRawData + 0x14, value);
         }
 
         public string PdbPath
         {
             get
             {
-                var bytes = Buff.Skip((int) PointerToRawData + 0x18).TakeWhile(x => x != 0x0).ToArray();
+                var bytes = PeFile.Skip((int) PointerToRawData + 0x18).TakeWhile(x => x != 0x0).ToArray();
                 return Encoding.UTF8.GetString(bytes);
             }
         }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.IO;
 using System.Reflection;
 using System.Text;
 
@@ -10,25 +11,25 @@ namespace PeNet.Structures
     public abstract class AbstractStructure
     {
         /// <summary>
-        ///     A PE file as a binary buffer.
+        ///     A PE file as a stream.
         /// </summary>
-        internal readonly byte[] Buff;
+        internal readonly Stream PeFile;
 
         /// <summary>
         ///     The offset to the structure in the buffer.
         /// </summary>
-        internal readonly uint Offset;
+        internal readonly long Offset;
 
 
         /// <summary>
         ///     Creates a new AbstractStructure which holds fields
         ///     that all structures have in common.
         /// </summary>
-        /// <param name="buff">A PE file as a binary buffer.</param>
+        /// <param name="peFile">A PE file as a stream.</param>
         /// <param name="offset">The offset to the structure in the buffer.</param>
-        protected AbstractStructure(byte[] buff, uint offset)
+        protected AbstractStructure(Stream peFile, long offset)
         {
-            Buff = buff;
+            PeFile = peFile;
             Offset = offset;
         }
 

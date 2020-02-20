@@ -11,7 +11,7 @@ namespace PeNet.Parser
 
         protected override IMAGE_COR20_HEADER ParseTarget()
         {
-            return new IMAGE_COR20_HEADER(Buff, Offset);
+            return new IMAGE_COR20_HEADER(PeFile, Offset);
         }
     }
 }
