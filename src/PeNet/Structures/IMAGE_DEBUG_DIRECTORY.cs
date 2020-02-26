@@ -11,6 +11,8 @@ namespace PeNet.Structures
     /// </summary>
     public class IMAGE_DEBUG_DIRECTORY : AbstractStructure
     {
+        private CvInfoPdb70 _cvInfoPdb70 = null;
+
         /// <summary>
         ///     Create a new IMAGE_DEBUG_DIRECTORY object.
         /// </summary>
@@ -96,29 +98,21 @@ namespace PeNet.Structures
             set => PeFile.WriteUInt(Offset + 0x18, value);
         }
 
-        public Guid PdbSignature
+        /// <summary>
+        /// PDB information if the "Type" is IMAGE_DEBUG_TYPE_CODEVIEW.
+        /// </summary>
+        public CvInfoPdb70 CvInfoPdb70
         {
             get
             {
-                var bytes = new byte[16];
-                Array.Copy(PeFile, PointerToRawData + 4, bytes, 0, 16);
-                return new Guid(bytes);
-            }
-            set => Array.Copy(value.ToByteArray(), 0, PeFile, PointerToRawData + 4, 16);
-        }
+                if (Type != 2) // Type IMAGE_DEBUG_TYPE_CODEVIEW
+                    return null;
 
-        public uint PdbAge
-        {
-            get => PeFile.BytesToUInt32(PointerToRawData + 0x14);
-            set => PeFile.SetUInt32(PointerToRawData + 0x14, value);
-        }
+                _cvInfoPdb70 ??= new CvInfoPdb70(
+                    Buff, 
+                    PointerToRawData);
 
-        public string PdbPath
-        {
-            get
-            {
-                var bytes = PeFile.Skip((int) PointerToRawData + 0x18).TakeWhile(x => x != 0x0).ToArray();
-                return Encoding.UTF8.GetString(bytes);
+                return _cvInfoPdb70;
             }
         }
     }

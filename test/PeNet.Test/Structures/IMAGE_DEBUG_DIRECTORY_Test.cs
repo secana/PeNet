@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using System;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -33,6 +34,20 @@ namespace PeNet.Test.Structures
             Assert.Equal((uint)0x0000241C, debugEntries[1].AddressOfRawData);
             Assert.Equal((uint)0x00002430, debugEntries[2].AddressOfRawData);
             Assert.Equal((uint)0x00000000, debugEntries[3].AddressOfRawData);
+        }
+
+        [Fact]
+        public void ImageDebugDirectory_PeFileWithDebugInfo_ParseCvHeader()
+        {
+            var file = @"Binaries/pdb_guid.exe";
+
+            var peFile = new PeFile(file);
+            var cv = peFile.ImageDebugDirectory[0].CvInfoPdb70;
+
+            Assert.Equal(0x53445352u, cv.CvSignature);
+            Assert.Equal(Guid.Parse("0de6dc23-8e19-4bb7-8608-d54b1e6fa379"), cv.Signature);
+            Assert.Equal((ushort) 0x0001, cv.Age);
+            Assert.Equal("ntkrnlmp.pdb", cv.PdbFileName);
         }
     }
 }
