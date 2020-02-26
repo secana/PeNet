@@ -2878,6 +2878,80 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.Copyright.CopyrightString
   nameWithType: Copyright.CopyrightString
+- uid: PeNet.Structures.CvInfoPdb70
+  name: CvInfoPdb70
+  href: api/PeNet.Structures.CvInfoPdb70.html
+  commentId: T:PeNet.Structures.CvInfoPdb70
+  fullName: PeNet.Structures.CvInfoPdb70
+  nameWithType: CvInfoPdb70
+- uid: PeNet.Structures.CvInfoPdb70.#ctor(System.Byte[],System.UInt32)
+  name: CvInfoPdb70(Byte[], UInt32)
+  href: api/PeNet.Structures.CvInfoPdb70.html#PeNet_Structures_CvInfoPdb70__ctor_System_Byte___System_UInt32_
+  commentId: M:PeNet.Structures.CvInfoPdb70.#ctor(System.Byte[],System.UInt32)
+  name.vb: CvInfoPdb70(Byte(), UInt32)
+  fullName: PeNet.Structures.CvInfoPdb70.CvInfoPdb70(System.Byte[], System.UInt32)
+  fullName.vb: PeNet.Structures.CvInfoPdb70.CvInfoPdb70(System.Byte(), System.UInt32)
+  nameWithType: CvInfoPdb70.CvInfoPdb70(Byte[], UInt32)
+  nameWithType.vb: CvInfoPdb70.CvInfoPdb70(Byte(), UInt32)
+- uid: PeNet.Structures.CvInfoPdb70.#ctor*
+  name: CvInfoPdb70
+  href: api/PeNet.Structures.CvInfoPdb70.html#PeNet_Structures_CvInfoPdb70__ctor_
+  commentId: Overload:PeNet.Structures.CvInfoPdb70.#ctor
+  isSpec: "True"
+  fullName: PeNet.Structures.CvInfoPdb70.CvInfoPdb70
+  nameWithType: CvInfoPdb70.CvInfoPdb70
+- uid: PeNet.Structures.CvInfoPdb70.Age
+  name: Age
+  href: api/PeNet.Structures.CvInfoPdb70.html#PeNet_Structures_CvInfoPdb70_Age
+  commentId: P:PeNet.Structures.CvInfoPdb70.Age
+  fullName: PeNet.Structures.CvInfoPdb70.Age
+  nameWithType: CvInfoPdb70.Age
+- uid: PeNet.Structures.CvInfoPdb70.Age*
+  name: Age
+  href: api/PeNet.Structures.CvInfoPdb70.html#PeNet_Structures_CvInfoPdb70_Age_
+  commentId: Overload:PeNet.Structures.CvInfoPdb70.Age
+  isSpec: "True"
+  fullName: PeNet.Structures.CvInfoPdb70.Age
+  nameWithType: CvInfoPdb70.Age
+- uid: PeNet.Structures.CvInfoPdb70.CvSignature
+  name: CvSignature
+  href: api/PeNet.Structures.CvInfoPdb70.html#PeNet_Structures_CvInfoPdb70_CvSignature
+  commentId: P:PeNet.Structures.CvInfoPdb70.CvSignature
+  fullName: PeNet.Structures.CvInfoPdb70.CvSignature
+  nameWithType: CvInfoPdb70.CvSignature
+- uid: PeNet.Structures.CvInfoPdb70.CvSignature*
+  name: CvSignature
+  href: api/PeNet.Structures.CvInfoPdb70.html#PeNet_Structures_CvInfoPdb70_CvSignature_
+  commentId: Overload:PeNet.Structures.CvInfoPdb70.CvSignature
+  isSpec: "True"
+  fullName: PeNet.Structures.CvInfoPdb70.CvSignature
+  nameWithType: CvInfoPdb70.CvSignature
+- uid: PeNet.Structures.CvInfoPdb70.PdbFileName
+  name: PdbFileName
+  href: api/PeNet.Structures.CvInfoPdb70.html#PeNet_Structures_CvInfoPdb70_PdbFileName
+  commentId: P:PeNet.Structures.CvInfoPdb70.PdbFileName
+  fullName: PeNet.Structures.CvInfoPdb70.PdbFileName
+  nameWithType: CvInfoPdb70.PdbFileName
+- uid: PeNet.Structures.CvInfoPdb70.PdbFileName*
+  name: PdbFileName
+  href: api/PeNet.Structures.CvInfoPdb70.html#PeNet_Structures_CvInfoPdb70_PdbFileName_
+  commentId: Overload:PeNet.Structures.CvInfoPdb70.PdbFileName
+  isSpec: "True"
+  fullName: PeNet.Structures.CvInfoPdb70.PdbFileName
+  nameWithType: CvInfoPdb70.PdbFileName
+- uid: PeNet.Structures.CvInfoPdb70.Signature
+  name: Signature
+  href: api/PeNet.Structures.CvInfoPdb70.html#PeNet_Structures_CvInfoPdb70_Signature
+  commentId: P:PeNet.Structures.CvInfoPdb70.Signature
+  fullName: PeNet.Structures.CvInfoPdb70.Signature
+  nameWithType: CvInfoPdb70.Signature
+- uid: PeNet.Structures.CvInfoPdb70.Signature*
+  name: Signature
+  href: api/PeNet.Structures.CvInfoPdb70.html#PeNet_Structures_CvInfoPdb70_Signature_
+  commentId: Overload:PeNet.Structures.CvInfoPdb70.Signature
+  isSpec: "True"
+  fullName: PeNet.Structures.CvInfoPdb70.Signature
+  nameWithType: CvInfoPdb70.Signature
 - uid: PeNet.Structures.HeapSizes
   name: HeapSizes
   href: api/PeNet.Structures.HeapSizes.html
@@ -3393,6 +3467,19 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.Characteristics
   nameWithType: IMAGE_DEBUG_DIRECTORY.Characteristics
+- uid: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.CvInfoPdb70
+  name: CvInfoPdb70
+  href: api/PeNet.Structures.IMAGE_DEBUG_DIRECTORY.html#PeNet_Structures_IMAGE_DEBUG_DIRECTORY_CvInfoPdb70
+  commentId: P:PeNet.Structures.IMAGE_DEBUG_DIRECTORY.CvInfoPdb70
+  fullName: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.CvInfoPdb70
+  nameWithType: IMAGE_DEBUG_DIRECTORY.CvInfoPdb70
+- uid: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.CvInfoPdb70*
+  name: CvInfoPdb70
+  href: api/PeNet.Structures.IMAGE_DEBUG_DIRECTORY.html#PeNet_Structures_IMAGE_DEBUG_DIRECTORY_CvInfoPdb70_
+  commentId: Overload:PeNet.Structures.IMAGE_DEBUG_DIRECTORY.CvInfoPdb70
+  isSpec: "True"
+  fullName: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.CvInfoPdb70
+  nameWithType: IMAGE_DEBUG_DIRECTORY.CvInfoPdb70
 - uid: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.MajorVersion
   name: MajorVersion
   href: api/PeNet.Structures.IMAGE_DEBUG_DIRECTORY.html#PeNet_Structures_IMAGE_DEBUG_DIRECTORY_MajorVersion
@@ -3419,45 +3506,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.MinorVersion
   nameWithType: IMAGE_DEBUG_DIRECTORY.MinorVersion
-- uid: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbAge
-  name: PdbAge
-  href: api/PeNet.Structures.IMAGE_DEBUG_DIRECTORY.html#PeNet_Structures_IMAGE_DEBUG_DIRECTORY_PdbAge
-  commentId: P:PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbAge
-  fullName: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbAge
-  nameWithType: IMAGE_DEBUG_DIRECTORY.PdbAge
-- uid: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbAge*
-  name: PdbAge
-  href: api/PeNet.Structures.IMAGE_DEBUG_DIRECTORY.html#PeNet_Structures_IMAGE_DEBUG_DIRECTORY_PdbAge_
-  commentId: Overload:PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbAge
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbAge
-  nameWithType: IMAGE_DEBUG_DIRECTORY.PdbAge
-- uid: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbPath
-  name: PdbPath
-  href: api/PeNet.Structures.IMAGE_DEBUG_DIRECTORY.html#PeNet_Structures_IMAGE_DEBUG_DIRECTORY_PdbPath
-  commentId: P:PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbPath
-  fullName: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbPath
-  nameWithType: IMAGE_DEBUG_DIRECTORY.PdbPath
-- uid: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbPath*
-  name: PdbPath
-  href: api/PeNet.Structures.IMAGE_DEBUG_DIRECTORY.html#PeNet_Structures_IMAGE_DEBUG_DIRECTORY_PdbPath_
-  commentId: Overload:PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbPath
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbPath
-  nameWithType: IMAGE_DEBUG_DIRECTORY.PdbPath
-- uid: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbSignature
-  name: PdbSignature
-  href: api/PeNet.Structures.IMAGE_DEBUG_DIRECTORY.html#PeNet_Structures_IMAGE_DEBUG_DIRECTORY_PdbSignature
-  commentId: P:PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbSignature
-  fullName: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbSignature
-  nameWithType: IMAGE_DEBUG_DIRECTORY.PdbSignature
-- uid: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbSignature*
-  name: PdbSignature
-  href: api/PeNet.Structures.IMAGE_DEBUG_DIRECTORY.html#PeNet_Structures_IMAGE_DEBUG_DIRECTORY_PdbSignature_
-  commentId: Overload:PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbSignature
-  isSpec: "True"
-  fullName: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PdbSignature
-  nameWithType: IMAGE_DEBUG_DIRECTORY.PdbSignature
 - uid: PeNet.Structures.IMAGE_DEBUG_DIRECTORY.PointerToRawData
   name: PointerToRawData
   href: api/PeNet.Structures.IMAGE_DEBUG_DIRECTORY.html#PeNet_Structures_IMAGE_DEBUG_DIRECTORY_PointerToRawData
