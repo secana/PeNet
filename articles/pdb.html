@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>File Hashes </title>
+    <title>PDB &amp; Debug Information </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="File Hashes ">
+    <meta name="title" content="PDB &amp; Debug Information ">
     <meta name="generator" content="docfx 2.49.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -67,20 +67,42 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="file-hashes">File Hashes</h1>
+<h1 id="pdb--debug-information">PDB &amp; Debug Information</h1>
 
-<p>When comparing PE files for equality, file hashes come in handy. <strong>PeNet</strong> exports the following file hashes for convenience reasons.</p>
-<p>The MD5 can be accessed with the property MD5</p>
-<pre><code class="lang-csharp">var pe = new PeNet.PeFile(@&quot;c:\windows\system32\calc.exe&quot;);
-Console.WriteLine($&quot;MD5: {pe.MD5}&quot;);
+<p><em>PeNet</em> is able to extract <em>Code View PDB v7</em> information if one is present in a debug entry in the debug directory.</p>
+<p>The information is valuable for malware analysis, as the <code>PdbFileName</code> if often unique to a malware family.</p>
+<p>For memory forensics with <a href="https://github.com/google/rekall">Rekall</a> or any debugger that uses PDB files, the <code>Signature</code> GUID can be used to download the correct PDB file from the <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/microsoft-public-symbols">Microsoft public symbol server</a>.</p>
+<pre><code class="lang-csharp">using System;
+using System.Linq;
+using PeNet;
+
+namespace Pdb
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var peFile = new PeFile(&quot;peWithDbgInfo.exe&quot;);
+
+            // Select the first debug directory with
+            // PDB information available.
+            var pdbInfo = peFile
+                .ImageDebugDirectory
+                .First(idb =&gt; idb.CvInfoPdb70 != null)
+                .CvInfoPdb70;
+
+            // Print content of the Code View PDB v7 structure
+            Console.WriteLine(pdbInfo);
+        }
+    }
+}
 </code></pre>
-<p>The SHA-1 can be accessed with the property SHA1</p>
-<pre><code class="lang-csharp">var pe = new PeNet.PeFile(@&quot;c:\windows\system32\calc.exe&quot;);
-Console.WriteLine($&quot;SHA-1: {pe.SHA1}&quot;);
-</code></pre>
-<p>The SHA-256 can be accessed with the property SHA256</p>
-<pre><code class="lang-csharp">var pe = new PeNet.PeFile(@&quot;c:\windows\system32\calc.exe&quot;);
-Console.WriteLine($&quot;MD5: {pe.MD5}&quot;);
+<p>Output:</p>
+<pre><code class="lang-shell">CvInfoPdb70
+CvSignature: 1396986706
+Signature: 0de6dc23-8e19-4bb7-8608-d54b1e6fa379
+Age: 1
+PdbFileName: ntkrnlmp.pdb
 </code></pre>
 </article>
           </div>
@@ -90,7 +112,7 @@ Console.WriteLine($&quot;MD5: {pe.MD5}&quot;);
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/secana/PeNet/blob/master/docfx/articles/filehash.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/secana/PeNet/blob/master/docfx/articles/pdb.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
