@@ -70,7 +70,7 @@ jobs:
 
   - task: GitHubPagesPublish@1
     displayName: Publish Documentation
-    condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     inputs:
       docPath: '$(System.DefaultWorkingDirectory)\docs\*'
       githubusername: "secana"
