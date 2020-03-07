@@ -489,7 +489,8 @@
         {
             0xff, // Junk
             0xff,
-            99, 111, 112, 121, 114, 105, 103, 104, 116 // "copyright"
+            99, 111, 112, 121, 114, 105, 103, 104, 116, // "copyright
+            0x00
         };
 
         public static readonly byte[] RawWinCertificate =

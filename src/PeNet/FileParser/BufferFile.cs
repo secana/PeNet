@@ -41,16 +41,15 @@ namespace PeNet.FileParser
 
         public string GetUnicodeString(long offset)
         {
-            var size = 0;
-            for (var i = 0; i < (_buff.Length - offset) - 1; i++)
+            var size = 1;
+            for (var i = offset; i < _buff.Length - 1; i++)
             {
-                if (_buff[offset + i] == 0 && _buff[(int)offset + (i + 1)] == 0)
+                if (_buff[i] == 0 && _buff[i + 1] == 0)
                 {
-                    size = i + 1;
                     break;
                 }
+                size++;
             }
-
             var bytes = new byte[size];
 
             Array.Copy(_buff, (int)offset, bytes, 0, size);

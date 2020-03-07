@@ -19,7 +19,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void OffsetIsBiggerThanBuffer_Test()
         {
-            Assert.Throws<IndexOutOfRangeException>(() => new IMAGE_BASE_RELOCATION(new BufferFile(RawStructures.RawImageBaseRelocation), 1234, 12));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new IMAGE_BASE_RELOCATION(new BufferFile(RawStructures.RawImageBaseRelocation), 1234, 12));
         }
 
         [Fact]

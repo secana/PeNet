@@ -34,7 +34,8 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     RVA of the relocation block.
+        ///     RVA of the relocation block.>	PeNet.dll!PeNet.Structures.IMAGE_BASE_RELOCATION.IMAGE_BASE_RELOCATION(PeNet.IRawFile peFile, long offset, uint relocSize) Line 26	C#
+
         /// </summary>
         public uint VirtualAddress
         {
