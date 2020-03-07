@@ -1,6 +1,4 @@
-﻿using PeNet.Utilities;
-
-namespace PeNet.Structures
+﻿namespace PeNet.Structures
 {
     /// <summary>
     /// The Meta Data Stream Header contains information about data streams (sections)
@@ -13,10 +11,10 @@ namespace PeNet.Structures
         /// <summary>
         /// Create a new Meta Data Stream Header instance from a byte array.
         /// </summary>
-        /// <param name="buff">Buffer which contains a Meta Data Stream Header.</param>
+        /// <param name="peFile">PE file which contains a Meta Data Stream Header.</param>
         /// <param name="offset">Offset in the buffer, where the header starts.</param>
-        public METADATASTREAMHDR(byte[] buff, uint offset) 
-            : base(buff, offset)
+        public METADATASTREAMHDR(IRawFile peFile, long offset) 
+            : base(peFile, offset)
         {
         }
 
@@ -42,7 +40,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Name of the stream.
         /// </summary>
-        public string streamName => ParseStreamName(Offset + 0x8);
+        public string streamName => PeFile.GetCString(Offset + 0x8);
 
         private uint GetHeaderLength()
         {
@@ -50,7 +48,7 @@ namespace PeNet.Structures
             var headerLength = 0;
             for (var inHdrOffset = 8; inHdrOffset < maxHeaderLength; inHdrOffset++)
             {
-                if (PeFile[Offset + inHdrOffset] == 0x00)
+                if (PeFile.ReadByte(Offset + inHdrOffset) == 0x00)
                 {
                     headerLength = inHdrOffset;
                     break;
@@ -69,11 +67,6 @@ namespace PeNet.Structures
             {
                 return headerLength + (4-(headerLength%4));
             }
-        }
-
-        private string ParseStreamName(uint nameOffset)
-        {
-            return PeFile.GetCString(nameOffset);
         }
     }
 }

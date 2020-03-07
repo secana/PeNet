@@ -4,8 +4,8 @@ namespace PeNet.Parser
 {
     internal class MetaDataHdrParser : SafeParser<METADATAHDR>
     {
-        public MetaDataHdrParser(byte[] buff, uint offset) 
-            : base(buff, offset)
+        public MetaDataHdrParser(IRawFile peFile, long offset) 
+            : base(peFile, offset)
         {
         }
 

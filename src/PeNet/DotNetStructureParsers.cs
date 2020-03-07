@@ -7,7 +7,7 @@ namespace PeNet
 {
     internal class DotNetStructureParsers
     {
-        private readonly byte[] _buff;
+        private readonly IRawFile _peFile;
         private readonly IMAGE_SECTION_HEADER[]? _sectionHeaders;
         private readonly IMAGE_COR20_HEADER? _imageCor20Header;
         private readonly MetaDataHdrParser? _metaDataHdrParser;
@@ -25,11 +25,11 @@ namespace PeNet
         public METADATATABLESHDR? MetaDataStreamTablesHeader => _metaDataStreamTablesHeaderParser?.GetParserTarget();
 
         public DotNetStructureParsers(
-            byte[] buff,
+            IRawFile peFile,
             IMAGE_COR20_HEADER? imageCor20Header,
             IMAGE_SECTION_HEADER[]? sectionHeaders)
         {
-            _buff = buff;
+            _peFile = peFile;
             _sectionHeaders = sectionHeaders;
             _imageCor20Header = imageCor20Header;
 
@@ -45,7 +45,7 @@ namespace PeNet
         private MetaDataHdrParser? InitMetaDataParser()
         {
             var rawAddress = _imageCor20Header?.MetaData?.VirtualAddress.SafeRVAtoFileMapping(_sectionHeaders);
-            return rawAddress == null ? null : new MetaDataHdrParser(_buff, rawAddress.Value);
+            return rawAddress == null ? null : new MetaDataHdrParser(_peFile, rawAddress.Value);
         }
 
         private MetaDataStreamStringParser? InitMetaDataStreamStringParser()
@@ -54,7 +54,7 @@ namespace PeNet
 
             return metaDataStream == null 
                 ? null 
-                : new MetaDataStreamStringParser(_buff, MetaDataHdr!.Offset + metaDataStream.offset, metaDataStream.size);
+                : new MetaDataStreamStringParser(_peFile, MetaDataHdr!.Offset + metaDataStream.offset, metaDataStream.size);
         }
 
         private MetaDataStreamUSParser? InitMetaDataStreamUSParser()
@@ -63,7 +63,7 @@ namespace PeNet
 
             return metaDataStream == null 
                 ? null 
-                : new MetaDataStreamUSParser(_buff, MetaDataHdr!.Offset + metaDataStream.offset, metaDataStream.size);
+                : new MetaDataStreamUSParser(_peFile, MetaDataHdr!.Offset + metaDataStream.offset, metaDataStream.size);
         }
 
         private MetaDataStreamTablesHeaderParser? InitMetaDataStreamTablesHeaderParser()
@@ -72,7 +72,7 @@ namespace PeNet
 
             return metaDataStream == null 
                 ? null 
-                : new MetaDataStreamTablesHeaderParser(_buff, MetaDataHdr!.Offset + metaDataStream.offset);
+                : new MetaDataStreamTablesHeaderParser(_peFile, MetaDataHdr!.Offset + metaDataStream.offset);
         }
 
         private MetaDataStreamGUIDParser? InitMetaDataStreamGUIDParser()
@@ -81,7 +81,7 @@ namespace PeNet
 
             return metaDataStream == null 
                 ? null 
-                : new MetaDataStreamGUIDParser(_buff, MetaDataHdr!.Offset +  metaDataStream.offset, metaDataStream.size);
+                : new MetaDataStreamGUIDParser(_peFile, MetaDataHdr!.Offset +  metaDataStream.offset, metaDataStream.size);
         }
 
         private MetaDataStreamBlobParser? InitMetaDataStreamBlobParser()
@@ -90,7 +90,7 @@ namespace PeNet
 
             return metaDataStream == null 
                 ? null 
-                : new MetaDataStreamBlobParser(_buff, MetaDataHdr!.Offset + metaDataStream.offset, metaDataStream.size);
+                : new MetaDataStreamBlobParser(_peFile, MetaDataHdr!.Offset + metaDataStream.offset, metaDataStream.size);
         }
     }
 }

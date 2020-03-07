@@ -43,8 +43,8 @@ namespace PeNet.Structures
         public List<Guid> Guids { get; }
         public List<Tuple<Guid, uint>> GuidsAndIndices { get; }
 
-        public METADATASTREAM_GUID(byte[] buff, uint offset, uint size) 
-            : base(buff, offset)
+        public METADATASTREAM_GUID(IRawFile peFile, long offset, uint size) 
+            : base(peFile, offset)
         {
             _size = size;
             GuidsAndIndices = ParseGuidsAndIndices();
@@ -64,10 +64,7 @@ namespace PeNet.Structures
 
             for (var i = Offset; i < Offset + _size; i += 16)
             {
-                var bytes = new byte[16];
-                Array.Copy(PeFile, i, bytes, 0, 16);
-
-                guidsAndIndicies.Add(new Tuple<Guid, uint>(new Guid(bytes), (uint) guidsAndIndicies.Count + 1));
+                guidsAndIndicies.Add(new Tuple<Guid, uint>(new Guid(PeFile.GetSpan(i, 16)), (uint) guidsAndIndicies.Count + 1));
             }
 
             return guidsAndIndicies;

@@ -6,8 +6,8 @@ namespace PeNet.Parser
     {
         private readonly uint _size;
 
-        public MetaDataStreamUSParser(byte[] buff, uint offset, uint size) 
-            : base(buff, offset)
+        public MetaDataStreamUSParser(IRawFile peFile, long offset, uint size) 
+            : base(peFile, offset)
         {
             _size = size;
         }

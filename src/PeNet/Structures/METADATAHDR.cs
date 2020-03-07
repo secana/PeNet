@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
@@ -19,12 +16,12 @@ namespace PeNet.Structures
         private bool _versionStringParsed;
 
         /// <summary>
-        /// Create a new Meta Data Header from a byte array.
+        /// Create a new Meta Data Header from a PE file.
         /// </summary>
-        /// <param name="stream">Stream which contains a Meta Data Header.</param>
-        /// <param name="offset">Offset of the header start in the byte buffer.</param>
-        public METADATAHDR(Stream stream, int offset) 
-            : base(stream, offset)
+        /// <param name="peFile">PE file which contains a Meta Data Header.</param>
+        /// <param name="offset">Offset of the header start in the PE file.</param>
+        public METADATAHDR(IRawFile peFile, long offset) 
+            : base(peFile, offset)
         {
         }
 
@@ -85,7 +82,7 @@ namespace PeNet.Structures
                     _versionStringParsed = true;
                     try
                     {
-                        _versionString = ParseVersionString(Offset + 0x10, VersionLength);
+                        _versionString = PeFile.GetCString(Offset + 0x10);
                     }
                     catch (Exception)
                     {
@@ -153,16 +150,6 @@ namespace PeNet.Structures
             }
 
             return metaDataStreamHdrs.ToArray();
-        }
-
-        private string ParseVersionString(int offset, uint versionLength)
-        {
-            var bytes = new byte[versionLength];
-            Array.Copy(PeFile, offset, bytes, 0, versionLength);
-            var paddedString = Encoding.UTF8.GetString(bytes);
-
-            // Remove padding and return.
-            return paddedString.Replace("\0", string.Empty);
         }
     }
 }

@@ -64,10 +64,10 @@ namespace PeNet.Structures
         /// <summary>
         /// Create a new Meta Data Tables Header instance from a byte array.
         /// </summary>
-        /// <param name="buff">Buffer which contains a METADATATABLESHDR structure.</param>
-        /// <param name="offset">Offset in the buffer, where the header starts.</param>
-        public METADATATABLESHDR(byte[] buff, uint offset) 
-            : base(buff, offset)
+        /// <param name="peFile">PE file which contains a METADATATABLESHDR structure.</param>
+        /// <param name="offset">Offset in the PE file, where the header starts.</param>
+        public METADATATABLESHDR(IRawFile peFile, long offset) 
+            : base(peFile, offset)
         {
         }
 
@@ -85,8 +85,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte MajorVersion
         {
-            get => PeFile[Offset + 0x4];
-            set => PeFile[Offset + 0x4] = value;
+            get => PeFile.ReadByte(Offset + 0x4);
+            set => PeFile.WriteByte(Offset + 0x4, value);
         }
 
         /// <summary>
@@ -94,8 +94,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte MinorVersion
         {
-            get => PeFile[Offset + 0x5];
-            set => PeFile[Offset + 0x5] = value;
+            get => PeFile.ReadByte(Offset + 0x5);
+            set => PeFile.WriteByte(Offset + 0x5, value);
         }
 
         /// <summary>
@@ -107,8 +107,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte HeapSizes
         {
-            get => PeFile[Offset + 0x6];
-            set => PeFile[Offset + 0x6] = value;
+            get => PeFile.ReadByte(Offset + 0x6);
+            set => PeFile.WriteByte(Offset + 0x6, value);
         }
 
         /// <summary>
@@ -116,8 +116,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte Reserved2
         {
-            get => PeFile[Offset + 0x7];
-            set => PeFile[Offset + 0x7] = value;
+            get => PeFile.ReadByte(Offset + 0x7);
+            set => PeFile.WriteByte(Offset + 0x7, value);
         }
 
         /// <summary>

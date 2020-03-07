@@ -43,8 +43,8 @@ namespace PeNet.Structures
         public List<string> UserStrings { get; }
         public List<Tuple<string, uint>> UserStringsAndIndices { get; }
 
-        public METADATASTREAM_US(byte[] buff, uint offset, uint size) 
-            : base(buff, offset)
+        public METADATASTREAM_US(IRawFile peFile, long offset, uint size) 
+            : base(peFile, offset)
         {
             _size = size;
             UserStringsAndIndices = ParseUserStringsAndIndices();
@@ -65,10 +65,10 @@ namespace PeNet.Structures
             // we skip the first byte in the buffer
             for (var i = Offset + 1; i < Offset + _size; i++)
             {
-                if (PeFile[i] >= 0x80) // Not sure why this works but it does.
+                if (PeFile.ReadByte(i) >= 0x80) // Not sure why this works but it does.
                     i++;
 
-                int length = PeFile[i];
+                int length = PeFile.ReadByte(i);
 
                 if (length == 0)                                        // Stop if a string has the length 0 since the end 
                     break;                                              // of the list is reached.
@@ -77,7 +77,7 @@ namespace PeNet.Structures
                 var tmpString = PeFile.GetUnicodeString(i);               // Read the UTF-16 string
                 i += (uint)length - 1;                                  // Add the string length to the current offset.
 
-                stringsAndIncides.Add(new Tuple<string, uint>(tmpString, i - (uint)length - Offset));
+                stringsAndIncides.Add(new Tuple<string, uint>(tmpString, (uint) i - (uint) length - (uint) Offset));
             }
 
             return stringsAndIncides;

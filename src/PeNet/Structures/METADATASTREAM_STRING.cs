@@ -28,8 +28,8 @@ namespace PeNet.Structures
     {
         private readonly uint _size;
         
-        public METADATASTREAM_STRING(byte[] buff, uint offset, uint size) 
-            : base(buff, offset)
+        public METADATASTREAM_STRING(IRawFile peFile, long offset, uint size) 
+            : base(peFile, offset)
         {
             _size = size;
         }
