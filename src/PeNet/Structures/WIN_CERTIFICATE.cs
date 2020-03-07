@@ -14,10 +14,10 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new WIN_CERTIFICATE object.
         /// </summary>
-        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the structure.</param>
-        public WIN_CERTIFICATE(byte[] buff, uint offset)
-            : base(buff, offset)
+        public WIN_CERTIFICATE(IRawFile peFile, long offset)
+            : base(peFile, offset)
         {
         }
 
@@ -49,17 +49,14 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     The certificate as a byte array.
+        ///     The certificate.
         /// </summary>
-        public byte[] bCertificate
+        public Span<byte> bCertificate
         {
             get
             {
-                var cert = new byte[dwLength - 8];
-                Array.Copy(PeFile, Offset + 0x8, cert, 0, dwLength - 8);
-                return cert;
+                return PeFile.GetSpan(Offset + 0x8, dwLength - 8);
             }
-            set => Array.Copy(value, 0, PeFile, Offset + 0x8, value.Length);
         }
     }
 }

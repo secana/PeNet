@@ -13,10 +13,10 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new IMAGE_RESOURCE_DIR_STRING_U Unicode string.
         /// </summary>
-        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset of the string.</param>
-        public IMAGE_RESOURCE_DIR_STRING_U(byte[] buff, uint offset)
-            : base(buff, offset)
+        public IMAGE_RESOURCE_DIR_STRING_U(IRawFile peFile, uint offset)
+            : base(peFile, offset)
         {
         }
 
@@ -35,13 +35,7 @@ namespace PeNet.Structures
         /// </summary>
         public string NameString
         {
-            get
-            {
-                var subarray = new byte[Length*2];
-                Array.Copy(PeFile, Offset + 2, subarray, 0, Length*2);
-
-                return Encoding.Unicode.GetString(subarray);
-            }
+            get => PeFile.GetUnicodeString(Offset + 2);
         }
     }
 }

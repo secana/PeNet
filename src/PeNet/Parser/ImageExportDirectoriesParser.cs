@@ -4,7 +4,7 @@ namespace PeNet.Parser
 {
     internal class ImageExportDirectoriesParser : SafeParser<IMAGE_EXPORT_DIRECTORY>
     {
-        public ImageExportDirectoriesParser(byte[] buff, uint offset)
+        public ImageExportDirectoriesParser(IRawFile buff, long offset)
             : base(buff, offset)
         {
         }

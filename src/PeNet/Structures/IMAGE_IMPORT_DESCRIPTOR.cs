@@ -11,10 +11,10 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new IMAGE_IMPORT_DESCRIPTOR object.
         /// </summary>
-        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset of the descriptor.</param>
-        public IMAGE_IMPORT_DESCRIPTOR(byte[] buff, uint offset)
-            : base(buff, offset)
+        public IMAGE_IMPORT_DESCRIPTOR(IRawFile peFile, long offset)
+            : base(peFile, offset)
         {
         }
 

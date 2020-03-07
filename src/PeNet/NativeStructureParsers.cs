@@ -6,12 +6,12 @@ namespace PeNet
 {
     internal class NativeStructureParsers
     {
-        private readonly Stream _peFile;
+        private readonly IRawFile _peFile;
         private readonly ImageDosHeaderParser _imageDosHeaderParser;
         private readonly ImageNtHeadersParser? _imageNtHeadersParser;
         private readonly ImageSectionHeadersParser? _imageSectionHeadersParser;
 
-        internal NativeStructureParsers(Stream peFile)
+        internal NativeStructureParsers(IRawFile peFile)
         {
             _peFile = peFile;
 

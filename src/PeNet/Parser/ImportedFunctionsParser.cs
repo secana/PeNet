@@ -13,12 +13,12 @@ namespace PeNet.Parser
         private readonly IMAGE_DATA_DIRECTORY[] _dataDirectories;
 
         internal ImportedFunctionsParser(
-            byte[] buff,
+            IRawFile peFile,
             IMAGE_IMPORT_DESCRIPTOR[]? importDescriptors,
             IMAGE_SECTION_HEADER[] sectionHeaders,
             IMAGE_DATA_DIRECTORY[] dataDirectories,
             bool is64Bit) :
-                base(buff, 0)
+                base(peFile, 0)
         {
             _importDescriptors = importDescriptors;
             _sectionHeaders = sectionHeaders;

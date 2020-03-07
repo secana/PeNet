@@ -12,9 +12,9 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new IMAGE_FILE_HEADER object.
         /// </summary>
-        /// <param name="peFile">A PE file as stream.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the file header.</param>
-        public IMAGE_FILE_HEADER(Stream peFile, int offset)
+        public IMAGE_FILE_HEADER(IRawFile peFile, int offset)
             : base(peFile, offset)
         {
         }

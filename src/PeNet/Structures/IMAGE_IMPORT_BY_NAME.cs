@@ -13,10 +13,10 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create new IMAGE_IMPORT_BY_NAME object.
         /// </summary>
-        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset of the IMAGE_IMPORT_BY_NAME.</param>
-        public IMAGE_IMPORT_BY_NAME(byte[] buff, uint offset)
-            : base(buff, offset)
+        public IMAGE_IMPORT_BY_NAME(IRawFile peFile, uint offset)
+            : base(peFile, offset)
         {
         }
 

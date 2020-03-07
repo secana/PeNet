@@ -7,7 +7,7 @@ namespace PeNet.Parser
     {
         private readonly uint _vsVersionOffset;
 
-        public ResourcesParser(Stream peFile, uint offset, uint vsVersionOffset) : base(peFile, offset)
+        public ResourcesParser(IRawFile peFile, uint offset, uint vsVersionOffset) : base(peFile, offset)
         {
             _vsVersionOffset = vsVersionOffset;
         }

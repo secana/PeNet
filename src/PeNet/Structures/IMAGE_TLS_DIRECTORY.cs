@@ -12,11 +12,11 @@ namespace PeNet.Structures
         /// <summary>
         /// Create new TLS directory structure.
         /// </summary>
-        /// <param name="buff">PE file as binary buffer.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Offset to TLS structure in buffer.</param>
         /// <param name="is64Bit">Flag if the PE file is 64 Bit.</param>
-        public IMAGE_TLS_DIRECTORY(byte[] buff, uint offset, bool is64Bit) 
-            : base(buff, offset)
+        public IMAGE_TLS_DIRECTORY(IRawFile peFile, long offset, bool is64Bit) 
+            : base(peFile, offset)
         {
             _is64Bit = is64Bit;
         }
@@ -26,11 +26,11 @@ namespace PeNet.Structures
         /// </summary>
         public ulong StartAddressOfRawData
         {
-            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0) : PeFile.ReadUInt(Offset + 0);
+            get => _is64Bit ? PeFile.ReadULong(Offset + 0) : PeFile.ReadUInt(Offset + 0);
             set
             {
                 if (_is64Bit)
-                    PeFile.SetUInt64(Offset + 0, value);
+                    PeFile.WriteULong(Offset + 0, value);
                 else
                     PeFile.WriteUInt(Offset + 0, (uint) value);
             } 
@@ -41,11 +41,11 @@ namespace PeNet.Structures
         /// </summary>
         public ulong EndAddressOfRawData
         {
-            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 8) : PeFile.ReadUInt(Offset + 4);
+            get => _is64Bit ? PeFile.ReadULong(Offset + 8) : PeFile.ReadUInt(Offset + 4);
             set
             {
                 if(_is64Bit)
-                    PeFile.SetUInt64(Offset + 8, value);
+                    PeFile.WriteULong(Offset + 8, value);
                 else
                     PeFile.WriteUInt(Offset + 4, (uint) value);
             }
@@ -56,11 +56,11 @@ namespace PeNet.Structures
         /// </summary>
         public ulong AddressOfIndex
         {
-            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x10) : PeFile.ReadUInt(Offset + 8);
+            get => _is64Bit ? PeFile.ReadULong(Offset + 0x10) : PeFile.ReadUInt(Offset + 8);
             set
             {
                 if(_is64Bit)
-                    PeFile.SetUInt64(Offset + 0x10, value);
+                    PeFile.WriteULong(Offset + 0x10, value);
                 else
                     PeFile.WriteUInt(Offset + 8, (uint) value);
             }
@@ -71,11 +71,11 @@ namespace PeNet.Structures
         /// </summary>
         public ulong AddressOfCallBacks
         {
-            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0x18) : PeFile.ReadUInt(Offset + 0x0c);
+            get => _is64Bit ? PeFile.ReadULong(Offset + 0x18) : PeFile.ReadUInt(Offset + 0x0c);
             set
             {
                 if(_is64Bit)
-                    PeFile.SetUInt64(Offset + 0x18, value);
+                    PeFile.WriteULong(Offset + 0x18, value);
                 else
                     PeFile.WriteUInt(Offset + 0x0c, (uint) value);
             }

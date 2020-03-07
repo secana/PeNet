@@ -11,7 +11,7 @@ namespace PeNet.Structures
         ///     Create a new IMAGE_SECTION_HEADER object.
         /// </summary>
         /// <param name="imageBaseAddress">Base address of the image from the Optional header.</param>
-        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="buff">A PE file.</param>
         /// <param name="offset">Raw offset to the section header.</param>
         public IMAGE_SECTION_HEADER(byte[] buff, uint offset, ulong imageBaseAddress)
             : base(buff, offset)

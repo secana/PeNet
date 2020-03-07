@@ -13,11 +13,11 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new IMAGE_THUNK_DATA object.
         /// </summary>
-        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset of the thunk data.</param>
         /// <param name="is64Bit">Set to true if the PE file is a x64 application.</param>
-        public IMAGE_THUNK_DATA(byte[] buff, uint offset, bool is64Bit)
-            : base(buff, offset)
+        public IMAGE_THUNK_DATA(IRawFile peFile, uint offset, bool is64Bit)
+            : base(peFile, offset)
         {
             _is64Bit = is64Bit;
         }
@@ -28,13 +28,13 @@ namespace PeNet.Structures
         /// </summary>
         public ulong AddressOfData
         {
-            get => _is64Bit ? PeFile.BytesToUInt64(Offset) : PeFile.ReadUInt(Offset);
+            get => _is64Bit ? PeFile.ReadULong(Offset) : PeFile.ReadUInt(Offset);
             set
             {
                 if (!_is64Bit)
                     PeFile.WriteUInt(Offset, (uint) value);
                 else
-                    PeFile.SetUInt64(Offset, value);
+                    PeFile.WriteULong(Offset, value);
             }
         }
 

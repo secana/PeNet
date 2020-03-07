@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using PeNet.Utilities;
-
-namespace PeNet.Structures
+﻿namespace PeNet.Structures
 {
     /// <summary>
     ///     The IMAGE_DEBUG_DIRECTORY hold debug information
@@ -11,15 +6,15 @@ namespace PeNet.Structures
     /// </summary>
     public class IMAGE_DEBUG_DIRECTORY : AbstractStructure
     {
-        private CvInfoPdb70 _cvInfoPdb70 = null;
+        private CvInfoPdb70? _cvInfoPdb70 = null;
 
         /// <summary>
         ///     Create a new IMAGE_DEBUG_DIRECTORY object.
         /// </summary>
-        /// <param name="buff">PE binary as byte array.</param>
-        /// <param name="offset">Offset to the debug struct in the binary.</param>
-        public IMAGE_DEBUG_DIRECTORY(byte[] buff, uint offset)
-            : base(buff, offset)
+        /// <param name="peFile">A PE file.</param>
+        /// <param name="offset">Offset to the debug structure in the PE file.</param>
+        public IMAGE_DEBUG_DIRECTORY(IRawFile peFile, long offset)
+            : base(peFile, offset)
         {
         }
 
@@ -101,7 +96,7 @@ namespace PeNet.Structures
         /// <summary>
         /// PDB information if the "Type" is IMAGE_DEBUG_TYPE_CODEVIEW.
         /// </summary>
-        public CvInfoPdb70 CvInfoPdb70
+        public CvInfoPdb70? CvInfoPdb70
         {
             get
             {
@@ -109,7 +104,7 @@ namespace PeNet.Structures
                     return null;
 
                 _cvInfoPdb70 ??= new CvInfoPdb70(
-                    Buff, 
+                    PeFile, 
                     PointerToRawData);
 
                 return _cvInfoPdb70;

@@ -10,12 +10,12 @@ namespace PeNet.Parser
         private readonly IMAGE_DATA_DIRECTORY _exportDataDir;
 
         internal ExportedFunctionsParser(
-            byte[] buff,
+            IRawFile peFile,
             IMAGE_EXPORT_DIRECTORY? exportDirectory,
             IMAGE_SECTION_HEADER[] sectionHeaders,
             IMAGE_DATA_DIRECTORY exportDataDir
             )
-            : base(buff, 0)
+            : base(peFile, 0)
         {
             _exportDirectory = exportDirectory;
             _sectionHeaders = sectionHeaders;
@@ -37,17 +37,17 @@ namespace PeNet.Parser
             for (uint i = 0; i < expFuncs.Length; i++)
             {
                 var ordinal = i + _exportDirectory.Base;
-                var address = PeFile.BytesToUInt32(funcOffsetPointer + sizeof(uint)*i);
+                var address = PeFile.ReadUInt(funcOffsetPointer + sizeof(uint)*i);
                 expFuncs[i] = new ExportFunction(null, address, (ushort) ordinal);
             }
 
             //Associate names
             for (uint i = 0; i < _exportDirectory.NumberOfNames; i++)
             {
-                var namePtr = PeFile.BytesToUInt32(nameOffsetPointer + sizeof(uint)*i);
+                var namePtr = PeFile.ReadUInt(nameOffsetPointer + sizeof(uint)*i);
                 var nameAdr = namePtr.RVAtoFileMapping(_sectionHeaders);
                 var name = PeFile.GetCString(nameAdr);
-                var ordinalIndex = (uint) PeFile.GetOrdinal(ordOffset + sizeof(ushort)*i);
+                var ordinalIndex = (uint) PeFile.ReadUShort(ordOffset + sizeof(ushort)*i);
 
                 if (IsForwardedExport(expFuncs[ordinalIndex].Address))
                 {

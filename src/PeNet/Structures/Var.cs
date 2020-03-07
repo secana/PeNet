@@ -15,9 +15,9 @@ namespace PeNet.Structures
         /// <summary>
         /// Create a new Var instance.
         /// </summary>
-        /// <param name="peFile">Stream containing a PE file.</param>
-        /// <param name="offset">Offset of a Var structure in the stream.</param>
-        public Var(Stream peFile, long offset) 
+        /// <param name="peFile">A PE file.</param>
+        /// <param name="offset">Offset of a Var structure in the PE file.</param>
+        public Var(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
         }

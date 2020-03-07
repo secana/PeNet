@@ -11,9 +11,9 @@ namespace PeNet.Structures
         /// <summary>
         /// Create a new VS_FIXEDFILEINFO instance.
         /// </summary>
-        /// <param name="peFile">Stream that contains a PE file.</param>
-        /// <param name="offset">Offset of the VS_FIXEDFILEINFO structure in the stream.</param>
-        public VS_FIXEDFILEINFO(Stream peFile, int offset) 
+        /// <param name="peFile">A PE file.</param>
+        /// <param name="offset">Offset of the VS_FIXEDFILEINFO structure in the PE file.</param>
+        public VS_FIXEDFILEINFO(IRawFile peFile, int offset) 
             : base(peFile, offset)
         {
         }

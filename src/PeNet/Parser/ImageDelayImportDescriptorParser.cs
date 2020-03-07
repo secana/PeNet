@@ -4,8 +4,8 @@ namespace PeNet.Parser
 {
     internal class ImageDelayImportDescriptorParser : SafeParser<IMAGE_DELAY_IMPORT_DESCRIPTOR>
     {
-        internal ImageDelayImportDescriptorParser(byte[] buff, uint offset) 
-            : base(buff, offset)
+        internal ImageDelayImportDescriptorParser(IRawFile peFile, long offset) 
+            : base(peFile, offset)
         {
         }
 

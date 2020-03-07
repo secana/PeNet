@@ -12,11 +12,11 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new instance of the IMAGE_RESOURCE_DIRECTORY_ENTRY.
         /// </summary>
-        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the entry.</param>
         /// <param name="resourceDirOffset">Raw offset to the resource directory.</param>
-        public IMAGE_RESOURCE_DIRECTORY_ENTRY(byte[] buff, uint offset, uint resourceDirOffset)
-            : base(buff, offset)
+        public IMAGE_RESOURCE_DIRECTORY_ENTRY(IRawFile peFile, long offset, uint resourceDirOffset)
+            : base(peFile, offset)
         {
             // Resolve the Name
             try

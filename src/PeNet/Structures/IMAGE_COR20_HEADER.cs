@@ -1,5 +1,4 @@
 ﻿using System;
-using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
@@ -20,10 +19,10 @@ namespace PeNet.Structures
         /// <summary>
         /// Create a new instance of an COM+ 2 (CLI) header.
         /// </summary>
-        /// <param name="buff">PE binary as byte array.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Offset to the COM+ 2 (CLI) header in the byte array.</param>
-        public IMAGE_COR20_HEADER(byte[] buff, uint offset) 
-            : base(buff, offset)
+        public IMAGE_COR20_HEADER(IRawFile peFile, long offset) 
+            : base(peFile, offset)
         {
         }
 
@@ -170,11 +169,11 @@ namespace PeNet.Structures
             }
         }
 
-        private IMAGE_DATA_DIRECTORY? SetImageDataDirectory(byte[] buff, uint offset)
+        private IMAGE_DATA_DIRECTORY? SetImageDataDirectory(IRawFile peFile, long offset)
         {
             try
             {
-                return new IMAGE_DATA_DIRECTORY(buff, offset);
+                return new IMAGE_DATA_DIRECTORY(peFile, offset);
             }
             catch (Exception)
             {

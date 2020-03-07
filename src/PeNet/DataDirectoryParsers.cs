@@ -9,7 +9,7 @@ namespace PeNet
 {
     internal class DataDirectoryParsers
     {
-        private readonly Stream _peFile;
+        private readonly IRawFile _peFile;
         private readonly IMAGE_DATA_DIRECTORY[] _dataDirectories;
 
         private readonly bool _is32Bit;
@@ -31,7 +31,7 @@ namespace PeNet
         private readonly ResourcesParser? _resourcesParser;
 
         public DataDirectoryParsers(
-            Stream peFile,
+            IRawFile peFile,
             IEnumerable<IMAGE_DATA_DIRECTORY>? dataDirectories,
             IEnumerable<IMAGE_SECTION_HEADER>? sectionHeaders,
             bool is32Bit

@@ -4,8 +4,8 @@ namespace PeNet.Parser
 {
     internal class ImageResourceDirectoryParser : SafeParser<IMAGE_RESOURCE_DIRECTORY>
     {
-        internal ImageResourceDirectoryParser(byte[] buff, uint offset)
-            : base(buff, offset)
+        internal ImageResourceDirectoryParser(IRawFile peFile, long offset)
+            : base(peFile, offset)
         {
         }
 

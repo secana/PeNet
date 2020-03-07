@@ -15,30 +15,30 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new UNWIND_INFO object.
         /// </summary>
-        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset of the UNWIND_INFO struct.</param>
-        public UNWIND_INFO(byte[] buff, uint offset)
-            : base(buff, offset)
+        public UNWIND_INFO(IRawFile peFile, uint offset)
+            : base(peFile, offset)
         {
         }
 
         /// <summary>
         ///     Version
         /// </summary>
-        public byte Version => (byte) (PeFile[Offset] >> 5);
+        public byte Version => (byte) (PeFile.ReadByte(Offset) >> 5);
 
         /// <summary>
         ///     Flags
         /// </summary>
-        public byte Flags => (byte) (PeFile[Offset] & 0x1F);
+        public byte Flags => (byte) (PeFile.ReadByte(Offset) & 0x1F);
 
         /// <summary>
         ///     Size of prolog.
         /// </summary>
         public byte SizeOfProlog
         {
-            get => PeFile[Offset + 0x1];
-            set => PeFile[Offset + 0x1] = value;
+            get => PeFile.ReadByte(Offset + 0x1);
+            set => PeFile.WriteByte(Offset + 0x1, value);
         }
 
         /// <summary>
@@ -49,19 +49,19 @@ namespace PeNet.Structures
         /// </summary>
         public byte CountOfCodes
         {
-            get => PeFile[Offset + 0x2];
-            set => PeFile[Offset + 0x2] = value;
+            get => PeFile.ReadByte(Offset + 0x2);
+            set => PeFile.WriteByte(Offset + 0x2, value);
         }
 
         /// <summary>
         ///     Frame register.
         /// </summary>
-        public byte FrameRegister => (byte) (PeFile[Offset + 0x3] >> 4);
+        public byte FrameRegister => (byte) (PeFile.ReadByte(Offset + 0x3) >> 4);
 
         /// <summary>
         ///     Frame offset.
         /// </summary>
-        public byte FrameOffset => (byte) (PeFile[Offset + 0x3] & 0xF);
+        public byte FrameOffset => (byte) (PeFile.ReadByte(Offset + 0x3) & 0xF);
 
         /// <summary>
         ///     UnwindCode structure.
@@ -76,12 +76,12 @@ namespace PeNet.Structures
             get
             {
                 var off = (uint) (Offset + 0x4 + sizeOfUnwindeCode*CountOfCodes);
-                return PeFile.BytesToUInt32(off);
+                return PeFile.ReadUInt(off);
             }
             set
             {
                 var off = (uint) (Offset + 0x4 + sizeOfUnwindeCode*CountOfCodes);
-                PeFile.SetUInt32(off, value);
+                PeFile.WriteUInt(off, value);
             }
         }
 
@@ -94,7 +94,7 @@ namespace PeNet.Structures
             set => ExceptionHandler = value;
         }
 
-        private UNWIND_CODE[] ParseUnwindCodes(byte[] buff, uint offset)
+        private UNWIND_CODE[] ParseUnwindCodes(IRawFile peFile, long offset)
         {
             var ucList = new List<UNWIND_CODE>();
             var i = 0;
@@ -103,7 +103,7 @@ namespace PeNet.Structures
             while (i < CountOfCodes)
             {
                 int numberOfNodes;
-                var uw = new UNWIND_CODE(buff, currentUnwindeCode);
+                var uw = new UNWIND_CODE(peFile, currentUnwindeCode);
                 currentUnwindeCode += nodeSize; // CodeOffset and UnwindOp/Opinfo (= 0x2 byte)
 
                 switch (uw.UnwindOp)

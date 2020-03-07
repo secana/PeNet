@@ -4,8 +4,8 @@ namespace PeNet.Parser
 {
     internal class ImageCor20HeaderParser : SafeParser<IMAGE_COR20_HEADER>
     {
-        public ImageCor20HeaderParser(byte[] buff, uint offset) 
-            : base(buff, offset)
+        public ImageCor20HeaderParser(IRawFile peFile, long offset) 
+            : base(peFile, offset)
         {
         }
 

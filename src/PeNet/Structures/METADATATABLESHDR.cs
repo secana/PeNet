@@ -127,8 +127,8 @@ namespace PeNet.Structures
         /// </summary>
         public ulong Valid
         {
-            get => PeFile.BytesToUInt64(Offset + 0x8);
-            set => PeFile.SetUInt64(Offset + 0x8, value);
+            get => PeFile.ReadULong(Offset + 0x8);
+            set => PeFile.WriteULong(Offset + 0x8, value);
         }
 
         /// <summary>
@@ -136,8 +136,8 @@ namespace PeNet.Structures
         /// </summary>
         public ulong MaskSorted
         {
-            get => PeFile.BytesToUInt64(Offset + 0x10);
-            set => PeFile.SetUInt64(Offset + 0x10, value);
+            get => PeFile.ReadULong(Offset + 0x10);
+            set => PeFile.WriteULong(Offset + 0x10, value);
         }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace PeNet.Structures
             {
                 if ((Valid & (1UL << i)) != 0)
                 {
-                    tables[i].RowCount = PeFile.BytesToUInt32(startOfTableDefinitions + (uint)cnt * 4);
+                    tables[i].RowCount = PeFile.ReadUInt(startOfTableDefinitions + (uint)cnt * 4);
                     tables[i].Name = names[cnt];
                     cnt++;
                 }

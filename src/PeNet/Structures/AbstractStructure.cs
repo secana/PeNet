@@ -11,9 +11,9 @@ namespace PeNet.Structures
     public abstract class AbstractStructure
     {
         /// <summary>
-        ///     A PE file as a stream.
+        ///     A PE file.
         /// </summary>
-        internal readonly Stream PeFile;
+        internal readonly IRawFile PeFile;
 
         /// <summary>
         ///     The offset to the structure in the buffer.
@@ -25,9 +25,9 @@ namespace PeNet.Structures
         ///     Creates a new AbstractStructure which holds fields
         ///     that all structures have in common.
         /// </summary>
-        /// <param name="peFile">A PE file as a stream.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">The offset to the structure in the buffer.</param>
-        protected AbstractStructure(Stream peFile, long offset)
+        protected AbstractStructure(IRawFile peFile, long offset)
         {
             PeFile = peFile;
             Offset = offset;

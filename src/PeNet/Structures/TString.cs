@@ -12,9 +12,9 @@ namespace PeNet.Structures
         /// <summary>
         /// Create a new TString structure.
         /// </summary>
-        /// <param name="peFile">Stream containing a PE file.</param>
-        /// <param name="offset">Offset of a String structure in the stream.</param>
-        public TString(Stream peFile, long offset) 
+        /// <param name="peFile">A PE file.</param>
+        /// <param name="offset">Offset of a String structure in the PE file.</param>
+        public TString(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
         }

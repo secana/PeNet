@@ -11,10 +11,10 @@ namespace PeNet.Structures
         /// <summary>
         ///     Construct a IMAGE_RESOURCE_DATA_ENTRY at a given offset.
         /// </summary>
-        /// <param name="buff">PE file as a byte array.</param>
+        /// <param name="peFile">PE file.</param>
         /// <param name="offset">Offset to the structure in the file.</param>
-        public IMAGE_RESOURCE_DATA_ENTRY(byte[] buff, uint offset)
-            : base(buff, offset)
+        public IMAGE_RESOURCE_DATA_ENTRY(IRawFile peFile, long offset)
+            : base(peFile, offset)
         {
         }
 

@@ -5,8 +5,8 @@ namespace PeNet.Parser
 {
     internal class ImageImportDescriptorsParser : SafeParser<IMAGE_IMPORT_DESCRIPTOR[]>
     {
-        public ImageImportDescriptorsParser(byte[] buff, uint offset)
-            : base(buff, offset)
+        public ImageImportDescriptorsParser(IRawFile peFile, long offset)
+            : base(peFile, offset)
         {
         }
 

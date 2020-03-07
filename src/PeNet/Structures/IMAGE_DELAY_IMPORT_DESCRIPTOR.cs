@@ -10,10 +10,10 @@ namespace PeNet.Structures
         /// <summary>
         /// Create a new IMAGE_DELAY_IMPORT_DESCRIPTOR object.
         /// </summary>
-        /// <param name="buff">PE binary as byte buffer.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Offset to the delay import descriptor.</param>
-        public IMAGE_DELAY_IMPORT_DESCRIPTOR(byte[] buff, uint offset)
-            : base(buff, offset)
+        public IMAGE_DELAY_IMPORT_DESCRIPTOR(IRawFile peFile, long offset)
+            : base(peFile, offset)
         {
         }
 

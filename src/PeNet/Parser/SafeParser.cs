@@ -1,18 +1,17 @@
 ﻿using System;
-using System.IO;
 
 namespace PeNet.Parser
 {
     internal abstract class SafeParser<T>
         where T : class
     {
-        protected readonly Stream PeFile;
-        protected readonly uint Offset;
+        protected readonly IRawFile PeFile;
+        protected readonly long Offset;
         private bool _alreadyParsed;
 
         private T? _target;
 
-        internal SafeParser(Stream peFile, uint offset)
+        internal SafeParser(IRawFile peFile, long offset)
         {
             PeFile = peFile;
             Offset = offset;

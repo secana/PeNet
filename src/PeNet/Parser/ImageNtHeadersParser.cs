@@ -5,7 +5,7 @@ namespace PeNet.Parser
 {
     internal class ImageNtHeadersParser : SafeParser<IMAGE_NT_HEADERS>
     {
-        internal ImageNtHeadersParser(Stream peFile, uint offset)
+        internal ImageNtHeadersParser(IRawFile peFile, uint offset)
             : base(peFile, offset)
         {
         }

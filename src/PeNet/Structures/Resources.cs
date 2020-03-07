@@ -26,10 +26,10 @@ namespace PeNet.Structures
         /// <summary>
         /// Creates a new Resource data directory instance.
         /// </summary>
-        /// <param name="peFile"></param>
-        /// <param name="offset"></param>
-        /// <param name="vsVersionOffset"></param>
-        public Resources(Stream peFile, long offset, uint vsVersionOffset) 
+        /// <param name="peFile">A PE file.</param>
+        /// <param name="offset">Offset of the resources.</param>
+        /// <param name="vsVersionOffset">vsVersionOffset.</param>
+        public Resources(IRawFile peFile, long offset, uint vsVersionOffset) 
             : base(peFile, offset)
         {
             _vsVersionOffset = vsVersionOffset;

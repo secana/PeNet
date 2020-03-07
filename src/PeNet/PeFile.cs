@@ -25,9 +25,9 @@ namespace PeNet
 
 
         /// <summary>
-        ///     The PE binary as a stream.
+        ///     The PE binary .
         /// </summary>
-        public Stream Stream { get; }
+        public IRawFile RawFile { get; }
 
         private string? _impHash;
         private string? _md5;
@@ -36,21 +36,21 @@ namespace PeNet
         private NetGuids? _netGuids;
 
 
-        public PeFile(Stream peFile)
+        public PeFile(IRawFile peFile)
         {
-            Stream = peFile;
+            RawFile = peFile;
 
-            _nativeStructureParsers = new NativeStructureParsers(Stream);
+            _nativeStructureParsers = new NativeStructureParsers(RawFile);
 
             _dataDirectoryParsers = new DataDirectoryParsers(
-                Buff,
+                RawFile,
                 ImageNtHeaders?.OptionalHeader?.DataDirectory,
                 ImageSectionHeaders,
                 Is32Bit
                 );
 
             _dotNetStructureParsers = new DotNetStructureParsers(
-                Buff,
+                RawFile,
                 ImageComDescriptor,
                 ImageSectionHeaders
                 );
@@ -288,19 +288,19 @@ namespace PeNet
         ///     The SHA-256 hash sum of the binary.
         /// </summary>
         public string SHA256 
-            => _sha256 ??= ComputeHash(Stream, new SHA256Managed().ComputeHash);
+            => _sha256 ??= ComputeHash(RawFile, new SHA256Managed().ComputeHash);
 
         /// <summary>
         ///     The SHA-1 hash sum of the binary.
         /// </summary>
         public string SHA1 
-            => _sha1 ??= ComputeHash(Stream, new SHA1Managed().ComputeHash);
+            => _sha1 ??= ComputeHash(RawFile, new SHA1Managed().ComputeHash);
 
         /// <summary>
         ///     The MD5 of hash sum of the binary.
         /// </summary>
         public string MD5 
-            => _md5 ??= ComputeHash(Stream, new MD5CryptoServiceProvider().ComputeHash);
+            => _md5 ??= ComputeHash(RawFile, new MD5CryptoServiceProvider().ComputeHash);
 
         /// <summary>
         ///     The Import Hash of the binary if any imports are
@@ -326,7 +326,7 @@ namespace PeNet
         /// <summary>
         ///     Returns the file size in bytes.
         /// </summary>
-        public long FileSize => Stream.Length;
+        public long FileSize => RawFile.Length;
 
         /// <summary>
         ///     Checks if cert is from a trusted CA with a valid certificate chain.

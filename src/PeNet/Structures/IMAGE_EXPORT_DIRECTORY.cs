@@ -11,10 +11,10 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new IMAGE_EXPORT_DIRECTORY object.
         /// </summary>
-        /// <param name="buff">PE file as a byte array.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset of the export directory in the PE file.</param>
-        public IMAGE_EXPORT_DIRECTORY(byte[] buff, uint offset)
-            : base(buff, offset)
+        public IMAGE_EXPORT_DIRECTORY(IRawFile peFile, long offset)
+            : base(peFile, offset)
         {
         }
 

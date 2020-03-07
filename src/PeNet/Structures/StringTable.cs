@@ -16,9 +16,9 @@ namespace PeNet.Structures
         /// <summary>
         /// Create a new StringTable instance.
         /// </summary>
-        /// <param name="peFile">Stream containing a PE file.</param>
-        /// <param name="offset">Offset of a StringTable structure in the stream.</param>
-        public StringTable(Stream peFile, long offset) 
+        /// <param name="peFile">A PE file.</param>
+        /// <param name="offset">Offset of a StringTable structure in the PE file.</param>
+        public StringTable(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
         }

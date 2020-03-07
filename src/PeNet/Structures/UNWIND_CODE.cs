@@ -13,10 +13,10 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new UNWIND_INFO object.
         /// </summary>
-        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset of the UNWIND_INFO.</param>
-        public UNWIND_CODE(byte[] buff, uint offset)
-            : base(buff, offset)
+        public UNWIND_CODE(IRawFile peFile, uint offset)
+            : base(peFile, offset)
         {
         }
 
@@ -25,19 +25,19 @@ namespace PeNet.Structures
         /// </summary>
         public byte CodeOffset
         {
-            get => PeFile[Offset];
-            set => PeFile[Offset] = value;
+            get => PeFile.ReadByte(Offset);
+            set => PeFile.WriteByte(Offset, value);
         }
 
         /// <summary>
         ///     Unwind operation.
         /// </summary>
-        public byte UnwindOp => (byte) (PeFile[Offset + 0x1] >> 4);
+        public byte UnwindOp => (byte) (PeFile.ReadByte(Offset + 0x1) >> 4);
 
         /// <summary>
         ///     Operation information.
         /// </summary>
-        public byte Opinfo => (byte) (PeFile[Offset + 0x1] & 0xF);
+        public byte Opinfo => (byte) (PeFile.ReadByte(Offset + 0x1) & 0xF);
 
         /// <summary>
         ///     Frame offset.

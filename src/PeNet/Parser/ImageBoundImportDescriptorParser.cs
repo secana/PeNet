@@ -4,8 +4,8 @@ namespace PeNet.Parser
 {
     internal class ImageBoundImportDescriptorParser : SafeParser<IMAGE_BOUND_IMPORT_DESCRIPTOR>
     {
-        internal ImageBoundImportDescriptorParser(byte[] buff, uint offset) 
-            : base(buff, offset)
+        internal ImageBoundImportDescriptorParser(IRawFile peFile, long offset) 
+            : base(peFile, offset)
         {
         }
 

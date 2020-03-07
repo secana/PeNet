@@ -12,11 +12,11 @@ namespace PeNet.Structures
         /// <summary>
         /// Create a new TLS callback structure.
         /// </summary>
-        /// <param name="buff">PE file as byte buffer.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Offset of the TLS callback structure in the buffer.</param>
         /// <param name="is64Bit">Flag is the PE file is 64 Bit.</param>
-        public IMAGE_TLS_CALLBACK(byte[] buff, uint offset, bool is64Bit) 
-            : base(buff, offset)
+        public IMAGE_TLS_CALLBACK(IRawFile peFile, long offset, bool is64Bit) 
+            : base(peFile, offset)
         {
             _is64Bit = is64Bit;
         }
@@ -26,11 +26,11 @@ namespace PeNet.Structures
         /// </summary>
         public ulong Callback
         {
-            get => _is64Bit ? PeFile.BytesToUInt64(Offset + 0) : PeFile.ReadUInt(Offset + 0);
+            get => _is64Bit ? PeFile.ReadULong(Offset + 0) : PeFile.ReadUInt(Offset + 0);
             set
             {
                 if(_is64Bit)
-                    PeFile.SetUInt64(Offset + 0, value);
+                    PeFile.WriteULong(Offset + 0, value);
                 else
                     PeFile.WriteUInt(Offset + 0, (uint) value);
             }

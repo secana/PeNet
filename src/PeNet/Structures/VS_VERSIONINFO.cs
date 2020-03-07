@@ -101,9 +101,9 @@ namespace PeNet.Structures
         /// <summary>
         /// Create a new VS_VERSIONINFO instance.
         /// </summary>
-        /// <param name="peFile">Stream that contains a PE file.</param>
-        /// <param name="offset">Offset of the VS_VERSIONINFO in the stream.</param>
-        public VS_VERSIONINFO(Stream peFile, long offset) 
+        /// <param name="peFile">A PE file.</param>
+        /// <param name="offset">Offset of the VS_VERSIONINFO in the PE file.</param>
+        public VS_VERSIONINFO(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
         }

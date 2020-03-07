@@ -1,5 +1,4 @@
 ﻿using System;
-using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
@@ -8,8 +7,8 @@ namespace PeNet.Structures
     /// </summary>
     public class CvInfoPdb70 : AbstractStructure
     {
-        public CvInfoPdb70(byte[] buff, uint offset) 
-            : base(buff, offset)
+        public CvInfoPdb70(IRawFile peFile, uint offset) 
+            : base(peFile, offset)
         {
         }
 
@@ -18,8 +17,8 @@ namespace PeNet.Structures
         /// </summary>
         public uint CvSignature
         {
-            get => Buff.BytesToUInt32(Offset);
-            set => Buff.SetUInt32(Offset, value);
+            get => PeFile.ReadUInt(Offset);
+            set => PeFile.WriteUInt(Offset, value);
         }
 
         /// <summary>
@@ -28,13 +27,8 @@ namespace PeNet.Structures
         /// </summary>
         public Guid Signature
         {
-            get
-            {
-                var bytes = new byte[16];
-                Array.Copy(Buff, Offset + 4, bytes, 0, 16);
-                return new Guid(bytes);
-            }
-            set => Array.Copy(value.ToByteArray(), 0, Buff, Offset + 4, 16);
+            get => new Guid(PeFile.GetSpan(Offset + 4, 16));
+            set => PeFile.WriteBytes(Offset + 4, value.ToByteArray());
         }
 
         /// <summary>
@@ -42,14 +36,14 @@ namespace PeNet.Structures
         /// </summary>
         public uint Age
         {
-            get => Buff.BytesToUInt32(Offset + 0x14);
-            set => Buff.SetUInt32(Offset + 0x14, value);
+            get => PeFile.ReadUInt(Offset + 0x14);
+            set => PeFile.WriteUInt(Offset + 0x14, value);
         }
 
         /// <summary>
         /// Original file name of the PDB that belongs to the
         /// PE file.
         /// </summary>
-        public string PdbFileName => Buff.GetCString(Offset + 0x18);
+        public string PdbFileName => PeFile.GetCString(Offset + 0x18);
     }
 }

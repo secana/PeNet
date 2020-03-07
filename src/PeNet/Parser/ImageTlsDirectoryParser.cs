@@ -10,12 +10,12 @@ namespace PeNet.Parser
         private readonly IMAGE_SECTION_HEADER[] _sectionsHeaders;
 
         internal ImageTlsDirectoryParser(
-            byte[] buff, 
+            IRawFile peFile, 
             uint offset, 
             bool is64Bit, 
             IMAGE_SECTION_HEADER[] sectionHeaders
             ) 
-            : base(buff, offset)
+            : base(peFile, offset)
         {
             _is64Bit = is64Bit;
             _sectionsHeaders = sectionHeaders;

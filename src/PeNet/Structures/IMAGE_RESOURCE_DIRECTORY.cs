@@ -18,11 +18,11 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new IMAGE_RESOURCE_DIRECTORY object.
         /// </summary>
-        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the resource directory.</param>
         /// <param name="resourceDirOffset">Raw offset to the resource directory entries.</param>
-        public IMAGE_RESOURCE_DIRECTORY(byte[] buff, uint offset, uint resourceDirOffset)
-            : base(buff, offset)
+        public IMAGE_RESOURCE_DIRECTORY(IRawFile peFile, long offset, long resourceDirOffset)
+            : base(peFile, offset)
         {
             DirectoryEntries = ParseDirectoryEntries(resourceDirOffset);
         }

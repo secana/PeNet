@@ -10,10 +10,10 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new IMAGE_DATA_DIRECTORY object.
         /// </summary>
-        /// <param name="buff">PE binary as byte array.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the data directory in the binary.</param>
-        public IMAGE_DATA_DIRECTORY(byte[] buff, uint offset)
-            : base(buff, offset)
+        public IMAGE_DATA_DIRECTORY(IRawFile peFile, long offset)
+            : base(peFile, offset)
         {
         }
 

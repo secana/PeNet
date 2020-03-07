@@ -15,11 +15,11 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new RUNTIME_FUNCTION object.
         /// </summary>
-        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset of the runtime function struct.</param>
         /// <param name="sh">Section Headers of the PE file.</param>
-        public RUNTIME_FUNCTION(byte[] buff, uint offset, IMAGE_SECTION_HEADER[] sh)
-            : base(buff, offset)
+        public RUNTIME_FUNCTION(IRawFile peFile, long offset, IMAGE_SECTION_HEADER[] sh)
+            : base(peFile, offset)
         {
             _sectionHeaders = sh;
         }

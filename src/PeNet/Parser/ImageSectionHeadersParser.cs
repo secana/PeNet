@@ -8,7 +8,7 @@ namespace PeNet.Parser
         private readonly ushort _numOfSections;
         private readonly ulong _imageBaseAddress;
 
-        internal ImageSectionHeadersParser(Stream peFile, uint offset, ushort numOfSections, ulong imageBaseAddress)
+        internal ImageSectionHeadersParser(IRawFile peFile, uint offset, ushort numOfSections, ulong imageBaseAddress)
             : base(peFile, offset)
         {
             _numOfSections = numOfSections;

@@ -13,15 +13,15 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new IMAGE_BASE_RELOCATION object.
         /// </summary>
-        /// <param name="buff">PE binary as byte array.</param>
-        /// <param name="offset">Offset to the relocation struct in the binary.</param>
+        /// <param name="peFile">A PE file.</param>
+        /// <param name="offset">Offset to the relocation struct in the PE file.</param>
         /// <param name="relocSize">Size of the complete relocation directory.</param>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     If the SizeOfBlock is bigger than the size
         ///     of the Relocation Directory.
         /// </exception>
-        public IMAGE_BASE_RELOCATION(byte[] buff, uint offset, uint relocSize)
-            : base(buff, offset)
+        public IMAGE_BASE_RELOCATION(IRawFile peFile, long offset, uint relocSize)
+            : base(peFile, offset)
         {
             if (SizeOfBlock > relocSize)
                 throw new ArgumentOutOfRangeException(nameof(relocSize),
@@ -72,17 +72,17 @@ namespace PeNet.Structures
         /// </summary>
         public class TypeOffset
         {
-            private readonly byte[] _buff;
-            private readonly uint _offset;
+            private readonly IRawFile _peFile;
+            private readonly long _offset;
 
             /// <summary>
             ///     Create a new TypeOffset object.
             /// </summary>
-            /// <param name="buff">PE binary as byte array.</param>
-            /// <param name="offset">Offset of the TypeOffset in the array.</param>
-            public TypeOffset(byte[] buff, uint offset)
+            /// <param name="peFile">A PE file.</param>
+            /// <param name="offset">Offset of the TypeOffset in the PE file.</param>
+            public TypeOffset(IRawFile peFile, long offset)
             {
-                _buff = buff;
+                _peFile = peFile;
                 _offset = offset;
             }
 
@@ -94,7 +94,7 @@ namespace PeNet.Structures
             {
                 get
                 {
-                    var to = _buff.BytesToUInt16(_offset);
+                    var to = _peFile.ReadUShort(_offset);
                     return (byte) (to >> 12);
                 }
             }
@@ -107,7 +107,7 @@ namespace PeNet.Structures
             {
                 get
                 {
-                    var to = _buff.BytesToUInt16(_offset);
+                    var to = _peFile.ReadUShort(_offset);
                     return (ushort) (to & 0xFFF);
                 }
             }

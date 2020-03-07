@@ -19,11 +19,11 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new IMAGE_OPTIONAL_HEADER object.
         /// </summary>
-        /// <param name="buff">A PE file as a byte array.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the optional header.</param>
         /// <param name="is64Bit">Set to true, if header is for a x64 application.</param>
-        public IMAGE_OPTIONAL_HEADER(byte[] buff, uint offset, bool is64Bit)
-            : base(buff, offset)
+        public IMAGE_OPTIONAL_HEADER(IRawFile peFile, uint offset, bool is64Bit)
+            : base(peFile, offset)
         {
             _is64Bit = is64Bit;
 
@@ -32,9 +32,9 @@ namespace PeNet.Structures
             for (uint i = 0; i < 16; i++)
             {
                 if (!_is64Bit)
-                    DataDirectory[i] = new IMAGE_DATA_DIRECTORY(buff, offset + 0x60 + i*0x8);
+                    DataDirectory[i] = new IMAGE_DATA_DIRECTORY(peFile, offset + 0x60 + i*0x8);
                 else
-                    DataDirectory[i] = new IMAGE_DATA_DIRECTORY(buff, offset + 0x70 + i*0x8);
+                    DataDirectory[i] = new IMAGE_DATA_DIRECTORY(peFile, offset + 0x70 + i*0x8);
             }
         }
 
@@ -132,14 +132,14 @@ namespace PeNet.Structures
         {
             get =>
                 _is64Bit
-                    ? PeFile.BytesToUInt64(Offset + 0x18)
+                    ? PeFile.ReadULong(Offset + 0x18)
                     : PeFile.ReadUInt(Offset + 0x1C);
             set
             {
                 if (!_is64Bit)
                     PeFile.WriteUInt(Offset + 0x1C, (uint) value);
                 else
-                    PeFile.SetUInt64(Offset + 0x18, value);
+                    PeFile.WriteULong(Offset + 0x18, value);
             }
         }
 
@@ -281,14 +281,14 @@ namespace PeNet.Structures
         {
             get =>
                 _is64Bit
-                    ? PeFile.BytesToUInt64(Offset + 0x48)
+                    ? PeFile.ReadULong(Offset + 0x48)
                     : PeFile.ReadUInt(Offset + 0x48);
             set
             {
                 if (!_is64Bit)
                     PeFile.WriteUInt(Offset + 0x48, (uint) value);
                 else
-                    PeFile.SetUInt64(Offset + 0x48, value);
+                    PeFile.WriteULong(Offset + 0x48, value);
             }
         }
 
@@ -299,14 +299,14 @@ namespace PeNet.Structures
         {
             get =>
                 _is64Bit
-                    ? PeFile.BytesToUInt64(Offset + 0x50)
+                    ? PeFile.ReadULong(Offset + 0x50)
                     : PeFile.ReadUInt(Offset + 0x4C);
             set
             {
                 if (!_is64Bit)
                     PeFile.WriteUInt(Offset + 0x4C, (uint) value);
                 else
-                    PeFile.SetUInt64(Offset + 0x50, value);
+                    PeFile.WriteULong(Offset + 0x50, value);
             }
         }
 
@@ -317,14 +317,14 @@ namespace PeNet.Structures
         {
             get =>
                 _is64Bit
-                    ? PeFile.BytesToUInt64(Offset + 0x58)
+                    ? PeFile.ReadULong(Offset + 0x58)
                     : PeFile.ReadUInt(Offset + 0x50);
             set
             {
                 if (!_is64Bit)
                     PeFile.WriteUInt(Offset + 0x50, (uint) value);
                 else
-                    PeFile.SetUInt64(Offset + 0x58, value);
+                    PeFile.WriteULong(Offset + 0x58, value);
             }
         }
 
@@ -335,14 +335,14 @@ namespace PeNet.Structures
         {
             get =>
                 _is64Bit
-                    ? PeFile.BytesToUInt64(Offset + 0x60)
+                    ? PeFile.ReadULong(Offset + 0x60)
                     : PeFile.ReadUInt(Offset + 0x54);
             set
             {
                 if (!_is64Bit)
                     PeFile.WriteUInt(Offset + 0x54, (uint) value);
                 else
-                    PeFile.SetUInt64(Offset + 0x60, value);
+                    PeFile.WriteULong(Offset + 0x60, value);
             }
         }
 

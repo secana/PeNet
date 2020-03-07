@@ -6,8 +6,8 @@ namespace PeNet.Parser
     {
         private readonly uint _size;
 
-        internal ImageDebugDirectoryParser(byte[] buff, uint offset, uint size)
-            : base(buff, offset)
+        internal ImageDebugDirectoryParser(IRawFile peFile, uint offset, uint size)
+            : base(peFile, offset)
         {
             this._size = size;
         }

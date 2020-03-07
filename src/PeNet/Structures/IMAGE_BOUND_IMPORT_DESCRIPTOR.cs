@@ -10,10 +10,10 @@ namespace PeNet.Structures
         /// <summary>
         /// Create new bound import descriptor structure.
         /// </summary>
-        /// <param name="buff">PE file as byte buffer.</param>
-        /// <param name="offset">Offset of bound import descriptor in the buffer.</param>
-        public IMAGE_BOUND_IMPORT_DESCRIPTOR(byte[] buff, uint offset) 
-            : base(buff, offset)
+        /// <param name="peFile">A PE file.</param>
+        /// <param name="offset">Offset of bound import descriptor in the PE file.</param>
+        public IMAGE_BOUND_IMPORT_DESCRIPTOR(IRawFile peFile, long offset) 
+            : base(peFile, offset)
         {
         }
 

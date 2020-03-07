@@ -17,9 +17,9 @@ namespace PeNet.Structures
         /// <summary>
         /// Create a new StringFileInfo instance.
         /// </summary>
-        /// <param name="peFile">Stream containing a PE file.</param>
-        /// <param name="offset">Offset of a StringFileInfo structure in the stream.</param>
-        public StringFileInfo(Stream peFile, long offset) 
+        /// <param name="peFile">A PE file.</param>
+        /// <param name="offset">Offset of a StringFileInfo structure in the PE file.</param>
+        public StringFileInfo(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
         }
