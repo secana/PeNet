@@ -147,7 +147,7 @@ namespace PeNet
         /// <summary>
         /// Information about a possible Authenticode binary signature.
         /// </summary>
-        public AuthenticodeInfo? Authenticode => _authenticodeParser.GetParserTarget();
+        public AuthenticodeInfo? Authenticode => _authenticodeParser.ParseTarget();
 
         /// <summary>
         ///     Returns true if the PE file is x64.

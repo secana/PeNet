@@ -8,8 +8,8 @@ namespace PeNet.Authenticode
         public Asn1Node? Content { get; }
         public string ContentType { get; }
 
-        public ContentInfo(byte[] data)
-            : this(Asn1Node.ReadNode(data)) {}
+        public ContentInfo(Span<byte> data)
+            : this(Asn1Node.ReadNode(data.ToArray())) {}
 
         public ContentInfo(Asn1Node asn1)
         {

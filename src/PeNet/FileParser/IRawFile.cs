@@ -86,8 +86,14 @@ namespace PeNet
         /// <summary>
         /// Get the underlying file as a stream.
         /// </summary>
-        /// <returns>Stream representing the file.</returns>
+        /// <returns>Stream representation of the file.</returns>
         Stream ToStream();
+
+        /// <summary>
+        /// Get the underlying file as a byte array.
+        /// </summary>
+        /// <returns>Byte array representation fo the file.</returns>
+        byte[] ToArray();
 
         /// <summary>
         /// Write a byte sequence to a given offset.

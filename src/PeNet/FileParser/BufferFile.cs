@@ -75,5 +75,10 @@ namespace PeNet.FileParser
         {
             throw new NotImplementedException();
         }
+
+        public byte[] ToArray()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

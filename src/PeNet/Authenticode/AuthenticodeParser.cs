@@ -1,20 +1,26 @@
-﻿using PeNet.Parser;
+﻿using System;
 
 namespace PeNet.Authenticode
 {
-    internal class AuthenticodeParser : SafeParser<AuthenticodeInfo>
+    internal class AuthenticodeParser
     {
         private readonly PeFile _peFile;
 
         internal AuthenticodeParser(PeFile peFile)
-            : base(null, 0)
         {
             _peFile = peFile;
         }
 
-        protected override AuthenticodeInfo ParseTarget()
+        internal AuthenticodeInfo? ParseTarget()
         {
-            return new AuthenticodeInfo(_peFile);
+            try
+            {
+                return new AuthenticodeInfo(_peFile);
+            }
+            catch(Exception)
+            {
+                return null;
+            }
         }
     }
 }
