@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageCor20HeaderConstructorWorks_Test()
         {
-            var imageCor20Header = new IMAGE_COR20_HEADER(RawDotNetStructures.RawImageCor20Header, 3);
+            var imageCor20Header = new IMAGE_COR20_HEADER(new BufferFile(RawDotNetStructures.RawImageCor20Header), 3);
 
             Assert.Equal((uint) 0x33221100, imageCor20Header.cb);
             Assert.Equal((uint) 0x5544, imageCor20Header.MajorRuntimeVersion);

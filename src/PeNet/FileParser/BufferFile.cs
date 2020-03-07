@@ -3,7 +3,7 @@ using System.IO;
 
 namespace PeNet.FileParser
 {
-    class BufferFile : IRawFile
+    public class BufferFile : IRawFile
     {
         private readonly byte[] _buff;
 

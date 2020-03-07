@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -10,7 +11,7 @@ namespace PeNet.Test.Structures
         public void ImageLoadConfigDirectory32ConstructorWorks_Test()
         {
             var imageLoadConfigDirectory = new IMAGE_LOAD_CONFIG_DIRECTORY(
-                RawStructures.RawImageLoadConfigDirectory32,
+                new BufferFile(RawStructures.RawImageLoadConfigDirectory32),
                 2, 
                 false
                 );
@@ -46,7 +47,7 @@ namespace PeNet.Test.Structures
         public void ImageLoadConfigDirectory64ConstructorWorks_Test()
         {
             var imageLoadConfigDirectory = new IMAGE_LOAD_CONFIG_DIRECTORY(
-                RawStructures.RawImageLoadConfigDirectory64,
+                new BufferFile(RawStructures.RawImageLoadConfigDirectory64),
                 2,
                 true
                 );

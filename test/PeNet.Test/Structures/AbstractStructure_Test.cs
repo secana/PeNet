@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -10,7 +11,7 @@ namespace PeNet.Test.Structures
             public int SubInt { get; } = 11;
             public int SubString { get; } = 12;
             public SubStructure() 
-                : base(new byte[0], 0)
+                : base(new BufferFile(new byte[0]), 0)
             {
             }
         }
@@ -28,7 +29,7 @@ namespace PeNet.Test.Structures
             protected int ProtInt { get; } = -1;
 
             public Structure() 
-                : base(new byte[0], 0)
+                : base(new BufferFile(new byte[0]), 0)
             {
             }
         }

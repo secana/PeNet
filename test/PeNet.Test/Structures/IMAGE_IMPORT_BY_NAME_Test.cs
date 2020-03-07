@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageImportByNameConstructorWorks_Test()
         {
-            var importByName = new IMAGE_IMPORT_BY_NAME(RawStructures.RawImportByName, 2);
+            var importByName = new IMAGE_IMPORT_BY_NAME(new BufferFile(RawStructures.RawImportByName), 2);
             Assert.Equal((ushort) 0x1100, importByName.Hint);
             Assert.Equal("Hello World", importByName.Name);
         }

@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageExportDirectoryConstructorWorks_Test()
         {
-            var exportDirectory = new IMAGE_EXPORT_DIRECTORY(RawStructures.RawExportDirectory, 2);
+            var exportDirectory = new IMAGE_EXPORT_DIRECTORY(new BufferFile(RawStructures.RawExportDirectory), 2);
 
             Assert.Equal((uint) 0x33221100, exportDirectory.Characteristics);
             Assert.Equal((uint) 0x77665544, exportDirectory.TimeDateStamp);

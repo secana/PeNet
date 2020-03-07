@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void CopyrightConstructorWorks_Test()
         {
-            var copyright = new Copyright(RawStructures.RawCopyright, 2, 9);
+            var copyright = new Copyright(new BufferFile(RawStructures.RawCopyright), 2);
             Assert.Equal("copyright", copyright.CopyrightString);
         }
     }

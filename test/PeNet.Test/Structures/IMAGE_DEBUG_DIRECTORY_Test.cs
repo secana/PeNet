@@ -1,4 +1,5 @@
 ﻿using System;
+using PeNet.FileParser;
 using PeNet.Structures;
 using Xunit;
 
@@ -10,7 +11,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageDebugDirectoryConstructorWorks_Test()
         {
-            var idd = new IMAGE_DEBUG_DIRECTORY(RawStructures.RawDebugDirectory, 2);
+            var idd = new IMAGE_DEBUG_DIRECTORY(new BufferFile(RawStructures.RawDebugDirectory), 2);
 
             Assert.Equal((uint) 0x44332211, idd.Characteristics);
             Assert.Equal(0x88776655, idd.TimeDateStamp);

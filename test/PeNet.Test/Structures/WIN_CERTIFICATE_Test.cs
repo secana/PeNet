@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void WinCertificateConstructorWorks_Test()
         {
-            var winCertifiacte = new WIN_CERTIFICATE(RawStructures.RawWinCertificate, 2);
+            var winCertifiacte = new WIN_CERTIFICATE(new BufferFile(RawStructures.RawWinCertificate), 2);
             Assert.Equal((uint) 0x0000000b, winCertifiacte.dwLength);
             Assert.Equal((ushort) 0x5544, winCertifiacte.wRevision);
             Assert.Equal((ushort) 0x7766, winCertifiacte.wCertificateType);

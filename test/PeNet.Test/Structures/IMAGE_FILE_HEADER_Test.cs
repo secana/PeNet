@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageFileHeaderConstructorWorks_Test()
         {
-            var fileHeader = new IMAGE_FILE_HEADER(RawStructures.RawFileHeader, 2);
+            var fileHeader = new IMAGE_FILE_HEADER(new BufferFile(RawStructures.RawFileHeader), 2);
             Assert.Equal((ushort) 0x1100, fileHeader.Machine);
             Assert.Equal((ushort) 0x3322, fileHeader.NumberOfSections);
             Assert.Equal((uint) 0x77665544, fileHeader.TimeDateStamp);

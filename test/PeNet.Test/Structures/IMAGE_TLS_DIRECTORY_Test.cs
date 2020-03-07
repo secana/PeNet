@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageTlsDirectory64ConstructorWorks_Test()
         {
-            var tlsDirectory = new IMAGE_TLS_DIRECTORY(RawStructures.RawTlsDirectory64, 2, true);
+            var tlsDirectory = new IMAGE_TLS_DIRECTORY(new BufferFile(RawStructures.RawTlsDirectory64), 2, true);
 
             Assert.Equal((ulong) 0x7766554433221100, tlsDirectory.StartAddressOfRawData);
             Assert.Equal((ulong) 0xbbaa998877665544, tlsDirectory.EndAddressOfRawData);
@@ -22,7 +23,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageTlsDirectory32ConstructorWorks_Test()
         {
-            var tlsDirectory = new IMAGE_TLS_DIRECTORY(RawStructures.RawTlsDirectory32, 2, false);
+            IMAGE_TLS_DIRECTORY tlsDirectory = new IMAGE_TLS_DIRECTORY(new BufferFile(RawStructures.RawTlsDirectory32), 2, false);
 
             Assert.Equal((ulong)0x33221100, tlsDirectory.StartAddressOfRawData);
             Assert.Equal((ulong)0x77665544, tlsDirectory.EndAddressOfRawData);

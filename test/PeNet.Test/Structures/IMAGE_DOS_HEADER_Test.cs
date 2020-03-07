@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageDosHeaderConstructorWorks_Test()
         {
-            var idh = new IMAGE_DOS_HEADER(RawStructures.RawDosHeader, 0);
+            var idh = new IMAGE_DOS_HEADER(new BufferFile(RawStructures.RawDosHeader), 0);
             Assert.Equal((uint) 0x1100, idh.e_magic);
             Assert.Equal((uint) 0x3322, idh.e_cblp);
             Assert.Equal((uint) 0x5544, idh.e_cp);

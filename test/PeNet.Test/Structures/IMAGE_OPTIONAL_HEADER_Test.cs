@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void OptionalHeaderConstructor64BitWorks_Test()
         {
-            var optHeader = new IMAGE_OPTIONAL_HEADER(RawStructures.RawImageOptionalHeader64Bit, 2, true);
+            var optHeader = new IMAGE_OPTIONAL_HEADER(new BufferFile(RawStructures.RawImageOptionalHeader64Bit), 2, true);
 
             AssertCommonOptHeaderProperties(optHeader);
             Assert.Equal((ulong) 0x00112233aa99cc44, optHeader.ImageBase);
@@ -25,7 +26,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void OptionalHeaderConstructor32BitWorks_Test()
         {
-            var optHeader = new IMAGE_OPTIONAL_HEADER(RawStructures.RawImageOptionalHeader32Bit, 2, false);
+            var optHeader = new IMAGE_OPTIONAL_HEADER(new BufferFile(RawStructures.RawImageOptionalHeader32Bit), 2, false);
 
             AssertCommonOptHeaderProperties(optHeader);
             Assert.Equal(0xaa998844, optHeader.BaseOfData);

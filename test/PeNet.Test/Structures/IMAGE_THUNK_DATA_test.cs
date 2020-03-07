@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageThunkData64ConstructorWorks_Test()
         {
-            var thunkData64 = new IMAGE_THUNK_DATA(RawStructures.RawThunkData64, 2, true);
+            var thunkData64 = new IMAGE_THUNK_DATA(new BufferFile(RawStructures.RawThunkData64), 2, true);
 
             Assert.Equal((ulong) 0x7766554433221100, thunkData64.AddressOfData);
             Assert.Equal((ulong) 0x7766554433221100, thunkData64.ForwarderString);
@@ -20,7 +21,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageThunkData32ConstructorWorks_Test()
         {
-            var thunkData32 = new IMAGE_THUNK_DATA(RawStructures.RawThunkData32, 2, false);
+            var thunkData32 = new IMAGE_THUNK_DATA(new BufferFile(RawStructures.RawThunkData32), 2, false);
 
             Assert.Equal((ulong) 0x33221100, thunkData32.AddressOfData);
             Assert.Equal((ulong) 0x33221100, thunkData32.ForwarderString);

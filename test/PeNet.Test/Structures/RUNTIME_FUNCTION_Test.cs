@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void RuntimeFunctionConstructorWorks_Test()
         {
-            var runtimeFunction = new RUNTIME_FUNCTION(RawStructures.RawRuntimeFunction, 2, null);
+            var runtimeFunction = new RUNTIME_FUNCTION(new BufferFile(RawStructures.RawRuntimeFunction), 2, null);
 
             Assert.Equal((uint) 0x33221100, runtimeFunction.FunctionStart);
             Assert.Equal((uint) 0x77665544, runtimeFunction.FunctionEnd);

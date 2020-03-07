@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageImportDescriptorConstructorWorks_Test()
         {
-            var importDescriptor = new IMAGE_IMPORT_DESCRIPTOR(RawStructures.RawImportDescriptor, 2);
+            var importDescriptor = new IMAGE_IMPORT_DESCRIPTOR(new BufferFile(RawStructures.RawImportDescriptor), 2);
             Assert.Equal((uint) 0x33221100, importDescriptor.OriginalFirstThunk);
             Assert.Equal((uint) 0x77665544, importDescriptor.TimeDateStamp);
             Assert.Equal(0xbbaa9988, importDescriptor.ForwarderChain);

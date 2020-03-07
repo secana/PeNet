@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void UnwindCodeConstructorWorks_Test()
         {
-            var unwindCode = new UNWIND_CODE(RawStructures.RawUnwindCode, 2);
+            var unwindCode = new UNWIND_CODE(new BufferFile(RawStructures.RawUnwindCode), 2);
 
             Assert.Equal((byte) 0x11, unwindCode.CodeOffset);
             Assert.Equal((byte) 0x2, unwindCode.UnwindOp);

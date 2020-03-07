@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageDelayImportDescriptorConstructorWorks_Test()
         {
-            var delayImportDescriptor = new IMAGE_DELAY_IMPORT_DESCRIPTOR(RawStructures.RawDelayImportDescriptor, 0x2);
+            var delayImportDescriptor = new IMAGE_DELAY_IMPORT_DESCRIPTOR(new BufferFile(RawStructures.RawDelayImportDescriptor), 0x2);
             Assert.Equal((uint) 0x33221100, delayImportDescriptor.grAttrs);
             Assert.Equal((uint) 0x77665544, delayImportDescriptor.szName);
             Assert.Equal((uint) 0xbbaa9988, delayImportDescriptor.phmod);

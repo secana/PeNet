@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageResourceDirectoryConstructorWorks_Test()
         {
-            var resourceDirectory = new IMAGE_RESOURCE_DIRECTORY(RawStructures.RawResourceDirectory, 2, 2);
+            var resourceDirectory = new IMAGE_RESOURCE_DIRECTORY(new BufferFile(RawStructures.RawResourceDirectory), 2, 2);
             Assert.Equal((uint) 0x33221100, resourceDirectory.Characteristics);
             Assert.Equal((uint) 0x77665544, resourceDirectory.TimeDateStamp);
             Assert.Equal((ushort) 0x9988, resourceDirectory.MajorVersion);

@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void ImageNtHeadersConstructorWorks_Test()
         {
-            var ntHeaders = new IMAGE_NT_HEADERS(RawStructures.RawImageNtHeaders64, 2);
+            var ntHeaders = new IMAGE_NT_HEADERS(new BufferFile(RawStructures.RawImageNtHeaders64), 2);
             Assert.Equal((uint) 0x33221100, ntHeaders.Signature);
         }
     }

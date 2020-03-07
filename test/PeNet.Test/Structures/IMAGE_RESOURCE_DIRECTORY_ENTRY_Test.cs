@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -10,7 +11,7 @@ namespace PeNet.Test.Structures
         public void ResourceDirectroyEntryByNameConstructorWorks_Test()
         {
             var resourceDirectroyEntry =
-                new IMAGE_RESOURCE_DIRECTORY_ENTRY(RawStructures.RawResourceDirectoryEntryByName, 2, 2);
+                new IMAGE_RESOURCE_DIRECTORY_ENTRY(new BufferFile(RawStructures.RawResourceDirectoryEntryByName), 2, 2);
 
             Assert.True(resourceDirectroyEntry.IsNamedEntry);
             Assert.False(resourceDirectroyEntry.IsIdEntry);
@@ -22,7 +23,7 @@ namespace PeNet.Test.Structures
         public void ResourceDirectroyEntryByIdConstructorWorks_Test()
         {
             var resourceDirectroyEntry =
-                new IMAGE_RESOURCE_DIRECTORY_ENTRY(RawStructures.RawResourceDirectoryEntryById, 2, 2);
+                new IMAGE_RESOURCE_DIRECTORY_ENTRY(new BufferFile(RawStructures.RawResourceDirectoryEntryById), 2, 2);
 
             Assert.True(resourceDirectroyEntry.IsIdEntry);
             Assert.False(resourceDirectroyEntry.IsNamedEntry);

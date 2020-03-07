@@ -1,4 +1,5 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -9,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void MetaDataHdrConstructorWorks_Test()
         {
-            var metaDataHdr = new METADATAHDR(RawDotNetStructures.RawMetaDataHeader, 2);
+            var metaDataHdr = new METADATAHDR(new BufferFile(RawDotNetStructures.RawMetaDataHeader), 2);
             Assert.Equal((uint) 0x55443322, metaDataHdr.Signature);
             Assert.Equal((ushort) 0x7766, metaDataHdr.MajorVersion);
             Assert.Equal((ushort) 0x9988, metaDataHdr.MinorVersion);
