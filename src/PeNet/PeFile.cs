@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using PeNet.Authenticode;
+using PeNet.FileParser;
 using PeNet.ImpHash;
 using PeNet.Structures;
 using PeNet.Utilities;
@@ -63,7 +64,7 @@ namespace PeNet
         /// </summary>
         /// <param name="buff">A PE file a byte array.</param>
         public PeFile(byte[] buff)
-            : this(new MemoryStream(buff))
+            : this(new BufferFile(buff))
         {
         }
 
@@ -72,7 +73,7 @@ namespace PeNet
         /// </summary>
         /// <param name="peFile">Path to a PE file.</param>
         public PeFile(string peFile)
-            : this(File.Open(peFile, FileMode.Open))
+            : this(new BufferFile(File.ReadAllBytes(peFile)))
         {
         }
 
@@ -455,10 +456,10 @@ namespace PeNet
             return fileType;
         }
 
-        private string ComputeHash(Stream peFile, Func<Stream, byte[]> hashFunction)
+        private string ComputeHash(IRawFile peFile, Func<Stream, byte[]> hashFunction)
         {
             var sBuilder = new StringBuilder();
-            var hash = hashFunction.Invoke(peFile);
+            var hash = hashFunction.Invoke(peFile.ToStream());
 
             foreach (var t in hash)
                 sBuilder.Append(t.ToString("x2"));

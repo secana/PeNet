@@ -2,8 +2,8 @@
 {
     public class AssemblyRefOS : AbstractTable
     {
-        public AssemblyRefOS(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public AssemblyRefOS(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             OSPlatformID = ReadSize(4);
             OSMajorVersion = ReadSize(4);

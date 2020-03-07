@@ -15,7 +15,7 @@ namespace PeNet.Structures
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset of the UNWIND_INFO.</param>
-        public UNWIND_CODE(IRawFile peFile, uint offset)
+        public UNWIND_CODE(IRawFile peFile, long offset)
             : base(peFile, offset)
         {
         }

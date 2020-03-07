@@ -1,11 +1,10 @@
 ﻿using PeNet.Structures;
-using System.IO;
 
 namespace PeNet.Parser
 {
     internal class ImageDosHeaderParser : SafeParser<IMAGE_DOS_HEADER>
     {
-        internal ImageDosHeaderParser(Stream peFile, uint offset)
+        internal ImageDosHeaderParser(IRawFile peFile, long offset)
             : base(peFile, offset)
         {
         }

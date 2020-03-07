@@ -2,8 +2,8 @@
 {
     public class Module : AbstractTable
     {
-        public Module(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public Module(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
 
             Generation = (ushort) ReadSize(2);

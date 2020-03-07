@@ -2,8 +2,8 @@
 {
     public class Event : AbstractTable
     {
-        public Event(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public Event(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             EventFlags = (ushort) ReadSize(2);
             Name = ReadSize(HeapSizes.String);

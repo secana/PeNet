@@ -2,8 +2,8 @@
 {
     public class NestedClass : AbstractTable
     {
-        public NestedClass(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public NestedClass(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             NestedClassType = ReadSize(IndexSizes[Index.TypeDef]);
             EnclosingClassType = ReadSize(IndexSizes[Index.TypeDef]);

@@ -14,7 +14,7 @@ namespace PeNet.Structures
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the file header.</param>
-        public IMAGE_FILE_HEADER(IRawFile peFile, int offset)
+        public IMAGE_FILE_HEADER(IRawFile peFile, long offset)
             : base(peFile, offset)
         {
         }

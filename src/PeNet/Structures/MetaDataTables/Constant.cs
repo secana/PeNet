@@ -2,8 +2,8 @@
 {
     public class Constant : AbstractTable
     {
-        public Constant(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public Constant(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Type = (byte) ReadSize(1);
             CurrentOffset += 1; // Padding after "Type"

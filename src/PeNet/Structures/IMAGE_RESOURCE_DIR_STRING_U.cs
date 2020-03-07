@@ -15,7 +15,7 @@ namespace PeNet.Structures
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset of the string.</param>
-        public IMAGE_RESOURCE_DIR_STRING_U(IRawFile peFile, uint offset)
+        public IMAGE_RESOURCE_DIR_STRING_U(IRawFile peFile, long offset)
             : base(peFile, offset)
         {
         }

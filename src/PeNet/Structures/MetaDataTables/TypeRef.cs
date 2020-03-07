@@ -2,8 +2,8 @@
 {
     public class TypeRef : AbstractTable
     {
-        public TypeRef(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public TypeRef(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             ResolutionScope = ReadSize(IndexSizes[Index.ResolutionScope]);
             TypeName = ReadSize(HeapSizes.String);

@@ -2,8 +2,8 @@
 {
     public class MemberRef : AbstractTable
     {
-        public MemberRef(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public MemberRef(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Class = ReadSize(IndexSizes[Index.MemberRefParent]);
             Name = ReadSize(HeapSizes.String);

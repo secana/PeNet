@@ -22,7 +22,7 @@ namespace PeNet.Structures
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the optional header.</param>
         /// <param name="is64Bit">Set to true, if header is for a x64 application.</param>
-        public IMAGE_OPTIONAL_HEADER(IRawFile peFile, uint offset, bool is64Bit)
+        public IMAGE_OPTIONAL_HEADER(IRawFile peFile, long offset, bool is64Bit)
             : base(peFile, offset)
         {
             _is64Bit = is64Bit;
@@ -52,8 +52,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte MajorLinkerVersion
         {
-            get => PeFile[Offset + 0x2];
-            set => PeFile[Offset + 0x2] = value;
+            get => PeFile.ReadByte(Offset + 0x2);
+            set => PeFile.WriteByte(Offset + 0x2, value);
         }
 
         /// <summary>
@@ -61,8 +61,8 @@ namespace PeNet.Structures
         /// </summary>
         public byte MinorLinkerVersion
         {
-            get => PeFile[Offset + 0x3];
-            set => PeFile[Offset + 03] = value;
+            get => PeFile.ReadByte(Offset + 0x3);
+            set => PeFile.WriteByte(Offset + 03, value);
         }
 
         /// <summary>

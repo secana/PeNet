@@ -2,8 +2,8 @@
 {
     public class StandAloneSig : AbstractTable
     {
-        public StandAloneSig(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public StandAloneSig(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Signature = ReadSize(HeapSizes.Blob);
         }

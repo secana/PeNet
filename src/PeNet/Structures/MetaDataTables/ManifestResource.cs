@@ -2,8 +2,8 @@
 {
     public class ManifestResource : AbstractTable
     {
-        public ManifestResource(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public ManifestResource(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Offset = ReadSize(4);
             Flags = ReadSize(4);

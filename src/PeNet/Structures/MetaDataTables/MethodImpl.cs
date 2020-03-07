@@ -2,8 +2,8 @@
 {
     public class MethodImpl : AbstractTable
     {
-        public MethodImpl(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public MethodImpl(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Class = ReadSize(IndexSizes[Index.TypeDef]);
             MethodBody = ReadSize(IndexSizes[Index.MethodDefOrRef]);

@@ -10,23 +10,16 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new copyright object.
         /// </summary>
-        /// <param name="buff">PE binary as byte array.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Offset to the copyright string in the binary.</param>
-        /// <param name="size">Size of the copyright string.</param>
-        public Copyright(byte[] buff, uint offset, uint size)
-            : base(buff, offset)
+        public Copyright(IRawFile peFile, long offset)
+            : base(peFile, offset)
         {
-            CopyrightString = ParseCopyrightString(buff, offset, size);
         }
 
         /// <summary>
         ///     The copyright string.
         /// </summary>
-        public string CopyrightString { get; private set; }
-
-        private string ParseCopyrightString(byte[] buff, uint offset, uint size)
-        {
-            return Encoding.ASCII.GetString(buff, (int) offset, (int) size);
-        }
+        public string CopyrightString => PeFile.GetCString(Offset);
     }
 }

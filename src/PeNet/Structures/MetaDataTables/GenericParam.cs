@@ -2,8 +2,8 @@
 {
     public class GenericParam : AbstractTable
     {
-        public GenericParam(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public GenericParam(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Number = (ushort) ReadSize(2);
             Flags = (ushort) ReadSize(2);

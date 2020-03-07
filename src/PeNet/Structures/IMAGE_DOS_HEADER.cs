@@ -11,9 +11,9 @@ namespace PeNet.Structures
         /// <summary>
         ///     Create a new IMAGE_DOS_HEADER object.
         /// </summary>
-        /// <param name="peFile">Stream containing a PE file.</param>
-        /// <param name="offset">Offset in the stream to the DOS header.</param>
-        public IMAGE_DOS_HEADER(Stream peFile, long offset)
+        /// <param name="peFile">A PE file.</param>
+        /// <param name="offset">Offset in the PE file to the DOS header.</param>
+        public IMAGE_DOS_HEADER(IRawFile peFile, long offset)
             : base(peFile, offset)
         {
         }

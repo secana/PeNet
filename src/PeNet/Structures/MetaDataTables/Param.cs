@@ -2,8 +2,8 @@
 {
     public class Param : AbstractTable
     {
-        public Param(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public Param(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Flags = (ushort) ReadSize(2);
             Sequence = (ushort) ReadSize(2);

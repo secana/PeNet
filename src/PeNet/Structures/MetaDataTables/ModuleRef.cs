@@ -2,8 +2,8 @@
 {
     public class ModuleRef : AbstractTable
     {
-        public ModuleRef(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public ModuleRef(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Name = ReadSize(HeapSizes.String);
         }

@@ -2,8 +2,8 @@
 {
     public class File : AbstractTable
     {
-        public File(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public File(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Flags = ReadSize(4);
             Name = ReadSize(HeapSizes.String);

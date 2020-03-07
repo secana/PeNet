@@ -2,8 +2,8 @@
 {
     public class FieldRVA : AbstractTable
     {
-        public FieldRVA(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public FieldRVA(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             RVA = ReadSize(4);
             Field = ReadSize(IndexSizes[Index.Field]);

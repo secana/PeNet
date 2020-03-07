@@ -1,6 +1,4 @@
-﻿using PeNet.Utilities;
-using System;
-using System.IO;
+﻿using System;
 
 namespace PeNet.Structures.MetaDataTables
 {
@@ -10,7 +8,7 @@ namespace PeNet.Structures.MetaDataTables
         protected IndexSize IndexSizes {get;}
         protected long CurrentOffset;
 
-        public AbstractTable(Stream peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+        public AbstractTable(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
             : base(peFile, offset)
         {
             HeapSizes = heapSizes;

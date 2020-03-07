@@ -2,8 +2,8 @@
 {
     public class FieldLayout : AbstractTable
     {
-        public FieldLayout(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public FieldLayout(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Offset = ReadSize(4);
             Field = ReadSize(IndexSizes[Index.Field]);

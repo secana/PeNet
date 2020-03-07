@@ -2,8 +2,8 @@
 {
     public class InterfaceImpl : AbstractTable
     {
-        public InterfaceImpl(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public InterfaceImpl(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Class = ReadSize(IndexSizes[Index.TypeDef]);
             Interface = ReadSize(IndexSizes[Index.TypeDefOrRef]);

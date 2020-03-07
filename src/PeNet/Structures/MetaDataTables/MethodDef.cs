@@ -2,8 +2,8 @@
 {
     public class MethodDef : AbstractTable
     {
-        public MethodDef(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public MethodDef(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             RVA = ReadSize(4);
             ImplFlags = (ushort) ReadSize(2);

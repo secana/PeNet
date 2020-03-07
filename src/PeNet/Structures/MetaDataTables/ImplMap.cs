@@ -2,8 +2,8 @@
 {
     public class ImplMap : AbstractTable
     {
-        public ImplMap(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public ImplMap(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             MappingFlags = (ushort) ReadSize(2);
             MemberForwarded = ReadSize(IndexSizes[Index.MemberForwarded]);

@@ -2,8 +2,8 @@
 {
     public class AssemblyProcessor : AbstractTable
     {
-        public AssemblyProcessor(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public AssemblyProcessor(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Processor = ReadSize(4);
         }

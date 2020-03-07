@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace PeNet
 {
@@ -81,6 +82,12 @@ namespace PeNet
         /// <param name="length">Length of the span in byte.</param>
         /// <returns></returns>
         Span<byte> GetSpan(long offset, long length);
+
+        /// <summary>
+        /// Get the underlying file as a stream.
+        /// </summary>
+        /// <returns>Stream representing the file.</returns>
+        Stream ToStream();
 
         /// <summary>
         /// Write a byte sequence to a given offset.

@@ -2,8 +2,8 @@
 {
     public class FieldMarshal : AbstractTable
     {
-        public FieldMarshal(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public FieldMarshal(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Parent = ReadSize(IndexSizes[Index.HasFieldMarshal]);
             NativeType = ReadSize(HeapSizes.Blob);

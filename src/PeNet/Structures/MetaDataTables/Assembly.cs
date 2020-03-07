@@ -2,8 +2,8 @@
 {
     public class Assembly : AbstractTable
     {
-        public Assembly(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public Assembly(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             HashAlgId = ReadSize(4);
             MajorVersion = (ushort) ReadSize(2);

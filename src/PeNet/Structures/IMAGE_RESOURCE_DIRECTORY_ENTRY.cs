@@ -15,7 +15,7 @@ namespace PeNet.Structures
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the entry.</param>
         /// <param name="resourceDirOffset">Raw offset to the resource directory.</param>
-        public IMAGE_RESOURCE_DIRECTORY_ENTRY(IRawFile peFile, long offset, uint resourceDirOffset)
+        public IMAGE_RESOURCE_DIRECTORY_ENTRY(IRawFile peFile, long offset, long resourceDirOffset)
             : base(peFile, offset)
         {
             // Resolve the Name

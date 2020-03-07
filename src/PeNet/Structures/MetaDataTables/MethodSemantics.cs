@@ -2,8 +2,8 @@
 {
     public class MethodSemantics : AbstractTable
     {
-        public MethodSemantics(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public MethodSemantics(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Semantics = (ushort) ReadSize(2);
             Method = ReadSize(IndexSizes[Index.MethodDef]);

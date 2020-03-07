@@ -2,8 +2,8 @@
 {
     public class DeclSecurity : AbstractTable
     {
-        public DeclSecurity(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public DeclSecurity(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Action = (ushort) ReadSize(2);
             Parent = ReadSize(IndexSizes[Index.HasDeclSecurity]);

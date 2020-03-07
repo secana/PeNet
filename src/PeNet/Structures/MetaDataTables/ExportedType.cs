@@ -2,8 +2,8 @@
 {
     public class ExportedType : AbstractTable
     {
-        public ExportedType(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public ExportedType(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Flags = ReadSize(4);
             TypeDefId = ReadSize(IndexSizes[Index.TypeDef]);

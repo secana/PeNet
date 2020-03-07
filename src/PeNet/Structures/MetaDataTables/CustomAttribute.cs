@@ -2,8 +2,8 @@
 {
     public class CustomAttribute : AbstractTable
     {
-        public CustomAttribute(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public CustomAttribute(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Parent = ReadSize(IndexSizes[Index.HasCustomAttribute]);
             Type = ReadSize(IndexSizes[Index.CustomAttributeType]);

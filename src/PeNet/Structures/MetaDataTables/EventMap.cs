@@ -2,8 +2,8 @@
 {
     public class EventMap : AbstractTable
     {
-        public EventMap(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public EventMap(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             Parent = ReadSize(IndexSizes[Index.TypeDef]);
             EventList = ReadSize(IndexSizes[Index.Event]);

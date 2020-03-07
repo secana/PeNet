@@ -81,7 +81,7 @@ namespace PeNet.Structures
             set => PeFile.WriteUShort(Offset + 0xe, value);
         }
 
-        private List<IMAGE_RESOURCE_DIRECTORY_ENTRY?>? ParseDirectoryEntries(uint resourceDirOffset)
+        private List<IMAGE_RESOURCE_DIRECTORY_ENTRY?>? ParseDirectoryEntries(long resourceDirOffset)
         {
             if (SanityCheckFailed())
                 return null;

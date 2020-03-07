@@ -2,8 +2,8 @@
 {
     public class AssemblyRef : AbstractTable
     {
-        public AssemblyRef(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public AssemblyRef(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             MajorVersion = (ushort) ReadSize(2);
             MinorVersion = (ushort) ReadSize(2);

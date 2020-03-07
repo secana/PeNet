@@ -13,8 +13,8 @@ namespace PeNet.Structures
         /// <param name="imageBaseAddress">Base address of the image from the Optional header.</param>
         /// <param name="buff">A PE file.</param>
         /// <param name="offset">Raw offset to the section header.</param>
-        public IMAGE_SECTION_HEADER(byte[] buff, uint offset, ulong imageBaseAddress)
-            : base(buff, offset)
+        public IMAGE_SECTION_HEADER(IRawFile peFile, long offset, ulong imageBaseAddress)
+            : base(peFile, offset)
         {
             ImageBaseAddress = imageBaseAddress;
         }
@@ -34,27 +34,27 @@ namespace PeNet.Structures
             {
                 return new[]
                 {
-                    PeFile[Offset + 0],
-                    PeFile[Offset + 1],
-                    PeFile[Offset + 2],
-                    PeFile[Offset + 3],
-                    PeFile[Offset + 4],
-                    PeFile[Offset + 5],
-                    PeFile[Offset + 6],
-                    PeFile[Offset + 7]
+                    PeFile.ReadByte(Offset + 0),
+                    PeFile.ReadByte(Offset + 1),
+                    PeFile.ReadByte(Offset + 2),
+                    PeFile.ReadByte(Offset + 3),
+                    PeFile.ReadByte(Offset + 4),
+                    PeFile.ReadByte(Offset + 5),
+                    PeFile.ReadByte(Offset + 6),
+                    PeFile.ReadByte(Offset + 7)
                 };
             }
 
             set
             {
-                PeFile[Offset + 0] = value[0];
-                PeFile[Offset + 1] = value[1];
-                PeFile[Offset + 2] = value[2];
-                PeFile[Offset + 3] = value[3];
-                PeFile[Offset + 4] = value[4];
-                PeFile[Offset + 5] = value[5];
-                PeFile[Offset + 6] = value[6];
-                PeFile[Offset + 7] = value[7];
+                PeFile.WriteByte(Offset, value[0]);
+                PeFile.WriteByte(Offset, value[1]);
+                PeFile.WriteByte(Offset, value[2]);
+                PeFile.WriteByte(Offset, value[3]);
+                PeFile.WriteByte(Offset, value[4]);
+                PeFile.WriteByte(Offset, value[5]);
+                PeFile.WriteByte(Offset, value[6]);
+                PeFile.WriteByte(Offset, value[7]);
             }
         }
 

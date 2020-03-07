@@ -2,8 +2,8 @@
 {
     public class ClassLayout : AbstractTable
     {
-        public ClassLayout(byte[] buff, uint offset, HeapSizes heapSizes, IndexSize indexSizes) 
-            : base(buff, offset, heapSizes, indexSizes)
+        public ClassLayout(IRawFile peFile, long offset, HeapSizes heapSizes, IndexSize indexSizes) 
+            : base(peFile, offset, heapSizes, indexSizes)
         {
             PackingSize = (ushort) ReadSize(2);
             ClassSize = ReadSize(4);
