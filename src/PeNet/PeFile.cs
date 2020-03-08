@@ -65,8 +65,7 @@ namespace PeNet
         /// <param name="buff">A PE file a byte array.</param>
         public PeFile(byte[] buff)
             : this(new BufferFile(buff))
-        {
-        }
+        { }
 
         /// <summary>
         ///     Create a new PeFile object.
@@ -74,8 +73,15 @@ namespace PeNet
         /// <param name="peFile">Path to a PE file.</param>
         public PeFile(string peFile)
             : this(new BufferFile(File.ReadAllBytes(peFile)))
-        {
-        }
+        { }
+
+        /// <summary>
+        ///     Create a new PeFile object.
+        /// </summary>
+        /// <param name="peFile">Stream containing a PE file.</param>
+        public PeFile(Stream peFile)
+            : this(new StreamFile(peFile))
+        { }
 
         /// <summary>
         /// Try to parse the PE file.

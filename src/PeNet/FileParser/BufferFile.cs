@@ -10,10 +10,23 @@ namespace PeNet.FileParser
 
         public long Length => _buff.Length;
 
-        public BufferFile(byte[] file) => (_buff) = (file);
+        public BufferFile(byte[] file) 
+            => (_buff) = (file);
 
         public string GetCString(long offset)
         {
+            static int GetCStringLength(byte[] buff, long stringOffset)
+            {
+                var offset = stringOffset;
+                var length = 0;
+                while (buff[offset] != 0x00)
+                {
+                    length++;
+                    offset++;
+                }
+                return length;
+            }
+
             var length = GetCStringLength(_buff, offset);
             var tmp = new char[length];
             for (long i = 0; i < length; i++)
@@ -22,18 +35,6 @@ namespace PeNet.FileParser
             }
 
             return new string(tmp);
-        }
-
-        private int GetCStringLength(byte[] buff, long stringOffset)
-        {
-            var offset = stringOffset;
-            var length = 0;
-            while (buff[offset] != 0x00)
-            {
-                length++;
-                offset++;
-            }
-            return length;
         }
 
         public Span<byte> GetSpan(long offset, long length) 
