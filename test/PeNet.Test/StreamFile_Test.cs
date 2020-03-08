@@ -106,9 +106,9 @@ namespace PeNet.Test
         {
             var array = _sf.ToArray();
 
+            Assert.Equal(16, array.Length);
             Assert.Equal(0x00, array[0]);
             Assert.Equal(0xff, array[15]);
-            Assert.Equal(16, array.Length);
         }
 
         [Fact]
