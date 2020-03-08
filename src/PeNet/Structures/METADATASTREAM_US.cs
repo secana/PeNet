@@ -74,7 +74,7 @@ namespace PeNet.Structures
                     break;                                              // of the list is reached.
 
                 i += 1;                                                 // Add "length byte" to current offset.
-                var tmpString = PeFile.GetUnicodeString(i);               // Read the UTF-16 string
+                var tmpString = PeFile.ReadUnicodeString(i);               // Read the UTF-16 string
                 i += (uint)length - 1;                                  // Add the string length to the current offset.
 
                 stringsAndIncides.Add(new Tuple<string, uint>(tmpString, (uint) i - (uint) length - (uint) Offset));

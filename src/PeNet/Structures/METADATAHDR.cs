@@ -82,7 +82,7 @@ namespace PeNet.Structures
                     _versionStringParsed = true;
                     try
                     {
-                        _versionString = PeFile.GetCString(Offset + 0x10);
+                        _versionString = PeFile.ReadAsciiString(Offset + 0x10);
                     }
                     catch (Exception)
                     {

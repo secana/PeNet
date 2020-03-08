@@ -35,7 +35,7 @@ namespace PeNet.Structures
         /// </summary>
         public string NameString
         {
-            get => PeFile.GetUnicodeString(Offset + 2);
+            get => PeFile.ReadUnicodeString(Offset + 2);
         }
     }
 }

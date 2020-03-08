@@ -53,7 +53,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Unicode string "Translation"
         /// </summary>
-        public string szKey => PeFile.GetUnicodeString(Offset + 0x6);
+        public string szKey => PeFile.ReadUnicodeString(Offset + 0x6);
 
         /// <summary>
         /// DWORD value where the lower-order word contains the Microsoft

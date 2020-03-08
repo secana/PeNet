@@ -52,7 +52,7 @@ namespace PeNet.Structures
         /// the following data, e.g. "Comments", "CompanyName" and so
         /// on.
         /// </summary>
-        public string szKey => PeFile.GetUnicodeString(Offset + 0x6);
+        public string szKey => PeFile.ReadUnicodeString(Offset + 0x6);
 
         /// <summary>
         /// Arbitrary string which contains the information for the
@@ -64,7 +64,7 @@ namespace PeNet.Structures
                 var currentOffset = Offset + 0x6 + szKey.LengthInByte() +
                                     (Offset + 0x6 + szKey.LengthInByte()).PaddingBytes(32);
 
-                return PeFile.GetUnicodeString(currentOffset);
+                return PeFile.ReadUnicodeString(currentOffset);
             }
         }
     }

@@ -55,7 +55,7 @@ namespace PeNet.Structures
         {
             get
             {
-                return PeFile.GetSpan(Offset + 0x8, dwLength - 8);
+                return PeFile.AsSpan(Offset + 0x8, dwLength - 8);
             }
         }
     }

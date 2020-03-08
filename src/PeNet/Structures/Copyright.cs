@@ -20,6 +20,6 @@ namespace PeNet.Structures
         /// <summary>
         ///     The copyright string.
         /// </summary>
-        public string CopyrightString => PeFile.GetCString(Offset);
+        public string CopyrightString => PeFile.ReadAsciiString(Offset);
     }
 }

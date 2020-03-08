@@ -58,7 +58,7 @@ namespace PeNet.Structures
         /// the four least significant digits the code page for which the
         /// data is formatted.
         /// </summary>
-        public string szKey => PeFile.GetUnicodeString(Offset + 0x6);
+        public string szKey => PeFile.ReadUnicodeString(Offset + 0x6);
 
         /// <summary>
         /// Array of String structures.

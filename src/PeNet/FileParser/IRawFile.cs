@@ -62,18 +62,18 @@ namespace PeNet
         void WriteULong(long offset, ulong value);
 
         /// <summary>
-        /// Read an unicode string at a given offset.
+        /// Read an unicode (two byte per char) string at a given offset.
         /// </summary>
         /// <param name="offset">Start offset of the string.</param>
         /// <returns>Parsed unicode string.</returns>
-        string GetUnicodeString(long offset);
+        string ReadUnicodeString(long offset);
 
         /// <summary>
-        /// Read a C (zero-terminated, one byte per character) string at a given offset.
+        /// Read a ASCII (zero-terminated, one byte per character) string at a given offset.
         /// </summary>
         /// <param name="offset">Start offset of the string.</param>
         /// <returns>Parsed C string.</returns>
-        string GetCString(long offset);
+        string ReadAsciiString(long offset);
 
         /// <summary>
         /// Get a Span from the underlying file.
@@ -81,7 +81,7 @@ namespace PeNet
         /// <param name="offset">Start offset of the span.</param>
         /// <param name="length">Length of the span in byte.</param>
         /// <returns></returns>
-        Span<byte> GetSpan(long offset, long length);
+        Span<byte> AsSpan(long offset, long length);
 
         /// <summary>
         /// Get the underlying file as a stream.

@@ -40,7 +40,7 @@ namespace PeNet.Parser
             foreach (var idesc in _importDescriptors)
             {
                 var dllAdr = idesc.Name.RVAtoFileMapping(_sectionHeaders);
-                var dll = PeFile.GetCString(dllAdr);
+                var dll = PeFile.ReadAsciiString(dllAdr);
                 if (IsModuleNameTooLong(dll))
                     continue;
                 var tmpAdr = idesc.OriginalFirstThunk != 0 ? idesc.OriginalFirstThunk : idesc.FirstThunk;

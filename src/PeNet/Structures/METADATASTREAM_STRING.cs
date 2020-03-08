@@ -36,7 +36,7 @@ namespace PeNet.Structures
 
         public string GetStringAtIndex(uint index)
         {
-            return PeFile.GetCString(Offset + index);
+            return PeFile.ReadAsciiString(Offset + index);
         }
     }
 }

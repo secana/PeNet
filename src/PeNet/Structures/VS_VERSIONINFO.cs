@@ -48,7 +48,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Contains the Unicode string "VS_VERSION_INFO"
         /// </summary>
-        public string szKey => PeFile.GetUnicodeString(Offset + 0x6);
+        public string szKey => PeFile.ReadUnicodeString(Offset + 0x6);
 
         /// <summary>
         /// Language and code page independent version information about the PE file.

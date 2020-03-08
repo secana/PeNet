@@ -55,7 +55,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Contains the Unicode string "StringFileInfo".
         /// </summary>
-        public string szKey => PeFile.GetUnicodeString(Offset + 0x6);
+        public string szKey => PeFile.ReadUnicodeString(Offset + 0x6);
 
         /// <summary>
         /// One ore more StringTable structures, where each tables szKey indicates

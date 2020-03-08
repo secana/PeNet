@@ -13,7 +13,7 @@ namespace PeNet.FileParser
         public BufferFile(byte[] file) 
             => (_buff) = (file);
 
-        public string GetCString(long offset)
+        public string ReadAsciiString(long offset)
         {
             static int GetCStringLength(byte[] buff, long stringOffset)
             {
@@ -37,10 +37,10 @@ namespace PeNet.FileParser
             return new string(tmp);
         }
 
-        public Span<byte> GetSpan(long offset, long length) 
+        public Span<byte> AsSpan(long offset, long length) 
             => _buff.AsSpan((int) offset, (int) length);
 
-        public string GetUnicodeString(long offset)
+        public string ReadUnicodeString(long offset)
         {
             var size = 1;
             for (var i = offset; i < _buff.Length - 1; i++)

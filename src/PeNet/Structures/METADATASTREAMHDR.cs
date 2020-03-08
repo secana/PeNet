@@ -40,7 +40,7 @@
         /// <summary>
         /// Name of the stream.
         /// </summary>
-        public string streamName => PeFile.GetCString(Offset + 0x8);
+        public string streamName => PeFile.ReadAsciiString(Offset + 0x8);
 
         private uint GetHeaderLength()
         {

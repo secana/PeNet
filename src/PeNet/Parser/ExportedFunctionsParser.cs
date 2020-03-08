@@ -46,13 +46,13 @@ namespace PeNet.Parser
             {
                 var namePtr = PeFile.ReadUInt(nameOffsetPointer + sizeof(uint)*i);
                 var nameAdr = namePtr.RVAtoFileMapping(_sectionHeaders);
-                var name = PeFile.GetCString(nameAdr);
+                var name = PeFile.ReadAsciiString(nameAdr);
                 var ordinalIndex = (uint) PeFile.ReadUShort(ordOffset + sizeof(ushort)*i);
 
                 if (IsForwardedExport(expFuncs[ordinalIndex].Address))
                 {
                     var forwardNameAdr = expFuncs[ordinalIndex].Address.RVAtoFileMapping(_sectionHeaders);
-                    var forwardName = PeFile.GetCString(forwardNameAdr);
+                    var forwardName = PeFile.ReadAsciiString(forwardNameAdr);
 
                     expFuncs[ordinalIndex] = new ExportFunction(
                         name,

@@ -32,6 +32,6 @@ namespace PeNet.Structures
         /// <summary>
         ///     Name of the function to import as a C-string (null terminated).
         /// </summary>
-        public string Name => PeFile.GetCString(Offset + 0x2);
+        public string Name => PeFile.ReadAsciiString(Offset + 0x2);
     }
 }
