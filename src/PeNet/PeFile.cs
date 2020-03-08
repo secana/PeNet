@@ -17,7 +17,7 @@ namespace PeNet
     ///     This class represents a Portable Executable (PE) file and makes the different
     ///     header and properties accessible.
     /// </summary>
-    public class PeFile
+    public class PeFile : IDisposable
     {
         private readonly DataDirectoryParsers _dataDirectoryParsers;
         private readonly NativeStructureParsers _nativeStructureParsers;
@@ -471,6 +471,11 @@ namespace PeNet
                 sBuilder.Append(t.ToString("x2"));
 
             return sBuilder.ToString();
+        }
+
+        public void Dispose()
+        {
+            RawFile.Dispose();
         }
     }
 }

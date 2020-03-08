@@ -138,5 +138,10 @@ namespace PeNet.FileParser
             _stream.Seek(offset, SeekOrigin.Begin);
             _stream.Write(s);
         }
+
+        public void Dispose()
+        {
+            _stream.Dispose();
+        }
     }
 }

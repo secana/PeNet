@@ -6,7 +6,7 @@ namespace PeNet.FileParser
 {
     public class BufferFile : IRawFile
     {
-        private readonly byte[] _buff;
+        private byte[] _buff;
 
         public long Length => _buff.Length;
 
@@ -113,5 +113,10 @@ namespace PeNet.FileParser
         }
 
         public byte[] ToArray() => _buff;
+
+        public void Dispose()
+        {
+            _buff = new byte[0];
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.IO;
 
 namespace PeNet
 {
-    public interface IRawFile
+    public interface IRawFile : IDisposable
     {
         /// <summary>
         /// Read a byte at the given offset.
