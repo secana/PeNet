@@ -2,20 +2,20 @@
 
 namespace PeNet.Parser
 {
-    internal class ImageResourceDirectoryParser : SafeParser<IMAGE_RESOURCE_DIRECTORY>
+    internal class ImageResourceDirectoryParser : SafeParser<ImageResourceDirectory>
     {
         internal ImageResourceDirectoryParser(IRawFile peFile, long offset)
             : base(peFile, offset)
         {
         }
 
-        protected override IMAGE_RESOURCE_DIRECTORY? ParseTarget()
+        protected override ImageResourceDirectory? ParseTarget()
         {
             if (Offset == 0)
                 return null;
 
             // Parse the root directory.
-            var root = new IMAGE_RESOURCE_DIRECTORY(PeFile, Offset, Offset);
+            var root = new ImageResourceDirectory(PeFile, Offset, Offset);
 
             if (root.DirectoryEntries is null)
                 return root;
@@ -26,7 +26,7 @@ namespace PeNet.Parser
                 if (de is null)
                     continue;
 
-                de.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
+                de.ResourceDirectory = new ImageResourceDirectory(
                     PeFile,
                     Offset + de.OffsetToDirectory,
                     Offset
@@ -42,7 +42,7 @@ namespace PeNet.Parser
                     if (de2 is null)
                         continue;
 
-                    de2.ResourceDirectory = new IMAGE_RESOURCE_DIRECTORY(
+                    de2.ResourceDirectory = new ImageResourceDirectory(
                         PeFile,
                         Offset + de2.OffsetToDirectory,
                         Offset
@@ -58,7 +58,7 @@ namespace PeNet.Parser
                         if (de3 is null)
                             continue;
 
-                        de3.ResourceDataEntry = new IMAGE_RESOURCE_DATA_ENTRY(PeFile,
+                        de3.ResourceDataEntry = new ImageResourceDataEntry(PeFile,
                             Offset + de3.OffsetToData);
                     }
                 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using PeNet.Parser;
 using PeNet.Structures;
@@ -10,10 +9,10 @@ namespace PeNet
     internal class DataDirectoryParsers
     {
         private readonly IRawFile _peFile;
-        private readonly IMAGE_DATA_DIRECTORY[] _dataDirectories;
+        private readonly ImageDataDirectory[] _dataDirectories;
 
         private readonly bool _is32Bit;
-        private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
+        private readonly ImageSectionHeader[] _sectionHeaders;
         private readonly ExportedFunctionsParser _exportedFunctionsParser;
         private readonly ImageBaseRelocationsParser? _imageBaseRelocationsParser;
         private readonly ImageDebugDirectoryParser? _imageDebugDirectoryParser;
@@ -32,8 +31,8 @@ namespace PeNet
 
         public DataDirectoryParsers(
             IRawFile peFile,
-            IEnumerable<IMAGE_DATA_DIRECTORY>? dataDirectories,
-            IEnumerable<IMAGE_SECTION_HEADER>? sectionHeaders,
+            IEnumerable<ImageDataDirectory>? dataDirectories,
+            IEnumerable<ImageSectionHeader>? sectionHeaders,
             bool is32Bit
             )
         {
@@ -60,20 +59,20 @@ namespace PeNet
             _resourcesParser = InitResourcesParser();
         }
 
-        public IMAGE_EXPORT_DIRECTORY? ImageExportDirectories => _imageExportDirectoriesParser?.GetParserTarget();
-        public IMAGE_IMPORT_DESCRIPTOR[]? ImageImportDescriptors => _imageImportDescriptorsParser?.GetParserTarget();
-        public IMAGE_RESOURCE_DIRECTORY? ImageResourceDirectory => _imageResourceDirectoryParser?.GetParserTarget();
-        public IMAGE_BASE_RELOCATION[]? ImageBaseRelocations => _imageBaseRelocationsParser?.GetParserTarget();
+        public ImageExportDirectory? ImageExportDirectories => _imageExportDirectoriesParser?.GetParserTarget();
+        public ImageImportDescriptor[]? ImageImportDescriptors => _imageImportDescriptorsParser?.GetParserTarget();
+        public ImageResourceDirectory? ImageResourceDirectory => _imageResourceDirectoryParser?.GetParserTarget();
+        public ImageBaseRelocation[]? ImageBaseRelocations => _imageBaseRelocationsParser?.GetParserTarget();
         public WIN_CERTIFICATE? WinCertificate => _winCertificateParser?.GetParserTarget();
-        public IMAGE_DEBUG_DIRECTORY[]? ImageDebugDirectory => _imageDebugDirectoryParser?.GetParserTarget();
+        public ImageDebugDirectory[]? ImageDebugDirectory => _imageDebugDirectoryParser?.GetParserTarget();
         public RUNTIME_FUNCTION[]? RuntimeFunctions => _runtimeFunctionsParser?.GetParserTarget();
         public ExportFunction[]? ExportFunctions => _exportedFunctionsParser.GetParserTarget();
         public ImportFunction[]? ImportFunctions => _importedFunctionsParser.GetParserTarget();
-        public IMAGE_BOUND_IMPORT_DESCRIPTOR? ImageBoundImportDescriptor => _imageBoundImportDescriptorParser?.GetParserTarget();
-        public IMAGE_TLS_DIRECTORY? ImageTlsDirectory => _imageTlsDirectoryParser?.GetParserTarget();
-        public IMAGE_DELAY_IMPORT_DESCRIPTOR? ImageDelayImportDescriptor => _imageDelayImportDescriptorParser?.GetParserTarget();
-        public IMAGE_LOAD_CONFIG_DIRECTORY? ImageLoadConfigDirectory => _imageLoadConfigDirectoryParser?.GetParserTarget();
-        public IMAGE_COR20_HEADER? ImageComDescriptor => _imageCor20HeaderParser?.GetParserTarget();
+        public ImageBoundImportDescriptor? ImageBoundImportDescriptor => _imageBoundImportDescriptorParser?.GetParserTarget();
+        public ImageTlsDirectory? ImageTlsDirectory => _imageTlsDirectoryParser?.GetParserTarget();
+        public ImageDelayImportDescriptor? ImageDelayImportDescriptor => _imageDelayImportDescriptorParser?.GetParserTarget();
+        public ImageLoadConfigDirectory? ImageLoadConfigDirectory => _imageLoadConfigDirectoryParser?.GetParserTarget();
+        public ImageCor20Header? ImageComDescriptor => _imageCor20HeaderParser?.GetParserTarget();
         public Resources? Resources => _resourcesParser?.GetParserTarget();
 
         private ResourcesParser? InitResourcesParser()

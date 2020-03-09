@@ -10,7 +10,7 @@ namespace PeNet.Structures
     public class RUNTIME_FUNCTION : AbstractStructure
     {
         private UNWIND_INFO? _resolvedUnwindInfo;
-        private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
+        private readonly ImageSectionHeader[] _sectionHeaders;
 
         /// <summary>
         ///     Create a new RUNTIME_FUNCTION object.
@@ -18,7 +18,7 @@ namespace PeNet.Structures
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset of the runtime function struct.</param>
         /// <param name="sh">Section Headers of the PE file.</param>
-        public RUNTIME_FUNCTION(IRawFile peFile, long offset, IMAGE_SECTION_HEADER[] sh)
+        public RUNTIME_FUNCTION(IRawFile peFile, long offset, ImageSectionHeader[] sh)
             : base(peFile, offset)
         {
             _sectionHeaders = sh;
@@ -68,7 +68,7 @@ namespace PeNet.Structures
         /// </summary>
         /// <param name="sh">Section Headers of the PE file.</param>
         /// <returns>UNWIND_INFO for the runtime function.</returns>
-        private UNWIND_INFO GetUnwindInfo(IMAGE_SECTION_HEADER[] sh)
+        private UNWIND_INFO GetUnwindInfo(ImageSectionHeader[] sh)
         {
             // Check if the last bit is set in the UnwindInfo. If so, it is a chained 
             // information.

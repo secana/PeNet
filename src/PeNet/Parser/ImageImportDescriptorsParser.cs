@@ -3,25 +3,25 @@ using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class ImageImportDescriptorsParser : SafeParser<IMAGE_IMPORT_DESCRIPTOR[]>
+    internal class ImageImportDescriptorsParser : SafeParser<ImageImportDescriptor[]>
     {
         public ImageImportDescriptorsParser(IRawFile peFile, long offset)
             : base(peFile, offset)
         {
         }
 
-        protected override IMAGE_IMPORT_DESCRIPTOR[]? ParseTarget()
+        protected override ImageImportDescriptor[]? ParseTarget()
         {
             if (Offset == 0)
                 return null;
 
-            var idescs = new List<IMAGE_IMPORT_DESCRIPTOR>();
+            var idescs = new List<ImageImportDescriptor>();
             uint idescSize = 20; // Size of IMAGE_IMPORT_DESCRIPTOR (5 * 4 Byte)
             uint round = 0;
 
             while (true)
             {
-                var idesc = new IMAGE_IMPORT_DESCRIPTOR(PeFile, Offset + idescSize*round);
+                var idesc = new ImageImportDescriptor(PeFile, Offset + idescSize*round);
 
                 // Found the last IMAGE_IMPORT_DESCRIPTOR which is completely null (except TimeDateStamp).
                 if (idesc.OriginalFirstThunk == 0

@@ -2,16 +2,16 @@
 
 namespace PeNet.Parser
 {
-    internal class ImageDelayImportDescriptorParser : SafeParser<IMAGE_DELAY_IMPORT_DESCRIPTOR>
+    internal class ImageDelayImportDescriptorParser : SafeParser<ImageDelayImportDescriptor>
     {
         internal ImageDelayImportDescriptorParser(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
         }
 
-        protected override IMAGE_DELAY_IMPORT_DESCRIPTOR ParseTarget()
+        protected override ImageDelayImportDescriptor ParseTarget()
         {
-            return new IMAGE_DELAY_IMPORT_DESCRIPTOR(PeFile, Offset);
+            return new ImageDelayImportDescriptor(PeFile, Offset);
         }
     }
 }

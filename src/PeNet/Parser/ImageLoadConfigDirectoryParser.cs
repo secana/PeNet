@@ -2,7 +2,7 @@
 
 namespace PeNet.Parser
 {
-    internal class ImageLoadConfigDirectoryParser : SafeParser<IMAGE_LOAD_CONFIG_DIRECTORY>
+    internal class ImageLoadConfigDirectoryParser : SafeParser<ImageLoadConfigDirectory>
     {
         private readonly bool _is64Bit;
 
@@ -12,9 +12,9 @@ namespace PeNet.Parser
             _is64Bit = is64Bit;
         }
 
-        protected override IMAGE_LOAD_CONFIG_DIRECTORY ParseTarget()
+        protected override ImageLoadConfigDirectory ParseTarget()
         {
-            return new IMAGE_LOAD_CONFIG_DIRECTORY(PeFile, Offset, _is64Bit);
+            return new ImageLoadConfigDirectory(PeFile, Offset, _is64Bit);
         }
     }
 }

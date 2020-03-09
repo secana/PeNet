@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PeNet.Parser
+﻿namespace PeNet.Parser
 {
     internal class MetaDataStreamBlobParser : SafeParser<byte[]>
     {

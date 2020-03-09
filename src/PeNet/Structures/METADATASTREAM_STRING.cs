@@ -1,6 +1,4 @@
-﻿using PeNet.Utilities;
-
-namespace PeNet.Structures
+﻿namespace PeNet.Structures
 {
     public interface IMETADATASTREAM_STRING
     {

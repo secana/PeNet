@@ -27,7 +27,7 @@ namespace PeNet.Test.Structures
         {
             var netDirectory = _peFile.ImageComDescriptor;
 
-            Assert.Equal(0x00000048u, netDirectory.cb);
+            Assert.Equal(0x00000048u, netDirectory.Cb);
             Assert.Equal(0x0002u, netDirectory.MajorRuntimeVersion);
             Assert.Equal(0x0005u, netDirectory.MinorRuntimeVersion);
             Assert.Equal(0x000020ACu, netDirectory.MetaData.VirtualAddress);

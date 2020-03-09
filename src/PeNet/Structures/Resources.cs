@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace PeNet.Structures
+﻿namespace PeNet.Structures
 {
     /// <summary>
     /// Parsed version of the Resource data directory.

@@ -207,173 +207,173 @@ namespace PeNet
             /// <summary>
             ///     File header -> machine (CPU): Intel 386
             /// </summary>
-            IMAGE_FILE_MACHINE_I386 = 0x14c,
+            I386 = 0x14c,
 
             /// <summary>
             ///     File header -> machine (CPU): Intel i860
             /// </summary>
-            IMAGE_FILE_MACHINE_I860 = 0x14d,
+            I860 = 0x14d,
 
             /// <summary>
             ///     File header -> machine (CPU): MIPS R3000
             /// </summary>
-            IMAGE_FILE_MACHINE_R3000 = 0x162,
+            R3000 = 0x162,
 
             /// <summary>
             ///     File header -> machine (CPU): MIPS little endian (R4000)
             /// </summary>
-            IMAGE_FILE_MACHINE_R4000 = 0x166,
+            R4000 = 0x166,
 
             /// <summary>
             ///     File header -> machine (CPU): MIPS R10000
             /// </summary>
-            IMAGE_FILE_MACHINE_R10000 = 0x168,
+            R10000 = 0x168,
 
             /// <summary>
             ///     File header -> machine (CPU): MIPS little endian WCI v2
             /// </summary>
-            IMAGE_FILE_MACHINE_WCEMIPSV2 = 0x169,
+            WCEMIPSV2 = 0x169,
 
             /// <summary>
             ///     File header -> machine (CPU): old Alpha AXP
             /// </summary>
-            IMAGE_FILE_MACHINE_OLDALPHA = 0x183,
+            OLDALPHA = 0x183,
 
             /// <summary>
             ///     File header -> machine (CPU): Alpha AXP
             /// </summary>
-            IMAGE_FILE_MACHINE_ALPHA = 0x184,
+            ALPHA = 0x184,
 
             /// <summary>
             ///     File header -> machine (CPU): Hitachi SH3
             /// </summary>
-            IMAGE_FILE_MACHINE_SH3 = 0x1a2,
+            SH3 = 0x1a2,
 
             /// <summary>
             ///     File header -> machine (CPU): Hitachi SH3 DSP
             /// </summary>
-            IMAGE_FILE_MACHINE_SH3DSP = 0x1a3,
+            SH3DSP = 0x1a3,
 
             /// <summary>
             ///     File header -> machine (CPU): unknown
             /// </summary>
-            IMAGE_FILE_MACHINE_SH3E = 0x1a4,
+            SH3E = 0x1a4,
 
             /// <summary>
             ///     File header -> machine (CPU): Hitachi SH4
             /// </summary>
-            IMAGE_FILE_MACHINE_SH4 = 0x1a6,
+            SH4 = 0x1a6,
 
             /// <summary>
             ///     File header -> machine (CPU): Hitachi SH5
             /// </summary>
-            IMAGE_FILE_MACHINE_SH5 = 0x1a8,
+            SH5 = 0x1a8,
 
             /// <summary>
             ///     File header -> machine (CPU): ARM little endian
             /// </summary>
-            IMAGE_FILE_MACHINE_ARM = 0x1c0,
+            ARM = 0x1c0,
 
             /// <summary>
             ///     File header -> machine (CPU): Thumb
             /// </summary>
-            IMAGE_FILE_MACHINE_THUMB = 0x1c2,
+            THUMB = 0x1c2,
 
             /// <summary>
             ///     File header -> machine (CPU): Matsushita AM33
             /// </summary>
-            IMAGE_FILE_MACHINE_AM33 = 0x1d3,
+            AM33 = 0x1d3,
 
             /// <summary>
             ///     File header -> machine (CPU): PowerPC little endian
             /// </summary>
-            IMAGE_FILE_MACHINE_POWERPC = 0x1f0,
+            POWERPC = 0x1f0,
 
             /// <summary>
             ///     File header -> machine (CPU): PowerPC with floating point support
             /// </summary>
-            IMAGE_FILE_MACHINE_POWERPCFP = 0x1f1,
+            POWERPCFP = 0x1f1,
 
             /// <summary>
             ///     File header -> machine (CPU): Intel IA64
             /// </summary>
-            IMAGE_FILE_MACHINE_IA64 = 0x200,
+            IA64 = 0x200,
 
             /// <summary>
             ///     File header -> machine (CPU): MIPS16
             /// </summary>
-            IMAGE_FILE_MACHINE_MIPS16 = 0x266,
+            MIPS16 = 0x266,
 
             /// <summary>
             ///     File header -> machine (CPU): Motorola 68000 series
             /// </summary>
-            IMAGE_FILE_MACHINE_M68K = 0x268,
+            M68K = 0x268,
 
             /// <summary>
             ///     File header -> machine (CPU): Alpha AXP 64-bit
             /// </summary>
-            IMAGE_FILE_MACHINE_ALPHA64 = 0x284,
+            ALPHA64 = 0x284,
 
             /// <summary>
             ///     File header -> machine (CPU): MIPS with FPU
             /// </summary>
-            IMAGE_FILE_MACHINE_MIPSFPU = 0x366,
+            MIPSFPU = 0x366,
 
             /// <summary>
             ///     File header -> machine (CPU): MIPS16 with FPU
             /// </summary>
-            IMAGE_FILE_MACHINE_MIPSFPU16 = 0x466,
+            MIPSFPU16 = 0x466,
 
             /// <summary>
             ///     File header -> machine (CPU): Alpha AXP 64-bit
             /// </summary>
-            IMAGE_FILE_MACHINE_AXP64 = IMAGE_FILE_MACHINE_ALPHA64,
+            IMAGE_FILE_MACHINE_AXP64 = ALPHA64,
 
             /// <summary>
             ///     File header -> machine (CPU): unknown
             /// </summary>
-            IMAGE_FILE_MACHINE_TRICORE = 0x520,
+            TRICORE = 0x520,
 
             /// <summary>
             ///     File header -> machine (CPU): unknown
             /// </summary>
-            IMAGE_FILE_MACHINE_CEF = 0xcef,
+            CEF = 0xcef,
 
             /// <summary>
             ///     File header -> machine (CPU): EFI Byte Code
             /// </summary>
-            IMAGE_FILE_MACHINE_EBC = 0xebc,
+            EBC = 0xebc,
 
             /// <summary>
             ///     File header -> machine (CPU): AMD AMD64 (Used for Intel x64, too)
             /// </summary>
-            IMAGE_FILE_MACHINE_AMD64 = 0x8664,
+            AMD64 = 0x8664,
 
             /// <summary>
             ///     File header -> machine (CPU): Mitsubishi M32R little endian
             /// </summary>
-            IMAGE_FILE_MACHINE_M32R = 0x9041,
+            M32R = 0x9041,
 
             /// <summary>
             ///     File header -> machine (CPU): clr pure MSIL (.Net)
             /// </summary>
-            IMAGE_FILE_MACHINE_CEE = 0xc0ee,
+            CEE = 0xc0ee,
 
             /// <summary>
             ///     File header -> machine (CPU): ARM65 Little-Endian
             /// </summary>
-            IMAGE_FILE_MACHINE_ARM64 = 0xAA64,
+            ARM64 = 0xAA64,
 
             /// <summary>
             ///     File header -> machine (CPU): ARM Thumb-2 Little-Endian
             /// </summary>
-            IMAGE_FILE_MACHINE_ARMNT = 0x01C4,
+            ARMNT = 0x01C4,
 
             /// <summary>
             ///     File header -> machine (CPU): Interacts with the host and not
             ///     a WOW64 guest
             /// </summary>
-            IMAGE_FILE_MACHINE_TARGET_HOST = 0x0001
+            TARGET_HOST = 0x0001
         }
 
         /// <summary>

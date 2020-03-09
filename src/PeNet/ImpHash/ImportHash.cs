@@ -70,7 +70,7 @@ namespace PeNet.ImpHash
             var parts = libraryName.ToLower().Split('.');
             var libName = "";
 
-            if (parts.Length > 1 && exts.Contains(parts[parts.Length - 1]))
+            if (parts.Length > 1 && exts.Contains(parts[^1]))
             {
                 for (var i = 0; i < parts.Length - 1; i++)
                 {

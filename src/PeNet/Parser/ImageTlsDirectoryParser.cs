@@ -4,16 +4,16 @@ using PeNet.Utilities;
 
 namespace PeNet.Parser
 {
-    internal class ImageTlsDirectoryParser : SafeParser<IMAGE_TLS_DIRECTORY>
+    internal class ImageTlsDirectoryParser : SafeParser<ImageTlsDirectory>
     {
         private readonly bool _is64Bit;
-        private readonly IMAGE_SECTION_HEADER[] _sectionsHeaders;
+        private readonly ImageSectionHeader[] _sectionsHeaders;
 
         internal ImageTlsDirectoryParser(
             IRawFile peFile, 
             uint offset, 
             bool is64Bit, 
-            IMAGE_SECTION_HEADER[] sectionHeaders
+            ImageSectionHeader[] sectionHeaders
             ) 
             : base(peFile, offset)
         {
@@ -21,16 +21,16 @@ namespace PeNet.Parser
             _sectionsHeaders = sectionHeaders;
         }
 
-        protected override IMAGE_TLS_DIRECTORY ParseTarget()
+        protected override ImageTlsDirectory ParseTarget()
         {
-            var tlsDir = new IMAGE_TLS_DIRECTORY(PeFile, Offset, _is64Bit);
+            var tlsDir = new ImageTlsDirectory(PeFile, Offset, _is64Bit);
             tlsDir.TlsCallbacks = ParseTlsCallbacks(tlsDir.AddressOfCallBacks);
             return tlsDir;
         }
 
-        private IMAGE_TLS_CALLBACK[] ParseTlsCallbacks(ulong addressOfCallBacks)
+        private ImageTlsCallback[] ParseTlsCallbacks(ulong addressOfCallBacks)
         {
-            var callbacks = new List<IMAGE_TLS_CALLBACK>();
+            var callbacks = new List<ImageTlsCallback>();
             var rawAddressOfCallbacks = (uint) addressOfCallBacks.VAtoFileMapping(_sectionsHeaders);
 
             uint count = 0;
@@ -38,7 +38,7 @@ namespace PeNet.Parser
             {
                 if (_is64Bit)
                 {
-                    var cb = new IMAGE_TLS_CALLBACK(PeFile, rawAddressOfCallbacks + count*8, _is64Bit);
+                    var cb = new ImageTlsCallback(PeFile, rawAddressOfCallbacks + count*8, _is64Bit);
                     if (cb.Callback == 0)
                         break;
 
@@ -47,7 +47,7 @@ namespace PeNet.Parser
                 }
                 else
                 {
-                    var cb = new IMAGE_TLS_CALLBACK(PeFile, rawAddressOfCallbacks + count*4, _is64Bit);
+                    var cb = new ImageTlsCallback(PeFile, rawAddressOfCallbacks + count*4, _is64Bit);
                     if (cb.Callback == 0)
                         break;
 

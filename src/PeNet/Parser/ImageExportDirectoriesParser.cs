@@ -2,7 +2,7 @@
 
 namespace PeNet.Parser
 {
-    internal class ImageExportDirectoriesParser : SafeParser<IMAGE_EXPORT_DIRECTORY>
+    internal class ImageExportDirectoriesParser : SafeParser<ImageExportDirectory>
     {
         public ImageExportDirectoriesParser(IRawFile peFile, long offset)
             : base(peFile, offset)
@@ -10,9 +10,9 @@ namespace PeNet.Parser
         }
 
 
-        protected override IMAGE_EXPORT_DIRECTORY ParseTarget()
+        protected override ImageExportDirectory ParseTarget()
         {
-            return new IMAGE_EXPORT_DIRECTORY(PeFile, Offset);
+            return new ImageExportDirectory(PeFile, Offset);
         }
     }
 }

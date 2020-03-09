@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Text;
 using PeNet.Structures;
@@ -20,7 +19,7 @@ namespace PeNet.Utilities
         /// <param name="virtualAddress">Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static ulong VAtoFileMapping(this ulong virtualAddress, ICollection<IMAGE_SECTION_HEADER> sh)
+        public static ulong VAtoFileMapping(this ulong virtualAddress, ICollection<ImageSectionHeader> sh)
         {
             var rva= virtualAddress - sh.FirstOrDefault().ImageBaseAddress;
             return RVAtoFileMapping(rva, sh);
@@ -32,9 +31,9 @@ namespace PeNet.Utilities
         /// <param name="relativeVirtualAddress">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static ulong RVAtoFileMapping(this ulong relativeVirtualAddress, ICollection<IMAGE_SECTION_HEADER> sh)
+        public static ulong RVAtoFileMapping(this ulong relativeVirtualAddress, ICollection<ImageSectionHeader> sh)
         {
-            IMAGE_SECTION_HEADER GetSectionForRva(ulong rva)
+            ImageSectionHeader GetSectionForRva(ulong rva)
             {
                 var sectionsByRva = sh.OrderBy(s => s.VirtualAddress).ToList();
                 var notLastSection = sectionsByRva.FirstOrDefault(s =>
@@ -65,7 +64,7 @@ namespace PeNet.Utilities
         /// <param name="relativeVirtualAddress">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static uint RVAtoFileMapping(this uint relativeVirtualAddress, ICollection<IMAGE_SECTION_HEADER> sh)
+        public static uint RVAtoFileMapping(this uint relativeVirtualAddress, ICollection<ImageSectionHeader> sh)
         {
             return (uint) RVAtoFileMapping((ulong) relativeVirtualAddress, sh);
         }
@@ -76,7 +75,7 @@ namespace PeNet.Utilities
         /// <param name="RelativeVirtualAddress">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw address of null if error occurred.</returns>
-        public static uint? SafeRVAtoFileMapping(this uint RelativeVirtualAddress, ICollection<IMAGE_SECTION_HEADER>? sh)
+        public static uint? SafeRVAtoFileMapping(this uint RelativeVirtualAddress, ICollection<ImageSectionHeader>? sh)
         {
             if (sh is null)
                 return null;

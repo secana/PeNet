@@ -7,16 +7,16 @@ namespace PeNet.Parser
 {
     internal class ImportedFunctionsParser : SafeParser<ImportFunction[]>
     {
-        private readonly IMAGE_IMPORT_DESCRIPTOR[]? _importDescriptors;
+        private readonly ImageImportDescriptor[]? _importDescriptors;
         private readonly bool _is64Bit;
-        private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
-        private readonly IMAGE_DATA_DIRECTORY[] _dataDirectories;
+        private readonly ImageSectionHeader[] _sectionHeaders;
+        private readonly ImageDataDirectory[] _dataDirectories;
 
         internal ImportedFunctionsParser(
             IRawFile peFile,
-            IMAGE_IMPORT_DESCRIPTOR[]? importDescriptors,
-            IMAGE_SECTION_HEADER[] sectionHeaders,
-            IMAGE_DATA_DIRECTORY[] dataDirectories,
+            ImageImportDescriptor[]? importDescriptors,
+            ImageSectionHeader[] sectionHeaders,
+            ImageDataDirectory[] dataDirectories,
             bool is64Bit) :
                 base(peFile, 0)
         {
@@ -51,7 +51,7 @@ namespace PeNet.Parser
                 uint round = 0;
                 while (true)
                 {
-                    var t = new IMAGE_THUNK_DATA(PeFile, thunkAdr + round*sizeOfThunk, _is64Bit);
+                    var t = new ImageThunkData(PeFile, thunkAdr + round*sizeOfThunk, _is64Bit);
                     var iatOffset = idesc.FirstThunk + round * sizeOfThunk - iat.VirtualAddress;
 
                     if (t.AddressOfData == 0)
@@ -68,7 +68,7 @@ namespace PeNet.Parser
                     }
                     else // Import by name
                     {
-                        var ibn = new IMAGE_IMPORT_BY_NAME(PeFile,
+                        var ibn = new ImageImportByName(PeFile,
                             ((uint) t.AddressOfData).RVAtoFileMapping(_sectionHeaders));
                         impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint, iatOffset));
                     }

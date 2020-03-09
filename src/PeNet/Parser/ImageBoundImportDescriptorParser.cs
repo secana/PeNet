@@ -2,16 +2,16 @@
 
 namespace PeNet.Parser
 {
-    internal class ImageBoundImportDescriptorParser : SafeParser<IMAGE_BOUND_IMPORT_DESCRIPTOR>
+    internal class ImageBoundImportDescriptorParser : SafeParser<ImageBoundImportDescriptor>
     {
         internal ImageBoundImportDescriptorParser(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
         }
 
-        protected override IMAGE_BOUND_IMPORT_DESCRIPTOR ParseTarget()
+        protected override ImageBoundImportDescriptor ParseTarget()
         {
-            return new IMAGE_BOUND_IMPORT_DESCRIPTOR(PeFile, Offset);
+            return new ImageBoundImportDescriptor(PeFile, Offset);
         }
     }
 }

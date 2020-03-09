@@ -1,5 +1,4 @@
 ﻿using PeNet.Utilities;
-using System.IO;
 
 namespace PeNet.Structures
 {

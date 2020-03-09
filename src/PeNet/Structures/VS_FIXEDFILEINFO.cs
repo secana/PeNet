@@ -1,7 +1,4 @@
-﻿using PeNet.Utilities;
-using System.IO;
-
-namespace PeNet.Structures
+﻿namespace PeNet.Structures
 {
     /// <summary>
     /// Language and code page independent version information about the PE file.

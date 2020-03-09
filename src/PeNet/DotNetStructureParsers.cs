@@ -8,8 +8,8 @@ namespace PeNet
     internal class DotNetStructureParsers
     {
         private readonly IRawFile _peFile;
-        private readonly IMAGE_SECTION_HEADER[]? _sectionHeaders;
-        private readonly IMAGE_COR20_HEADER? _imageCor20Header;
+        private readonly ImageSectionHeader[]? _sectionHeaders;
+        private readonly ImageCor20Header? _imageCor20Header;
         private readonly MetaDataHdrParser? _metaDataHdrParser;
         private readonly MetaDataStreamStringParser? _metaDataStreamStringParser;
         private readonly MetaDataStreamUSParser? _metaDataStreamUSParser;
@@ -26,8 +26,8 @@ namespace PeNet
 
         public DotNetStructureParsers(
             IRawFile peFile,
-            IMAGE_COR20_HEADER? imageCor20Header,
-            IMAGE_SECTION_HEADER[]? sectionHeaders)
+            ImageCor20Header? imageCor20Header,
+            ImageSectionHeader[]? sectionHeaders)
         {
             _peFile = peFile;
             _sectionHeaders = sectionHeaders;

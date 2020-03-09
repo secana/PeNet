@@ -2,16 +2,16 @@
 
 namespace PeNet.Parser
 {
-    internal class ImageCor20HeaderParser : SafeParser<IMAGE_COR20_HEADER>
+    internal class ImageCor20HeaderParser : SafeParser<ImageCor20Header>
     {
         public ImageCor20HeaderParser(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
         }
 
-        protected override IMAGE_COR20_HEADER ParseTarget()
+        protected override ImageCor20Header ParseTarget()
         {
-            return new IMAGE_COR20_HEADER(PeFile, Offset);
+            return new ImageCor20Header(PeFile, Offset);
         }
     }
 }

@@ -164,41 +164,41 @@ namespace PeNet
         ///     Returns true if the PE file is x32.
         /// </summary>
         public bool Is32Bit => ImageNtHeaders?.FileHeader.Machine
-                               == (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386;
+                               == (ushort)Constants.FileHeaderMachine.I386;
         /// <summary>
         ///     Access the IMAGE_DOS_HEADER of the PE file.
         /// </summary>
-        public IMAGE_DOS_HEADER? ImageDosHeader => _nativeStructureParsers.ImageDosHeader;
+        public ImageDosHeader? ImageDosHeader => _nativeStructureParsers.ImageDosHeader;
 
         /// <summary>
         ///     Access the IMAGE_NT_HEADERS of the PE file.
         /// </summary>
-        public IMAGE_NT_HEADERS? ImageNtHeaders => _nativeStructureParsers.ImageNtHeaders;
+        public ImageNtHeaders? ImageNtHeaders => _nativeStructureParsers.ImageNtHeaders;
 
         /// <summary>
         ///     Access the IMAGE_SECTION_HEADERS of the PE file.
         /// </summary>
-        public IMAGE_SECTION_HEADER[]? ImageSectionHeaders => _nativeStructureParsers.ImageSectionHeaders;
+        public ImageSectionHeader[]? ImageSectionHeaders => _nativeStructureParsers.ImageSectionHeaders;
 
         /// <summary>
         ///     Access the IMAGE_EXPORT_DIRECTORY of the PE file.
         /// </summary>
-        public IMAGE_EXPORT_DIRECTORY? ImageExportDirectory => _dataDirectoryParsers.ImageExportDirectories;
+        public ImageExportDirectory? ImageExportDirectory => _dataDirectoryParsers.ImageExportDirectories;
 
         /// <summary>
         ///     Access the IMAGE_IMPORT_DESCRIPTOR array of the PE file.
         /// </summary>
-        public IMAGE_IMPORT_DESCRIPTOR[]? ImageImportDescriptors => _dataDirectoryParsers.ImageImportDescriptors;
+        public ImageImportDescriptor[]? ImageImportDescriptors => _dataDirectoryParsers.ImageImportDescriptors;
 
         /// <summary>
         ///     Access the IMAGE_BASE_RELOCATION array of the PE file.
         /// </summary>
-        public IMAGE_BASE_RELOCATION[]? ImageRelocationDirectory => _dataDirectoryParsers.ImageBaseRelocations;
+        public ImageBaseRelocation[]? ImageRelocationDirectory => _dataDirectoryParsers.ImageBaseRelocations;
 
         /// <summary>
         ///     Access the IMAGE_DEBUG_DIRECTORY of the PE file.
         /// </summary>
-        public IMAGE_DEBUG_DIRECTORY[]? ImageDebugDirectory => _dataDirectoryParsers.ImageDebugDirectory;
+        public ImageDebugDirectory[]? ImageDebugDirectory => _dataDirectoryParsers.ImageDebugDirectory;
 
         /// <summary>
         ///     Access the exported functions as an array of parsed objects.
@@ -213,7 +213,7 @@ namespace PeNet
         /// <summary>
         ///     Access the IMAGE_RESOURCE_DIRECTORY of the PE file.
         /// </summary>
-        public IMAGE_RESOURCE_DIRECTORY? ImageResourceDirectory => _dataDirectoryParsers.ImageResourceDirectory;
+        public ImageResourceDirectory? ImageResourceDirectory => _dataDirectoryParsers.ImageResourceDirectory;
 
         /// <summary>
         ///     Access resources of the PE file.
@@ -233,27 +233,27 @@ namespace PeNet
         /// <summary>
         /// Access the IMAGE_BOUND_IMPORT_DESCRIPTOR form the data directory.
         /// </summary>
-        public IMAGE_BOUND_IMPORT_DESCRIPTOR? ImageBoundImportDescriptor => _dataDirectoryParsers.ImageBoundImportDescriptor;
+        public ImageBoundImportDescriptor? ImageBoundImportDescriptor => _dataDirectoryParsers.ImageBoundImportDescriptor;
 
         /// <summary>
         /// Access the IMAGE_TLS_DIRECTORY from the data directory.
         /// </summary>
-        public IMAGE_TLS_DIRECTORY? ImageTlsDirectory => _dataDirectoryParsers.ImageTlsDirectory;
+        public ImageTlsDirectory? ImageTlsDirectory => _dataDirectoryParsers.ImageTlsDirectory;
 
         /// <summary>
         /// Access the IMAGE_DELAY_IMPORT_DESCRIPTOR from the data directory.
         /// </summary>
-        public IMAGE_DELAY_IMPORT_DESCRIPTOR? ImageDelayImportDescriptor => _dataDirectoryParsers.ImageDelayImportDescriptor;
+        public ImageDelayImportDescriptor? ImageDelayImportDescriptor => _dataDirectoryParsers.ImageDelayImportDescriptor;
 
         /// <summary>
         /// Access the IMAGE_LOAD_CONFIG_DIRECTORY from the data directory.
         /// </summary>
-        public IMAGE_LOAD_CONFIG_DIRECTORY? ImageLoadConfigDirectory => _dataDirectoryParsers.ImageLoadConfigDirectory;
+        public ImageLoadConfigDirectory? ImageLoadConfigDirectory => _dataDirectoryParsers.ImageLoadConfigDirectory;
 
         /// <summary>
         /// Access the IMAGE_COR20_HEADER (COM Descriptor/CLI) from the data directory.
         /// </summary>
-        public IMAGE_COR20_HEADER? ImageComDescriptor => _dataDirectoryParsers.ImageComDescriptor;
+        public ImageCor20Header? ImageComDescriptor => _dataDirectoryParsers.ImageComDescriptor;
 
         /// <summary>
         ///     Signing X509 certificate if the binary was signed with
@@ -414,39 +414,39 @@ namespace PeNet
         {
             var fileType = ImageNtHeaders?.FileHeader.Machine switch
             {
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386 => "I386",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I860 => "I860",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_R3000 => "R3000",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_R4000 => "R4000",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_R10000 => "R10000",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_WCEMIPSV2 => "WCEMIPSV2",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_OLDALPHA => "OLDALPHA",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ALPHA => "ALPHA",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH3 => "SH3",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH3DSP => "SH3DSP",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH3E => "SH3E",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH4 => "SH4",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH5 => "SH5",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARM => "ARM",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_THUMB => "THUMB",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AM33 => "M33",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_POWERPC => "POWERPC",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_POWERPCFP => "POWERPCFP",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_IA64 => "IA64",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_MIPS16 => "MIPS16",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_M68K => "M68K",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ALPHA64 => "ALPHA64",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_MIPSFPU => "MIPSFPU",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_MIPSFPU16 => "MIPSFPU16",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_TRICORE => "TRICORE",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_CEF => "CEF",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_EBC => "EBC",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64 => "AMD64",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_M32R => "M32R",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_CEE => "CEE",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARM64 => "ARM64",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARMNT => "ARMNT",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_TARGET_HOST => "TARGETHOST",
+                (ushort)Constants.FileHeaderMachine.I386 => "I386",
+                (ushort)Constants.FileHeaderMachine.I860 => "I860",
+                (ushort)Constants.FileHeaderMachine.R3000 => "R3000",
+                (ushort)Constants.FileHeaderMachine.R4000 => "R4000",
+                (ushort)Constants.FileHeaderMachine.R10000 => "R10000",
+                (ushort)Constants.FileHeaderMachine.WCEMIPSV2 => "WCEMIPSV2",
+                (ushort)Constants.FileHeaderMachine.OLDALPHA => "OLDALPHA",
+                (ushort)Constants.FileHeaderMachine.ALPHA => "ALPHA",
+                (ushort)Constants.FileHeaderMachine.SH3 => "SH3",
+                (ushort)Constants.FileHeaderMachine.SH3DSP => "SH3DSP",
+                (ushort)Constants.FileHeaderMachine.SH3E => "SH3E",
+                (ushort)Constants.FileHeaderMachine.SH4 => "SH4",
+                (ushort)Constants.FileHeaderMachine.SH5 => "SH5",
+                (ushort)Constants.FileHeaderMachine.ARM => "ARM",
+                (ushort)Constants.FileHeaderMachine.THUMB => "THUMB",
+                (ushort)Constants.FileHeaderMachine.AM33 => "M33",
+                (ushort)Constants.FileHeaderMachine.POWERPC => "POWERPC",
+                (ushort)Constants.FileHeaderMachine.POWERPCFP => "POWERPCFP",
+                (ushort)Constants.FileHeaderMachine.IA64 => "IA64",
+                (ushort)Constants.FileHeaderMachine.MIPS16 => "MIPS16",
+                (ushort)Constants.FileHeaderMachine.M68K => "M68K",
+                (ushort)Constants.FileHeaderMachine.ALPHA64 => "ALPHA64",
+                (ushort)Constants.FileHeaderMachine.MIPSFPU => "MIPSFPU",
+                (ushort)Constants.FileHeaderMachine.MIPSFPU16 => "MIPSFPU16",
+                (ushort)Constants.FileHeaderMachine.TRICORE => "TRICORE",
+                (ushort)Constants.FileHeaderMachine.CEF => "CEF",
+                (ushort)Constants.FileHeaderMachine.EBC => "EBC",
+                (ushort)Constants.FileHeaderMachine.AMD64 => "AMD64",
+                (ushort)Constants.FileHeaderMachine.M32R => "M32R",
+                (ushort)Constants.FileHeaderMachine.CEE => "CEE",
+                (ushort)Constants.FileHeaderMachine.ARM64 => "ARM64",
+                (ushort)Constants.FileHeaderMachine.ARMNT => "ARMNT",
+                (ushort)Constants.FileHeaderMachine.TARGET_HOST => "TARGETHOST",
                 _ => "UNKNOWN"
             };
 

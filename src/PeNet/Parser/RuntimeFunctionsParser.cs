@@ -6,14 +6,14 @@ namespace PeNet.Parser
     {
         private readonly uint _directorySize;
         private readonly bool _is32Bit;
-        private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
+        private readonly ImageSectionHeader[] _sectionHeaders;
 
         public RuntimeFunctionsParser(
             IRawFile peFile,
             long offset,
             bool is32Bit,
             uint directorySize,
-            IMAGE_SECTION_HEADER[] sectionHeaders
+            ImageSectionHeader[] sectionHeaders
             )
             : base(peFile, offset)
         {

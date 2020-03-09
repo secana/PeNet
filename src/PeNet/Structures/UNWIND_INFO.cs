@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using PeNet.Utilities;
 
 namespace PeNet.Structures
 {

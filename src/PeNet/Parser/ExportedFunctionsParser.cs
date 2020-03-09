@@ -5,15 +5,15 @@ namespace PeNet.Parser
 {
     internal class ExportedFunctionsParser : SafeParser<ExportFunction[]>
     {
-        private readonly IMAGE_EXPORT_DIRECTORY? _exportDirectory;
-        private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
-        private readonly IMAGE_DATA_DIRECTORY _exportDataDir;
+        private readonly ImageExportDirectory? _exportDirectory;
+        private readonly ImageSectionHeader[] _sectionHeaders;
+        private readonly ImageDataDirectory _exportDataDir;
 
         internal ExportedFunctionsParser(
             IRawFile peFile,
-            IMAGE_EXPORT_DIRECTORY? exportDirectory,
-            IMAGE_SECTION_HEADER[] sectionHeaders,
-            IMAGE_DATA_DIRECTORY exportDataDir
+            ImageExportDirectory? exportDirectory,
+            ImageSectionHeader[] sectionHeaders,
+            ImageDataDirectory exportDataDir
             )
             : base(peFile, 0)
         {

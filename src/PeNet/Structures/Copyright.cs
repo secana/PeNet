@@ -1,5 +1,4 @@
-﻿using System.Text;
-namespace PeNet.Structures
+﻿namespace PeNet.Structures
 {
     /// <summary>
     ///     The copyright ASCII (not 0-terminated) string of the PE file
