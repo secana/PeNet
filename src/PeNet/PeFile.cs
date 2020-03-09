@@ -151,6 +151,43 @@ namespace PeNet
         public bool IsSignatureValid => Authenticode?.IsAuthenticodeValid ?? false;
 
         /// <summary>
+        ///     Checks if cert is from a trusted CA with a valid certificate chain.
+        /// </summary>
+        /// <param name="filePath">Path to a PE file.</param>
+        /// <param name="useOnlineCRL">Check certificate chain online or offline.</param>
+        /// <returns>True if cert chain is valid and from a trusted CA.</returns>
+        public bool IsValidCertChain(bool useOnlineCRL)
+        {
+            if (Authenticode?.SigningCertificate == null)
+                return false;
+
+            return IsValidCertChain(Authenticode.SigningCertificate, new TimeSpan(0,0,0,10), useOnlineCRL);
+        }
+
+        /// <summary>
+        ///     Checks if cert is from a trusted CA with a valid certificate chain.
+        /// </summary>
+        /// <param name="cert">X509 Certificate</param>
+        /// <param name="urlRetrievalTimeout">Timeout to validate the certificate online.</param>
+        /// <param name="useOnlineCRL">If true, uses online certificate revocation lists, else on the local CRL.</param>
+        /// <param name="excludeRoot">True if the root certificate should not be validated. False if the whole chain should be validated.</param>
+        /// <returns>True if cert chain is valid and from a trusted CA.</returns>
+        public bool IsValidCertChain(X509Certificate2? cert, TimeSpan urlRetrievalTimeout, bool useOnlineCRL = true, bool excludeRoot = true)
+        {
+            var chain = new X509Chain
+            {
+                ChainPolicy =
+                {
+                    RevocationFlag      = excludeRoot ? X509RevocationFlag.ExcludeRoot : X509RevocationFlag.EntireChain,
+                    RevocationMode      = useOnlineCRL ? X509RevocationMode.Online : X509RevocationMode.Offline,
+                    UrlRetrievalTimeout = urlRetrievalTimeout,
+                    VerificationFlags   = X509VerificationFlags.NoFlag
+                }
+            };
+            return chain.Build(cert);
+        }
+
+        /// <summary>
         /// Information about a possible Authenticode binary signature.
         /// </summary>
         public AuthenticodeInfo? Authenticode => _authenticodeParser.ParseTarget();
@@ -334,16 +371,6 @@ namespace PeNet
         ///     Returns the file size in bytes.
         /// </summary>
         public long FileSize => RawFile.Length;
-
-        /// <summary>
-        ///     Checks if cert is from a trusted CA with a valid certificate chain.
-        /// </summary>
-        /// <param name="online">Check certificate chain online or off-line.</param>
-        /// <returns>True of cert chain is valid and from a trusted CA.</returns>
-        public bool IsValidCertChain(bool online)
-        {
-            return IsSigned && SignatureInformation.IsValidCertChain(PKCS7, online);
-        }
 
         /// <summary>
         ///     Get an object which holds information about
