@@ -82,12 +82,19 @@ namespace PeNet.Structures
 
         /// <summary>
         ///     Set of flags which describe the PE file in detail.
-        ///     Can be resolved with Utility.ResolveCharacteristics(characteristics).
         /// </summary>
-        public ushort Characteristics
+        public FileCharacteristics Characteristics 
+            => ResolveFileCharacteristics(PeFile.ReadUShort(Offset + 0x12));
+
+        /// <summary>
+        ///     Resolves the characteristics attribute from the COFF header to an
+        ///     object which holds all the characteristics a boolean properties.
+        /// </summary>
+        /// <param name="characteristics">File header characteristics.</param>
+        /// <returns>Object with all characteristics as boolean properties.</returns>
+        public static FileCharacteristics ResolveFileCharacteristics(ushort characteristics)
         {
-            get => PeFile.ReadUShort(Offset + 0x12);
-            set => PeFile.WriteUShort(Offset + 0x12, value);
+            return new FileCharacteristics(characteristics);
         }
 
         /// <summary>

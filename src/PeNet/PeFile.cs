@@ -116,19 +116,16 @@ namespace PeNet
         ///     Returns true if the DLL flag in the
         ///     File Header is set.
         /// </summary>
-        public bool IsDLL
-            =>
-                (ImageNtHeaders?.FileHeader.Characteristics
-                 & (ushort)Constants.FileHeaderCharacteristics.IMAGE_FILE_DLL) > 0;
+        public bool IsDll 
+            => ImageNtHeaders?.FileHeader.Characteristics.DLL ?? false;
+
 
         /// <summary>
         ///     Returns true if the Executable flag in the
         ///     File Header is set.
         /// </summary>
-        public bool IsEXE
-            =>
-                (ImageNtHeaders?.FileHeader.Characteristics &
-                 (ushort)Constants.FileHeaderCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) > 0;
+        public bool IsExe
+            => ImageNtHeaders?.FileHeader.Characteristics.ExecutableImage ?? false;
 
         /// <summary>
         ///     Returns true if the PE file is a system driver
@@ -440,11 +437,9 @@ namespace PeNet
         {
             var fileType = ImageNtHeaders?.FileHeader.MachineResolved;
 
-            if ((ImageNtHeaders?.FileHeader.Characteristics 
-                 & (ushort)Constants.FileHeaderCharacteristics.IMAGE_FILE_DLL) != 0)
+            if (ImageNtHeaders?.FileHeader.Characteristics.DLL ?? false)
                 fileType += "_DLL";
-            else if ((ImageNtHeaders?.FileHeader.Characteristics 
-                      & (ushort)Constants.FileHeaderCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) != 0)
+            else if (ImageNtHeaders?.FileHeader.Characteristics.ExecutableImage ?? false)
                 fileType += "_EXE";
             else
                 fileType += "_UNKNOWN";

@@ -9,19 +9,6 @@ namespace PeNet.Utilities
     /// </summary>
     public static class FlagResolver
     {
-        
-
-        /// <summary>
-        ///     Resolves the characteristics attribute from the COFF header to an
-        ///     object which holds all the characteristics a boolean properties.
-        /// </summary>
-        /// <param name="characteristics">File header characteristics.</param>
-        /// <returns>Object with all characteristics as boolean properties.</returns>
-        public static FileCharacteristics ResolveFileCharacteristics(ushort characteristics)
-        {
-            return new FileCharacteristics(characteristics);
-        }
-
         /// <summary>
         ///     Resolve the resource identifier of resource entries
         ///     to a human readable string with a meaning.

@@ -1343,8 +1343,8 @@
             0xff,
             0x11, // SizeOfOptionalHeader
             0x22,
-            0x33, // Characteristics
-            0x44
+            0x00, // Characteristics
+            0x20
         };
 
         public static readonly byte[] RawExportDirectory =

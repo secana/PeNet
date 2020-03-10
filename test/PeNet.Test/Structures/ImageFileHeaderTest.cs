@@ -18,7 +18,7 @@ namespace PeNet.Test.Structures
             Assert.Equal(0xbbaa9988, fileHeader.PointerToSymbolTable);
             Assert.Equal(0xffeeddcc, fileHeader.NumberOfSymbols);
             Assert.Equal((ushort) 0x2211, fileHeader.SizeOfOptionalHeader);
-            Assert.Equal((ushort) 0x4433, fileHeader.Characteristics);
+            Assert.True(fileHeader.Characteristics.DLL);
         }
     }
 }
