@@ -1,4 +1,5 @@
-﻿using PeNet.Utilities;
+﻿using PeNet.FileParser;
+using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
@@ -25,44 +26,9 @@ namespace PeNet.Structures
         public ulong ImageBaseAddress { get; }
 
         /// <summary>
-        ///     Max. 8 byte long UTF-8 string that names
-        ///     the section.
+        /// The section name as a string.
         /// </summary>
-        public byte[] Name
-        {
-            get
-            {
-                return new[]
-                {
-                    PeFile.ReadByte(Offset + 0),
-                    PeFile.ReadByte(Offset + 1),
-                    PeFile.ReadByte(Offset + 2),
-                    PeFile.ReadByte(Offset + 3),
-                    PeFile.ReadByte(Offset + 4),
-                    PeFile.ReadByte(Offset + 5),
-                    PeFile.ReadByte(Offset + 6),
-                    PeFile.ReadByte(Offset + 7)
-                };
-            }
-
-            set
-            {
-                PeFile.WriteByte(Offset, value[0]);
-                PeFile.WriteByte(Offset, value[1]);
-                PeFile.WriteByte(Offset, value[2]);
-                PeFile.WriteByte(Offset, value[3]);
-                PeFile.WriteByte(Offset, value[4]);
-                PeFile.WriteByte(Offset, value[5]);
-                PeFile.WriteByte(Offset, value[6]);
-                PeFile.WriteByte(Offset, value[7]);
-            }
-        }
-
-        /// <summary>
-        /// The section name byte array resolved to
-        /// a string.
-        /// </summary>
-        public string NameResolved => FlagResolver.ResolveSectionName(Name);
+        public string Name => PeFile.ReadAsciiString(Offset);
 
         /// <summary>
         ///     Size of the section when loaded into memory. If it's bigger than

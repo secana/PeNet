@@ -12,7 +12,7 @@ namespace PeNet.Test.Structures
         {
             var sectionHeader = new ImageSectionHeader(new BufferFile(RawStructures.RawSectionHeader), 2, 0);
 
-            Assert.Equal(".data", sectionHeader.NameResolved);
+            Assert.Equal(".data", sectionHeader.Name);
             Assert.Equal((uint) 0x33221100, sectionHeader.VirtualSize);
             Assert.Equal((uint) 0x77665544, sectionHeader.VirtualAddress);
             Assert.Equal(0xbbaa9988, sectionHeader.SizeOfRawData);

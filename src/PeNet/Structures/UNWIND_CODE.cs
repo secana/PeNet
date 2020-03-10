@@ -1,4 +1,6 @@
-﻿namespace PeNet.Structures
+﻿using PeNet.FileParser;
+
+namespace PeNet.Structures
 {
     /// <summary>
     ///     The UNWIND_CODE is a struct in

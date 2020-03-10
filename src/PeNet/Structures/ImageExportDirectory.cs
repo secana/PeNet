@@ -1,4 +1,6 @@
-﻿namespace PeNet.Structures
+﻿using PeNet.FileParser;
+
+namespace PeNet.Structures
 {
     /// <summary>
     ///     The export directory contains all exported function, symbols etc.

@@ -1,4 +1,6 @@
-﻿namespace PeNet.Structures
+﻿using PeNet.FileParser;
+
+namespace PeNet.Structures
 {
     /// <summary>
     ///     The File header contains information about the structure

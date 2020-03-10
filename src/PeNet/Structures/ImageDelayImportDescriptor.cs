@@ -1,4 +1,6 @@
-﻿namespace PeNet.Structures
+﻿using PeNet.FileParser;
+
+namespace PeNet.Structures
 {
     /// <summary>
     /// The IMAGE_DELAY_IMPORT_DESCRIPTOR describes delayed imports.

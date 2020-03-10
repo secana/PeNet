@@ -1,4 +1,6 @@
-﻿namespace PeNet.Structures
+﻿using PeNet.FileParser;
+
+namespace PeNet.Structures
 {
     /// <summary>
     /// Parsed version of the Resource data directory.

@@ -1,4 +1,5 @@
 ﻿using System;
+using PeNet.FileParser;
 
 namespace PeNet.Structures
 {

@@ -10,16 +10,6 @@ namespace PeNet.Utilities
     public static class FlagResolver
     {
         /// <summary>
-        ///     Converts the section name (UTF-8 byte array) to a string.
-        /// </summary>
-        /// <param name="name">Section name byte array.</param>
-        /// <returns>String representation of the section name.</returns>
-        public static string ResolveSectionName(byte[] name)
-        {
-            return Encoding.UTF8.GetString(name).TrimEnd((char)0);
-        }
-
-        /// <summary>
         ///     Resolves the target machine number to a string containing
         ///     the name of the target machine.
         /// </summary>
@@ -154,7 +144,7 @@ namespace PeNet.Utilities
         /// </summary>
         /// <param name="comImageFlags">Flags from IMAGE_COR20_HEADER.</param>
         /// <returns>List with resolved flag names.</returns>
-        public static List<string> ResolveCOMImageFlags(uint comImageFlags)
+        public static List<string> ResolveComImageFlags(uint comImageFlags)
         {
             var st = new List<string>();
             foreach (var flag in (DotNetConstants.COMImageFlag[])Enum.GetValues(typeof(DotNetConstants.COMImageFlag)))

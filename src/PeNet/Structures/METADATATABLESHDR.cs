@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using PeNet.FileParser;
 using PeNet.Structures.MetaDataTables;
 using PeNet.Utilities;
 

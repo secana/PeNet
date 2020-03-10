@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace PeNet
+namespace PeNet.FileParser
 {
     public interface IRawFile : IDisposable
     {

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PeNet.FileParser;
 using PeNet.Structures;
 using PeNet.Utilities;
 

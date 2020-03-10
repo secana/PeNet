@@ -9,19 +9,19 @@ namespace PeNet.Test.Utilities
         [Fact]
         public void ResolveCOMImageFlagsSingleFlags_Test()
         {
-            Assert.Equal("COMIMAGE_FLAGS_ILONLY", FlagResolver.ResolveCOMImageFlags(0x00000001).First());
-            Assert.Equal("COMIMAGE_FLAGS_32BITREQUIRED", FlagResolver.ResolveCOMImageFlags(0x00000002).First());
-            Assert.Equal("COMIMAGE_FLAGS_IL_LIBRARY", FlagResolver.ResolveCOMImageFlags(0x000000004).First());
-            Assert.Equal("COMIMAGE_FLAGS_STRONGNAMESIGNED", FlagResolver.ResolveCOMImageFlags(0x00000008).First());
-            Assert.Equal("COMIMAGE_FLAGS_NATIVE_ENTRYPOINT", FlagResolver.ResolveCOMImageFlags(0x00000010).First());
-            Assert.Equal("COMIMAGE_FLAGS_TRACKDEBUGDATA", FlagResolver.ResolveCOMImageFlags(0x00010000).First());
+            Assert.Equal("COMIMAGE_FLAGS_ILONLY", FlagResolver.ResolveComImageFlags(0x00000001).First());
+            Assert.Equal("COMIMAGE_FLAGS_32BITREQUIRED", FlagResolver.ResolveComImageFlags(0x00000002).First());
+            Assert.Equal("COMIMAGE_FLAGS_IL_LIBRARY", FlagResolver.ResolveComImageFlags(0x000000004).First());
+            Assert.Equal("COMIMAGE_FLAGS_STRONGNAMESIGNED", FlagResolver.ResolveComImageFlags(0x00000008).First());
+            Assert.Equal("COMIMAGE_FLAGS_NATIVE_ENTRYPOINT", FlagResolver.ResolveComImageFlags(0x00000010).First());
+            Assert.Equal("COMIMAGE_FLAGS_TRACKDEBUGDATA", FlagResolver.ResolveComImageFlags(0x00010000).First());
         }
 
         [Fact]
         public void ResolveCOMIMagesFlagsMultipleFlags_Test()
         {
             uint flags = 0x00010005;
-            var resolved = FlagResolver.ResolveCOMImageFlags(flags);
+            var resolved = FlagResolver.ResolveComImageFlags(flags);
 
             Assert.Equal(3, resolved.Count);
             Assert.Equal("COMIMAGE_FLAGS_ILONLY", resolved[0]);

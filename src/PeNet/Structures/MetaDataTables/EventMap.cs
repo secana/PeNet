@@ -1,4 +1,6 @@
-﻿namespace PeNet.Structures.MetaDataTables
+﻿using PeNet.FileParser;
+
+namespace PeNet.Structures.MetaDataTables
 {
     public class EventMap : AbstractTable
     {
