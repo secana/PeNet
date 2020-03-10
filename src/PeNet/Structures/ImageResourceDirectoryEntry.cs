@@ -24,18 +24,18 @@ namespace PeNet.Structures
             {
                 if (IsIdEntry)
                 {
-                    ResolvedName = FlagResolver.ResolveResourceId(ID);
+                    NameResolved = ResolveResourceId(ID);
                 }
                 else if (IsNamedEntry)
                 {
                     var nameAddress = resourceDirOffset + (Name & 0x7FFFFFFF);
                     var unicodeName = new ImageResourceDirStringU(PeFile, nameAddress);
-                    ResolvedName = unicodeName.NameString;
+                    NameResolved = unicodeName.NameString;
                 }
             }
             catch (Exception)
             {
-                ResolvedName = null;
+                NameResolved = null;
             }
         }
 
@@ -60,9 +60,10 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     The resolved name as a string if its a named resource.
+        ///     The resolved name as a string if it's a named resource
+        ///     or a known resource ID.
         /// </summary>
-        public string? ResolvedName { get; }
+        public string? NameResolved { get; }
 
         /// <summary>
         ///     The ID if its a ID resource.
@@ -118,5 +119,146 @@ namespace PeNet.Structures
         ///     True if the entry is a resource with an ID instead of a name.
         /// </summary>
         public bool IsIdEntry => !IsNamedEntry;
+
+        /// <summary>
+        ///     Resolve the resource identifier of resource entries
+        ///     to a human readable string with a meaning.
+        /// </summary>
+        /// <param name="id">Resource identifier.</param>
+        /// <returns>String representation of the ID.</returns>
+        public static string ResolveResourceId(uint id)
+            => id switch
+            {
+                (uint)ResourceGroupIDType.Cursor => "Cursor",
+                (uint)ResourceGroupIDType.Bitmap => "Bitmap",
+                (uint)ResourceGroupIDType.Icon => "Icon",
+                (uint)ResourceGroupIDType.Menu => "Menu",
+                (uint)ResourceGroupIDType.Dialog => "Dialog",
+                (uint)ResourceGroupIDType.String => "String",
+                (uint)ResourceGroupIDType.FontDirectory => "FontDirectory",
+                (uint)ResourceGroupIDType.Fonst => "Fonst",
+                (uint)ResourceGroupIDType.Accelerator => "Accelerator",
+                (uint)ResourceGroupIDType.RcData => "RcData",
+                (uint)ResourceGroupIDType.MessageTable => "MessageTable",
+                (uint)ResourceGroupIDType.GroupIcon => "GroupIcon",
+                (uint)ResourceGroupIDType.Version => "Version",
+                (uint)ResourceGroupIDType.DlgInclude => "DlgInclude",
+                (uint)ResourceGroupIDType.PlugAndPlay => "PlugAndPlay",
+                (uint)ResourceGroupIDType.VXD => "VXD",
+                (uint)ResourceGroupIDType.AnimatedCurser => "AnimatedCurser",
+                (uint)ResourceGroupIDType.AnimatedIcon => "AnimatedIcon",
+                (uint)ResourceGroupIDType.HTML => "HTML",
+                (uint)ResourceGroupIDType.Manifest => "Manifest",
+                _ => "unknown"
+            };
     }
+
+
+    /// <summary>
+    ///     Mapping from Resources Group ID to a meaningful
+    ///     string. Used for ID resources (opposite to named resource).
+    /// </summary>
+    public enum ResourceGroupIDType : uint
+    {
+        /// <summary>
+        ///     Cursor resource.
+        /// </summary>
+        Cursor = 1,
+
+        /// <summary>
+        ///     Bitmap resource.
+        /// </summary>
+        Bitmap = 2,
+
+        /// <summary>
+        ///     Icon resource.
+        /// </summary>
+        Icon = 3,
+
+        /// <summary>
+        ///     Menu resource.
+        /// </summary>
+        Menu = 4,
+
+        /// <summary>
+        ///     Dialog resource.
+        /// </summary>
+        Dialog = 5,
+
+        /// <summary>
+        ///     String resource.
+        /// </summary>
+        String = 6,
+
+        /// <summary>
+        ///     Font Directory resource.
+        /// </summary>
+        FontDirectory = 7,
+
+        /// <summary>
+        ///     Fonst resource.
+        /// </summary>
+        Fonst = 8,
+
+        /// <summary>
+        ///     Accelerator resource.
+        /// </summary>
+        Accelerator = 9,
+
+        /// <summary>
+        ///     RC Data resource.
+        /// </summary>
+        RcData = 10,
+
+        /// <summary>
+        ///     Message Table resource.
+        /// </summary>
+        MessageTable = 11,
+
+        /// <summary>
+        ///     Group Icon resource.
+        /// </summary>
+        GroupIcon = 14,
+
+        /// <summary>
+        ///     Version resource.
+        /// </summary>
+        Version = 16,
+
+        /// <summary>
+        ///     Dlg Include resource.
+        /// </summary>
+        DlgInclude = 17,
+
+        /// <summary>
+        ///     Plug and Play resource.
+        /// </summary>
+        PlugAndPlay = 19,
+
+        /// <summary>
+        ///     VXD resource.
+        /// </summary>
+        VXD = 20,
+
+        /// <summary>
+        ///     Animated Cursor resource.
+        /// </summary>
+        AnimatedCurser = 21,
+
+        /// <summary>
+        ///     Animated Icon resource.
+        /// </summary>
+        AnimatedIcon = 22,
+
+        /// <summary>
+        ///     HTML resource.
+        /// </summary>
+        HTML = 23,
+
+        /// <summary>
+        ///     Manifest resource.
+        /// </summary>
+        Manifest = 24
+    }
+
 }

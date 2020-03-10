@@ -9,37 +9,7 @@ namespace PeNet.Utilities
     /// </summary>
     public static class FlagResolver
     {
-        /// <summary>
-        ///     Resolve the resource identifier of resource entries
-        ///     to a human readable string with a meaning.
-        /// </summary>
-        /// <param name="id">Resource identifier.</param>
-        /// <returns>String representation of the ID.</returns>
-        public static string ResolveResourceId(uint id)
-            => id switch
-            {
-                (uint)Constants.ResourceGroupIDs.Cursor => "Cursor",
-                (uint)Constants.ResourceGroupIDs.Bitmap => "Bitmap",
-                (uint)Constants.ResourceGroupIDs.Icon => "Icon",
-                (uint)Constants.ResourceGroupIDs.Menu => "Menu",
-                (uint)Constants.ResourceGroupIDs.Dialog => "Dialog",
-                (uint)Constants.ResourceGroupIDs.String => "String",
-                (uint)Constants.ResourceGroupIDs.FontDirectory => "FontDirectory",
-                (uint)Constants.ResourceGroupIDs.Fonst => "Fonst",
-                (uint)Constants.ResourceGroupIDs.Accelerator => "Accelerator",
-                (uint)Constants.ResourceGroupIDs.RcData => "RcData",
-                (uint)Constants.ResourceGroupIDs.MessageTable => "MessageTable",
-                (uint)Constants.ResourceGroupIDs.GroupIcon => "GroupIcon",
-                (uint)Constants.ResourceGroupIDs.Version => "Version",
-                (uint)Constants.ResourceGroupIDs.DlgInclude => "DlgInclude",
-                (uint)Constants.ResourceGroupIDs.PlugAndPlay => "PlugAndPlay",
-                (uint)Constants.ResourceGroupIDs.VXD => "VXD",
-                (uint)Constants.ResourceGroupIDs.AnimatedCurser => "AnimatedCurser",
-                (uint)Constants.ResourceGroupIDs.AnimatedIcon => "AnimatedIcon",
-                (uint)Constants.ResourceGroupIDs.HTML => "HTML",
-                (uint)Constants.ResourceGroupIDs.Manifest => "Manifest",
-                _ => "unknown"
-            };
+        
 
         /// <summary>
         ///     Resolve the subsystem attribute to a human readable string.
