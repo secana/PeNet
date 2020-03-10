@@ -79,7 +79,7 @@ namespace PeNet
         private ResourcesParser? InitResourcesParser()
         {
             var vsVersionOffset = ImageResourceDirectory
-                ?.DirectoryEntries?.FirstOrDefault(e => e?.ID == (int) Constants.ResourceGroupIDs.Version) // Root
+                ?.DirectoryEntries?.FirstOrDefault(e => e?.ID == (int) ResourceGroupIdType.Version) // Root
                 ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Type
                 ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Name
                 ?.ResourceDataEntry?.OffsetToData; // Language

@@ -129,26 +129,26 @@ namespace PeNet.Structures
         public static string ResolveResourceId(uint id)
             => id switch
             {
-                (uint)ResourceGroupIDType.Cursor => "Cursor",
-                (uint)ResourceGroupIDType.Bitmap => "Bitmap",
-                (uint)ResourceGroupIDType.Icon => "Icon",
-                (uint)ResourceGroupIDType.Menu => "Menu",
-                (uint)ResourceGroupIDType.Dialog => "Dialog",
-                (uint)ResourceGroupIDType.String => "String",
-                (uint)ResourceGroupIDType.FontDirectory => "FontDirectory",
-                (uint)ResourceGroupIDType.Fonst => "Fonst",
-                (uint)ResourceGroupIDType.Accelerator => "Accelerator",
-                (uint)ResourceGroupIDType.RcData => "RcData",
-                (uint)ResourceGroupIDType.MessageTable => "MessageTable",
-                (uint)ResourceGroupIDType.GroupIcon => "GroupIcon",
-                (uint)ResourceGroupIDType.Version => "Version",
-                (uint)ResourceGroupIDType.DlgInclude => "DlgInclude",
-                (uint)ResourceGroupIDType.PlugAndPlay => "PlugAndPlay",
-                (uint)ResourceGroupIDType.VXD => "VXD",
-                (uint)ResourceGroupIDType.AnimatedCurser => "AnimatedCurser",
-                (uint)ResourceGroupIDType.AnimatedIcon => "AnimatedIcon",
-                (uint)ResourceGroupIDType.HTML => "HTML",
-                (uint)ResourceGroupIDType.Manifest => "Manifest",
+                (uint)ResourceGroupIdType.Cursor => "Cursor",
+                (uint)ResourceGroupIdType.Bitmap => "Bitmap",
+                (uint)ResourceGroupIdType.Icon => "Icon",
+                (uint)ResourceGroupIdType.Menu => "Menu",
+                (uint)ResourceGroupIdType.Dialog => "Dialog",
+                (uint)ResourceGroupIdType.String => "String",
+                (uint)ResourceGroupIdType.FontDirectory => "FontDirectory",
+                (uint)ResourceGroupIdType.Fonst => "Fonst",
+                (uint)ResourceGroupIdType.Accelerator => "Accelerator",
+                (uint)ResourceGroupIdType.RcData => "RcData",
+                (uint)ResourceGroupIdType.MessageTable => "MessageTable",
+                (uint)ResourceGroupIdType.GroupIcon => "GroupIcon",
+                (uint)ResourceGroupIdType.Version => "Version",
+                (uint)ResourceGroupIdType.DlgInclude => "DlgInclude",
+                (uint)ResourceGroupIdType.PlugAndPlay => "PlugAndPlay",
+                (uint)ResourceGroupIdType.VXD => "VXD",
+                (uint)ResourceGroupIdType.AnimatedCurser => "AnimatedCurser",
+                (uint)ResourceGroupIdType.AnimatedIcon => "AnimatedIcon",
+                (uint)ResourceGroupIdType.HTML => "HTML",
+                (uint)ResourceGroupIdType.Manifest => "Manifest",
                 _ => "unknown"
             };
     }
@@ -158,7 +158,7 @@ namespace PeNet.Structures
     ///     Mapping from Resources Group ID to a meaningful
     ///     string. Used for ID resources (opposite to named resource).
     /// </summary>
-    public enum ResourceGroupIDType : uint
+    public enum ResourceGroupIdType : uint
     {
         /// <summary>
         ///     Cursor resource.
