@@ -1325,8 +1325,8 @@
         {
             0xff, // Junk
             0xff,
-            0x00, // Machine
-            0x11,
+            0x64, // Machine
+            0x86,
             0x22, // NumberOfSections
             0x33,
             0x44, // TimeDateStamp

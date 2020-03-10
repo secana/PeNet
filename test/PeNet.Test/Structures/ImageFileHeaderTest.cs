@@ -11,7 +11,8 @@ namespace PeNet.Test.Structures
         public void ImageFileHeaderConstructorWorks_Test()
         {
             var fileHeader = new ImageFileHeader(new BufferFile(RawStructures.RawFileHeader), 2);
-            Assert.Equal((ushort) 0x1100, fileHeader.Machine);
+            Assert.Equal(MachineType.AMD64, fileHeader.Machine);
+            Assert.Equal("AMD64", fileHeader.MachineResolved);
             Assert.Equal((ushort) 0x3322, fileHeader.NumberOfSections);
             Assert.Equal((uint) 0x77665544, fileHeader.TimeDateStamp);
             Assert.Equal(0xbbaa9988, fileHeader.PointerToSymbolTable);

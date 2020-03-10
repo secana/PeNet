@@ -9,50 +9,7 @@ namespace PeNet.Utilities
     /// </summary>
     public static class FlagResolver
     {
-        /// <summary>
-        ///     Resolves the target machine number to a string containing
-        ///     the name of the target machine.
-        /// </summary>
-        /// <param name="targetMachine">Target machine value from the COFF header.</param>
-        /// <returns>Name of the target machine as string.</returns>
-        public static string ResolveTargetMachine(ushort targetMachine)
-            => targetMachine switch
-            {
-                (ushort)Constants.FileHeaderMachine.I386 => "Intel 386",
-                (ushort)Constants.FileHeaderMachine.I860 => "Intel i860",
-                (ushort)Constants.FileHeaderMachine.R3000 => "MIPS R3000",
-                (ushort)Constants.FileHeaderMachine.R4000 => "MIPS little endian (R4000)",
-                (ushort)Constants.FileHeaderMachine.R10000 => "MIPS R10000",
-                (ushort)Constants.FileHeaderMachine.WCEMIPSV2 => "MIPS little endian WCI v2",
-                (ushort)Constants.FileHeaderMachine.OLDALPHA => "old Alpha AXP",
-                (ushort)Constants.FileHeaderMachine.ALPHA => "Alpha AXP",
-                (ushort)Constants.FileHeaderMachine.SH3 => "Hitachi SH3",
-                (ushort)Constants.FileHeaderMachine.SH3DSP => "Hitachi SH3 DSP",
-                (ushort)Constants.FileHeaderMachine.SH3E => "Hitachi SH3E",
-                (ushort)Constants.FileHeaderMachine.SH4 => "Hitachi SH4",
-                (ushort)Constants.FileHeaderMachine.SH5 => "Hitachi SH5",
-                (ushort)Constants.FileHeaderMachine.ARM => "ARM little endian",
-                (ushort)Constants.FileHeaderMachine.THUMB => "Thumb",
-                (ushort)Constants.FileHeaderMachine.AM33 => "Matsushita AM33",
-                (ushort)Constants.FileHeaderMachine.POWERPC => "PowerPC little endian",
-                (ushort)Constants.FileHeaderMachine.POWERPCFP => "PowerPC with floating point support",
-                (ushort)Constants.FileHeaderMachine.IA64 => "Intel IA64",
-                (ushort)Constants.FileHeaderMachine.MIPS16 => "MIPS16",
-                (ushort)Constants.FileHeaderMachine.M68K => "Motorola 68000 series",
-                (ushort)Constants.FileHeaderMachine.ALPHA64 => "Alpha AXP 64-bit",
-                (ushort)Constants.FileHeaderMachine.MIPSFPU => "MIPS with FPU",
-                (ushort)Constants.FileHeaderMachine.TRICORE => "Tricore",
-                (ushort)Constants.FileHeaderMachine.CEF => "CEF",
-                (ushort)Constants.FileHeaderMachine.MIPSFPU16 => "MIPS16 with FPU",
-                (ushort)Constants.FileHeaderMachine.EBC => "EFI Byte Code",
-                (ushort)Constants.FileHeaderMachine.AMD64 => "AMD AMD64",
-                (ushort)Constants.FileHeaderMachine.M32R => "Mitsubishi M32R little endian",
-                (ushort)Constants.FileHeaderMachine.CEE => "clr pure MSIL",
-                (ushort)Constants.FileHeaderMachine.ARM64 => "ARM64 Little-Endian",
-                (ushort)Constants.FileHeaderMachine.ARMNT => "ARM Thumb-2 Little-Endian",
-                (ushort)Constants.FileHeaderMachine.TARGET_HOST => "Interacts with the host and not a WOW64 guest",
-                _ => "unknown"
-            };
+        
 
         /// <summary>
         ///     Resolves the characteristics attribute from the COFF header to an

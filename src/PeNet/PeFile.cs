@@ -9,7 +9,6 @@ using PeNet.Authenticode;
 using PeNet.FileParser;
 using PeNet.ImpHash;
 using PeNet.Structures;
-using PeNet.Utilities;
 
 namespace PeNet
 {
@@ -201,7 +200,7 @@ namespace PeNet
         ///     Returns true if the PE file is x32.
         /// </summary>
         public bool Is32Bit => ImageNtHeaders?.FileHeader.Machine
-                               == (ushort)Constants.FileHeaderMachine.I386;
+                               == MachineType.I386;
         /// <summary>
         ///     Access the IMAGE_DOS_HEADER of the PE file.
         /// </summary>
@@ -439,43 +438,7 @@ namespace PeNet
         /// </returns>
         public string GetFileType()
         {
-            var fileType = ImageNtHeaders?.FileHeader.Machine switch
-            {
-                (ushort)Constants.FileHeaderMachine.I386 => "I386",
-                (ushort)Constants.FileHeaderMachine.I860 => "I860",
-                (ushort)Constants.FileHeaderMachine.R3000 => "R3000",
-                (ushort)Constants.FileHeaderMachine.R4000 => "R4000",
-                (ushort)Constants.FileHeaderMachine.R10000 => "R10000",
-                (ushort)Constants.FileHeaderMachine.WCEMIPSV2 => "WCEMIPSV2",
-                (ushort)Constants.FileHeaderMachine.OLDALPHA => "OLDALPHA",
-                (ushort)Constants.FileHeaderMachine.ALPHA => "ALPHA",
-                (ushort)Constants.FileHeaderMachine.SH3 => "SH3",
-                (ushort)Constants.FileHeaderMachine.SH3DSP => "SH3DSP",
-                (ushort)Constants.FileHeaderMachine.SH3E => "SH3E",
-                (ushort)Constants.FileHeaderMachine.SH4 => "SH4",
-                (ushort)Constants.FileHeaderMachine.SH5 => "SH5",
-                (ushort)Constants.FileHeaderMachine.ARM => "ARM",
-                (ushort)Constants.FileHeaderMachine.THUMB => "THUMB",
-                (ushort)Constants.FileHeaderMachine.AM33 => "M33",
-                (ushort)Constants.FileHeaderMachine.POWERPC => "POWERPC",
-                (ushort)Constants.FileHeaderMachine.POWERPCFP => "POWERPCFP",
-                (ushort)Constants.FileHeaderMachine.IA64 => "IA64",
-                (ushort)Constants.FileHeaderMachine.MIPS16 => "MIPS16",
-                (ushort)Constants.FileHeaderMachine.M68K => "M68K",
-                (ushort)Constants.FileHeaderMachine.ALPHA64 => "ALPHA64",
-                (ushort)Constants.FileHeaderMachine.MIPSFPU => "MIPSFPU",
-                (ushort)Constants.FileHeaderMachine.MIPSFPU16 => "MIPSFPU16",
-                (ushort)Constants.FileHeaderMachine.TRICORE => "TRICORE",
-                (ushort)Constants.FileHeaderMachine.CEF => "CEF",
-                (ushort)Constants.FileHeaderMachine.EBC => "EBC",
-                (ushort)Constants.FileHeaderMachine.AMD64 => "AMD64",
-                (ushort)Constants.FileHeaderMachine.M32R => "M32R",
-                (ushort)Constants.FileHeaderMachine.CEE => "CEE",
-                (ushort)Constants.FileHeaderMachine.ARM64 => "ARM64",
-                (ushort)Constants.FileHeaderMachine.ARMNT => "ARMNT",
-                (ushort)Constants.FileHeaderMachine.TARGET_HOST => "TARGETHOST",
-                _ => "UNKNOWN"
-            };
+            var fileType = ImageNtHeaders?.FileHeader.MachineResolved;
 
             if ((ImageNtHeaders?.FileHeader.Characteristics 
                  & (ushort)Constants.FileHeaderCharacteristics.IMAGE_FILE_DLL) != 0)

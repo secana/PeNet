@@ -28,7 +28,7 @@ namespace PeNet.Structures
         {
             FileHeader = new ImageFileHeader(peFile, offset + 0x4);
 
-            var is32Bit = FileHeader.Machine == (ushort) Constants.FileHeaderMachine.I386;
+            var is32Bit = FileHeader.Machine == MachineType.I386;
 
             OptionalHeader = new ImageOptionalHeader(peFile, offset + 0x18, !is32Bit);
         }
