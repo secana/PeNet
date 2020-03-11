@@ -97,17 +97,17 @@ namespace PeNet
         /// <summary>
         /// Try to parse the PE file.
         /// </summary>
-        /// <param name="buf">Buffer containing a possible PE file.</param>
+        /// <param name="buff">Buffer containing a possible PE file.</param>
         /// <param name="peFile">Parsed PE file or Null.</param>
         /// <returns>True if parable PE file and false if not.</returns>
-        public static bool TryParse(byte[] buf, out PeFile? peFile)
+        public static bool TryParse(byte[] buff, out PeFile? peFile)
         {
             peFile = null;
 
-            if (!IsPEFile(buf))
+            if (!IsPEFile(buff))
                 return false;
 
-            try { peFile = new PeFile(buf); }
+            try { peFile = new PeFile(buff); }
             catch { return false; }
 
             return true;
