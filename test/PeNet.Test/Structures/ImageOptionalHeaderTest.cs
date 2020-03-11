@@ -42,7 +42,7 @@ namespace PeNet.Test.Structures
 
         private void AssertCommonOptHeaderProperties(ImageOptionalHeader optHeader)
         {
-            Assert.Equal((ushort) 0x010b, optHeader.Magic);
+            Assert.Equal(MagicType.Bit32, optHeader.Magic);
             Assert.Equal((ushort) 0x11, optHeader.MajorLinkerVersion);
             Assert.Equal((ushort) 0x33, optHeader.MinorLinkerVersion);
             Assert.Equal((uint) 0x22115544, optHeader.SizeOfCode);

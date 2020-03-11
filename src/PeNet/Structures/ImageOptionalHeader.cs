@@ -41,10 +41,10 @@ namespace PeNet.Structures
         /// <summary>
         ///     Flag if the file is x32, x64 or a ROM image.
         /// </summary>
-        public ushort Magic
+        public MagicType Magic
         {
-            get => PeFile.ReadUShort(Offset);
-            set => PeFile.WriteUShort(Offset, value);
+            get => (MagicType) PeFile.ReadUShort(Offset);
+            set => PeFile.WriteUShort(Offset, (ushort) value);
         }
 
         /// <summary>
@@ -474,5 +474,27 @@ namespace PeNet.Structures
         ///     Terminal server aware.
         /// </summary>
         TerminalServerAware = 0x8000
+    }
+
+    /// <summary>
+    ///     Constants for the Optional header magic property.
+    /// </summary>
+    [Flags]
+    public enum MagicType : ushort
+    {
+        /// <summary>
+        ///     The file is an 32 bit executable.
+        /// </summary>
+        Bit32 = 0x10b,
+
+        /// <summary>
+        ///     The file is an 64 bit executable.
+        /// </summary>
+        Bit64 = 0x20b,
+
+        /// <summary>
+        ///     The file is a ROM image.
+        /// </summary>
+        Rom = 0x107
     }
 }
