@@ -12,23 +12,7 @@ namespace PeNet.Utilities
 
         
 
-        /// <summary>
-        ///     Resolves the section flags to human readable strings.
-        /// </summary>
-        /// <param name="sectionFlags">Sections flags from the SectionHeader object.</param>
-        /// <returns>List with flag names for the section.</returns>
-        public static List<string> ResolveSectionFlags(uint sectionFlags)
-        {
-            var st = new List<string>();
-            foreach (var flag in (Constants.SectionFlags[])Enum.GetValues(typeof(Constants.SectionFlags)))
-            {
-                if ((sectionFlags & (uint)flag) == (uint)flag)
-                {
-                    st.Add(flag.ToString());
-                }
-            }
-            return st;
-        }
+        
 
         /// <summary>
         ///     Resolve flags from the ImageCor20Header COM+ 2 (CLI) header to

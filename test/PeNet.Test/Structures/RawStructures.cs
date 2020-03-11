@@ -637,9 +637,9 @@
             0xaa,
             0xbb, // NumberOfLinenumbers
             0xcc,
-            0xdd, // Characteristics
-            0xee,
-            0xff,
+            0x20, // Characteristics
+            0x08,
+            0x00,
             0x00
         };
 
