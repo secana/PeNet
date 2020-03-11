@@ -1,5 +1,4 @@
 ﻿using PeNet.FileParser;
-using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
@@ -12,7 +11,7 @@ namespace PeNet.Structures
         ///     Create a new ImageSectionHeader object.
         /// </summary>
         /// <param name="imageBaseAddress">Base address of the image from the Optional header.</param>
-        /// <param name="buff">A PE file.</param>
+        /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the section header.</param>
         public ImageSectionHeader(IRawFile peFile, long offset, ulong imageBaseAddress)
             : base(peFile, offset)
