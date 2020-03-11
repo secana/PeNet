@@ -2,7 +2,7 @@
 
 namespace PeNet.Test.Structures
 {
-    public class Resources_Test
+    public class ResourcesTest
     {
         [Fact]
         public void Resources_GivenAPEFile1_VsVersionInfoSet()

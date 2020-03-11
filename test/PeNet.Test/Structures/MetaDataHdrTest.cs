@@ -1,36 +1,37 @@
 ﻿using System.Linq;
+using PeNet.FileParser;
 using PeNet.Structures;
 using Xunit;
 
-namespace PeNet.Test.Utilities
+namespace PeNet.Test.Structures
 {
-    public class FlagResolverTest
+    
+    public class MetaDataHdrTest
     {
         [Fact]
-        public void ResolveCOMImageFlagsSingleFlags_Test()
+        public void MetaDataHdrConstructorWorks_Test()
         {
-            Assert.Equal("IlOnly", ImageCor20Header.ResolveComFlags(ComFlagsType.IlOnly).First());
-            Assert.Equal("BitRequired32", ImageCor20Header.ResolveComFlags(ComFlagsType.BitRequired32).First());
-            Assert.Equal("IlLibrary", ImageCor20Header.ResolveComFlags(ComFlagsType.IlLibrary).First());
-            Assert.Equal("StrongNameSigned", ImageCor20Header.ResolveComFlags(ComFlagsType.StrongNameSigned).First());
-            Assert.Equal("NativeEntrypoint", ImageCor20Header.ResolveComFlags(ComFlagsType.NativeEntrypoint).First());
-            Assert.Equal("TrackDebugData", ImageCor20Header.ResolveComFlags(ComFlagsType.TrackDebugData).First());
+            var metaDataHdr = new MetaDataHdr(new BufferFile(RawDotNetStructures.RawMetaDataHeader), 2);
+            Assert.Equal((uint) 0x55443322, metaDataHdr.Signature);
+            Assert.Equal((ushort) 0x7766, metaDataHdr.MajorVersion);
+            Assert.Equal((ushort) 0x9988, metaDataHdr.MinorVersion);
+            Assert.Equal((uint) 0xddccbbaa, metaDataHdr.Reserved);
+            Assert.Equal((uint) 0x0000000C, metaDataHdr.VersionLength);
+            Assert.Equal("v4.0.30319", metaDataHdr.Version);
+            Assert.Equal((ushort) 0x2211, metaDataHdr.Flags);
+            Assert.Equal((ushort) 0x0002, metaDataHdr.Streams);
+
+            Assert.Equal(2, metaDataHdr.MetaDataStreamsHdrs.Length);
+            Assert.Equal((uint) 0x6C, metaDataHdr.MetaDataStreamsHdrs[0].RelOffset);
+            Assert.Equal((uint) 0x1804, metaDataHdr.MetaDataStreamsHdrs[0].Size);
+            Assert.Equal("#~", metaDataHdr.MetaDataStreamsHdrs[0].StreamName);
+            Assert.Equal((uint) 0x1870, metaDataHdr.MetaDataStreamsHdrs[1].RelOffset);
+            Assert.Equal((uint) 0x1468, metaDataHdr.MetaDataStreamsHdrs[1].Size);
+            Assert.Equal("#Strings", metaDataHdr.MetaDataStreamsHdrs[1].StreamName);
         }
 
         [Fact]
-        public void ResolveCOMIMagesFlagsMultipleFlags_Test()
-        {
-            const uint flags = 0x00010005;
-            var resolved = ImageCor20Header.ResolveComFlags((ComFlagsType) flags);
-
-            Assert.Equal(3, resolved.Count);
-            Assert.Equal("IlOnly", resolved[0]);
-            Assert.Equal("IlLibrary", resolved[1]);
-            Assert.Equal("TrackDebugData", resolved[2]);
-        }
-
-        [Fact]
-        public void ResolveMaskValidSingleFlags_Test()
+        public void ResolveMaskValid_Single_Test()
         {
             Assert.Equal("Module", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.Module).First());
             Assert.Equal("TypeRef", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.TypeRef).First());
@@ -72,9 +73,9 @@ namespace PeNet.Test.Utilities
         }
 
         [Fact]
-        public void ResolveMaskValidMutlipleFlags_Test()
+        public void ResolveMaskValid_Multiple_Test()
         {
-            var multipleFlags = (MaskValidType) 0x00000A0909A21F57;
+            var multipleFlags = (MaskValidType)0x00000A0909A21F57;
             var tables = MetaDataTablesHdr.ResolveMaskValid(multipleFlags);
 
             Assert.Equal(19, tables.Count);

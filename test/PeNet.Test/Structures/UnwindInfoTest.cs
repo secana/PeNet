@@ -5,7 +5,7 @@ using Xunit;
 namespace PeNet.Test.Structures
 {
     
-    public class UNWIND_INFO_Test
+    public class UnwindInfoTest
     {
         [Fact]
         public void UnwindInfoConstructorWorks_Test()

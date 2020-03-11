@@ -4,7 +4,7 @@ using Xunit;
 
 namespace PeNet.Test.Structures
 {
-    public class NetCoreConsole_Test
+    public class NetCoreConsoleTest
     {
         private readonly PeFile _peFile = new PeFile(@"./Binaries/NetCoreConsole.dll");
 

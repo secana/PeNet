@@ -1,4 +1,5 @@
-﻿using PeNet.FileParser;
+﻿using System.Linq;
+using PeNet.FileParser;
 using PeNet.Structures;
 using Xunit;
 
@@ -34,6 +35,29 @@ namespace PeNet.Test.Structures
             Assert.Equal((uint) 0x55443322, imageCor20Header.ExportAddressTableJumps.Size);
             Assert.Equal((uint) 0x2211ffee, imageCor20Header.ManagedNativeHeader.VirtualAddress);
             Assert.Equal((uint) 0x66554433, imageCor20Header.ManagedNativeHeader.Size);
+        }
+
+        [Fact]
+        public void ResolveComFlags_Single_Test()
+        {
+            Assert.Equal("IlOnly", ImageCor20Header.ResolveComFlags(ComFlagsType.IlOnly).First());
+            Assert.Equal("BitRequired32", ImageCor20Header.ResolveComFlags(ComFlagsType.BitRequired32).First());
+            Assert.Equal("IlLibrary", ImageCor20Header.ResolveComFlags(ComFlagsType.IlLibrary).First());
+            Assert.Equal("StrongNameSigned", ImageCor20Header.ResolveComFlags(ComFlagsType.StrongNameSigned).First());
+            Assert.Equal("NativeEntrypoint", ImageCor20Header.ResolveComFlags(ComFlagsType.NativeEntrypoint).First());
+            Assert.Equal("TrackDebugData", ImageCor20Header.ResolveComFlags(ComFlagsType.TrackDebugData).First());
+        }
+
+        [Fact]
+        public void ResolveComFlags_Multiple_Test()
+        {
+            const uint flags = 0x00010005;
+            var resolved = ImageCor20Header.ResolveComFlags((ComFlagsType)flags);
+
+            Assert.Equal(3, resolved.Count);
+            Assert.Equal("IlOnly", resolved[0]);
+            Assert.Equal("IlLibrary", resolved[1]);
+            Assert.Equal("TrackDebugData", resolved[2]);
         }
     }
 }

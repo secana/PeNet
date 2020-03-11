@@ -5,7 +5,7 @@ using Xunit;
 namespace PeNet.Test.Structures
 {
     
-    public class METADATATABLESHDR_Test
+    public class MetaDataTablesHdrTest
     {
         [Fact]
         public void MetaDataTablesHdrConstructorWorks_Test()

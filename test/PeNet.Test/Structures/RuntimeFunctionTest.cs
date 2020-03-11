@@ -5,7 +5,7 @@ using Xunit;
 namespace PeNet.Test.Structures
 {
     
-    public class RUNTIME_FUNCTION_Test
+    public class RuntimeFunctionTest
     {
         [Fact]
         public void RuntimeFunctionConstructorWorks_Test()

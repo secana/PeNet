@@ -5,7 +5,7 @@ using Xunit;
 namespace PeNet.Test.Structures
 {
     
-    public class WIN_CERTIFICATE_Test
+    public class WinCertificateTest
     {
         [Fact]
         public void WinCertificateConstructorWorks_Test()
