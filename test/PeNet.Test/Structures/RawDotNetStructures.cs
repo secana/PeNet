@@ -33,9 +33,9 @@
             0xee,
             0xff,
 
-            0x44, // Flags
+            0x04, // Flags
             0x00,
-            0x00,
+            0x01,
             0x00,
 
             0x55, // EntryPointToken/RVA (Union)
