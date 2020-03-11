@@ -3,18 +3,18 @@
 namespace PeNet.Structures
 {
     /// <summary>
-    ///     The IMAGE_IMPORT_BY_NAME structure is used to
+    ///     The ImageImportByName structure is used to
     ///     describes imports of functions or symbols by their name.
-    ///     The AddressOfData in the IMAGE_THUNK_DATA from the
-    ///     IMAGE_IMPORT_DESCRIPTOR points to it.
+    ///     The AddressOfData in the ImageThunkData from the
+    ///     ImageImportDescriptor points to it.
     /// </summary>
     public class ImageImportByName : AbstractStructure
     {
         /// <summary>
-        ///     Create new IMAGE_IMPORT_BY_NAME object.
+        ///     Create new ImageImportByName object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
-        /// <param name="offset">Raw offset of the IMAGE_IMPORT_BY_NAME.</param>
+        /// <param name="offset">Raw offset of the ImageImportByName.</param>
         public ImageImportByName(IRawFile peFile, uint offset)
             : base(peFile, offset)
         {

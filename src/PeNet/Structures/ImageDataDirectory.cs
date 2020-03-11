@@ -3,12 +3,12 @@
 namespace PeNet.Structures
 {
     /// <summary>
-    ///     The IMAGE_DATA_DIRECTORY struct represents the data directory,
+    ///     The ImageDataDirectory struct represents the data directory,
     /// </summary>
     public class ImageDataDirectory : AbstractStructure
     {
         /// <summary>
-        ///     Create a new IMAGE_DATA_DIRECTORY object.
+        ///     Create a new ImageDataDirectory object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the data directory in the binary.</param>

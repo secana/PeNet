@@ -22,7 +22,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Length of the String structure in bytes.
         /// </summary>
-        public ushort wLength
+        public ushort WLength
         {
             get => PeFile.ReadUShort(Offset);
             set => PeFile.WriteUShort(Offset, value);
@@ -31,7 +31,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Size of the Value member in words.
         /// </summary>
-        public ushort wValueLength
+        public ushort WValueLength
         {
             get => PeFile.ReadUShort(Offset + 0x2);
             set => PeFile.WriteUShort(Offset + 0x2, value);
@@ -41,7 +41,7 @@ namespace PeNet.Structures
         /// Type of the data in the version resource. Contains a 1 if the data
         /// is text data and a 0 if it contains binary data.
         /// </summary>
-        public ushort wType
+        public ushort WType
         {
             get => PeFile.ReadUShort(Offset + 0x4);
             set => PeFile.WriteUShort(Offset + 0x4, value);
@@ -52,7 +52,7 @@ namespace PeNet.Structures
         /// the following data, e.g. "Comments", "CompanyName" and so
         /// on.
         /// </summary>
-        public string szKey => PeFile.ReadUnicodeString(Offset + 0x6);
+        public string SzKey => PeFile.ReadUnicodeString(Offset + 0x6);
 
         /// <summary>
         /// Arbitrary string which contains the information for the
@@ -61,8 +61,8 @@ namespace PeNet.Structures
         public string Value {
             get
             {
-                var currentOffset = Offset + 0x6 + szKey.LengthInByte() +
-                                    (Offset + 0x6 + szKey.LengthInByte()).PaddingBytes(32);
+                var currentOffset = Offset + 0x6 + SzKey.LengthInByte() +
+                                    (Offset + 0x6 + SzKey.LengthInByte()).PaddingBytes(32);
 
                 return PeFile.ReadUnicodeString(currentOffset);
             }

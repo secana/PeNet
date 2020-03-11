@@ -10,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void MetaDataHdrConstructorWorks_Test()
         {
-            var metaDataHdr = new METADATAHDR(new BufferFile(RawDotNetStructures.RawMetaDataHeader), 2);
+            var metaDataHdr = new MetaDataHdr(new BufferFile(RawDotNetStructures.RawMetaDataHeader), 2);
             Assert.Equal((uint) 0x55443322, metaDataHdr.Signature);
             Assert.Equal((ushort) 0x7766, metaDataHdr.MajorVersion);
             Assert.Equal((ushort) 0x9988, metaDataHdr.MinorVersion);
@@ -22,11 +22,11 @@ namespace PeNet.Test.Structures
 
             Assert.Equal(2, metaDataHdr.MetaDataStreamsHdrs.Length);
             Assert.Equal((uint) 0x6C, metaDataHdr.MetaDataStreamsHdrs[0].RelOffset);
-            Assert.Equal((uint) 0x1804, metaDataHdr.MetaDataStreamsHdrs[0].size);
-            Assert.Equal("#~", metaDataHdr.MetaDataStreamsHdrs[0].streamName);
+            Assert.Equal((uint) 0x1804, metaDataHdr.MetaDataStreamsHdrs[0].Size);
+            Assert.Equal("#~", metaDataHdr.MetaDataStreamsHdrs[0].StreamName);
             Assert.Equal((uint) 0x1870, metaDataHdr.MetaDataStreamsHdrs[1].RelOffset);
-            Assert.Equal((uint) 0x1468, metaDataHdr.MetaDataStreamsHdrs[1].size);
-            Assert.Equal("#Strings", metaDataHdr.MetaDataStreamsHdrs[1].streamName);
+            Assert.Equal((uint) 0x1468, metaDataHdr.MetaDataStreamsHdrs[1].Size);
+            Assert.Equal("#Strings", metaDataHdr.MetaDataStreamsHdrs[1].StreamName);
         }
     }
 }

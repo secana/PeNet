@@ -33,7 +33,7 @@ namespace PeNet.Parser
                 return null;
 
             var impFuncs = new List<ImportFunction>();
-            var sizeOfThunk = (uint) (_is64Bit ? 0x8 : 0x4); // Size of IMAGE_THUNK_DATA
+            var sizeOfThunk = (uint) (_is64Bit ? 0x8 : 0x4); // Size of ImageThunkData
             var ordinalBit = _is64Bit ? 0x8000000000000000 : 0x80000000;
             var ordinalMask = (ulong) (_is64Bit ? 0x7FFFFFFFFFFFFFFF : 0x7FFFFFFF);
             var iat = _dataDirectories[(int)DataDirectoryIndex.IAT];
@@ -61,7 +61,7 @@ namespace PeNet.Parser
                     // Check if import by name or by ordinal.
                     // If it is an import by ordinal, the most significant bit of "Ordinal" is "1" and the ordinal can
                     // be extracted from the least significant bits.
-                    // Else it is an import by name and the link to the IMAGE_IMPORT_BY_NAME has to be followed
+                    // Else it is an import by name and the link to the ImageImportByName has to be followed
 
                     if ((t.Ordinal & ordinalBit) == ordinalBit) // Import by ordinal
                     {

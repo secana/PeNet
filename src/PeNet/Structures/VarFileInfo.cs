@@ -27,7 +27,7 @@ namespace PeNet.Structures
         /// Length of the VarFileInfo structure including
         /// all children.
         /// </summary>
-        public ushort wLength
+        public ushort WLength
         {
             get => PeFile.ReadUShort(Offset);
             set => PeFile.WriteUShort(Offset, value);
@@ -36,7 +36,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Always zero.
         /// </summary>
-        public ushort wValueLength
+        public ushort WValueLength
         {
             get => PeFile.ReadUShort(Offset + 0x2);
             set => PeFile.WriteUShort(Offset + 0x2, value);
@@ -46,7 +46,7 @@ namespace PeNet.Structures
         /// Contains a 1 if the version resource is text and a
         /// 0 if the version resource is binary data.
         /// </summary>
-        public ushort wType
+        public ushort WType
         {
             get => PeFile.ReadUShort(Offset + 0x4);
             set => PeFile.WriteUShort(Offset + 04, value);
@@ -55,7 +55,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Unicode string "VarFileInfo"
         /// </summary>
-        public string szKey => PeFile.ReadUnicodeString(Offset + 0x6);
+        public string SzKey => PeFile.ReadUnicodeString(Offset + 0x6);
 
 
         /// <summary>
@@ -73,12 +73,12 @@ namespace PeNet.Structures
         private Var[] ReadChildren()
         {
             var currentOffset =
-                Offset + 6 + szKey.LengthInByte()
-                + (Offset + 6 + szKey.LengthInByte()).PaddingBytes(32);
+                Offset + 6 + SzKey.LengthInByte()
+                + (Offset + 6 + SzKey.LengthInByte()).PaddingBytes(32);
 
             var values = new List<Var>();
 
-            while (currentOffset < Offset + wLength)
+            while (currentOffset < Offset + WLength)
             {
                 values.Add(new Var(PeFile, currentOffset));
                 currentOffset += values.Last().wLength;

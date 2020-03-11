@@ -3,7 +3,7 @@
 namespace PeNet.Structures
 {
     /// <summary>
-    /// The IMAGE_LOAD_CONFIG_DIRECTORY hold information
+    /// The ImageLoadConfigDirectory hold information
     /// important to load the PE file correctly.
     /// </summary>
     public class ImageLoadConfigDirectory : AbstractStructure
@@ -11,7 +11,7 @@ namespace PeNet.Structures
         private readonly bool _is64Bit;
 
         /// <summary>
-        /// Create a new IMAGE_LOAD_CONFIG_DIRECTORY object.
+        /// Create a new ImageLoadConfigDirectory object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Offset of the structure in the buffer.</param>
@@ -23,7 +23,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// SIze of the IMAGE_LOAD_CONFIG_DIRECTORY structure.
+        /// SIze of the ImageLoadConfigDirectory structure.
         /// </summary>
         public uint Size
         {

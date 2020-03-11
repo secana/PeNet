@@ -10,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void UnwindCodeConstructorWorks_Test()
         {
-            var unwindCode = new UNWIND_CODE(new BufferFile(RawStructures.RawUnwindCode), 2);
+            var unwindCode = new UnwindCode(new BufferFile(RawStructures.RawUnwindCode), 2);
 
             Assert.Equal((byte) 0x11, unwindCode.CodeOffset);
             Assert.Equal((byte) 0x2, unwindCode.UnwindOp);

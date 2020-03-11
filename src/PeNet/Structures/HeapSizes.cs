@@ -23,7 +23,7 @@
         /// <summary>
         /// Create a new HeapSizes instances.
         /// </summary>
-        /// <param name="heapSizes">HeapSizes value from the METADATATABLESHDR.</param>
+        /// <param name="heapSizes">HeapSizes value from the MetaDataTablesHdr.</param>
         public HeapSizes(byte heapSizes)
         {
             String = (heapSizes & 0x1) == 0 ? 2U: 4U;

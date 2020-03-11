@@ -5,45 +5,25 @@ using PeNet.FileParser;
 
 namespace PeNet.Structures
 {
-    public interface IMETADATASTREAM_US
+    /// <summary>
+    /// Represents the "US" (user string) meta data stream from the .Net header which 
+    /// contains all application internal strings.
+    /// </summary>
+    public class MetaDataStreamUs : AbstractStructure
     {
+        private readonly uint _size;
+
         /// <summary>
         /// List with strings in the Meta Data stream "US".
         /// </summary>
-        List<string> UserStrings { get; }
+        public List<string> UserStrings { get; }
 
         /// <summary>
         /// List with strings and their index in the Meta Data stream "US".
         /// </summary>
-        List<Tuple<string, uint>> UserStringsAndIndices { get; }
-
-        /// <summary>
-        /// Return the user string at the index from the stream.
-        /// </summary>
-        /// <param name="index">Index of the user string to return.</param>
-        /// <returns>User string at the position index.</returns>
-        string? GetUserStringAtIndex(uint index);
-
-        /// <summary>
-        ///     Creates a string representation of the objects
-        ///     properties.
-        /// </summary>
-        /// <returns>Optional header properties as a string.</returns>
-        string ToString();
-    }
-
-    /// <summary>
-    /// Represents the "US" (user string) meta data stream from the .Net header which 
-    /// contains all application interal strings.
-    /// </summary>
-    /// <inheritdoc cref="IMETADATASTREAM_US" />
-    public class METADATASTREAM_US : AbstractStructure, IMETADATASTREAM_US
-    {
-        private uint _size;
-        public List<string> UserStrings { get; }
         public List<Tuple<string, uint>> UserStringsAndIndices { get; }
 
-        public METADATASTREAM_US(IRawFile peFile, long offset, uint size) 
+        public MetaDataStreamUs(IRawFile peFile, long offset, uint size) 
             : base(peFile, offset)
         {
             _size = size;
@@ -52,6 +32,11 @@ namespace PeNet.Structures
 
         }
 
+        /// <summary>
+        /// Return the user string at the index from the stream.
+        /// </summary>
+        /// <param name="index">Index of the user string to return.</param>
+        /// <returns>User string at the position index.</returns>
         public string? GetUserStringAtIndex(uint index)
         {
             return UserStringsAndIndices.FirstOrDefault(x => x.Item2 == index)?.Item1;

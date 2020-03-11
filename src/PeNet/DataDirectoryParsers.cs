@@ -64,9 +64,9 @@ namespace PeNet
         public ImageImportDescriptor[]? ImageImportDescriptors => _imageImportDescriptorsParser?.GetParserTarget();
         public ImageResourceDirectory? ImageResourceDirectory => _imageResourceDirectoryParser?.GetParserTarget();
         public ImageBaseRelocation[]? ImageBaseRelocations => _imageBaseRelocationsParser?.GetParserTarget();
-        public WIN_CERTIFICATE? WinCertificate => _winCertificateParser?.GetParserTarget();
+        public WinCertificate? WinCertificate => _winCertificateParser?.GetParserTarget();
         public ImageDebugDirectory[]? ImageDebugDirectory => _imageDebugDirectoryParser?.GetParserTarget();
-        public RUNTIME_FUNCTION[]? RuntimeFunctions => _runtimeFunctionsParser?.GetParserTarget();
+        public RuntimeFunction[]? RuntimeFunctions => _runtimeFunctionsParser?.GetParserTarget();
         public ExportFunction[]? ExportFunctions => _exportedFunctionsParser.GetParserTarget();
         public ImportFunction[]? ImportFunctions => _importedFunctionsParser.GetParserTarget();
         public ImageBoundImportDescriptor? ImageBoundImportDescriptor => _imageBoundImportDescriptorParser?.GetParserTarget();

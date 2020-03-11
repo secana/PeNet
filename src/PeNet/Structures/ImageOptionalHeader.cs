@@ -17,7 +17,7 @@ namespace PeNet.Structures
         public readonly ImageDataDirectory[] DataDirectory;
 
         /// <summary>
-        ///     Create a new IMAGE_OPTIONAL_HEADER object.
+        ///     Create a new ImageOptionalHeader object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the optional header.</param>
@@ -121,7 +121,7 @@ namespace PeNet.Structures
                 if (!_is64Bit)
                     PeFile.WriteUInt(Offset + 0x18, value);
                 else
-                    throw new Exception("IMAGE_OPTIONAL_HEADER->BaseOfCode does not exist in 64 bit applications.");
+                    throw new Exception("ImageOptionalHeader->BaseOfCode does not exist in 64 bit applications.");
             }
         }
 
@@ -408,7 +408,6 @@ namespace PeNet.Structures
             };
     }
 
-    [Flags]
     public enum SubsystemType : ushort
     {
         Unknown = 0,

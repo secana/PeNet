@@ -17,14 +17,14 @@ namespace PeNet.Parser
                 return null;
 
             var idescs = new List<ImageImportDescriptor>();
-            uint idescSize = 20; // Size of IMAGE_IMPORT_DESCRIPTOR (5 * 4 Byte)
+            uint idescSize = 20; // Size of ImageImportDescriptor (5 * 4 Byte)
             uint round = 0;
 
             while (true)
             {
                 var idesc = new ImageImportDescriptor(PeFile, Offset + idescSize*round);
 
-                // Found the last IMAGE_IMPORT_DESCRIPTOR which is completely null (except TimeDateStamp).
+                // Found the last ImageImportDescriptor which is completely null (except TimeDateStamp).
                 if (idesc.OriginalFirstThunk == 0
                     //&& idesc.TimeDateStamp == 0
                     && idesc.ForwarderChain == 0

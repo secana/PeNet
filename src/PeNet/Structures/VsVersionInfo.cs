@@ -7,19 +7,19 @@ namespace PeNet.Structures
     /// Optional Resource member which contains version information
     /// and compile time information about the PE file.
     /// </summary>
-    public class VS_VERSIONINFO : AbstractStructure
+    public class VsVersionInfo : AbstractStructure
     {
-        private VS_FIXEDFILEINFO? _vsFixedFileInfo;
+        private VsFixedFileInfo? _vsFixedFileInfo;
         private StringFileInfo? _stringFileInfo;
         private VarFileInfo? _varFileInfo;
         private uint VsFixedFileInfoOffset =>
-            (uint)(Offset + 6 + szKey.LengthInByte()
-                   + (Offset + 6 + szKey.LengthInByte()).PaddingBytes(32));
+            (uint)(Offset + 6 + SzKey.LengthInByte()
+                   + (Offset + 6 + SzKey.LengthInByte()).PaddingBytes(32));
 
         /// <summary>
-        /// Length of the VS_VERSIONINFO structure without any padding.
+        /// Length of the VsVersionInfo structure without any padding.
         /// </summary>
-        public ushort wLength
+        public ushort WLength
         {
             get => PeFile.ReadUShort(Offset);
             set => PeFile.WriteUShort(Offset, value);
@@ -27,9 +27,9 @@ namespace PeNet.Structures
 
         /// <summary>
         /// Length of the Value member. If the Value member is 0, there is no value member available
-        /// in the VS_VERSIONINFO structure.
+        /// in the VsVersionInfo structure.
         /// </summary>
-        public ushort wValueLength
+        public ushort WValueLength
         {
             get => PeFile.ReadUShort(Offset + 0x2);
             set => PeFile.WriteUShort(Offset + 0x2, value);
@@ -39,7 +39,7 @@ namespace PeNet.Structures
         /// Set to 0 if the version resource contains text and 0 if the version
         /// resource contains binary data.
         /// </summary>
-        public ushort wType
+        public ushort WType
         {
             get => PeFile.ReadUShort(Offset + 0x4);
             set => PeFile.WriteUShort(Offset + 0x4, value);
@@ -48,17 +48,17 @@ namespace PeNet.Structures
         /// <summary>
         /// Contains the Unicode string "VS_VERSION_INFO"
         /// </summary>
-        public string szKey => PeFile.ReadUnicodeString(Offset + 0x6);
+        public string SzKey => PeFile.ReadUnicodeString(Offset + 0x6);
 
         /// <summary>
         /// Language and code page independent version information about the PE file.
         /// </summary>
-        public VS_FIXEDFILEINFO VsFixedFileInfo {
+        public VsFixedFileInfo VsFixedFileInfo {
             get
             {
                 var currentOffset = VsFixedFileInfoOffset;
 
-                _vsFixedFileInfo ??= new VS_FIXEDFILEINFO(PeFile, (int) currentOffset);
+                _vsFixedFileInfo ??= new VsFixedFileInfo(PeFile, (int) currentOffset);
 
                 return _vsFixedFileInfo;
             }
@@ -71,7 +71,7 @@ namespace PeNet.Structures
             get
             {
                 var currentOffset = VsFixedFileInfoOffset;
-                currentOffset += wValueLength;
+                currentOffset += WValueLength;
                 currentOffset += currentOffset.PaddingBytes(32);
 
                 _stringFileInfo ??= new StringFileInfo(PeFile, currentOffset);
@@ -87,9 +87,9 @@ namespace PeNet.Structures
             get
             {
                 var currentOffset = VsFixedFileInfoOffset;
-                currentOffset += wValueLength;
+                currentOffset += WValueLength;
                 currentOffset += currentOffset.PaddingBytes(32);
-                currentOffset += StringFileInfo.wLength;
+                currentOffset += StringFileInfo.WLength;
                 currentOffset += currentOffset.PaddingBytes(32);
 
                 _varFileInfo ??= new VarFileInfo(PeFile, currentOffset);
@@ -99,11 +99,11 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// Create a new VS_VERSIONINFO instance.
+        /// Create a new VsVersionInfo instance.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
-        /// <param name="offset">Offset of the VS_VERSIONINFO in the PE file.</param>
-        public VS_VERSIONINFO(IRawFile peFile, long offset) 
+        /// <param name="offset">Offset of the VsVersionInfo in the PE file.</param>
+        public VsVersionInfo(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
         }

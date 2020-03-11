@@ -7,18 +7,18 @@ namespace PeNet.Structures
     /// </summary>
     public class Resources : AbstractStructure
     {
-        private VS_VERSIONINFO? _vsVersionInfo;
+        private VsVersionInfo? _vsVersionInfo;
         private readonly uint _vsVersionOffset;
 
         /// <summary>
         /// Optional Resource member which contains version information
         /// and compile time information about the binary.
         /// </summary>
-        public VS_VERSIONINFO VsVersionInfo
+        public VsVersionInfo VsVersionInfo
         {
             get
             {
-                _vsVersionInfo ??= new VS_VERSIONINFO(PeFile, _vsVersionOffset);
+                _vsVersionInfo ??= new VsVersionInfo(PeFile, _vsVersionOffset);
                 return _vsVersionInfo;
             }
         }

@@ -3,13 +3,13 @@
 namespace PeNet.Structures
 {
     /// <summary>
-    ///     The IMAGE_RESOURCE_DATA_ENTRY points to the data of
+    ///     The ImageResourceDataEntry points to the data of
     ///     the resources in the PE file like version info, strings etc.
     /// </summary>
     public class ImageResourceDataEntry : AbstractStructure
     {
         /// <summary>
-        ///     Construct a IMAGE_RESOURCE_DATA_ENTRY at a given offset.
+        ///     Construct a ImageResourceDataEntry at a given offset.
         /// </summary>
         /// <param name="peFile">PE file.</param>
         /// <param name="offset">Offset to the structure in the file.</param>

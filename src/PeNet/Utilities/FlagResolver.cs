@@ -32,10 +32,10 @@ namespace PeNet.Utilities
         }
 
         /// <summary>
-        ///     Resolve flags from the IMAGE_COR20_HEADER COM+ 2 (CLI) header to
+        ///     Resolve flags from the ImageCor20Header COM+ 2 (CLI) header to
         ///     their string representation.
         /// </summary>
-        /// <param name="comImageFlags">Flags from IMAGE_COR20_HEADER.</param>
+        /// <param name="comImageFlags">Flags from ImageCor20Header.</param>
         /// <returns>List with resolved flag names.</returns>
         public static List<string> ResolveComImageFlags(uint comImageFlags)
         {
@@ -52,9 +52,9 @@ namespace PeNet.Utilities
 
         /// <summary>
         ///     Resolve which tables are present in the .Net header based
-        ///     on the MaskValid flags from the METADATATABLESHDR.
+        ///     on the MaskValid flags from the MetaDataTablesHdr.
         /// </summary>
-        /// <param name="maskValid">MaskValid value from the METADATATABLESHDR</param>
+        /// <param name="maskValid">MaskValid value from the MetaDataTablesHdr</param>
         /// <returns>List with present table names.</returns>
         public static List<string> ResolveMaskValidFlags(ulong maskValid)
         {

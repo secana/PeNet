@@ -10,7 +10,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void UnwindInfoConstructorWorks_Test()
         {
-            var unwindInfo = new UNWIND_INFO(new BufferFile(RawStructures.RawUnwindInfo), 2);
+            var unwindInfo = new UnwindInfo(new BufferFile(RawStructures.RawUnwindInfo), 2);
             Assert.Equal((byte) 0x1, unwindInfo.Version);
             Assert.Equal((byte) 0x12, unwindInfo.Flags);
             Assert.Equal((byte) 0x33, unwindInfo.SizeOfProlog);

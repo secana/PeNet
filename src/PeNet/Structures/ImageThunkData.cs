@@ -11,7 +11,7 @@ namespace PeNet.Structures
         private readonly bool _is64Bit;
 
         /// <summary>
-        ///     Create a new IMAGE_THUNK_DATA object.
+        ///     Create a new ImageThunkData object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset of the thunk data.</param>
@@ -24,7 +24,7 @@ namespace PeNet.Structures
 
         /// <summary>
         ///     Points to the address in the IAT or to an
-        ///     IMAGE_IMPORT_BY_NAME struct.
+        ///     ImageImportByName struct.
         /// </summary>
         public ulong AddressOfData
         {

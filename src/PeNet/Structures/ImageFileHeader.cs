@@ -10,7 +10,7 @@ namespace PeNet.Structures
     public class ImageFileHeader : AbstractStructure
     {
         /// <summary>
-        ///     Create a new IMAGE_FILE_HEADER object.
+        ///     Create a new ImageFileHeader object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the file header.</param>
@@ -144,7 +144,7 @@ namespace PeNet.Structures
     }
 
     /// <summary>
-    ///     IMAGE_FILE_HEADER machine constants which define
+    ///     ImageFileHeader machine constants which define
     ///     for which CPU type the PE file is.
     /// </summary>
     [Flags]

@@ -9,7 +9,7 @@ namespace PeNet
     public static class Constants
     {
         ////////////////////////
-        // IMAGE_DATA_DIRECTORY
+        // ImageDataDirectory
         ////////////////////////
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace PeNet
         }
 
         //////////////////////////////
-        // IMAGE_FILE_HEADER constants
+        // ImageFileHeader constants
         //////////////////////////////
 
        
@@ -157,7 +157,7 @@ namespace PeNet
 
 
         //////////////////////////
-        // IMAGE_OPTIONAL_HEADER
+        // ImageOptionalHeader
         //////////////////////////
 
         /// <summary>
@@ -206,13 +206,13 @@ namespace PeNet
 
 
         //////////////////////////////////
-        // IMAGE_RESOURCE_DIRECTORY_ENTRY
+        // ImageResourceDirectoryEntry
         //////////////////////////////////
 
        
 
         ////////////////////////
-        // IMAGE_SECTION_HEADER
+        // ImageSectionHeader
         ////////////////////////
 
         /// <summary>
@@ -473,11 +473,11 @@ namespace PeNet
         }
 
         //////////////////////////////////////
-        // WIN_CERTIFICATE wCertificateType
+        // WinCertificate wCertificateType
         //////////////////////////////////////
 
         /// <summary>
-        ///     WIN_CERTIFICATE wCertificateType constants.
+        ///     WinCertificate wCertificateType constants.
         /// </summary>
         [Flags]
         public enum WinCertificateType : ushort

@@ -198,12 +198,12 @@ namespace PeNet
         public bool Is32Bit => ImageNtHeaders?.FileHeader.Machine
                                == MachineType.I386;
         /// <summary>
-        ///     Access the IMAGE_DOS_HEADER of the PE file.
+        ///     Access the ImageDosHeader of the PE file.
         /// </summary>
         public ImageDosHeader? ImageDosHeader => _nativeStructureParsers.ImageDosHeader;
 
         /// <summary>
-        ///     Access the IMAGE_NT_HEADERS of the PE file.
+        ///     Access the ImageNtHeaders of the PE file.
         /// </summary>
         public ImageNtHeaders? ImageNtHeaders => _nativeStructureParsers.ImageNtHeaders;
 
@@ -213,22 +213,22 @@ namespace PeNet
         public ImageSectionHeader[]? ImageSectionHeaders => _nativeStructureParsers.ImageSectionHeaders;
 
         /// <summary>
-        ///     Access the IMAGE_EXPORT_DIRECTORY of the PE file.
+        ///     Access the ImageExportDirectory of the PE file.
         /// </summary>
         public ImageExportDirectory? ImageExportDirectory => _dataDirectoryParsers.ImageExportDirectories;
 
         /// <summary>
-        ///     Access the IMAGE_IMPORT_DESCRIPTOR array of the PE file.
+        ///     Access the ImageImportDescriptor array of the PE file.
         /// </summary>
         public ImageImportDescriptor[]? ImageImportDescriptors => _dataDirectoryParsers.ImageImportDescriptors;
 
         /// <summary>
-        ///     Access the IMAGE_BASE_RELOCATION array of the PE file.
+        ///     Access the ImageBaseRelocation array of the PE file.
         /// </summary>
         public ImageBaseRelocation[]? ImageRelocationDirectory => _dataDirectoryParsers.ImageBaseRelocations;
 
         /// <summary>
-        ///     Access the IMAGE_DEBUG_DIRECTORY of the PE file.
+        ///     Access the ImageDebugDirectory of the PE file.
         /// </summary>
         public ImageDebugDirectory[]? ImageDebugDirectory => _dataDirectoryParsers.ImageDebugDirectory;
 
@@ -243,7 +243,7 @@ namespace PeNet
         public ImportFunction[]? ImportedFunctions => _dataDirectoryParsers.ImportFunctions;
 
         /// <summary>
-        ///     Access the IMAGE_RESOURCE_DIRECTORY of the PE file.
+        ///     Access the ImageResourceDirectory of the PE file.
         /// </summary>
         public ImageResourceDirectory? ImageResourceDirectory => _dataDirectoryParsers.ImageResourceDirectory;
 
@@ -253,14 +253,14 @@ namespace PeNet
         public Resources? Resources => _dataDirectoryParsers.Resources;
 
         /// <summary>
-        ///     Access the array of RUNTIME_FUNCTION from the Exception header.
+        ///     Access the array of RuntimeFunction from the Exception header.
         /// </summary>
-        public RUNTIME_FUNCTION[]? ExceptionDirectory => _dataDirectoryParsers.RuntimeFunctions;
+        public RuntimeFunction[]? ExceptionDirectory => _dataDirectoryParsers.RuntimeFunctions;
 
         /// <summary>
-        ///     Access the WIN_CERTIFICATE from the Security header.
+        ///     Access the WinCertificate from the Security header.
         /// </summary>
-        public WIN_CERTIFICATE? WinCertificate => _dataDirectoryParsers.WinCertificate;
+        public WinCertificate? WinCertificate => _dataDirectoryParsers.WinCertificate;
 
         /// <summary>
         /// Access the IMAGE_BOUND_IMPORT_DESCRIPTOR form the data directory.
@@ -273,17 +273,17 @@ namespace PeNet
         public ImageTlsDirectory? ImageTlsDirectory => _dataDirectoryParsers.ImageTlsDirectory;
 
         /// <summary>
-        /// Access the IMAGE_DELAY_IMPORT_DESCRIPTOR from the data directory.
+        /// Access the ImageDelayImportDirectory from the data directory.
         /// </summary>
         public ImageDelayImportDescriptor? ImageDelayImportDescriptor => _dataDirectoryParsers.ImageDelayImportDescriptor;
 
         /// <summary>
-        /// Access the IMAGE_LOAD_CONFIG_DIRECTORY from the data directory.
+        /// Access the ImageLoadConfigDirectory from the data directory.
         /// </summary>
         public ImageLoadConfigDirectory? ImageLoadConfigDirectory => _dataDirectoryParsers.ImageLoadConfigDirectory;
 
         /// <summary>
-        /// Access the IMAGE_COR20_HEADER (COM Descriptor/CLI) from the data directory.
+        /// Access the ImageCor20Header (COM Descriptor/CLI) from the data directory.
         /// </summary>
         public ImageCor20Header? ImageComDescriptor => _dataDirectoryParsers.ImageComDescriptor;
 
@@ -295,22 +295,22 @@ namespace PeNet
         /// <summary>
         ///     Access the METADATAHDR from the COM/CLI header.
         /// </summary>
-        public METADATAHDR? MetaDataHdr => _dotNetStructureParsers.MetaDataHdr;
+        public MetaDataHdr? MetaDataHdr => _dotNetStructureParsers.MetaDataHdr;
 
         /// <summary>
         /// Meta Data Stream #String.
         /// </summary>
-        public IMETADATASTREAM_STRING? MetaDataStreamString => _dotNetStructureParsers.MetaDataStreamString;
+        public MetaDataStreamString? MetaDataStreamString => _dotNetStructureParsers.MetaDataStreamString;
 
         /// <summary>
         /// Meta Data Stream #US (User strings).
         /// </summary>
-        public IMETADATASTREAM_US? MetaDataStreamUS => _dotNetStructureParsers.MetaDataStreamUS;
+        public MetaDataStreamUs? MetaDataStreamUS => _dotNetStructureParsers.MetaDataStreamUS;
 
         /// <summary>
         /// Meta Data Stream #GUID.
         /// </summary>
-        public IMETADATASTREAM_GUID? MetaDataStreamGUID => _dotNetStructureParsers.MetaDataStreamGUID;
+        public MetaDataStreamGuid? MetaDataStreamGUID => _dotNetStructureParsers.MetaDataStreamGUID;
 
         /// <summary>
         /// Meta Data Stream #Blob as an byte array.
@@ -321,7 +321,7 @@ namespace PeNet
         ///     Access the Meta Data Stream Tables Header from the list of
         ///     Meta Data Streams of the .Net header.
         /// </summary>
-        public METADATATABLESHDR? MetaDataStreamTablesHeader => _dotNetStructureParsers.MetaDataStreamTablesHeader;
+        public MetaDataTablesHdr? MetaDataStreamTablesHeader => _dotNetStructureParsers.MetaDataStreamTablesHeader;
 
         /// <summary>
         ///     The SHA-256 hash sum of the binary.

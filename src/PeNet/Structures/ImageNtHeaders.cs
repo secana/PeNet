@@ -19,7 +19,7 @@ namespace PeNet.Structures
         public readonly ImageOptionalHeader OptionalHeader;
 
         /// <summary>
-        ///     Create a new IMAGE_NT_HEADERS object.
+        ///     Create a new ImageNtHeaders object.
         /// </summary>
         /// <param name="peFile">A PE file .</param>
         /// <param name="offset">Raw offset of the NT header.</param>

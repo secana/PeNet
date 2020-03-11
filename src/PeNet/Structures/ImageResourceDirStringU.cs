@@ -9,7 +9,7 @@ namespace PeNet.Structures
     public class ImageResourceDirStringU : AbstractStructure
     {
         /// <summary>
-        ///     Create a new IMAGE_RESOURCE_DIR_STRING_U Unicode string.
+        ///     Create a new ImageResourceDirStringU Unicode string.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset of the string.</param>

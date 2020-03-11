@@ -4,20 +4,20 @@ using PeNet.FileParser;
 namespace PeNet.Structures
 {
     /// <summary>
-    ///     The UNWIND_INFO is used for x64 exception
+    ///     The UnwindInfo is used for x64 exception
     ///     handling and to unwind the stack. It is
-    ///     pointed to by the RUNTIME_FUNCTION struct.
+    ///     pointed to by the RuntimeFunction struct.
     /// </summary>
-    public class UNWIND_INFO : AbstractStructure
+    public class UnwindInfo : AbstractStructure
     {
-        private readonly int sizeOfUnwindeCode = 0x4;
+        private const int SizeOfUnwindCode = 0x4;
 
         /// <summary>
-        ///     Create a new UNWIND_INFO object.
+        ///     Create a new UnwindInfo object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
-        /// <param name="offset">Raw offset of the UNWIND_INFO struct.</param>
-        public UNWIND_INFO(IRawFile peFile, uint offset)
+        /// <param name="offset">Raw offset of the UnwindInfo struct.</param>
+        public UnwindInfo(IRawFile peFile, uint offset)
             : base(peFile, offset)
         {
         }
@@ -66,7 +66,7 @@ namespace PeNet.Structures
         /// <summary>
         ///     UnwindCode structure.
         /// </summary>
-        public UNWIND_CODE[] UnwindCode => ParseUnwindCodes(PeFile, Offset + 0x4);
+        public UnwindCode[] UnwindCode => ParseUnwindCodes(PeFile, Offset + 0x4);
 
         /// <summary>
         ///     The exception handler for the function.
@@ -75,12 +75,12 @@ namespace PeNet.Structures
         {
             get
             {
-                var off = (uint) (Offset + 0x4 + sizeOfUnwindeCode*CountOfCodes);
+                var off = (uint) (Offset + 0x4 + SizeOfUnwindCode*CountOfCodes);
                 return PeFile.ReadUInt(off);
             }
             set
             {
-                var off = (uint) (Offset + 0x4 + sizeOfUnwindeCode*CountOfCodes);
+                var off = (uint) (Offset + 0x4 + SizeOfUnwindCode*CountOfCodes);
                 PeFile.WriteUInt(off, value);
             }
         }
@@ -94,16 +94,16 @@ namespace PeNet.Structures
             set => ExceptionHandler = value;
         }
 
-        private UNWIND_CODE[] ParseUnwindCodes(IRawFile peFile, long offset)
+        private UnwindCode[] ParseUnwindCodes(IRawFile peFile, long offset)
         {
-            var ucList = new List<UNWIND_CODE>();
+            var ucList = new List<UnwindCode>();
             var i = 0;
             uint nodeSize = 0x2;
             var currentUnwindeCode = offset;
             while (i < CountOfCodes)
             {
                 int numberOfNodes;
-                var uw = new UNWIND_CODE(peFile, currentUnwindeCode);
+                var uw = new UnwindCode(peFile, currentUnwindeCode);
                 currentUnwindeCode += nodeSize; // CodeOffset and UnwindOp/Opinfo (= 0x2 byte)
 
                 switch (uw.UnwindOp)

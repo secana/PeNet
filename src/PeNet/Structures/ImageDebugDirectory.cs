@@ -3,7 +3,7 @@
 namespace PeNet.Structures
 {
     /// <summary>
-    ///     The IMAGE_DEBUG_DIRECTORY hold debug information
+    ///     The ImageDebugDirectory hold debug information
     ///     about the PE file.
     /// </summary>
     public class ImageDebugDirectory : AbstractStructure
@@ -11,7 +11,7 @@ namespace PeNet.Structures
         private CvInfoPdb70? _cvInfoPdb70 = null;
 
         /// <summary>
-        ///     Create a new IMAGE_DEBUG_DIRECTORY object.
+        ///     Create a new ImageDebugDirectory object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Offset to the debug structure in the PE file.</param>

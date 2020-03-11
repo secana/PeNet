@@ -7,7 +7,7 @@ using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
-    public interface IMETADATATABLESHDR
+    public interface IMetaDataTablesHdr
     {
         /// <summary>
         /// The size the indexes into the streams have. 
@@ -22,14 +22,14 @@ namespace PeNet.Structures
         /// Access a list of defined tables in the Meta Data Tables Header
         /// with the name and number of rows of the table.
         /// </summary>
-        List<METADATATABLESHDR.MetaDataTableInfo> TableDefinitions { get; }
+        List<MetaDataTablesHdr.MetaDataTableInfo> TableDefinitions { get; }
     }
 
     /// <summary>
     /// The Meta Data Tables Header contains information about all present
     /// data tables in the .Net assembly.
     /// </summary>
-    public class METADATATABLESHDR : AbstractStructure, IMETADATATABLESHDR
+    public class MetaDataTablesHdr : AbstractStructure, IMetaDataTablesHdr
     {
         private List<MetaDataTableInfo>? _tableDefinitions;
         private Tables? _tables = null;
@@ -65,9 +65,9 @@ namespace PeNet.Structures
         /// <summary>
         /// Create a new Meta Data Tables Header instance from a byte array.
         /// </summary>
-        /// <param name="peFile">PE file which contains a METADATATABLESHDR structure.</param>
+        /// <param name="peFile">PE file which contains a MetaDataTablesHdr structure.</param>
         /// <param name="offset">Offset in the PE file, where the header starts.</param>
-        public METADATATABLESHDR(IRawFile peFile, long offset) 
+        public MetaDataTablesHdr(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
         }

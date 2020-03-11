@@ -3,19 +3,19 @@
 namespace PeNet.Structures
 {
     /// <summary>
-    ///     The UNWIND_CODE is a struct in
-    ///     the UNWIND_INFO used to describe
+    ///     The UnwindCode is a struct in
+    ///     the UnwindInfo used to describe
     ///     exception handling in x64 applications
     ///     and to walk the stack.
     /// </summary>
-    public class UNWIND_CODE : AbstractStructure
+    public class UnwindCode : AbstractStructure
     {
         /// <summary>
-        ///     Create a new UNWIND_INFO object.
+        ///     Create a new UnwindInfo object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
-        /// <param name="offset">Raw offset of the UNWIND_INFO.</param>
-        public UNWIND_CODE(IRawFile peFile, long offset)
+        /// <param name="offset">Raw offset of the UnwindInfo.</param>
+        public UnwindCode(IRawFile peFile, long offset)
             : base(peFile, offset)
         {
         }

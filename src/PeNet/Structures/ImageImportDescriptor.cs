@@ -3,13 +3,13 @@
 namespace PeNet.Structures
 {
     /// <summary>
-    ///     The IMAGE_IMPORT_DESCRIPTORs are contained in the Import Directory
+    ///     The ImageImportDescriptors are contained in the Import Directory
     ///     and holds all the information about function and symbol imports.
     /// </summary>
     public class ImageImportDescriptor : AbstractStructure
     {
         /// <summary>
-        ///     Create a new IMAGE_IMPORT_DESCRIPTOR object.
+        ///     Create a new ImageImportDescriptor object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset of the descriptor.</param>
@@ -19,7 +19,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     Points to the first IMAGE_IMPORT_BY_NAME struct.
+        ///     Points to the first ImageImportByName struct.
         /// </summary>
         public uint OriginalFirstThunk
         {
@@ -55,7 +55,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     Points to an IMAGE_IMPORT_BY_NAME struct or
+        ///     Points to an ImageImportByName struct or
         ///     to the address of the first function.
         /// </summary>
         public uint FirstThunk

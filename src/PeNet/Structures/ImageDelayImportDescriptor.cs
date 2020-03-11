@@ -3,12 +3,12 @@
 namespace PeNet.Structures
 {
     /// <summary>
-    /// The IMAGE_DELAY_IMPORT_DESCRIPTOR describes delayed imports.
+    /// The ImageDelayImportDirectory describes delayed imports.
     /// </summary>
     public class ImageDelayImportDescriptor : AbstractStructure
     {
         /// <summary>
-        /// Create a new IMAGE_DELAY_IMPORT_DESCRIPTOR object.
+        /// Create a new ImageDelayImportDirectory object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Offset to the delay import descriptor.</param>

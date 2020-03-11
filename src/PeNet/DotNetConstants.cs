@@ -8,7 +8,7 @@ namespace PeNet
     public static class DotNetConstants
     {
         /// <summary>
-        /// IMAGE_COR20_HEADER Flags
+        /// ImageCor20Header Flags
         /// </summary>
         [Flags]
         public enum COMImageFlag : uint

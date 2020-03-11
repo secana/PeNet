@@ -524,7 +524,7 @@
 
             0x56, // FrameRegister/Offset 4:4
 
-            // UNWIND_CODE
+            // UnwindCode
             0x77, // CodeOffset
 
             0x89, // UnwindOp/Opinfo 4:4

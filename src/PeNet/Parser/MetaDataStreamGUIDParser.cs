@@ -3,11 +3,11 @@ using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class MetaDataStreamGUIDParser : SafeParser<IMETADATASTREAM_GUID>
+    internal class MetaDataStreamGuidParser : SafeParser<MetaDataStreamGuid>
     {
         private readonly uint _size;
 
-        public MetaDataStreamGUIDParser(
+        public MetaDataStreamGuidParser(
             IRawFile peFile,
             long offset,
             uint size
@@ -18,9 +18,9 @@ namespace PeNet.Parser
             _size = size;
         }
 
-        protected override IMETADATASTREAM_GUID ParseTarget()
+        protected override MetaDataStreamGuid ParseTarget()
         {
-            return new METADATASTREAM_GUID(PeFile, Offset, _size);
+            return new MetaDataStreamGuid(PeFile, Offset, _size);
         }
     }
 }

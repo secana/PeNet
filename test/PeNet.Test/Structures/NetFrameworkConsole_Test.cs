@@ -109,19 +109,19 @@ namespace PeNet.Test.Structures
         [Fact]
         public void MetaDataTablesHdr_ParseCorrectTables()
         {
-            var metaDataTablesHdr = _peFile.MetaDataStreamTablesHeader;
+            var MetaDataTablesHdr = _peFile.MetaDataStreamTablesHeader;
 
-            Assert.Equal("Module", metaDataTablesHdr.TableDefinitions[0].Name);
-            Assert.Equal(1U, metaDataTablesHdr.TableDefinitions[0].RowCount);
-            Assert.Equal(0U, metaDataTablesHdr.TableDefinitions[0].Offset);
-            Assert.Equal(10U, metaDataTablesHdr.TableDefinitions[0].BytesPerRow);
+            Assert.Equal("Module", MetaDataTablesHdr.TableDefinitions[0].Name);
+            Assert.Equal(1U, MetaDataTablesHdr.TableDefinitions[0].RowCount);
+            Assert.Equal(0U, MetaDataTablesHdr.TableDefinitions[0].Offset);
+            Assert.Equal(10U, MetaDataTablesHdr.TableDefinitions[0].BytesPerRow);
 
             // ... More tables ...
           
-            Assert.Equal("AssemblyRef", metaDataTablesHdr.TableDefinitions[35].Name);
-            Assert.Equal(1U, metaDataTablesHdr.TableDefinitions[35].RowCount);
-            Assert.Equal(454U, metaDataTablesHdr.TableDefinitions[35].Offset);
-            Assert.Equal(20U, metaDataTablesHdr.TableDefinitions[35].BytesPerRow);
+            Assert.Equal("AssemblyRef", MetaDataTablesHdr.TableDefinitions[35].Name);
+            Assert.Equal(1U, MetaDataTablesHdr.TableDefinitions[35].RowCount);
+            Assert.Equal(454U, MetaDataTablesHdr.TableDefinitions[35].Offset);
+            Assert.Equal(20U, MetaDataTablesHdr.TableDefinitions[35].BytesPerRow);
         }
 
         [Fact]

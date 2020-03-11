@@ -27,7 +27,7 @@ namespace PeNet.Structures
         /// Length of the StringTable structure in bytes,
         /// including its children.
         /// </summary>
-        public ushort wLength
+        public ushort WLength
         {
             get => PeFile.ReadUShort(Offset);
             set => PeFile.WriteUShort(Offset, value);
@@ -36,7 +36,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Always zero.
         /// </summary>
-        public ushort wValueLength
+        public ushort WValueLength
         {
             get => PeFile.ReadUShort(Offset + 0x2);
             set => PeFile.WriteUShort(Offset + 0x2, value);
@@ -46,7 +46,7 @@ namespace PeNet.Structures
         /// Type of the data in the version resource. Contains a 1 if the data
         /// is text data and a 0 if it contains binary data.
         /// </summary>
-        public ushort wType
+        public ushort WType
         {
             get => PeFile.ReadUShort(Offset + 0x4);
             set => PeFile.WriteUShort(Offset + 0x4, value);
@@ -58,7 +58,7 @@ namespace PeNet.Structures
         /// the four least significant digits the code page for which the
         /// data is formatted.
         /// </summary>
-        public string szKey => PeFile.ReadUnicodeString(Offset + 0x6);
+        public string SzKey => PeFile.ReadUnicodeString(Offset + 0x6);
 
         /// <summary>
         /// Array of String structures.
@@ -116,7 +116,7 @@ namespace PeNet.Structures
 
         /// <summary>
         /// Contains by whom, where, and why this private version of the file was built.
-        /// Should only be present if the VS_FF_PRIVATEBUILD flag is set in the dwFileFlags member of the VS_FIXEDFILEINFO structure.
+        /// Should only be present if the VS_FF_PRIVATEBUILD flag is set in the dwFileFlags member of the VsFixedFileInfo structure.
         /// </summary>
         public string? PrivateBuild => GetValue(nameof(PrivateBuild));
 
@@ -132,24 +132,24 @@ namespace PeNet.Structures
 
         /// <summary>
         /// Contains how this version of the file differs from the normal version.
-        /// This entry should only be present if the VS_FF_SPECIALBUILD flag is set in the dwFileFlags member of the VS_FIXEDFILEINFO structure.
+        /// This entry should only be present if the VS_FF_SPECIALBUILD flag is set in the dwFileFlags member of the VsFixedFileInfo structure.
         /// </summary>
         public string? SpecialBuild => GetValue(nameof(SpecialBuild));
 
         private string? GetValue(string value) 
-            => String.FirstOrDefault(s => s.szKey == value)?.Value;
+            => String.FirstOrDefault(s => s.SzKey == value)?.Value;
 
         private TString[] ReadChildren()
         {
-            var currentOffset = Offset + 6 + (szKey.Length * 2 + 2) +
-                                (Offset + 6 + (szKey.Length * 2 + 2)).PaddingBytes(32);
+            var currentOffset = Offset + 6 + (SzKey.Length * 2 + 2) +
+                                (Offset + 6 + (SzKey.Length * 2 + 2)).PaddingBytes(32);
             var children = new List<TString>();
 
-            while (currentOffset < Offset + wLength)
+            while (currentOffset < Offset + WLength)
             {
                 currentOffset += currentOffset.PaddingBytes(32);
                 children.Add(new TString(PeFile, currentOffset));
-                currentOffset += children.Last().wLength;
+                currentOffset += children.Last().WLength;
             }
 
             return children.ToArray();

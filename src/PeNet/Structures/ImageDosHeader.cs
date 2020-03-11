@@ -3,12 +3,12 @@
 namespace PeNet.Structures
 {
     /// <summary>
-    ///     The IMAGE_DOS_HEADER with which every PE file starts.
+    ///     The ImageDosHeader with which every PE file starts.
     /// </summary>
     public class ImageDosHeader : AbstractStructure
     {
         /// <summary>
-        ///     Create a new IMAGE_DOS_HEADER object.
+        ///     Create a new ImageDosHeader object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Offset in the PE file to the DOS header.</param>

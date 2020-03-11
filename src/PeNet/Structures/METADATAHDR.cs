@@ -6,12 +6,12 @@ namespace PeNet.Structures
 {
     /// <summary>
     /// The Meta Data Header is part of the .Net/CLI (COM+ 2) header and is reachable
-    /// from the .Net/CLI (COM+2) header IMAGE_COR20_HEADER. It contains information
+    /// from the .Net/CLI (COM+2) header ImageCor20Header. It contains information
     /// about embedded streams (sections) in the .Net assembly.
     /// </summary>
-    public class METADATAHDR : AbstractStructure
+    public class MetaDataHdr : AbstractStructure
     {
-        private METADATASTREAMHDR[]? _metaDataStreamsHdrs;
+        private MetaDataStreamHdr[]? _metaDataStreamsHdrs;
         private bool _metaDataStreamsHdrsParsed;
         private string? _versionString;
         private bool _versionStringParsed;
@@ -21,7 +21,7 @@ namespace PeNet.Structures
         /// </summary>
         /// <param name="peFile">PE file which contains a Meta Data Header.</param>
         /// <param name="offset">Offset of the header start in the PE file.</param>
-        public METADATAHDR(IRawFile peFile, long offset) 
+        public MetaDataHdr(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
         }
@@ -118,7 +118,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Array with all Meta Data Stream Headers.
         /// </summary>
-        public METADATASTREAMHDR[]? MetaDataStreamsHdrs
+        public MetaDataStreamHdr[]? MetaDataStreamsHdrs
         {
             get
             {
@@ -138,14 +138,14 @@ namespace PeNet.Structures
             }
         }
 
-        private METADATASTREAMHDR[] ParseMetaDataStreamHdrs(long offset)
+        private MetaDataStreamHdr[] ParseMetaDataStreamHdrs(long offset)
         {
-            var metaDataStreamHdrs = new List<METADATASTREAMHDR>();
+            var metaDataStreamHdrs = new List<MetaDataStreamHdr>();
             var tmpOffset = offset;
 
             for (var i = 0; i < Streams; i++)
             {
-                var metaDataStreamHdr = new METADATASTREAMHDR(PeFile, tmpOffset);
+                var metaDataStreamHdr = new MetaDataStreamHdr(PeFile, tmpOffset);
                 metaDataStreamHdrs.Add(metaDataStreamHdr);
                 tmpOffset += metaDataStreamHdr.HeaderLength;
             }

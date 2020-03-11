@@ -5,13 +5,13 @@ using PeNet.FileParser;
 namespace PeNet.Structures
 {
     /// <summary>
-    ///     The IMAGE_BASE_RELOCATION structure holds information needed to relocate
+    ///     The ImageBaseRelocation structure holds information needed to relocate
     ///     the image to another virtual address.
     /// </summary>
     public class ImageBaseRelocation : AbstractStructure
     {
         /// <summary>
-        ///     Create a new IMAGE_BASE_RELOCATION object.
+        ///     Create a new ImageBaseRelocation object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Offset to the relocation struct in the PE file.</param>
@@ -34,7 +34,7 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        ///     RVA of the relocation block.>	PeNet.dll!PeNet.Structures.IMAGE_BASE_RELOCATION.IMAGE_BASE_RELOCATION(PeNet.IRawFile peFile, long offset, uint relocSize) Line 26	C#
+        ///     RVA of the relocation block.>	PeNet.dll!PeNet.Structures.ImageBaseRelocation.ImageBaseRelocation(PeNet.IRawFile peFile, long offset, uint relocSize) Line 26	C#
 
         /// </summary>
         public uint VirtualAddress
@@ -69,7 +69,7 @@ namespace PeNet.Structures
 
         /// <summary>
         ///     Represents the type and offset in an
-        ///     IMAGE_BASE_RELOCATION structure.
+        ///     ImageBaseRelocation structure.
         /// </summary>
         public class TypeOffset
         {

@@ -11,7 +11,7 @@ namespace PeNet.Structures
     public class ImageResourceDirectoryEntry : AbstractStructure
     {
         /// <summary>
-        ///     Create a new instance of the IMAGE_RESOURCE_DIRECTORY_ENTRY.
+        ///     Create a new instance of the ImageResourceDirectoryEntry.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the entry.</param>

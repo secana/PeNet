@@ -9,7 +9,7 @@ namespace PeNet.Structures
     public class ImageSectionHeader : AbstractStructure
     {
         /// <summary>
-        ///     Create a new IMAGE_SECTION_HEADER object.
+        ///     Create a new ImageSectionHeader object.
         /// </summary>
         /// <param name="imageBaseAddress">Base address of the image from the Optional header.</param>
         /// <param name="buff">A PE file.</param>

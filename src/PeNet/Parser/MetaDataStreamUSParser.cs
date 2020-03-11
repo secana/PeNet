@@ -3,19 +3,19 @@ using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class MetaDataStreamUSParser : SafeParser<IMETADATASTREAM_US>
+    internal class MetaDataStreamUsParser : SafeParser<MetaDataStreamUs>
     {
         private readonly uint _size;
 
-        public MetaDataStreamUSParser(IRawFile peFile, long offset, uint size) 
+        public MetaDataStreamUsParser(IRawFile peFile, long offset, uint size) 
             : base(peFile, offset)
         {
             _size = size;
         }
 
-        protected override IMETADATASTREAM_US ParseTarget()
+        protected override MetaDataStreamUs ParseTarget()
         {
-            return new METADATASTREAM_US(PeFile, Offset, _size);
+            return new MetaDataStreamUs(PeFile, Offset, _size);
         }
     }
 }

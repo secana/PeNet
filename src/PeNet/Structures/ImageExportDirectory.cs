@@ -9,7 +9,7 @@ namespace PeNet.Structures
     public class ImageExportDirectory : AbstractStructure
     {
         /// <summary>
-        ///     Create a new IMAGE_EXPORT_DIRECTORY object.
+        ///     Create a new ImageExportDirectory object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset of the export directory in the PE file.</param>

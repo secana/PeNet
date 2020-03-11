@@ -16,7 +16,7 @@ namespace PeNet.Structures
         public readonly List<ImageResourceDirectoryEntry?>? DirectoryEntries;
 
         /// <summary>
-        ///     Create a new IMAGE_RESOURCE_DIRECTORY object.
+        ///     Create a new ImageResourceDirectory object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the resource directory.</param>

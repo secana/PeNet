@@ -3,16 +3,16 @@ using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class MetaDataHdrParser : SafeParser<METADATAHDR>
+    internal class MetaDataHdrParser : SafeParser<MetaDataHdr>
     {
         public MetaDataHdrParser(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
         }
 
-        protected override METADATAHDR ParseTarget()
+        protected override MetaDataHdr ParseTarget()
         {
-            return new METADATAHDR(PeFile, Offset);
+            return new MetaDataHdr(PeFile, Offset);
         }
     }
 }

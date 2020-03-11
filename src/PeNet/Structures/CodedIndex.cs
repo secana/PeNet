@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using static PeNet.Structures.METADATATABLESHDR;
+using static PeNet.Structures.MetaDataTablesHdr;
 
 namespace PeNet.Structures
 {

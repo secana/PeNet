@@ -5,32 +5,32 @@ namespace PeNet.Structures
     /// <summary>
     /// Language and code page independent version information about the PE file.
     /// </summary>
-    public class VS_FIXEDFILEINFO : AbstractStructure
+    public class VsFixedFileInfo : AbstractStructure
     {
         /// <summary>
-        /// Create a new VS_FIXEDFILEINFO instance.
+        /// Create a new VsFixedFileInfo instance.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
-        /// <param name="offset">Offset of the VS_FIXEDFILEINFO structure in the PE file.</param>
-        public VS_FIXEDFILEINFO(IRawFile peFile, int offset) 
+        /// <param name="offset">Offset of the VsFixedFileInfo structure in the PE file.</param>
+        public VsFixedFileInfo(IRawFile peFile, int offset) 
             : base(peFile, offset)
         {
         }
 
         /// <summary>
-        /// Constant 0xFEEF04BD. Used to search for the VS_FIXEDFILEINFO structure.
+        /// Constant 0xFEEF04BD. Used to search for the VsFixedFileInfo structure.
         /// </summary>
-        public uint dwSignature
+        public uint DwSignature
         {
             get => PeFile.ReadUInt(Offset);
             set => PeFile.WriteUInt(Offset, value);
         }
 
         /// <summary>
-        /// Version number of the VS_FIXEDFILEINFO structure. The higher word of the member
+        /// Version number of the VsFixedFileInfo structure. The higher word of the member
         /// represents the major version, the lower word the minor version.
         /// </summary>
-        public uint dwStrucVersion
+        public uint DwStrucVersion
         {
             get => PeFile.ReadUInt(Offset + 0x4);
             set => PeFile.WriteUInt(Offset + 0x4, value);
@@ -39,7 +39,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Most significant 32 bits of the version of the PE file. 
         /// </summary>
-        public uint dwFileVersionMS
+        public uint DwFileVersionMS
         {
             get => PeFile.ReadUInt(Offset + 0x8);
             set => PeFile.WriteUInt(Offset + 0x8, value);
@@ -48,7 +48,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Least significant 32 bits of the version of the PE file. 
         /// </summary>
-        public uint dwFileVersionLS
+        public uint DwFileVersionLS
         {
             get => PeFile.ReadUInt(Offset + 0xC);
             set => PeFile.WriteUInt(Offset + 0xC, value);
@@ -57,7 +57,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Most significant 32 bits of the version of the product the PE file was distributed with. 
         /// </summary>
-        public uint dwProductVersionMS
+        public uint DwProductVersionMS
         {
             get => PeFile.ReadUInt(Offset + 0x10);
             set => PeFile.WriteUInt(Offset + 0x10, value);
@@ -66,7 +66,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Least significant 32 bits of the version of the product the PE file was distributed with. 
         /// </summary>
-        public uint dwProductVersionLS
+        public uint DwProductVersionLS
         {
             get => PeFile.ReadUInt(Offset + 0x14);
             set => PeFile.WriteUInt(Offset + 0x14, value);
@@ -76,7 +76,7 @@ namespace PeNet.Structures
         /// Bitmask to specify the valid bits in dwFileFlags. Bits are only valid if present
         /// on file creation.
         /// </summary>
-        public uint dwFileFlagsMask
+        public uint DwFileFlagsMask
         {
             get => PeFile.ReadUInt(Offset + 0x18);
             set => PeFile.WriteUInt(Offset + 0x18, value);
@@ -85,7 +85,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Bitmask to specify attributes of the file.
         /// </summary>
-        public uint dwFileFlags
+        public uint DwFileFlags
         {
             get => PeFile.ReadUInt(Offset + 0x1C);
             set => PeFile.WriteUInt(Offset + 0x1C, value);
@@ -95,7 +95,7 @@ namespace PeNet.Structures
         /// Each bit represents a different OS for which the file
         /// is intended. Only one can be set.
         /// </summary>
-        public uint dwFileOS
+        public uint DwFileOS
         {
             get => PeFile.ReadUInt(Offset + 0x20);
             set => PeFile.WriteUInt(Offset + 0x20, value);
@@ -104,7 +104,7 @@ namespace PeNet.Structures
         /// <summary>
         /// General type of the file, like DLL, driver, ...
         /// </summary>
-        public uint dwFileType
+        public uint DwFileType
         {
             get => PeFile.ReadUInt(Offset + 0x24);
             set => PeFile.WriteUInt(Offset + 0x24, value);
@@ -113,7 +113,7 @@ namespace PeNet.Structures
         /// <summary>
         /// More specific type than dwFileType like display driver, sound driver, ...
         /// </summary>
-        public uint dwFileSubType
+        public uint DwFileSubType
         {
             get => PeFile.ReadUInt(Offset + 0x28);
             set => PeFile.WriteUInt(Offset + 0x28, value);
@@ -122,7 +122,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Most significant 32 bits of the files creation date and time.
         /// </summary>
-        public uint dwFileDateMS
+        public uint DwFileDateMS
         {
             get => PeFile.ReadUInt(Offset + 0x2C);
             set => PeFile.WriteUInt(Offset + 0x2C, value);
@@ -131,7 +131,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Least significant 32 bits of the files creation date and time.
         /// </summary>
-        public uint dwFileDateLS
+        public uint DwFileDateLS
         {
             get => PeFile.ReadUInt(Offset + 0x30);
             set => PeFile.WriteUInt(Offset + 0x30, value);
