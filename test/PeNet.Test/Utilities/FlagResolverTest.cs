@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using PeNet.Structures;
-using PeNet.Utilities;
 using Xunit;
 
 namespace PeNet.Test.Utilities
@@ -33,50 +32,50 @@ namespace PeNet.Test.Utilities
         [Fact]
         public void ResolveMaskValidSingleFlags_Test()
         {
-            Assert.Equal("Module", FlagResolver.ResolveMaskValidFlags(1).First());
-            Assert.Equal("TypeRef", FlagResolver.ResolveMaskValidFlags(2).First());
-            Assert.Equal("TypeDef", FlagResolver.ResolveMaskValidFlags(4).First());
-            Assert.Equal("Field", FlagResolver.ResolveMaskValidFlags(16).First());
-            Assert.Equal("MethodDef", FlagResolver.ResolveMaskValidFlags(64).First());
-            Assert.Equal("Param", FlagResolver.ResolveMaskValidFlags(256).First());
-            Assert.Equal("InterfaceImpl", FlagResolver.ResolveMaskValidFlags(512).First());
-            Assert.Equal("MemberRef", FlagResolver.ResolveMaskValidFlags(1024).First());
-            Assert.Equal("Constant", FlagResolver.ResolveMaskValidFlags(2048).First());
-            Assert.Equal("CustomAttribute", FlagResolver.ResolveMaskValidFlags(4096).First());
-            Assert.Equal("FieldMarshal", FlagResolver.ResolveMaskValidFlags(8192).First());
-            Assert.Equal("DeclSecurity", FlagResolver.ResolveMaskValidFlags(16384).First());
-            Assert.Equal("ClassLayout", FlagResolver.ResolveMaskValidFlags(32768).First());
-            Assert.Equal("FieldLayout", FlagResolver.ResolveMaskValidFlags(65536).First());
-            Assert.Equal("StandAloneSig", FlagResolver.ResolveMaskValidFlags(131072).First());
-            Assert.Equal("EventMap", FlagResolver.ResolveMaskValidFlags(262144).First());
-            Assert.Equal("Event", FlagResolver.ResolveMaskValidFlags(1048576).First());
-            Assert.Equal("PropertyMap", FlagResolver.ResolveMaskValidFlags(2097152).First());
-            Assert.Equal("Property", FlagResolver.ResolveMaskValidFlags(8388608).First());
-            Assert.Equal("MethodSemantics", FlagResolver.ResolveMaskValidFlags(16777216).First());
-            Assert.Equal("MethodImpl", FlagResolver.ResolveMaskValidFlags(33554432).First());
-            Assert.Equal("ModuleRef", FlagResolver.ResolveMaskValidFlags(67108864).First());
-            Assert.Equal("TypeSpec", FlagResolver.ResolveMaskValidFlags(134217728).First());
-            Assert.Equal("ImplMap", FlagResolver.ResolveMaskValidFlags(268435456).First());
-            Assert.Equal("FieldRVA", FlagResolver.ResolveMaskValidFlags(536870912).First());
-            Assert.Equal("Assembly", FlagResolver.ResolveMaskValidFlags(4294967296).First());
-            Assert.Equal("AssemblyProcessor", FlagResolver.ResolveMaskValidFlags(8589934592).First());
-            Assert.Equal("AssemblyOS", FlagResolver.ResolveMaskValidFlags(17179869184).First());
-            Assert.Equal("AssemblyRef", FlagResolver.ResolveMaskValidFlags(34359738368).First());
-            Assert.Equal("AssemblyRefProcessor", FlagResolver.ResolveMaskValidFlags(68719476736).First());
-            Assert.Equal("AssemblyRefOS", FlagResolver.ResolveMaskValidFlags(137438953472).First());
-            Assert.Equal("File", FlagResolver.ResolveMaskValidFlags(274877906944).First());
-            Assert.Equal("ExportedType", FlagResolver.ResolveMaskValidFlags(549755813888).First());
-            Assert.Equal("ManifestResource", FlagResolver.ResolveMaskValidFlags(1099511627776).First());
-            Assert.Equal("NestedClass", FlagResolver.ResolveMaskValidFlags(2199023255552).First());
-            Assert.Equal("GenericParam", FlagResolver.ResolveMaskValidFlags(4398046511104).First());
-            Assert.Equal("GenericParamConstraint", FlagResolver.ResolveMaskValidFlags(17592186044416).First());
+            Assert.Equal("Module", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.Module).First());
+            Assert.Equal("TypeRef", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.TypeRef).First());
+            Assert.Equal("TypeDef", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.TypeDef).First());
+            Assert.Equal("Field", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.Field).First());
+            Assert.Equal("MethodDef", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.MethodDef).First());
+            Assert.Equal("Param", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.Param).First());
+            Assert.Equal("InterfaceImpl", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.InterfaceImpl).First());
+            Assert.Equal("MemberRef", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.MemberRef).First());
+            Assert.Equal("Constant", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.Constant).First());
+            Assert.Equal("CustomAttribute", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.CustomAttribute).First());
+            Assert.Equal("FieldMarshal", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.FieldMarshal).First());
+            Assert.Equal("DeclSecurity", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.DeclSecurity).First());
+            Assert.Equal("ClassLayout", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.ClassLayout).First());
+            Assert.Equal("FieldLayout", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.FieldLayout).First());
+            Assert.Equal("StandAloneSig", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.StandAloneSig).First());
+            Assert.Equal("EventMap", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.EventMap).First());
+            Assert.Equal("Event", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.Event).First());
+            Assert.Equal("PropertyMap", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.PropertyMap).First());
+            Assert.Equal("Property", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.Property).First());
+            Assert.Equal("MethodSemantics", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.MethodSemantics).First());
+            Assert.Equal("MethodImpl", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.MethodImpl).First());
+            Assert.Equal("ModuleRef", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.ModuleRef).First());
+            Assert.Equal("TypeSpec", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.TypeSpec).First());
+            Assert.Equal("ImplMap", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.ImplMap).First());
+            Assert.Equal("FieldRva", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.FieldRva).First());
+            Assert.Equal("Assembly", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.Assembly).First());
+            Assert.Equal("AssemblyProcessor", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.AssemblyProcessor).First());
+            Assert.Equal("AssemblyOS", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.AssemblyOS).First());
+            Assert.Equal("AssemblyRef", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.AssemblyRef).First());
+            Assert.Equal("AssemblyRefProcessor", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.AssemblyRefProcessor).First());
+            Assert.Equal("AssemblyRefOS", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.AssemblyRefOS).First());
+            Assert.Equal("File", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.File).First());
+            Assert.Equal("ExportedType", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.ExportedType).First());
+            Assert.Equal("ManifestResource", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.ManifestResource).First());
+            Assert.Equal("NestedClass", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.NestedClass).First());
+            Assert.Equal("GenericParam", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.GenericParam).First());
+            Assert.Equal("GenericParamConstraint", MetaDataTablesHdr.ResolveMaskValid(MaskValidType.GenericParamConstraint).First());
         }
 
         [Fact]
         public void ResolveMaskValidMutlipleFlags_Test()
         {
-            ulong multipleFlags = 0x00000A0909A21F57;
-            var tables = FlagResolver.ResolveMaskValidFlags(multipleFlags);
+            var multipleFlags = (MaskValidType) 0x00000A0909A21F57;
+            var tables = MetaDataTablesHdr.ResolveMaskValid(multipleFlags);
 
             Assert.Equal(19, tables.Count);
             Assert.Contains("Module", tables);

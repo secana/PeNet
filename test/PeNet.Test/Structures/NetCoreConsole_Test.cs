@@ -74,7 +74,7 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x02u, tablesHeader.MajorVersion);
             Assert.Equal(0x00u, tablesHeader.MinorVersion);
             Assert.Equal(0x01u, tablesHeader.Reserved2);
-            Assert.Equal(0x00001E0909A21F57u, tablesHeader.Valid);
+            Assert.Equal(0x00001E0909A21F57u, (ulong) tablesHeader.MaskValid);
             Assert.Equal(0x000016003301FA00u, tablesHeader.MaskSorted);
         }
 
