@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Pkcs;
 using PeNet.Asn1;
+using PeNet.Structures;
 using PeNet.Utilities;
 
 namespace PeNet.Authenticode
@@ -39,7 +40,7 @@ namespace PeNet.Authenticode
         private X509Certificate2? GetSigningCertificate()
         {
             if (_peFile.WinCertificate?.WCertificateType !=
-                (ushort) Constants.WinCertificateType.WIN_CERT_TYPE_PKCS_SIGNED_DATA)
+                WinCertificateType.PkcsSignedData)
             {
                 return null;
             }

@@ -2,7 +2,6 @@
 using PeNet.FileParser;
 using PeNet.Structures;
 using PeNet.Utilities;
-using static PeNet.Constants;
 
 namespace PeNet.Parser
 {
