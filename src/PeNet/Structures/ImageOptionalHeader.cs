@@ -269,10 +269,10 @@ namespace PeNet.Structures
         /// <summary>
         ///     DLL characteristics of the image.
         /// </summary>
-        public ushort DllCharacteristics
+        public DllCharacteristicsType DllCharacteristics
         {
-            get => PeFile.ReadUShort(Offset + 0x46);
-            set => PeFile.WriteUShort(Offset + 0x46, value);
+            get => (DllCharacteristicsType) PeFile.ReadUShort(Offset + 0x46);
+            set => PeFile.WriteUShort(Offset + 0x46, (ushort) value);
         }
 
         /// <summary>
@@ -408,6 +408,9 @@ namespace PeNet.Structures
             };
     }
 
+    /// <summary>
+    /// Subsystem of the image.
+    /// </summary>
     public enum SubsystemType : ushort
     {
         Unknown = 0,
@@ -423,5 +426,53 @@ namespace PeNet.Structures
         EfiRom = 13,
         Xbox = 14,
         WindowsBootApplication = 16
+    }
+
+    /// <summary>
+    ///     Constants for the Optional header DllCharacteristics
+    ///     property.
+    /// </summary>
+    [Flags]
+    public enum DllCharacteristicsType : ushort
+    {
+        /// <summary>
+        ///     DLL can be relocated at load time.
+        /// </summary>
+        DynamicBase = 0x40,
+
+        /// <summary>
+        ///     Enforces integrity checks.
+        /// </summary>
+        ForceIntegrity = 0x80,
+
+        /// <summary>
+        ///     Image is compatible with Data Execution Prevention (DEP).
+        /// </summary>
+        NxCompat = 0x100,
+
+        /// <summary>
+        ///     Image is isolation aware but should not be isolated.
+        /// </summary>
+        NoIsolation = 0x200,
+
+        /// <summary>
+        ///     No Secure Exception Handling (SEH)
+        /// </summary>
+        NoSeh = 0x400,
+
+        /// <summary>
+        ///     Do not bind the image.
+        /// </summary>
+        NoBind,
+
+        /// <summary>
+        ///     Image is a WDM driver.
+        /// </summary>
+        WdmDriver = 0x2000,
+
+        /// <summary>
+        ///     Terminal server aware.
+        /// </summary>
+        TerminalServerAware = 0x8000
     }
 }

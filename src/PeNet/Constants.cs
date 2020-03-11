@@ -20,53 +20,6 @@ namespace PeNet
 
        
 
-        /// <summary>
-        ///     Constants for the Optional header DllCharacteristics
-        ///     property.
-        /// </summary>
-        [Flags]
-        public enum OptionalHeaderDllCharacteristics : ushort
-        {
-            /// <summary>
-            ///     DLL can be relocated at load time.
-            /// </summary>
-            IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE = 0x40,
-
-            /// <summary>
-            ///     Enforces integrity checks.
-            /// </summary>
-            IMAGE_DLLCHARACTERISTICS_FORCE_INTEGRITY = 0x80,
-
-            /// <summary>
-            ///     Image is compatible with Data Execution Prevention (DEP).
-            /// </summary>
-            IMAGE_DLLCHARACTERISTICS_NX_COMPAT = 0x100,
-
-            /// <summary>
-            ///     Image is isolation aware but should not be isolated.
-            /// </summary>
-            IMAGE_DLLCHARACTERISTICS_NO_ISOLATION = 0x200,
-
-            /// <summary>
-            ///     No Secure Exception Handling (SEH)
-            /// </summary>
-            IMAGE_DLLCHARACTERISTICS_NO_SEH = 0x400,
-
-            /// <summary>
-            ///     Do not bind the image.
-            /// </summary>
-            IMAGE_DLLCHARACTERISTICS_NO_BIND,
-
-            /// <summary>
-            ///     Image is a WDM driver.
-            /// </summary>
-            IMAGE_DLLCHARACTERISTICS_WDM_DRIVER = 0x2000,
-
-            /// <summary>
-            ///     Terminal server aware.
-            /// </summary>
-            IMAGE_DLLCHARACTERISTICS_TERMINAL_SERVER_AWARE = 0x8000
-        }
 
 
         //////////////////////////

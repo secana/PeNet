@@ -63,7 +63,7 @@ namespace PeNet.Test.Structures
             Assert.Equal(0xcc998877, optHeader.CheckSum);
             Assert.Equal(SubsystemType.WindowsCui, optHeader.Subsystem);
             Assert.Equal("Windows CUI", optHeader.SubsystemResolved);
-            Assert.Equal((ushort) 0xaa99, optHeader.DllCharacteristics);
+            Assert.Equal((ushort) 0xaa99, (ushort) optHeader.DllCharacteristics);
             Assert.Equal(0xaa998822, optHeader.LoaderFlags);
             Assert.Equal((uint) 0x00000005, optHeader.NumberOfRvaAndSizes);
         }
@@ -120,24 +120,20 @@ namespace PeNet.Test.Structures
         public void DllCharacteristics_Missing_NoSEH_Flag()
         {
             var peFile = new PeFile("./Binaries/firefox_x64.exe");
-            var File_Characteristics = peFile.ImageNtHeaders.OptionalHeader.DllCharacteristics;
+            var fileCharacteristics = peFile.ImageNtHeaders.OptionalHeader.DllCharacteristics;
 
-            Constants.OptionalHeaderDllCharacteristics safe_seh = (Constants.OptionalHeaderDllCharacteristics)File_Characteristics;
-
-            Assert.Equal((ushort)0xC160, peFile.ImageNtHeaders.OptionalHeader.DllCharacteristics);
-            Assert.False(safe_seh.HasFlag(Constants.OptionalHeaderDllCharacteristics.IMAGE_DLLCHARACTERISTICS_NO_SEH));
+            Assert.Equal((ushort)0xC160, (ushort) peFile.ImageNtHeaders.OptionalHeader.DllCharacteristics);
+            Assert.False(fileCharacteristics.HasFlag(DllCharacteristicsType.NoSeh));
         }
 
         [Fact]
         public void DllCharacteristics_Set_NoSEH_Flag()
         {
             var peFile = new PeFile("./Binaries/No_SEH.exe");
-            var File_Characteristics = peFile.ImageNtHeaders.OptionalHeader.DllCharacteristics;
+            var fileCharacteristics = peFile.ImageNtHeaders.OptionalHeader.DllCharacteristics;
 
-            Constants.OptionalHeaderDllCharacteristics safe_seh = (Constants.OptionalHeaderDllCharacteristics)File_Characteristics;
-
-            Assert.Equal((ushort)0x08540, peFile.ImageNtHeaders.OptionalHeader.DllCharacteristics);
-            Assert.True(safe_seh.HasFlag(Constants.OptionalHeaderDllCharacteristics.IMAGE_DLLCHARACTERISTICS_NO_SEH));
+            Assert.Equal((ushort)0x08540, (ushort) peFile.ImageNtHeaders.OptionalHeader.DllCharacteristics);
+            Assert.True(fileCharacteristics.HasFlag(DllCharacteristicsType.NoSeh));
         }
     }
 }
