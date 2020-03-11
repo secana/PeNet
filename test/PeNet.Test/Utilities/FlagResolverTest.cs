@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using PeNet.Structures;
 using PeNet.Utilities;
 using Xunit;
 
@@ -9,24 +10,24 @@ namespace PeNet.Test.Utilities
         [Fact]
         public void ResolveCOMImageFlagsSingleFlags_Test()
         {
-            Assert.Equal("COMIMAGE_FLAGS_ILONLY", FlagResolver.ResolveComImageFlags(0x00000001).First());
-            Assert.Equal("COMIMAGE_FLAGS_32BITREQUIRED", FlagResolver.ResolveComImageFlags(0x00000002).First());
-            Assert.Equal("COMIMAGE_FLAGS_IL_LIBRARY", FlagResolver.ResolveComImageFlags(0x000000004).First());
-            Assert.Equal("COMIMAGE_FLAGS_STRONGNAMESIGNED", FlagResolver.ResolveComImageFlags(0x00000008).First());
-            Assert.Equal("COMIMAGE_FLAGS_NATIVE_ENTRYPOINT", FlagResolver.ResolveComImageFlags(0x00000010).First());
-            Assert.Equal("COMIMAGE_FLAGS_TRACKDEBUGDATA", FlagResolver.ResolveComImageFlags(0x00010000).First());
+            Assert.Equal("IlOnly", ImageCor20Header.ResolveComFlags(ComFlagsType.IlOnly).First());
+            Assert.Equal("BitRequired32", ImageCor20Header.ResolveComFlags(ComFlagsType.BitRequired32).First());
+            Assert.Equal("IlLibrary", ImageCor20Header.ResolveComFlags(ComFlagsType.IlLibrary).First());
+            Assert.Equal("StrongNameSigned", ImageCor20Header.ResolveComFlags(ComFlagsType.StrongNameSigned).First());
+            Assert.Equal("NativeEntrypoint", ImageCor20Header.ResolveComFlags(ComFlagsType.NativeEntrypoint).First());
+            Assert.Equal("TrackDebugData", ImageCor20Header.ResolveComFlags(ComFlagsType.TrackDebugData).First());
         }
 
         [Fact]
         public void ResolveCOMIMagesFlagsMultipleFlags_Test()
         {
-            uint flags = 0x00010005;
-            var resolved = FlagResolver.ResolveComImageFlags(flags);
+            const uint flags = 0x00010005;
+            var resolved = ImageCor20Header.ResolveComFlags((ComFlagsType) flags);
 
             Assert.Equal(3, resolved.Count);
-            Assert.Equal("COMIMAGE_FLAGS_ILONLY", resolved[0]);
-            Assert.Equal("COMIMAGE_FLAGS_IL_LIBRARY", resolved[1]);
-            Assert.Equal("COMIMAGE_FLAGS_TRACKDEBUGDATA", resolved[2]);
+            Assert.Equal("IlOnly", resolved[0]);
+            Assert.Equal("IlLibrary", resolved[1]);
+            Assert.Equal("TrackDebugData", resolved[2]);
         }
 
         [Fact]

@@ -17,9 +17,11 @@ namespace PeNet.Test.Structures
             Assert.Equal((uint) 0x7766, imageCor20Header.MinorRuntimeVersion);
             Assert.Equal((uint) 0xbbaa9988, imageCor20Header.MetaData.VirtualAddress);
             Assert.Equal((uint) 0xffeeddcc, imageCor20Header.MetaData.Size);
-            Assert.Equal((uint) 0x44332211, imageCor20Header.Flags);
+            Assert.Equal(ComFlagsType.IlOnly, imageCor20Header.Flags & ComFlagsType.IlOnly);
+            Assert.Equal(ComFlagsType.TrackDebugData, imageCor20Header.Flags & ComFlagsType.TrackDebugData);
+            Assert.NotEqual(ComFlagsType.BitRequired32, imageCor20Header.Flags & ComFlagsType.BitRequired32);
             Assert.Equal((uint) 0x88776655, imageCor20Header.EntryPointToken);
-            Assert.Equal((uint) 0x88776655, imageCor20Header.EntryPointRVA);
+            Assert.Equal((uint) 0x88776655, imageCor20Header.EntryPointRva);
             Assert.Equal((uint) 0xccbbaa99, imageCor20Header.Resources.VirtualAddress);
             Assert.Equal((uint) 0x11ffeedd, imageCor20Header.Resources.Size);
             Assert.Equal((uint) 0xddccbbaa, imageCor20Header.StrongNameSignature.VirtualAddress);

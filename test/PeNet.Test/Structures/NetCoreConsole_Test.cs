@@ -1,4 +1,5 @@
 ﻿using System;
+using PeNet.Structures;
 using Xunit;
 
 namespace PeNet.Test.Structures
@@ -32,9 +33,9 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x0005u, netDirectory.MinorRuntimeVersion);
             Assert.Equal(0x00003A38u, netDirectory.MetaData.VirtualAddress);
             Assert.Equal(0x000056F8u, netDirectory.MetaData.Size);
-            Assert.Equal(0x00000001u, netDirectory.Flags);
+            Assert.Equal(ComFlagsType.IlOnly, netDirectory.Flags & ComFlagsType.IlOnly);
             Assert.Equal(0x0600000Cu, netDirectory.EntryPointToken);
-            Assert.Equal(0x0600000Cu, netDirectory.EntryPointRVA);
+            Assert.Equal(0x0600000Cu, netDirectory.EntryPointRva);
             Assert.Equal(0x00000000u, netDirectory.Resources.VirtualAddress);
             Assert.Equal(0x00000000u, netDirectory.Resources.Size);
             Assert.Equal(0x00000000u, netDirectory.StrongNameSignature.VirtualAddress);

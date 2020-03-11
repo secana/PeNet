@@ -7,45 +7,10 @@ namespace PeNet
     /// </summary>
     public static class DotNetConstants
     {
-        /// <summary>
-        /// ImageCor20Header Flags
-        /// </summary>
-        [Flags]
-        public enum COMImageFlag : uint
-        {
-            /// <summary>
-            /// Intermediate language only flag.
-            /// </summary>
-            COMIMAGE_FLAGS_ILONLY = 0x00000001,
-
-            /// <summary>
-            /// 32 bit required flag.
-            /// </summary>
-            COMIMAGE_FLAGS_32BITREQUIRED = 0x00000002,
-
-            /// <summary>
-            /// Intermediate language library flag.
-            /// </summary>
-            COMIMAGE_FLAGS_IL_LIBRARY = 0x00000004,
-
-            /// <summary>
-            /// Strong named signed flag.
-            /// </summary>
-            COMIMAGE_FLAGS_STRONGNAMESIGNED = 0x00000008,
-
-            /// <summary>
-            /// Native entry point flag.
-            /// </summary>
-            COMIMAGE_FLAGS_NATIVE_ENTRYPOINT = 0x00000010,
-
-            /// <summary>
-            /// Track debug data flag.
-            /// </summary>
-            COMIMAGE_FLAGS_TRACKDEBUGDATA = 0x00010000
-        };
+       
 
         /// <summary>
-        /// MaskValid flags from the METADATATABELSHDR.
+        /// MaskValid flags from the MetaDataTablesHdr.
         /// The flags show, which tables are present.
         /// </summary>
         [Flags]

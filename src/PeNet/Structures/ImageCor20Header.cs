@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using PeNet.FileParser;
 
 namespace PeNet.Structures
@@ -72,14 +73,17 @@ namespace PeNet.Structures
         /// <summary>
         /// COM image flags.
         /// </summary>
-        public uint Flags
-        {
-            get => PeFile.ReadUInt(Offset + 0x10);
-            set => PeFile.WriteUInt(Offset + 0x10, value);
-        }
+        public ComFlagsType Flags 
+            => (ComFlagsType) PeFile.ReadUInt(Offset + 0x10);
 
         /// <summary>
-        /// Represents the managed entry point if COMIMAGE_FLAGS_NATIVE_ENTRYPOINT is not set.
+        /// Readable list of COM flags.
+        /// </summary>
+        public List<string> FlagsResolved 
+            => ResolveComFlags(Flags);
+
+        /// <summary>
+        /// Represents the managed entry point if NativeEntrypoint is not set.
         /// Union with EntryPointRVA.
         /// </summary>
         public uint EntryPointToken
@@ -89,10 +93,10 @@ namespace PeNet.Structures
         }
 
         /// <summary>
-        /// Represents an RVA to an native entry point if the COMIMAGE_FLAGS_NATIVE_ENTRYPOINT is set.
+        /// Represents an RVA to an native entry point if the NativeEntrypoint is set.
         /// Union with EntryPointToken.
         /// </summary>
-        public uint EntryPointRVA
+        public uint EntryPointRva
         {
             get => EntryPointToken;
             set => EntryPointToken = value;
@@ -181,5 +185,61 @@ namespace PeNet.Structures
                 return null;
             }
         }
+
+        /// <summary>
+        ///     Resolve flags from the ImageCor20Header COM+ 2 (CLI) header to
+        ///     their string representation.
+        /// </summary>
+        /// <param name="comFlags">Flags from ImageCor20Header.</param>
+        /// <returns>List with resolved flag names.</returns>
+        public static List<string> ResolveComFlags(ComFlagsType comFlags)
+        {
+            var st = new List<string>();
+            foreach (var flag in (ComFlagsType[])Enum.GetValues(typeof(ComFlagsType)))
+            {
+                if ((comFlags & flag) == flag)
+                {
+                    st.Add(flag.ToString());
+                }
+            }
+            return st;
+        }
     }
+
+    /// <summary>
+    /// ImageCor20Header Flags
+    /// </summary>
+    [Flags]
+    public enum ComFlagsType : uint
+    {
+        /// <summary>
+        /// Intermediate language only flag.
+        /// </summary>
+        IlOnly = 0x00000001,
+
+        /// <summary>
+        /// 32 bit required flag.
+        /// </summary>
+        BitRequired32 = 0x00000002,
+
+        /// <summary>
+        /// Intermediate language library flag.
+        /// </summary>
+        IlLibrary = 0x00000004,
+
+        /// <summary>
+        /// Strong named signed flag.
+        /// </summary>
+        StrongNameSigned = 0x00000008,
+
+        /// <summary>
+        /// Native entry point flag.
+        /// </summary>
+        NativeEntrypoint = 0x00000010,
+
+        /// <summary>
+        /// Track debug data flag.
+        /// </summary>
+        TrackDebugData = 0x00010000
+    };
 }

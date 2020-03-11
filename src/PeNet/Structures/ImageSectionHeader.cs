@@ -122,14 +122,14 @@ namespace PeNet.Structures
         /// The section characteristics flags resolved to
         /// readable strings.
         /// </summary>
-        public List<string> CharacteristicsResolved => ResolveSectionFlags(Characteristics);
+        public List<string> CharacteristicsResolved => ResolveCharacteristics(Characteristics);
 
         /// <summary>
         ///     Resolves the section flags to human readable strings.
         /// </summary>
         /// <param name="sectionFlags">Sections flags from the SectionHeader object.</param>
         /// <returns>List with flag names for the section.</returns>
-        public static List<string> ResolveSectionFlags(uint sectionFlags)
+        public static List<string> ResolveCharacteristics(uint sectionFlags)
         {
             var st = new List<string>();
             foreach (var flag in (CharacteristicsType[])Enum.GetValues(typeof(CharacteristicsType)))
