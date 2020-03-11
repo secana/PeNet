@@ -257,13 +257,14 @@ namespace PeNet.Structures
 
         /// <summary>
         ///     The subsystem required to run the image e.g., Windows GUI, XBOX etc.
-        ///     Can be resolved to a string with Utility.ResolveSubsystem(subsystem=
         /// </summary>
-        public ushort Subsystem
-        {
-            get => PeFile.ReadUShort(Offset + 0x44);
-            set => PeFile.WriteUShort(Offset + 0x44, value);
-        }
+        public SubsystemType Subsystem 
+            => (SubsystemType) PeFile.ReadUShort(Offset + 0x44);
+
+        /// <summary>
+        /// Subsystem resolved to a readable string.
+        /// </summary>
+        public string SubsystemResolved => ResolveSubsystem(Subsystem);
 
         /// <summary>
         ///     DLL characteristics of the image.
@@ -381,5 +382,47 @@ namespace PeNet.Structures
                     PeFile.WriteUInt(Offset + 0x6C, value);
             }
         }
+
+        /// <summary>
+        ///     Resolve the subsystem attribute to a human readable string.
+        /// </summary>
+        /// <param name="subsystem">Subsystem attribute.</param>
+        /// <returns>Subsystem as readable string.</returns>
+        public static string ResolveSubsystem(SubsystemType subsystem)
+            => subsystem switch
+            {
+                SubsystemType.Unknown => "Unknown Subsystem",
+                SubsystemType.Native => "Native",
+                SubsystemType.WindowsGui => "Windows GUI",
+                SubsystemType.WindowsCui => "Windows CUI",
+                SubsystemType.Os2Cui => "OS/2 CUI",
+                SubsystemType.PosixCui => "POSIX CUI",
+                SubsystemType.WindowsCeGui => "Windows CE CUI",
+                SubsystemType.EfiApplication => "EFI application",
+                SubsystemType.EfiBootServiceDriver => "EFI boot service driver",
+                SubsystemType.EfiRuntimeDriver => "EFI runtime service driver",
+                SubsystemType.EfiRom => "EFI ROM image",
+                SubsystemType.Xbox => "XBox",
+                SubsystemType.WindowsBootApplication => "Windows boot application",
+                _ => "Unknown Subsystem"
+            };
+    }
+
+    [Flags]
+    public enum SubsystemType : ushort
+    {
+        Unknown = 0,
+        Native = 1,
+        WindowsGui = 2,
+        WindowsCui = 3,
+        Os2Cui = 5,
+        PosixCui = 7,
+        WindowsCeGui = 9,
+        EfiApplication = 10,
+        EfiBootServiceDriver = 11,
+        EfiRuntimeDriver = 12,
+        EfiRom = 13,
+        Xbox = 14,
+        WindowsBootApplication = 16
     }
 }

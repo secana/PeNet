@@ -24,7 +24,7 @@ namespace PeNet.Structures
         /// Relative offset (from Meta Data Header) to 
         /// the stream.
         /// </summary>
-        public uint offset
+        public uint RelOffset
         {
             get => PeFile.ReadUInt(Offset);
             set => PeFile.WriteUInt(Offset, value);

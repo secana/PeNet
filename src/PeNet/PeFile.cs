@@ -131,8 +131,7 @@ namespace PeNet
         ///     Returns true if the PE file is a system driver
         ///     based on the Subsytem = 0x1 value in the Optional Header.
         /// </summary>
-        public bool IsDriver => ImageNtHeaders?.OptionalHeader.Subsystem ==
-                                (ushort)Constants.OptionalHeaderSubsystem.IMAGE_SUBSYSTEM_NATIVE
+        public bool IsDriver => ImageNtHeaders?.OptionalHeader.Subsystem == SubsystemType.Native
                                 && ImportedFunctions.FirstOrDefault(i => i.DLL == "ntoskrnl.exe") != null;
 
         /// <summary>

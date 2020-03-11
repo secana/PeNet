@@ -55,7 +55,7 @@ namespace PeNet
 
             return metaDataStream == null 
                 ? null 
-                : new MetaDataStreamStringParser(_peFile, MetaDataHdr!.Offset + metaDataStream.offset, metaDataStream.size);
+                : new MetaDataStreamStringParser(_peFile, MetaDataHdr!.Offset + metaDataStream.RelOffset, metaDataStream.size);
         }
 
         private MetaDataStreamUSParser? InitMetaDataStreamUSParser()
@@ -64,7 +64,7 @@ namespace PeNet
 
             return metaDataStream == null 
                 ? null 
-                : new MetaDataStreamUSParser(_peFile, MetaDataHdr!.Offset + metaDataStream.offset, metaDataStream.size);
+                : new MetaDataStreamUSParser(_peFile, MetaDataHdr!.Offset + metaDataStream.RelOffset, metaDataStream.size);
         }
 
         private MetaDataStreamTablesHeaderParser? InitMetaDataStreamTablesHeaderParser()
@@ -73,7 +73,7 @@ namespace PeNet
 
             return metaDataStream == null 
                 ? null 
-                : new MetaDataStreamTablesHeaderParser(_peFile, MetaDataHdr!.Offset + metaDataStream.offset);
+                : new MetaDataStreamTablesHeaderParser(_peFile, MetaDataHdr!.Offset + metaDataStream.RelOffset);
         }
 
         private MetaDataStreamGUIDParser? InitMetaDataStreamGUIDParser()
@@ -82,7 +82,7 @@ namespace PeNet
 
             return metaDataStream == null 
                 ? null 
-                : new MetaDataStreamGUIDParser(_peFile, MetaDataHdr!.Offset +  metaDataStream.offset, metaDataStream.size);
+                : new MetaDataStreamGUIDParser(_peFile, MetaDataHdr!.Offset +  metaDataStream.RelOffset, metaDataStream.size);
         }
 
         private MetaDataStreamBlobParser? InitMetaDataStreamBlobParser()
@@ -91,7 +91,7 @@ namespace PeNet
 
             return metaDataStream == null 
                 ? null 
-                : new MetaDataStreamBlobParser(_peFile, MetaDataHdr!.Offset + metaDataStream.offset, metaDataStream.size);
+                : new MetaDataStreamBlobParser(_peFile, MetaDataHdr!.Offset + metaDataStream.RelOffset, metaDataStream.size);
         }
     }
 }

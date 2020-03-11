@@ -842,8 +842,8 @@
             0x88,
             0x99,
             0xcc,
-            0x77, // Subsystem
-            0x88,
+            0x03, // Subsystem
+            0x00,
             0x99, // DllCharacteristics
             0xaa,
             0xff, // SizeOfStackReserve
@@ -1094,8 +1094,8 @@
             0x88,
             0x99,
             0xcc,
-            0x77, // Subsystem
-            0x88,
+            0x03, // Subsystem
+            0x00,
             0x99, // DllCharacteristics
             0xaa,
             0xff, // SizeOfStackReserve

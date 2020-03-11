@@ -11,28 +11,7 @@ namespace PeNet.Utilities
     {
         
 
-        /// <summary>
-        ///     Resolve the subsystem attribute to a human readable string.
-        /// </summary>
-        /// <param name="subsystem">Subsystem attribute.</param>
-        /// <returns>Subsystem as readable string.</returns>
-        public static string ResolveSubsystem(ushort subsystem)
-            => subsystem switch
-            {
-                1 => "native",
-                2 => "Windows/GUI",
-                3 => "Windows non-GUI",
-                5 => "OS/2",
-                7 => "POSIX",
-                8 => "Native Windows 9x Driver",
-                9 => "Windows CE",
-                0xA => "EFI Application",
-                0xB => "EFI boot service device",
-                0xC => "EFI runtime driver",
-                0xD => "EFI ROM",
-                0xE => "XBox",
-                _ => "unknown"
-            };
+        
 
         /// <summary>
         ///     Resolves the section flags to human readable strings.

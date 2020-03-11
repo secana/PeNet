@@ -21,10 +21,10 @@ namespace PeNet.Test.Structures
             Assert.Equal((ushort) 0x0002, metaDataHdr.Streams);
 
             Assert.Equal(2, metaDataHdr.MetaDataStreamsHdrs.Length);
-            Assert.Equal((uint) 0x6C, metaDataHdr.MetaDataStreamsHdrs[0].offset);
+            Assert.Equal((uint) 0x6C, metaDataHdr.MetaDataStreamsHdrs[0].RelOffset);
             Assert.Equal((uint) 0x1804, metaDataHdr.MetaDataStreamsHdrs[0].size);
             Assert.Equal("#~", metaDataHdr.MetaDataStreamsHdrs[0].streamName);
-            Assert.Equal((uint) 0x1870, metaDataHdr.MetaDataStreamsHdrs[1].offset);
+            Assert.Equal((uint) 0x1870, metaDataHdr.MetaDataStreamsHdrs[1].RelOffset);
             Assert.Equal((uint) 0x1468, metaDataHdr.MetaDataStreamsHdrs[1].size);
             Assert.Equal("#Strings", metaDataHdr.MetaDataStreamsHdrs[1].streamName);
         }

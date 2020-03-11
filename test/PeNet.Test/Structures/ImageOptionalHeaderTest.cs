@@ -61,7 +61,8 @@ namespace PeNet.Test.Structures
             Assert.Equal(0xaa998877, optHeader.Win32VersionValue);
             Assert.Equal(0xaaff8877, optHeader.SizeOfHeaders);
             Assert.Equal(0xcc998877, optHeader.CheckSum);
-            Assert.Equal((ushort) 0x8877, optHeader.Subsystem);
+            Assert.Equal(SubsystemType.WindowsCui, optHeader.Subsystem);
+            Assert.Equal("Windows CUI", optHeader.SubsystemResolved);
             Assert.Equal((ushort) 0xaa99, optHeader.DllCharacteristics);
             Assert.Equal(0xaa998822, optHeader.LoaderFlags);
             Assert.Equal((uint) 0x00000005, optHeader.NumberOfRvaAndSizes);
