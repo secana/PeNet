@@ -19,7 +19,7 @@ namespace PeNet.Test.Structures
 
             Assert.Single(unwindInfo.UnwindCode);
             Assert.Equal((byte) 0x77, unwindInfo.UnwindCode[0].CodeOffset);
-            Assert.Equal((byte) 0x8, unwindInfo.UnwindCode[0].UnwindOp);
+            Assert.Equal(UnwindOpType.SaveXmm128, unwindInfo.UnwindCode[0].UnwindOp);
             Assert.Equal((byte) 0x9, unwindInfo.UnwindCode[0].Opinfo);
 
             Assert.Equal(0xffeeddcc, unwindInfo.ExceptionHandler);

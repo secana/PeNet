@@ -182,99 +182,12 @@ namespace PeNet
             IMAGE_ROM_OPTIONAL_HDR_MAGIC = 0x107
         }
 
-        /// <summary>
-        ///     Constants for the Optional header subsystem property.
-        /// </summary>
-        [Flags]
-        public enum OptionalHeaderSubsystem : ushort
-        {
-            /// <summary>
-            ///     System driver.
-            /// </summary>
-            IMAGE_SUBSYSTEM_NATIVE = 0x01,
-
-            /// <summary>
-            ///     GUI Subsystem.
-            /// </summary>
-            IMAGE_SUBSYSTEM_WINDOWS_GUI = 0x02,
-
-            /// <summary>
-            ///     Console Subsystem.
-            /// </summary>
-            IMAGE_SUBSYSTEM_WINDOWS_CUI = 0x03
-        }
-
-
-        //////////////////////////////////
-        // ImageResourceDirectoryEntry
-        //////////////////////////////////
-
-       
-
-        ////////////////////////
-        // ImageSectionHeader
-        ////////////////////////
-
-        
 
         /////////////////
         // UNWINDE_CODE
         /////////////////
 
-        /// <summary>
-        ///     UnwindOp Codes for the unwind information
-        ///     used to walk the stack in x64 applications.
-        /// </summary>
-        public enum UnwindOpCodes : byte
-        {
-            /// <summary>
-            ///     Push a non volatile integer.
-            /// </summary>
-            UWOP_PUSH_NONVOL = 0,
-
-            /// <summary>
-            ///     Allocate large size on stack.
-            /// </summary>
-            UWOP_ALLOC_LARGE = 1,
-
-            /// <summary>
-            ///     Allocate small size on stack.
-            /// </summary>
-            UWOP_ALLOC_SMALL = 2,
-
-            /// <summary>
-            ///     Establish frame pointer register.
-            /// </summary>
-            UWOP_SET_FPREG = 3,
-
-            /// <summary>
-            ///     Save non volatile register to stack by a MOV.
-            /// </summary>
-            UWOP_SAVE_NONVOL = 4,
-
-            /// <summary>
-            ///     Save non volatile register to stack with
-            ///     a long offset by a MOV.
-            /// </summary>
-            UWOP_SAVE_NONVOL_FAR = 5,
-
-            /// <summary>
-            ///     Save a XMM (128 bit) register to the stack.
-            /// </summary>
-            UWOP_SAVE_XMM128 = 8,
-
-            /// <summary>
-            ///     Save a XMM (128 bit) register to the stack
-            ///     with a long offset.
-            /// </summary>
-            UWOP_SAVE_XMM128_FAR = 9,
-
-            /// <summary>
-            ///     Push a machine frame, which is used to record the effect
-            ///     of a hardware interrupt.
-            /// </summary>
-            UWOP_PUSH_MACHFRAME = 10
-        }
+       
 
         //////////////////////////////////////
         // WinCertificate wCertificateType
