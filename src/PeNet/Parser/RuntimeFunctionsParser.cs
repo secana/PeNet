@@ -1,19 +1,20 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class RuntimeFunctionsParser : SafeParser<RUNTIME_FUNCTION[]>
+    internal class RuntimeFunctionsParser : SafeParser<RuntimeFunction[]>
     {
         private readonly uint _directorySize;
         private readonly bool _is32Bit;
-        private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
+        private readonly ImageSectionHeader[] _sectionHeaders;
 
         public RuntimeFunctionsParser(
             IRawFile peFile,
             long offset,
             bool is32Bit,
             uint directorySize,
-            IMAGE_SECTION_HEADER[] sectionHeaders
+            ImageSectionHeader[] sectionHeaders
             )
             : base(peFile, offset)
         {
@@ -22,17 +23,17 @@ namespace PeNet.Parser
             _sectionHeaders = sectionHeaders;
         }
 
-        protected override RUNTIME_FUNCTION[]? ParseTarget()
+        protected override RuntimeFunction[]? ParseTarget()
         {
             if (_is32Bit || Offset == 0)
                 return null;
 
             const int sizeOfRuntimeFunction = 0xC;
-            var rf = new RUNTIME_FUNCTION[_directorySize/sizeOfRuntimeFunction];
+            var rf = new RuntimeFunction[_directorySize/sizeOfRuntimeFunction];
 
             for (var i = 0; i < rf.Length; i++)
             {
-                rf[i] = new RUNTIME_FUNCTION(PeFile, (uint) (Offset + i*sizeOfRuntimeFunction), _sectionHeaders);
+                rf[i] = new RuntimeFunction(PeFile, (uint) (Offset + i*sizeOfRuntimeFunction), _sectionHeaders);
             }
 
             return rf;

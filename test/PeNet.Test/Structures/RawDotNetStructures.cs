@@ -33,10 +33,10 @@
             0xee,
             0xff,
 
-            0x11, // Flags
-            0x22,
-            0x33,
-            0x44,
+            0x44, // Flags
+            0x00,
+            0x00,
+            0x00,
 
             0x55, // EntryPointToken/RVA (Union)
             0x66,

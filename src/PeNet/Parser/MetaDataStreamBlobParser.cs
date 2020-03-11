@@ -1,4 +1,4 @@
-﻿using System;
+﻿using PeNet.FileParser;
 
 namespace PeNet.Parser
 {
@@ -15,6 +15,6 @@ namespace PeNet.Parser
             _size = size;
         }
 
-        protected override byte[] ParseTarget() => PeFile.GetSpan(Offset, _size).ToArray();
+        protected override byte[] ParseTarget() => PeFile.AsSpan(Offset, _size).ToArray();
     }
 }

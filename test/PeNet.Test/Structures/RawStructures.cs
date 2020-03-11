@@ -524,7 +524,7 @@
 
             0x56, // FrameRegister/Offset 4:4
 
-            // UNWIND_CODE
+            // UnwindCode
             0x77, // CodeOffset
 
             0x89, // UnwindOp/Opinfo 4:4
@@ -637,9 +637,9 @@
             0xaa,
             0xbb, // NumberOfLinenumbers
             0xcc,
-            0xdd, // Characteristics
-            0xee,
-            0xff,
+            0x20, // Characteristics
+            0x08,
+            0x00,
             0x00
         };
 
@@ -842,8 +842,8 @@
             0x88,
             0x99,
             0xcc,
-            0x77, // Subsystem
-            0x88,
+            0x03, // Subsystem
+            0x00,
             0x99, // DllCharacteristics
             0xaa,
             0xff, // SizeOfStackReserve
@@ -1094,8 +1094,8 @@
             0x88,
             0x99,
             0xcc,
-            0x77, // Subsystem
-            0x88,
+            0x03, // Subsystem
+            0x00,
             0x99, // DllCharacteristics
             0xaa,
             0xff, // SizeOfStackReserve
@@ -1325,8 +1325,8 @@
         {
             0xff, // Junk
             0xff,
-            0x00, // Machine
-            0x11,
+            0x64, // Machine
+            0x86,
             0x22, // NumberOfSections
             0x33,
             0x44, // TimeDateStamp
@@ -1343,8 +1343,8 @@
             0xff,
             0x11, // SizeOfOptionalHeader
             0x22,
-            0x33, // Characteristics
-            0x44
+            0x00, // Characteristics
+            0x20
         };
 
         public static readonly byte[] RawExportDirectory =

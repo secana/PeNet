@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using PeNet.FileParser;
+
 namespace PeNet.Structures
 {
     /// <summary>
@@ -20,6 +21,6 @@ namespace PeNet.Structures
         /// <summary>
         ///     The copyright string.
         /// </summary>
-        public string CopyrightString => PeFile.GetCString(Offset);
+        public string CopyrightString => PeFile.ReadAsciiString(Offset);
     }
 }

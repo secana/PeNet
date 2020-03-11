@@ -1,17 +1,18 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class ImageDosHeaderParser : SafeParser<IMAGE_DOS_HEADER>
+    internal class ImageDosHeaderParser : SafeParser<ImageDosHeader>
     {
         internal ImageDosHeaderParser(IRawFile peFile, long offset)
             : base(peFile, offset)
         {
         }
 
-        protected override IMAGE_DOS_HEADER ParseTarget()
+        protected override ImageDosHeader ParseTarget()
         {
-            return new IMAGE_DOS_HEADER(PeFile, Offset);
+            return new ImageDosHeader(PeFile, Offset);
         }
     }
 }

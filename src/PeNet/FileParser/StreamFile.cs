@@ -14,7 +14,7 @@ namespace PeNet.FileParser
         public StreamFile(Stream file) 
             => (_stream) = (file);
 
-        public string GetCString(long offset)
+        public string ReadAsciiString(long offset)
         {
             _stream.Seek(offset, SeekOrigin.Begin);
             var list = new List<char>();
@@ -39,7 +39,7 @@ namespace PeNet.FileParser
             return new string(list.ToArray());
         }
 
-        public Span<byte> GetSpan(long offset, long length)
+        public Span<byte> AsSpan(long offset, long length)
         {
             Span<byte> s = new byte[(int)length]; 
             _stream.Seek(offset, SeekOrigin.Begin);
@@ -47,7 +47,7 @@ namespace PeNet.FileParser
             return s;
         }
 
-        public string GetUnicodeString(long offset)
+        public string ReadUnicodeString(long offset)
         {
             _stream.Seek(offset, SeekOrigin.Begin);
             var chars = new List<byte>();
@@ -99,6 +99,8 @@ namespace PeNet.FileParser
         public byte[] ToArray()
         {
             using var ms = new MemoryStream();
+            ms.Position = 0;
+            _stream.Position = 0;
             _stream.CopyTo(ms);
             return ms.ToArray();
         }
@@ -137,6 +139,11 @@ namespace PeNet.FileParser
             Span<byte> s = BitConverter.GetBytes(value);
             _stream.Seek(offset, SeekOrigin.Begin);
             _stream.Write(s);
+        }
+
+        public void Dispose()
+        {
+            _stream.Dispose();
         }
     }
 }

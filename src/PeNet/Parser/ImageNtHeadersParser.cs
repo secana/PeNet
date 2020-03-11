@@ -1,18 +1,18 @@
-﻿using PeNet.Structures;
-using System.IO;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class ImageNtHeadersParser : SafeParser<IMAGE_NT_HEADERS>
+    internal class ImageNtHeadersParser : SafeParser<ImageNtHeaders>
     {
         internal ImageNtHeadersParser(IRawFile peFile, uint offset)
             : base(peFile, offset)
         {
         }
 
-        protected override IMAGE_NT_HEADERS ParseTarget()
+        protected override ImageNtHeaders ParseTarget()
         {
-            return new IMAGE_NT_HEADERS(PeFile, Offset);
+            return new ImageNtHeaders(PeFile, Offset);
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using PeNet.FileParser;
 using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class ImageBaseRelocationsParser : SafeParser<IMAGE_BASE_RELOCATION[]>
+    internal class ImageBaseRelocationsParser : SafeParser<ImageBaseRelocation[]>
     {
         private readonly uint _directorySize;
 
@@ -18,12 +19,12 @@ namespace PeNet.Parser
             _directorySize = directorySize;
         }
 
-        protected override IMAGE_BASE_RELOCATION[]? ParseTarget()
+        protected override ImageBaseRelocation[]? ParseTarget()
         {
             if (Offset == 0)
                 return null;
 
-            var imageBaseRelocations = new List<IMAGE_BASE_RELOCATION>();
+            var imageBaseRelocations = new List<ImageBaseRelocation>();
             var currentBlock = Offset;
 
 
@@ -32,7 +33,7 @@ namespace PeNet.Parser
                 if (currentBlock >= Offset + _directorySize - 8)
                     break;
 
-                imageBaseRelocations.Add(new IMAGE_BASE_RELOCATION(PeFile, currentBlock, _directorySize));
+                imageBaseRelocations.Add(new ImageBaseRelocation(PeFile, currentBlock, _directorySize));
                 currentBlock += imageBaseRelocations.Last().SizeOfBlock;
             }
 

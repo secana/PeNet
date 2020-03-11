@@ -9,7 +9,6 @@ using PeNet.Authenticode;
 using PeNet.FileParser;
 using PeNet.ImpHash;
 using PeNet.Structures;
-using PeNet.Utilities;
 
 namespace PeNet
 {
@@ -17,7 +16,7 @@ namespace PeNet
     ///     This class represents a Portable Executable (PE) file and makes the different
     ///     header and properties accessible.
     /// </summary>
-    public class PeFile
+    public class PeFile : IDisposable
     {
         private readonly DataDirectoryParsers _dataDirectoryParsers;
         private readonly NativeStructureParsers _nativeStructureParsers;
@@ -117,26 +116,22 @@ namespace PeNet
         ///     Returns true if the DLL flag in the
         ///     File Header is set.
         /// </summary>
-        public bool IsDLL
-            =>
-                (ImageNtHeaders?.FileHeader.Characteristics
-                 & (ushort)Constants.FileHeaderCharacteristics.IMAGE_FILE_DLL) > 0;
+        public bool IsDll 
+            => ImageNtHeaders?.FileHeader.Characteristics.DLL ?? false;
+
 
         /// <summary>
         ///     Returns true if the Executable flag in the
         ///     File Header is set.
         /// </summary>
-        public bool IsEXE
-            =>
-                (ImageNtHeaders?.FileHeader.Characteristics &
-                 (ushort)Constants.FileHeaderCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) > 0;
+        public bool IsExe
+            => ImageNtHeaders?.FileHeader.Characteristics.ExecutableImage ?? false;
 
         /// <summary>
         ///     Returns true if the PE file is a system driver
         ///     based on the Subsytem = 0x1 value in the Optional Header.
         /// </summary>
-        public bool IsDriver => ImageNtHeaders?.OptionalHeader.Subsystem ==
-                                (ushort)Constants.OptionalHeaderSubsystem.IMAGE_SUBSYSTEM_NATIVE
+        public bool IsDriver => ImageNtHeaders?.OptionalHeader.Subsystem == SubsystemType.Native
                                 && ImportedFunctions.FirstOrDefault(i => i.DLL == "ntoskrnl.exe") != null;
 
         /// <summary>
@@ -149,6 +144,43 @@ namespace PeNet
         ///     Returns true if the PE file signature is valid signed.
         /// </summary>
         public bool IsSignatureValid => Authenticode?.IsAuthenticodeValid ?? false;
+
+        /// <summary>
+        ///     Checks if cert is from a trusted CA with a valid certificate chain.
+        /// </summary>
+        /// <param name="filePath">Path to a PE file.</param>
+        /// <param name="useOnlineCRL">Check certificate chain online or offline.</param>
+        /// <returns>True if cert chain is valid and from a trusted CA.</returns>
+        public bool IsValidCertChain(bool useOnlineCRL)
+        {
+            if (Authenticode?.SigningCertificate == null)
+                return false;
+
+            return IsValidCertChain(Authenticode.SigningCertificate, new TimeSpan(0,0,0,10), useOnlineCRL);
+        }
+
+        /// <summary>
+        ///     Checks if cert is from a trusted CA with a valid certificate chain.
+        /// </summary>
+        /// <param name="cert">X509 Certificate</param>
+        /// <param name="urlRetrievalTimeout">Timeout to validate the certificate online.</param>
+        /// <param name="useOnlineCRL">If true, uses online certificate revocation lists, else on the local CRL.</param>
+        /// <param name="excludeRoot">True if the root certificate should not be validated. False if the whole chain should be validated.</param>
+        /// <returns>True if cert chain is valid and from a trusted CA.</returns>
+        public bool IsValidCertChain(X509Certificate2? cert, TimeSpan urlRetrievalTimeout, bool useOnlineCRL = true, bool excludeRoot = true)
+        {
+            var chain = new X509Chain
+            {
+                ChainPolicy =
+                {
+                    RevocationFlag      = excludeRoot ? X509RevocationFlag.ExcludeRoot : X509RevocationFlag.EntireChain,
+                    RevocationMode      = useOnlineCRL ? X509RevocationMode.Online : X509RevocationMode.Offline,
+                    UrlRetrievalTimeout = urlRetrievalTimeout,
+                    VerificationFlags   = X509VerificationFlags.NoFlag
+                }
+            };
+            return chain.Build(cert);
+        }
 
         /// <summary>
         /// Information about a possible Authenticode binary signature.
@@ -164,41 +196,41 @@ namespace PeNet
         ///     Returns true if the PE file is x32.
         /// </summary>
         public bool Is32Bit => ImageNtHeaders?.FileHeader.Machine
-                               == (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386;
+                               == MachineType.I386;
         /// <summary>
-        ///     Access the IMAGE_DOS_HEADER of the PE file.
+        ///     Access the ImageDosHeader of the PE file.
         /// </summary>
-        public IMAGE_DOS_HEADER? ImageDosHeader => _nativeStructureParsers.ImageDosHeader;
+        public ImageDosHeader? ImageDosHeader => _nativeStructureParsers.ImageDosHeader;
 
         /// <summary>
-        ///     Access the IMAGE_NT_HEADERS of the PE file.
+        ///     Access the ImageNtHeaders of the PE file.
         /// </summary>
-        public IMAGE_NT_HEADERS? ImageNtHeaders => _nativeStructureParsers.ImageNtHeaders;
+        public ImageNtHeaders? ImageNtHeaders => _nativeStructureParsers.ImageNtHeaders;
 
         /// <summary>
         ///     Access the IMAGE_SECTION_HEADERS of the PE file.
         /// </summary>
-        public IMAGE_SECTION_HEADER[]? ImageSectionHeaders => _nativeStructureParsers.ImageSectionHeaders;
+        public ImageSectionHeader[]? ImageSectionHeaders => _nativeStructureParsers.ImageSectionHeaders;
 
         /// <summary>
-        ///     Access the IMAGE_EXPORT_DIRECTORY of the PE file.
+        ///     Access the ImageExportDirectory of the PE file.
         /// </summary>
-        public IMAGE_EXPORT_DIRECTORY? ImageExportDirectory => _dataDirectoryParsers.ImageExportDirectories;
+        public ImageExportDirectory? ImageExportDirectory => _dataDirectoryParsers.ImageExportDirectories;
 
         /// <summary>
-        ///     Access the IMAGE_IMPORT_DESCRIPTOR array of the PE file.
+        ///     Access the ImageImportDescriptor array of the PE file.
         /// </summary>
-        public IMAGE_IMPORT_DESCRIPTOR[]? ImageImportDescriptors => _dataDirectoryParsers.ImageImportDescriptors;
+        public ImageImportDescriptor[]? ImageImportDescriptors => _dataDirectoryParsers.ImageImportDescriptors;
 
         /// <summary>
-        ///     Access the IMAGE_BASE_RELOCATION array of the PE file.
+        ///     Access the ImageBaseRelocation array of the PE file.
         /// </summary>
-        public IMAGE_BASE_RELOCATION[]? ImageRelocationDirectory => _dataDirectoryParsers.ImageBaseRelocations;
+        public ImageBaseRelocation[]? ImageRelocationDirectory => _dataDirectoryParsers.ImageBaseRelocations;
 
         /// <summary>
-        ///     Access the IMAGE_DEBUG_DIRECTORY of the PE file.
+        ///     Access the ImageDebugDirectory of the PE file.
         /// </summary>
-        public IMAGE_DEBUG_DIRECTORY[]? ImageDebugDirectory => _dataDirectoryParsers.ImageDebugDirectory;
+        public ImageDebugDirectory[]? ImageDebugDirectory => _dataDirectoryParsers.ImageDebugDirectory;
 
         /// <summary>
         ///     Access the exported functions as an array of parsed objects.
@@ -211,9 +243,9 @@ namespace PeNet
         public ImportFunction[]? ImportedFunctions => _dataDirectoryParsers.ImportFunctions;
 
         /// <summary>
-        ///     Access the IMAGE_RESOURCE_DIRECTORY of the PE file.
+        ///     Access the ImageResourceDirectory of the PE file.
         /// </summary>
-        public IMAGE_RESOURCE_DIRECTORY? ImageResourceDirectory => _dataDirectoryParsers.ImageResourceDirectory;
+        public ImageResourceDirectory? ImageResourceDirectory => _dataDirectoryParsers.ImageResourceDirectory;
 
         /// <summary>
         ///     Access resources of the PE file.
@@ -221,39 +253,39 @@ namespace PeNet
         public Resources? Resources => _dataDirectoryParsers.Resources;
 
         /// <summary>
-        ///     Access the array of RUNTIME_FUNCTION from the Exception header.
+        ///     Access the array of RuntimeFunction from the Exception header.
         /// </summary>
-        public RUNTIME_FUNCTION[]? ExceptionDirectory => _dataDirectoryParsers.RuntimeFunctions;
+        public RuntimeFunction[]? ExceptionDirectory => _dataDirectoryParsers.RuntimeFunctions;
 
         /// <summary>
-        ///     Access the WIN_CERTIFICATE from the Security header.
+        ///     Access the WinCertificate from the Security header.
         /// </summary>
-        public WIN_CERTIFICATE? WinCertificate => _dataDirectoryParsers.WinCertificate;
+        public WinCertificate? WinCertificate => _dataDirectoryParsers.WinCertificate;
 
         /// <summary>
         /// Access the IMAGE_BOUND_IMPORT_DESCRIPTOR form the data directory.
         /// </summary>
-        public IMAGE_BOUND_IMPORT_DESCRIPTOR? ImageBoundImportDescriptor => _dataDirectoryParsers.ImageBoundImportDescriptor;
+        public ImageBoundImportDescriptor? ImageBoundImportDescriptor => _dataDirectoryParsers.ImageBoundImportDescriptor;
 
         /// <summary>
         /// Access the IMAGE_TLS_DIRECTORY from the data directory.
         /// </summary>
-        public IMAGE_TLS_DIRECTORY? ImageTlsDirectory => _dataDirectoryParsers.ImageTlsDirectory;
+        public ImageTlsDirectory? ImageTlsDirectory => _dataDirectoryParsers.ImageTlsDirectory;
 
         /// <summary>
-        /// Access the IMAGE_DELAY_IMPORT_DESCRIPTOR from the data directory.
+        /// Access the ImageDelayImportDirectory from the data directory.
         /// </summary>
-        public IMAGE_DELAY_IMPORT_DESCRIPTOR? ImageDelayImportDescriptor => _dataDirectoryParsers.ImageDelayImportDescriptor;
+        public ImageDelayImportDescriptor? ImageDelayImportDescriptor => _dataDirectoryParsers.ImageDelayImportDescriptor;
 
         /// <summary>
-        /// Access the IMAGE_LOAD_CONFIG_DIRECTORY from the data directory.
+        /// Access the ImageLoadConfigDirectory from the data directory.
         /// </summary>
-        public IMAGE_LOAD_CONFIG_DIRECTORY? ImageLoadConfigDirectory => _dataDirectoryParsers.ImageLoadConfigDirectory;
+        public ImageLoadConfigDirectory? ImageLoadConfigDirectory => _dataDirectoryParsers.ImageLoadConfigDirectory;
 
         /// <summary>
-        /// Access the IMAGE_COR20_HEADER (COM Descriptor/CLI) from the data directory.
+        /// Access the ImageCor20Header (COM Descriptor/CLI) from the data directory.
         /// </summary>
-        public IMAGE_COR20_HEADER? ImageComDescriptor => _dataDirectoryParsers.ImageComDescriptor;
+        public ImageCor20Header? ImageComDescriptor => _dataDirectoryParsers.ImageComDescriptor;
 
         /// <summary>
         ///     Signing X509 certificate if the binary was signed with
@@ -263,22 +295,22 @@ namespace PeNet
         /// <summary>
         ///     Access the METADATAHDR from the COM/CLI header.
         /// </summary>
-        public METADATAHDR? MetaDataHdr => _dotNetStructureParsers.MetaDataHdr;
+        public MetaDataHdr? MetaDataHdr => _dotNetStructureParsers.MetaDataHdr;
 
         /// <summary>
         /// Meta Data Stream #String.
         /// </summary>
-        public IMETADATASTREAM_STRING? MetaDataStreamString => _dotNetStructureParsers.MetaDataStreamString;
+        public MetaDataStreamString? MetaDataStreamString => _dotNetStructureParsers.MetaDataStreamString;
 
         /// <summary>
         /// Meta Data Stream #US (User strings).
         /// </summary>
-        public IMETADATASTREAM_US? MetaDataStreamUS => _dotNetStructureParsers.MetaDataStreamUS;
+        public MetaDataStreamUs? MetaDataStreamUS => _dotNetStructureParsers.MetaDataStreamUS;
 
         /// <summary>
         /// Meta Data Stream #GUID.
         /// </summary>
-        public IMETADATASTREAM_GUID? MetaDataStreamGUID => _dotNetStructureParsers.MetaDataStreamGUID;
+        public MetaDataStreamGuid? MetaDataStreamGUID => _dotNetStructureParsers.MetaDataStreamGUID;
 
         /// <summary>
         /// Meta Data Stream #Blob as an byte array.
@@ -289,7 +321,7 @@ namespace PeNet
         ///     Access the Meta Data Stream Tables Header from the list of
         ///     Meta Data Streams of the .Net header.
         /// </summary>
-        public METADATATABLESHDR? MetaDataStreamTablesHeader => _dotNetStructureParsers.MetaDataStreamTablesHeader;
+        public MetaDataTablesHdr? MetaDataStreamTablesHeader => _dotNetStructureParsers.MetaDataStreamTablesHeader;
 
         /// <summary>
         ///     The SHA-256 hash sum of the binary.
@@ -334,16 +366,6 @@ namespace PeNet
         ///     Returns the file size in bytes.
         /// </summary>
         public long FileSize => RawFile.Length;
-
-        /// <summary>
-        ///     Checks if cert is from a trusted CA with a valid certificate chain.
-        /// </summary>
-        /// <param name="online">Check certificate chain online or off-line.</param>
-        /// <returns>True of cert chain is valid and from a trusted CA.</returns>
-        public bool IsValidCertChain(bool online)
-        {
-            return IsSigned && SignatureInformation.IsValidCertChain(PKCS7, online);
-        }
 
         /// <summary>
         ///     Get an object which holds information about
@@ -412,49 +434,11 @@ namespace PeNet
         /// </returns>
         public string GetFileType()
         {
-            var fileType = ImageNtHeaders?.FileHeader.Machine switch
-            {
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I386 => "I386",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_I860 => "I860",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_R3000 => "R3000",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_R4000 => "R4000",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_R10000 => "R10000",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_WCEMIPSV2 => "WCEMIPSV2",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_OLDALPHA => "OLDALPHA",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ALPHA => "ALPHA",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH3 => "SH3",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH3DSP => "SH3DSP",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH3E => "SH3E",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH4 => "SH4",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_SH5 => "SH5",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARM => "ARM",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_THUMB => "THUMB",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AM33 => "M33",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_POWERPC => "POWERPC",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_POWERPCFP => "POWERPCFP",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_IA64 => "IA64",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_MIPS16 => "MIPS16",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_M68K => "M68K",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ALPHA64 => "ALPHA64",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_MIPSFPU => "MIPSFPU",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_MIPSFPU16 => "MIPSFPU16",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_TRICORE => "TRICORE",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_CEF => "CEF",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_EBC => "EBC",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_AMD64 => "AMD64",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_M32R => "M32R",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_CEE => "CEE",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARM64 => "ARM64",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_ARMNT => "ARMNT",
-                (ushort)Constants.FileHeaderMachine.IMAGE_FILE_MACHINE_TARGET_HOST => "TARGETHOST",
-                _ => "UNKNOWN"
-            };
+            var fileType = ImageNtHeaders?.FileHeader.MachineResolved;
 
-            if ((ImageNtHeaders?.FileHeader.Characteristics 
-                 & (ushort)Constants.FileHeaderCharacteristics.IMAGE_FILE_DLL) != 0)
+            if (ImageNtHeaders?.FileHeader.Characteristics.DLL ?? false)
                 fileType += "_DLL";
-            else if ((ImageNtHeaders?.FileHeader.Characteristics 
-                      & (ushort)Constants.FileHeaderCharacteristics.IMAGE_FILE_EXECUTABLE_IMAGE) != 0)
+            else if (ImageNtHeaders?.FileHeader.Characteristics.ExecutableImage ?? false)
                 fileType += "_EXE";
             else
                 fileType += "_UNKNOWN";
@@ -471,6 +455,11 @@ namespace PeNet
                 sBuilder.Append(t.ToString("x2"));
 
             return sBuilder.ToString();
+        }
+
+        public void Dispose()
+        {
+            RawFile.Dispose();
         }
     }
 }

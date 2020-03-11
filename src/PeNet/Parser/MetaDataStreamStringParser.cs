@@ -1,8 +1,9 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class MetaDataStreamStringParser : SafeParser<IMETADATASTREAM_STRING>
+    internal class MetaDataStreamStringParser : SafeParser<MetaDataStreamString>
     {
         private readonly uint _size;
 
@@ -16,9 +17,9 @@ namespace PeNet.Parser
             _size = size;
         }
 
-        protected override IMETADATASTREAM_STRING ParseTarget()
+        protected override MetaDataStreamString ParseTarget()
         {
-            return new METADATASTREAM_STRING(PeFile, Offset, _size);
+            return new MetaDataStreamString(PeFile, Offset, _size);
         }
     }
 }

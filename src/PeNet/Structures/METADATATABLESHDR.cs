@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using PeNet.FileParser;
 using PeNet.Structures.MetaDataTables;
 using PeNet.Utilities;
 
 namespace PeNet.Structures
 {
-    public interface IMETADATATABLESHDR
+    public interface IMetaDataTablesHdr
     {
         /// <summary>
         /// The size the indexes into the streams have. 
@@ -21,14 +22,14 @@ namespace PeNet.Structures
         /// Access a list of defined tables in the Meta Data Tables Header
         /// with the name and number of rows of the table.
         /// </summary>
-        List<METADATATABLESHDR.MetaDataTableInfo> TableDefinitions { get; }
+        List<MetaDataTablesHdr.MetaDataTableInfo> TableDefinitions { get; }
     }
 
     /// <summary>
     /// The Meta Data Tables Header contains information about all present
     /// data tables in the .Net assembly.
     /// </summary>
-    public class METADATATABLESHDR : AbstractStructure, IMETADATATABLESHDR
+    public class MetaDataTablesHdr : AbstractStructure, IMetaDataTablesHdr
     {
         private List<MetaDataTableInfo>? _tableDefinitions;
         private Tables? _tables = null;
@@ -64,9 +65,9 @@ namespace PeNet.Structures
         /// <summary>
         /// Create a new Meta Data Tables Header instance from a byte array.
         /// </summary>
-        /// <param name="peFile">PE file which contains a METADATATABLESHDR structure.</param>
+        /// <param name="peFile">PE file which contains a MetaDataTablesHdr structure.</param>
         /// <param name="offset">Offset in the PE file, where the header starts.</param>
-        public METADATATABLESHDR(IRawFile peFile, long offset) 
+        public MetaDataTablesHdr(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
         }
@@ -125,11 +126,17 @@ namespace PeNet.Structures
         /// Maximal 64 tables can be present, but most tables are not defined such that
         /// the high bits of the mask are always 0.
         /// </summary>
-        public ulong Valid
+        public MaskValidType MaskValid
         {
-            get => PeFile.ReadULong(Offset + 0x8);
-            set => PeFile.WriteULong(Offset + 0x8, value);
+            get => (MaskValidType) PeFile.ReadULong(Offset + 0x8);
+            set => PeFile.WriteULong(Offset + 0x8, (ulong) value);
         }
+
+        /// <summary>
+        /// MaskValid flags resolved to readable strings.
+        /// </summary>
+        public List<string> MaskValidResolved
+            => ResolveMaskValid(MaskValid);
 
         /// <summary>
         /// Bit mask which shows, which tables are sorted. 
@@ -181,13 +188,13 @@ namespace PeNet.Structures
             var tables = new MetaDataTableInfo[64];
 
             var startOfTableDefinitions = Offset + 24;
-            var names = FlagResolver.ResolveMaskValidFlags(Valid);
+            var names = ResolveMaskValid(MaskValid);
 
             // Set number of rows per table
             var cnt = 0;
             for (var i = 0; i < tables.Length; ++i)
             {
-                if ((Valid & (1UL << i)) != 0)
+                if (((ulong) MaskValid & (1UL << i)) != 0)
                 {
                     tables[i].RowCount = PeFile.ReadUInt(startOfTableDefinitions + (uint)cnt * 4);
                     tables[i].Name = names[cnt];
@@ -300,7 +307,7 @@ namespace PeNet.Structures
         {
             var heapSizes = new HeapSizes(HeapSizes);
             var indexSizes = new IndexSize(TableDefinitions.ToArray());
-            var tablesOffset = (uint)(Offset + 0x18u + HammingWeight(Valid) * 4u);
+            var tablesOffset = (uint)(Offset + 0x18u + HammingWeight((ulong) MaskValid) * 4u);
 
             var tableInfo = TableDefinitions[(int)token];
             var rows = new List<T>();
@@ -332,7 +339,224 @@ namespace PeNet.Structures
 
         private uint GetIndexSize(MetadataToken table, MetaDataTableInfo[] tables)
         {
-            return tables[(int)table].RowCount <= ushort.MaxValue ? 2U : 4U;
+            return tables[(int)table].RowCount <= UInt16.MaxValue ? 2U : 4U;
         }
+
+        /// <summary>
+        ///     Resolve which tables are present in the .Net header based
+        ///     on the MaskValid flags from the MetaDataTablesHdr.
+        /// </summary>
+        /// <param name="maskValid">MaskValid value from the MetaDataTablesHdr</param>
+        /// <returns>List with present table names.</returns>
+        public static List<string> ResolveMaskValid(MaskValidType maskValid)
+        {
+            var st = new List<string>();
+            foreach (var flag in (MaskValidType[])Enum.GetValues(typeof(MaskValidType)))
+            {
+                if ((maskValid & flag) == flag)
+                {
+                    st.Add(flag.ToString());
+                }
+            }
+            return st;
+        }
+    }
+
+    /// <summary>
+    /// MaskValid flags from the MetaDataTablesHdr.
+    /// The flags show, which tables are present.
+    /// </summary>
+    [Flags]
+    public enum MaskValidType : ulong
+    {
+        /// <summary>
+        /// Table Module is present.
+        /// </summary>
+        Module = 0x1,
+
+        /// <summary>
+        /// Table TypeRef is present.
+        /// </summary>
+        TypeRef = 0x2,
+
+        /// <summary>
+        /// Table TypeDef is present.
+        /// </summary>
+        TypeDef = 0x4,
+
+        /// <summary>
+        /// Table Field is present.
+        /// </summary>
+        Field = 0x10,
+
+        /// <summary>
+        /// Table MethodDef is present.
+        /// </summary>
+        MethodDef = 0x40,
+
+        /// <summary>
+        /// Table Param is present.
+        /// </summary>
+        Param = 0x100,
+
+        /// <summary>
+        /// Table InterfaceImpl is present.
+        /// </summary>
+        InterfaceImpl = 0x200,
+
+        /// <summary>
+        /// Table MemberRef is present.
+        /// </summary>
+        MemberRef = 0x400,
+
+        /// <summary>
+        /// Table Constant is present.
+        /// </summary>
+        Constant = 0x800,
+
+        /// <summary>
+        /// Table CustomAttribute is present.
+        /// </summary>
+        CustomAttribute = 0x1000,
+
+        /// <summary>
+        /// Table FieldMarshal is present.
+        /// </summary>
+        FieldMarshal = 0x2000,
+
+        /// <summary>
+        /// Table DeclSecurity is present.
+        /// </summary>
+        DeclSecurity = 0x4000,
+
+        /// <summary>
+        /// Table ClassLayout is present.
+        /// </summary>
+        ClassLayout = 0x8000,
+
+        /// <summary>
+        /// Table FieldLayout is present.
+        /// </summary>
+        FieldLayout = 0x10000,
+
+        /// <summary>
+        /// Table StandAloneSig is present.
+        /// </summary>
+        StandAloneSig = 0x20000,
+
+        /// <summary>
+        /// Table EventMap is present.
+        /// </summary>
+        EventMap = 0x40000,
+
+        /// <summary>
+        /// Table Event is present.
+        /// </summary>
+        Event = 0x100000,
+
+        /// <summary>
+        /// Table PropertyMap is present.
+        /// </summary>
+        PropertyMap = 0x200000,
+
+        /// <summary>
+        /// Table Property is present.
+        /// </summary>
+        Property = 0x800000,
+
+        /// <summary>
+        /// Table MethodSemantics is present.
+        /// </summary>
+        MethodSemantics = 0x1000000,
+
+        /// <summary>
+        /// Table MethodImpl is present.
+        /// </summary>
+        MethodImpl = 0x2000000,
+
+        /// <summary>
+        /// Table ModuleRef is present.
+        /// </summary>
+        ModuleRef = 0x4000000,
+
+        /// <summary>
+        /// Table TypeSpec is present.
+        /// </summary>
+        TypeSpec = 0x8000000,
+
+        /// <summary>
+        /// Table ImplMap is present.
+        /// </summary>
+        ImplMap = 0x10000000,
+
+        /// <summary>
+        /// Table FieldRVA is present.
+        /// </summary>
+        FieldRva = 0x20000000,
+
+        /// <summary>
+        /// Table Assembly is present.
+        /// </summary>
+        Assembly = 0x100000000,
+
+        /// <summary>
+        /// Table AssemblyProcessor is present.
+        /// </summary>
+        AssemblyProcessor = 0x200000000,
+
+        /// <summary>
+        /// Table AssemblyOS is present.
+        /// </summary>
+        AssemblyOS = 0x400000000,
+
+        /// <summary>
+        /// Table AssemblyRef is present.
+        /// </summary>
+        AssemblyRef = 0x800000000,
+
+        /// <summary>
+        /// Table AssemblyRefProcessor is present.
+        /// </summary>
+        AssemblyRefProcessor = 0x1000000000,
+
+        /// <summary>
+        /// Table AssemblyRefOS is present.
+        /// </summary>
+        AssemblyRefOS = 0x2000000000,
+
+        /// <summary>
+        /// Table File is present.
+        /// </summary>
+        File = 0x4000000000,
+
+        /// <summary>
+        /// Table ExportedType is present.
+        /// </summary>
+        ExportedType = 0x8000000000,
+
+        /// <summary>
+        /// Table ManifestResource is present.
+        /// </summary>
+        ManifestResource = 0x10000000000,
+
+        /// <summary>
+        /// Table NestedClass is present.
+        /// </summary>
+        NestedClass = 0x20000000000,
+
+        /// <summary>
+        /// Table GenericParam is present.
+        /// </summary>
+        GenericParam = 0x40000000000,
+
+        /// <summary>
+        /// Table MethodSpec is present
+        /// </summary>
+        MethodSpec = 0x80000000000,
+
+        /// <summary>
+        /// Table GenericParamConstraint is present.
+        /// </summary>
+        GenericParamConstraint = 0x100000000000
     }
 }

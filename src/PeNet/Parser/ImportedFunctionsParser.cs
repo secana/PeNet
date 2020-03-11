@@ -1,22 +1,22 @@
 ﻿using System.Collections.Generic;
+using PeNet.FileParser;
 using PeNet.Structures;
 using PeNet.Utilities;
-using static PeNet.Constants;
 
 namespace PeNet.Parser
 {
     internal class ImportedFunctionsParser : SafeParser<ImportFunction[]>
     {
-        private readonly IMAGE_IMPORT_DESCRIPTOR[]? _importDescriptors;
+        private readonly ImageImportDescriptor[]? _importDescriptors;
         private readonly bool _is64Bit;
-        private readonly IMAGE_SECTION_HEADER[] _sectionHeaders;
-        private readonly IMAGE_DATA_DIRECTORY[] _dataDirectories;
+        private readonly ImageSectionHeader[] _sectionHeaders;
+        private readonly ImageDataDirectory[] _dataDirectories;
 
         internal ImportedFunctionsParser(
             IRawFile peFile,
-            IMAGE_IMPORT_DESCRIPTOR[]? importDescriptors,
-            IMAGE_SECTION_HEADER[] sectionHeaders,
-            IMAGE_DATA_DIRECTORY[] dataDirectories,
+            ImageImportDescriptor[]? importDescriptors,
+            ImageSectionHeader[] sectionHeaders,
+            ImageDataDirectory[] dataDirectories,
             bool is64Bit) :
                 base(peFile, 0)
         {
@@ -32,15 +32,15 @@ namespace PeNet.Parser
                 return null;
 
             var impFuncs = new List<ImportFunction>();
-            var sizeOfThunk = (uint) (_is64Bit ? 0x8 : 0x4); // Size of IMAGE_THUNK_DATA
+            var sizeOfThunk = (uint) (_is64Bit ? 0x8 : 0x4); // Size of ImageThunkData
             var ordinalBit = _is64Bit ? 0x8000000000000000 : 0x80000000;
             var ordinalMask = (ulong) (_is64Bit ? 0x7FFFFFFFFFFFFFFF : 0x7FFFFFFF);
-            var iat = _dataDirectories[(int)DataDirectoryIndex.IAT];
+            var iat = _dataDirectories[(int)DataDirectoryType.IAT];
 
             foreach (var idesc in _importDescriptors)
             {
                 var dllAdr = idesc.Name.RVAtoFileMapping(_sectionHeaders);
-                var dll = PeFile.GetCString(dllAdr);
+                var dll = PeFile.ReadAsciiString(dllAdr);
                 if (IsModuleNameTooLong(dll))
                     continue;
                 var tmpAdr = idesc.OriginalFirstThunk != 0 ? idesc.OriginalFirstThunk : idesc.FirstThunk;
@@ -51,7 +51,7 @@ namespace PeNet.Parser
                 uint round = 0;
                 while (true)
                 {
-                    var t = new IMAGE_THUNK_DATA(PeFile, thunkAdr + round*sizeOfThunk, _is64Bit);
+                    var t = new ImageThunkData(PeFile, thunkAdr + round*sizeOfThunk, _is64Bit);
                     var iatOffset = idesc.FirstThunk + round * sizeOfThunk - iat.VirtualAddress;
 
                     if (t.AddressOfData == 0)
@@ -60,7 +60,7 @@ namespace PeNet.Parser
                     // Check if import by name or by ordinal.
                     // If it is an import by ordinal, the most significant bit of "Ordinal" is "1" and the ordinal can
                     // be extracted from the least significant bits.
-                    // Else it is an import by name and the link to the IMAGE_IMPORT_BY_NAME has to be followed
+                    // Else it is an import by name and the link to the ImageImportByName has to be followed
 
                     if ((t.Ordinal & ordinalBit) == ordinalBit) // Import by ordinal
                     {
@@ -68,7 +68,7 @@ namespace PeNet.Parser
                     }
                     else // Import by name
                     {
-                        var ibn = new IMAGE_IMPORT_BY_NAME(PeFile,
+                        var ibn = new ImageImportByName(PeFile,
                             ((uint) t.AddressOfData).RVAtoFileMapping(_sectionHeaders));
                         impFuncs.Add(new ImportFunction(ibn.Name, dll, ibn.Hint, iatOffset));
                     }

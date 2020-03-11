@@ -1,8 +1,9 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class ImageDebugDirectoryParser : SafeParser<IMAGE_DEBUG_DIRECTORY[]>
+    internal class ImageDebugDirectoryParser : SafeParser<ImageDebugDirectory[]>
     {
         private readonly uint _size;
 
@@ -12,14 +13,14 @@ namespace PeNet.Parser
             this._size = size;
         }
 
-        protected override IMAGE_DEBUG_DIRECTORY[] ParseTarget()
+        protected override ImageDebugDirectory[] ParseTarget()
         {
             var numEntries = _size / 28; // Debug entry is 28 bytes
-            var entries = new IMAGE_DEBUG_DIRECTORY[numEntries];
+            var entries = new ImageDebugDirectory[numEntries];
 
             for(uint i = 0; i < numEntries; i++)
             {
-                entries[i] = new IMAGE_DEBUG_DIRECTORY(PeFile, Offset + (i * 28));
+                entries[i] = new ImageDebugDirectory(PeFile, Offset + (i * 28));
             }
 
             return entries;

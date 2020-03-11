@@ -1,10 +1,12 @@
-﻿namespace PeNet.Structures
+﻿using PeNet.FileParser;
+
+namespace PeNet.Structures
 {
     /// <summary>
     /// The Meta Data Stream Header contains information about data streams (sections)
     /// in a .Net assembly.
     /// </summary>
-    public class METADATASTREAMHDR : AbstractStructure
+    public class MetaDataStreamHdr : AbstractStructure
     {
         internal uint HeaderLength => GetHeaderLength();
 
@@ -13,7 +15,7 @@
         /// </summary>
         /// <param name="peFile">PE file which contains a Meta Data Stream Header.</param>
         /// <param name="offset">Offset in the buffer, where the header starts.</param>
-        public METADATASTREAMHDR(IRawFile peFile, long offset) 
+        public MetaDataStreamHdr(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
         }
@@ -22,7 +24,7 @@
         /// Relative offset (from Meta Data Header) to 
         /// the stream.
         /// </summary>
-        public uint offset
+        public uint RelOffset
         {
             get => PeFile.ReadUInt(Offset);
             set => PeFile.WriteUInt(Offset, value);
@@ -31,7 +33,7 @@
         /// <summary>
         /// Size of the stream content.
         /// </summary>
-        public uint size
+        public uint Size
         {
             get => PeFile.ReadUInt(Offset + 0x4);
             set => PeFile.WriteUInt(Offset + 0x4, value);
@@ -40,7 +42,7 @@
         /// <summary>
         /// Name of the stream.
         /// </summary>
-        public string streamName => PeFile.GetCString(Offset + 0x8);
+        public string StreamName => PeFile.ReadAsciiString(Offset + 0x8);
 
         private uint GetHeaderLength()
         {

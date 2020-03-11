@@ -1,17 +1,18 @@
-﻿using PeNet.Structures;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class MetaDataStreamTablesHeaderParser : SafeParser<METADATATABLESHDR>
+    internal class MetaDataStreamTablesHeaderParser : SafeParser<MetaDataTablesHdr>
     {
         public MetaDataStreamTablesHeaderParser(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
         }
 
-        protected override METADATATABLESHDR ParseTarget()
+        protected override MetaDataTablesHdr ParseTarget()
         {
-            return new METADATATABLESHDR(PeFile, Offset);
+            return new MetaDataTablesHdr(PeFile, Offset);
         }
     }
 }

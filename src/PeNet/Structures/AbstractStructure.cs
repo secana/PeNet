@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.IO;
 using System.Reflection;
 using System.Text;
+using PeNet.FileParser;
 
 namespace PeNet.Structures
 {

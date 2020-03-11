@@ -1,4 +1,5 @@
 ﻿using System;
+using PeNet.FileParser;
 
 namespace PeNet.Structures
 {
@@ -27,7 +28,7 @@ namespace PeNet.Structures
         /// </summary>
         public Guid Signature
         {
-            get => new Guid(PeFile.GetSpan(Offset + 4, 16));
+            get => new Guid(PeFile.AsSpan(Offset + 4, 16));
             set => PeFile.WriteBytes(Offset + 4, value.ToByteArray());
         }
 
@@ -44,6 +45,6 @@ namespace PeNet.Structures
         /// Original file name of the PDB that belongs to the
         /// PE file.
         /// </summary>
-        public string PdbFileName => PeFile.GetCString(Offset + 0x18);
+        public string PdbFileName => PeFile.ReadAsciiString(Offset + 0x18);
     }
 }

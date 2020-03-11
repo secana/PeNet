@@ -1,9 +1,9 @@
-﻿using PeNet.Structures;
-using System.IO;
+﻿using PeNet.FileParser;
+using PeNet.Structures;
 
 namespace PeNet.Parser
 {
-    internal class ImageSectionHeadersParser : SafeParser<IMAGE_SECTION_HEADER[]>
+    internal class ImageSectionHeadersParser : SafeParser<ImageSectionHeader[]>
     {
         private readonly ushort _numOfSections;
         private readonly ulong _imageBaseAddress;
@@ -15,13 +15,13 @@ namespace PeNet.Parser
             _imageBaseAddress = imageBaseAddress;
         }
 
-        protected override IMAGE_SECTION_HEADER[] ParseTarget()
+        protected override ImageSectionHeader[] ParseTarget()
         {
-            var sh = new IMAGE_SECTION_HEADER[_numOfSections];
+            var sh = new ImageSectionHeader[_numOfSections];
             const uint secSize = 0x28; // Every section header is 40 bytes in size.
             for (uint i = 0; i < _numOfSections; i++)
             {
-                sh[i] = new IMAGE_SECTION_HEADER(PeFile, Offset + i*secSize, _imageBaseAddress);
+                sh[i] = new ImageSectionHeader(PeFile, Offset + i*secSize, _imageBaseAddress);
             }
 
             return sh;

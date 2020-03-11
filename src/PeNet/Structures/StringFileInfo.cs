@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using PeNet.FileParser;
 using PeNet.Utilities;
 
 namespace PeNet.Structures
@@ -27,7 +27,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Length of the StringFileInfo in bytes, including all children.
         /// </summary>
-        public ushort wLength
+        public ushort WLength
         {
             get => PeFile.ReadUShort(Offset);
             set => PeFile.WriteUShort(Offset, value);
@@ -36,7 +36,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Always zero.
         /// </summary>
-        public ushort wValueLength
+        public ushort WValueLength
         {
             get => PeFile.ReadUShort(Offset + 0x2);
             set => PeFile.WriteUShort(Offset + 0x2, value);
@@ -46,7 +46,7 @@ namespace PeNet.Structures
         /// Type of the data in the version resource. Contains a 1 if the data
         /// is text data and a 0 if it contains binary data.
         /// </summary>
-        public ushort wType
+        public ushort WType
         {
             get => PeFile.ReadUShort(Offset + 0x4);
             set => PeFile.WriteUShort(Offset + 0x4, value);
@@ -55,7 +55,7 @@ namespace PeNet.Structures
         /// <summary>
         /// Contains the Unicode string "StringFileInfo".
         /// </summary>
-        public string szKey => PeFile.GetUnicodeString(Offset + 0x6);
+        public string SzKey => PeFile.ReadUnicodeString(Offset + 0x6);
 
         /// <summary>
         /// One ore more StringTable structures, where each tables szKey indicates
@@ -72,15 +72,15 @@ namespace PeNet.Structures
         private StringTable[] ReadChildren()
         {
             var currentOffset =
-                Offset + 6 + szKey.LengthInByte() 
-                + (Offset + 6 + szKey.LengthInByte()).PaddingBytes(32);
+                Offset + 6 + SzKey.LengthInByte() 
+                + (Offset + 6 + SzKey.LengthInByte()).PaddingBytes(32);
 
             var children = new List<StringTable>();
 
-            while (currentOffset < Offset + wLength)
+            while (currentOffset < Offset + WLength)
             {
                 children.Add(new StringTable(PeFile, currentOffset));
-                currentOffset += children.Last().wLength;
+                currentOffset += children.Last().WLength;
             }
 
             return children.ToArray();

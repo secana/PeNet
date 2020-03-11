@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Pkcs;
 using PeNet.Asn1;
+using PeNet.Structures;
 using PeNet.Utilities;
 
 namespace PeNet.Authenticode
@@ -28,7 +29,7 @@ namespace PeNet.Authenticode
             _peFile = peFile;
 
             _contentInfo = _peFile.WinCertificate == null 
-                ? null : new ContentInfo(_peFile.WinCertificate.bCertificate);
+                ? null : new ContentInfo(_peFile.WinCertificate.BCertificate);
 
             SignerSerialNumber = GetSigningSerialNumber();
             SignedHash = GetSignedHash();
@@ -38,13 +39,13 @@ namespace PeNet.Authenticode
 
         private X509Certificate2? GetSigningCertificate()
         {
-            if (_peFile.WinCertificate?.wCertificateType !=
-                (ushort) Constants.WinCertificateType.WIN_CERT_TYPE_PKCS_SIGNED_DATA)
+            if (_peFile.WinCertificate?.WCertificateType !=
+                WinCertificateType.PkcsSignedData)
             {
                 return null;
             }
 
-            var pkcs7 = _peFile.WinCertificate.bCertificate;
+            var pkcs7 = _peFile.WinCertificate.BCertificate;
 
             // Workaround since the X509Certificate2 class does not return
             // the signing certificate in the PKCS7 byte array but crashes on Linux 
@@ -58,7 +59,7 @@ namespace PeNet.Authenticode
         private X509Certificate2 GetSigningCertificateNonWindows(PeFile peFile)
         {
             var collection = new X509Certificate2Collection();
-            collection.Import(peFile.WinCertificate?.bCertificate.ToArray());
+            collection.Import(peFile.WinCertificate?.BCertificate.ToArray());
             return collection.Cast<X509Certificate2>().FirstOrDefault(cert =>
                 string.Equals(cert.SerialNumber, SignerSerialNumber, StringComparison.CurrentCultureIgnoreCase));
         }
@@ -66,7 +67,7 @@ namespace PeNet.Authenticode
         private bool VerifySignature()
         {
             var signedCms = new SignedCms();
-            signedCms.Decode(_peFile.WinCertificate?.bCertificate.ToArray());
+            signedCms.Decode(_peFile.WinCertificate?.BCertificate.ToArray());
 
             try
             {
