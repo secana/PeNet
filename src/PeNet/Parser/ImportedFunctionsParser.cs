@@ -36,7 +36,7 @@ namespace PeNet.Parser
             var sizeOfThunk = (uint) (_is64Bit ? 0x8 : 0x4); // Size of ImageThunkData
             var ordinalBit = _is64Bit ? 0x8000000000000000 : 0x80000000;
             var ordinalMask = (ulong) (_is64Bit ? 0x7FFFFFFFFFFFFFFF : 0x7FFFFFFF);
-            var iat = _dataDirectories[(int)DataDirectoryIndex.IAT];
+            var iat = _dataDirectories[(int)DataDirectoryType.IAT];
 
             foreach (var idesc in _importDescriptors)
             {

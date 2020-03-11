@@ -11,7 +11,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void DataDirectory_COMDescripterSet()
         {
-            var dataDirectory = _peFile.ImageNtHeaders.OptionalHeader.DataDirectory[(int) Constants.DataDirectoryIndex.COM_Descriptor];
+            var dataDirectory = _peFile.ImageNtHeaders.OptionalHeader.DataDirectory[(int) DataDirectoryType.ComDescriptor];
 
             Assert.Equal(0x2008u, dataDirectory.VirtualAddress);
             Assert.Equal(0x48u, dataDirectory.Size);
