@@ -59,13 +59,15 @@ namespace PeNet.Test.Structures
             Assert.Equal("BuildID", vsVersionInfo.StringFileInfo.StringTable[0].String[10].SzKey);
             Assert.Equal("20171206182557", vsVersionInfo.StringFileInfo.StringTable[0].String[10].Value);
 
-            Assert.Equal("\u00a9Firefox and Mozilla Developers; available under the MPL 2 license.", vsVersionInfo.StringFileInfo.StringTable[0].LegalCopyright);
+            Assert.Equal("\u00a9Firefox and Mozilla Developers; available under the MPL 2 license.",
+                vsVersionInfo.StringFileInfo.StringTable[0].LegalCopyright);
             Assert.Equal("Mozilla Corporation", vsVersionInfo.StringFileInfo.StringTable[0].CompanyName);
             Assert.Equal("Firefox", vsVersionInfo.StringFileInfo.StringTable[0].FileDescription);
             Assert.Equal("57.0.2", vsVersionInfo.StringFileInfo.StringTable[0].FileVersion);
             Assert.Equal("57.0.2", vsVersionInfo.StringFileInfo.StringTable[0].ProductVersion);
             Assert.Equal("Firefox", vsVersionInfo.StringFileInfo.StringTable[0].InternalName);
-            Assert.Equal("Firefox is a Trademark of The Mozilla Foundation.", vsVersionInfo.StringFileInfo.StringTable[0].LegalTrademarks);
+            Assert.Equal("Firefox is a Trademark of The Mozilla Foundation.",
+                vsVersionInfo.StringFileInfo.StringTable[0].LegalTrademarks);
             Assert.Equal("firefox.exe", vsVersionInfo.StringFileInfo.StringTable[0].OriginalFilename);
             Assert.Equal("Firefox", vsVersionInfo.StringFileInfo.StringTable[0].ProductName);
 
@@ -140,6 +142,16 @@ namespace PeNet.Test.Structures
             Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.Children[0].wType);
             Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].szKey);
             Assert.Equal((uint) 0x04b00409, vsVersionInfo.VarFileInfo.Children[0].Value[0]);
+        }
+
+        [Fact]
+        public void Resources_GivenAPEFile3_VsVersionInfoSet()
+        {
+            var peFile = new PeFile("./Binaries/NetFrameworkConsole.exe");
+            var vsVersionInfo = peFile.Resources.VsVersionInfo;
+
+            Assert.Equal("NetFrameworkConsole.exe", vsVersionInfo.StringFileInfo.StringTable[0].OriginalFilename);
+            Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].szKey);
         }
     }
 }

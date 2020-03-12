@@ -70,11 +70,20 @@ namespace PeNet.Structures
         public StringFileInfo StringFileInfo {
             get
             {
+                var isFirst = IsStringFileInfoFirstChild();
+
                 var currentOffset = VsFixedFileInfoOffset;
                 currentOffset += WValueLength;
                 currentOffset += currentOffset.PaddingBytes(32);
 
-                _stringFileInfo ??= new StringFileInfo(PeFile, currentOffset);
+                if (!isFirst)
+                {
+                    currentOffset += VarFileInfo.wLength;
+                    currentOffset += currentOffset.PaddingBytes(32);
+                }
+                    
+
+                _stringFileInfo ??= new StringFileInfo(Buff, currentOffset);
 
                 return _stringFileInfo;
             }
@@ -86,11 +95,17 @@ namespace PeNet.Structures
         public VarFileInfo VarFileInfo {
             get
             {
+                var notFirst = IsStringFileInfoFirstChild();
+
                 var currentOffset = VsFixedFileInfoOffset;
                 currentOffset += WValueLength;
                 currentOffset += currentOffset.PaddingBytes(32);
-                currentOffset += StringFileInfo.WLength;
-                currentOffset += currentOffset.PaddingBytes(32);
+
+                if (notFirst)
+                {
+                    currentOffset += StringFileInfo.wLength;
+                    currentOffset += currentOffset.PaddingBytes(32);
+                }
 
                 _varFileInfo ??= new VarFileInfo(PeFile, currentOffset);
 
@@ -106,6 +121,18 @@ namespace PeNet.Structures
         public VsVersionInfo(IRawFile peFile, long offset) 
             : base(peFile, offset)
         {
+        }
+
+        private bool IsStringFileInfoFirstChild()
+        {
+            var currentOffset = VsFixedFileInfoOffset;
+            currentOffset += wValueLength;
+            currentOffset += currentOffset.PaddingBytes(32);
+            currentOffset += 6;
+
+            var readMarker = Buff.GetUnicodeString(currentOffset);
+
+            return readMarker == "StringFileInfo";
         }
     }
 }
