@@ -69,9 +69,18 @@ namespace PeNet.Structures
         public StringFileInfo StringFileInfo {
             get
             {
+                var isFirst = IsStringFileInfoFirstChild();
+
                 var currentOffset = VsFixedFileInfoOffset;
                 currentOffset += wValueLength;
                 currentOffset += currentOffset.PaddingBytes(32);
+
+                if (!isFirst)
+                {
+                    currentOffset += VarFileInfo.wLength;
+                    currentOffset += currentOffset.PaddingBytes(32);
+                }
+                    
 
                 _stringFileInfo ??= new StringFileInfo(Buff, currentOffset);
 
@@ -85,11 +94,17 @@ namespace PeNet.Structures
         public VarFileInfo VarFileInfo {
             get
             {
+                var notFirst = IsStringFileInfoFirstChild();
+
                 var currentOffset = VsFixedFileInfoOffset;
                 currentOffset += wValueLength;
                 currentOffset += currentOffset.PaddingBytes(32);
-                currentOffset += StringFileInfo.wLength;
-                currentOffset += currentOffset.PaddingBytes(32);
+
+                if (notFirst)
+                {
+                    currentOffset += StringFileInfo.wLength;
+                    currentOffset += currentOffset.PaddingBytes(32);
+                }
 
                 _varFileInfo ??= new VarFileInfo(Buff, currentOffset);
 
@@ -100,6 +115,18 @@ namespace PeNet.Structures
         public VS_VERSIONINFO(byte[] buff, uint offset) 
             : base(buff, offset)
         {
+        }
+
+        private bool IsStringFileInfoFirstChild()
+        {
+            var currentOffset = VsFixedFileInfoOffset;
+            currentOffset += wValueLength;
+            currentOffset += currentOffset.PaddingBytes(32);
+            currentOffset += 6;
+
+            var readMarker = Buff.GetUnicodeString(currentOffset);
+
+            return readMarker == "StringFileInfo";
         }
     }
 }
