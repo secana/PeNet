@@ -10,7 +10,7 @@ namespace PeNet.Test
         [Fact]
         public void ExportedFunctions_WithForwardedFunctions_ParsedForwardedFunctions()
         {
-            var peFile = new PeFile(@"Binaries/win_test.dll");
+            using var peFile = new PeFile(@"Binaries/win_test.dll");
             var forwardExports = peFile.ExportedFunctions.Where(e => e.HasForward).ToList();
 
             Assert.Equal(180, forwardExports.Count);
@@ -20,28 +20,28 @@ namespace PeNet.Test
         [Fact]
         public void NetGuidModuleVersionId_NotClrPE_Empty()
         {
-            var peFile = new PeFile(@"Binaries/win_test.dll");
+            using var peFile = new PeFile(@"Binaries/win_test.dll");
             Assert.Empty(peFile.ClrModuleVersionIds);
         }
 
         [Fact]
         public void NetGuidModuleVersionId_ClrPE_NotEmpty()
         {
-            var peFile = new PeFile(@"Binaries/NetFrameworkConsole.exe");
+            using var peFile = new PeFile(@"Binaries/NetFrameworkConsole.exe");
             Assert.Equal(new Guid("5250e853-c17a-4e76-adb3-0a716ec8af5d"), peFile.ClrModuleVersionIds.First());
         }
 
         [Fact]
         public void NetGuidComTypeLibId_NotClrPE_Empty()
         {
-            var peFile = new PeFile(@"Binaries/win_test.dll");
+            using var peFile = new PeFile(@"Binaries/win_test.dll");
             Assert.Equal(string.Empty, peFile.ClrComTypeLibId);
         }
 
         [Fact]
         public void NetGuidComTypeLibId_ClrPE_NotEmpty()
         {
-            var peFile = new PeFile(@"Binaries/NetFrameworkConsole.exe");
+            using var peFile = new PeFile(@"Binaries/NetFrameworkConsole.exe");
             Assert.Equal("a782d109-aa8f-427b-8dcf-1c786054c7e0", peFile.ClrComTypeLibId);
         }
 
@@ -64,7 +64,7 @@ namespace PeNet.Test
         [InlineData(@"Binaries/krnl_test.sys", true)]
         public void IsDriver_GivenAPeFile_ReturnsDriverOrNot(string file, bool isDriver)
         {
-            var peFile = new PeFile(file);
+            using var peFile = new PeFile(file);
 
             Assert.Equal(isDriver, peFile.IsDriver);
         }
@@ -72,7 +72,7 @@ namespace PeNet.Test
         [Fact]
         public void Sha256_GivenAPeFile_ReturnsCorrectHash()
         {
-            var peFile = new PeFile(@"Binaries/firefox_x64.exe");
+            using var peFile = new PeFile(@"Binaries/firefox_x64.exe");
 
             Assert.Equal("377d3b741d8447b9bbd5f6fa700151a6ce8412ca15792ba4eaaa3174b1763ba4", peFile.Sha256);
         }
@@ -80,7 +80,7 @@ namespace PeNet.Test
         [Fact]
         public void Sha1_GivenAPeFile_ReturnsCorrectHash()
         {
-            var peFile = new PeFile(@"Binaries/firefox_x64.exe");
+            using var peFile = new PeFile(@"Binaries/firefox_x64.exe");
 
             Assert.Equal("5faf53976b7a4c2ffaf96581803c72cd09484b39", peFile.Sha1);
         }
@@ -88,7 +88,7 @@ namespace PeNet.Test
         [Fact]
         public void Md5_GivenAPeFile_ReturnsCorrectHash()
         {
-            var peFile = new PeFile(@"Binaries/firefox_x64.exe");
+            using var peFile = new PeFile(@"Binaries/firefox_x64.exe");
 
             Assert.Equal("fa64b4aeb420a6c292f877e90d0670a5", peFile.Md5);
         }
@@ -103,7 +103,7 @@ namespace PeNet.Test
         {
             Skip.IfNot(RuntimeInformation.IsOSPlatform(OSPlatform.Windows));
 
-            var peFile = new PeFile(file);
+            using var peFile = new PeFile(file);
             Assert.Equal(expected, peFile.IsSigned);
         }
 
@@ -113,7 +113,7 @@ namespace PeNet.Test
         [InlineData(@"C:\Windows\System32\kernel32.dll", true, true)]
         public void IsValidCertChain_PathToSignedBinaryWithValidChain_Online_ReturnsIfValidOrNot(string file, bool expected, bool online)
         {
-            var peFile = new PeFile(file);
+            using var peFile = new PeFile(file);
             Assert.Equal(expected, peFile.HasValidCertChain(online));
         }
     }

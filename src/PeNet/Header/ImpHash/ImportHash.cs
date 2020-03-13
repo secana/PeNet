@@ -25,10 +25,7 @@ namespace PeNet.Header.ImpHash
         /// <param name="importedFunctions"></param>
         public ImportHash(ICollection<ImportFunction>? importedFunctions)
         {
-            if (importedFunctions is null)
-                ImpHash = null;
-            else
-                ImpHash = ComputeImpHash(importedFunctions);
+            ImpHash = importedFunctions is null ? null : ComputeImpHash(importedFunctions);
         }
 
         /// <summary>
