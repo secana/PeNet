@@ -45,7 +45,7 @@ namespace PeNet
 
         private MetaDataHdrParser? InitMetaDataParser()
         {
-            var rawAddress = _imageCor20Header?.MetaData?.VirtualAddress.SafeRVAtoFileMapping(_sectionHeaders);
+            var rawAddress = _imageCor20Header?.MetaData?.VirtualAddress.SafeRvaToFileOffset(_sectionHeaders);
             return rawAddress == null ? null : new MetaDataHdrParser(_peFile, rawAddress.Value);
         }
 

@@ -21,7 +21,7 @@ namespace PeNet.Test.Structures
             Assert.Equal(0x88776655, sectionHeader.PointerToLinenumbers);
             Assert.Equal((ushort) 0xaa99, sectionHeader.NumberOfRelocations);
             Assert.Equal((ushort) 0xccbb, sectionHeader.NumberOfLinenumbers);
-            Assert.Equal((uint) 0x00000820, sectionHeader.Characteristics);
+            Assert.Equal((ScnCharacteristicsType) 0x00000820, sectionHeader.Characteristics);
             Assert.Equal(2, sectionHeader.CharacteristicsResolved.Count);
             Assert.Contains("LnkRemove", sectionHeader.CharacteristicsResolved);
             Assert.Contains("CntCode", sectionHeader.CharacteristicsResolved);

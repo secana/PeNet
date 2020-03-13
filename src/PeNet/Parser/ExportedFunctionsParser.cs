@@ -30,9 +30,9 @@ namespace PeNet.Parser
 
             var expFuncs = new ExportFunction[_exportDirectory.NumberOfFunctions];
 
-            var funcOffsetPointer = _exportDirectory.AddressOfFunctions.RVAtoFileMapping(_sectionHeaders);
-            var ordOffset = _exportDirectory.NumberOfNames == 0 ? 0 : _exportDirectory.AddressOfNameOrdinals.RVAtoFileMapping(_sectionHeaders);
-            var nameOffsetPointer = _exportDirectory.NumberOfNames == 0 ? 0 : _exportDirectory.AddressOfNames.RVAtoFileMapping(_sectionHeaders);
+            var funcOffsetPointer = _exportDirectory.AddressOfFunctions.RvaToFileOffset(_sectionHeaders);
+            var ordOffset = _exportDirectory.NumberOfNames == 0 ? 0 : _exportDirectory.AddressOfNameOrdinals.RvaToFileOffset(_sectionHeaders);
+            var nameOffsetPointer = _exportDirectory.NumberOfNames == 0 ? 0 : _exportDirectory.AddressOfNames.RvaToFileOffset(_sectionHeaders);
 
             //Get addresses
             for (uint i = 0; i < expFuncs.Length; i++)
@@ -46,13 +46,13 @@ namespace PeNet.Parser
             for (uint i = 0; i < _exportDirectory.NumberOfNames; i++)
             {
                 var namePtr = PeFile.ReadUInt(nameOffsetPointer + sizeof(uint)*i);
-                var nameAdr = namePtr.RVAtoFileMapping(_sectionHeaders);
+                var nameAdr = namePtr.RvaToFileOffset(_sectionHeaders);
                 var name = PeFile.ReadAsciiString(nameAdr);
                 var ordinalIndex = (uint) PeFile.ReadUShort(ordOffset + sizeof(ushort)*i);
 
                 if (IsForwardedExport(expFuncs[ordinalIndex].Address))
                 {
-                    var forwardNameAdr = expFuncs[ordinalIndex].Address.RVAtoFileMapping(_sectionHeaders);
+                    var forwardNameAdr = expFuncs[ordinalIndex].Address.RvaToFileOffset(_sectionHeaders);
                     var forwardName = PeFile.ReadAsciiString(forwardNameAdr);
 
                     expFuncs[ordinalIndex] = new ExportFunction(

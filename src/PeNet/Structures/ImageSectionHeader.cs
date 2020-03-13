@@ -112,10 +112,10 @@ namespace PeNet.Structures
         /// <summary>
         ///     Section characteristics.
         /// </summary>
-        public uint Characteristics
+        public ScnCharacteristicsType Characteristics
         {
-            get => PeFile.ReadUInt(Offset + 0x24);
-            set => PeFile.WriteUInt(Offset + 0x24, value);
+            get => (ScnCharacteristicsType) PeFile.ReadUInt(Offset + 0x24);
+            set => PeFile.WriteUInt(Offset + 0x24, (uint) value);
         }
 
         /// <summary>
@@ -129,12 +129,12 @@ namespace PeNet.Structures
         /// </summary>
         /// <param name="sectionFlags">Sections flags from the SectionHeader object.</param>
         /// <returns>List with flag names for the section.</returns>
-        public static List<string> ResolveCharacteristics(uint sectionFlags)
+        public static List<string> ResolveCharacteristics(ScnCharacteristicsType sectionFlags)
         {
             var st = new List<string>();
-            foreach (var flag in (CharacteristicsType[])Enum.GetValues(typeof(CharacteristicsType)))
+            foreach (var flag in (ScnCharacteristicsType[])Enum.GetValues(typeof(ScnCharacteristicsType)))
             {
-                if ((sectionFlags & (uint)flag) == (uint)flag)
+                if ((sectionFlags & flag) == flag)
                 {
                     st.Add(flag.ToString());
                 }
@@ -148,7 +148,7 @@ namespace PeNet.Structures
     ///     be set in the section characteristics.
     /// </summary>
     [Flags]
-    public enum CharacteristicsType : uint
+    public enum ScnCharacteristicsType : uint
     {
         /// <summary>
         ///     Reserved.

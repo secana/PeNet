@@ -77,7 +77,7 @@ namespace PeNet.Structures
                 ? UnwindInfo & 0xFFFE
                 : UnwindInfo;
 
-            var uw = new UnwindInfo(PeFile, uwAddress.RVAtoFileMapping(sh));
+            var uw = new UnwindInfo(PeFile, uwAddress.RvaToFileOffset(sh));
             return uw;
         }
     }

@@ -16,73 +16,73 @@ namespace PeNet.Utilities
         /// <summary>
         ///     Map an virtual address to the raw file address.
         /// </summary>
-        /// <param name="virtualAddress">Virtual Address</param>
+        /// <param name="va">Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static ulong VAtoFileMapping(this ulong virtualAddress, ICollection<ImageSectionHeader> sh)
+        public static ulong VaToFileOffset(this ulong va, ICollection<ImageSectionHeader> sh)
         {
-            var rva= virtualAddress - sh.FirstOrDefault().ImageBaseAddress;
-            return RVAtoFileMapping(rva, sh);
+            var rva= va - sh.First().ImageBaseAddress;
+            return RvaToFileOffset(rva, sh);
         }
 
         /// <summary>
         ///     Map an relative virtual address to the raw file address.
         /// </summary>
-        /// <param name="relativeVirtualAddress">Relative Virtual Address</param>
+        /// <param name="rva">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static ulong RVAtoFileMapping(this ulong relativeVirtualAddress, ICollection<ImageSectionHeader> sh)
+        public static ulong RvaToFileOffset(this ulong rva, ICollection<ImageSectionHeader> sh)
         {
-            ImageSectionHeader GetSectionForRva(ulong rva)
+            ImageSectionHeader GetSectionForRva(ulong relVirAdr)
             {
                 var sectionsByRva = sh.OrderBy(s => s.VirtualAddress).ToList();
                 var notLastSection = sectionsByRva.FirstOrDefault(s =>
-                    rva >= s.VirtualAddress && rva < s.VirtualAddress + s.VirtualSize);
+                    relVirAdr >= s.VirtualAddress && relVirAdr < s.VirtualAddress + s.VirtualSize);
 
                 if (notLastSection != null)
                     return notLastSection;
 
                 var lastSection = sectionsByRva.LastOrDefault(s => 
-                        rva >= s.VirtualAddress && rva <= s.VirtualAddress + s.VirtualSize);
+                        relVirAdr >= s.VirtualAddress && relVirAdr <= s.VirtualAddress + s.VirtualSize);
 
                 return lastSection;
             }
 
-            var section = GetSectionForRva(relativeVirtualAddress);
+            var section = GetSectionForRva(rva);
 
             if (section is null)
             {
                 throw new Exception("Cannot find corresponding section.");
             }
 
-            return relativeVirtualAddress - section.VirtualAddress + section.PointerToRawData;
+            return rva - section.VirtualAddress + section.PointerToRawData;
         }
 
         /// <summary>
         ///     Map an relative virtual address to the raw file address.
         /// </summary>
-        /// <param name="relativeVirtualAddress">Relative Virtual Address</param>
+        /// <param name="rva">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static uint RVAtoFileMapping(this uint relativeVirtualAddress, ICollection<ImageSectionHeader> sh)
+        public static uint RvaToFileOffset(this uint rva, ICollection<ImageSectionHeader> sh)
         {
-            return (uint) RVAtoFileMapping((ulong) relativeVirtualAddress, sh);
+            return (uint) RvaToFileOffset((ulong) rva, sh);
         }
 
         /// <summary>
         ///     Map an relative virtual address to the raw file address.
         /// </summary>
-        /// <param name="RelativeVirtualAddress">Relative Virtual Address</param>
+        /// <param name="rva">Relative Virtual Address</param>
         /// <param name="sh">Section Headers</param>
         /// <returns>Raw address of null if error occurred.</returns>
-        public static uint? SafeRVAtoFileMapping(this uint RelativeVirtualAddress, ICollection<ImageSectionHeader>? sh)
+        public static uint? SafeRvaToFileOffset(this uint rva, ICollection<ImageSectionHeader>? sh)
         {
             if (sh is null)
                 return null;
 
             try
             {
-                return RelativeVirtualAddress.RVAtoFileMapping(sh);
+                return rva.RvaToFileOffset(sh);
             }
             catch (Exception)
             {
@@ -104,7 +104,7 @@ namespace PeNet.Utilities
         }
 
         /// <summary>
-        ///     Convert a sequence of ushorts into a hexadecimal string.
+        ///     Convert a sequence of ushort into a hexadecimal string.
         /// </summary>
         /// <param name="values">Value sequence.</param>
         /// <returns>Hex-String</returns>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using PeNet.FileParser;
 
 namespace PeNet.Structures
@@ -83,18 +84,36 @@ namespace PeNet.Structures
         /// <summary>
         ///     Set of flags which describe the PE file in detail.
         /// </summary>
-        public FileCharacteristics Characteristics 
-            => ResolveFileCharacteristics(PeFile.ReadUShort(Offset + 0x12));
+        public FileCharacteristicsType Characteristics
+        {
+            get => (FileCharacteristicsType) PeFile.ReadUShort(Offset + 0x12);
+            set => PeFile.WriteUShort(Offset + 0x12, (ushort) value);
+        }
+
+        /// <summary>
+        ///     Set of flags which describe the PE file in detail resolved
+        ///     to a readable list of strings.
+        /// </summary>
+        public List<string> CharacteristicsResolved 
+            => ResolveFileCharacteristics(Characteristics);
 
         /// <summary>
         ///     Resolves the characteristics attribute from the COFF header to an
         ///     object which holds all the characteristics a boolean properties.
         /// </summary>
         /// <param name="characteristics">File header characteristics.</param>
-        /// <returns>Object with all characteristics as boolean properties.</returns>
-        public static FileCharacteristics ResolveFileCharacteristics(ushort characteristics)
+        /// <returns>List with set flags.</returns>
+        public static List<string> ResolveFileCharacteristics(FileCharacteristicsType characteristics)
         {
-            return new FileCharacteristics(characteristics);
+            var st = new List<string>();
+            foreach (var flag in (FileCharacteristicsType[])Enum.GetValues(typeof(FileCharacteristicsType)))
+            {
+                if ((characteristics & flag) == flag)
+                {
+                    st.Add(flag.ToString());
+                }
+            }
+            return st;
         }
 
         /// <summary>
@@ -111,36 +130,119 @@ namespace PeNet.Structures
                 MachineType.R3000 => "MIPS R3000",
                 MachineType.R4000 => "MIPS little endian (R4000)",
                 MachineType.R10000 => "MIPS R10000",
-                MachineType.WCEMIPSV2 => "MIPS little endian WCI v2",
-                MachineType.OLDALPHA => "old Alpha AXP",
-                MachineType.ALPHA => "Alpha AXP",
-                MachineType.SH3 => "Hitachi SH3",
-                MachineType.SH3DSP => "Hitachi SH3 DSP",
-                MachineType.SH3E => "Hitachi SH3E",
-                MachineType.SH4 => "Hitachi SH4",
-                MachineType.SH5 => "Hitachi SH5",
-                MachineType.ARM => "ARM little endian",
-                MachineType.THUMB => "Thumb",
-                MachineType.AM33 => "Matsushita AM33",
-                MachineType.POWERPC => "PowerPC little endian",
-                MachineType.POWERPCFP => "PowerPC with floating point support",
-                MachineType.IA64 => "Intel IA64",
-                MachineType.MIPS16 => "MIPS16",
+                MachineType.Wcemipsv2 => "MIPS little endian WCI v2",
+                MachineType.OldAlpha => "old Alpha AXP",
+                MachineType.Alpha => "Alpha AXP",
+                MachineType.Sh3 => "Hitachi SH3",
+                MachineType.Sh3Dsp => "Hitachi SH3 DSP",
+                MachineType.Sh3E => "Hitachi SH3E",
+                MachineType.Sh4 => "Hitachi SH4",
+                MachineType.Sh5 => "Hitachi SH5",
+                MachineType.Arm => "ARM little endian",
+                MachineType.Thumb => "Thumb",
+                MachineType.Am33 => "Matsushita AM33",
+                MachineType.PowerPc => "PowerPC little endian",
+                MachineType.PowerPcFp => "PowerPC with floating point support",
+                MachineType.Ia64 => "Intel IA64",
+                MachineType.Mips16 => "MIPS16",
                 MachineType.M68K => "Motorola 68000 series",
-                MachineType.ALPHA64 => "Alpha AXP 64-bit",
-                MachineType.MIPSFPU => "MIPS with FPU",
-                MachineType.TRICORE => "Tricore",
-                MachineType.CEF => "CEF",
-                MachineType.MIPSFPU16 => "MIPS16 with FPU",
-                MachineType.EBC => "EFI Byte Code",
-                MachineType.AMD64 => "AMD64",
+                MachineType.Alpha64 => "Alpha AXP 64-bit",
+                MachineType.MipsFpu => "MIPS with FPU",
+                MachineType.TriCore => "Tricore",
+                MachineType.Cef => "CEF",
+                MachineType.MipsFpu16 => "MIPS16 with FPU",
+                MachineType.Ebc => "EFI Byte Code",
+                MachineType.Amd64 => "AMD64",
                 MachineType.M32R => "Mitsubishi M32R little endian",
-                MachineType.CEE => "clr pure MSIL",
-                MachineType.ARM64 => "ARM64 Little-Endian",
-                MachineType.ARMNT => "ARM Thumb-2 Little-Endian",
-                MachineType.TARGET_HOST => "Interacts with the host and not a WOW64 guest",
+                MachineType.Cee => "clr pure MSIL",
+                MachineType.Arm64 => "ARM64 Little-Endian",
+                MachineType.ArmNt => "ARM Thumb-2 Little-Endian",
+                MachineType.TargetHost => "Interacts with the host and not a WOW64 guest",
                 _ => "unknown"
             };
+    }
+
+    /// <summary>
+    ///     File characteristics from the file header.
+    /// </summary>
+    [Flags]
+    public enum FileCharacteristicsType : ushort
+    {
+        /// <summary>
+        ///     Relocation stripped.
+        /// </summary>
+        RelocsStripped = 0x01,
+
+        /// <summary>
+        ///     Executable image.
+        /// </summary>
+        ExecutableImage = 0x02,
+
+        /// <summary>
+        ///     Line numbers stripped.
+        /// </summary>
+        LineNumsStripped = 0x04,
+
+        /// <summary>
+        ///     Local symbols stripped.
+        /// </summary>
+        LocalSymsStripped = 0x08,
+
+        /// <summary>
+        ///     (OBSOLTETE) Aggressively trim the working set.
+        /// </summary>
+        AggresiveWsTrim = 0x10,
+
+        /// <summary>
+        ///     Application can handle addresses larger than 2 GB.
+        /// </summary>
+        LargeAddressAware = 0x20,
+
+        /// <summary>
+        ///     (OBSOLTETE) Bytes of word are reversed.
+        /// </summary>
+        BytesReversedLo = 0x80,
+
+        /// <summary>
+        ///     Supports 32 Bit words.
+        /// </summary>
+        BitMachine32 = 0x100,
+
+        /// <summary>
+        ///     Debug stripped and stored in a separate file.
+        /// </summary>
+        DebugStripped = 0x200,
+
+        /// <summary>
+        ///     If the image is on a removable media, copy and run it from the swap file.
+        /// </summary>
+        RemovableRunFromSwap = 0x400,
+
+        /// <summary>
+        ///     If the image is on the network, copy and run it from the swap file.
+        /// </summary>
+        NetRunFromSwap = 0x800,
+
+        /// <summary>
+        ///     The image is a system file.
+        /// </summary>
+        System = 0x1000,
+
+        /// <summary>
+        ///     Is a dynamic loaded library and executable but cannot
+        ///     be run on its own.
+        /// </summary>
+        Dll = 0x2000,
+
+        /// <summary>
+        ///     Image should be run only on uniprocessor.
+        /// </summary>
+        UpSystemOnly = 0x4000,
+
+        /// <summary>
+        ///     (OBSOLETE) Reserved.
+        /// </summary>
+        BytesReversedHi = 0x8000
     }
 
     /// <summary>
@@ -153,7 +255,7 @@ namespace PeNet.Structures
         /// <summary>
         ///     File header -> machine (CPU): unknown
         /// </summary>
-        IMAGE_FILE_MACHINE_UNKNOWN = 0x0,
+        Unknown = 0x0,
 
         /// <summary>
         ///     File header -> machine (CPU): Intel 386
@@ -183,77 +285,77 @@ namespace PeNet.Structures
         /// <summary>
         ///     File header -> machine (CPU): MIPS little endian WCI v2
         /// </summary>
-        WCEMIPSV2 = 0x169,
+        Wcemipsv2 = 0x169,
 
         /// <summary>
         ///     File header -> machine (CPU): old Alpha AXP
         /// </summary>
-        OLDALPHA = 0x183,
+        OldAlpha = 0x183,
 
         /// <summary>
         ///     File header -> machine (CPU): Alpha AXP
         /// </summary>
-        ALPHA = 0x184,
+        Alpha = 0x184,
 
         /// <summary>
         ///     File header -> machine (CPU): Hitachi SH3
         /// </summary>
-        SH3 = 0x1a2,
+        Sh3 = 0x1a2,
 
         /// <summary>
         ///     File header -> machine (CPU): Hitachi SH3 DSP
         /// </summary>
-        SH3DSP = 0x1a3,
+        Sh3Dsp = 0x1a3,
 
         /// <summary>
         ///     File header -> machine (CPU): unknown
         /// </summary>
-        SH3E = 0x1a4,
+        Sh3E = 0x1a4,
 
         /// <summary>
         ///     File header -> machine (CPU): Hitachi SH4
         /// </summary>
-        SH4 = 0x1a6,
+        Sh4 = 0x1a6,
 
         /// <summary>
         ///     File header -> machine (CPU): Hitachi SH5
         /// </summary>
-        SH5 = 0x1a8,
+        Sh5 = 0x1a8,
 
         /// <summary>
         ///     File header -> machine (CPU): ARM little endian
         /// </summary>
-        ARM = 0x1c0,
+        Arm = 0x1c0,
 
         /// <summary>
         ///     File header -> machine (CPU): Thumb
         /// </summary>
-        THUMB = 0x1c2,
+        Thumb = 0x1c2,
 
         /// <summary>
         ///     File header -> machine (CPU): Matsushita AM33
         /// </summary>
-        AM33 = 0x1d3,
+        Am33 = 0x1d3,
 
         /// <summary>
         ///     File header -> machine (CPU): PowerPC little endian
         /// </summary>
-        POWERPC = 0x1f0,
+        PowerPc = 0x1f0,
 
         /// <summary>
         ///     File header -> machine (CPU): PowerPC with floating point support
         /// </summary>
-        POWERPCFP = 0x1f1,
+        PowerPcFp = 0x1f1,
 
         /// <summary>
         ///     File header -> machine (CPU): Intel IA64
         /// </summary>
-        IA64 = 0x200,
+        Ia64 = 0x200,
 
         /// <summary>
         ///     File header -> machine (CPU): MIPS16
         /// </summary>
-        MIPS16 = 0x266,
+        Mips16 = 0x266,
 
         /// <summary>
         ///     File header -> machine (CPU): Motorola 68000 series
@@ -263,42 +365,42 @@ namespace PeNet.Structures
         /// <summary>
         ///     File header -> machine (CPU): Alpha AXP 64-bit
         /// </summary>
-        ALPHA64 = 0x284,
+        Alpha64 = 0x284,
 
         /// <summary>
         ///     File header -> machine (CPU): MIPS with FPU
         /// </summary>
-        MIPSFPU = 0x366,
+        MipsFpu = 0x366,
 
         /// <summary>
         ///     File header -> machine (CPU): MIPS16 with FPU
         /// </summary>
-        MIPSFPU16 = 0x466,
+        MipsFpu16 = 0x466,
 
         /// <summary>
         ///     File header -> machine (CPU): Alpha AXP 64-bit
         /// </summary>
-        IMAGE_FILE_MACHINE_AXP64 = ALPHA64,
+        Axp64 = Alpha64,
 
         /// <summary>
         ///     File header -> machine (CPU): unknown
         /// </summary>
-        TRICORE = 0x520,
+        TriCore = 0x520,
 
         /// <summary>
         ///     File header -> machine (CPU): unknown
         /// </summary>
-        CEF = 0xcef,
+        Cef = 0xcef,
 
         /// <summary>
         ///     File header -> machine (CPU): EFI Byte Code
         /// </summary>
-        EBC = 0xebc,
+        Ebc = 0xebc,
 
         /// <summary>
         ///     File header -> machine (CPU): AMD AMD64 (Used for Intel x64, too)
         /// </summary>
-        AMD64 = 0x8664,
+        Amd64 = 0x8664,
 
         /// <summary>
         ///     File header -> machine (CPU): Mitsubishi M32R little endian
@@ -308,22 +410,22 @@ namespace PeNet.Structures
         /// <summary>
         ///     File header -> machine (CPU): clr pure MSIL (.Net)
         /// </summary>
-        CEE = 0xc0ee,
+        Cee = 0xc0ee,
 
         /// <summary>
         ///     File header -> machine (CPU): ARM65 Little-Endian
         /// </summary>
-        ARM64 = 0xAA64,
+        Arm64 = 0xAA64,
 
         /// <summary>
         ///     File header -> machine (CPU): ARM Thumb-2 Little-Endian
         /// </summary>
-        ARMNT = 0x01C4,
+        ArmNt = 0x01C4,
 
         /// <summary>
         ///     File header -> machine (CPU): Interacts with the host and not
         ///     a WOW64 guest
         /// </summary>
-        TARGET_HOST = 0x0001
+        TargetHost = 0x0001
     }
 }
