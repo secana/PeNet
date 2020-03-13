@@ -72,8 +72,8 @@ namespace PeNet.Structures
         private uint[] ReadValues()
         {
             var currentOffset =
-                Offset + 6 + szKey.LengthInByte() 
-                + (Offset + 6 + szKey.LengthInByte()).PaddingBytes(32);
+                Offset + 6 + szKey.UStringByteLength() 
+                + (Offset + 6 + szKey.UStringByteLength()).PaddingBytes(32);
 
             var startOfValues = currentOffset;
 

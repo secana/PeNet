@@ -17,25 +17,25 @@ namespace PeNet.Utilities
         ///     Map an virtual address to the raw file address.
         /// </summary>
         /// <param name="va">Virtual Address</param>
-        /// <param name="sh">Section Headers</param>
+        /// <param name="sectionHeaders">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static ulong VaToFileOffset(this ulong va, ICollection<ImageSectionHeader> sh)
+        public static ulong VaToOffset(this ulong va, ICollection<ImageSectionHeader> sectionHeaders)
         {
-            var rva= va - sh.First().ImageBaseAddress;
-            return RvaToFileOffset(rva, sh);
+            var rva= va - sectionHeaders.First().ImageBaseAddress;
+            return RvaToOffset(rva, sectionHeaders);
         }
 
         /// <summary>
         ///     Map an relative virtual address to the raw file address.
         /// </summary>
         /// <param name="rva">Relative Virtual Address</param>
-        /// <param name="sh">Section Headers</param>
+        /// <param name="sectionHeaders">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static ulong RvaToFileOffset(this ulong rva, ICollection<ImageSectionHeader> sh)
+        public static ulong RvaToOffset(this ulong rva, ICollection<ImageSectionHeader> sectionHeaders)
         {
             ImageSectionHeader GetSectionForRva(ulong relVirAdr)
             {
-                var sectionsByRva = sh.OrderBy(s => s.VirtualAddress).ToList();
+                var sectionsByRva = sectionHeaders.OrderBy(s => s.VirtualAddress).ToList();
                 var notLastSection = sectionsByRva.FirstOrDefault(s =>
                     relVirAdr >= s.VirtualAddress && relVirAdr < s.VirtualAddress + s.VirtualSize);
 
@@ -62,31 +62,35 @@ namespace PeNet.Utilities
         ///     Map an relative virtual address to the raw file address.
         /// </summary>
         /// <param name="rva">Relative Virtual Address</param>
-        /// <param name="sh">Section Headers</param>
+        /// <param name="sectionHeaders">Section Headers</param>
         /// <returns>Raw file address.</returns>
-        public static uint RvaToFileOffset(this uint rva, ICollection<ImageSectionHeader> sh)
+        public static uint RvaToOffset(this uint rva, ICollection<ImageSectionHeader> sectionHeaders)
         {
-            return (uint) RvaToFileOffset((ulong) rva, sh);
+            return (uint) RvaToOffset((ulong) rva, sectionHeaders);
         }
 
         /// <summary>
-        ///     Map an relative virtual address to the raw file address.
+        /// Try to map a relative virtual address to a file offset.
         /// </summary>
         /// <param name="rva">Relative Virtual Address</param>
-        /// <param name="sh">Section Headers</param>
-        /// <returns>Raw address of null if error occurred.</returns>
-        public static uint? SafeRvaToFileOffset(this uint rva, ICollection<ImageSectionHeader>? sh)
+        /// <param name="sectionHeaders">Section Headers</param>
+        /// <param name="fileOffset">File offset if mapping was successful.</param>
+        /// <returns>True if mapping was successful, false if not.</returns>
+        public static bool TryRvaToOffset(this uint rva, ICollection<ImageSectionHeader>? sectionHeaders, out uint fileOffset)
         {
-            if (sh is null)
-                return null;
+            fileOffset = 0;
+
+            if (sectionHeaders is null)
+                return false;
 
             try
             {
-                return rva.RvaToFileOffset(sh);
+                fileOffset = rva.RvaToOffset(sectionHeaders);
+                return true;
             }
             catch (Exception)
             {
-                return null;
+                return false;
             }
         }
 
@@ -190,7 +194,7 @@ namespace PeNet.Utilities
         /// </summary>
         /// <param name="s">A unicode string.</param>
         /// <returns>Length in bytes.</returns>
-        public static int LengthInByte(this string s) => s.Length * 2 + 2;
+        public static int UStringByteLength(this string s) => s.Length * 2 + 2;
 
         /// <summary>
         /// Compute the padding to align a

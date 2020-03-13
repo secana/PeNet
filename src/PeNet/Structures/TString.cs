@@ -61,8 +61,8 @@ namespace PeNet.Structures
         public string Value {
             get
             {
-                var currentOffset = Offset + 0x6 + SzKey.LengthInByte() +
-                                    (Offset + 0x6 + SzKey.LengthInByte()).PaddingBytes(32);
+                var currentOffset = Offset + 0x6 + SzKey.UStringByteLength() +
+                                    (Offset + 0x6 + SzKey.UStringByteLength()).PaddingBytes(32);
 
                 return PeFile.ReadUnicodeString(currentOffset);
             }

@@ -45,16 +45,22 @@ namespace PeNet
 
         private MetaDataHdrParser? InitMetaDataParser()
         {
-            var rawAddress = _imageCor20Header?.MetaData?.VirtualAddress.SafeRvaToFileOffset(_sectionHeaders);
-            return rawAddress == null ? null : new MetaDataHdrParser(_peFile, rawAddress.Value);
+            var va = _imageCor20Header?.MetaData?.VirtualAddress;
+            if (va is null)
+                return null;
+
+            return va.Value.TryRvaToOffset(_sectionHeaders, out var offset)
+                ? new MetaDataHdrParser(_peFile, offset)
+                : null;
         }
+
 
         private MetaDataStreamStringParser? InitMetaDataStreamStringParser()
         {
             var metaDataStream = MetaDataHdr?.MetaDataStreamsHdrs?.FirstOrDefault(x => x.StreamName == "#Strings");
 
-            return metaDataStream == null 
-                ? null 
+            return metaDataStream == null
+                ? null
                 : new MetaDataStreamStringParser(_peFile, MetaDataHdr!.Offset + metaDataStream.RelOffset, metaDataStream.Size);
         }
 
@@ -62,8 +68,8 @@ namespace PeNet
         {
             var metaDataStream = MetaDataHdr?.MetaDataStreamsHdrs?.FirstOrDefault(x => x.StreamName == "#US");
 
-            return metaDataStream == null 
-                ? null 
+            return metaDataStream == null
+                ? null
                 : new MetaDataStreamUsParser(_peFile, MetaDataHdr!.Offset + metaDataStream.RelOffset, metaDataStream.Size);
         }
 
@@ -71,8 +77,8 @@ namespace PeNet
         {
             var metaDataStream = MetaDataHdr?.MetaDataStreamsHdrs?.FirstOrDefault(x => x.StreamName == "#~");
 
-            return metaDataStream == null 
-                ? null 
+            return metaDataStream == null
+                ? null
                 : new MetaDataStreamTablesHeaderParser(_peFile, MetaDataHdr!.Offset + metaDataStream.RelOffset);
         }
 
@@ -80,17 +86,17 @@ namespace PeNet
         {
             var metaDataStream = MetaDataHdr?.MetaDataStreamsHdrs?.FirstOrDefault(x => x.StreamName == "#GUID");
 
-            return metaDataStream == null 
-                ? null 
-                : new MetaDataStreamGuidParser(_peFile, MetaDataHdr!.Offset +  metaDataStream.RelOffset, metaDataStream.Size);
+            return metaDataStream == null
+                ? null
+                : new MetaDataStreamGuidParser(_peFile, MetaDataHdr!.Offset + metaDataStream.RelOffset, metaDataStream.Size);
         }
 
         private MetaDataStreamBlobParser? InitMetaDataStreamBlobParser()
         {
             var metaDataStream = MetaDataHdr?.MetaDataStreamsHdrs?.FirstOrDefault(x => x.StreamName == "#Blob");
 
-            return metaDataStream == null 
-                ? null 
+            return metaDataStream == null
+                ? null
                 : new MetaDataStreamBlobParser(_peFile, MetaDataHdr!.Offset + metaDataStream.RelOffset, metaDataStream.Size);
         }
     }

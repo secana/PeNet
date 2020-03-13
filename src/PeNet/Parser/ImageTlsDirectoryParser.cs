@@ -32,7 +32,7 @@ namespace PeNet.Parser
         private ImageTlsCallback[] ParseTlsCallbacks(ulong addressOfCallBacks)
         {
             var callbacks = new List<ImageTlsCallback>();
-            var rawAddressOfCallbacks = (uint) addressOfCallBacks.VaToFileOffset(_sectionsHeaders);
+            var rawAddressOfCallbacks = (uint) addressOfCallBacks.VaToOffset(_sectionsHeaders);
 
             uint count = 0;
             while (true)

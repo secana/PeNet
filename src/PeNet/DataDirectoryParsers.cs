@@ -79,7 +79,7 @@ namespace PeNet
         private ResourcesParser? InitResourcesParser()
         {
             var vsVersionOffset = ImageResourceDirectory
-                ?.DirectoryEntries?.FirstOrDefault(e => e?.ID == (int) ResourceGroupIdType.Version) // Root
+                ?.DirectoryEntries?.FirstOrDefault(e => e?.ID == (int)ResourceGroupIdType.Version) // Root
                 ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Type
                 ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Name
                 ?.ResourceDataEntry?.OffsetToData; // Language
@@ -87,149 +87,103 @@ namespace PeNet
             if (vsVersionOffset is null)
                 return null;
 
-            var rawVsVersionOffset = vsVersionOffset.Value.SafeRvaToFileOffset(_sectionHeaders);
-
-            return rawVsVersionOffset is null ? null : new ResourcesParser(_peFile, 0, rawVsVersionOffset.Value);
+            return vsVersionOffset.Value.TryRvaToOffset(_sectionHeaders, out var offset)
+                ? new ResourcesParser(_peFile, 0, offset)
+                : null;
         }
 
         private ImageCor20HeaderParser? InitImageComDescriptorParser()
-        {
-            var rawAddress =
-                _dataDirectories[(int) DataDirectoryType.ComDescriptor].VirtualAddress.SafeRvaToFileOffset(_sectionHeaders);
-
-            return rawAddress == null ? null : new ImageCor20HeaderParser(_peFile, rawAddress.Value);
-        }
+            => _dataDirectories[(int)DataDirectoryType.ComDescriptor].VirtualAddress
+                .TryRvaToOffset(_sectionHeaders, out var offset)
+                ? new ImageCor20HeaderParser(_peFile, offset)
+                : null;
 
         private ImageLoadConfigDirectoryParser? InitImageLoadConfigDirectoryParser()
-        {
-            var rawAddress =
-                _dataDirectories[(int) DataDirectoryType.LoadConfig].VirtualAddress.SafeRvaToFileOffset(_sectionHeaders);
-
-            return rawAddress == null ? null : new ImageLoadConfigDirectoryParser(_peFile, rawAddress.Value, !_is32Bit);
-        }
+            => _dataDirectories[(int)DataDirectoryType.LoadConfig].VirtualAddress
+                .TryRvaToOffset(_sectionHeaders, out var offset)
+                ? new ImageLoadConfigDirectoryParser(_peFile, offset, !_is32Bit)
+                : null;
 
         private ImageDelayImportDescriptorParser? InitImageDelayImportDescriptorParser()
-        {
-            var rawAddress =
-                _dataDirectories[(int) DataDirectoryType.DelayImport].VirtualAddress.SafeRvaToFileOffset(_sectionHeaders);
-
-            return rawAddress == null ? null : new ImageDelayImportDescriptorParser(_peFile, rawAddress.Value);
-        }
+            => _dataDirectories[(int)DataDirectoryType.DelayImport].VirtualAddress
+                .TryRvaToOffset(_sectionHeaders, out var offset)
+                ? new ImageDelayImportDescriptorParser(_peFile, offset)
+                : null;
 
         private ImageTlsDirectoryParser? InitImageTlsDirectoryParser()
-        {
-            var rawAddress =
-                _dataDirectories[(int) DataDirectoryType.TLS].VirtualAddress.SafeRvaToFileOffset(_sectionHeaders);
-
-            return rawAddress == null ? null : new ImageTlsDirectoryParser(_peFile, rawAddress.Value, !_is32Bit, _sectionHeaders);
-        }
+            => _dataDirectories[(int)DataDirectoryType.TLS].VirtualAddress
+                .TryRvaToOffset(_sectionHeaders, out var offset)
+                ? new ImageTlsDirectoryParser(_peFile, offset, !_is32Bit, _sectionHeaders)
+                : null;
 
         private ImageBoundImportDescriptorParser? InitBoundImportDescriptorParser()
-        {
-            var rawAddress =
-                _dataDirectories[(int) DataDirectoryType.BoundImport].VirtualAddress.SafeRvaToFileOffset(_sectionHeaders);
+            => _dataDirectories[(int)DataDirectoryType.BoundImport].VirtualAddress
+                .TryRvaToOffset(_sectionHeaders, out var offset)
+                ? new ImageBoundImportDescriptorParser(_peFile, offset)
+                : null;
 
-            return rawAddress == null ? null : new ImageBoundImportDescriptorParser(_peFile, rawAddress.Value);
-        }
-
-        private ImportedFunctionsParser InitImportedFunctionsParser() {
-            return new ImportedFunctionsParser(
+        private ImportedFunctionsParser InitImportedFunctionsParser()
+            => new ImportedFunctionsParser(
                 _peFile,
                 ImageImportDescriptors,
                 _sectionHeaders,
                 _dataDirectories,
                 !_is32Bit
                 );
-        }
 
         private ExportedFunctionsParser InitExportFunctionParser()
-        {
-            return new ExportedFunctionsParser(
-                _peFile, 
-                ImageExportDirectories, 
-                _sectionHeaders, 
-                _dataDirectories[(int) DataDirectoryType.Export]);
-        }
+            => new ExportedFunctionsParser(
+                _peFile,
+                ImageExportDirectories,
+                _sectionHeaders,
+                _dataDirectories[(int)DataDirectoryType.Export]);
 
         private WinCertificateParser? InitWinCertificateParser()
         {
             // The security directory is the only one where the DATA_DIRECTORY VirtualAddress
             // is not an RVA but an raw offset.
-            var rawAddress = _dataDirectories[(int) DataDirectoryType.Security].VirtualAddress;
-
-            if (rawAddress == 0)
-                return null;
-
-            return new WinCertificateParser(_peFile, rawAddress);
+            var rawAddress = _dataDirectories[(int)DataDirectoryType.Security].VirtualAddress;
+            return rawAddress == 0 ? null : new WinCertificateParser(_peFile, rawAddress);
         }
 
         private ImageDebugDirectoryParser? InitImageDebugDirectoryParser()
-        {
-            var rawAddress =
-                _dataDirectories[(int) DataDirectoryType.Debug].VirtualAddress.SafeRvaToFileOffset(_sectionHeaders);
-            var size = _dataDirectories[(int)DataDirectoryType.Debug].Size;
-
-            return rawAddress == null ? null : new ImageDebugDirectoryParser(_peFile, rawAddress.Value, size);
-        }
+            => _dataDirectories[(int)DataDirectoryType.Debug].VirtualAddress
+                .TryRvaToOffset(_sectionHeaders, out var offset)
+                ? new ImageDebugDirectoryParser(_peFile, offset,
+                    _dataDirectories[(int)DataDirectoryType.Debug].Size)
+                : null;
 
         private ImageResourceDirectoryParser? InitImageResourceDirectoryParser()
-        {
-            var rawAddress =
-                _dataDirectories[(int) DataDirectoryType.Resource].VirtualAddress.SafeRvaToFileOffset(_sectionHeaders);
-
-            return rawAddress == null ? null : new ImageResourceDirectoryParser(_peFile, rawAddress.Value);
-        }
+            => _dataDirectories[(int)DataDirectoryType.Resource].VirtualAddress
+                .TryRvaToOffset(_sectionHeaders, out var offset)
+                ? new ImageResourceDirectoryParser(_peFile, offset)
+                : null;
 
         private ImageBaseRelocationsParser? InitImageBaseRelocationsParser()
-        {
-            var rawAddress =
-                _dataDirectories[(int) DataDirectoryType.BaseReloc].VirtualAddress.SafeRvaToFileOffset(_sectionHeaders);
-
-            if (rawAddress == null)
-                return null;
-
-            return new ImageBaseRelocationsParser(
-                _peFile,
-                rawAddress.Value,
-                _dataDirectories[(int) DataDirectoryType.BaseReloc].Size
-                );
-        }
+            => _dataDirectories[(int)DataDirectoryType.BaseReloc].VirtualAddress
+                .TryRvaToOffset(_sectionHeaders, out var offset)
+                ? new ImageBaseRelocationsParser(_peFile, offset,
+                    _dataDirectories[(int)DataDirectoryType.BaseReloc].Size)
+                : null;
 
         private ImageExportDirectoriesParser? InitImageExportDirectoryParser()
-        {
-            var rawAddress =
-                _dataDirectories[(int) DataDirectoryType.Export].VirtualAddress.SafeRvaToFileOffset(_sectionHeaders);
-            if (rawAddress == null)
-                return null;
+            => _dataDirectories[(int)DataDirectoryType.Export].VirtualAddress
+                .TryRvaToOffset(_sectionHeaders, out var offset)
+                ? new ImageExportDirectoriesParser(_peFile, offset)
+                : null;
 
-            return new ImageExportDirectoriesParser(_peFile, rawAddress.Value);
-        }
 
         private RuntimeFunctionsParser? InitRuntimeFunctionsParser()
-        {
-            var rawAddress =
-                _dataDirectories[(int) DataDirectoryType.Exception].VirtualAddress.SafeRvaToFileOffset(_sectionHeaders);
-
-            if (rawAddress == null)
-                return null;
-
-            return new RuntimeFunctionsParser(
-                _peFile,
-                rawAddress.Value,
-                _is32Bit,
-                _dataDirectories[(int) DataDirectoryType.Exception].Size,
-                _sectionHeaders
-                );
-        }
+            => _dataDirectories[(int)DataDirectoryType.Exception].VirtualAddress
+                .TryRvaToOffset(_sectionHeaders, out var offset)
+                ? new RuntimeFunctionsParser(_peFile, offset, _is32Bit,
+                    _dataDirectories[(int)DataDirectoryType.Exception].Size, _sectionHeaders)
+                : null;
 
         private ImageImportDescriptorsParser? InitImageImportDescriptorsParser()
-        {
-            var rawAddress =
-                _dataDirectories[(int) DataDirectoryType.Import].VirtualAddress.SafeRvaToFileOffset(_sectionHeaders);
-
-            return rawAddress == null ? null : new ImageImportDescriptorsParser(_peFile, rawAddress.Value);
-        }
-
-        
+            => _dataDirectories[(int)DataDirectoryType.Import].VirtualAddress
+                .TryRvaToOffset(_sectionHeaders, out var offset)
+                ? new ImageImportDescriptorsParser(_peFile, offset)
+                : null;
     }
 }

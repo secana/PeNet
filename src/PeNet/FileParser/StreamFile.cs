@@ -98,8 +98,7 @@ namespace PeNet.FileParser
 
         public byte[] ToArray()
         {
-            using var ms = new MemoryStream();
-            ms.Position = 0;
+            using var ms = new MemoryStream {Position = 0};
             _stream.Position = 0;
             _stream.CopyTo(ms);
             return ms.ToArray();

@@ -13,8 +13,8 @@ namespace PeNet.Structures
         private StringFileInfo? _stringFileInfo;
         private VarFileInfo? _varFileInfo;
         private uint VsFixedFileInfoOffset =>
-            (uint)(Offset + 6 + SzKey.LengthInByte()
-                   + (Offset + 6 + SzKey.LengthInByte()).PaddingBytes(32));
+            (uint)(Offset + 6 + SzKey.UStringByteLength()
+                   + (Offset + 6 + SzKey.UStringByteLength()).PaddingBytes(32));
 
         /// <summary>
         /// Length of the VsVersionInfo structure without any padding.

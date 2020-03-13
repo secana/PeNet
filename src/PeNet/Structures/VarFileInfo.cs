@@ -73,8 +73,8 @@ namespace PeNet.Structures
         private Var[] ReadChildren()
         {
             var currentOffset =
-                Offset + 6 + SzKey.LengthInByte()
-                + (Offset + 6 + SzKey.LengthInByte()).PaddingBytes(32);
+                Offset + 6 + SzKey.UStringByteLength()
+                + (Offset + 6 + SzKey.UStringByteLength()).PaddingBytes(32);
 
             var values = new List<Var>();
 
