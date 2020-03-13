@@ -1,6 +1,5 @@
 ﻿using PeNet.FileParser;
 using PeNet.Structures;
-using PeNet.Utilities;
 
 namespace PeNet.Parser
 {

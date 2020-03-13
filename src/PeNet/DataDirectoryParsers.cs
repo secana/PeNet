@@ -3,7 +3,6 @@ using System.Linq;
 using PeNet.FileParser;
 using PeNet.Parser;
 using PeNet.Structures;
-using PeNet.Utilities;
 
 namespace PeNet
 {

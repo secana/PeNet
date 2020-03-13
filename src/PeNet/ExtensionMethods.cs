@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using PeNet.Structures;
 
-namespace PeNet.Utilities
+namespace PeNet
 {
     /// <summary>
     /// Extensions method to work make the work with buffers 

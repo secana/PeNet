@@ -7,7 +7,6 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Pkcs;
 using PeNet.Asn1;
 using PeNet.Structures;
-using PeNet.Utilities;
 
 namespace PeNet.Authenticode
 
