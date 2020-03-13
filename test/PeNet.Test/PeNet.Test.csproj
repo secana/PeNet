@@ -17,10 +17,10 @@
     <ProjectReference Include="..\..\src\PeNet\PeNet.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="Authenticode\pidgin.pkcs7">
+    <None Update="Header\Authenticode\pidgin.pkcs7">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Authenticode\pkcs7.bin">
+    <None Update="Header\Authenticode\pkcs7.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Binaries\firefox_invalid_x64.exe">
