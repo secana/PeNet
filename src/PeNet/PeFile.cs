@@ -11,10 +11,9 @@ using PeNet.Header.ImpHash;
 using PeNet.Header.Net;
 using PeNet.Header.Pe;
 using PeNet.Header.Resource;
-using PeNet.Parser;
-using PeNet.Parser.Authenticode;
-using PeNet.Parser.Net;
-using PeNet.Parser.Pe;
+using PeNet.HeaderParser.Authenticode;
+using PeNet.HeaderParser.Net;
+using PeNet.HeaderParser.Pe;
 
 namespace PeNet
 {
@@ -109,7 +108,7 @@ namespace PeNet
         {
             peFile = null;
 
-            if (!IsPEFile(buff))
+            if (!IsPeFile(buff))
                 return false;
 
             try { peFile = new PeFile(buff); }
@@ -144,26 +143,21 @@ namespace PeNet
         ///     Returns true if the PE file is signed. It
         ///     does not check if the signature is valid!
         /// </summary>
-        public bool IsSigned => PKCS7 != null;
+        public bool IsSigned => Pkcs7 != null;
 
         /// <summary>
         ///     Returns true if the PE file signature is valid signed.
         /// </summary>
-        public bool IsSignatureValid => Authenticode?.IsAuthenticodeValid ?? false;
+        public bool HasValidSignature => Authenticode?.IsAuthenticodeValid ?? false;
 
         /// <summary>
         ///     Checks if cert is from a trusted CA with a valid certificate chain.
         /// </summary>
-        /// <param name="filePath">Path to a PE file.</param>
-        /// <param name="useOnlineCRL">Check certificate chain online or offline.</param>
+        /// <param name="useOnlineCrl">Check certificate chain online or offline.</param>
         /// <returns>True if cert chain is valid and from a trusted CA.</returns>
-        public bool IsValidCertChain(bool useOnlineCRL)
-        {
-            if (Authenticode?.SigningCertificate == null)
-                return false;
-
-            return IsValidCertChain(Authenticode.SigningCertificate, new TimeSpan(0,0,0,10), useOnlineCRL);
-        }
+        public bool HasValidCertChain(bool useOnlineCrl)
+            => Authenticode?.SigningCertificate != null 
+                   && HasValidCertChain(Authenticode.SigningCertificate, new TimeSpan(0,0,0,10), useOnlineCrl);
 
         /// <summary>
         ///     Checks if cert is from a trusted CA with a valid certificate chain.
@@ -173,7 +167,7 @@ namespace PeNet
         /// <param name="useOnlineCRL">If true, uses online certificate revocation lists, else on the local CRL.</param>
         /// <param name="excludeRoot">True if the root certificate should not be validated. False if the whole chain should be validated.</param>
         /// <returns>True if cert chain is valid and from a trusted CA.</returns>
-        public bool IsValidCertChain(X509Certificate2? cert, TimeSpan urlRetrievalTimeout, bool useOnlineCRL = true, bool excludeRoot = true)
+        public bool HasValidCertChain(X509Certificate2? cert, TimeSpan urlRetrievalTimeout, bool useOnlineCRL = true, bool excludeRoot = true)
         {
             var chain = new X509Chain
             {
@@ -214,7 +208,7 @@ namespace PeNet
         public ImageNtHeaders? ImageNtHeaders => _nativeStructureParsers.ImageNtHeaders;
 
         /// <summary>
-        ///     Access the IMAGE_SECTION_HEADERS of the PE file.
+        ///     Access the ImageSectionHeader of the PE file.
         /// </summary>
         public ImageSectionHeader[]? ImageSectionHeaders => _nativeStructureParsers.ImageSectionHeaders;
 
@@ -296,10 +290,10 @@ namespace PeNet
         /// <summary>
         ///     Signing X509 certificate if the binary was signed with
         /// </summary>
-        public X509Certificate2? PKCS7 => Authenticode?.SigningCertificate;
+        public X509Certificate2? Pkcs7 => Authenticode?.SigningCertificate;
 
         /// <summary>
-        ///     Access the METADATAHDR from the COM/CLI header.
+        ///     Access the MetaDataHdr from the COM/CLI header.
         /// </summary>
         public MetaDataHdr? MetaDataHdr => _dotNetStructureParsers.MetaDataHdr;
 
@@ -311,12 +305,12 @@ namespace PeNet
         /// <summary>
         /// Meta Data Stream #US (User strings).
         /// </summary>
-        public MetaDataStreamUs? MetaDataStreamUS => _dotNetStructureParsers.MetaDataStreamUS;
+        public MetaDataStreamUs? MetaDataStreamUs => _dotNetStructureParsers.MetaDataStreamUs;
 
         /// <summary>
         /// Meta Data Stream #GUID.
         /// </summary>
-        public MetaDataStreamGuid? MetaDataStreamGUID => _dotNetStructureParsers.MetaDataStreamGUID;
+        public MetaDataStreamGuid? MetaDataStreamGuid => _dotNetStructureParsers.MetaDataStreamGuid;
 
         /// <summary>
         /// Meta Data Stream #Blob as an byte array.
@@ -332,19 +326,19 @@ namespace PeNet
         /// <summary>
         ///     The SHA-256 hash sum of the binary.
         /// </summary>
-        public string SHA256 
+        public string Sha256 
             => _sha256 ??= ComputeHash(RawFile, new SHA256Managed().ComputeHash);
 
         /// <summary>
         ///     The SHA-1 hash sum of the binary.
         /// </summary>
-        public string SHA1 
+        public string Sha1 
             => _sha1 ??= ComputeHash(RawFile, new SHA1Managed().ComputeHash);
 
         /// <summary>
         ///     The MD5 of hash sum of the binary.
         /// </summary>
-        public string MD5 
+        public string Md5 
             => _md5 ??= ComputeHash(RawFile, new MD5CryptoServiceProvider().ComputeHash);
 
         /// <summary>
@@ -381,12 +375,12 @@ namespace PeNet
         /// <returns>Certificate Revocation List information or null if binary is not signed.</returns>
         public CrlUrlList? GetCrlUrlList()
         {
-            if (PKCS7 == null)
+            if (Pkcs7 == null)
                 return null;
 
             try
             {
-                return new CrlUrlList(PKCS7);
+                return new CrlUrlList(Pkcs7);
             }
             catch (Exception)
             {
@@ -401,7 +395,7 @@ namespace PeNet
         /// </summary>
         /// <param name="file">Path to a possible PE file.</param>
         /// <returns>True if the MZ header is set.</returns>
-        public static bool IsPEFile(string file)
+        public static bool IsPeFile(string file)
         {
             var buffer = new byte[2];
 
@@ -410,7 +404,7 @@ namespace PeNet
                 fs.Read(buffer, 0, buffer.Length);
             }
 
-            return IsPEFile(buffer);
+            return IsPeFile(buffer);
         }
 
         /// <summary>
@@ -420,36 +414,12 @@ namespace PeNet
         /// </summary>
         /// <param name="buf">Byte array containing a possible PE file.</param>
         /// <returns>True if the MZ header is set.</returns>
-        public static bool IsPEFile(byte[] buf)
+        public static bool IsPeFile(byte[] buf)
         {
             if (buf.Length < 2)
                 return false;
 
             return buf[1] == 0x5a && buf[0] == 0x4d; // MZ Header
-        }
-
-        /// <summary>
-        ///     Returns if the PE file is a EXE, DLL and which architecture
-        ///     is used (32/64).
-        ///     Architectures: "I386", "AMD64", ...
-        ///     DllOrExe: "DLL", "EXE", "UNKNOWN"
-        /// </summary>
-        /// <returns>
-        ///     A string "architecture_dllOrExe".
-        ///     E.g. "AMD64_DLL", "ALPHA_EXE"
-        /// </returns>
-        public string GetFileType()
-        {
-            var fileType = ImageNtHeaders?.FileHeader.MachineResolved;
-
-            if (ImageNtHeaders?.FileHeader.Characteristics.HasFlag(FileCharacteristicsType.Dll) ?? false)
-                fileType += "_DLL";
-            else if (ImageNtHeaders?.FileHeader.Characteristics.HasFlag(FileCharacteristicsType.ExecutableImage) ?? false)
-                fileType += "_EXE";
-            else
-                fileType += "_UNKNOWN";
-
-            return fileType;
         }
 
         private string ComputeHash(IRawFile peFile, Func<Stream, byte[]> hashFunction)

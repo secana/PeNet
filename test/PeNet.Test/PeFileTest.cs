@@ -53,7 +53,7 @@ namespace PeNet.Test
         [InlineData(@"Binaries/notPeFile.txt", false)]
         public void IsPEFile_DifferentFiles_TrueOrFalse(string file, bool expected)
         {
-            Assert.Equal(expected, PeFile.IsPEFile(file));
+            Assert.Equal(expected, PeFile.IsPeFile(file));
         }
 
         [Theory]
@@ -74,7 +74,7 @@ namespace PeNet.Test
         {
             var peFile = new PeFile(@"Binaries/firefox_x64.exe");
 
-            Assert.Equal("377d3b741d8447b9bbd5f6fa700151a6ce8412ca15792ba4eaaa3174b1763ba4", peFile.SHA256);
+            Assert.Equal("377d3b741d8447b9bbd5f6fa700151a6ce8412ca15792ba4eaaa3174b1763ba4", peFile.Sha256);
         }
 
         [Fact]
@@ -82,7 +82,7 @@ namespace PeNet.Test
         {
             var peFile = new PeFile(@"Binaries/firefox_x64.exe");
 
-            Assert.Equal("5faf53976b7a4c2ffaf96581803c72cd09484b39", peFile.SHA1);
+            Assert.Equal("5faf53976b7a4c2ffaf96581803c72cd09484b39", peFile.Sha1);
         }
 
         [Fact]
@@ -90,7 +90,7 @@ namespace PeNet.Test
         {
             var peFile = new PeFile(@"Binaries/firefox_x64.exe");
 
-            Assert.Equal("fa64b4aeb420a6c292f877e90d0670a5", peFile.MD5);
+            Assert.Equal("fa64b4aeb420a6c292f877e90d0670a5", peFile.Md5);
         }
 
         [SkippableTheory]
@@ -114,7 +114,7 @@ namespace PeNet.Test
         public void IsValidCertChain_PathToSignedBinaryWithValidChain_Online_ReturnsIfValidOrNot(string file, bool expected, bool online)
         {
             var peFile = new PeFile(file);
-            Assert.Equal(expected, peFile.IsValidCertChain(online));
+            Assert.Equal(expected, peFile.HasValidCertChain(online));
         }
     }
 }

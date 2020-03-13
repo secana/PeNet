@@ -36,7 +36,7 @@ namespace PeNet.Header.Net
 
         private List<Guid> ParseModuleVersionIds(PeFile peFile)
         {
-            return peFile.MetaDataStreamTablesHeader?.Tables?.Module?.Select(m => peFile.MetaDataStreamGUID?.GetGuidAtIndex(m.Mvid) ?? Guid.Empty)
+            return peFile.MetaDataStreamTablesHeader?.Tables?.Module?.Select(m => peFile.MetaDataStreamGuid?.GetGuidAtIndex(m.Mvid) ?? Guid.Empty)
                                                                    .Where(g => g != Guid.Empty)
                                                                    .ToList() ?? new List<Guid>();
         }

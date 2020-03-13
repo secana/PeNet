@@ -20,7 +20,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void IsSignatureValid()
         {
-            Assert.False(_peFile.IsSignatureValid);
+            Assert.False(_peFile.HasValidSignature);
         }
 
         [Fact]
@@ -82,7 +82,7 @@ namespace PeNet.Test.Structures
       [Fact]
         public void MetaDataStreamUS_ParseCorrectValues()
         {
-            var us = _peFile.MetaDataStreamUS;
+            var us = _peFile.MetaDataStreamUs;
 
             Assert.Single(us.UserStrings);
             Assert.Equal(@"C:\", us.UserStrings[0]);
@@ -91,7 +91,7 @@ namespace PeNet.Test.Structures
         [Fact]
         public void MetaDataStreamGUID_ParseCorrectValues()
         {
-            var guid = _peFile.MetaDataStreamGUID;
+            var guid = _peFile.MetaDataStreamGuid;
             Assert.Single(guid.GuidsAndIndices);
             Assert.Equal(new Guid("5250e853-c17a-4e76-adb3-0a716ec8af5d"), guid.Guids[0]);
         }

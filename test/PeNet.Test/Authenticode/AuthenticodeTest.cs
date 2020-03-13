@@ -10,8 +10,8 @@ namespace PeNet.Test.Authenticode
         public void IsSignatureValid_ManipulatedSignature_x64_ReturnsFalse()
         {
             var peFile = new PeFile(@"./Binaries/firefox_x64_manipulated.exe");
-            Assert.NotNull(peFile.PKCS7);
-            Assert.False(peFile.IsSignatureValid);
+            Assert.NotNull(peFile.Pkcs7);
+            Assert.False(peFile.HasValidSignature);
         }
 
         /// <summary>
@@ -23,8 +23,8 @@ namespace PeNet.Test.Authenticode
         public void IsSignatureValid_SigendBinaryOld_x86_ReturnsFalse()
         {
             var peFile = new PeFile(@"./Binaries/old_firefox_x86.exe");
-            Assert.NotNull(peFile.PKCS7);
-            Assert.False(peFile.IsSignatureValid);
+            Assert.NotNull(peFile.Pkcs7);
+            Assert.False(peFile.HasValidSignature);
         }
 
         /// <summary>
@@ -36,24 +36,24 @@ namespace PeNet.Test.Authenticode
         public void IsSignatureValid_SigendBinary_x86_ReturnsFalse()
         {
             var peFile = new PeFile(@"./Binaries/firefox_x86.exe");
-            Assert.NotNull(peFile.PKCS7);
-            Assert.False(peFile.IsSignatureValid);
+            Assert.NotNull(peFile.Pkcs7);
+            Assert.False(peFile.HasValidSignature);
         }
 
         [Fact]
         public void IsSignatureValid_InvalidSigendBinary_x86_ReturnsFalse()
         {
             var peFile = new PeFile(@"./Binaries/firefox_invalid_x86.exe");
-            Assert.NotNull(peFile.PKCS7);
-            Assert.False(peFile.IsSignatureValid);
+            Assert.NotNull(peFile.Pkcs7);
+            Assert.False(peFile.HasValidSignature);
         }
 
         [Fact]
         public void IsSignatureValid_InvalidSigendBinary_x64_ReturnsFalse()
         {
             var peFile = new PeFile(@"./Binaries/firefox_invalid_x64.exe");
-            Assert.NotNull(peFile.PKCS7);
-            Assert.False(peFile.IsSignatureValid);
+            Assert.NotNull(peFile.Pkcs7);
+            Assert.False(peFile.HasValidSignature);
         }
 
         /// <summary>
@@ -65,23 +65,23 @@ namespace PeNet.Test.Authenticode
         public void IsSignatureValid_SigendBinary_x64_ReturnsFalse()
         {
             var peFile = new PeFile(@"./Binaries/firefox_x64.exe");
-            Assert.NotNull(peFile.PKCS7);
-            Assert.False(peFile.IsSignatureValid);
+            Assert.NotNull(peFile.Pkcs7);
+            Assert.False(peFile.HasValidSignature);
         }
 
         [Fact]
         public void IsSignatureValid_SigendBinary_x86Other_ReturnsTrue()
         {
             var peFile = new PeFile(@"./Binaries/pidgin.exe");
-            Assert.NotNull(peFile.PKCS7);
-            Assert.True(peFile.IsSignatureValid);
+            Assert.NotNull(peFile.Pkcs7);
+            Assert.True(peFile.HasValidSignature);
         }
 
         [Fact]
         public void IsSignatureValid_UnsigendBinary_ReturnsFalse()
         {
             var peFile = new PeFile(@"./Binaries/TLSCallback_x86.exe");
-            Assert.False(peFile.IsSignatureValid);
+            Assert.False(peFile.HasValidSignature);
         }
 
         [Fact]
