@@ -113,6 +113,8 @@ namespace PeNet.Test
         [InlineData(@"C:\Windows\System32\kernel32.dll", true, true)]
         public void IsValidCertChain_PathToSignedBinaryWithValidChain_Online_ReturnsIfValidOrNot(string file, bool expected, bool online)
         {
+            Skip.IfNot(RuntimeInformation.IsOSPlatform(OSPlatform.Windows));
+
             using var peFile = new PeFile(file);
             Assert.Equal(expected, peFile.HasValidCertChain(online));
         }
