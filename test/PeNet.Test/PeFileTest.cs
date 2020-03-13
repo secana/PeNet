@@ -110,7 +110,6 @@ namespace PeNet.Test
         [SkippableTheory]
         [InlineData(@"../../../Binaries/firefox_x86.exe", false, true)]
         [InlineData(@"../../../Binaries/firefox_x86.exe", false, false)]
-        [InlineData(@"C:\Windows\System32\kernel32.dll", true, true)]
         public void IsValidCertChain_PathToSignedBinaryWithValidChain_Online_ReturnsIfValidOrNot(string file, bool expected, bool online)
         {
             Skip.IfNot(RuntimeInformation.IsOSPlatform(OSPlatform.Windows));
