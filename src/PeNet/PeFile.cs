@@ -5,10 +5,16 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using PeNet.Authenticode;
 using PeNet.FileParser;
-using PeNet.ImpHash;
-using PeNet.Structures;
+using PeNet.Header.Authenticode;
+using PeNet.Header.ImpHash;
+using PeNet.Header.Net;
+using PeNet.Header.Pe;
+using PeNet.Header.Resource;
+using PeNet.Parser;
+using PeNet.Parser.Authenticode;
+using PeNet.Parser.Net;
+using PeNet.Parser.Pe;
 
 namespace PeNet
 {

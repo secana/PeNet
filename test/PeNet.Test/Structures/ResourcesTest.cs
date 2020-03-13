@@ -76,10 +76,10 @@ namespace PeNet.Test.Structures
             Assert.Equal((ushort) 0x0001, vsVersionInfo.VarFileInfo.WType);
             Assert.Equal("VarFileInfo", vsVersionInfo.VarFileInfo.SzKey);
 
-            Assert.Equal((ushort) 0x0024, vsVersionInfo.VarFileInfo.Children[0].wLength);
-            Assert.Equal((ushort) 0x0004, vsVersionInfo.VarFileInfo.Children[0].wValueLength);
-            Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.Children[0].wType);
-            Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].szKey);
+            Assert.Equal((ushort) 0x0024, vsVersionInfo.VarFileInfo.Children[0].WLength);
+            Assert.Equal((ushort) 0x0004, vsVersionInfo.VarFileInfo.Children[0].WValueLength);
+            Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.Children[0].WType);
+            Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].SzKey);
             Assert.Equal((uint) 0x04b00000, vsVersionInfo.VarFileInfo.Children[0].Value[0]);
         }
 
@@ -137,10 +137,10 @@ namespace PeNet.Test.Structures
             Assert.Equal((ushort) 0x0001, vsVersionInfo.VarFileInfo.WType);
             Assert.Equal("VarFileInfo", vsVersionInfo.VarFileInfo.SzKey);
 
-            Assert.Equal((ushort) 0x0024, vsVersionInfo.VarFileInfo.Children[0].wLength);
-            Assert.Equal((ushort) 0x0004, vsVersionInfo.VarFileInfo.Children[0].wValueLength);
-            Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.Children[0].wType);
-            Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].szKey);
+            Assert.Equal((ushort) 0x0024, vsVersionInfo.VarFileInfo.Children[0].WLength);
+            Assert.Equal((ushort) 0x0004, vsVersionInfo.VarFileInfo.Children[0].WValueLength);
+            Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.Children[0].WType);
+            Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].SzKey);
             Assert.Equal((uint) 0x04b00409, vsVersionInfo.VarFileInfo.Children[0].Value[0]);
         }
 
@@ -151,7 +151,7 @@ namespace PeNet.Test.Structures
             var vsVersionInfo = peFile.Resources.VsVersionInfo;
 
             Assert.Equal("NetFrameworkConsole.exe", vsVersionInfo.StringFileInfo.StringTable[0].OriginalFilename);
-            Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].szKey);
+            Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].SzKey);
         }
     }
 }

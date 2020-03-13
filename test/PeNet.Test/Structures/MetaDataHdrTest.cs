@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using PeNet.FileParser;
-using PeNet.Structures;
+using PeNet.Header.Net;
 using Xunit;
 
 namespace PeNet.Test.Structures
