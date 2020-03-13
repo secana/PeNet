@@ -21,9 +21,9 @@ jobs:
 
   steps:
   - task: UseDotNet@2 
-    displayName: ".NET Core 3.1.x"
+    displayName: "Use .NET Core 3.x"
     inputs:
-      version: '3.1.x'
+      version: '3.x'
       packageType: sdk
 
   - task: DotNetCoreCLI@2
@@ -49,6 +49,12 @@ jobs:
   - powershell: ((Get-Content -path .\src\PeNet\PeNet.csproj -Raw) -replace '0.0.0',$env:version) | Set-Content -Path .\src\PeNet\PeNet.csproj
     displayName: Replace version with git tag
     condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
+
+  - task: UseDotNet@2 
+    displayName: "Use .NET Core 3.x"
+    inputs:
+      version: '3.x'
+      packageType: sdk
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Unit-Tests'
