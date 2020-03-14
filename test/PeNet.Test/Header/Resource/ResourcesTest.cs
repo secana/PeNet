@@ -153,5 +153,15 @@ namespace PeNet.Test.Header.Resource
             Assert.Equal("NetFrameworkConsole.exe", vsVersionInfo.StringFileInfo.StringTable[0].OriginalFilename);
             Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].SzKey);
         }
+
+        [Fact]
+        public void Resources_GivenAPEFile4_VsVersionInfoSet()
+        {
+            var peFile = new PeFile("./Binaries/firefox_x86.exe");
+            var vsVersionInfo = peFile.Resources.VsVersionInfo;
+
+            Assert.Equal("firefox.exe", vsVersionInfo.StringFileInfo.StringTable[0].OriginalFilename);
+            Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].SzKey);
+        }
     }
 }

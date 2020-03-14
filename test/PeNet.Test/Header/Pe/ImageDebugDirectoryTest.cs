@@ -38,7 +38,7 @@ namespace PeNet.Test.Header.Pe
         }
 
         [Fact]
-        public void ImageDebugDirectory_PeFileWithDebugInfo_ParseCvHeader()
+        public void ImageDebugDirectory_PeFileWithDebugInfo1_ParseCvHeader()
         {
             var file = @"Binaries/pdb_guid.exe";
 
@@ -49,6 +49,20 @@ namespace PeNet.Test.Header.Pe
             Assert.Equal(Guid.Parse("0de6dc23-8e19-4bb7-8608-d54b1e6fa379"), cv.Signature);
             Assert.Equal((ushort) 0x0001, cv.Age);
             Assert.Equal("ntkrnlmp.pdb", cv.PdbFileName);
+        }
+
+        [Fact]
+        public void ImageDebugDirectory_PeFileWithDebugInfo2_ParseCvHeader()
+        {
+            var file = @"Binaries/firefox_x86.exe";
+
+            var peFile = new PeFile(file);
+            var cv = peFile.ImageDebugDirectory[0].CvInfoPdb70;
+
+            Assert.Equal(0x53445352u, cv.CvSignature);
+            Assert.Equal(Guid.Parse("37bca9fb-2576-469b-8575-0a210e895e31"), cv.Signature);
+            Assert.Equal((ushort)0x0002, cv.Age);
+            Assert.Equal(@"z:\build\build\src\obj-firefox\browser\app\firefox.pdb", cv.PdbFileName);
         }
     }
 }
