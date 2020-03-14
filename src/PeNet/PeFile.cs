@@ -140,6 +140,11 @@ namespace PeNet
                                 && ImportedFunctions.FirstOrDefault(i => i.DLL == "ntoskrnl.exe") != null;
 
         /// <summary>
+        /// Returns true if the PE file is a .NET assembly.
+        /// </summary>
+        public bool IsDotNet => ImageComDescriptor != null;
+
+        /// <summary>
         ///     Returns true if the PE file is signed. It
         ///     does not check if the signature is valid!
         /// </summary>
