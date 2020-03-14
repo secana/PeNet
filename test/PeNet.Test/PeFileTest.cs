@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PeNet.Header.Net.MetaDataTables;
+using System;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Xunit;
@@ -70,9 +72,29 @@ namespace PeNet.Test
         }
 
         [Fact]
-        public void Sha256_GivenAPeFile_ReturnsCorrectHash()
+        public void Sha256_GivenAPeFile1_ReturnsCorrectHash()
         {
             using var peFile = new PeFile(@"Binaries/firefox_x64.exe");
+
+            Assert.Equal("377d3b741d8447b9bbd5f6fa700151a6ce8412ca15792ba4eaaa3174b1763ba4", peFile.Sha256);
+        }
+
+        [Fact]
+        public void Sha256_GivenAPeFile2_ReturnsCorrectHash()
+        {
+            var fs = System.IO.File.OpenRead(@"Binaries/firefox_x64.exe");
+            using var peFile = new PeFile(fs);
+
+            Assert.Equal("377d3b741d8447b9bbd5f6fa700151a6ce8412ca15792ba4eaaa3174b1763ba4", peFile.Sha256);
+        }
+
+        [Fact]
+        public void Sha256_GivenAPeFile3_ReturnsCorrectHash()
+        {
+            var fs = System.IO.File.OpenRead(@"Binaries/firefox_x64.exe");
+            var ms = new MemoryStream();
+            fs.CopyTo(ms);
+            using var peFile = new PeFile(ms);
 
             Assert.Equal("377d3b741d8447b9bbd5f6fa700151a6ce8412ca15792ba4eaaa3174b1763ba4", peFile.Sha256);
         }

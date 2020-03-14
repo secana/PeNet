@@ -105,7 +105,10 @@ namespace PeNet.FileParser
         }
 
         public Stream ToStream()
-            => _stream;
+        {
+            _stream.Position = 0;
+            return _stream;
+        }
 
         public void WriteByte(long offset, byte value)
         {
