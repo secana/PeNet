@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using PeNet.FileParser;
 
 namespace PeNet.Header.Pe
@@ -29,7 +30,20 @@ namespace PeNet.Header.Pe
         /// <summary>
         /// The section name as a string.
         /// </summary>
-        public string Name => PeFile.ReadAsciiString(Offset);
+        public string Name 
+        { 
+            get 
+            {
+                var s = PeFile.AsSpan(Offset, 8);
+                return Encoding.UTF8.GetString(s).TrimEnd((char)0);
+            }
+            set
+            {
+                var bytes = Encoding.UTF8.GetBytes(value);
+                PeFile.WriteBytes(Offset, bytes);
+            }
+        }
+        
 
         /// <summary>
         ///     Size of the section when loaded into memory. If it's bigger than
