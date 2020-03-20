@@ -6,7 +6,5 @@
   href: filehash.md
 - name: Export Data
   href: export.md
-- name: Pattern Matching
-  href: pattern.md
 - name: PDB and Debug Info
   href: pdb.md
