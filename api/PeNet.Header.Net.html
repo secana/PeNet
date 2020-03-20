@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace PeNet
+    <title>Namespace PeNet.Header.Net
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace PeNet
+    <meta name="title" content="Namespace PeNet.Header.Net
    ">
     <meta name="generator" content="docfx 2.50.0.0">
     
@@ -68,22 +68,63 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="PeNet">
+            <article class="content wrap" id="_content" data-uid="PeNet.Header.Net">
   
-  <h1 id="PeNet" data-uid="PeNet" class="text-break">Namespace PeNet
+  <h1 id="PeNet_Header_Net" data-uid="PeNet.Header.Net" class="text-break">Namespace PeNet.Header.Net
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
-      <h4><a class="xref" href="PeNet.ExtensionMethods.html">ExtensionMethods</a></h4>
-      <section><p>Extensions method to work make the work with buffers
-and addresses easier.</p>
+      <h4><a class="xref" href="PeNet.Header.Net.HeapSizes.html">HeapSizes</a></h4>
+      <section><p>Size of the meta data heaps.</p>
 </section>
-      <h4><a class="xref" href="PeNet.PeFile.html">PeFile</a></h4>
-      <section><p>This class represents a Portable Executable (PE) file and makes the different
-header and properties accessible.</p>
+      <h4><a class="xref" href="PeNet.Header.Net.IndexSize.html">IndexSize</a></h4>
+      <section></section>
+      <h4><a class="xref" href="PeNet.Header.Net.MetaDataHdr.html">MetaDataHdr</a></h4>
+      <section><p>The Meta Data Header is part of the .Net/CLI (COM+ 2) header and is reachable
+from the .Net/CLI (COM+2) header ImageCor20Header. It contains information
+about embedded streams (sections) in the .Net assembly.</p>
+</section>
+      <h4><a class="xref" href="PeNet.Header.Net.MetaDataStreamGuid.html">MetaDataStreamGuid</a></h4>
+      <section><p>Represents the &quot;GUID&quot; meta data stream from the .Net header which
+contains all application GUIDs to idenfitfy different assembly versions.</p>
+</section>
+      <h4><a class="xref" href="PeNet.Header.Net.MetaDataStreamHdr.html">MetaDataStreamHdr</a></h4>
+      <section><p>The Meta Data Stream Header contains information about data streams (sections)
+in a .Net assembly.</p>
+</section>
+      <h4><a class="xref" href="PeNet.Header.Net.MetaDataStreamString.html">MetaDataStreamString</a></h4>
+      <section><p>Represents the &quot;String&quot; meta data stream from the .Net header which
+contains all application interal strings.</p>
+</section>
+      <h4><a class="xref" href="PeNet.Header.Net.MetaDataStreamUs.html">MetaDataStreamUs</a></h4>
+      <section><p>Represents the &quot;US&quot; (user string) meta data stream from the .Net header which
+contains all application internal strings.</p>
+</section>
+      <h4><a class="xref" href="PeNet.Header.Net.MetaDataTablesHdr.html">MetaDataTablesHdr</a></h4>
+      <section><p>The Meta Data Tables Header contains information about all present
+data tables in the .Net assembly.</p>
+</section>
+    <h3 id="structs">Structs
+  </h3>
+      <h4><a class="xref" href="PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.html">MetaDataTablesHdr.MetaDataTableInfo</a></h4>
+      <section><p>Represents an table definition entry from the list
+of available tables in the Meta Data Tables Header
+in the .Net header of an assembly.</p>
+</section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="PeNet.Header.Net.IMetaDataTablesHdr.html">IMetaDataTablesHdr</a></h4>
+      <section></section>
+    <h3 id="enums">Enums
+  </h3>
+      <h4><a class="xref" href="PeNet.Header.Net.Index.html">Index</a></h4>
+      <section></section>
+      <h4><a class="xref" href="PeNet.Header.Net.MaskValidType.html">MaskValidType</a></h4>
+      <section><p>MaskValid flags from the MetaDataTablesHdr.
+The flags show, which tables are present.</p>
 </section>
 </article>
           </div>

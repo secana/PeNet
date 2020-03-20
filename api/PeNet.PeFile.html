@@ -80,47 +80,88 @@ header and properties accessible.</p>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><a class="xref" href="PeNet.Structures.AbstractStructure.html">AbstractStructure</a></div>
-    <div class="level2"><span class="xref">PeFile</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="PeNet.Structures.AbstractStructure.html#PeNet_Structures_AbstractStructure_ToString">AbstractStructure.ToString()</a>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
+    <div class="level1"><span class="xref">PeFile</span></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="PeNet.html">PeNet</a></h6>
   <h6><strong>Assembly</strong>: PeNet.dll</h6>
   <h5 id="PeNet_PeFile_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PeFile : AbstractStructure</code></pre>
+    <pre><code class="lang-csharp hljs">public class PeFile : IDisposable</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile__ctor_PeNet_FileParser_IRawFile_.md&amp;value=---%0Auid%3A%20PeNet.PeFile.%23ctor(PeNet.FileParser.IRawFile)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L44">View Source</a>
+  </span>
+  <a id="PeNet_PeFile__ctor_" data-uid="PeNet.PeFile.#ctor*"></a>
+  <h4 id="PeNet_PeFile__ctor_PeNet_FileParser_IRawFile_" data-uid="PeNet.PeFile.#ctor(PeNet.FileParser.IRawFile)">PeFile(IRawFile)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PeFile(IRawFile peFile)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="PeNet.FileParser.IRawFile.html">IRawFile</a></td>
+        <td><span class="parametername">peFile</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile__ctor_Stream_.md&amp;value=---%0Auid%3A%20PeNet.PeFile.%23ctor(Stream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L86">View Source</a>
+  </span>
+  <a id="PeNet_PeFile__ctor_" data-uid="PeNet.PeFile.#ctor*"></a>
+  <h4 id="PeNet_PeFile__ctor_Stream_" data-uid="PeNet.PeFile.#ctor(Stream)">PeFile(Stream)</h4>
+  <div class="markdown level1 summary"><p>Create a new PeFile object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PeFile(Stream peFile)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">peFile</span></td>
+        <td><p>Stream containing a PE file.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile__ctor_System_Byte___.md&amp;value=---%0Auid%3A%20PeNet.PeFile.%23ctor(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L46">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L70">View Source</a>
   </span>
   <a id="PeNet_PeFile__ctor_" data-uid="PeNet.PeFile.#ctor*"></a>
   <h4 id="PeNet_PeFile__ctor_System_Byte___" data-uid="PeNet.PeFile.#ctor(System.Byte[])">PeFile(Byte[])</h4>
@@ -154,7 +195,7 @@ header and properties accessible.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile__ctor_System_String_.md&amp;value=---%0Auid%3A%20PeNet.PeFile.%23ctor(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L70">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L78">View Source</a>
   </span>
   <a id="PeNet_PeFile__ctor_" data-uid="PeNet.PeFile.#ctor*"></a>
   <h4 id="PeNet_PeFile__ctor_System_String_" data-uid="PeNet.PeFile.#ctor(System.String)">PeFile(String)</h4>
@@ -190,7 +231,7 @@ header and properties accessible.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Authenticode.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Authenticode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L192">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L193">View Source</a>
   </span>
   <a id="PeNet_PeFile_Authenticode_" data-uid="PeNet.PeFile.Authenticode*"></a>
   <h4 id="PeNet_PeFile_Authenticode" data-uid="PeNet.PeFile.Authenticode">Authenticode</h4>
@@ -211,38 +252,7 @@ header and properties accessible.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Authenticode.AuthenticodeInfo.html">AuthenticodeInfo</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Buff.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Buff%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L27">View Source</a>
-  </span>
-  <a id="PeNet_PeFile_Buff_" data-uid="PeNet.PeFile.Buff*"></a>
-  <h4 id="PeNet_PeFile_Buff" data-uid="PeNet.PeFile.Buff">Buff</h4>
-  <div class="markdown level1 summary"><p>The PE binary as a byte array.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public byte[] Buff { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Byte</span>[]</td>
+        <td><a class="xref" href="PeNet.Header.Authenticode.AuthenticodeInfo.html">AuthenticodeInfo</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -252,7 +262,7 @@ header and properties accessible.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ClrComTypeLibId.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ClrComTypeLibId%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L361">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L367">View Source</a>
   </span>
   <a id="PeNet_PeFile_ClrComTypeLibId_" data-uid="PeNet.PeFile.ClrComTypeLibId*"></a>
   <h4 id="PeNet_PeFile_ClrComTypeLibId" data-uid="PeNet.PeFile.ClrComTypeLibId">ClrComTypeLibId</h4>
@@ -284,7 +294,7 @@ and if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ClrModuleVersionIds.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ClrModuleVersionIds%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L355">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L360">View Source</a>
   </span>
   <a id="PeNet_PeFile_ClrModuleVersionIds_" data-uid="PeNet.PeFile.ClrModuleVersionIds*"></a>
   <h4 id="PeNet_PeFile_ClrModuleVersionIds" data-uid="PeNet.PeFile.ClrModuleVersionIds">ClrModuleVersionIds</h4>
@@ -306,7 +316,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.Guid</span>&gt;</td>
+        <td><span class="xref">List</span>&lt;<span class="xref">Guid</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -316,16 +326,16 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ExceptionDirectory.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ExceptionDirectory%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L262">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L263">View Source</a>
   </span>
   <a id="PeNet_PeFile_ExceptionDirectory_" data-uid="PeNet.PeFile.ExceptionDirectory*"></a>
   <h4 id="PeNet_PeFile_ExceptionDirectory" data-uid="PeNet.PeFile.ExceptionDirectory">ExceptionDirectory</h4>
-  <div class="markdown level1 summary"><p>Access the array of RUNTIME_FUNCTION from the Exception header.</p>
+  <div class="markdown level1 summary"><p>Access the array of RuntimeFunction from the Exception header.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RUNTIME_FUNCTION[] ExceptionDirectory { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public RuntimeFunction[] ExceptionDirectory { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -337,7 +347,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.RUNTIME_FUNCTION.html">RUNTIME_FUNCTION</a>[]</td>
+        <td><a class="xref" href="PeNet.Header.Pe.RuntimeFunction.html">RuntimeFunction</a>[]</td>
         <td></td>
       </tr>
     </tbody>
@@ -347,7 +357,7 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ExportedFunctions.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ExportedFunctions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L242">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L243">View Source</a>
   </span>
   <a id="PeNet_PeFile_ExportedFunctions_" data-uid="PeNet.PeFile.ExportedFunctions*"></a>
   <h4 id="PeNet_PeFile_ExportedFunctions" data-uid="PeNet.PeFile.ExportedFunctions">ExportedFunctions</h4>
@@ -368,38 +378,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.ExportFunction.html">ExportFunction</a>[]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_FileLocation.md&amp;value=---%0Auid%3A%20PeNet.PeFile.FileLocation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L371">View Source</a>
-  </span>
-  <a id="PeNet_PeFile_FileLocation_" data-uid="PeNet.PeFile.FileLocation*"></a>
-  <h4 id="PeNet_PeFile_FileLocation" data-uid="PeNet.PeFile.FileLocation">FileLocation</h4>
-  <div class="markdown level1 summary"><p>FileLocation of the PE file if it was opened by location.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string FileLocation { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><a class="xref" href="PeNet.Header.Pe.ExportFunction.html">ExportFunction</a>[]</td>
         <td></td>
       </tr>
     </tbody>
@@ -409,7 +388,7 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_FileSize.md&amp;value=---%0Auid%3A%20PeNet.PeFile.FileSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L366">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L373">View Source</a>
   </span>
   <a id="PeNet_PeFile_FileSize_" data-uid="PeNet.PeFile.FileSize*"></a>
   <h4 id="PeNet_PeFile_FileSize" data-uid="PeNet.PeFile.FileSize">FileSize</h4>
@@ -418,7 +397,7 @@ if the PE is a CLR assembly.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int FileSize { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public long FileSize { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -430,212 +409,26 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">System.Int64</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_HasValidComDescriptor.md&amp;value=---%0Auid%3A%20PeNet.PeFile.HasValidComDescriptor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_HasValidSignature.md&amp;value=---%0Auid%3A%20PeNet.PeFile.HasValidSignature%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L150">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L156">View Source</a>
   </span>
-  <a id="PeNet_PeFile_HasValidComDescriptor_" data-uid="PeNet.PeFile.HasValidComDescriptor*"></a>
-  <h4 id="PeNet_PeFile_HasValidComDescriptor" data-uid="PeNet.PeFile.HasValidComDescriptor">HasValidComDescriptor</h4>
-  <div class="markdown level1 summary"><p>Returns true if the COM+ 2 (CLI) directory is valid.</p>
+  <a id="PeNet_PeFile_HasValidSignature_" data-uid="PeNet.PeFile.HasValidSignature*"></a>
+  <h4 id="PeNet_PeFile_HasValidSignature" data-uid="PeNet.PeFile.HasValidSignature">HasValidSignature</h4>
+  <div class="markdown level1 summary"><p>Returns true if the PE file signature is valid signed.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool HasValidComDescriptor { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_HasValidDir.md&amp;value=---%0Auid%3A%20PeNet.PeFile.HasValidDir%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L135">View Source</a>
-  </span>
-  <a id="PeNet_PeFile_HasValidDir_" data-uid="PeNet.PeFile.HasValidDir*"></a>
-  <h4 id="PeNet_PeFile_HasValidDir" data-uid="PeNet.PeFile.HasValidDir">HasValidDir</h4>
-  <div class="markdown level1 summary"><p>Returns true if the Exception directory is valid.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool HasValidDir { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_HasValidExportDir.md&amp;value=---%0Auid%3A%20PeNet.PeFile.HasValidExportDir%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L120">View Source</a>
-  </span>
-  <a id="PeNet_PeFile_HasValidExportDir_" data-uid="PeNet.PeFile.HasValidExportDir*"></a>
-  <h4 id="PeNet_PeFile_HasValidExportDir" data-uid="PeNet.PeFile.HasValidExportDir">HasValidExportDir</h4>
-  <div class="markdown level1 summary"><p>Returns true if the Export directory is valid.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool HasValidExportDir { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_HasValidImportDir.md&amp;value=---%0Auid%3A%20PeNet.PeFile.HasValidImportDir%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L125">View Source</a>
-  </span>
-  <a id="PeNet_PeFile_HasValidImportDir_" data-uid="PeNet.PeFile.HasValidImportDir*"></a>
-  <h4 id="PeNet_PeFile_HasValidImportDir" data-uid="PeNet.PeFile.HasValidImportDir">HasValidImportDir</h4>
-  <div class="markdown level1 summary"><p>Returns true if the Import directory is valid.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool HasValidImportDir { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_HasValidRelocDir.md&amp;value=---%0Auid%3A%20PeNet.PeFile.HasValidRelocDir%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L145">View Source</a>
-  </span>
-  <a id="PeNet_PeFile_HasValidRelocDir_" data-uid="PeNet.PeFile.HasValidRelocDir*"></a>
-  <h4 id="PeNet_PeFile_HasValidRelocDir" data-uid="PeNet.PeFile.HasValidRelocDir">HasValidRelocDir</h4>
-  <div class="markdown level1 summary"><p>Returns true if the Relocation Directory is valid.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool HasValidRelocDir { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_HasValidResourceDir.md&amp;value=---%0Auid%3A%20PeNet.PeFile.HasValidResourceDir%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L130">View Source</a>
-  </span>
-  <a id="PeNet_PeFile_HasValidResourceDir_" data-uid="PeNet.PeFile.HasValidResourceDir*"></a>
-  <h4 id="PeNet_PeFile_HasValidResourceDir" data-uid="PeNet.PeFile.HasValidResourceDir">HasValidResourceDir</h4>
-  <div class="markdown level1 summary"><p>Returns true if the Resource directory is valid.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool HasValidResourceDir { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_HasValidSecurityDir.md&amp;value=---%0Auid%3A%20PeNet.PeFile.HasValidSecurityDir%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L140">View Source</a>
-  </span>
-  <a id="PeNet_PeFile_HasValidSecurityDir_" data-uid="PeNet.PeFile.HasValidSecurityDir*"></a>
-  <h4 id="PeNet_PeFile_HasValidSecurityDir" data-uid="PeNet.PeFile.HasValidSecurityDir">HasValidSecurityDir</h4>
-  <div class="markdown level1 summary"><p>Returns true if the Security directory is valid.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool HasValidSecurityDir { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool HasValidSignature { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -657,7 +450,7 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ImageBoundImportDescriptor.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ImageBoundImportDescriptor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L272">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L273">View Source</a>
   </span>
   <a id="PeNet_PeFile_ImageBoundImportDescriptor_" data-uid="PeNet.PeFile.ImageBoundImportDescriptor*"></a>
   <h4 id="PeNet_PeFile_ImageBoundImportDescriptor" data-uid="PeNet.PeFile.ImageBoundImportDescriptor">ImageBoundImportDescriptor</h4>
@@ -666,7 +459,7 @@ if the PE is a CLR assembly.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMAGE_BOUND_IMPORT_DESCRIPTOR ImageBoundImportDescriptor { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageBoundImportDescriptor ImageBoundImportDescriptor { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -678,7 +471,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMAGE_BOUND_IMPORT_DESCRIPTOR.html">IMAGE_BOUND_IMPORT_DESCRIPTOR</a></td>
+        <td><a class="xref" href="PeNet.Header.Pe.ImageBoundImportDescriptor.html">ImageBoundImportDescriptor</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -688,16 +481,16 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ImageComDescriptor.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ImageComDescriptor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L292">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L293">View Source</a>
   </span>
   <a id="PeNet_PeFile_ImageComDescriptor_" data-uid="PeNet.PeFile.ImageComDescriptor*"></a>
   <h4 id="PeNet_PeFile_ImageComDescriptor" data-uid="PeNet.PeFile.ImageComDescriptor">ImageComDescriptor</h4>
-  <div class="markdown level1 summary"><p>Access the IMAGE_COR20_HEADER (COM Descriptor/CLI) from the data directory.</p>
+  <div class="markdown level1 summary"><p>Access the ImageCor20Header (COM Descriptor/CLI) from the data directory.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMAGE_COR20_HEADER ImageComDescriptor { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageCor20Header ImageComDescriptor { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -709,7 +502,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMAGE_COR20_HEADER.html">IMAGE_COR20_HEADER</a></td>
+        <td><a class="xref" href="PeNet.Header.Pe.ImageCor20Header.html">ImageCor20Header</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -719,16 +512,16 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ImageDebugDirectory.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ImageDebugDirectory%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L237">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L238">View Source</a>
   </span>
   <a id="PeNet_PeFile_ImageDebugDirectory_" data-uid="PeNet.PeFile.ImageDebugDirectory*"></a>
   <h4 id="PeNet_PeFile_ImageDebugDirectory" data-uid="PeNet.PeFile.ImageDebugDirectory">ImageDebugDirectory</h4>
-  <div class="markdown level1 summary"><p>Access the IMAGE_DEBUG_DIRECTORY of the PE file.</p>
+  <div class="markdown level1 summary"><p>Access the ImageDebugDirectory of the PE file.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMAGE_DEBUG_DIRECTORY[] ImageDebugDirectory { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageDebugDirectory[] ImageDebugDirectory { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -740,7 +533,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMAGE_DEBUG_DIRECTORY.html">IMAGE_DEBUG_DIRECTORY</a>[]</td>
+        <td><a class="xref" href="PeNet.Header.Pe.ImageDebugDirectory.html">ImageDebugDirectory</a>[]</td>
         <td></td>
       </tr>
     </tbody>
@@ -750,16 +543,16 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ImageDelayImportDescriptor.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ImageDelayImportDescriptor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L282">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L283">View Source</a>
   </span>
   <a id="PeNet_PeFile_ImageDelayImportDescriptor_" data-uid="PeNet.PeFile.ImageDelayImportDescriptor*"></a>
   <h4 id="PeNet_PeFile_ImageDelayImportDescriptor" data-uid="PeNet.PeFile.ImageDelayImportDescriptor">ImageDelayImportDescriptor</h4>
-  <div class="markdown level1 summary"><p>Access the IMAGE_DELAY_IMPORT_DESCRIPTOR from the data directory.</p>
+  <div class="markdown level1 summary"><p>Access the ImageDelayImportDirectory from the data directory.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMAGE_DELAY_IMPORT_DESCRIPTOR ImageDelayImportDescriptor { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageDelayImportDescriptor ImageDelayImportDescriptor { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -771,7 +564,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMAGE_DELAY_IMPORT_DESCRIPTOR.html">IMAGE_DELAY_IMPORT_DESCRIPTOR</a></td>
+        <td><a class="xref" href="PeNet.Header.Pe.ImageDelayImportDescriptor.html">ImageDelayImportDescriptor</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -781,16 +574,16 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ImageDosHeader.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ImageDosHeader%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L207">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L208">View Source</a>
   </span>
   <a id="PeNet_PeFile_ImageDosHeader_" data-uid="PeNet.PeFile.ImageDosHeader*"></a>
   <h4 id="PeNet_PeFile_ImageDosHeader" data-uid="PeNet.PeFile.ImageDosHeader">ImageDosHeader</h4>
-  <div class="markdown level1 summary"><p>Access the IMAGE_DOS_HEADER of the PE file.</p>
+  <div class="markdown level1 summary"><p>Access the ImageDosHeader of the PE file.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMAGE_DOS_HEADER ImageDosHeader { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageDosHeader ImageDosHeader { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -802,7 +595,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMAGE_DOS_HEADER.html">IMAGE_DOS_HEADER</a></td>
+        <td><a class="xref" href="PeNet.Header.Pe.ImageDosHeader.html">ImageDosHeader</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -812,16 +605,16 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ImageExportDirectory.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ImageExportDirectory%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L222">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L223">View Source</a>
   </span>
   <a id="PeNet_PeFile_ImageExportDirectory_" data-uid="PeNet.PeFile.ImageExportDirectory*"></a>
   <h4 id="PeNet_PeFile_ImageExportDirectory" data-uid="PeNet.PeFile.ImageExportDirectory">ImageExportDirectory</h4>
-  <div class="markdown level1 summary"><p>Access the IMAGE_EXPORT_DIRECTORY of the PE file.</p>
+  <div class="markdown level1 summary"><p>Access the ImageExportDirectory of the PE file.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMAGE_EXPORT_DIRECTORY ImageExportDirectory { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageExportDirectory ImageExportDirectory { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -833,7 +626,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMAGE_EXPORT_DIRECTORY.html">IMAGE_EXPORT_DIRECTORY</a></td>
+        <td><a class="xref" href="PeNet.Header.Pe.ImageExportDirectory.html">ImageExportDirectory</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -843,16 +636,16 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ImageImportDescriptors.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ImageImportDescriptors%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L227">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L228">View Source</a>
   </span>
   <a id="PeNet_PeFile_ImageImportDescriptors_" data-uid="PeNet.PeFile.ImageImportDescriptors*"></a>
   <h4 id="PeNet_PeFile_ImageImportDescriptors" data-uid="PeNet.PeFile.ImageImportDescriptors">ImageImportDescriptors</h4>
-  <div class="markdown level1 summary"><p>Access the IMAGE_IMPORT_DESCRIPTOR array of the PE file.</p>
+  <div class="markdown level1 summary"><p>Access the ImageImportDescriptor array of the PE file.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMAGE_IMPORT_DESCRIPTOR[] ImageImportDescriptors { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageImportDescriptor[] ImageImportDescriptors { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -864,7 +657,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMAGE_IMPORT_DESCRIPTOR.html">IMAGE_IMPORT_DESCRIPTOR</a>[]</td>
+        <td><a class="xref" href="PeNet.Header.Pe.ImageImportDescriptor.html">ImageImportDescriptor</a>[]</td>
         <td></td>
       </tr>
     </tbody>
@@ -874,16 +667,16 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ImageLoadConfigDirectory.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ImageLoadConfigDirectory%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L287">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L288">View Source</a>
   </span>
   <a id="PeNet_PeFile_ImageLoadConfigDirectory_" data-uid="PeNet.PeFile.ImageLoadConfigDirectory*"></a>
   <h4 id="PeNet_PeFile_ImageLoadConfigDirectory" data-uid="PeNet.PeFile.ImageLoadConfigDirectory">ImageLoadConfigDirectory</h4>
-  <div class="markdown level1 summary"><p>Access the IMAGE_LOAD_CONFIG_DIRECTORY from the data directory.</p>
+  <div class="markdown level1 summary"><p>Access the ImageLoadConfigDirectory from the data directory.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMAGE_LOAD_CONFIG_DIRECTORY ImageLoadConfigDirectory { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageLoadConfigDirectory ImageLoadConfigDirectory { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -895,7 +688,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMAGE_LOAD_CONFIG_DIRECTORY.html">IMAGE_LOAD_CONFIG_DIRECTORY</a></td>
+        <td><a class="xref" href="PeNet.Header.Pe.ImageLoadConfigDirectory.html">ImageLoadConfigDirectory</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -905,16 +698,16 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ImageNtHeaders.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ImageNtHeaders%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L212">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L213">View Source</a>
   </span>
   <a id="PeNet_PeFile_ImageNtHeaders_" data-uid="PeNet.PeFile.ImageNtHeaders*"></a>
   <h4 id="PeNet_PeFile_ImageNtHeaders" data-uid="PeNet.PeFile.ImageNtHeaders">ImageNtHeaders</h4>
-  <div class="markdown level1 summary"><p>Access the IMAGE_NT_HEADERS of the PE file.</p>
+  <div class="markdown level1 summary"><p>Access the ImageNtHeaders of the PE file.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMAGE_NT_HEADERS ImageNtHeaders { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageNtHeaders ImageNtHeaders { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -926,7 +719,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMAGE_NT_HEADERS.html">IMAGE_NT_HEADERS</a></td>
+        <td><a class="xref" href="PeNet.Header.Pe.ImageNtHeaders.html">ImageNtHeaders</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -936,16 +729,16 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ImageRelocationDirectory.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ImageRelocationDirectory%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L232">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L233">View Source</a>
   </span>
   <a id="PeNet_PeFile_ImageRelocationDirectory_" data-uid="PeNet.PeFile.ImageRelocationDirectory*"></a>
   <h4 id="PeNet_PeFile_ImageRelocationDirectory" data-uid="PeNet.PeFile.ImageRelocationDirectory">ImageRelocationDirectory</h4>
-  <div class="markdown level1 summary"><p>Access the IMAGE_BASE_RELOCATION array of the PE file.</p>
+  <div class="markdown level1 summary"><p>Access the ImageBaseRelocation array of the PE file.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMAGE_BASE_RELOCATION[] ImageRelocationDirectory { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageBaseRelocation[] ImageRelocationDirectory { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -957,7 +750,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMAGE_BASE_RELOCATION.html">IMAGE_BASE_RELOCATION</a>[]</td>
+        <td><a class="xref" href="PeNet.Header.Pe.ImageBaseRelocation.html">ImageBaseRelocation</a>[]</td>
         <td></td>
       </tr>
     </tbody>
@@ -967,16 +760,16 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ImageResourceDirectory.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ImageResourceDirectory%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L252">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L253">View Source</a>
   </span>
   <a id="PeNet_PeFile_ImageResourceDirectory_" data-uid="PeNet.PeFile.ImageResourceDirectory*"></a>
   <h4 id="PeNet_PeFile_ImageResourceDirectory" data-uid="PeNet.PeFile.ImageResourceDirectory">ImageResourceDirectory</h4>
-  <div class="markdown level1 summary"><p>Access the IMAGE_RESOURCE_DIRECTORY of the PE file.</p>
+  <div class="markdown level1 summary"><p>Access the ImageResourceDirectory of the PE file.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMAGE_RESOURCE_DIRECTORY ImageResourceDirectory { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageResourceDirectory ImageResourceDirectory { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -988,7 +781,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMAGE_RESOURCE_DIRECTORY.html">IMAGE_RESOURCE_DIRECTORY</a></td>
+        <td><a class="xref" href="PeNet.Header.Pe.ImageResourceDirectory.html">ImageResourceDirectory</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -998,16 +791,16 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ImageSectionHeaders.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ImageSectionHeaders%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L217">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L218">View Source</a>
   </span>
   <a id="PeNet_PeFile_ImageSectionHeaders_" data-uid="PeNet.PeFile.ImageSectionHeaders*"></a>
   <h4 id="PeNet_PeFile_ImageSectionHeaders" data-uid="PeNet.PeFile.ImageSectionHeaders">ImageSectionHeaders</h4>
-  <div class="markdown level1 summary"><p>Access the IMAGE_SECTION_HEADERS of the PE file.</p>
+  <div class="markdown level1 summary"><p>Access the ImageSectionHeader of the PE file.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMAGE_SECTION_HEADER[] ImageSectionHeaders { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageSectionHeader[] ImageSectionHeaders { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1019,7 +812,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMAGE_SECTION_HEADER.html">IMAGE_SECTION_HEADER</a>[]</td>
+        <td><a class="xref" href="PeNet.Header.Pe.ImageSectionHeader.html">ImageSectionHeader</a>[]</td>
         <td></td>
       </tr>
     </tbody>
@@ -1029,7 +822,7 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ImageTlsDirectory.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ImageTlsDirectory%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L277">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L278">View Source</a>
   </span>
   <a id="PeNet_PeFile_ImageTlsDirectory_" data-uid="PeNet.PeFile.ImageTlsDirectory*"></a>
   <h4 id="PeNet_PeFile_ImageTlsDirectory" data-uid="PeNet.PeFile.ImageTlsDirectory">ImageTlsDirectory</h4>
@@ -1038,7 +831,7 @@ if the PE is a CLR assembly.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMAGE_TLS_DIRECTORY ImageTlsDirectory { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageTlsDirectory ImageTlsDirectory { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1050,7 +843,7 @@ if the PE is a CLR assembly.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMAGE_TLS_DIRECTORY.html">IMAGE_TLS_DIRECTORY</a></td>
+        <td><a class="xref" href="PeNet.Header.Pe.ImageTlsDirectory.html">ImageTlsDirectory</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -1060,7 +853,7 @@ if the PE is a CLR assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ImpHash.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ImpHash%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L349">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L353">View Source</a>
   </span>
   <a id="PeNet_PeFile_ImpHash_" data-uid="PeNet.PeFile.ImpHash*"></a>
   <h4 id="PeNet_PeFile_ImpHash" data-uid="PeNet.PeFile.ImpHash">ImpHash</h4>
@@ -1070,7 +863,7 @@ given else null;</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ImpHash { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string? ImpHash { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1082,7 +875,7 @@ given else null;</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.String</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1092,7 +885,7 @@ given else null;</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_ImportedFunctions.md&amp;value=---%0Auid%3A%20PeNet.PeFile.ImportedFunctions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L247">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L248">View Source</a>
   </span>
   <a id="PeNet_PeFile_ImportedFunctions_" data-uid="PeNet.PeFile.ImportedFunctions*"></a>
   <h4 id="PeNet_PeFile_ImportedFunctions" data-uid="PeNet.PeFile.ImportedFunctions">ImportedFunctions</h4>
@@ -1113,7 +906,7 @@ given else null;</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.ImportFunction.html">ImportFunction</a>[]</td>
+        <td><a class="xref" href="PeNet.Header.Pe.ImportFunction.html">ImportFunction</a>[]</td>
         <td></td>
       </tr>
     </tbody>
@@ -1123,7 +916,7 @@ given else null;</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Is32Bit.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Is32Bit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L202">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L203">View Source</a>
   </span>
   <a id="PeNet_PeFile_Is32Bit_" data-uid="PeNet.PeFile.Is32Bit*"></a>
   <h4 id="PeNet_PeFile_Is32Bit" data-uid="PeNet.PeFile.Is32Bit">Is32Bit</h4>
@@ -1154,7 +947,7 @@ given else null;</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Is64Bit.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Is64Bit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L197">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L198">View Source</a>
   </span>
   <a id="PeNet_PeFile_Is64Bit_" data-uid="PeNet.PeFile.Is64Bit*"></a>
   <h4 id="PeNet_PeFile_Is64Bit" data-uid="PeNet.PeFile.Is64Bit">Is64Bit</h4>
@@ -1182,20 +975,51 @@ given else null;</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsDLL.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsDLL%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsDll.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsDll%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L156">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L124">View Source</a>
   </span>
-  <a id="PeNet_PeFile_IsDLL_" data-uid="PeNet.PeFile.IsDLL*"></a>
-  <h4 id="PeNet_PeFile_IsDLL" data-uid="PeNet.PeFile.IsDLL">IsDLL</h4>
+  <a id="PeNet_PeFile_IsDll_" data-uid="PeNet.PeFile.IsDll*"></a>
+  <h4 id="PeNet_PeFile_IsDll" data-uid="PeNet.PeFile.IsDll">IsDll</h4>
   <div class="markdown level1 summary"><p>Returns true if the DLL flag in the
 File Header is set.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsDLL { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsDll { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsDotNet.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsDotNet%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L145">View Source</a>
+  </span>
+  <a id="PeNet_PeFile_IsDotNet_" data-uid="PeNet.PeFile.IsDotNet*"></a>
+  <h4 id="PeNet_PeFile_IsDotNet" data-uid="PeNet.PeFile.IsDotNet">IsDotNet</h4>
+  <div class="markdown level1 summary"><p>Returns true if the PE file is a .NET assembly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsDotNet { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1217,7 +1041,7 @@ File Header is set.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsDriver.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsDriver%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L174">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L139">View Source</a>
   </span>
   <a id="PeNet_PeFile_IsDriver_" data-uid="PeNet.PeFile.IsDriver*"></a>
   <h4 id="PeNet_PeFile_IsDriver" data-uid="PeNet.PeFile.IsDriver">IsDriver</h4>
@@ -1246,51 +1070,20 @@ based on the Subsytem = 0x1 value in the Optional Header.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsEXE.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsEXE%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsExe.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsExe%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L165">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L132">View Source</a>
   </span>
-  <a id="PeNet_PeFile_IsEXE_" data-uid="PeNet.PeFile.IsEXE*"></a>
-  <h4 id="PeNet_PeFile_IsEXE" data-uid="PeNet.PeFile.IsEXE">IsEXE</h4>
+  <a id="PeNet_PeFile_IsExe_" data-uid="PeNet.PeFile.IsExe*"></a>
+  <h4 id="PeNet_PeFile_IsExe" data-uid="PeNet.PeFile.IsExe">IsExe</h4>
   <div class="markdown level1 summary"><p>Returns true if the Executable flag in the
 File Header is set.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsEXE { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsSignatureValid.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsSignatureValid%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L187">View Source</a>
-  </span>
-  <a id="PeNet_PeFile_IsSignatureValid_" data-uid="PeNet.PeFile.IsSignatureValid*"></a>
-  <h4 id="PeNet_PeFile_IsSignatureValid" data-uid="PeNet.PeFile.IsSignatureValid">IsSignatureValid</h4>
-  <div class="markdown level1 summary"><p>Returns true if the PE file signature is valid signed.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsSignatureValid { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsExe { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1312,7 +1105,7 @@ File Header is set.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsSigned.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsSigned%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L182">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L151">View Source</a>
   </span>
   <a id="PeNet_PeFile_IsSigned_" data-uid="PeNet.PeFile.IsSigned*"></a>
   <h4 id="PeNet_PeFile_IsSigned" data-uid="PeNet.PeFile.IsSigned">IsSigned</h4>
@@ -1341,19 +1134,19 @@ does not check if the signature is valid!</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_MD5.md&amp;value=---%0Auid%3A%20PeNet.PeFile.MD5%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Md5.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Md5%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L343">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L346">View Source</a>
   </span>
-  <a id="PeNet_PeFile_MD5_" data-uid="PeNet.PeFile.MD5*"></a>
-  <h4 id="PeNet_PeFile_MD5" data-uid="PeNet.PeFile.MD5">MD5</h4>
+  <a id="PeNet_PeFile_Md5_" data-uid="PeNet.PeFile.Md5*"></a>
+  <h4 id="PeNet_PeFile_Md5" data-uid="PeNet.PeFile.Md5">Md5</h4>
   <div class="markdown level1 summary"><p>The MD5 of hash sum of the binary.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string MD5 { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string Md5 { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1375,16 +1168,16 @@ does not check if the signature is valid!</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_MetaDataHdr.md&amp;value=---%0Auid%3A%20PeNet.PeFile.MetaDataHdr%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L302">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L303">View Source</a>
   </span>
   <a id="PeNet_PeFile_MetaDataHdr_" data-uid="PeNet.PeFile.MetaDataHdr*"></a>
   <h4 id="PeNet_PeFile_MetaDataHdr" data-uid="PeNet.PeFile.MetaDataHdr">MetaDataHdr</h4>
-  <div class="markdown level1 summary"><p>Access the METADATAHDR from the COM/CLI header.</p>
+  <div class="markdown level1 summary"><p>Access the MetaDataHdr from the COM/CLI header.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public METADATAHDR MetaDataHdr { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public MetaDataHdr MetaDataHdr { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1396,7 +1189,7 @@ does not check if the signature is valid!</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.METADATAHDR.html">METADATAHDR</a></td>
+        <td><a class="xref" href="PeNet.Header.Net.MetaDataHdr.html">MetaDataHdr</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -1406,7 +1199,7 @@ does not check if the signature is valid!</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_MetaDataStreamBlob.md&amp;value=---%0Auid%3A%20PeNet.PeFile.MetaDataStreamBlob%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L322">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L323">View Source</a>
   </span>
   <a id="PeNet_PeFile_MetaDataStreamBlob_" data-uid="PeNet.PeFile.MetaDataStreamBlob*"></a>
   <h4 id="PeNet_PeFile_MetaDataStreamBlob" data-uid="PeNet.PeFile.MetaDataStreamBlob">MetaDataStreamBlob</h4>
@@ -1434,19 +1227,19 @@ does not check if the signature is valid!</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_MetaDataStreamGUID.md&amp;value=---%0Auid%3A%20PeNet.PeFile.MetaDataStreamGUID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_MetaDataStreamGuid.md&amp;value=---%0Auid%3A%20PeNet.PeFile.MetaDataStreamGuid%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L317">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L318">View Source</a>
   </span>
-  <a id="PeNet_PeFile_MetaDataStreamGUID_" data-uid="PeNet.PeFile.MetaDataStreamGUID*"></a>
-  <h4 id="PeNet_PeFile_MetaDataStreamGUID" data-uid="PeNet.PeFile.MetaDataStreamGUID">MetaDataStreamGUID</h4>
+  <a id="PeNet_PeFile_MetaDataStreamGuid_" data-uid="PeNet.PeFile.MetaDataStreamGuid*"></a>
+  <h4 id="PeNet_PeFile_MetaDataStreamGuid" data-uid="PeNet.PeFile.MetaDataStreamGuid">MetaDataStreamGuid</h4>
   <div class="markdown level1 summary"><p>Meta Data Stream #GUID.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMETADATASTREAM_GUID MetaDataStreamGUID { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public MetaDataStreamGuid MetaDataStreamGuid { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1458,7 +1251,7 @@ does not check if the signature is valid!</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMETADATASTREAM_GUID.html">IMETADATASTREAM_GUID</a></td>
+        <td><a class="xref" href="PeNet.Header.Net.MetaDataStreamGuid.html">MetaDataStreamGuid</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -1468,7 +1261,7 @@ does not check if the signature is valid!</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_MetaDataStreamString.md&amp;value=---%0Auid%3A%20PeNet.PeFile.MetaDataStreamString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L307">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L308">View Source</a>
   </span>
   <a id="PeNet_PeFile_MetaDataStreamString_" data-uid="PeNet.PeFile.MetaDataStreamString*"></a>
   <h4 id="PeNet_PeFile_MetaDataStreamString" data-uid="PeNet.PeFile.MetaDataStreamString">MetaDataStreamString</h4>
@@ -1477,7 +1270,7 @@ does not check if the signature is valid!</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMETADATASTREAM_STRING MetaDataStreamString { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public MetaDataStreamString MetaDataStreamString { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1489,7 +1282,7 @@ does not check if the signature is valid!</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMETADATASTREAM_STRING.html">IMETADATASTREAM_STRING</a></td>
+        <td><a class="xref" href="PeNet.Header.Net.MetaDataStreamString.html">MetaDataStreamString</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -1499,7 +1292,7 @@ does not check if the signature is valid!</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_MetaDataStreamTablesHeader.md&amp;value=---%0Auid%3A%20PeNet.PeFile.MetaDataStreamTablesHeader%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L328">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L329">View Source</a>
   </span>
   <a id="PeNet_PeFile_MetaDataStreamTablesHeader_" data-uid="PeNet.PeFile.MetaDataStreamTablesHeader*"></a>
   <h4 id="PeNet_PeFile_MetaDataStreamTablesHeader" data-uid="PeNet.PeFile.MetaDataStreamTablesHeader">MetaDataStreamTablesHeader</h4>
@@ -1509,7 +1302,7 @@ Meta Data Streams of the .Net header.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public METADATATABLESHDR MetaDataStreamTablesHeader { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public MetaDataTablesHdr MetaDataStreamTablesHeader { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1521,26 +1314,26 @@ Meta Data Streams of the .Net header.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.METADATATABLESHDR.html">METADATATABLESHDR</a></td>
+        <td><a class="xref" href="PeNet.Header.Net.MetaDataTablesHdr.html">MetaDataTablesHdr</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_MetaDataStreamUS.md&amp;value=---%0Auid%3A%20PeNet.PeFile.MetaDataStreamUS%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_MetaDataStreamUs.md&amp;value=---%0Auid%3A%20PeNet.PeFile.MetaDataStreamUs%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L312">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L313">View Source</a>
   </span>
-  <a id="PeNet_PeFile_MetaDataStreamUS_" data-uid="PeNet.PeFile.MetaDataStreamUS*"></a>
-  <h4 id="PeNet_PeFile_MetaDataStreamUS" data-uid="PeNet.PeFile.MetaDataStreamUS">MetaDataStreamUS</h4>
+  <a id="PeNet_PeFile_MetaDataStreamUs_" data-uid="PeNet.PeFile.MetaDataStreamUs*"></a>
+  <h4 id="PeNet_PeFile_MetaDataStreamUs" data-uid="PeNet.PeFile.MetaDataStreamUs">MetaDataStreamUs</h4>
   <div class="markdown level1 summary"><p>Meta Data Stream #US (User strings).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IMETADATASTREAM_US MetaDataStreamUS { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public MetaDataStreamUs MetaDataStreamUs { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1552,26 +1345,26 @@ Meta Data Streams of the .Net header.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.IMETADATASTREAM_US.html">IMETADATASTREAM_US</a></td>
+        <td><a class="xref" href="PeNet.Header.Net.MetaDataStreamUs.html">MetaDataStreamUs</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_PKCS7.md&amp;value=---%0Auid%3A%20PeNet.PeFile.PKCS7%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Pkcs7.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Pkcs7%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L297">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L298">View Source</a>
   </span>
-  <a id="PeNet_PeFile_PKCS7_" data-uid="PeNet.PeFile.PKCS7*"></a>
-  <h4 id="PeNet_PeFile_PKCS7" data-uid="PeNet.PeFile.PKCS7">PKCS7</h4>
+  <a id="PeNet_PeFile_Pkcs7_" data-uid="PeNet.PeFile.Pkcs7*"></a>
+  <h4 id="PeNet_PeFile_Pkcs7" data-uid="PeNet.PeFile.Pkcs7">Pkcs7</h4>
   <div class="markdown level1 summary"><p>Signing X509 certificate if the binary was signed with</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public X509Certificate2 PKCS7 { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public X509Certificate2? Pkcs7 { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1583,7 +1376,38 @@ Meta Data Streams of the .Net header.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Security.Cryptography.X509Certificates.X509Certificate2</span></td>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">X509Certificate2</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_RawFile.md&amp;value=---%0Auid%3A%20PeNet.PeFile.RawFile%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L35">View Source</a>
+  </span>
+  <a id="PeNet_PeFile_RawFile_" data-uid="PeNet.PeFile.RawFile*"></a>
+  <h4 id="PeNet_PeFile_RawFile" data-uid="PeNet.PeFile.RawFile">RawFile</h4>
+  <div class="markdown level1 summary"><p>The PE binary .</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRawFile RawFile { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="PeNet.FileParser.IRawFile.html">IRawFile</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -1593,7 +1417,7 @@ Meta Data Streams of the .Net header.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Resources.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Resources%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L257">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L258">View Source</a>
   </span>
   <a id="PeNet_PeFile_Resources_" data-uid="PeNet.PeFile.Resources*"></a>
   <h4 id="PeNet_PeFile_Resources" data-uid="PeNet.PeFile.Resources">Resources</h4>
@@ -1614,26 +1438,26 @@ Meta Data Streams of the .Net header.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.Resources.html">Resources</a></td>
+        <td><a class="xref" href="PeNet.Header.Resource.Resources.html">Resources</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_SHA1.md&amp;value=---%0Auid%3A%20PeNet.PeFile.SHA1%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Sha1.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Sha1%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L338">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L340">View Source</a>
   </span>
-  <a id="PeNet_PeFile_SHA1_" data-uid="PeNet.PeFile.SHA1*"></a>
-  <h4 id="PeNet_PeFile_SHA1" data-uid="PeNet.PeFile.SHA1">SHA1</h4>
+  <a id="PeNet_PeFile_Sha1_" data-uid="PeNet.PeFile.Sha1*"></a>
+  <h4 id="PeNet_PeFile_Sha1" data-uid="PeNet.PeFile.Sha1">Sha1</h4>
   <div class="markdown level1 summary"><p>The SHA-1 hash sum of the binary.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string SHA1 { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string Sha1 { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1652,19 +1476,19 @@ Meta Data Streams of the .Net header.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_SHA256.md&amp;value=---%0Auid%3A%20PeNet.PeFile.SHA256%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Sha256.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Sha256%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L333">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L334">View Source</a>
   </span>
-  <a id="PeNet_PeFile_SHA256_" data-uid="PeNet.PeFile.SHA256*"></a>
-  <h4 id="PeNet_PeFile_SHA256" data-uid="PeNet.PeFile.SHA256">SHA256</h4>
+  <a id="PeNet_PeFile_Sha256_" data-uid="PeNet.PeFile.Sha256*"></a>
+  <h4 id="PeNet_PeFile_Sha256" data-uid="PeNet.PeFile.Sha256">Sha256</h4>
   <div class="markdown level1 summary"><p>The SHA-256 hash sum of the binary.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string SHA256 { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string Sha256 { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1677,37 +1501,6 @@ Meta Data Streams of the .Net header.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Stream.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Stream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L34">View Source</a>
-  </span>
-  <a id="PeNet_PeFile_Stream_" data-uid="PeNet.PeFile.Stream*"></a>
-  <h4 id="PeNet_PeFile_Stream" data-uid="PeNet.PeFile.Stream">Stream</h4>
-  <div class="markdown level1 summary"><p>The PE binary as a stream.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Stream Stream { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.IO.Stream</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1717,16 +1510,16 @@ Meta Data Streams of the .Net header.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_WinCertificate.md&amp;value=---%0Auid%3A%20PeNet.PeFile.WinCertificate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L267">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L268">View Source</a>
   </span>
   <a id="PeNet_PeFile_WinCertificate_" data-uid="PeNet.PeFile.WinCertificate*"></a>
   <h4 id="PeNet_PeFile_WinCertificate" data-uid="PeNet.PeFile.WinCertificate">WinCertificate</h4>
-  <div class="markdown level1 summary"><p>Access the WIN_CERTIFICATE from the Security header.</p>
+  <div class="markdown level1 summary"><p>Access the WinCertificate from the Security header.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public WIN_CERTIFICATE WinCertificate { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public WinCertificate WinCertificate { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1738,7 +1531,7 @@ Meta Data Streams of the .Net header.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Structures.WIN_CERTIFICATE.html">WIN_CERTIFICATE</a></td>
+        <td><a class="xref" href="PeNet.Header.Pe.WinCertificate.html">WinCertificate</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -1747,10 +1540,25 @@ Meta Data Streams of the .Net header.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Dispose.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L441">View Source</a>
+  </span>
+  <a id="PeNet_PeFile_Dispose_" data-uid="PeNet.PeFile.Dispose*"></a>
+  <h4 id="PeNet_PeFile_Dispose" data-uid="PeNet.PeFile.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_GetCrlUrlList.md&amp;value=---%0Auid%3A%20PeNet.PeFile.GetCrlUrlList%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L389">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L381">View Source</a>
   </span>
   <a id="PeNet_PeFile_GetCrlUrlList_" data-uid="PeNet.PeFile.GetCrlUrlList*"></a>
   <h4 id="PeNet_PeFile_GetCrlUrlList" data-uid="PeNet.PeFile.GetCrlUrlList">GetCrlUrlList()</h4>
@@ -1773,7 +1581,7 @@ certificate if any is present.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.CrlUrlList.html">CrlUrlList</a></td>
+        <td><a class="xref" href="PeNet.Header.Authenticode.CrlUrlList.html">CrlUrlList</a></td>
         <td><p>Certificate Revocation List information or null if binary is not signed.</p>
 </td>
       </tr>
@@ -1781,55 +1589,19 @@ certificate if any is present.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_GetFileType.md&amp;value=---%0Auid%3A%20PeNet.PeFile.GetFileType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_HasValidCertChain_System_Boolean_.md&amp;value=---%0Auid%3A%20PeNet.PeFile.HasValidCertChain(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L496">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L163">View Source</a>
   </span>
-  <a id="PeNet_PeFile_GetFileType_" data-uid="PeNet.PeFile.GetFileType*"></a>
-  <h4 id="PeNet_PeFile_GetFileType" data-uid="PeNet.PeFile.GetFileType">GetFileType()</h4>
-  <div class="markdown level1 summary"><p>Returns if the PE file is a EXE, DLL and which architecture
-is used (32/64).
-Architectures: &quot;I386&quot;, &quot;AMD64&quot;, ...
-DllOrExe: &quot;DLL&quot;, &quot;EXE&quot;, &quot;UNKNOWN&quot;</p>
+  <a id="PeNet_PeFile_HasValidCertChain_" data-uid="PeNet.PeFile.HasValidCertChain*"></a>
+  <h4 id="PeNet_PeFile_HasValidCertChain_System_Boolean_" data-uid="PeNet.PeFile.HasValidCertChain(System.Boolean)">HasValidCertChain(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Checks if cert is from a trusted CA with a valid certificate chain.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string GetFileType()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><p>A string &quot;architecture_dllOrExe&quot;.
-E.g. &quot;AMD64_DLL&quot;, &quot;ALPHA_EXE&quot;</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Is32BitPeFile_System_String_.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Is32BitPeFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L467">View Source</a>
-  </span>
-  <a id="PeNet_PeFile_Is32BitPeFile_" data-uid="PeNet.PeFile.Is32BitPeFile*"></a>
-  <h4 id="PeNet_PeFile_Is32BitPeFile_System_String_" data-uid="PeNet.PeFile.Is32BitPeFile(System.String)">Is32BitPeFile(String)</h4>
-  <div class="markdown level1 summary"><p>Returns if the file is a PE file and 32 Bit.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool Is32BitPeFile(string file)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool HasValidCertChain(bool useOnlineCrl)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1842,9 +1614,9 @@ E.g. &quot;AMD64_DLL&quot;, &quot;ALPHA_EXE&quot;</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">file</span></td>
-        <td><p>Path to a possible PE file.</p>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">useOnlineCrl</span></td>
+        <td><p>Check certificate chain online or offline.</p>
 </td>
       </tr>
     </tbody>
@@ -1860,26 +1632,26 @@ E.g. &quot;AMD64_DLL&quot;, &quot;ALPHA_EXE&quot;</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p>True if file is PE and x32.</p>
+        <td><p>True if cert chain is valid and from a trusted CA.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Is64BitPeFile_System_String_.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Is64BitPeFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_HasValidCertChain_System_Nullable_X509Certificate2__TimeSpan_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20PeNet.PeFile.HasValidCertChain(System.Nullable%7BX509Certificate2%7D%2CTimeSpan%2CSystem.Boolean%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L443">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L175">View Source</a>
   </span>
-  <a id="PeNet_PeFile_Is64BitPeFile_" data-uid="PeNet.PeFile.Is64BitPeFile*"></a>
-  <h4 id="PeNet_PeFile_Is64BitPeFile_System_String_" data-uid="PeNet.PeFile.Is64BitPeFile(System.String)">Is64BitPeFile(String)</h4>
-  <div class="markdown level1 summary"><p>Returns if the file is a PE file and 64 Bit.</p>
+  <a id="PeNet_PeFile_HasValidCertChain_" data-uid="PeNet.PeFile.HasValidCertChain*"></a>
+  <h4 id="PeNet_PeFile_HasValidCertChain_System_Nullable_X509Certificate2__TimeSpan_System_Boolean_System_Boolean_" data-uid="PeNet.PeFile.HasValidCertChain(System.Nullable{X509Certificate2},TimeSpan,System.Boolean,System.Boolean)">HasValidCertChain(Nullable&lt;X509Certificate2&gt;, TimeSpan, Boolean, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Checks if cert is from a trusted CA with a valid certificate chain.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool Is64BitPeFile(string file)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool HasValidCertChain(X509Certificate2? cert, TimeSpan urlRetrievalTimeout, bool useOnlineCRL = true, bool excludeRoot = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1892,9 +1664,27 @@ E.g. &quot;AMD64_DLL&quot;, &quot;ALPHA_EXE&quot;</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">file</span></td>
-        <td><p>Path to a possible PE file.</p>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">X509Certificate2</span>&gt;</td>
+        <td><span class="parametername">cert</span></td>
+        <td><p>X509 Certificate</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">urlRetrievalTimeout</span></td>
+        <td><p>Timeout to validate the certificate online.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">useOnlineCRL</span></td>
+        <td><p>If true, uses online certificate revocation lists, else on the local CRL.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">excludeRoot</span></td>
+        <td><p>True if the root certificate should not be validated. False if the whole chain should be validated.</p>
 </td>
       </tr>
     </tbody>
@@ -1910,20 +1700,20 @@ E.g. &quot;AMD64_DLL&quot;, &quot;ALPHA_EXE&quot;</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p>True if file is PE and x64.</p>
+        <td><p>True if cert chain is valid and from a trusted CA.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsPEFile_System_Byte___.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsPEFile(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsPeFile_System_Byte___.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsPeFile(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L430">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L422">View Source</a>
   </span>
-  <a id="PeNet_PeFile_IsPEFile_" data-uid="PeNet.PeFile.IsPEFile*"></a>
-  <h4 id="PeNet_PeFile_IsPEFile_System_Byte___" data-uid="PeNet.PeFile.IsPEFile(System.Byte[])">IsPEFile(Byte[])</h4>
+  <a id="PeNet_PeFile_IsPeFile_" data-uid="PeNet.PeFile.IsPeFile*"></a>
+  <h4 id="PeNet_PeFile_IsPeFile_System_Byte___" data-uid="PeNet.PeFile.IsPeFile(System.Byte[])">IsPeFile(Byte[])</h4>
   <div class="markdown level1 summary"><p>Tests is a buffer is a PE file based on the MZ
 header. It is not checked if the PE file is correct
 in all other parts.</p>
@@ -1931,7 +1721,7 @@ in all other parts.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsPEFile(byte[] buf)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsPeFile(byte[] buf)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1969,21 +1759,21 @@ in all other parts.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsPEFile_System_String_.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsPEFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsPeFile_System_String_.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsPeFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L411">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L403">View Source</a>
   </span>
-  <a id="PeNet_PeFile_IsPEFile_" data-uid="PeNet.PeFile.IsPEFile*"></a>
-  <h4 id="PeNet_PeFile_IsPEFile_System_String_" data-uid="PeNet.PeFile.IsPEFile(System.String)">IsPEFile(String)</h4>
-  <div class="markdown level1 summary"><p>Tests is a file is a PE file based on the MZ
+  <a id="PeNet_PeFile_IsPeFile_" data-uid="PeNet.PeFile.IsPeFile*"></a>
+  <h4 id="PeNet_PeFile_IsPeFile_System_String_" data-uid="PeNet.PeFile.IsPeFile(System.String)">IsPeFile(String)</h4>
+  <div class="markdown level1 summary"><p>Tests if a file is a PE file based on the MZ
 header. It is not checked if the PE file is correct
 in all other parts.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsPEFile(string file)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsPeFile(string file)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2021,94 +1811,10 @@ in all other parts.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsValidCertChain_System_Boolean_.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsValidCertChain(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L378">View Source</a>
-  </span>
-  <a id="PeNet_PeFile_IsValidCertChain_" data-uid="PeNet.PeFile.IsValidCertChain*"></a>
-  <h4 id="PeNet_PeFile_IsValidCertChain_System_Boolean_" data-uid="PeNet.PeFile.IsValidCertChain(System.Boolean)">IsValidCertChain(Boolean)</h4>
-  <div class="markdown level1 summary"><p>Checks if cert is from a trusted CA with a valid certificate chain.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsValidCertChain(bool online)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">online</span></td>
-        <td><p>Check certificate chain online or off-line.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><p>True of cert chain is valid and from a trusted CA.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_SaveAs_System_String_.md&amp;value=---%0Auid%3A%20PeNet.PeFile.SaveAs(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L111">View Source</a>
-  </span>
-  <a id="PeNet_PeFile_SaveAs_" data-uid="PeNet.PeFile.SaveAs*"></a>
-  <h4 id="PeNet_PeFile_SaveAs_System_String_" data-uid="PeNet.PeFile.SaveAs(System.String)">SaveAs(String)</h4>
-  <div class="markdown level1 summary"><p>Save the current PE file as
-a new file on disk.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SaveAs(string path)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">path</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_TryParse_System_Byte___PeNet_PeFile__.md&amp;value=---%0Auid%3A%20PeNet.PeFile.TryParse(System.Byte%5B%5D%2CPeNet.PeFile%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L93">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L107">View Source</a>
   </span>
   <a id="PeNet_PeFile_TryParse_" data-uid="PeNet.PeFile.TryParse*"></a>
   <h4 id="PeNet_PeFile_TryParse_System_Byte___PeNet_PeFile__" data-uid="PeNet.PeFile.TryParse(System.Byte[],PeNet.PeFile@)">TryParse(Byte[], out PeFile)</h4>
@@ -2117,7 +1823,7 @@ a new file on disk.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool TryParse(byte[] buf, out PeFile peFile)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool TryParse(byte[] buff, out PeFile peFile)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2131,7 +1837,7 @@ a new file on disk.</p>
     <tbody>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
-        <td><span class="parametername">buf</span></td>
+        <td><span class="parametername">buff</span></td>
         <td><p>Buffer containing a possible PE file.</p>
 </td>
       </tr>
@@ -2164,7 +1870,7 @@ a new file on disk.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_TryParse_System_String_PeNet_PeFile__.md&amp;value=---%0Auid%3A%20PeNet.PeFile.TryParse(System.String%2CPeNet.PeFile%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L82">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L96">View Source</a>
   </span>
   <a id="PeNet_PeFile_TryParse_" data-uid="PeNet.PeFile.TryParse*"></a>
   <h4 id="PeNet_PeFile_TryParse_System_String_PeNet_PeFile__" data-uid="PeNet.PeFile.TryParse(System.String,PeNet.PeFile@)">TryParse(String, out PeFile)</h4>
@@ -2226,7 +1932,7 @@ a new file on disk.</p>
                     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile.md&amp;value=---%0Auid%3A%20PeNet.PeFile%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L17" class="contribution-link">View Source</a>
+                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L24" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

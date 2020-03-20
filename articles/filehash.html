@@ -72,15 +72,15 @@
 <p>When comparing PE files for equality, file hashes come in handy. <strong>PeNet</strong> exports the following file hashes for convenience reasons.</p>
 <p>The MD5 can be accessed with the property MD5</p>
 <pre><code class="lang-csharp">var pe = new PeNet.PeFile(@&quot;c:\windows\system32\calc.exe&quot;);
-Console.WriteLine($&quot;MD5: {pe.MD5}&quot;);
+Console.WriteLine($&quot;MD5: {pe.Md5}&quot;);
 </code></pre>
 <p>The SHA-1 can be accessed with the property SHA1</p>
 <pre><code class="lang-csharp">var pe = new PeNet.PeFile(@&quot;c:\windows\system32\calc.exe&quot;);
-Console.WriteLine($&quot;SHA-1: {pe.SHA1}&quot;);
+Console.WriteLine($&quot;SHA-1: {pe.Sha1}&quot;);
 </code></pre>
 <p>The SHA-256 can be accessed with the property SHA256</p>
 <pre><code class="lang-csharp">var pe = new PeNet.PeFile(@&quot;c:\windows\system32\calc.exe&quot;);
-Console.WriteLine($&quot;MD5: {pe.MD5}&quot;);
+Console.WriteLine($&quot;SHA256: {pe.Sha256}&quot;);
 </code></pre>
 </article>
           </div>

@@ -1,0 +1,999 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ExtensionMethods
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ExtensionMethods
+   ">
+    <meta name="generator" content="docfx 2.50.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="PeNet.ExtensionMethods">
+  
+  
+  <h1 id="PeNet_ExtensionMethods" data-uid="PeNet.ExtensionMethods" class="text-break">Class ExtensionMethods
+  </h1>
+  <div class="markdown level0 summary"><p>Extensions method to work make the work with buffers
+and addresses easier.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">ExtensionMethods</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="PeNet.html">PeNet</a></h6>
+  <h6><strong>Assembly</strong>: PeNet.dll</h6>
+  <h5 id="PeNet_ExtensionMethods_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ExtensionMethods : object</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_PaddingBytes_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.PaddingBytes(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L218">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_PaddingBytes_" data-uid="PeNet.ExtensionMethods.PaddingBytes*"></a>
+  <h4 id="PeNet_ExtensionMethods_PaddingBytes_System_Int32_System_Int32_" data-uid="PeNet.ExtensionMethods.PaddingBytes(System.Int32,System.Int32)">PaddingBytes(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Compute the padding to align a
+data structure.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static uint PaddingBytes(this int offset, int alignment)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>Offset to start the alignment of
+the next member.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">alignment</span></td>
+        <td><p>Bitness of the alignment, e.g. &quot;32&quot;.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><p>Number of bytes needed to align the next structure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_PaddingBytes_System_Int64_System_Int32_.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.PaddingBytes(System.Int64%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L207">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_PaddingBytes_" data-uid="PeNet.ExtensionMethods.PaddingBytes*"></a>
+  <h4 id="PeNet_ExtensionMethods_PaddingBytes_System_Int64_System_Int32_" data-uid="PeNet.ExtensionMethods.PaddingBytes(System.Int64,System.Int32)">PaddingBytes(Int64, Int32)</h4>
+  <div class="markdown level1 summary"><p>Compute the padding to align a
+data structure.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static uint PaddingBytes(this long offset, int alignment)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>Offset to start the alignment of
+the next member.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">alignment</span></td>
+        <td><p>Bitness of the alignment, e.g. &quot;32&quot;.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><p>Number of bytes needed to align the next structure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_PaddingBytes_System_UInt32_System_Int32_.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.PaddingBytes(System.UInt32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L229">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_PaddingBytes_" data-uid="PeNet.ExtensionMethods.PaddingBytes*"></a>
+  <h4 id="PeNet_ExtensionMethods_PaddingBytes_System_UInt32_System_Int32_" data-uid="PeNet.ExtensionMethods.PaddingBytes(System.UInt32,System.Int32)">PaddingBytes(UInt32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Compute the padding to align a
+data structure.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static uint PaddingBytes(this uint offset, int alignment)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>Offset to start the alignment of
+the next member.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">alignment</span></td>
+        <td><p>Bitness of the alignment, e.g. &quot;32&quot;.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><p>Number of bytes needed to align the next structure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_RvaToOffset_System_UInt32_ICollection_PeNet_Header_Pe_ImageSectionHeader__.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.RvaToOffset(System.UInt32%2CICollection%7BPeNet.Header.Pe.ImageSectionHeader%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L67">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_RvaToOffset_" data-uid="PeNet.ExtensionMethods.RvaToOffset*"></a>
+  <h4 id="PeNet_ExtensionMethods_RvaToOffset_System_UInt32_ICollection_PeNet_Header_Pe_ImageSectionHeader__" data-uid="PeNet.ExtensionMethods.RvaToOffset(System.UInt32,ICollection{PeNet.Header.Pe.ImageSectionHeader})">RvaToOffset(UInt32, ICollection&lt;ImageSectionHeader&gt;)</h4>
+  <div class="markdown level1 summary"><p>Map an relative virtual address to the raw file address.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static uint RvaToOffset(this uint rva, ICollection&lt;ImageSectionHeader&gt; sectionHeaders)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">rva</span></td>
+        <td><p>Relative Virtual Address</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ICollection</span>&lt;<a class="xref" href="PeNet.Header.Pe.ImageSectionHeader.html">ImageSectionHeader</a>&gt;</td>
+        <td><span class="parametername">sectionHeaders</span></td>
+        <td><p>Section Headers</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><p>Raw file address.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_RvaToOffset_System_UInt64_ICollection_PeNet_Header_Pe_ImageSectionHeader__.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.RvaToOffset(System.UInt64%2CICollection%7BPeNet.Header.Pe.ImageSectionHeader%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L34">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_RvaToOffset_" data-uid="PeNet.ExtensionMethods.RvaToOffset*"></a>
+  <h4 id="PeNet_ExtensionMethods_RvaToOffset_System_UInt64_ICollection_PeNet_Header_Pe_ImageSectionHeader__" data-uid="PeNet.ExtensionMethods.RvaToOffset(System.UInt64,ICollection{PeNet.Header.Pe.ImageSectionHeader})">RvaToOffset(UInt64, ICollection&lt;ImageSectionHeader&gt;)</h4>
+  <div class="markdown level1 summary"><p>Map an relative virtual address to the raw file address.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ulong RvaToOffset(this ulong rva, ICollection&lt;ImageSectionHeader&gt; sectionHeaders)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">rva</span></td>
+        <td><p>Relative Virtual Address</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ICollection</span>&lt;<a class="xref" href="PeNet.Header.Pe.ImageSectionHeader.html">ImageSectionHeader</a>&gt;</td>
+        <td><span class="parametername">sectionHeaders</span></td>
+        <td><p>Section Headers</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><p>Raw file address.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_ToHexString_ICollection_System_Byte__.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.ToHexString(ICollection%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L102">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_ToHexString_" data-uid="PeNet.ExtensionMethods.ToHexString*"></a>
+  <h4 id="PeNet_ExtensionMethods_ToHexString_ICollection_System_Byte__" data-uid="PeNet.ExtensionMethods.ToHexString(ICollection{System.Byte})">ToHexString(ICollection&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Convert a sequence of bytes into a hexadecimal string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHexString(this ICollection&lt;byte&gt; bytes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ICollection</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Byte sequence.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Hex-String</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_ToHexString_ICollection_System_UInt16__.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.ToHexString(ICollection%7BSystem.UInt16%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L115">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_ToHexString_" data-uid="PeNet.ExtensionMethods.ToHexString*"></a>
+  <h4 id="PeNet_ExtensionMethods_ToHexString_ICollection_System_UInt16__" data-uid="PeNet.ExtensionMethods.ToHexString(ICollection{System.UInt16})">ToHexString(ICollection&lt;UInt16&gt;)</h4>
+  <div class="markdown level1 summary"><p>Convert a sequence of ushort into a hexadecimal string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHexString(this ICollection&lt;ushort&gt; values)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ICollection</span>&lt;<span class="xref">System.UInt16</span>&gt;</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Value sequence.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Hex-String</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_ToHexString_System_Byte_.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.ToHexString(System.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L129">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_ToHexString_" data-uid="PeNet.ExtensionMethods.ToHexString*"></a>
+  <h4 id="PeNet_ExtensionMethods_ToHexString_System_Byte_" data-uid="PeNet.ExtensionMethods.ToHexString(System.Byte)">ToHexString(Byte)</h4>
+  <div class="markdown level1 summary"><p>Convert byte into a hexadecimal string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHexString(this byte value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Hex-String</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_ToHexString_System_Byte___System_UInt64_System_UInt64_.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.ToHexString(System.Byte%5B%5D%2CSystem.UInt64%2CSystem.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L172">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_ToHexString_" data-uid="PeNet.ExtensionMethods.ToHexString*"></a>
+  <h4 id="PeNet_ExtensionMethods_ToHexString_System_Byte___System_UInt64_System_UInt64_" data-uid="PeNet.ExtensionMethods.ToHexString(System.Byte[],System.UInt64,System.UInt64)">ToHexString(Byte[], UInt64, UInt64)</h4>
+  <div class="markdown level1 summary"><p>Convert a sub array of an byte array to an hex string where
+every byte is separated by an whitespace.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;string&gt; ToHexString(this byte[] input, ulong from, ulong length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">input</span></td>
+        <td><p>Byte array.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">from</span></td>
+        <td><p>Index in the byte array where the hex string starts.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>Length of the hex string in the byte array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_ToHexString_System_UInt16_.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.ToHexString(System.UInt16)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L139">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_ToHexString_" data-uid="PeNet.ExtensionMethods.ToHexString*"></a>
+  <h4 id="PeNet_ExtensionMethods_ToHexString_System_UInt16_" data-uid="PeNet.ExtensionMethods.ToHexString(System.UInt16)">ToHexString(UInt16)</h4>
+  <div class="markdown level1 summary"><p>Convert ushort into a hexadecimal string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHexString(this ushort value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt16</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Hex-String</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_ToHexString_System_UInt32_.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.ToHexString(System.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L149">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_ToHexString_" data-uid="PeNet.ExtensionMethods.ToHexString*"></a>
+  <h4 id="PeNet_ExtensionMethods_ToHexString_System_UInt32_" data-uid="PeNet.ExtensionMethods.ToHexString(System.UInt32)">ToHexString(UInt32)</h4>
+  <div class="markdown level1 summary"><p>Convert uint into a hexadecimal string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHexString(this uint value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Hex-String</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_ToHexString_System_UInt64_.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.ToHexString(System.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L159">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_ToHexString_" data-uid="PeNet.ExtensionMethods.ToHexString*"></a>
+  <h4 id="PeNet_ExtensionMethods_ToHexString_System_UInt64_" data-uid="PeNet.ExtensionMethods.ToHexString(System.UInt64)">ToHexString(UInt64)</h4>
+  <div class="markdown level1 summary"><p>Convert ulong into a hexadecimal string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHexString(this ulong value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Hex-String</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_ToIntFromHexString_System_String_.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.ToIntFromHexString(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L187">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_ToIntFromHexString_" data-uid="PeNet.ExtensionMethods.ToIntFromHexString*"></a>
+  <h4 id="PeNet_ExtensionMethods_ToIntFromHexString_System_String_" data-uid="PeNet.ExtensionMethods.ToIntFromHexString(System.String)">ToIntFromHexString(String)</h4>
+  <div class="markdown level1 summary"><p>Converts a hex string of the form 0x435A4DE3 to a long value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long ToIntFromHexString(this string hexString)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">hexString</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><p>The hex string value as a long.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_TryRvaToOffset_System_UInt32_System_Nullable_ICollection_PeNet_Header_Pe_ImageSectionHeader___System_UInt32__.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.TryRvaToOffset(System.UInt32%2CSystem.Nullable%7BICollection%7BPeNet.Header.Pe.ImageSectionHeader%7D%7D%2CSystem.UInt32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L79">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_TryRvaToOffset_" data-uid="PeNet.ExtensionMethods.TryRvaToOffset*"></a>
+  <h4 id="PeNet_ExtensionMethods_TryRvaToOffset_System_UInt32_System_Nullable_ICollection_PeNet_Header_Pe_ImageSectionHeader___System_UInt32__" data-uid="PeNet.ExtensionMethods.TryRvaToOffset(System.UInt32,System.Nullable{ICollection{PeNet.Header.Pe.ImageSectionHeader}},System.UInt32@)">TryRvaToOffset(UInt32, Nullable&lt;ICollection&lt;ImageSectionHeader&gt;&gt;, out UInt32)</h4>
+  <div class="markdown level1 summary"><p>Try to map a relative virtual address to a file offset.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryRvaToOffset(this uint rva, ICollection&lt;ImageSectionHeader&gt;? sectionHeaders, out uint fileOffset)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">rva</span></td>
+        <td><p>Relative Virtual Address</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">ICollection</span>&lt;<a class="xref" href="PeNet.Header.Pe.ImageSectionHeader.html">ImageSectionHeader</a>&gt;&gt;</td>
+        <td><span class="parametername">sectionHeaders</span></td>
+        <td><p>Section Headers</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">fileOffset</span></td>
+        <td><p>File offset if mapping was successful.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if mapping was successful, false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_UStringByteLength_System_String_.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.UStringByteLength(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L197">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_UStringByteLength_" data-uid="PeNet.ExtensionMethods.UStringByteLength*"></a>
+  <h4 id="PeNet_ExtensionMethods_UStringByteLength_System_String_" data-uid="PeNet.ExtensionMethods.UStringByteLength(System.String)">UStringByteLength(String)</h4>
+  <div class="markdown level1 summary"><p>Get the length of a unicode string in bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int UStringByteLength(this string s)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">s</span></td>
+        <td><p>A unicode string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Length in bytes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_VaToOffset_System_UInt64_ICollection_PeNet_Header_Pe_ImageSectionHeader__.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.VaToOffset(System.UInt64%2CICollection%7BPeNet.Header.Pe.ImageSectionHeader%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L22">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_VaToOffset_" data-uid="PeNet.ExtensionMethods.VaToOffset*"></a>
+  <h4 id="PeNet_ExtensionMethods_VaToOffset_System_UInt64_ICollection_PeNet_Header_Pe_ImageSectionHeader__" data-uid="PeNet.ExtensionMethods.VaToOffset(System.UInt64,ICollection{PeNet.Header.Pe.ImageSectionHeader})">VaToOffset(UInt64, ICollection&lt;ImageSectionHeader&gt;)</h4>
+  <div class="markdown level1 summary"><p>Map an virtual address to the raw file address.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ulong VaToOffset(this ulong va, ICollection&lt;ImageSectionHeader&gt; sectionHeaders)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">va</span></td>
+        <td><p>Virtual Address</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ICollection</span>&lt;<a class="xref" href="PeNet.Header.Pe.ImageSectionHeader.html">ImageSectionHeader</a>&gt;</td>
+        <td><span class="parametername">sectionHeaders</span></td>
+        <td><p>Section Headers</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><p>Raw file address.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L14" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

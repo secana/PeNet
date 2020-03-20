@@ -1,0 +1,569 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ImageFileHeader
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ImageFileHeader
+   ">
+    <meta name="generator" content="docfx 2.50.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="PeNet.Header.Pe.ImageFileHeader">
+  
+  
+  <h1 id="PeNet_Header_Pe_ImageFileHeader" data-uid="PeNet.Header.Pe.ImageFileHeader" class="text-break">Class ImageFileHeader
+  </h1>
+  <div class="markdown level0 summary"><p>The File header contains information about the structure
+and properties of the PE file.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="PeNet.Header.AbstractStructure.html">AbstractStructure</a></div>
+    <div class="level2"><span class="xref">ImageFileHeader</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="PeNet.Header.AbstractStructure.html#PeNet_Header_AbstractStructure_ToString">AbstractStructure.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="PeNet.Header.Pe.html">PeNet.Header.Pe</a></h6>
+  <h6><strong>Assembly</strong>: PeNet.dll</h6>
+  <h5 id="PeNet_Header_Pe_ImageFileHeader_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ImageFileHeader : AbstractStructure</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageFileHeader__ctor_PeNet_FileParser_IRawFile_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageFileHeader.%23ctor(PeNet.FileParser.IRawFile%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageFileHeader.cs/#L18">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageFileHeader__ctor_" data-uid="PeNet.Header.Pe.ImageFileHeader.#ctor*"></a>
+  <h4 id="PeNet_Header_Pe_ImageFileHeader__ctor_PeNet_FileParser_IRawFile_System_Int64_" data-uid="PeNet.Header.Pe.ImageFileHeader.#ctor(PeNet.FileParser.IRawFile,System.Int64)">ImageFileHeader(IRawFile, Int64)</h4>
+  <div class="markdown level1 summary"><p>Create a new ImageFileHeader object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ImageFileHeader(IRawFile peFile, long offset)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="PeNet.FileParser.IRawFile.html">IRawFile</a></td>
+        <td><span class="parametername">peFile</span></td>
+        <td><p>A PE file.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>Raw offset to the file header.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageFileHeader_Characteristics.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageFileHeader.Characteristics%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageFileHeader.cs/#L87">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageFileHeader_Characteristics_" data-uid="PeNet.Header.Pe.ImageFileHeader.Characteristics*"></a>
+  <h4 id="PeNet_Header_Pe_ImageFileHeader_Characteristics" data-uid="PeNet.Header.Pe.ImageFileHeader.Characteristics">Characteristics</h4>
+  <div class="markdown level1 summary"><p>Set of flags which describe the PE file in detail.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FileCharacteristicsType Characteristics { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="PeNet.Header.Pe.FileCharacteristicsType.html">FileCharacteristicsType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageFileHeader_CharacteristicsResolved.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageFileHeader.CharacteristicsResolved%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageFileHeader.cs/#L97">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageFileHeader_CharacteristicsResolved_" data-uid="PeNet.Header.Pe.ImageFileHeader.CharacteristicsResolved*"></a>
+  <h4 id="PeNet_Header_Pe_ImageFileHeader_CharacteristicsResolved" data-uid="PeNet.Header.Pe.ImageFileHeader.CharacteristicsResolved">CharacteristicsResolved</h4>
+  <div class="markdown level1 summary"><p>Set of flags which describe the PE file in detail resolved
+to a readable list of strings.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; CharacteristicsResolved { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageFileHeader_Machine.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageFileHeader.Machine%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageFileHeader.cs/#L27">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageFileHeader_Machine_" data-uid="PeNet.Header.Pe.ImageFileHeader.Machine*"></a>
+  <h4 id="PeNet_Header_Pe_ImageFileHeader_Machine" data-uid="PeNet.Header.Pe.ImageFileHeader.Machine">Machine</h4>
+  <div class="markdown level1 summary"><p>The machine (CPU type) the PE file is intended for.
+For a string use MachineResolved</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MachineType Machine { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="PeNet.Header.Pe.MachineType.html">MachineType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageFileHeader_MachineResolved.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageFileHeader.MachineResolved%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageFileHeader.cs/#L36">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageFileHeader_MachineResolved_" data-uid="PeNet.Header.Pe.ImageFileHeader.MachineResolved*"></a>
+  <h4 id="PeNet_Header_Pe_ImageFileHeader_MachineResolved" data-uid="PeNet.Header.Pe.ImageFileHeader.MachineResolved">MachineResolved</h4>
+  <div class="markdown level1 summary"><p>String representation of the Machine flag.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string MachineResolved { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageFileHeader_NumberOfSections.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageFileHeader.NumberOfSections%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageFileHeader.cs/#L41">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageFileHeader_NumberOfSections_" data-uid="PeNet.Header.Pe.ImageFileHeader.NumberOfSections*"></a>
+  <h4 id="PeNet_Header_Pe_ImageFileHeader_NumberOfSections" data-uid="PeNet.Header.Pe.ImageFileHeader.NumberOfSections">NumberOfSections</h4>
+  <div class="markdown level1 summary"><p>The number of sections in the PE file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort NumberOfSections { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt16</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageFileHeader_NumberOfSymbols.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageFileHeader.NumberOfSymbols%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageFileHeader.cs/#L69">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageFileHeader_NumberOfSymbols_" data-uid="PeNet.Header.Pe.ImageFileHeader.NumberOfSymbols*"></a>
+  <h4 id="PeNet_Header_Pe_ImageFileHeader_NumberOfSymbols" data-uid="PeNet.Header.Pe.ImageFileHeader.NumberOfSymbols">NumberOfSymbols</h4>
+  <div class="markdown level1 summary"><p>The number of COFF symbols.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint NumberOfSymbols { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageFileHeader_PointerToSymbolTable.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageFileHeader.PointerToSymbolTable%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageFileHeader.cs/#L60">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageFileHeader_PointerToSymbolTable_" data-uid="PeNet.Header.Pe.ImageFileHeader.PointerToSymbolTable*"></a>
+  <h4 id="PeNet_Header_Pe_ImageFileHeader_PointerToSymbolTable" data-uid="PeNet.Header.Pe.ImageFileHeader.PointerToSymbolTable">PointerToSymbolTable</h4>
+  <div class="markdown level1 summary"><p>Pointer to COFF symbols table. They are rare in PE files,
+but often in obj files.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint PointerToSymbolTable { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageFileHeader_SizeOfOptionalHeader.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageFileHeader.SizeOfOptionalHeader%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageFileHeader.cs/#L78">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageFileHeader_SizeOfOptionalHeader_" data-uid="PeNet.Header.Pe.ImageFileHeader.SizeOfOptionalHeader*"></a>
+  <h4 id="PeNet_Header_Pe_ImageFileHeader_SizeOfOptionalHeader" data-uid="PeNet.Header.Pe.ImageFileHeader.SizeOfOptionalHeader">SizeOfOptionalHeader</h4>
+  <div class="markdown level1 summary"><p>The size of the optional header which follow the file header.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort SizeOfOptionalHeader { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt16</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageFileHeader_TimeDateStamp.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageFileHeader.TimeDateStamp%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageFileHeader.cs/#L50">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageFileHeader_TimeDateStamp_" data-uid="PeNet.Header.Pe.ImageFileHeader.TimeDateStamp*"></a>
+  <h4 id="PeNet_Header_Pe_ImageFileHeader_TimeDateStamp" data-uid="PeNet.Header.Pe.ImageFileHeader.TimeDateStamp">TimeDateStamp</h4>
+  <div class="markdown level1 summary"><p>Time and date stamp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint TimeDateStamp { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageFileHeader_ResolveFileCharacteristics_PeNet_Header_Pe_FileCharacteristicsType_.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageFileHeader.ResolveFileCharacteristics(PeNet.Header.Pe.FileCharacteristicsType)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageFileHeader.cs/#L106">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageFileHeader_ResolveFileCharacteristics_" data-uid="PeNet.Header.Pe.ImageFileHeader.ResolveFileCharacteristics*"></a>
+  <h4 id="PeNet_Header_Pe_ImageFileHeader_ResolveFileCharacteristics_PeNet_Header_Pe_FileCharacteristicsType_" data-uid="PeNet.Header.Pe.ImageFileHeader.ResolveFileCharacteristics(PeNet.Header.Pe.FileCharacteristicsType)">ResolveFileCharacteristics(FileCharacteristicsType)</h4>
+  <div class="markdown level1 summary"><p>Resolves the characteristics attribute from the COFF header to an
+object which holds all the characteristics a boolean properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;string&gt; ResolveFileCharacteristics(FileCharacteristicsType characteristics)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="PeNet.Header.Pe.FileCharacteristicsType.html">FileCharacteristicsType</a></td>
+        <td><span class="parametername">characteristics</span></td>
+        <td><p>File header characteristics.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><p>List with set flags.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageFileHeader_ResolveMachine_PeNet_Header_Pe_MachineType_.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageFileHeader.ResolveMachine(PeNet.Header.Pe.MachineType)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageFileHeader.cs/#L125">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageFileHeader_ResolveMachine_" data-uid="PeNet.Header.Pe.ImageFileHeader.ResolveMachine*"></a>
+  <h4 id="PeNet_Header_Pe_ImageFileHeader_ResolveMachine_PeNet_Header_Pe_MachineType_" data-uid="PeNet.Header.Pe.ImageFileHeader.ResolveMachine(PeNet.Header.Pe.MachineType)">ResolveMachine(MachineType)</h4>
+  <div class="markdown level1 summary"><p>Resolves the target machine number to a string containing
+the name of the target machine.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ResolveMachine(MachineType targetMachine)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="PeNet.Header.Pe.MachineType.html">MachineType</a></td>
+        <td><span class="parametername">targetMachine</span></td>
+        <td><p>Target machine value from the COFF header.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Name of the target machine as string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageFileHeader.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageFileHeader%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageFileHeader.cs/#L11" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

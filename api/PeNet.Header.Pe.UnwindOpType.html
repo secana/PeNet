@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace PeNet
+    <title>Enum UnwindOpType
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace PeNet
+    <meta name="title" content="Enum UnwindOpType
    ">
     <meta name="generator" content="docfx 2.50.0.0">
     
@@ -68,23 +68,81 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="PeNet">
+            <article class="content wrap" id="_content" data-uid="PeNet.Header.Pe.UnwindOpType">
   
-  <h1 id="PeNet" data-uid="PeNet" class="text-break">Namespace PeNet
+  
+  <h1 id="PeNet_Header_Pe_UnwindOpType" data-uid="PeNet.Header.Pe.UnwindOpType" class="text-break">Enum UnwindOpType
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>UnwindOp Codes for the unwind information
+used to walk the stack in x64 applications.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="classes">Classes
+  <h6><strong>Namespace</strong>: <a class="xref" href="PeNet.Header.Pe.html">PeNet.Header.Pe</a></h6>
+  <h6><strong>Assembly</strong>: PeNet.dll</h6>
+  <h5 id="PeNet_Header_Pe_UnwindOpType_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public enum UnwindOpType : byte</code></pre>
+  </div>
+  <h3 id="fields">Fields
   </h3>
-      <h4><a class="xref" href="PeNet.ExtensionMethods.html">ExtensionMethods</a></h4>
-      <section><p>Extensions method to work make the work with buffers
-and addresses easier.</p>
-</section>
-      <h4><a class="xref" href="PeNet.PeFile.html">PeFile</a></h4>
-      <section><p>This class represents a Portable Executable (PE) file and makes the different
-header and properties accessible.</p>
-</section>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    <thead>
+    <tbody>
+      <tr>
+        <td id="PeNet_Header_Pe_UnwindOpType_AllocLarge">AllocLarge</td>
+        <td><p>Allocate large size on stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_UnwindOpType_AllocSmall">AllocSmall</td>
+        <td><p>Allocate small size on stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_UnwindOpType_PushMachframe">PushMachframe</td>
+        <td><p>Push a machine frame, which is used to record the effect
+of a hardware interrupt.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_UnwindOpType_PushNonvol">PushNonvol</td>
+        <td><p>Push a non volatile integer.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_UnwindOpType_SaveNonvol">SaveNonvol</td>
+        <td><p>Save non volatile register to stack by a MOV.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_UnwindOpType_SaveNonvolFar">SaveNonvolFar</td>
+        <td><p>Save non volatile register to stack with
+a long offset by a MOV.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_UnwindOpType_SaveXmm128">SaveXmm128</td>
+        <td><p>Save a XMM (128 bit) register to the stack.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_UnwindOpType_SaveXmm128Far">SaveXmm128Far</td>
+        <td><p>Save a XMM (128 bit) register to the stack
+with a long offset.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_UnwindOpType_SetFpreg">SetFpreg</td>
+        <td><p>Establish frame pointer register.</p>
+</td>
+      </tr>
+    </tbody>
+  </thead></thead></table>
 </article>
           </div>
           
@@ -92,6 +150,12 @@ header and properties accessible.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_UnwindOpType.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.UnwindOpType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/UnwindCode.cs/#L58" class="contribution-link">View Source</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
