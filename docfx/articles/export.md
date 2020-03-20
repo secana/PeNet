@@ -23,7 +23,7 @@ Console.WriteLine(pefile.ImageResourceDirectory);
 Output: 
 
 ```none
-IMAGE_RESOURCE_DIRECTORY
+ImageResourceDirectory
 Characteristics: 0
 TimeDateStamp: 0
 MajorVersion: 0
