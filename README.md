@@ -25,6 +25,6 @@ The project is automatically build, tested and released with an [Azure Pipeline]
 To release a new version, push a tagged commit. For example:
 
  ```powershell
- git tag -a v1.0.0 -m 'Release version 1.0.0'
- git push origin v1.0.0
+ git tag -a v2.0.0 -m 'Release version 2.0.0'
+ git push origin v2.0.0
  ```
