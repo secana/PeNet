@@ -161,8 +161,8 @@ namespace PeNet
         /// <param name="useOnlineCrl">Check certificate chain online or offline.</param>
         /// <returns>True if cert chain is valid and from a trusted CA.</returns>
         public bool HasValidCertChain(bool useOnlineCrl)
-            => Authenticode?.SigningCertificate != null 
-                   && HasValidCertChain(Authenticode.SigningCertificate, new TimeSpan(0,0,0,10), useOnlineCrl);
+            => Authenticode?.SigningCertificate != null
+                   && HasValidCertChain(Authenticode.SigningCertificate, new TimeSpan(0, 0, 0, 10), useOnlineCrl);
 
         /// <summary>
         ///     Checks if cert is from a trusted CA with a valid certificate chain.
@@ -217,6 +217,11 @@ namespace PeNet
         /// </summary>
         public ImageSectionHeader[]? ImageSectionHeaders => _nativeStructureParsers.ImageSectionHeaders;
 
+        /// <summary>
+        /// Remove a section from the PE file.
+        /// </summary>
+        /// <param name="name">Name of the section to remove.</param>
+        /// <param name="removeContent">Flag if the content should be removed or only the section header entry.</param>
         public void RemoveSection(string name, bool removeContent = true)
         {
             var sectionToRemove = ImageSectionHeaders.First(s => s.Name == name);
@@ -225,7 +230,7 @@ namespace PeNet
             var newSections = ImageSectionHeaders.Where(s => s.Name != name).ToArray();
 
             // Change number of sections in the file header
-            ImageNtHeaders!.FileHeader.NumberOfSections = (ushort) (ImageNtHeaders.FileHeader.NumberOfSections - 1);
+            ImageNtHeaders!.FileHeader.NumberOfSections = (ushort)(ImageNtHeaders.FileHeader.NumberOfSections - 1);
 
             if (removeContent)
             {
@@ -238,23 +243,36 @@ namespace PeNet
                     }
                 }
 
-                // Fix virtual size
-                for(var i = 1; i < newSections.Count(); i++)
-                {
-                    newSections[i - 1].VirtualSize = newSections[i].VirtualAddress - newSections[i - 1].VirtualAddress; 
-                }
-
                 // Remove section content
                 RawFile.RemoveRange(sectionToRemove.PointerToRawData, sectionToRemove.SizeOfRawData);
+            }
+
+            // Fix virtual size
+            for (var i = 1; i < newSections.Count(); i++)
+            {
+                newSections[i - 1].VirtualSize = newSections[i].VirtualAddress - newSections[i - 1].VirtualAddress;
             }
 
             // Replace old section headers with new section headers
             var sectionHeaderOffset = ImageDosHeader!.E_lfanew + ImageNtHeaders!.FileHeader.SizeOfOptionalHeader + 0x18;
             var sizeOfSection = 0x28;
-            var newRawSections = new byte[newSections.Count() * sizeOfSection]; 
-            for(var i = 0; i < newSections.Count(); i++)
+            var newRawSections = new byte[newSections.Count() * sizeOfSection];
+            for (var i = 0; i < newSections.Count(); i++)
             {
-                Array.Copy(newSections[i].ToArray(), 0, newRawSections, i*sizeOfSection, sizeOfSection);
+                Array.Copy(newSections[i].ToArray(), 0, newRawSections, i * sizeOfSection, sizeOfSection);
+            }
+
+            // Null the data directory entry if any available
+            var de = ImageNtHeaders
+                .OptionalHeader
+                .DataDirectory
+                .FirstOrDefault(d => d.VirtualAddress == sectionToRemove.VirtualAddress
+                    && d.Size == sectionToRemove.VirtualSize);
+
+            if (de != null)
+            {
+                de.Size = 0;
+                de.VirtualAddress = 0;
             }
 
             // Null the old section headers
@@ -262,6 +280,8 @@ namespace PeNet
 
             // Write the new sections headers
             RawFile.WriteBytes(sectionHeaderOffset, newRawSections);
+
+            
         }
 
         /// <summary>
@@ -378,40 +398,40 @@ namespace PeNet
         /// <summary>
         ///     The SHA-256 hash sum of the binary.
         /// </summary>
-        public string Sha256 
+        public string Sha256
             => _sha256 ??= ComputeHash(RawFile, new SHA256Managed().ComputeHash);
 
         /// <summary>
         ///     The SHA-1 hash sum of the binary.
         /// </summary>
-        public string Sha1 
+        public string Sha1
             => _sha1 ??= ComputeHash(RawFile, new SHA1Managed().ComputeHash);
 
         /// <summary>
         ///     The MD5 of hash sum of the binary.
         /// </summary>
-        public string Md5 
+        public string Md5
             => _md5 ??= ComputeHash(RawFile, new MD5CryptoServiceProvider().ComputeHash);
 
         /// <summary>
         ///     The Import Hash of the binary if any imports are
         ///     given else null;
         /// </summary>
-        public string? ImpHash 
+        public string? ImpHash
             => _impHash ??= new ImportHash(ImportedFunctions)?.ImpHash;
 
         /// <summary>
         ///     The Version ID of each module
         ///     if the PE is a CLR assembly.
         /// </summary>
-        public List<Guid> ClrModuleVersionIds 
+        public List<Guid> ClrModuleVersionIds
             => (_netGuids ??= new NetGuids(this)).ModuleVersionIds;
 
         /// <summary>
         ///     The COM TypeLib ID of the assembly, if specified,
         ///     and if the PE is a CLR assembly.
         /// </summary>
-        public string ClrComTypeLibId 
+        public string ClrComTypeLibId
             => (_netGuids ??= new NetGuids(this)).ComTypeLibId;
 
         /// <summary>
