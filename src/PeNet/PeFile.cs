@@ -250,7 +250,10 @@ namespace PeNet
             // Fix virtual size
             for (var i = 1; i < newSections.Count(); i++)
             {
-                newSections[i - 1].VirtualSize = newSections[i].VirtualAddress - newSections[i - 1].VirtualAddress;
+                if(newSections[i - 1].VirtualAddress < sectionToRemove.VirtualAddress)
+                {
+                    newSections[i - 1].VirtualSize = newSections[i].VirtualAddress - newSections[i - 1].VirtualAddress;
+                }
             }
 
             // Replace old section headers with new section headers
