@@ -139,5 +139,18 @@ namespace PeNet.Test
             using var peFile = new PeFile(file);
             Assert.Equal(expected, peFile.HasValidCertChain(online));
         }
+
+        [Theory]
+        [InlineData(@"Binaries/remove-section.exe", true, "1e556b0da4925dec2b923de11d6806f8514021d4a8d4dcb741a210f19cbec567")]
+        [InlineData(@"Binaries/remove-section.exe", false, "e046941f6cf3a8c7905d0837400bf3d0527e24312d900f7bba94521da2c4ac8e")]
+        public void RemoveSection_GivenPeFile_ReturnsPeWithRemovedSection(string file, bool removeContent, string expectedSha256)
+        {
+            using var peFile = new PeFile(file);
+            
+            peFile.RemoveSection(".rsrc", removeContent);
+            var actual = peFile.Sha256;
+
+            Assert.Equal(expectedSha256, actual);
+        }
     }
 }

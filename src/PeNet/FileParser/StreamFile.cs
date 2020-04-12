@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace PeNet.FileParser
 {
     public class StreamFile : IRawFile
     {
-        private readonly Stream _stream;
+        private Stream _stream;
 
         public long Length => _stream.Length;
 
@@ -146,6 +147,15 @@ namespace PeNet.FileParser
         public void Dispose()
         {
             _stream.Dispose();
+        }
+
+        public void RemoveRange(long offset, long length)
+        {
+            var _buff = this.ToArray();
+            var x = _buff.ToList();
+            x.RemoveRange((int) offset, (int) length);
+            _stream.Dispose();
+            _stream = new MemoryStream(_buff.ToArray());
         }
     }
 }

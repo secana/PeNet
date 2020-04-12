@@ -107,5 +107,12 @@ namespace PeNet.FileParser
         /// in bytes.
         /// </summary>
         long Length { get; }
+
+        /// <summary>
+        /// Remove a byte range from the underlying file.
+        /// </summary>
+        /// <param name="offset">Offset of the range to remove.</param>
+        /// <param name="length">Length of the range to remove.</param>
+        void RemoveRange(long offset, long length);
     }
 }
