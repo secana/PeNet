@@ -155,6 +155,28 @@ namespace PeNet.Header.Pe
             }
             return st;
         }
+
+        /// <summary>
+        /// Convert the section header to a byte array with the
+        /// correct layout for a PE file.
+        /// </summary>
+        /// <returns>Section header as a byte array.</returns>
+        public byte[] ToArray() {
+            var rawData = new BufferFile(new byte[0x28]); // Section header size is 40 bytes
+            
+            rawData.WriteBytes(0x00, ASCIIEncoding.ASCII.GetBytes(Name));
+            rawData.WriteUInt(0x08, VirtualSize);
+            rawData.WriteUInt(0x0C, VirtualAddress);
+            rawData.WriteUInt(0x10, SizeOfRawData);
+            rawData.WriteUInt(0x14, PointerToRawData);
+            rawData.WriteUInt(0x18, PointerToRelocations);
+            rawData.WriteUInt(0x1C, PointerToLinenumbers);
+            rawData.WriteUShort(0x20, NumberOfRelocations);
+            rawData.WriteUShort(0x22, NumberOfLinenumbers);
+            rawData.WriteUInt(0x24, (uint) Characteristics);
+
+            return rawData.ToArray();
+        }
     }
 
     /// <summary>

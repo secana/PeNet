@@ -147,5 +147,10 @@ namespace PeNet.FileParser
         {
             _stream.Dispose();
         }
+
+        public void RemoveRange(long offset, long length)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

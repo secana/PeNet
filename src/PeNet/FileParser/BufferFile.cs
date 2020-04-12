@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace PeNet.FileParser
@@ -77,10 +78,7 @@ namespace PeNet.FileParser
 
         public void WriteBytes(long offset, Span<byte> bytes)
         {
-            for(var i = (int) offset; i < bytes.Length; i++)
-            {
-                _buff[offset] = bytes[i];
-            }
+            Array.Copy(bytes.ToArray(), 0, _buff, offset, bytes.Length);
         }
 
         public void WriteUInt(long offset, uint value)
@@ -113,6 +111,13 @@ namespace PeNet.FileParser
         }
 
         public byte[] ToArray() => _buff;
+
+        public void RemoveRange(long offset, long length)
+        {
+            var x = _buff.ToList();
+            x.RemoveRange((int) offset, (int) length);
+            _buff = x.ToArray();
+        }
 
         public void Dispose()
         {

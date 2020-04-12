@@ -217,6 +217,53 @@ namespace PeNet
         /// </summary>
         public ImageSectionHeader[]? ImageSectionHeaders => _nativeStructureParsers.ImageSectionHeaders;
 
+        public void RemoveSection(string name, bool removeContent = true)
+        {
+            var sectionToRemove = ImageSectionHeaders.First(s => s.Name == name);
+
+            // Remove section from list of sections
+            var newSections = ImageSectionHeaders.Where(s => s.Name != name).ToArray();
+
+            // Change number of sections in the file header
+            ImageNtHeaders!.FileHeader.NumberOfSections = (ushort) (ImageNtHeaders.FileHeader.NumberOfSections - 1);
+
+            if (removeContent)
+            {
+                // Reloc the physical address of all sections
+                foreach (var s in newSections)
+                {
+                    if (s.PointerToRawData > sectionToRemove.PointerToRawData)
+                    {
+                        s.PointerToRawData -= sectionToRemove.SizeOfRawData;
+                    }
+                }
+
+                // Fix virtual size
+                for(var i = 1; i < newSections.Count(); i++)
+                {
+                    newSections[i - 1].VirtualSize = newSections[i].VirtualAddress - newSections[i - 1].VirtualAddress; 
+                }
+
+                // Remove section content
+                RawFile.RemoveRange(sectionToRemove.PointerToRawData, sectionToRemove.SizeOfRawData);
+            }
+
+            // Replace old section headers with new section headers
+            var sectionHeaderOffset = ImageDosHeader!.E_lfanew + ImageNtHeaders!.FileHeader.SizeOfOptionalHeader + 0x18;
+            var sizeOfSection = 0x28;
+            var newRawSections = new byte[newSections.Count() * sizeOfSection]; 
+            for(var i = 0; i < newSections.Count(); i++)
+            {
+                Array.Copy(newSections[i].ToArray(), 0, newRawSections, i*sizeOfSection, sizeOfSection);
+            }
+
+            // Null the old section headers
+            RawFile.WriteBytes(sectionHeaderOffset, new byte[ImageSectionHeaders.Count() * sizeOfSection]);
+
+            // Write the new sections headers
+            RawFile.WriteBytes(sectionHeaderOffset, newRawSections);
+        }
+
         /// <summary>
         ///     Access the ImageExportDirectory of the PE file.
         /// </summary>
