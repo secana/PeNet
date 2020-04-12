@@ -18,6 +18,9 @@
     <ProjectReference Include="..\..\src\PeNet\PeNet.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Binaries\remove-section.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Header\Authenticode\pidgin.pkcs7">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
