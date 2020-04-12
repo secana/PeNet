@@ -230,7 +230,7 @@ namespace PeNet
             var newSections = ImageSectionHeaders.Where(s => s.Name != name).ToArray();
 
             // Change number of sections in the file header
-            ImageNtHeaders!.FileHeader.NumberOfSections = (ushort)(ImageNtHeaders.FileHeader.NumberOfSections - 1);
+            ImageNtHeaders!.FileHeader.NumberOfSections--;
 
             if (removeContent)
             {
