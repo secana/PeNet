@@ -324,6 +324,19 @@ references:
   isSpec: "True"
   fullName: PeNet.FileParser.BufferFile.ReadUShort
   nameWithType: BufferFile.ReadUShort
+- uid: PeNet.FileParser.BufferFile.RemoveRange(System.Int64,System.Int64)
+  name: RemoveRange(Int64, Int64)
+  href: api/PeNet.FileParser.BufferFile.html#PeNet_FileParser_BufferFile_RemoveRange_System_Int64_System_Int64_
+  commentId: M:PeNet.FileParser.BufferFile.RemoveRange(System.Int64,System.Int64)
+  fullName: PeNet.FileParser.BufferFile.RemoveRange(System.Int64, System.Int64)
+  nameWithType: BufferFile.RemoveRange(Int64, Int64)
+- uid: PeNet.FileParser.BufferFile.RemoveRange*
+  name: RemoveRange
+  href: api/PeNet.FileParser.BufferFile.html#PeNet_FileParser_BufferFile_RemoveRange_
+  commentId: Overload:PeNet.FileParser.BufferFile.RemoveRange
+  isSpec: "True"
+  fullName: PeNet.FileParser.BufferFile.RemoveRange
+  nameWithType: BufferFile.RemoveRange
 - uid: PeNet.FileParser.BufferFile.ToArray
   name: ToArray()
   href: api/PeNet.FileParser.BufferFile.html#PeNet_FileParser_BufferFile_ToArray
@@ -528,6 +541,19 @@ references:
   isSpec: "True"
   fullName: PeNet.FileParser.IRawFile.ReadUShort
   nameWithType: IRawFile.ReadUShort
+- uid: PeNet.FileParser.IRawFile.RemoveRange(System.Int64,System.Int64)
+  name: RemoveRange(Int64, Int64)
+  href: api/PeNet.FileParser.IRawFile.html#PeNet_FileParser_IRawFile_RemoveRange_System_Int64_System_Int64_
+  commentId: M:PeNet.FileParser.IRawFile.RemoveRange(System.Int64,System.Int64)
+  fullName: PeNet.FileParser.IRawFile.RemoveRange(System.Int64, System.Int64)
+  nameWithType: IRawFile.RemoveRange(Int64, Int64)
+- uid: PeNet.FileParser.IRawFile.RemoveRange*
+  name: RemoveRange
+  href: api/PeNet.FileParser.IRawFile.html#PeNet_FileParser_IRawFile_RemoveRange_
+  commentId: Overload:PeNet.FileParser.IRawFile.RemoveRange
+  isSpec: "True"
+  fullName: PeNet.FileParser.IRawFile.RemoveRange
+  nameWithType: IRawFile.RemoveRange
 - uid: PeNet.FileParser.IRawFile.ToArray
   name: ToArray()
   href: api/PeNet.FileParser.IRawFile.html#PeNet_FileParser_IRawFile_ToArray
@@ -758,6 +784,19 @@ references:
   isSpec: "True"
   fullName: PeNet.FileParser.StreamFile.ReadUShort
   nameWithType: StreamFile.ReadUShort
+- uid: PeNet.FileParser.StreamFile.RemoveRange(System.Int64,System.Int64)
+  name: RemoveRange(Int64, Int64)
+  href: api/PeNet.FileParser.StreamFile.html#PeNet_FileParser_StreamFile_RemoveRange_System_Int64_System_Int64_
+  commentId: M:PeNet.FileParser.StreamFile.RemoveRange(System.Int64,System.Int64)
+  fullName: PeNet.FileParser.StreamFile.RemoveRange(System.Int64, System.Int64)
+  nameWithType: StreamFile.RemoveRange(Int64, Int64)
+- uid: PeNet.FileParser.StreamFile.RemoveRange*
+  name: RemoveRange
+  href: api/PeNet.FileParser.StreamFile.html#PeNet_FileParser_StreamFile_RemoveRange_
+  commentId: Overload:PeNet.FileParser.StreamFile.RemoveRange
+  isSpec: "True"
+  fullName: PeNet.FileParser.StreamFile.RemoveRange
+  nameWithType: StreamFile.RemoveRange
 - uid: PeNet.FileParser.StreamFile.ToArray
   name: ToArray()
   href: api/PeNet.FileParser.StreamFile.html#PeNet_FileParser_StreamFile_ToArray
@@ -8256,6 +8295,19 @@ references:
   isSpec: "True"
   fullName: PeNet.Header.Pe.ImageSectionHeader.SizeOfRawData
   nameWithType: ImageSectionHeader.SizeOfRawData
+- uid: PeNet.Header.Pe.ImageSectionHeader.ToArray
+  name: ToArray()
+  href: api/PeNet.Header.Pe.ImageSectionHeader.html#PeNet_Header_Pe_ImageSectionHeader_ToArray
+  commentId: M:PeNet.Header.Pe.ImageSectionHeader.ToArray
+  fullName: PeNet.Header.Pe.ImageSectionHeader.ToArray()
+  nameWithType: ImageSectionHeader.ToArray()
+- uid: PeNet.Header.Pe.ImageSectionHeader.ToArray*
+  name: ToArray
+  href: api/PeNet.Header.Pe.ImageSectionHeader.html#PeNet_Header_Pe_ImageSectionHeader_ToArray_
+  commentId: Overload:PeNet.Header.Pe.ImageSectionHeader.ToArray
+  isSpec: "True"
+  fullName: PeNet.Header.Pe.ImageSectionHeader.ToArray
+  nameWithType: ImageSectionHeader.ToArray
 - uid: PeNet.Header.Pe.ImageSectionHeader.VirtualAddress
   name: VirtualAddress
   href: api/PeNet.Header.Pe.ImageSectionHeader.html#PeNet_Header_Pe_ImageSectionHeader_VirtualAddress
@@ -11282,6 +11334,19 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.RawFile
   nameWithType: PeFile.RawFile
+- uid: PeNet.PeFile.RemoveSection(System.String,System.Boolean)
+  name: RemoveSection(String, Boolean)
+  href: api/PeNet.PeFile.html#PeNet_PeFile_RemoveSection_System_String_System_Boolean_
+  commentId: M:PeNet.PeFile.RemoveSection(System.String,System.Boolean)
+  fullName: PeNet.PeFile.RemoveSection(System.String, System.Boolean)
+  nameWithType: PeFile.RemoveSection(String, Boolean)
+- uid: PeNet.PeFile.RemoveSection*
+  name: RemoveSection
+  href: api/PeNet.PeFile.html#PeNet_PeFile_RemoveSection_
+  commentId: Overload:PeNet.PeFile.RemoveSection
+  isSpec: "True"
+  fullName: PeNet.PeFile.RemoveSection
+  nameWithType: PeFile.RemoveSection
 - uid: PeNet.PeFile.Resources
   name: Resources
   href: api/PeNet.PeFile.html#PeNet_PeFile_Resources
