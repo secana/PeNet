@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 
 namespace PeNet.FileParser
 {
     public class StreamFile : IRawFile
     {
+        private const int MaxStackAlloc = 1024;
         private Stream _stream;
 
         public long Length => _stream.Length;
@@ -17,27 +19,26 @@ namespace PeNet.FileParser
 
         public string ReadAsciiString(long offset)
         {
-            _stream.Seek(offset, SeekOrigin.Begin);
-            var list = new List<char>();
-            while(true)
+            static int GetCStringLength(Stream stream, int stringOffset)
             {
-                var b = _stream.ReadByte();
-
-                if(b == -1)
+                stream.Seek(stringOffset, SeekOrigin.Begin);
+                var currentLength = 0;
+                while (stream.ReadByte() != 0x00)
                 {
-                    break;
+                    currentLength++;
                 }
-                else if(b == 0)
-                { 
-                    break;
-                }
-                else
-                {
-                    list.Add((char)b);
-                }
+                return currentLength;
             }
 
-            return new string(list.ToArray());
+            var length = GetCStringLength(_stream, (int)offset);
+
+            var tmp = length > MaxStackAlloc
+                ? new byte[length]
+                : stackalloc byte[length];
+
+            _stream.Seek(offset, SeekOrigin.Begin);
+            _stream.Read(tmp);
+            return Encoding.ASCII.GetString(tmp);
         }
 
         public Span<byte> AsSpan(long offset, long length)

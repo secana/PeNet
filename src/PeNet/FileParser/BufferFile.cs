@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,7 @@ namespace PeNet.FileParser
 {
     public class BufferFile : IRawFile
     {
+        private const int MaxStackAlloc = 1024;
         private byte[] _buff;
 
         public long Length => _buff.Length;
@@ -16,21 +18,25 @@ namespace PeNet.FileParser
 
         public string ReadAsciiString(long offset)
         {
-            static int GetCStringLength(byte[] buff, long stringOffset)
+            static int GetCStringLength(IReadOnlyList<byte> buff, int stringOffset)
             {
-                var offset = stringOffset;
-                var length = 0;
-                while (buff[offset] != 0x00)
+                var currentOffset = stringOffset;
+                var currentLength = 0;
+                while (buff[currentOffset] != 0x00)
                 {
-                    length++;
-                    offset++;
+                    currentLength++;
+                    currentOffset++;
                 }
-                return length;
+                return currentLength;
             }
 
-            var length = GetCStringLength(_buff, offset);
-            var tmp = new char[length];
-            for (long i = 0; i < length; i++)
+            var length = GetCStringLength(_buff, (int) offset);
+
+            var tmp = length > MaxStackAlloc 
+                ? new char[length] 
+                : stackalloc char[length];
+
+            for (var i = 0; i < length; i++)
             {
                 tmp[i] = (char)_buff[offset + i];
             }
