@@ -133,6 +133,13 @@ namespace PeNet
             => ImageNtHeaders?.FileHeader.Characteristics.HasFlag(FileCharacteristicsType.ExecutableImage) ?? false;
 
         /// <summary>
+        /// Returns true if the file is a
+        /// .NET executable.
+        /// </summary>
+        public bool IsDotNet
+            => ImageComDescriptor != null;
+
+        /// <summary>
         ///     Returns true if the PE file is a system driver
         ///     based on the Subsytem = 0x1 value in the Optional Header.
         /// </summary>
