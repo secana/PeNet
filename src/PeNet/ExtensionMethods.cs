@@ -33,21 +33,34 @@ namespace PeNet
         /// <returns>Raw file address.</returns>
         public static ulong RvaToOffset(this ulong rva, ICollection<ImageSectionHeader> sectionHeaders)
         {
-            ImageSectionHeader GetSectionForRva(ulong relVirAdr)
+            static ImageSectionHeader? GetSectionForRva(ICollection<ImageSectionHeader> sh, ulong relVirAdr)
             {
-                var notLastSection = sectionHeaders.FirstOrDefault(s =>
-                    relVirAdr >= s.VirtualAddress && relVirAdr < s.VirtualAddress + s.VirtualSize);
+                ImageSectionHeader? sec = null;
+                for (var i = 0; i < sh.Count; i++)
+                {
+                    if (relVirAdr >= sh.ElementAt(i).VirtualAddress
+                        && relVirAdr < sh.ElementAt(i).VirtualAddress + sh.ElementAt(i).VirtualSize)
+                    {
+                        sec = sh.ElementAt(i);
+                    }
+                }
 
-                if (notLastSection != null)
-                    return notLastSection;
+                if (sec != null)
+                    return sec;
 
-                var lastSection = sectionHeaders.LastOrDefault(s => 
-                        relVirAdr >= s.VirtualAddress && relVirAdr <= s.VirtualAddress + s.VirtualSize);
+                for (var i = sh.Count - 1; i >= 0; i--)
+                {
+                    if (relVirAdr >= sh.ElementAt(i).VirtualAddress &&
+                        relVirAdr <= sh.ElementAt(i).VirtualAddress + sh.ElementAt(i).VirtualSize)
+                    {
+                        sec = sh.ElementAt(i);
+                    }
+                }
 
-                return lastSection;
+                return sec;
             }
 
-            var section = GetSectionForRva(rva);
+            var section = GetSectionForRva(sectionHeaders, rva);
 
             if (section is null)
             {
