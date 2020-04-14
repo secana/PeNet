@@ -35,14 +35,13 @@ namespace PeNet
         {
             ImageSectionHeader GetSectionForRva(ulong relVirAdr)
             {
-                var sectionsByRva = sectionHeaders.OrderBy(s => s.VirtualAddress).ToList();
-                var notLastSection = sectionsByRva.FirstOrDefault(s =>
+                var notLastSection = sectionHeaders.FirstOrDefault(s =>
                     relVirAdr >= s.VirtualAddress && relVirAdr < s.VirtualAddress + s.VirtualSize);
 
                 if (notLastSection != null)
                     return notLastSection;
 
-                var lastSection = sectionsByRva.LastOrDefault(s => 
+                var lastSection = sectionHeaders.LastOrDefault(s => 
                         relVirAdr >= s.VirtualAddress && relVirAdr <= s.VirtualAddress + s.VirtualSize);
 
                 return lastSection;
