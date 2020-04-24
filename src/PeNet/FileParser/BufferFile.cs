@@ -31,17 +31,8 @@ namespace PeNet.FileParser
             }
 
             var length = GetCStringLength(_buff, (int) offset);
-
-            var tmp = length > MaxStackAlloc 
-                ? new char[length] 
-                : stackalloc char[length];
-
-            for (var i = 0; i < length; i++)
-            {
-                tmp[i] = (char)_buff[offset + i];
-            }
-
-            return new string(tmp);
+            var tmp = _buff.AsSpan((int)offset, length);
+            return Encoding.ASCII.GetString(tmp);
         }
 
         public Span<byte> AsSpan(long offset, long length) 
@@ -58,9 +49,8 @@ namespace PeNet.FileParser
                 }
                 size++;
             }
-            var bytes = new byte[size];
 
-            Array.Copy(_buff, (int)offset, bytes, 0, size);
+            var bytes = _buff.AsSpan((int) offset, size);
             return Encoding.Unicode.GetString(bytes);
         }
 
