@@ -1,48 +1,40 @@
 ﻿using System;
-using System.Collections;
 using System.IO;
 using System.IO.MemoryMappedFiles;
-using System.Linq;
 using System.Text;
 
 namespace PeNet.FileParser
 {
-    public class MMFile : IRawFile
+    /// <summary>
+    /// Parse the PE file as a memory mapped file.
+    /// This is useful for large files.
+    /// </summary>
+    unsafe public class MMFile : IRawFile, IDisposable
     {
         private const int MaxStackAlloc = 1024;
-        private MemoryMappedFile _mmf;
-        private MemoryMappedViewAccessor _va;
-        private MemoryMappedViewStream? _stream;
-        private FileInfo _fileInfo;
+        private readonly MemoryMappedFile _mmf;
+        private readonly MemoryMappedViewAccessor _va;
+        private readonly byte* ptr;
 
         public MMFile(string file)
         {
             _mmf = MemoryMappedFile.CreateFromFile(file, FileMode.Open);
             _va = _mmf.CreateViewAccessor();
-            _fileInfo = new FileInfo(file);
-            RemoveRangeNewFileName = _fileInfo.FullName;
+            _va.SafeMemoryMappedViewHandle.AcquirePointer(ref ptr);
+            Length = new FileInfo(file).Length;
         }
 
-        public string RemoveRangeNewFileName
-        {
-            get; set;
-        }
-
-        public long Length
-            => _fileInfo.Length;
+        public long Length { private set; get; }
 
         public Span<byte> AsSpan(long offset, long length)
         {
-            var array = new byte[length];
-            _va.ReadArray(offset, array, 0, (int) length);
-
-            return array.AsSpan();
+            return new Span<byte>(ptr + offset, (int) length);
         }
 
         public void Dispose()
         {
+            _va.SafeMemoryMappedViewHandle.ReleasePointer();
             _va.Dispose();
-            _stream?.Dispose();
             _mmf.Dispose();
         }
 
@@ -106,18 +98,7 @@ namespace PeNet.FileParser
 
         public void RemoveRange(long offset, long length)
         {
-            var list = ToArray().ToList();
-            list.RemoveRange((int)offset, (int)length);
-
-            _va.Dispose();
-            _mmf.Dispose();
-            var file = RemoveRangeNewFileName;
-
-            File.WriteAllBytes(file, list.ToArray());
-
-            _mmf = MemoryMappedFile.CreateFromFile(file, FileMode.Open);
-            _va = _mmf.CreateViewAccessor();
-            _fileInfo = new FileInfo(file);
+            throw new NotImplementedException($"RemoveRange is not available for memory mapped files");
         }
 
         public byte[] ToArray()
@@ -127,15 +108,6 @@ namespace PeNet.FileParser
 
             return array;
         }
-
-        public Stream ToStream()
-        {
-            if (_stream is null)
-                _stream = _mmf.CreateViewStream();
-
-            return _stream;
-        }
-
 
         public void WriteByte(long offset, byte value)
         {

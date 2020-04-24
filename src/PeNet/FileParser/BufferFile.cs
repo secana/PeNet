@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -8,7 +7,6 @@ namespace PeNet.FileParser
 {
     public class BufferFile : IRawFile
     {
-        private const int MaxStackAlloc = 1024;
         private byte[] _buff;
 
         public long Length => _buff.Length;
@@ -65,8 +63,6 @@ namespace PeNet.FileParser
         public ushort ReadUShort(long offset)
             => BitConverter.ToUInt16(_buff, (int) offset);
 
-        public Stream ToStream() => new MemoryStream(_buff);
-
         public void WriteByte(long offset, byte value)
         {
             _buff[offset] = value;
@@ -113,11 +109,6 @@ namespace PeNet.FileParser
             var x = _buff.ToList();
             x.RemoveRange((int) offset, (int) length);
             _buff = x.ToArray();
-        }
-
-        public void Dispose()
-        {
-            _buff = new byte[0];
         }
     }
 }

@@ -4,7 +4,7 @@ using Xunit;
 
 namespace PeNet.Test.Header.Net
 {
-    public class NetCoreConsoleTest : IDisposable
+    public class NetCoreConsoleTest
     {
         private readonly PeFile _peFile = new PeFile(@"./Binaries/NetCoreConsole.dll");
 
@@ -645,11 +645,6 @@ namespace PeNet.Test.Header.Net
         public void NetGuid_ComTypeLibId()
         {
             Assert.Equal(string.Empty, _peFile.ClrComTypeLibId);
-        }
-
-        public void Dispose()
-        {
-            _peFile?.Dispose();
         }
     }
 }

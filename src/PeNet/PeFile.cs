@@ -21,7 +21,7 @@ namespace PeNet
     ///     This class represents a Portable Executable (PE) file and makes the different
     ///     header and properties accessible.
     /// </summary>
-    public class PeFile : IDisposable
+    public class PeFile
     {
         private readonly DataDirectoryParsers _dataDirectoryParsers;
         private readonly NativeStructureParsers _nativeStructureParsers;
@@ -76,7 +76,7 @@ namespace PeNet
         /// </summary>
         /// <param name="peFile">Path to a PE file.</param>
         public PeFile(string peFile)
-            : this(new BufferFile(File.ReadAllBytes(peFile)))
+            : this(File.ReadAllBytes(peFile))
         { }
 
         /// <summary>
@@ -404,19 +404,20 @@ namespace PeNet
         ///     The SHA-256 hash sum of the binary.
         /// </summary>
         public string Sha256
-            => _sha256 ??= ComputeHash(RawFile, new SHA256Managed().ComputeHash);
+            => _sha256 ??= ComputeHash(RawFile, HashAlgorithmName.SHA256, 32);
+
 
         /// <summary>
         ///     The SHA-1 hash sum of the binary.
         /// </summary>
         public string Sha1
-            => _sha1 ??= ComputeHash(RawFile, new SHA1Managed().ComputeHash);
+            => _sha1 ??= ComputeHash(RawFile, HashAlgorithmName.SHA1, 20);
 
         /// <summary>
         ///     The MD5 of hash sum of the binary.
         /// </summary>
         public string Md5
-            => _md5 ??= ComputeHash(RawFile, new MD5CryptoServiceProvider().ComputeHash);
+            => _md5 ??= ComputeHash(RawFile, HashAlgorithmName.MD5, 16);
 
         /// <summary>
         ///     The Import Hash of the binary if any imports are
@@ -499,20 +500,17 @@ namespace PeNet
             return buf[1] == 0x5a && buf[0] == 0x4d; // MZ Header
         }
 
-        private string ComputeHash(IRawFile peFile, Func<Stream, byte[]> hashFunction)
+        private string ComputeHash(IRawFile peFile, HashAlgorithmName hashAlg, int hashLength)
         {
-            var sBuilder = new StringBuilder();
-            var hash = hashFunction.Invoke(peFile.ToStream());
+            var ha = HashAlgorithm.Create(hashAlg.Name);
+            Span<byte> hash = stackalloc byte[hashLength];
+            ha.TryComputeHash(RawFile.AsSpan(0, RawFile.Length), hash, out int _);
 
+            var sBuilder = new StringBuilder();
             foreach (var t in hash)
                 sBuilder.Append(t.ToString("x2"));
 
             return sBuilder.ToString();
-        }
-
-        public void Dispose()
-        {
-            RawFile.Dispose();
         }
     }
 }

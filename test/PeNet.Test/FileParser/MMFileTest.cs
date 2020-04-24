@@ -1,6 +1,6 @@
 ﻿using PeNet.FileParser;
+using System;
 using System.IO;
-using System.IO.MemoryMappedFiles;
 using Xunit;
 
 namespace PeNet.Test.FileParser
@@ -91,15 +91,9 @@ namespace PeNet.Test.FileParser
         [Fact]
         public void RemoveRange_RemovesRange()
         {
-            using var mmf = new MMFile(@"Binaries/mmf_test.bin")
-            {
-                RemoveRangeNewFileName = "mmf_test_removerange.bin"
-            };
+            using var mmf = new MMFile(@"Binaries/mmf_test.bin");
 
-            mmf.RemoveRange(2, 0x3E);
-
-            Assert.Equal(4, mmf.Length);
-            Assert.Equal(0x22116874u, mmf.ReadUInt(0));
+            Assert.Throws<NotImplementedException>(() => mmf.RemoveRange(2, 0x3E));
         }
 
         [Fact]
@@ -110,15 +104,6 @@ namespace PeNet.Test.FileParser
             var actual = mmf.ToArray();
 
             Assert.Equal(0x42, actual.Length);
-        }
-
-        [Fact]
-        public void ToStream_ReturnStream()
-        {
-            using var mmf = new MMFile(@"Binaries/mmf_test.bin");
-
-            Assert.NotNull(mmf.ToStream());
-            Assert.IsType<MemoryMappedViewStream>(mmf.ToStream());
         }
 
         [Fact]

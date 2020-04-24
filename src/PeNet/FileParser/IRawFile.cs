@@ -1,9 +1,8 @@
 ﻿using System;
-using System.IO;
 
 namespace PeNet.FileParser
 {
-    public interface IRawFile : IDisposable
+    public interface IRawFile
     {
         /// <summary>
         /// Read a byte at the given offset.
@@ -82,12 +81,6 @@ namespace PeNet.FileParser
         /// <param name="length">Length of the span in byte.</param>
         /// <returns></returns>
         Span<byte> AsSpan(long offset, long length);
-
-        /// <summary>
-        /// Get the underlying file as a stream.
-        /// </summary>
-        /// <returns>Stream representation of the file.</returns>
-        Stream ToStream();
 
         /// <summary>
         /// Get the underlying file as a byte array.

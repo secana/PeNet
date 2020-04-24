@@ -30,7 +30,7 @@ namespace PeNet.Test.Header.Pe
         [Fact]
         public void ImageSectionHeader_CorrectSectionNames()
         {
-            using var peFile = new PeFile(@"./Binaries/pdb_guid.exe");
+            var peFile = new PeFile(@"./Binaries/pdb_guid.exe");
             var snc = peFile.ImageSectionHeaders;
 
             Assert.Equal(".text", snc[0].Name);
