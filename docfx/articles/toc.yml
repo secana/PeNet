@@ -1,5 +1,7 @@
 - name: Introduction
   href: intro.md
+- name: Parser Options
+  href: parseroptions.md
 - name: Import Hash
   href: imphash.md
 - name: File Hashes
