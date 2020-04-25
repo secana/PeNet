@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class StreamFile
+    <title>Class MMFile
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class StreamFile
+    <meta name="title" content="Class MMFile
    ">
     <meta name="generator" content="docfx 2.52.0.0">
     
@@ -68,17 +68,19 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="PeNet.FileParser.StreamFile">
+            <article class="content wrap" id="_content" data-uid="PeNet.FileParser.MMFile">
   
   
-  <h1 id="PeNet_FileParser_StreamFile" data-uid="PeNet.FileParser.StreamFile" class="text-break">Class StreamFile
+  <h1 id="PeNet_FileParser_MMFile" data-uid="PeNet.FileParser.MMFile" class="text-break">Class MMFile
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Parse the PE file as a memory mapped file.
+This is useful for large files.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">StreamFile</span></div>
+    <div class="level1"><span class="xref">MMFile</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
@@ -87,26 +89,26 @@
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="PeNet.FileParser.html">PeNet.FileParser</a></h6>
   <h6><strong>Assembly</strong>: PeNet.dll</h6>
-  <h5 id="PeNet_FileParser_StreamFile_syntax">Syntax</h5>
+  <h5 id="PeNet_FileParser_MMFile_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class StreamFile : object, IRawFile, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class MMFile : object, IRawFile, IDisposable</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile__ctor_Stream_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.%23ctor(Stream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile__ctor_System_String_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.%23ctor(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L16">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L19">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile__ctor_" data-uid="PeNet.FileParser.StreamFile.#ctor*"></a>
-  <h4 id="PeNet_FileParser_StreamFile__ctor_Stream_" data-uid="PeNet.FileParser.StreamFile.#ctor(Stream)">StreamFile(Stream)</h4>
+  <a id="PeNet_FileParser_MMFile__ctor_" data-uid="PeNet.FileParser.MMFile.#ctor*"></a>
+  <h4 id="PeNet_FileParser_MMFile__ctor_System_String_" data-uid="PeNet.FileParser.MMFile.#ctor(System.String)">MMFile(String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StreamFile(Stream file)</code></pre>
+    <pre><code class="lang-csharp hljs">public MMFile(string file)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -119,7 +121,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Stream</span></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">file</span></td>
         <td></td>
       </tr>
@@ -129,13 +131,13 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_Length.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.Length%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_Length.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.Length%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L14">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L27">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_Length_" data-uid="PeNet.FileParser.StreamFile.Length*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_Length" data-uid="PeNet.FileParser.StreamFile.Length">Length</h4>
+  <a id="PeNet_FileParser_MMFile_Length_" data-uid="PeNet.FileParser.MMFile.Length*"></a>
+  <h4 id="PeNet_FileParser_MMFile_Length" data-uid="PeNet.FileParser.MMFile.Length">Length</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -161,13 +163,13 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_AsSpan_System_Int64_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.AsSpan(System.Int64%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_AsSpan_System_Int64_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.AsSpan(System.Int64%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L43">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L29">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_AsSpan_" data-uid="PeNet.FileParser.StreamFile.AsSpan*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_AsSpan_System_Int64_System_Int64_" data-uid="PeNet.FileParser.StreamFile.AsSpan(System.Int64,System.Int64)">AsSpan(Int64, Int64)</h4>
+  <a id="PeNet_FileParser_MMFile_AsSpan_" data-uid="PeNet.FileParser.MMFile.AsSpan*"></a>
+  <h4 id="PeNet_FileParser_MMFile_AsSpan_System_Int64_System_Int64_" data-uid="PeNet.FileParser.MMFile.AsSpan(System.Int64,System.Int64)">AsSpan(Int64, Int64)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -213,13 +215,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_Dispose.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_Dispose.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L141">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L34">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_Dispose_" data-uid="PeNet.FileParser.StreamFile.Dispose*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_Dispose" data-uid="PeNet.FileParser.StreamFile.Dispose">Dispose()</h4>
+  <a id="PeNet_FileParser_MMFile_Dispose_" data-uid="PeNet.FileParser.MMFile.Dispose*"></a>
+  <h4 id="PeNet_FileParser_MMFile_Dispose" data-uid="PeNet.FileParser.MMFile.Dispose">Dispose()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -228,13 +230,13 @@
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadAsciiString_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadAsciiString(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_ReadAsciiString_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.ReadAsciiString(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L19">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L41">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_ReadAsciiString_" data-uid="PeNet.FileParser.StreamFile.ReadAsciiString*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_ReadAsciiString_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadAsciiString(System.Int64)">ReadAsciiString(Int64)</h4>
+  <a id="PeNet_FileParser_MMFile_ReadAsciiString_" data-uid="PeNet.FileParser.MMFile.ReadAsciiString*"></a>
+  <h4 id="PeNet_FileParser_MMFile_ReadAsciiString_System_Int64_" data-uid="PeNet.FileParser.MMFile.ReadAsciiString(System.Int64)">ReadAsciiString(Int64)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -275,13 +277,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadByte_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadByte(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_ReadByte_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.ReadByte(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L70">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L69">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_ReadByte_" data-uid="PeNet.FileParser.StreamFile.ReadByte*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_ReadByte_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadByte(System.Int64)">ReadByte(Int64)</h4>
+  <a id="PeNet_FileParser_MMFile_ReadByte_" data-uid="PeNet.FileParser.MMFile.ReadByte*"></a>
+  <h4 id="PeNet_FileParser_MMFile_ReadByte_System_Int64_" data-uid="PeNet.FileParser.MMFile.ReadByte(System.Int64)">ReadByte(Int64)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -322,13 +324,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadUInt_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadUInt(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_ReadUInt_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.ReadUInt(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L76">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L73">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_ReadUInt_" data-uid="PeNet.FileParser.StreamFile.ReadUInt*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_ReadUInt_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadUInt(System.Int64)">ReadUInt(Int64)</h4>
+  <a id="PeNet_FileParser_MMFile_ReadUInt_" data-uid="PeNet.FileParser.MMFile.ReadUInt*"></a>
+  <h4 id="PeNet_FileParser_MMFile_ReadUInt_System_Int64_" data-uid="PeNet.FileParser.MMFile.ReadUInt(System.Int64)">ReadUInt(Int64)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -369,13 +371,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadULong_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadULong(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_ReadULong_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.ReadULong(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L84">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L76">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_ReadULong_" data-uid="PeNet.FileParser.StreamFile.ReadULong*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_ReadULong_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadULong(System.Int64)">ReadULong(Int64)</h4>
+  <a id="PeNet_FileParser_MMFile_ReadULong_" data-uid="PeNet.FileParser.MMFile.ReadULong*"></a>
+  <h4 id="PeNet_FileParser_MMFile_ReadULong_System_Int64_" data-uid="PeNet.FileParser.MMFile.ReadULong(System.Int64)">ReadULong(Int64)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -416,13 +418,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadUnicodeString_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadUnicodeString(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_ReadUnicodeString_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.ReadUnicodeString(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L51">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L79">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_ReadUnicodeString_" data-uid="PeNet.FileParser.StreamFile.ReadUnicodeString*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_ReadUnicodeString_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadUnicodeString(System.Int64)">ReadUnicodeString(Int64)</h4>
+  <a id="PeNet_FileParser_MMFile_ReadUnicodeString_" data-uid="PeNet.FileParser.MMFile.ReadUnicodeString*"></a>
+  <h4 id="PeNet_FileParser_MMFile_ReadUnicodeString_System_Int64_" data-uid="PeNet.FileParser.MMFile.ReadUnicodeString(System.Int64)">ReadUnicodeString(Int64)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -463,13 +465,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadUShort_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadUShort(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_ReadUShort_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.ReadUShort(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L92">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L96">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_ReadUShort_" data-uid="PeNet.FileParser.StreamFile.ReadUShort*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_ReadUShort_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadUShort(System.Int64)">ReadUShort(Int64)</h4>
+  <a id="PeNet_FileParser_MMFile_ReadUShort_" data-uid="PeNet.FileParser.MMFile.ReadUShort*"></a>
+  <h4 id="PeNet_FileParser_MMFile_ReadUShort_System_Int64_" data-uid="PeNet.FileParser.MMFile.ReadUShort(System.Int64)">ReadUShort(Int64)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -510,13 +512,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_RemoveRange_System_Int64_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.RemoveRange(System.Int64%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_RemoveRange_System_Int64_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.RemoveRange(System.Int64%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L146">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L99">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_RemoveRange_" data-uid="PeNet.FileParser.StreamFile.RemoveRange*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_RemoveRange_System_Int64_System_Int64_" data-uid="PeNet.FileParser.StreamFile.RemoveRange(System.Int64,System.Int64)">RemoveRange(Int64, Int64)</h4>
+  <a id="PeNet_FileParser_MMFile_RemoveRange_" data-uid="PeNet.FileParser.MMFile.RemoveRange*"></a>
+  <h4 id="PeNet_FileParser_MMFile_RemoveRange_System_Int64_System_Int64_" data-uid="PeNet.FileParser.MMFile.RemoveRange(System.Int64,System.Int64)">RemoveRange(Int64, Int64)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -547,13 +549,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_ToArray.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ToArray%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_ToArray.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.ToArray%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L100">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L104">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_ToArray_" data-uid="PeNet.FileParser.StreamFile.ToArray*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_ToArray" data-uid="PeNet.FileParser.StreamFile.ToArray">ToArray()</h4>
+  <a id="PeNet_FileParser_MMFile_ToArray_" data-uid="PeNet.FileParser.MMFile.ToArray*"></a>
+  <h4 id="PeNet_FileParser_MMFile_ToArray" data-uid="PeNet.FileParser.MMFile.ToArray">ToArray()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -577,13 +579,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_WriteByte_System_Int64_System_Byte_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.WriteByte(System.Int64%2CSystem.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_WriteByte_System_Int64_System_Byte_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.WriteByte(System.Int64%2CSystem.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L108">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L112">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_WriteByte_" data-uid="PeNet.FileParser.StreamFile.WriteByte*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_WriteByte_System_Int64_System_Byte_" data-uid="PeNet.FileParser.StreamFile.WriteByte(System.Int64,System.Byte)">WriteByte(Int64, Byte)</h4>
+  <a id="PeNet_FileParser_MMFile_WriteByte_" data-uid="PeNet.FileParser.MMFile.WriteByte*"></a>
+  <h4 id="PeNet_FileParser_MMFile_WriteByte_System_Int64_System_Byte_" data-uid="PeNet.FileParser.MMFile.WriteByte(System.Int64,System.Byte)">WriteByte(Int64, Byte)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -614,13 +616,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_WriteBytes_System_Int64_Span_System_Byte__.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.WriteBytes(System.Int64%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_WriteBytes_System_Int64_Span_System_Byte__.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.WriteBytes(System.Int64%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L114">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L119">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_WriteBytes_" data-uid="PeNet.FileParser.StreamFile.WriteBytes*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_WriteBytes_System_Int64_Span_System_Byte__" data-uid="PeNet.FileParser.StreamFile.WriteBytes(System.Int64,Span{System.Byte})">WriteBytes(Int64, Span&lt;Byte&gt;)</h4>
+  <a id="PeNet_FileParser_MMFile_WriteBytes_" data-uid="PeNet.FileParser.MMFile.WriteBytes*"></a>
+  <h4 id="PeNet_FileParser_MMFile_WriteBytes_System_Int64_Span_System_Byte__" data-uid="PeNet.FileParser.MMFile.WriteBytes(System.Int64,Span{System.Byte})">WriteBytes(Int64, Span&lt;Byte&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -651,13 +653,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_WriteUInt_System_Int64_System_UInt32_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.WriteUInt(System.Int64%2CSystem.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_WriteUInt_System_Int64_System_UInt32_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.WriteUInt(System.Int64%2CSystem.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L120">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L122">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_WriteUInt_" data-uid="PeNet.FileParser.StreamFile.WriteUInt*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_WriteUInt_System_Int64_System_UInt32_" data-uid="PeNet.FileParser.StreamFile.WriteUInt(System.Int64,System.UInt32)">WriteUInt(Int64, UInt32)</h4>
+  <a id="PeNet_FileParser_MMFile_WriteUInt_" data-uid="PeNet.FileParser.MMFile.WriteUInt*"></a>
+  <h4 id="PeNet_FileParser_MMFile_WriteUInt_System_Int64_System_UInt32_" data-uid="PeNet.FileParser.MMFile.WriteUInt(System.Int64,System.UInt32)">WriteUInt(Int64, UInt32)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -688,13 +690,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_WriteULong_System_Int64_System_UInt64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.WriteULong(System.Int64%2CSystem.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_WriteULong_System_Int64_System_UInt64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.WriteULong(System.Int64%2CSystem.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L127">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L128">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_WriteULong_" data-uid="PeNet.FileParser.StreamFile.WriteULong*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_WriteULong_System_Int64_System_UInt64_" data-uid="PeNet.FileParser.StreamFile.WriteULong(System.Int64,System.UInt64)">WriteULong(Int64, UInt64)</h4>
+  <a id="PeNet_FileParser_MMFile_WriteULong_" data-uid="PeNet.FileParser.MMFile.WriteULong*"></a>
+  <h4 id="PeNet_FileParser_MMFile_WriteULong_System_Int64_System_UInt64_" data-uid="PeNet.FileParser.MMFile.WriteULong(System.Int64,System.UInt64)">WriteULong(Int64, UInt64)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -725,13 +727,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_WriteUShort_System_Int64_System_UInt16_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.WriteUShort(System.Int64%2CSystem.UInt16)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile_WriteUShort_System_Int64_System_UInt16_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile.WriteUShort(System.Int64%2CSystem.UInt16)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L134">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L134">View Source</a>
   </span>
-  <a id="PeNet_FileParser_StreamFile_WriteUShort_" data-uid="PeNet.FileParser.StreamFile.WriteUShort*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_WriteUShort_System_Int64_System_UInt16_" data-uid="PeNet.FileParser.StreamFile.WriteUShort(System.Int64,System.UInt16)">WriteUShort(Int64, UInt16)</h4>
+  <a id="PeNet_FileParser_MMFile_WriteUShort_" data-uid="PeNet.FileParser.MMFile.WriteUShort*"></a>
+  <h4 id="PeNet_FileParser_MMFile_WriteUShort_System_Int64_System_UInt16_" data-uid="PeNet.FileParser.MMFile.WriteUShort(System.Int64,System.UInt16)">WriteUShort(Int64, UInt16)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -775,10 +777,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_MMFile.md&amp;value=---%0Auid%3A%20PeNet.FileParser.MMFile%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/MMFile.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

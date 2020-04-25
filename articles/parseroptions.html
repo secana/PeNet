@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Parser Options </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Parser Options ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="parser-options">Parser Options</h1>
+
+<p>There are different options to parse a PE file. Depending on the size of the file, expected memory usage or runtime performance it makes sense to try out another option.</p>
+<p>For a comparison of different methods and their impact on performance and memory usage have a look at these benchmarks:</p>
+<ul>
+<li><a href="https://secanablog.wordpress.com/2020/03/04/net-random-access-performance-on-files/">.NET Random Access Performance on Files - Part 1</a></li>
+<li><a href="https://secanablog.wordpress.com/2020/04/23/net-random-access-performance-on-files-part-2/">.NET Random Access Performance on Files - Part 2</a></li>
+</ul>
+<h2 id="open-a-pe-file">Open a PE file</h2>
+<p>You can open a file on disk or parse a <code>byte array</code> of a PE file. This methods is the best if you have <strong>very small files</strong>, or intend to <strong>write/change the PE file</strong>, because a whole copy of the file is hold in memory and only the copy is changed, not the original file on disk. You can than store the changes to a new file.</p>
+<p>For larger files the memory usage reflects the size of the input file and the performance starts to decrease with files larger than 10 MB.</p>
+<pre><code class="lang-csharp">var peHeader = new PeNet.PeFile(@&quot;C:\Windows\System32\kernel32.dll&quot;);
+</code></pre>
+<pre><code class="lang-csharp">var bin = File.ReadAllBytes(@&quot;C:\Windows\System32\kernel32.dll&quot;);
+var peHeader = new PeNet.PeFile(bin);
+</code></pre>
+<p>Another option is to open a file as a <code>Stream</code>, for example a <code>FileStream</code>. This keeps the memory usage low and constant, regardless of the file size. The downside is a decreased performance and if you work on a file stream, all change are written directly to the original file, which can lead to unwanted side-effects.</p>
+<pre><code class="lang-csharp">using var fileStream = File.OpenRead(@&quot;C:\Windows\System32\kernel32.dll&quot;);
+var peHeader = new PeNet.PeFile(fileStream);
+</code></pre>
+<p>The fastest method for <strong>large files</strong> with the <strong>lowest memory consumption</strong> of all methods is a memory mapped file. As with the streams, all writes are on the original input file!</p>
+<pre><code class="lang-csharp">using var mmf = new PeNet.MMFile(@&quot;C:\Windows\System32\kernel32.dll&quot;);
+var peHeader = new PeNet.PeFile(mmf);
+</code></pre>
+<h2 id="pe-file-test">PE file test</h2>
+<p>To test if a file is a PE file, you do can use the following methods.</p>
+<pre><code class="lang-csharp">using PeNet;
+var file = @&quot;C:\Windows\System32\kernel32.dll&quot;;
+
+// Read directly from a path to file. Uses a stream to only read the needed bytes into memory.
+var isPe1 = PeFile.IsPeFile(file);
+
+// Use a buffer to check if the file is a PE file.
+var buff = File.ReadAllBytes(file);
+var isPe2 = PeFile.IsPeFile(buff);
+
+// Uses a stream to check if &quot;file&quot; is a PE file.
+using var fs = File.OpenRead(file);
+var isPe3 = PeFile.IsPeFile(fs);
+
+// Uses a memory mapped file to check if &quot;file&quot; is a PE file.
+using var mmf = new MMFile(file);
+var isPe4 = PeFile.IsPeFile(mmf);
+</code></pre>
+<h2 id="try-parse">Try Parse</h2>
+<p>To combine the check, if a file is PE file, and the parsing of the file in the &quot;is PE file&quot; case, there are several <code>TryParse</code> methods available. If the file is a PE file, <code>true</code> is returned and the <code>out parameter</code> contains the parsed PE file. If the file is not a PE file, <code>false</code> is returned and the <code>out parameter</code> is <code>null</code>.</p>
+<pre><code class="lang-csharp">using PeNet;
+var file = @&quot;C:\Windows\System32\kernel32.dll&quot;;
+
+// From file path. Uses a FileStream internally.
+var isPe1 = PeFile.TryParse(file, out var peFile);
+
+// From a byte array.
+var buff = File.ReadAllBytes(file);
+var isPe2 = PeFile.TryParse(buff, out var peFile);
+
+// From a stream.
+using var fs = File.OpenRead(file);
+var isPe3 = PeFile.TryParse(fs, out var peFile);
+
+// From a memory mapped file.
+using var mmf = new MMFile(file);
+var isPe4 = PeFile.TryParse(mmf, out var peFile);
+</code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/secana/PeNet/blob/master/docfx/articles/parseroptions.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

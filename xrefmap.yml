@@ -220,19 +220,6 @@ references:
   isSpec: "True"
   fullName: PeNet.FileParser.BufferFile.AsSpan
   nameWithType: BufferFile.AsSpan
-- uid: PeNet.FileParser.BufferFile.Dispose
-  name: Dispose()
-  href: api/PeNet.FileParser.BufferFile.html#PeNet_FileParser_BufferFile_Dispose
-  commentId: M:PeNet.FileParser.BufferFile.Dispose
-  fullName: PeNet.FileParser.BufferFile.Dispose()
-  nameWithType: BufferFile.Dispose()
-- uid: PeNet.FileParser.BufferFile.Dispose*
-  name: Dispose
-  href: api/PeNet.FileParser.BufferFile.html#PeNet_FileParser_BufferFile_Dispose_
-  commentId: Overload:PeNet.FileParser.BufferFile.Dispose
-  isSpec: "True"
-  fullName: PeNet.FileParser.BufferFile.Dispose
-  nameWithType: BufferFile.Dispose
 - uid: PeNet.FileParser.BufferFile.Length
   name: Length
   href: api/PeNet.FileParser.BufferFile.html#PeNet_FileParser_BufferFile_Length
@@ -350,19 +337,6 @@ references:
   isSpec: "True"
   fullName: PeNet.FileParser.BufferFile.ToArray
   nameWithType: BufferFile.ToArray
-- uid: PeNet.FileParser.BufferFile.ToStream
-  name: ToStream()
-  href: api/PeNet.FileParser.BufferFile.html#PeNet_FileParser_BufferFile_ToStream
-  commentId: M:PeNet.FileParser.BufferFile.ToStream
-  fullName: PeNet.FileParser.BufferFile.ToStream()
-  nameWithType: BufferFile.ToStream()
-- uid: PeNet.FileParser.BufferFile.ToStream*
-  name: ToStream
-  href: api/PeNet.FileParser.BufferFile.html#PeNet_FileParser_BufferFile_ToStream_
-  commentId: Overload:PeNet.FileParser.BufferFile.ToStream
-  isSpec: "True"
-  fullName: PeNet.FileParser.BufferFile.ToStream
-  nameWithType: BufferFile.ToStream
 - uid: PeNet.FileParser.BufferFile.WriteByte(System.Int64,System.Byte)
   name: WriteByte(Int64, Byte)
   href: api/PeNet.FileParser.BufferFile.html#PeNet_FileParser_BufferFile_WriteByte_System_Int64_System_Byte_
@@ -567,19 +541,6 @@ references:
   isSpec: "True"
   fullName: PeNet.FileParser.IRawFile.ToArray
   nameWithType: IRawFile.ToArray
-- uid: PeNet.FileParser.IRawFile.ToStream
-  name: ToStream()
-  href: api/PeNet.FileParser.IRawFile.html#PeNet_FileParser_IRawFile_ToStream
-  commentId: M:PeNet.FileParser.IRawFile.ToStream
-  fullName: PeNet.FileParser.IRawFile.ToStream()
-  nameWithType: IRawFile.ToStream()
-- uid: PeNet.FileParser.IRawFile.ToStream*
-  name: ToStream
-  href: api/PeNet.FileParser.IRawFile.html#PeNet_FileParser_IRawFile_ToStream_
-  commentId: Overload:PeNet.FileParser.IRawFile.ToStream
-  isSpec: "True"
-  fullName: PeNet.FileParser.IRawFile.ToStream
-  nameWithType: IRawFile.ToStream
 - uid: PeNet.FileParser.IRawFile.WriteByte(System.Int64,System.Byte)
   name: WriteByte(Int64, Byte)
   href: api/PeNet.FileParser.IRawFile.html#PeNet_FileParser_IRawFile_WriteByte_System_Int64_System_Byte_
@@ -648,6 +609,236 @@ references:
   isSpec: "True"
   fullName: PeNet.FileParser.IRawFile.WriteUShort
   nameWithType: IRawFile.WriteUShort
+- uid: PeNet.FileParser.MMFile
+  name: MMFile
+  href: api/PeNet.FileParser.MMFile.html
+  commentId: T:PeNet.FileParser.MMFile
+  fullName: PeNet.FileParser.MMFile
+  nameWithType: MMFile
+- uid: PeNet.FileParser.MMFile.#ctor(System.String)
+  name: MMFile(String)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile__ctor_System_String_
+  commentId: M:PeNet.FileParser.MMFile.#ctor(System.String)
+  fullName: PeNet.FileParser.MMFile.MMFile(System.String)
+  nameWithType: MMFile.MMFile(String)
+- uid: PeNet.FileParser.MMFile.#ctor*
+  name: MMFile
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile__ctor_
+  commentId: Overload:PeNet.FileParser.MMFile.#ctor
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.MMFile
+  nameWithType: MMFile.MMFile
+- uid: PeNet.FileParser.MMFile.AsSpan(System.Int64,System.Int64)
+  name: AsSpan(Int64, Int64)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_AsSpan_System_Int64_System_Int64_
+  commentId: M:PeNet.FileParser.MMFile.AsSpan(System.Int64,System.Int64)
+  fullName: PeNet.FileParser.MMFile.AsSpan(System.Int64, System.Int64)
+  nameWithType: MMFile.AsSpan(Int64, Int64)
+- uid: PeNet.FileParser.MMFile.AsSpan*
+  name: AsSpan
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_AsSpan_
+  commentId: Overload:PeNet.FileParser.MMFile.AsSpan
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.AsSpan
+  nameWithType: MMFile.AsSpan
+- uid: PeNet.FileParser.MMFile.Dispose
+  name: Dispose()
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_Dispose
+  commentId: M:PeNet.FileParser.MMFile.Dispose
+  fullName: PeNet.FileParser.MMFile.Dispose()
+  nameWithType: MMFile.Dispose()
+- uid: PeNet.FileParser.MMFile.Dispose*
+  name: Dispose
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_Dispose_
+  commentId: Overload:PeNet.FileParser.MMFile.Dispose
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.Dispose
+  nameWithType: MMFile.Dispose
+- uid: PeNet.FileParser.MMFile.Length
+  name: Length
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_Length
+  commentId: P:PeNet.FileParser.MMFile.Length
+  fullName: PeNet.FileParser.MMFile.Length
+  nameWithType: MMFile.Length
+- uid: PeNet.FileParser.MMFile.Length*
+  name: Length
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_Length_
+  commentId: Overload:PeNet.FileParser.MMFile.Length
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.Length
+  nameWithType: MMFile.Length
+- uid: PeNet.FileParser.MMFile.ReadAsciiString(System.Int64)
+  name: ReadAsciiString(Int64)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ReadAsciiString_System_Int64_
+  commentId: M:PeNet.FileParser.MMFile.ReadAsciiString(System.Int64)
+  fullName: PeNet.FileParser.MMFile.ReadAsciiString(System.Int64)
+  nameWithType: MMFile.ReadAsciiString(Int64)
+- uid: PeNet.FileParser.MMFile.ReadAsciiString*
+  name: ReadAsciiString
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ReadAsciiString_
+  commentId: Overload:PeNet.FileParser.MMFile.ReadAsciiString
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.ReadAsciiString
+  nameWithType: MMFile.ReadAsciiString
+- uid: PeNet.FileParser.MMFile.ReadByte(System.Int64)
+  name: ReadByte(Int64)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ReadByte_System_Int64_
+  commentId: M:PeNet.FileParser.MMFile.ReadByte(System.Int64)
+  fullName: PeNet.FileParser.MMFile.ReadByte(System.Int64)
+  nameWithType: MMFile.ReadByte(Int64)
+- uid: PeNet.FileParser.MMFile.ReadByte*
+  name: ReadByte
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ReadByte_
+  commentId: Overload:PeNet.FileParser.MMFile.ReadByte
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.ReadByte
+  nameWithType: MMFile.ReadByte
+- uid: PeNet.FileParser.MMFile.ReadUInt(System.Int64)
+  name: ReadUInt(Int64)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ReadUInt_System_Int64_
+  commentId: M:PeNet.FileParser.MMFile.ReadUInt(System.Int64)
+  fullName: PeNet.FileParser.MMFile.ReadUInt(System.Int64)
+  nameWithType: MMFile.ReadUInt(Int64)
+- uid: PeNet.FileParser.MMFile.ReadUInt*
+  name: ReadUInt
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ReadUInt_
+  commentId: Overload:PeNet.FileParser.MMFile.ReadUInt
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.ReadUInt
+  nameWithType: MMFile.ReadUInt
+- uid: PeNet.FileParser.MMFile.ReadULong(System.Int64)
+  name: ReadULong(Int64)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ReadULong_System_Int64_
+  commentId: M:PeNet.FileParser.MMFile.ReadULong(System.Int64)
+  fullName: PeNet.FileParser.MMFile.ReadULong(System.Int64)
+  nameWithType: MMFile.ReadULong(Int64)
+- uid: PeNet.FileParser.MMFile.ReadULong*
+  name: ReadULong
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ReadULong_
+  commentId: Overload:PeNet.FileParser.MMFile.ReadULong
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.ReadULong
+  nameWithType: MMFile.ReadULong
+- uid: PeNet.FileParser.MMFile.ReadUnicodeString(System.Int64)
+  name: ReadUnicodeString(Int64)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ReadUnicodeString_System_Int64_
+  commentId: M:PeNet.FileParser.MMFile.ReadUnicodeString(System.Int64)
+  fullName: PeNet.FileParser.MMFile.ReadUnicodeString(System.Int64)
+  nameWithType: MMFile.ReadUnicodeString(Int64)
+- uid: PeNet.FileParser.MMFile.ReadUnicodeString*
+  name: ReadUnicodeString
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ReadUnicodeString_
+  commentId: Overload:PeNet.FileParser.MMFile.ReadUnicodeString
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.ReadUnicodeString
+  nameWithType: MMFile.ReadUnicodeString
+- uid: PeNet.FileParser.MMFile.ReadUShort(System.Int64)
+  name: ReadUShort(Int64)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ReadUShort_System_Int64_
+  commentId: M:PeNet.FileParser.MMFile.ReadUShort(System.Int64)
+  fullName: PeNet.FileParser.MMFile.ReadUShort(System.Int64)
+  nameWithType: MMFile.ReadUShort(Int64)
+- uid: PeNet.FileParser.MMFile.ReadUShort*
+  name: ReadUShort
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ReadUShort_
+  commentId: Overload:PeNet.FileParser.MMFile.ReadUShort
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.ReadUShort
+  nameWithType: MMFile.ReadUShort
+- uid: PeNet.FileParser.MMFile.RemoveRange(System.Int64,System.Int64)
+  name: RemoveRange(Int64, Int64)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_RemoveRange_System_Int64_System_Int64_
+  commentId: M:PeNet.FileParser.MMFile.RemoveRange(System.Int64,System.Int64)
+  fullName: PeNet.FileParser.MMFile.RemoveRange(System.Int64, System.Int64)
+  nameWithType: MMFile.RemoveRange(Int64, Int64)
+- uid: PeNet.FileParser.MMFile.RemoveRange*
+  name: RemoveRange
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_RemoveRange_
+  commentId: Overload:PeNet.FileParser.MMFile.RemoveRange
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.RemoveRange
+  nameWithType: MMFile.RemoveRange
+- uid: PeNet.FileParser.MMFile.ToArray
+  name: ToArray()
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ToArray
+  commentId: M:PeNet.FileParser.MMFile.ToArray
+  fullName: PeNet.FileParser.MMFile.ToArray()
+  nameWithType: MMFile.ToArray()
+- uid: PeNet.FileParser.MMFile.ToArray*
+  name: ToArray
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ToArray_
+  commentId: Overload:PeNet.FileParser.MMFile.ToArray
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.ToArray
+  nameWithType: MMFile.ToArray
+- uid: PeNet.FileParser.MMFile.WriteByte(System.Int64,System.Byte)
+  name: WriteByte(Int64, Byte)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_WriteByte_System_Int64_System_Byte_
+  commentId: M:PeNet.FileParser.MMFile.WriteByte(System.Int64,System.Byte)
+  fullName: PeNet.FileParser.MMFile.WriteByte(System.Int64, System.Byte)
+  nameWithType: MMFile.WriteByte(Int64, Byte)
+- uid: PeNet.FileParser.MMFile.WriteByte*
+  name: WriteByte
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_WriteByte_
+  commentId: Overload:PeNet.FileParser.MMFile.WriteByte
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.WriteByte
+  nameWithType: MMFile.WriteByte
+- uid: PeNet.FileParser.MMFile.WriteBytes(System.Int64,Span{System.Byte})
+  name: WriteBytes(Int64, Span<Byte>)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_WriteBytes_System_Int64_Span_System_Byte__
+  commentId: M:PeNet.FileParser.MMFile.WriteBytes(System.Int64,Span{System.Byte})
+  name.vb: WriteBytes(Int64, Span(Of Byte))
+  fullName: PeNet.FileParser.MMFile.WriteBytes(System.Int64, Span<System.Byte>)
+  fullName.vb: PeNet.FileParser.MMFile.WriteBytes(System.Int64, Span(Of System.Byte))
+  nameWithType: MMFile.WriteBytes(Int64, Span<Byte>)
+  nameWithType.vb: MMFile.WriteBytes(Int64, Span(Of Byte))
+- uid: PeNet.FileParser.MMFile.WriteBytes*
+  name: WriteBytes
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_WriteBytes_
+  commentId: Overload:PeNet.FileParser.MMFile.WriteBytes
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.WriteBytes
+  nameWithType: MMFile.WriteBytes
+- uid: PeNet.FileParser.MMFile.WriteUInt(System.Int64,System.UInt32)
+  name: WriteUInt(Int64, UInt32)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_WriteUInt_System_Int64_System_UInt32_
+  commentId: M:PeNet.FileParser.MMFile.WriteUInt(System.Int64,System.UInt32)
+  fullName: PeNet.FileParser.MMFile.WriteUInt(System.Int64, System.UInt32)
+  nameWithType: MMFile.WriteUInt(Int64, UInt32)
+- uid: PeNet.FileParser.MMFile.WriteUInt*
+  name: WriteUInt
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_WriteUInt_
+  commentId: Overload:PeNet.FileParser.MMFile.WriteUInt
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.WriteUInt
+  nameWithType: MMFile.WriteUInt
+- uid: PeNet.FileParser.MMFile.WriteULong(System.Int64,System.UInt64)
+  name: WriteULong(Int64, UInt64)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_WriteULong_System_Int64_System_UInt64_
+  commentId: M:PeNet.FileParser.MMFile.WriteULong(System.Int64,System.UInt64)
+  fullName: PeNet.FileParser.MMFile.WriteULong(System.Int64, System.UInt64)
+  nameWithType: MMFile.WriteULong(Int64, UInt64)
+- uid: PeNet.FileParser.MMFile.WriteULong*
+  name: WriteULong
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_WriteULong_
+  commentId: Overload:PeNet.FileParser.MMFile.WriteULong
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.WriteULong
+  nameWithType: MMFile.WriteULong
+- uid: PeNet.FileParser.MMFile.WriteUShort(System.Int64,System.UInt16)
+  name: WriteUShort(Int64, UInt16)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_WriteUShort_System_Int64_System_UInt16_
+  commentId: M:PeNet.FileParser.MMFile.WriteUShort(System.Int64,System.UInt16)
+  fullName: PeNet.FileParser.MMFile.WriteUShort(System.Int64, System.UInt16)
+  nameWithType: MMFile.WriteUShort(Int64, UInt16)
+- uid: PeNet.FileParser.MMFile.WriteUShort*
+  name: WriteUShort
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_WriteUShort_
+  commentId: Overload:PeNet.FileParser.MMFile.WriteUShort
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.WriteUShort
+  nameWithType: MMFile.WriteUShort
 - uid: PeNet.FileParser.StreamFile
   name: StreamFile
   href: api/PeNet.FileParser.StreamFile.html
@@ -810,19 +1001,6 @@ references:
   isSpec: "True"
   fullName: PeNet.FileParser.StreamFile.ToArray
   nameWithType: StreamFile.ToArray
-- uid: PeNet.FileParser.StreamFile.ToStream
-  name: ToStream()
-  href: api/PeNet.FileParser.StreamFile.html#PeNet_FileParser_StreamFile_ToStream
-  commentId: M:PeNet.FileParser.StreamFile.ToStream
-  fullName: PeNet.FileParser.StreamFile.ToStream()
-  nameWithType: StreamFile.ToStream()
-- uid: PeNet.FileParser.StreamFile.ToStream*
-  name: ToStream
-  href: api/PeNet.FileParser.StreamFile.html#PeNet_FileParser_StreamFile_ToStream_
-  commentId: Overload:PeNet.FileParser.StreamFile.ToStream
-  isSpec: "True"
-  fullName: PeNet.FileParser.StreamFile.ToStream
-  nameWithType: StreamFile.ToStream
 - uid: PeNet.FileParser.StreamFile.WriteByte(System.Int64,System.Byte)
   name: WriteByte(Int64, Byte)
   href: api/PeNet.FileParser.StreamFile.html#PeNet_FileParser_StreamFile_WriteByte_System_Int64_System_Byte_
@@ -10809,19 +10987,6 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.ClrModuleVersionIds
   nameWithType: PeFile.ClrModuleVersionIds
-- uid: PeNet.PeFile.Dispose
-  name: Dispose()
-  href: api/PeNet.PeFile.html#PeNet_PeFile_Dispose
-  commentId: M:PeNet.PeFile.Dispose
-  fullName: PeNet.PeFile.Dispose()
-  nameWithType: PeFile.Dispose()
-- uid: PeNet.PeFile.Dispose*
-  name: Dispose
-  href: api/PeNet.PeFile.html#PeNet_PeFile_Dispose_
-  commentId: Overload:PeNet.PeFile.Dispose
-  isSpec: "True"
-  fullName: PeNet.PeFile.Dispose
-  nameWithType: PeFile.Dispose
 - uid: PeNet.PeFile.ExceptionDirectory
   name: ExceptionDirectory
   href: api/PeNet.PeFile.html#PeNet_PeFile_ExceptionDirectory
@@ -11182,15 +11347,27 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.IsExe
   nameWithType: PeFile.IsExe
-- uid: PeNet.PeFile.IsPeFile(System.Byte[])
-  name: IsPeFile(Byte[])
-  href: api/PeNet.PeFile.html#PeNet_PeFile_IsPeFile_System_Byte___
-  commentId: M:PeNet.PeFile.IsPeFile(System.Byte[])
-  name.vb: IsPeFile(Byte())
-  fullName: PeNet.PeFile.IsPeFile(System.Byte[])
-  fullName.vb: PeNet.PeFile.IsPeFile(System.Byte())
-  nameWithType: PeFile.IsPeFile(Byte[])
-  nameWithType.vb: PeFile.IsPeFile(Byte())
+- uid: PeNet.PeFile.IsPeFile(PeNet.FileParser.MMFile)
+  name: IsPeFile(MMFile)
+  href: api/PeNet.PeFile.html#PeNet_PeFile_IsPeFile_PeNet_FileParser_MMFile_
+  commentId: M:PeNet.PeFile.IsPeFile(PeNet.FileParser.MMFile)
+  fullName: PeNet.PeFile.IsPeFile(PeNet.FileParser.MMFile)
+  nameWithType: PeFile.IsPeFile(MMFile)
+- uid: PeNet.PeFile.IsPeFile(Span{System.Byte})
+  name: IsPeFile(Span<Byte>)
+  href: api/PeNet.PeFile.html#PeNet_PeFile_IsPeFile_Span_System_Byte__
+  commentId: M:PeNet.PeFile.IsPeFile(Span{System.Byte})
+  name.vb: IsPeFile(Span(Of Byte))
+  fullName: PeNet.PeFile.IsPeFile(Span<System.Byte>)
+  fullName.vb: PeNet.PeFile.IsPeFile(Span(Of System.Byte))
+  nameWithType: PeFile.IsPeFile(Span<Byte>)
+  nameWithType.vb: PeFile.IsPeFile(Span(Of Byte))
+- uid: PeNet.PeFile.IsPeFile(Stream)
+  name: IsPeFile(Stream)
+  href: api/PeNet.PeFile.html#PeNet_PeFile_IsPeFile_Stream_
+  commentId: M:PeNet.PeFile.IsPeFile(Stream)
+  fullName: PeNet.PeFile.IsPeFile(Stream)
+  nameWithType: PeFile.IsPeFile(Stream)
 - uid: PeNet.PeFile.IsPeFile(System.String)
   name: IsPeFile(String)
   href: api/PeNet.PeFile.html#PeNet_PeFile_IsPeFile_System_String_
@@ -11386,6 +11563,24 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.Sha256
   nameWithType: PeFile.Sha256
+- uid: PeNet.PeFile.TryParse(PeNet.FileParser.MMFile,PeNet.PeFile@)
+  name: TryParse(MMFile, out PeFile)
+  href: api/PeNet.PeFile.html#PeNet_PeFile_TryParse_PeNet_FileParser_MMFile_PeNet_PeFile__
+  commentId: M:PeNet.PeFile.TryParse(PeNet.FileParser.MMFile,PeNet.PeFile@)
+  name.vb: TryParse(MMFile, ByRef PeFile)
+  fullName: PeNet.PeFile.TryParse(PeNet.FileParser.MMFile, out PeNet.PeFile)
+  fullName.vb: PeNet.PeFile.TryParse(PeNet.FileParser.MMFile, ByRef PeNet.PeFile)
+  nameWithType: PeFile.TryParse(MMFile, out PeFile)
+  nameWithType.vb: PeFile.TryParse(MMFile, ByRef PeFile)
+- uid: PeNet.PeFile.TryParse(Stream,PeNet.PeFile@)
+  name: TryParse(Stream, out PeFile)
+  href: api/PeNet.PeFile.html#PeNet_PeFile_TryParse_Stream_PeNet_PeFile__
+  commentId: M:PeNet.PeFile.TryParse(Stream,PeNet.PeFile@)
+  name.vb: TryParse(Stream, ByRef PeFile)
+  fullName: PeNet.PeFile.TryParse(Stream, out PeNet.PeFile)
+  fullName.vb: PeNet.PeFile.TryParse(Stream, ByRef PeNet.PeFile)
+  nameWithType: PeFile.TryParse(Stream, out PeFile)
+  nameWithType.vb: PeFile.TryParse(Stream, ByRef PeFile)
 - uid: PeNet.PeFile.TryParse(System.Byte[],PeNet.PeFile@)
   name: TryParse(Byte[], out PeFile)
   href: api/PeNet.PeFile.html#PeNet_PeFile_TryParse_System_Byte___PeNet_PeFile__
