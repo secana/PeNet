@@ -21,7 +21,7 @@ namespace PeNet
     ///     This class represents a Portable Executable (PE) file and makes the different
     ///     header and properties accessible.
     /// </summary>
-    public class PeFile : IDisposable
+    public class PeFile
     {
         private readonly DataDirectoryParsers _dataDirectoryParsers;
         private readonly NativeStructureParsers _nativeStructureParsers;
@@ -76,7 +76,7 @@ namespace PeNet
         /// </summary>
         /// <param name="peFile">Path to a PE file.</param>
         public PeFile(string peFile)
-            : this(new BufferFile(File.ReadAllBytes(peFile)))
+            : this(File.ReadAllBytes(peFile))
         { }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace PeNet
         { }
 
         /// <summary>
-        /// Try to parse the PE file.
+        /// Try to parse the PE file. Reads the whole file content into memory.
         /// </summary>
         /// <param name="file">Path to a possible PE file.</param>
         /// <param name="peFile">Parsed PE file or Null.</param>
@@ -112,6 +112,46 @@ namespace PeNet
                 return false;
 
             try { peFile = new PeFile(buff); }
+            catch { return false; }
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// Try to parse the PE file.
+        /// </summary>
+        /// <param name="buff">Stream containing a possible PE file.</param>
+        /// <param name="peFile">Parsed PE file or Null.</param>
+        /// <returns>True if parable PE file and false if not.</returns>
+        public static bool TryParse(Stream file, out PeFile? peFile)
+        {
+            peFile = null;
+
+            if (!IsPeFile(file))
+                return false;
+
+            try { peFile = new PeFile(file); }
+            catch { return false; }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Try to parse the PE file. Best option for large files,
+        /// as a memory mapped file is used.
+        /// </summary>
+        /// <param name="buff">Memory mapped file containing a possible PE file.</param>
+        /// <param name="peFile">Parsed PE file or Null.</param>
+        /// <returns>True if parable PE file and false if not.</returns>
+        public static bool TryParse(MMFile file, out PeFile? peFile)
+        {
+            peFile = null;
+
+            if (!IsPeFile(file))
+                return false;
+
+            try { peFile = new PeFile(file); }
             catch { return false; }
 
             return true;
@@ -176,7 +216,7 @@ namespace PeNet
         /// <returns>True if cert chain is valid and from a trusted CA.</returns>
         public bool HasValidCertChain(X509Certificate2? cert, TimeSpan urlRetrievalTimeout, bool useOnlineCRL = true, bool excludeRoot = true)
         {
-            var chain = new X509Chain
+            using var chain = new X509Chain
             {
                 ChainPolicy =
                 {
@@ -404,19 +444,20 @@ namespace PeNet
         ///     The SHA-256 hash sum of the binary.
         /// </summary>
         public string Sha256
-            => _sha256 ??= ComputeHash(RawFile, new SHA256Managed().ComputeHash);
+            => _sha256 ??= ComputeHash(RawFile, HashAlgorithmName.SHA256, 32);
+
 
         /// <summary>
         ///     The SHA-1 hash sum of the binary.
         /// </summary>
         public string Sha1
-            => _sha1 ??= ComputeHash(RawFile, new SHA1Managed().ComputeHash);
+            => _sha1 ??= ComputeHash(RawFile, HashAlgorithmName.SHA1, 20);
 
         /// <summary>
         ///     The MD5 of hash sum of the binary.
         /// </summary>
         public string Md5
-            => _md5 ??= ComputeHash(RawFile, new MD5CryptoServiceProvider().ComputeHash);
+            => _md5 ??= ComputeHash(RawFile, HashAlgorithmName.MD5, 16);
 
         /// <summary>
         ///     The Import Hash of the binary if any imports are
@@ -474,13 +515,38 @@ namespace PeNet
         /// <returns>True if the MZ header is set.</returns>
         public static bool IsPeFile(string file)
         {
-            var buffer = new byte[2];
+            using var fs = new FileStream(file, FileMode.Open, FileAccess.Read);
+            return IsPeFile(fs);
+        }
 
-            using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
-            {
-                fs.Read(buffer, 0, buffer.Length);
-            }
+        /// <summary>
+        ///     Tests if a file is a PE file based on the MZ
+        ///     header. It is not checked if the PE file is correct
+        ///     in all other parts.
+        /// </summary>
+        /// <param name="file">Stream of a possible PE file.</param>
+        /// <returns>True if the MZ header is set.</returns>
+        public static bool IsPeFile(Stream file)
+        {
+            Span<byte> buffer = stackalloc byte[2];
+            file.Seek(0, SeekOrigin.Begin);
+            file.Read(buffer);
+            return IsPeFile(buffer);
+        }
 
+        /// <summary>
+        ///     Tests if a file is a PE file based on the MZ
+        ///     header. It is not checked if the PE file is correct
+        ///     in all other parts.
+        /// </summary>
+        /// <param name="file">MMFile of a possible PE file.</param>
+        /// <returns>True if the MZ header is set.</returns>
+        public static bool IsPeFile(MMFile file)
+        {
+            if (file.Length < 2)
+                return false;
+
+            Span<byte> buffer = file.AsSpan(0, 2);
             return IsPeFile(buffer);
         }
 
@@ -491,7 +557,7 @@ namespace PeNet
         /// </summary>
         /// <param name="buf">Byte array containing a possible PE file.</param>
         /// <returns>True if the MZ header is set.</returns>
-        public static bool IsPeFile(byte[] buf)
+        public static bool IsPeFile(Span<byte> buf)
         {
             if (buf.Length < 2)
                 return false;
@@ -499,20 +565,17 @@ namespace PeNet
             return buf[1] == 0x5a && buf[0] == 0x4d; // MZ Header
         }
 
-        private string ComputeHash(IRawFile peFile, Func<Stream, byte[]> hashFunction)
+        private string ComputeHash(IRawFile peFile, HashAlgorithmName hashAlg, int hashLength)
         {
-            var sBuilder = new StringBuilder();
-            var hash = hashFunction.Invoke(peFile.ToStream());
+            using var ha = HashAlgorithm.Create(hashAlg.Name);
+            Span<byte> hash = stackalloc byte[hashLength];
+            ha.TryComputeHash(RawFile.AsSpan(0, RawFile.Length), hash, out int _);
 
+            var sBuilder = new StringBuilder();
             foreach (var t in hash)
                 sBuilder.Append(t.ToString("x2"));
 
             return sBuilder.ToString();
-        }
-
-        public void Dispose()
-        {
-            RawFile.Dispose();
         }
     }
 }

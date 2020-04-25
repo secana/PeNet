@@ -25,6 +25,8 @@ var bin = File.ReadAllBytes(@"C:\Windows\System32\kernel32.dll");
 var peHeader2 = new PeNet.PeFile(bin);
 ```
 
+For more information on the different methods to open a parse a PE file see: [Parser options](articles/parseroptions.md)
+
 ### Work with the PE header
 
 The parsed PE header is split into multiple modules and sub-modules. To see how the parser structures the PE header and which information can be found where see the API documentation page (link in header). Here are a few examples on how to access different parts of the PE header. For more examples, check the Article link in the header.

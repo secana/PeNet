@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 
 namespace PeNet.FileParser
 {
-    public class StreamFile : IRawFile
+    public class StreamFile : IRawFile, IDisposable
     {
         private const int MaxStackAlloc = 1024;
         private Stream _stream;
@@ -104,12 +103,6 @@ namespace PeNet.FileParser
             _stream.Position = 0;
             _stream.CopyTo(ms);
             return ms.ToArray();
-        }
-
-        public Stream ToStream()
-        {
-            _stream.Position = 0;
-            return _stream;
         }
 
         public void WriteByte(long offset, byte value)

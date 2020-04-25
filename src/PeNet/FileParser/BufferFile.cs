@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -8,7 +7,6 @@ namespace PeNet.FileParser
 {
     public class BufferFile : IRawFile
     {
-        private const int MaxStackAlloc = 1024;
         private byte[] _buff;
 
         public long Length => _buff.Length;
@@ -31,17 +29,8 @@ namespace PeNet.FileParser
             }
 
             var length = GetCStringLength(_buff, (int) offset);
-
-            var tmp = length > MaxStackAlloc 
-                ? new char[length] 
-                : stackalloc char[length];
-
-            for (var i = 0; i < length; i++)
-            {
-                tmp[i] = (char)_buff[offset + i];
-            }
-
-            return new string(tmp);
+            var tmp = _buff.AsSpan((int)offset, length);
+            return Encoding.ASCII.GetString(tmp);
         }
 
         public Span<byte> AsSpan(long offset, long length) 
@@ -58,9 +47,8 @@ namespace PeNet.FileParser
                 }
                 size++;
             }
-            var bytes = new byte[size];
 
-            Array.Copy(_buff, (int)offset, bytes, 0, size);
+            var bytes = _buff.AsSpan((int) offset, size);
             return Encoding.Unicode.GetString(bytes);
         }
 
@@ -74,8 +62,6 @@ namespace PeNet.FileParser
 
         public ushort ReadUShort(long offset)
             => BitConverter.ToUInt16(_buff, (int) offset);
-
-        public Stream ToStream() => new MemoryStream(_buff);
 
         public void WriteByte(long offset, byte value)
         {
@@ -123,11 +109,6 @@ namespace PeNet.FileParser
             var x = _buff.ToList();
             x.RemoveRange((int) offset, (int) length);
             _buff = x.ToArray();
-        }
-
-        public void Dispose()
-        {
-            _buff = new byte[0];
         }
     }
 }

@@ -164,7 +164,7 @@ namespace PeNet.Header.Pe
         public byte[] ToArray() {
             var rawData = new BufferFile(new byte[0x28]); // Section header size is 40 bytes
             
-            rawData.WriteBytes(0x00, ASCIIEncoding.ASCII.GetBytes(Name));
+            rawData.WriteBytes(0x00, Encoding.ASCII.GetBytes(Name));
             rawData.WriteUInt(0x08, VirtualSize);
             rawData.WriteUInt(0x0C, VirtualAddress);
             rawData.WriteUInt(0x10, SizeOfRawData);
