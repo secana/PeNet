@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PeNet.FileParser;
+using System;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -52,9 +53,109 @@ namespace PeNet.Test
         [InlineData(@"Binaries/firefox_x86.exe", true)]
         [InlineData(@"Binaries/NetFrameworkConsole.exe", true)]
         [InlineData(@"Binaries/notPeFile.txt", false)]
-        public void IsPEFile_DifferentFiles_TrueOrFalse(string file, bool expected)
+        public void IsPEFile_GivenString_TrueOrFalse(string file, bool expected)
         {
             Assert.Equal(expected, PeFile.IsPeFile(file));
+        }
+
+        [Theory]
+        [InlineData(@"Binaries/firefox_x64.exe", true)]
+        [InlineData(@"Binaries/firefox_x86.exe", true)]
+        [InlineData(@"Binaries/NetFrameworkConsole.exe", true)]
+        [InlineData(@"Binaries/notPeFile.txt", false)]
+        public void IsPEFile_GivenStream_TrueOrFalse(string file, bool expected)
+        {
+            using var fs = File.OpenRead(file);
+            Assert.Equal(expected, PeFile.IsPeFile(fs));
+        }
+
+        [Theory]
+        [InlineData(@"Binaries/firefox_x64.exe", true)]
+        [InlineData(@"Binaries/firefox_x86.exe", true)]
+        [InlineData(@"Binaries/NetFrameworkConsole.exe", true)]
+        [InlineData(@"Binaries/notPeFile.txt", false)]
+        public void IsPEFile_GivenBuffer_TrueOrFalse(string file, bool expected)
+        {
+            var buff = File.ReadAllBytes(file);
+            Assert.Equal(expected, PeFile.IsPeFile(buff));
+        }
+
+        [Theory]
+        [InlineData(@"Binaries/firefox_x64.exe", true)]
+        [InlineData(@"Binaries/firefox_x86.exe", true)]
+        [InlineData(@"Binaries/NetFrameworkConsole.exe", true)]
+        [InlineData(@"Binaries/notPeFile.txt", false)]
+        public void IsPEFile_GivenMMFile_TrueOrFalse(string file, bool expected)
+        {
+            using var mmf = new MMFile(file);
+            Assert.Equal(expected, PeFile.IsPeFile(mmf));
+        }
+
+        [Theory]
+        [InlineData(@"Binaries/firefox_x64.exe", true)]
+        [InlineData(@"Binaries/firefox_x86.exe", true)]
+        [InlineData(@"Binaries/NetFrameworkConsole.exe", true)]
+        [InlineData(@"Binaries/notPeFile.txt", false)]
+        public void TryParse_GivenString_TrueOrFalse(string file, bool expected)
+        {
+            var actual = PeFile.TryParse(file, out var peFile);
+
+            Assert.Equal(expected, actual);
+            if (expected)
+                Assert.NotNull(peFile);
+            else
+                Assert.Null(peFile);
+        }
+
+        [Theory]
+        [InlineData(@"Binaries/firefox_x64.exe", true)]
+        [InlineData(@"Binaries/firefox_x86.exe", true)]
+        [InlineData(@"Binaries/NetFrameworkConsole.exe", true)]
+        [InlineData(@"Binaries/notPeFile.txt", false)]
+        public void TryParse_GivenBuffer_TrueOrFalse(string file, bool expected)
+        {
+            var buff = File.ReadAllBytes(file);
+            var actual = PeFile.TryParse(buff, out var peFile);
+
+            Assert.Equal(expected, actual);
+            if (expected)
+                Assert.NotNull(peFile);
+            else
+                Assert.Null(peFile);
+        }
+
+        [Theory]
+        [InlineData(@"Binaries/firefox_x64.exe", true)]
+        [InlineData(@"Binaries/firefox_x86.exe", true)]
+        [InlineData(@"Binaries/NetFrameworkConsole.exe", true)]
+        [InlineData(@"Binaries/notPeFile.txt", false)]
+        public void TryParse_GivenStream_TrueOrFalse(string file, bool expected)
+        {
+            using var fs = File.OpenRead(file);
+            var actual = PeFile.TryParse(fs, out var peFile);
+
+            Assert.Equal(expected, actual);
+            if (expected)
+                Assert.NotNull(peFile);
+            else
+                Assert.Null(peFile);
+        }
+
+        [Theory]
+        [InlineData(@"Binaries/firefox_x64.exe", true)]
+        [InlineData(@"Binaries/firefox_x86.exe", true)]
+        [InlineData(@"Binaries/NetFrameworkConsole.exe", true)]
+        [InlineData(@"Binaries/notPeFile.txt", false)]
+        public void TryParse_GivenMMF_TrueOrFalse(string file, bool expected)
+        {
+            using var mmf = new MMFile(file);
+            var actual = PeFile.TryParse(mmf, out var peFile);
+
+            Assert.Equal(expected, actual);
+            if (expected)
+                Assert.NotNull(peFile);
+            else
+                Assert.Null(peFile);
         }
 
         [Theory]

@@ -88,7 +88,7 @@ namespace PeNet
         { }
 
         /// <summary>
-        /// Try to parse the PE file.
+        /// Try to parse the PE file. Reads the whole file content into memory.
         /// </summary>
         /// <param name="file">Path to a possible PE file.</param>
         /// <param name="peFile">Parsed PE file or Null.</param>
@@ -112,6 +112,46 @@ namespace PeNet
                 return false;
 
             try { peFile = new PeFile(buff); }
+            catch { return false; }
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// Try to parse the PE file.
+        /// </summary>
+        /// <param name="buff">Stream containing a possible PE file.</param>
+        /// <param name="peFile">Parsed PE file or Null.</param>
+        /// <returns>True if parable PE file and false if not.</returns>
+        public static bool TryParse(Stream file, out PeFile? peFile)
+        {
+            peFile = null;
+
+            if (!IsPeFile(file))
+                return false;
+
+            try { peFile = new PeFile(file); }
+            catch { return false; }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Try to parse the PE file. Best option for large files,
+        /// as a memory mapped file is used.
+        /// </summary>
+        /// <param name="buff">Memory mapped file containing a possible PE file.</param>
+        /// <param name="peFile">Parsed PE file or Null.</param>
+        /// <returns>True if parable PE file and false if not.</returns>
+        public static bool TryParse(MMFile file, out PeFile? peFile)
+        {
+            peFile = null;
+
+            if (!IsPeFile(file))
+                return false;
+
+            try { peFile = new PeFile(file); }
             catch { return false; }
 
             return true;
@@ -176,7 +216,7 @@ namespace PeNet
         /// <returns>True if cert chain is valid and from a trusted CA.</returns>
         public bool HasValidCertChain(X509Certificate2? cert, TimeSpan urlRetrievalTimeout, bool useOnlineCRL = true, bool excludeRoot = true)
         {
-            var chain = new X509Chain
+            using var chain = new X509Chain
             {
                 ChainPolicy =
                 {
@@ -475,13 +515,38 @@ namespace PeNet
         /// <returns>True if the MZ header is set.</returns>
         public static bool IsPeFile(string file)
         {
-            var buffer = new byte[2];
+            using var fs = new FileStream(file, FileMode.Open, FileAccess.Read);
+            return IsPeFile(fs);
+        }
 
-            using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
-            {
-                fs.Read(buffer, 0, buffer.Length);
-            }
+        /// <summary>
+        ///     Tests if a file is a PE file based on the MZ
+        ///     header. It is not checked if the PE file is correct
+        ///     in all other parts.
+        /// </summary>
+        /// <param name="file">Stream of a possible PE file.</param>
+        /// <returns>True if the MZ header is set.</returns>
+        public static bool IsPeFile(Stream file)
+        {
+            Span<byte> buffer = stackalloc byte[2];
+            file.Seek(0, SeekOrigin.Begin);
+            file.Read(buffer);
+            return IsPeFile(buffer);
+        }
 
+        /// <summary>
+        ///     Tests if a file is a PE file based on the MZ
+        ///     header. It is not checked if the PE file is correct
+        ///     in all other parts.
+        /// </summary>
+        /// <param name="file">MMFile of a possible PE file.</param>
+        /// <returns>True if the MZ header is set.</returns>
+        public static bool IsPeFile(MMFile file)
+        {
+            if (file.Length < 2)
+                return false;
+
+            Span<byte> buffer = file.AsSpan(0, 2);
             return IsPeFile(buffer);
         }
 
@@ -492,7 +557,7 @@ namespace PeNet
         /// </summary>
         /// <param name="buf">Byte array containing a possible PE file.</param>
         /// <returns>True if the MZ header is set.</returns>
-        public static bool IsPeFile(byte[] buf)
+        public static bool IsPeFile(Span<byte> buf)
         {
             if (buf.Length < 2)
                 return false;
@@ -502,7 +567,7 @@ namespace PeNet
 
         private string ComputeHash(IRawFile peFile, HashAlgorithmName hashAlg, int hashLength)
         {
-            var ha = HashAlgorithm.Create(hashAlg.Name);
+            using var ha = HashAlgorithm.Create(hashAlg.Name);
             Span<byte> hash = stackalloc byte[hashLength];
             ha.TryComputeHash(RawFile.AsSpan(0, RawFile.Length), hash, out int _);
 
