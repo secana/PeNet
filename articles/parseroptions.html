@@ -88,7 +88,7 @@ var peHeader = new PeNet.PeFile(bin);
 var peHeader = new PeNet.PeFile(fileStream);
 </code></pre>
 <p>The fastest method for <strong>large files</strong> with the <strong>lowest memory consumption</strong> of all methods is a memory mapped file. As with the streams, all writes are on the original input file!</p>
-<pre><code class="lang-csharp">using var mmf = new PeNet.MMFile(@&quot;C:\Windows\System32\kernel32.dll&quot;);
+<pre><code class="lang-csharp">using var mmf = new PeNet.FileParser.MMFile(@&quot;C:\Windows\System32\kernel32.dll&quot;);
 var peHeader = new PeNet.PeFile(mmf);
 </code></pre>
 <h2 id="pe-file-test">PE file test</h2>
