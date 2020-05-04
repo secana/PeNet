@@ -182,7 +182,7 @@ namespace PeNet.Test
         [Fact]
         public void Sha256_GivenAPeFile2_ReturnsCorrectHash()
         {
-            using var fs = File.OpenRead(@"Binaries/firefox_x64.exe");
+            using var fs = File.OpenRead(@"Binaries/firefox_x64_copy1.exe");
             var peFile = new PeFile(fs);
 
             Assert.Equal("377d3b741d8447b9bbd5f6fa700151a6ce8412ca15792ba4eaaa3174b1763ba4", peFile.Sha256);
@@ -191,7 +191,7 @@ namespace PeNet.Test
         [Fact]
         public void Sha256_GivenAPeFile3_ReturnsCorrectHash()
         {
-            using var fs = File.OpenRead(@"Binaries/firefox_x64.exe");
+            using var fs = File.OpenRead(@"Binaries/firefox_x64_copy2.exe");
             using var ms = new MemoryStream();
             fs.CopyTo(ms);
             var peFile = new PeFile(ms);
