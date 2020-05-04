@@ -1,11 +1,35 @@
 ﻿using System.IO;
 using PeNet.Asn1;
+using PeNet.Header.Pe;
 using Xunit;
 
 namespace PeNet.Test.Header.Authenticode
 {
     public class AuthenticodeTest
     {
+        [Fact]
+        public void GetAuthenticodeInfo_FromArmBinary_WithBuffer()
+        {
+            var peFile = new PeFile(@"./Binaries/arm_binary.dll");
+
+            Assert.Equal((uint)0, peFile.ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Security].VirtualAddress);
+            Assert.Equal((uint)0, peFile.ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Security].Size);
+            Assert.Null(peFile.Pkcs7);
+            Assert.NotNull(peFile.Authenticode);
+        }
+
+        [Fact]
+        public void GetAuthenticodeInfo_FromArmBinary_WithMMF()
+        {
+            using var mmf = new PeNet.FileParser.MMFile(@"./Binaries/arm_binary.dll");
+            var peFile = new PeFile(mmf);
+
+            Assert.Equal((uint) 0, peFile.ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Security].VirtualAddress);
+            Assert.Equal((uint) 0, peFile.ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Security].Size);
+            Assert.Null(peFile.Pkcs7);
+            Assert.NotNull(peFile.Authenticode);
+        }
+
         [Fact]
         public void IsSignatureValid_ManipulatedSignature_x64_ReturnsFalse()
         {
