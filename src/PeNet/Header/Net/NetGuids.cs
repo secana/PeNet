@@ -32,7 +32,7 @@ namespace PeNet.Header.Net
         ///
         /// It can be used to correlate different builds of the same project.
         /// </summary>
-        public string? ComTypeLibId { get; }
+        public Guid? ComTypeLibId { get; }
 
         private List<Guid>? ParseModuleVersionIds(PeFile peFile)
         {
@@ -55,11 +55,10 @@ namespace PeNet.Header.Net
         ///
         /// It can be used to correlate different builds of the same project.
         /// </summary>
-        public string? ParseComTypeLibId(PeFile peFile)
+        public Guid? ParseComTypeLibId(PeFile peFile)
         {
             try
             {
-                var typeLibId = string.Empty;
                 // we need to walk a *lot* of .NET metadata to find this...
 
                 // 0. a bitfield in the #~ stream tells us the width of the index entries in the other streams
@@ -128,15 +127,15 @@ namespace PeNet.Header.Net
                                 {
                                     var guidBytes = peFile.MetaDataStreamBlob.Skip((int) guidStart).Take(guidLength)
                                         .ToArray();
-                                    typeLibId = Encoding.ASCII.GetString(guidBytes);
-                                    break;
+                                    var s = Encoding.ASCII.GetString(guidBytes);
+                                    return new Guid(s);
                                 }
                             }
                         }
                     }
                 }
 
-                return typeLibId;
+                return null;
             }
             catch
             {

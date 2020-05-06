@@ -477,7 +477,7 @@ namespace PeNet
         ///     The COM TypeLib ID of the assembly, if specified,
         ///     and if the PE is a CLR assembly.
         /// </summary>
-        public string? ClrComTypeLibId
+        public Guid? ClrComTypeLibId
             => (_netGuids ??= new NetGuids(this)).ComTypeLibId;
 
         /// <summary>

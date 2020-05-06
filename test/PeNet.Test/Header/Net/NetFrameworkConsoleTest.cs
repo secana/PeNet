@@ -519,7 +519,7 @@ namespace PeNet.Test.Header.Net
         [Fact]
         public void NetGuid_ComTypeLibId()
         {
-            Assert.Equal("a782d109-aa8f-427b-8dcf-1c786054c7e0", _peFile.ClrComTypeLibId);
+            Assert.Equal(new Guid("a782d109-aa8f-427b-8dcf-1c786054c7e0"), _peFile.ClrComTypeLibId);
         }
     }
 }

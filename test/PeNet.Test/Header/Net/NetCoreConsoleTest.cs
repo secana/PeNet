@@ -644,7 +644,7 @@ namespace PeNet.Test.Header.Net
         [Fact]
         public void NetGuid_ComTypeLibId()
         {
-            Assert.Equal(string.Empty, _peFile.ClrComTypeLibId);
+            Assert.Null(_peFile.ClrComTypeLibId);
         }
     }
 }
