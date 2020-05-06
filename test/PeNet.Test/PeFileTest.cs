@@ -71,7 +71,7 @@ namespace PeNet.Test
 
         [Theory]
         [InlineData(@"Binaries/firefox_x64.exe", true)]
-        [InlineData(@"Binaries/firefox_x86.exe", true)]
+        [InlineData(@"Binaries/firefox_x86_2.exe", true)]
         [InlineData(@"Binaries/NetFrameworkConsole.exe", true)]
         [InlineData(@"Binaries/notPeFile.txt", false)]
         public void IsPEFile_GivenBuffer_TrueOrFalse(string file, bool expected)
