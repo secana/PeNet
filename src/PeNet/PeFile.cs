@@ -470,14 +470,14 @@ namespace PeNet
         ///     The Version ID of each module
         ///     if the PE is a CLR assembly.
         /// </summary>
-        public List<Guid> ClrModuleVersionIds
+        public List<Guid>? ClrModuleVersionIds
             => (_netGuids ??= new NetGuids(this)).ModuleVersionIds;
 
         /// <summary>
         ///     The COM TypeLib ID of the assembly, if specified,
         ///     and if the PE is a CLR assembly.
         /// </summary>
-        public string ClrComTypeLibId
+        public Guid? ClrComTypeLibId
             => (_netGuids ??= new NetGuids(this)).ComTypeLibId;
 
         /// <summary>

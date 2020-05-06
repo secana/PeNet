@@ -34,17 +34,17 @@ namespace PeNet.Test
         }
 
         [Fact]
-        public void NetGuidComTypeLibId_NotClrPE_Empty()
+        public void NetGuidComTypeLibId_NotClrPE_Null()
         {
             var peFile = new PeFile(@"Binaries/win_test.dll");
-            Assert.Equal(string.Empty, peFile.ClrComTypeLibId);
+            Assert.Null(peFile.ClrComTypeLibId);
         }
 
         [Fact]
         public void NetGuidComTypeLibId_ClrPE_NotEmpty()
         {
             var peFile = new PeFile(@"Binaries/NetFrameworkConsole.exe");
-            Assert.Equal("a782d109-aa8f-427b-8dcf-1c786054c7e0", peFile.ClrComTypeLibId);
+            Assert.Equal(new Guid("a782d109-aa8f-427b-8dcf-1c786054c7e0"), peFile.ClrComTypeLibId);
         }
 
 
