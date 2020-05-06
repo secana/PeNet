@@ -15,7 +15,10 @@ namespace PeNet.Header.Pe
         ///  ARM NT .NET binaries are 32 bit, but do not set the BitMachine32 flag
         ///  That's why is seem easier to check for the known 64 bit architectures.
         /// </summary>
-        internal bool Is32Bit => Machine != MachineType.Amd64 && Machine != MachineType.Arm64;
+        internal bool Is32Bit =>
+                Machine != MachineType.Amd64
+                && Machine != MachineType.Arm64
+                && Machine != MachineType.LinuxDotnet64;
 
         /// <summary>
         ///     Create a new ImageFileHeader object.
@@ -165,6 +168,7 @@ namespace PeNet.Header.Pe
                 MachineType.Arm64 => "ARM64 Little-Endian",
                 MachineType.ArmNt => "ARM Thumb-2 Little-Endian",
                 MachineType.TargetHost => "Interacts with the host and not a WOW64 guest",
+                MachineType.LinuxDotnet64 => "Linux .NET x64 (Undocumented)",
                 _ => "unknown"
             };
     }
@@ -433,6 +437,12 @@ namespace PeNet.Header.Pe
         ///     File header -> machine (CPU): Interacts with the host and not
         ///     a WOW64 guest
         /// </summary>
-        TargetHost = 0x0001
+        TargetHost = 0x0001,
+
+        /// <summary>
+        /// Not documented but seen in the wild
+        /// https://github.com/secana/PeNet/issues/142
+        /// </summary>
+        LinuxDotnet64 = 0xfd1d
     }
 }

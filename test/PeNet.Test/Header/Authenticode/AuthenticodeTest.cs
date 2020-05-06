@@ -8,6 +8,17 @@ namespace PeNet.Test.Header.Authenticode
     public class AuthenticodeTest
     {
         [Fact]
+        public void GetAuthenticodeInfo_FromDotnetX64Binary_WithBuffer()
+        {
+            var peFile = new PeFile(@"./Binaries/dotnet_x64.dll");
+
+            Assert.Equal((uint)0x00122C00, peFile.ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Security].VirtualAddress);
+            Assert.Equal((uint)0x00002450, peFile.ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Security].Size);
+            Assert.NotNull(peFile.Pkcs7);
+            Assert.NotNull(peFile.Authenticode);
+        }
+
+        [Fact]
         public void GetAuthenticodeInfo_FromArmDotNetBinary_WithBuffer()
         {
             var peFile = new PeFile(@"./Binaries/arm_dotnet_binary.dll");
