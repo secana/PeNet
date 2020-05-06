@@ -54,7 +54,7 @@ namespace PeNet.Test.Header.Pe
         [Fact]
         public void ImageDebugDirectory_PeFileWithDebugInfo2_ParseCvHeader()
         {
-            var file = @"Binaries/firefox_x86.exe";
+            var file = @"Binaries/firefox_x86_2.exe";
 
             var peFile = new PeFile(file);
             var cv = peFile.ImageDebugDirectory[0].CvInfoPdb70;
