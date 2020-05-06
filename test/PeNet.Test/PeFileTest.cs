@@ -10,6 +10,17 @@ namespace PeNet.Test
     public class PeFileTest
     {
         [Fact]
+        public void MalwareTest()
+        {
+            var bin = @"C:\malware\c4cb5f429f9097baaeb7c75112d4efabdf355d49ca03a1704ff5351c8572bb50";
+            var peFile = new PeFile(bin);
+
+            Assert.Null(peFile.ImpHash);
+            Assert.Null(peFile.ClrComTypeLibId);
+            Assert.Null(peFile.ClrModuleVersionIds);
+        }
+
+        [Fact]
         public void ExportedFunctions_WithForwardedFunctions_ParsedForwardedFunctions()
         {
             var peFile = new PeFile(@"Binaries/win_test.dll");
@@ -34,10 +45,10 @@ namespace PeNet.Test
         }
 
         [Fact]
-        public void NetGuidComTypeLibId_NotClrPE_Empty()
+        public void NetGuidComTypeLibId_NotClrPE_Null()
         {
             var peFile = new PeFile(@"Binaries/win_test.dll");
-            Assert.Equal(string.Empty, peFile.ClrComTypeLibId);
+            Assert.Null(peFile.ClrComTypeLibId);
         }
 
         [Fact]
