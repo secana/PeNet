@@ -8889,6 +8889,12 @@ references:
   commentId: F:PeNet.Header.Pe.MachineType.Ia64
   fullName: PeNet.Header.Pe.MachineType.Ia64
   nameWithType: MachineType.Ia64
+- uid: PeNet.Header.Pe.MachineType.LinuxDotnet64
+  name: LinuxDotnet64
+  href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_LinuxDotnet64
+  commentId: F:PeNet.Header.Pe.MachineType.LinuxDotnet64
+  fullName: PeNet.Header.Pe.MachineType.LinuxDotnet64
+  nameWithType: MachineType.LinuxDotnet64
 - uid: PeNet.Header.Pe.MachineType.M32R
   name: M32R
   href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_M32R
