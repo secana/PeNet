@@ -27,13 +27,7 @@ namespace PeNet.Header.Pe
             : base(peFile, offset)
         {
             FileHeader = new ImageFileHeader(peFile, offset + 0x4);
-
-
-            var is32Bit = 
-                FileHeader.Machine == MachineType.I386 // .NET binaries do not have the BitMachine32 flag set, even if they are 32 bit
-                || FileHeader.Characteristics.HasFlag(FileCharacteristicsType.BitMachine32);
-
-            OptionalHeader = new ImageOptionalHeader(peFile, offset + 0x18, !is32Bit);
+            OptionalHeader = new ImageOptionalHeader(peFile, offset + 0x18, !FileHeader.Is32Bit);
         }
 
         /// <summary>

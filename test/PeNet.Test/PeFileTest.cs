@@ -253,5 +253,17 @@ namespace PeNet.Test
 
             Assert.Equal(expectedSha256, actual);
         }
+
+        [Theory]
+        [InlineData(@"Binaries/arm_binary.dll", true)]
+        [InlineData(@"Binaries/arm_dotnet_binary.dll", true)]
+        [InlineData(@"Binaries/old_firefox_x86.exe", true)]
+        [InlineData(@"Binaries/firefox_invalid_x64.exe", false)]
+        public void Is32Bit_GivenPeFiles_ReturnsCorrectBitness(string file, bool is32Bit)
+        {
+            var peFile = new PeFile(file);
+
+            Assert.Equal(is32Bit, peFile.Is32Bit);
+        }
     }
 }

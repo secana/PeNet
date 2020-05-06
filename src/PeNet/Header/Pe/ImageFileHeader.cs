@@ -10,6 +10,10 @@ namespace PeNet.Header.Pe
     /// </summary>
     public class ImageFileHeader : AbstractStructure
     {
+        internal bool Is32Bit => Machine == MachineType.I386 // .NET binaries do not have the BitMachine32 flag set, even if they are 32 bit
+        || Machine == MachineType.ArmNt // ARM NT .NET binaries are 32 bit, but do not set the BitMachine32 flag
+        || Characteristics.HasFlag(FileCharacteristicsType.BitMachine32);
+
         /// <summary>
         ///     Create a new ImageFileHeader object.
         /// </summary>
