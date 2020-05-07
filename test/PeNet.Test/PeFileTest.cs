@@ -260,6 +260,7 @@ namespace PeNet.Test
         [InlineData(@"Binaries/old_firefox_x86.exe", true)]
         [InlineData(@"Binaries/firefox_invalid_x64.exe", false)]
         [InlineData(@"Binaries/dotnet_x64.dll", false)]
+        [InlineData(@"Binaries/osx_vb_netcore.dll", false)]
         public void Is32Bit_GivenPeFiles_ReturnsCorrectBitness(string file, bool is32Bit)
         {
             var peFile = new PeFile(file);

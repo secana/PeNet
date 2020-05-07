@@ -18,7 +18,8 @@ namespace PeNet.Header.Pe
         internal bool Is32Bit =>
                 Machine != MachineType.Amd64
                 && Machine != MachineType.Arm64
-                && Machine != MachineType.LinuxDotnet64;
+                && Machine != MachineType.LinuxDotnet64
+                && Machine != MachineType.OsXDotnet64;
 
         /// <summary>
         ///     Create a new ImageFileHeader object.
@@ -443,6 +444,12 @@ namespace PeNet.Header.Pe
         /// Not documented but seen in the wild
         /// https://github.com/secana/PeNet/issues/142
         /// </summary>
-        LinuxDotnet64 = 0xfd1d
+        LinuxDotnet64 = 0xfd1d,
+
+        /// <summary>
+        /// Not documented but seen in the wild
+        /// https://github.com/secana/PeNet/issues/143
+        /// </summary>
+        OsXDotnet64 = 0xc020,
     }
 }
