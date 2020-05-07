@@ -27,7 +27,7 @@ namespace PeNet.Header.Pe
             : base(peFile, offset)
         {
             FileHeader = new ImageFileHeader(peFile, offset + 0x4);
-            OptionalHeader = new ImageOptionalHeader(peFile, offset + 0x18, !FileHeader.Is32Bit);
+            OptionalHeader = new ImageOptionalHeader(peFile, offset + 0x18, peFile.Is64Bit());
         }
 
         /// <summary>

@@ -237,12 +237,12 @@ namespace PeNet
         /// <summary>
         ///     Returns true if the PE file is x64.
         /// </summary>
-        public bool Is64Bit => !Is32Bit;
+        public bool Is64Bit => RawFile.Is64Bit();
 
         /// <summary>
         ///     Returns true if the PE file is x32.
         /// </summary>
-        public bool Is32Bit => ImageNtHeaders!.FileHeader.Is32Bit;
+        public bool Is32Bit => RawFile.Is32Bit();
                                
         /// <summary>
         ///     Access the ImageDosHeader of the PE file.

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using PeNet.FileParser;
 using PeNet.Header.Pe;
 
 namespace PeNet
@@ -240,5 +241,22 @@ namespace PeNet
         /// <returns>Number of bytes needed to align the next structure.</returns>
         public static uint PaddingBytes(this uint offset, int alignment) 
             => offset % (uint)(alignment / 8);
+
+        /// <summary>
+        /// Check if a given file if 64 Bit
+        /// </summary>
+        /// <param name="peFile">A PE file.</param>
+        /// <returns>True, if 64 bit.</returns>
+        public static bool Is64Bit(this IRawFile peFile)
+            => peFile.ReadUShort(peFile.ReadUInt(0x3c) + 0x18) == (ushort) MagicType.Bit64;
+
+
+        /// <summary>
+        /// Check if a given file if 32 Bit
+        /// </summary>
+        /// <param name="peFile">A PE file.</param>
+        /// <returns>True, if 32 bit.</returns>
+        public static bool Is32Bit(this IRawFile peFile)
+            => peFile.ReadUShort(peFile.ReadUInt(0x3c) + 0x18) == (ushort) MagicType.Bit32;
     }
 }
