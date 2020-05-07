@@ -13,6 +13,32 @@ references:
   commentId: T:PeNet.ExtensionMethods
   fullName: PeNet.ExtensionMethods
   nameWithType: ExtensionMethods
+- uid: PeNet.ExtensionMethods.Is32Bit(PeNet.FileParser.IRawFile)
+  name: Is32Bit(IRawFile)
+  href: api/PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_Is32Bit_PeNet_FileParser_IRawFile_
+  commentId: M:PeNet.ExtensionMethods.Is32Bit(PeNet.FileParser.IRawFile)
+  fullName: PeNet.ExtensionMethods.Is32Bit(PeNet.FileParser.IRawFile)
+  nameWithType: ExtensionMethods.Is32Bit(IRawFile)
+- uid: PeNet.ExtensionMethods.Is32Bit*
+  name: Is32Bit
+  href: api/PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_Is32Bit_
+  commentId: Overload:PeNet.ExtensionMethods.Is32Bit
+  isSpec: "True"
+  fullName: PeNet.ExtensionMethods.Is32Bit
+  nameWithType: ExtensionMethods.Is32Bit
+- uid: PeNet.ExtensionMethods.Is64Bit(PeNet.FileParser.IRawFile)
+  name: Is64Bit(IRawFile)
+  href: api/PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_Is64Bit_PeNet_FileParser_IRawFile_
+  commentId: M:PeNet.ExtensionMethods.Is64Bit(PeNet.FileParser.IRawFile)
+  fullName: PeNet.ExtensionMethods.Is64Bit(PeNet.FileParser.IRawFile)
+  nameWithType: ExtensionMethods.Is64Bit(IRawFile)
+- uid: PeNet.ExtensionMethods.Is64Bit*
+  name: Is64Bit
+  href: api/PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_Is64Bit_
+  commentId: Overload:PeNet.ExtensionMethods.Is64Bit
+  isSpec: "True"
+  fullName: PeNet.ExtensionMethods.Is64Bit
+  nameWithType: ExtensionMethods.Is64Bit
 - uid: PeNet.ExtensionMethods.PaddingBytes(System.Int32,System.Int32)
   name: PaddingBytes(Int32, Int32)
   href: api/PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_PaddingBytes_System_Int32_System_Int32_
