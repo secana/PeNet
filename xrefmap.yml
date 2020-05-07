@@ -8931,6 +8931,12 @@ references:
   commentId: F:PeNet.Header.Pe.MachineType.OldAlpha
   fullName: PeNet.Header.Pe.MachineType.OldAlpha
   nameWithType: MachineType.OldAlpha
+- uid: PeNet.Header.Pe.MachineType.OsXDotnet64
+  name: OsXDotnet64
+  href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_OsXDotnet64
+  commentId: F:PeNet.Header.Pe.MachineType.OsXDotnet64
+  fullName: PeNet.Header.Pe.MachineType.OsXDotnet64
+  nameWithType: MachineType.OsXDotnet64
 - uid: PeNet.Header.Pe.MachineType.PowerPc
   name: PowerPc
   href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_PowerPc
