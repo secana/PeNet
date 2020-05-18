@@ -8897,6 +8897,18 @@ references:
   commentId: F:PeNet.Header.Pe.MachineType.Ebc
   fullName: PeNet.Header.Pe.MachineType.Ebc
   nameWithType: MachineType.Ebc
+- uid: PeNet.Header.Pe.MachineType.FreeBSDDotnet32
+  name: FreeBSDDotnet32
+  href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_FreeBSDDotnet32
+  commentId: F:PeNet.Header.Pe.MachineType.FreeBSDDotnet32
+  fullName: PeNet.Header.Pe.MachineType.FreeBSDDotnet32
+  nameWithType: MachineType.FreeBSDDotnet32
+- uid: PeNet.Header.Pe.MachineType.FreeBSDDotnet64
+  name: FreeBSDDotnet64
+  href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_FreeBSDDotnet64
+  commentId: F:PeNet.Header.Pe.MachineType.FreeBSDDotnet64
+  fullName: PeNet.Header.Pe.MachineType.FreeBSDDotnet64
+  nameWithType: MachineType.FreeBSDDotnet64
 - uid: PeNet.Header.Pe.MachineType.I386
   name: I386
   href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_I386
@@ -8915,6 +8927,12 @@ references:
   commentId: F:PeNet.Header.Pe.MachineType.Ia64
   fullName: PeNet.Header.Pe.MachineType.Ia64
   nameWithType: MachineType.Ia64
+- uid: PeNet.Header.Pe.MachineType.LinuxDotnet32
+  name: LinuxDotnet32
+  href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_LinuxDotnet32
+  commentId: F:PeNet.Header.Pe.MachineType.LinuxDotnet32
+  fullName: PeNet.Header.Pe.MachineType.LinuxDotnet32
+  nameWithType: MachineType.LinuxDotnet32
 - uid: PeNet.Header.Pe.MachineType.LinuxDotnet64
   name: LinuxDotnet64
   href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_LinuxDotnet64
@@ -8951,12 +8969,30 @@ references:
   commentId: F:PeNet.Header.Pe.MachineType.MipsFpu16
   fullName: PeNet.Header.Pe.MachineType.MipsFpu16
   nameWithType: MachineType.MipsFpu16
+- uid: PeNet.Header.Pe.MachineType.NetBSDDotnet32
+  name: NetBSDDotnet32
+  href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_NetBSDDotnet32
+  commentId: F:PeNet.Header.Pe.MachineType.NetBSDDotnet32
+  fullName: PeNet.Header.Pe.MachineType.NetBSDDotnet32
+  nameWithType: MachineType.NetBSDDotnet32
+- uid: PeNet.Header.Pe.MachineType.NetBSDDotnet64
+  name: NetBSDDotnet64
+  href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_NetBSDDotnet64
+  commentId: F:PeNet.Header.Pe.MachineType.NetBSDDotnet64
+  fullName: PeNet.Header.Pe.MachineType.NetBSDDotnet64
+  nameWithType: MachineType.NetBSDDotnet64
 - uid: PeNet.Header.Pe.MachineType.OldAlpha
   name: OldAlpha
   href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_OldAlpha
   commentId: F:PeNet.Header.Pe.MachineType.OldAlpha
   fullName: PeNet.Header.Pe.MachineType.OldAlpha
   nameWithType: MachineType.OldAlpha
+- uid: PeNet.Header.Pe.MachineType.OsXDotnet32
+  name: OsXDotnet32
+  href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_OsXDotnet32
+  commentId: F:PeNet.Header.Pe.MachineType.OsXDotnet32
+  fullName: PeNet.Header.Pe.MachineType.OsXDotnet32
+  nameWithType: MachineType.OsXDotnet32
 - uid: PeNet.Header.Pe.MachineType.OsXDotnet64
   name: OsXDotnet64
   href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_OsXDotnet64
@@ -9023,6 +9059,18 @@ references:
   commentId: F:PeNet.Header.Pe.MachineType.Sh5
   fullName: PeNet.Header.Pe.MachineType.Sh5
   nameWithType: MachineType.Sh5
+- uid: PeNet.Header.Pe.MachineType.SunDotnet32
+  name: SunDotnet32
+  href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_SunDotnet32
+  commentId: F:PeNet.Header.Pe.MachineType.SunDotnet32
+  fullName: PeNet.Header.Pe.MachineType.SunDotnet32
+  nameWithType: MachineType.SunDotnet32
+- uid: PeNet.Header.Pe.MachineType.SunDotnet64
+  name: SunDotnet64
+  href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_SunDotnet64
+  commentId: F:PeNet.Header.Pe.MachineType.SunDotnet64
+  fullName: PeNet.Header.Pe.MachineType.SunDotnet64
+  nameWithType: MachineType.SunDotnet64
 - uid: PeNet.Header.Pe.MachineType.TargetHost
   name: TargetHost
   href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_TargetHost
