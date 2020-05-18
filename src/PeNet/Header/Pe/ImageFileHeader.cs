@@ -443,60 +443,60 @@ namespace PeNet.Header.Pe
         /// Defined by .NET
         /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
         /// </summary>
-        LinuxDotnet64 = 0x8664 ^ 0x4644, //0xFD1D
+        LinuxDotnet64 = Amd64 ^ 0x4644, //0xFD1D
 
         /// <summary>
         /// Defined by .NET
         /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
         /// </summary>
-        OsXDotnet64 = 0x8664 ^ 0x7B79, //0xC020
+        OsXDotnet64 = Amd64 ^ 0x7B79, //0xC020
 
         /// <summary>
         /// Defined by .NET
         /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
         /// </summary>
-        FreeBSDDotnet64 = 0x8664 ^ 0xADC4, //0x2BA0
+        FreeBSDDotnet64 = Amd64 ^ 0xADC4, //0x2BA0
 
         /// <summary>
         /// Defined by .NET
         /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
         /// </summary>
-        NetBSDDotnet64 = 0x8664 ^ 0x1993, //0x9FF7
+        NetBSDDotnet64 = Amd64 ^ 0x1993, //0x9FF7
 
         /// <summary>
         /// Defined by .NET
         /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
         /// </summary>
-        SunDotnet64 = 0x8664 ^ 0x1992, //0x9FF6
+        SunDotnet64 = Amd64 ^ 0x1992, //0x9FF6
 
         /// <summary>
         /// Defined by .NET
         /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
         /// </summary>
-        LinuxDotnet32 = 0x014C ^ 0x4644, //0x4708
+        LinuxDotnet32 = I386 ^ 0x4644, //0x4708
 
         /// <summary>
         /// Defined by .NET
         /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
         /// </summary>
-        OsXDotnet32 = 0x014C ^ 0x7B79, //0x7A35
+        OsXDotnet32 = I386 ^ 0x7B79, //0x7A35
 
         /// <summary>
         /// Defined by .NET
         /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
         /// </summary>
-        FreeBSDDotnet32 = 0x014C ^ 0xADC4, //0xAC88
+        FreeBSDDotnet32 = I386 ^ 0xADC4, //0xAC88
 
         /// <summary>
         /// Defined by .NET
         /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
         /// </summary>
-        NetBSDDotnet32 = 0x014C ^ 0x1993, //0x18DF
+        NetBSDDotnet32 = I386 ^ 0x1993, //0x18DF
 
         /// <summary>
         /// Defined by .NET
         /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
         /// </summary>
-        SunDotnet32 = 0x014C ^ 0x1992, //0x18DE
+        SunDotnet32 = I386 ^ 0x1992, //0x18DE
     }
 }
