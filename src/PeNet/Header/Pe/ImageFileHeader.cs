@@ -158,7 +158,17 @@ namespace PeNet.Header.Pe
                 MachineType.Arm64 => "ARM64 Little-Endian",
                 MachineType.ArmNt => "ARM Thumb-2 Little-Endian",
                 MachineType.TargetHost => "Interacts with the host and not a WOW64 guest",
-                MachineType.LinuxDotnet64 => "Linux .NET x64 (Undocumented)",
+                MachineType.LinuxDotnet64 => "Linux .NET x64",
+                MachineType.LinuxDotnet32 => "Linux .NET x86",
+                MachineType.OsXDotnet64 => "Mac OS .NET x64",
+                MachineType.OsXDotnet32 => "Mac OS .NET x86",
+                MachineType.FreeBSDDotnet64 => "FreeBSD .NET x64",
+                MachineType.FreeBSDDotnet32 => "FreeBSD .NET x86",
+                MachineType.NetBSDDotnet64 => "NetBSD .NET x64",
+                MachineType.NetBSDDotnet32 => "NetBSD .NET x86",
+                MachineType.SunDotnet64 => "Sun .NET x64",
+                MachineType.SunDotnet32 => "Sun .NET x86",
+
                 _ => "unknown"
             };
     }
@@ -430,15 +440,63 @@ namespace PeNet.Header.Pe
         TargetHost = 0x0001,
 
         /// <summary>
-        /// Not documented but seen in the wild
-        /// https://github.com/secana/PeNet/issues/142
+        /// Defined by .NET
+        /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
         /// </summary>
-        LinuxDotnet64 = 0xfd1d,
+        LinuxDotnet64 = Amd64 ^ 0x4644, //0xFD1D
 
         /// <summary>
-        /// Not documented but seen in the wild
-        /// https://github.com/secana/PeNet/issues/143
+        /// Defined by .NET
+        /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
         /// </summary>
-        OsXDotnet64 = 0xc020,
+        OsXDotnet64 = Amd64 ^ 0x7B79, //0xC020
+
+        /// <summary>
+        /// Defined by .NET
+        /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
+        /// </summary>
+        FreeBSDDotnet64 = Amd64 ^ 0xADC4, //0x2BA0
+
+        /// <summary>
+        /// Defined by .NET
+        /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
+        /// </summary>
+        NetBSDDotnet64 = Amd64 ^ 0x1993, //0x9FF7
+
+        /// <summary>
+        /// Defined by .NET
+        /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
+        /// </summary>
+        SunDotnet64 = Amd64 ^ 0x1992, //0x9FF6
+
+        /// <summary>
+        /// Defined by .NET
+        /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
+        /// </summary>
+        LinuxDotnet32 = I386 ^ 0x4644, //0x4708
+
+        /// <summary>
+        /// Defined by .NET
+        /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
+        /// </summary>
+        OsXDotnet32 = I386 ^ 0x7B79, //0x7A35
+
+        /// <summary>
+        /// Defined by .NET
+        /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
+        /// </summary>
+        FreeBSDDotnet32 = I386 ^ 0xADC4, //0xAC88
+
+        /// <summary>
+        /// Defined by .NET
+        /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
+        /// </summary>
+        NetBSDDotnet32 = I386 ^ 0x1993, //0x18DF
+
+        /// <summary>
+        /// Defined by .NET
+        /// https://github.com/dotnet/runtime/blob/61c658183231100a5836e833c86446ff51a4654b/src/coreclr/src/inc/pedecoder.h#L90-L104
+        /// </summary>
+        SunDotnet32 = I386 ^ 0x1992, //0x18DE
     }
 }
