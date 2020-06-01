@@ -21,6 +21,19 @@
         }
 
         /// <summary>
+        ///     Create a new ImportFunction object.
+        /// </summary>
+        /// <param name="name">Function name.</param>
+        /// <param name="dll">DLL where the function comes from.</param>
+        public ImportFunction(string name, string dll)
+        {
+            Name = name;
+            DLL = dll;
+            Hint = 0;
+            IATOffset = 0;
+        }
+
+        /// <summary>
         ///     Function name.
         /// </summary>
         public string? Name { get; }
