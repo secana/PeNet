@@ -22,7 +22,7 @@ namespace PeNet
     ///     This class represents a Portable Executable (PE) file and makes the different
     ///     header and properties accessible.
     /// </summary>
-    public class PeFile
+    public partial class PeFile
     {
         private readonly DataDirectoryParsers _dataDirectoryParsers;
         private readonly NativeStructureParsers _nativeStructureParsers;
@@ -640,7 +640,9 @@ namespace PeNet
             _nativeStructureParsers.ReparseSectionHeaders();
         }
 
-        public void AddImports(List<ImportFunction> imports)
+       
+
+        public void AddImports(List<AdditionalImport> additionalImports)
         {
             //http://www.sunshine2k.de/reversing/tuts/tut_AddImp.htm
 
@@ -659,20 +661,10 @@ namespace PeNet
 
             var impSection = getImportSection();
 
-            int getAdditionalNeededSpace()
-            {
-                var sizeOfHint = 2;
-                var sizeOfZeroTerm = 1;
-                var sizeImpDescArray = (imports.Select(i => i.DLL).Distinct().Count() + 1) * sizeOfImpDesc;
-                var sizeThunkArray = (imports.Select(i => i.Name).Count() + 1) * sizeOfThunkData;
-                var sizeOfImpByNameArray = imports.Select(i => i.Name?.Length + sizeOfZeroTerm + sizeOfHint).Sum()!.Value;
+            int estimateAdditionalNeededSpace()
+                => additionalImports.Select(ai => ai.Functions).Count() * 64;
 
-                return sizeOfImpByNameArray
-                    + sizeOfThunkData
-                    + sizeOfImpByNameArray;
-            }
-
-            var additionalSpace = getAdditionalNeededSpace();
+            var additionalSpace = estimateAdditionalNeededSpace();
 
             // First copy the current import section to a new section with additional space
             // for the new import
@@ -680,16 +672,107 @@ namespace PeNet
             var newImpSec = ImageSectionHeaders.First(sh => sh.Name == ".addImp");
             var oldImpSecBytes = RawFile.AsSpan(impSection.PointerToRawData, impSection.SizeOfRawData);
             RawFile.WriteBytes(newImpSec.PointerToRawData, oldImpSecBytes);
+            var paAdditionalSpace = newImpSec.PointerToRawData + oldImpSecBytes.Length;
 
             // Set the import data directory to the new import section and adjust the size
             ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].VirtualAddress = importRva - impSection.VirtualAddress + newImpSec.VirtualAddress;
             ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].Size = (uint)(impSection.SizeOfRawData + additionalSpace);
+            var newImportRva = ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].VirtualAddress;
 
+            // TODO: Throw exception if one of the module to import already exists
+
+            uint AddModName(ref uint offset, string module)
+            {
+                var tmp = Encoding.ASCII.GetBytes(module);
+                var mName = new byte[tmp.Length + 1];
+                Array.Copy(tmp, mName, tmp.Length);
+
+                var paName = offset;
+                RawFile.WriteBytes(offset, mName);
+
+                offset = (uint)(offset + mName.Length);
+                return paName;
+            }
+
+            List<uint> AddImpByNames(ref uint offset, List<string> funcs)
+            {
+                var adrList = new List<uint>();
+                foreach(var f in funcs)
+                {
+                    var ibn = new ImageImportByName(RawFile, offset)
+                    {
+                        Hint = 0,
+                        Name = f
+                    };
+
+                    adrList.Add(offset);
+
+                    offset += (uint) ibn.Name.Length + 2;
+                }
+
+                // Add zero DWORD to end array
+                RawFile.WriteUInt(offset + 1, 0);
+                offset += 5;
+
+                return adrList;
+            }
+
+            uint AddThunkDatas(ref uint offset, List<uint> adrList)
+            {
+                var paThunkStart = offset;
+
+                foreach(var adr in adrList)
+                {
+                    new ImageThunkData(RawFile, offset, Is64Bit)
+                    {
+                        AddressOfData = adr.OffsetToRva(ImageSectionHeaders!)
+                    };
+
+                    offset += (uint) sizeOfThunkData;
+                }
+
+                // End array with empty thunk data
+                new ImageThunkData(RawFile, offset, Is64Bit)
+                {
+                    AddressOfData = 0
+                };
+
+                offset += (uint) sizeOfThunkData;
+
+                return paThunkStart;
+            }
+
+            var paIdesc = newImportRva.RvaToOffset(ImageSectionHeaders!) + ImageImportDescriptors!.Length * sizeOfImpDesc;
+            var tmpOffset = (uint) paAdditionalSpace;
+            foreach(var ai in additionalImports)
+            {
+                var paName = AddModName(ref tmpOffset, ai.Module);
+                var funcAdrs = AddImpByNames(ref tmpOffset, ai.Functions);
+                var thunkAdrs = AddThunkDatas(ref tmpOffset, funcAdrs);
+
+                new ImageImportDescriptor(RawFile, paIdesc)
+                {
+                    Name = paName.OffsetToRva(ImageSectionHeaders!),
+                    OriginalFirstThunk = thunkAdrs.OffsetToRva(ImageSectionHeaders!),
+                    FirstThunk = thunkAdrs.OffsetToRva(ImageSectionHeaders!),
+                    ForwarderChain = 0,
+                    TimeDateStamp = 0
+                };
+                paIdesc += (uint) sizeOfImpDesc;
+            }
+
+            // End with zero filled idesc
+            new ImageImportDescriptor(RawFile, paIdesc)
+            {
+                Name = 0,
+                OriginalFirstThunk = 0,
+                FirstThunk = 0,
+                ForwarderChain = 0,
+                TimeDateStamp = 0
+            };
 
 
             /* Add additional imports to new import section
-                - Throw exception if module already exists, as adding to an existing module would need a relocation of
-                  the IMAGE_THUNK and IMAGE_IMPORT_BY_NAME arrays
                 - For each module to import from, add an IMPORT_DESCRIPTOR
                     - Let OriginalThunk and FirstThunk point to array of RVAs (THUNK_DATA) which point to a hint and the function name (IMPORT_BY_NAME)
                         - THUNK_DATA array must be zero terminated with 0x0000_0000
@@ -698,15 +781,9 @@ namespace PeNet
             */
 
 
-            // Optional: Delete the old import section
-
-            // Optional: Rename the new import section to ".idata"
-
             // Reparse imports
-
-
-            // Write to disc to test
-            File.WriteAllBytes("test.exe", RawFile.ToArray());
+            _dataDirectoryParsers.ReparseImportDescriptors(ImageSectionHeaders!);
+            _dataDirectoryParsers.ReparseImportedFunctions();
         }
     }
 }
