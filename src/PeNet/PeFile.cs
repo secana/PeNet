@@ -327,7 +327,8 @@ namespace PeNet
             // Write the new sections headers
             RawFile.WriteBytes(sectionHeaderOffset, newRawSections);
 
-            
+            // Reparse section header
+            _nativeStructureParsers.ReparseSectionHeaders();
         }
 
         /// <summary>

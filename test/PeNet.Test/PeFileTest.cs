@@ -11,6 +11,20 @@ namespace PeNet.Test
     public class PeFileTest
     {
         [Fact]
+        public void AddImport_32BitExecutable()
+        {
+            var peFile = new PeFile(@"Binaries/pidgin2.exe");
+            peFile.AddImport("XXXADVAPI32.dll", "RegOpenKeyExW", 0x028A);
+        }
+
+        [Fact]
+        public void AddImport_64BitExecutable()
+        {
+            var peFile = new PeFile(@"Binaries/pidgin2.exe");
+            peFile.AddImport("SHELL32.dll", "CommandLineToArgvW", 0x0002);
+        }
+
+        [Fact]
         public void AddSection_NewSectionAtEndOfFile()
         {
             var peFile = new PeFile(@"Binaries/add-section.exe");
@@ -32,30 +46,13 @@ namespace PeNet.Test
         }
 
         [Fact]
-        public void AddImport_32BitExecutable()
-        {
-            var peFile = new PeFile(@"Binaries/pidgin2.exe");
-            peFile.AddImport("XXXADVAPI32.dll", "RegOpenKeyExW", 0x028A);
-        }
-
-        [Fact]
-        public void AddImport_64BitExecutable()
-        {
-            var peFile = new PeFile(@"Binaries/pidgin2.exe");
-            peFile.AddImport("SHELL32.dll", "CommandLineToArgvW", 0x0002);
-        }
-
-        [Fact]
         public void RemoveSection_SectionRemoved()
         {
             var peFile = new PeFile(@"Binaries/pidgin2.exe");
             peFile.RemoveSection(".rsrc");
 
-            File.WriteAllBytes("tmp.exe", peFile.RawFile.ToArray());
-            var pefile2 = new PeFile("tmp.exe");
-
-            Assert.Equal(8, pefile2.ImageSectionHeaders.Length);
-            Assert.False(pefile2.ImageSectionHeaders.ToList().Exists(s => s.Name == ".rsrc"));
+            Assert.Equal(8, peFile.ImageSectionHeaders.Length);
+            Assert.False(peFile.ImageSectionHeaders.ToList().Exists(s => s.Name == ".rsrc"));
         }
 
         [Fact]
