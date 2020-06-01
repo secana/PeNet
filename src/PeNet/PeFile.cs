@@ -640,9 +640,41 @@ namespace PeNet
             _nativeStructureParsers.ReparseSectionHeaders();
         }
 
-        public void AddImport(string module, string name, ushort hint)
-        { 
+        public void AddImports(List<ImportFunction> imports)
+        {
             //http://www.sunshine2k.de/reversing/tuts/tut_AddImp.htm
+
+            if (ImageNtHeaders is null)
+                throw new Exception();
+
+
+            var sizeOfImpDesc = 0x14;
+            var sizeOfThunkData = Is32Bit ? 4 : 8;
+            var importRva = ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].VirtualAddress;
+            var importSize = ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].Size;
+
+            ImageSectionHeader getImportSection()
+                => ImageSectionHeaders.First(sh => sh.VirtualAddress >= importRva);
+
+
+            var impSection = getImportSection();
+
+            int getSizeForNewImpSec()
+            {
+                var sizeOfHint = 2;
+                var sizeOfZeroTerm = 1;
+                var sizeImpDescArray = (imports.Select(i => i.DLL).Distinct().Count() + 1) * sizeOfImpDesc;
+                var sizeThunkArray = (imports.Select(i => i.Name).Count() + 1) * sizeOfThunkData;
+                var sizeOfImpByNameArray = imports.Select(i => i.Name?.Length + sizeOfZeroTerm + sizeOfHint).Sum()!.Value;
+
+                return (int)(impSection!.SizeOfRawData
+                    + sizeOfImpByNameArray
+                    + sizeOfThunkData
+                    + sizeOfImpByNameArray);
+            }
+
+            var newSecSize = getSizeForNewImpSec();
+            AddSection(".addImp", getSizeForNewImpSec(), impSection.Characteristics);
 
             // First copy the current import section to a new section with additional space
             // for the new import

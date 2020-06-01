@@ -1,6 +1,7 @@
 ﻿using PeNet.FileParser;
 using PeNet.Header.Pe;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -11,17 +12,36 @@ namespace PeNet.Test
     public class PeFileTest
     {
         [Fact]
-        public void AddImport_32BitExecutable()
+        public void AddImport_ToNotExistingImpDesc_32BitExecutable()
         {
-            var peFile = new PeFile(@"Binaries/pidgin2.exe");
-            peFile.AddImport("XXXADVAPI32.dll", "RegOpenKeyExW", 0x028A);
+            var peFile = new PeFile(@"Binaries/add-import.exe");
+            peFile.AddImports(new List<ImportFunction> {new ImportFunction("HAL.dll", "HalGetVectorInput") });
+
+            Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i =>
+                i.DLL == "HAL.dll"
+                && i.Name == "HalGetVectorInput"));
+        }
+
+        [Fact]
+        public void AddImport_ToExistingImpDesc_32BitExecutable()
+        {
+            var peFile = new PeFile(@"Binaries/add-import.exe");
+            peFile.AddImports(new List<ImportFunction> { new ImportFunction("ADVAPI32.dll", "RegCloseKey") });
+
+            Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i =>
+                i.DLL == "ADVAPI32.dll"
+                && i.Name == "RegCloseKey"));
         }
 
         [Fact]
         public void AddImport_64BitExecutable()
         {
-            var peFile = new PeFile(@"Binaries/pidgin2.exe");
-            peFile.AddImport("SHELL32.dll", "CommandLineToArgvW", 0x0002);
+            var peFile = new PeFile(@"Binaries/add-import.exe");
+            peFile.AddImports(new List<ImportFunction> { new ImportFunction("SHELL32.dll", "CommandLineToArgvW")});
+
+            Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i => 
+                i.DLL == "SHELL32.dll" 
+                && i.Name == "CommandLineToArgvW"));
         }
 
         [Fact]
@@ -48,10 +68,10 @@ namespace PeNet.Test
         [Fact]
         public void RemoveSection_SectionRemoved()
         {
-            var peFile = new PeFile(@"Binaries/pidgin2.exe");
+            var peFile = new PeFile(@"Binaries/remove-section.exe");
             peFile.RemoveSection(".rsrc");
 
-            Assert.Equal(8, peFile.ImageSectionHeaders.Length);
+            Assert.Equal(5, peFile.ImageSectionHeaders.Length);
             Assert.False(peFile.ImageSectionHeaders.ToList().Exists(s => s.Name == ".rsrc"));
         }
 
