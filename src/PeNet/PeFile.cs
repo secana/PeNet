@@ -654,12 +654,12 @@ namespace PeNet
             var importSize = ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].Size;
 
             ImageSectionHeader getImportSection()
-                => ImageSectionHeaders.First(sh => sh.VirtualAddress >= importRva);
+                => ImageSectionHeaders.First(sh => sh.VirtualAddress + sh.VirtualSize >= importRva);
 
 
             var impSection = getImportSection();
 
-            int getSizeForNewImpSec()
+            int getAdditionalNeededSpace()
             {
                 var sizeOfHint = 2;
                 var sizeOfZeroTerm = 1;
@@ -667,17 +667,24 @@ namespace PeNet
                 var sizeThunkArray = (imports.Select(i => i.Name).Count() + 1) * sizeOfThunkData;
                 var sizeOfImpByNameArray = imports.Select(i => i.Name?.Length + sizeOfZeroTerm + sizeOfHint).Sum()!.Value;
 
-                return (int)(impSection!.SizeOfRawData
-                    + sizeOfImpByNameArray
+                return sizeOfImpByNameArray
                     + sizeOfThunkData
-                    + sizeOfImpByNameArray);
+                    + sizeOfImpByNameArray;
             }
 
-            var newSecSize = getSizeForNewImpSec();
-            AddSection(".addImp", getSizeForNewImpSec(), impSection.Characteristics);
+            var additionalSpace = getAdditionalNeededSpace();
 
             // First copy the current import section to a new section with additional space
             // for the new import
+            AddSection(".addImp", (int)(impSection!.SizeOfRawData + additionalSpace), impSection.Characteristics);
+            var newImpSec = ImageSectionHeaders.First(sh => sh.Name == ".addImp");
+            var oldImpSecBytes = RawFile.AsSpan(impSection.PointerToRawData, impSection.SizeOfRawData);
+            RawFile.WriteBytes(newImpSec.PointerToRawData, oldImpSecBytes);
+
+            // Set the import data directory to the new import section and adjust the size
+            ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].VirtualAddress = importRva - impSection.VirtualAddress + newImpSec.VirtualAddress;
+            ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].Size = (uint)(impSection.SizeOfRawData + additionalSpace);
+
 
 
             /* Add additional imports to new import section
@@ -690,13 +697,12 @@ namespace PeNet
                 - Add zero filled IMPORT_DESCRIPTOR to end of import table
             */
 
-            // Set the import data directory to the new import section and adjust the size
-
-            // 
 
             // Optional: Delete the old import section
 
             // Optional: Rename the new import section to ".idata"
+
+            // Reparse imports
 
 
             // Write to disc to test
