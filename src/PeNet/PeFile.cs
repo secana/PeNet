@@ -644,11 +644,15 @@ namespace PeNet
 
         public void AddImports(List<AdditionalImport> additionalImports)
         {
-            //http://www.sunshine2k.de/reversing/tuts/tut_AddImp.htm
-
             if (ImageNtHeaders is null)
                 throw new Exception();
 
+
+            // Throw exception if one of the module to import already exists
+            if(ImportedFunctions.Select(i => i.DLL).Distinct().Intersect(additionalImports.Select(i => i.Module)).Any())
+            {
+                throw new ArgumentException("Module already imported. Currently only imports from new modules are allowed.");
+            }
 
             var sizeOfImpDesc = 0x14;
             var sizeOfThunkData = Is32Bit ? 4 : 8;
@@ -679,7 +683,6 @@ namespace PeNet
             ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].Size = (uint)(impSection.SizeOfRawData + additionalSpace);
             var newImportRva = ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].VirtualAddress;
 
-            // TODO: Throw exception if one of the module to import already exists
 
             uint AddModName(ref uint offset, string module)
             {

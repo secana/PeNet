@@ -12,7 +12,7 @@ namespace PeNet.Test
     public class PeFileTest
     {
         [Fact]
-        public void AddImport_ToNotExistingImpDesc_32BitExecutable()
+        public void AddImport_ToNotExistingImpDesc_64BitExecutable()
         {
             var peFile = new PeFile(@"Binaries/add-import.exe");
             var ai = new AdditionalImport("GDI32.dll", new List<string> { "StartPage" });
@@ -21,30 +21,19 @@ namespace PeNet.Test
 
             // Write to disc to test
             File.WriteAllBytes("test.exe", peFile.RawFile.ToArray());
-            var idesc = peFile.ImageImportDescriptors;
-            var imf = peFile.ImportedFunctions;
+
             Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i =>
                 i.DLL == "GDI32.dll"
                 && i.Name == "StartPage"));
         }
 
-        //[Fact]
-        //public void AddImport_ToExistingImpDesc_32BitExecutable_ThrowsException()
-        //{
-        //    var peFile = new PeFile(@"Binaries/add-import.exe");
-        //    Assert.Throws<ArgumentException>(() => peFile.AddImports(new List<ImportFunction> { new ImportFunction("ADVAPI32.dll", "RegCloseKey") }));
-        //}
-
-        //[Fact]
-        //public void AddImport_64BitExecutable()
-        //{
-        //    var peFile = new PeFile(@"Binaries/add-import.exe");
-        //    peFile.AddImports(new List<ImportFunction> { new ImportFunction("SHELL32.dll", "CommandLineToArgvW")});
-
-        //    Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i => 
-        //        i.DLL == "SHELL32.dll" 
-        //        && i.Name == "CommandLineToArgvW"));
-        //}
+        [Fact]
+        public void AddImport_ToExistingImpDesc_64BitExecutable_ThrowsException()
+        {
+            var peFile = new PeFile(@"Binaries/add-import.exe");
+            var ai = new AdditionalImport("ADVAPI32.dll", new List<string> { "RegCloseKey" });
+            Assert.Throws<ArgumentException>(() => peFile.AddImports(new List<AdditionalImport> { ai }));
+        }
 
         [Fact]
         public void AddSection_NewSectionAtEndOfFile()
