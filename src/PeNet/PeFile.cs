@@ -580,6 +580,12 @@ namespace PeNet
             return sBuilder.ToString();
         }
 
+        /// <summary>
+        /// Add a new section to the PE file.
+        /// </summary>
+        /// <param name="name">Name of the section to add. At max. 8 characters.</param>
+        /// <param name="size">Size in bytes of the new section.</param>
+        /// <param name="characteristics">Section characteristics.</param>
         public void AddSection(string name, int size, ScnCharacteristicsType characteristics)
         {
             if (ImageNtHeaders is null)
@@ -641,7 +647,10 @@ namespace PeNet
         }
 
        
-
+        /// <summary>
+        /// Add imports to the PE file.
+        /// </summary>
+        /// <param name="additionalImports">List with additional imports.</param>
         public void AddImports(List<AdditionalImport> additionalImports)
         {
             if (ImageNtHeaders is null)
@@ -773,16 +782,6 @@ namespace PeNet
                 ForwarderChain = 0,
                 TimeDateStamp = 0
             };
-
-
-            /* Add additional imports to new import section
-                - For each module to import from, add an IMPORT_DESCRIPTOR
-                    - Let OriginalThunk and FirstThunk point to array of RVAs (THUNK_DATA) which point to a hint and the function name (IMPORT_BY_NAME)
-                        - THUNK_DATA array must be zero terminated with 0x0000_0000
-                        - Function name strings are zero terminated 0x00
-                - Add zero filled IMPORT_DESCRIPTOR to end of import table
-            */
-
 
             // Reparse imports
             _dataDirectoryParsers.ReparseImportDescriptors(ImageSectionHeaders!);
