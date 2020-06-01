@@ -1,4 +1,5 @@
 ﻿using PeNet.FileParser;
+using PeNet.Header.Pe;
 using System;
 using System.IO;
 using System.Linq;
@@ -9,6 +10,41 @@ namespace PeNet.Test
 {
     public class PeFileTest
     {
+        [Fact]
+        public void AddSection_NewSectionAtEndOfFile()
+        {
+            var peFile = new PeFile(@"Binaries/add-section.exe");
+
+            // Before adding the new section
+            Assert.Equal(27_648, peFile.RawFile.Length);
+            Assert.Equal(6, peFile.ImageNtHeaders.FileHeader.NumberOfSections);
+            Assert.Equal(0xb000u, peFile.ImageNtHeaders.OptionalHeader.SizeOfImage);
+            Assert.Equal(6, peFile.ImageSectionHeaders.Length);
+            
+
+            peFile.AddSection(".newSec", 100, (ScnCharacteristicsType)0x40000040);
+
+            // After adding the new section
+            Assert.Equal(27_748, peFile.RawFile.Length);
+            Assert.Equal(7, peFile.ImageNtHeaders.FileHeader.NumberOfSections);
+            Assert.Equal(0xc000u, peFile.ImageNtHeaders.OptionalHeader.SizeOfImage);
+            Assert.Equal(7, peFile.ImageSectionHeaders.Length);
+        }
+
+        [Fact]
+        public void AddImport_32BitExecutable()
+        {
+            var peFile = new PeFile(@"Binaries/pidgin2.exe");
+            peFile.AddImport("XXXADVAPI32.dll", "RegOpenKeyExW", 0x028A);
+        }
+
+        [Fact]
+        public void AddImport_64BitExecutable()
+        {
+            var peFile = new PeFile(@"Binaries/pidgin2.exe");
+            peFile.AddImport("SHELL32.dll", "CommandLineToArgvW", 0x0002);
+        }
+
         [Fact]
         public void RemoveSection_SectionRemoved()
         {

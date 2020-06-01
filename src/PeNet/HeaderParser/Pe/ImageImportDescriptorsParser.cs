@@ -26,7 +26,6 @@ namespace PeNet.HeaderParser.Pe
 
                 // Found the last ImageImportDescriptor which is completely null (except TimeDateStamp).
                 if (idesc.OriginalFirstThunk == 0
-                    //&& idesc.TimeDateStamp == 0
                     && idesc.ForwarderChain == 0
                     && idesc.Name == 0
                     && idesc.FirstThunk == 0)

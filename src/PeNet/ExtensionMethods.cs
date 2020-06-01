@@ -83,6 +83,62 @@ namespace PeNet
         }
 
         /// <summary>
+        ///     Map a raw offset to a relative virtual address.
+        /// </summary>
+        /// <param name="offset">Raw file offset.</param>
+        /// <param name="sectionHeaders">Section Headers</param>
+        /// <returns>Relative Virtual Address</returns>
+        public static ulong OffsetToRva(this ulong offset, ICollection<ImageSectionHeader> sectionHeaders)
+        {
+            static ImageSectionHeader? GetSectionForOffset(ICollection<ImageSectionHeader> sh, ulong rawOffset)
+            {
+                ImageSectionHeader? sec = null;
+                for (var i = 0; i < sh.Count; i++)
+                {
+                    if (rawOffset >= sh.ElementAt(i).PointerToRawData
+                        && rawOffset < sh.ElementAt(i).PointerToRawData + sh.ElementAt(i).SizeOfRawData)
+                    {
+                        sec = sh.ElementAt(i);
+                    }
+                }
+
+                if (sec != null)
+                    return sec;
+
+                for (var i = sh.Count - 1; i >= 0; i--)
+                {
+                    if (rawOffset >= sh.ElementAt(i).PointerToRawData &&
+                        rawOffset <= sh.ElementAt(i).PointerToRawData + sh.ElementAt(i).SizeOfRawData)
+                    {
+                        sec = sh.ElementAt(i);
+                    }
+                }
+
+                return sec;
+            }
+
+            var section = GetSectionForOffset(sectionHeaders, offset);
+
+            if (section is null)
+            {
+                throw new Exception("Cannot find corresponding section.");
+            }
+
+            return offset + section.VirtualAddress - section.PointerToRawData;
+        }
+
+        /// <summary>
+        ///     Map a raw offset to a relative virtual address.
+        /// </summary>
+        /// <param name="offset">Raw file offset.</param>
+        /// <param name="sectionHeaders">Section Headers</param>
+        /// <returns>Relative Virtual Address</returns>
+        public static uint OffsetToRva(this uint offset, ICollection<ImageSectionHeader> sectionHeaders)
+        {
+            return (uint) OffsetToRva((ulong) offset, sectionHeaders);
+        }
+
+        /// <summary>
         /// Try to map a relative virtual address to a file offset.
         /// </summary>
         /// <param name="rva">Relative Virtual Address</param>

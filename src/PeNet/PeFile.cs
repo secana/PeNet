@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -576,6 +577,97 @@ namespace PeNet
                 sBuilder.Append(t.ToString("x2"));
 
             return sBuilder.ToString();
+        }
+
+        public void AddSection(string name, int size, ScnCharacteristicsType characteristics)
+        {
+            if (ImageNtHeaders is null)
+                throw new Exception("IMAGE_NT_HEADERS must not be null.");
+            if (ImageDosHeader is null)
+                throw new Exception("IMAGE_DOS_HEADER must not be null");
+
+            uint getNewSizeOfImage()
+            {
+                var factor = size / (double)ImageNtHeaders.OptionalHeader.SectionAlignment;
+                var additionalSize = (uint) Math.Ceiling(factor) * ImageNtHeaders!.OptionalHeader.SectionAlignment;
+                return ImageNtHeaders.OptionalHeader.SizeOfImage + additionalSize;
+            }
+
+            uint getNewSecHeaderOffset()
+            {
+                var sizeOfSection = 0x28;
+                var x = (uint)ImageNtHeaders!.FileHeader.SizeOfOptionalHeader + 0x18;
+                var startOfSectionHeader = ImageDosHeader.E_lfanew + x;
+                return (uint)(startOfSectionHeader + (ImageNtHeaders.FileHeader.NumberOfSections * sizeOfSection));
+            }
+
+            uint getNewSecVA()
+            {
+                var lastSec = ImageSectionHeaders.OrderByDescending(sh => sh.VirtualAddress).First();
+                var vaLastSecEnd = lastSec.VirtualAddress + lastSec.VirtualSize;
+                var factor = vaLastSecEnd / (double)ImageNtHeaders.OptionalHeader.SectionAlignment;
+                return (uint)(Math.Ceiling(factor) * ImageNtHeaders.OptionalHeader.SectionAlignment);
+            }
+
+
+
+            // Append new section to end of file
+            var paNewSec = RawFile.AppendBytes(new Byte[size]);
+
+            // Add new entry in section table
+            var newSection = new ImageSectionHeader(RawFile, getNewSecHeaderOffset(), ImageNtHeaders.OptionalHeader.ImageBase)
+            {
+                Name = name,
+                VirtualSize = (uint)size,
+                VirtualAddress = getNewSecVA(),
+                SizeOfRawData = (uint)size,
+                PointerToRawData = (uint)paNewSec,
+                PointerToRelocations = 0,
+                PointerToLinenumbers = 0,
+                NumberOfRelocations = 0,
+                NumberOfLinenumbers = 0,
+                Characteristics = characteristics
+            };
+
+            // Increase number of sections
+            ImageNtHeaders.FileHeader.NumberOfSections = (ushort)(ImageNtHeaders.FileHeader.NumberOfSections + 1);
+
+            // Adjust image size by image alignment
+            ImageNtHeaders.OptionalHeader.SizeOfImage = getNewSizeOfImage();
+
+            // Reparse section headers
+            _nativeStructureParsers.ReparseSectionHeaders();
+        }
+
+        public void AddImport(string module, string name, ushort hint)
+        { 
+            //http://www.sunshine2k.de/reversing/tuts/tut_AddImp.htm
+
+            // First copy the current import section to a new section with additional space
+            // for the new import
+
+
+            /* Add additional imports to new import section
+                - Throw exception if module already exists, as adding to an existing module would need a relocation of
+                  the IMAGE_THUNK and IMAGE_IMPORT_BY_NAME arrays
+                - For each module to import from, add an IMPORT_DESCRIPTOR
+                    - Let OriginalThunk and FirstThunk point to array of RVAs (THUNK_DATA) which point to a hint and the function name (IMPORT_BY_NAME)
+                        - THUNK_DATA array must be zero terminated with 0x0000_0000
+                        - Function name strings are zero terminated 0x00
+                - Add zero filled IMPORT_DESCRIPTOR to end of import table
+            */
+
+            // Set the import data directory to the new import section and adjust the size
+
+            // 
+
+            // Optional: Delete the old import section
+
+            // Optional: Rename the new import section to ".idata"
+
+
+            // Write to disc to test
+            File.WriteAllBytes("test.exe", RawFile.ToArray());
         }
     }
 }

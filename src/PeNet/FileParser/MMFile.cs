@@ -26,6 +26,11 @@ namespace PeNet.FileParser
 
         public long Length { private set; get; }
 
+        public int AppendBytes(Span<byte> bytes)
+        {
+            throw new NotImplementedException("This features is not available for memory mapped files.");
+        }
+
         public Span<byte> AsSpan(long offset, long length)
         {
             return new Span<byte>(ptr + offset, (int) length);
