@@ -18,7 +18,6 @@ namespace PeNet.Test
             var ai = new AdditionalImport("GDI32.dll", new List<string> { "StartPage" });
             peFile.AddImports(new List<AdditionalImport> {ai});
 
-
             // Write to disc to test
             File.WriteAllBytes("test.exe", peFile.RawFile.ToArray());
 
