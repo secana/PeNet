@@ -15,14 +15,14 @@ namespace PeNet.Test
         public void AddImport_ToNotExistingImpDesc_64BitExecutable()
         {
             var peFile = new PeFile(@"Binaries/add-import.exe");
-            var ai = new AdditionalImport("GDI32.dll", new List<string> { "StartPage" });
+            var ai = new AdditionalImport("gdi32.dll", new List<string> { "StartPage" });
             peFile.AddImports(new List<AdditionalImport> {ai});
 
             // Write to disc to test
             File.WriteAllBytes("test.exe", peFile.RawFile.ToArray());
 
             Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i =>
-                i.DLL == "GDI32.dll"
+                i.DLL == "gdi32.dll"
                 && i.Name == "StartPage"));
         }
 
