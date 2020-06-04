@@ -34,10 +34,21 @@ It is also possible to add new imports to the PE file. If the PE file is signed,
 
 Remark: At the moment it's only possible to add new **imports from modules/DLLs which are not imported** already.
 
-```csharp
-var peFile = new PeFile(@"Binaries/add-import.exe");
+To add only **one import**, use the code below.
 
-var ai1 = new AdditionalImport("GDI32.dll", new List<string> { "StartPage" });
-var ai1 = new AdditionalImport("ADVAPI32.dll", new List<string> { "RegCloseKey" });
-peFile.AddImports(new List<AdditionalImport> {ai1, ai2});
+```csharp
+var peFile = new PeFile("myapp.exe");
+peFile.AddImport("gdi32.dll", "StartPage");
+```
+
+If you intend to add **multiple imports** from either the same module or different modules, use the function below.
+
+```csharp
+var peFile = new PeFile("myapp.exe");
+
+var ai1 = new AdditionalImport("gdi32.dll", new List<string> { "StartPage" });
+var ai2 = new AdditionalImport("ADVAPI32.dll", new List<string> { "RegCloseKey" });
+var importList = new List<AdditionalImport> {ai1, ai2};
+
+peFile.AddImports(importList);
 ```

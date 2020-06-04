@@ -646,7 +646,18 @@ namespace PeNet
             _nativeStructureParsers.ReparseSectionHeaders();
         }
 
-       
+        /// <summary>
+        /// Add a new import to the PE file.
+        /// If you intend to add multiple imports, use "AddImports" instead.
+        /// </summary>
+        /// <param name="module"></param>
+        /// <param name="function"></param>
+        public void AddImport(string module, string function)
+        {
+            var ai = new AdditionalImport(module, new List<string> { function });
+            AddImports(new List<AdditionalImport> { ai });
+        }
+
         /// <summary>
         /// Add imports to the PE file.
         /// </summary>

@@ -15,8 +15,7 @@ namespace PeNet.Test
         public void AddImport_ToNotExistingImpDesc_64BitExecutable()
         {
             var peFile = new PeFile(@"Binaries/add-import.exe");
-            var ai = new AdditionalImport("gdi32.dll", new List<string> { "StartPage" });
-            peFile.AddImports(new List<AdditionalImport> {ai});
+            peFile.AddImport("gdi32.dll", "StartPage");
 
             Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i =>
                 i.DLL == "gdi32.dll"
