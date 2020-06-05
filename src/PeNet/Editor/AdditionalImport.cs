@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PeNet.Header.Pe
+namespace PeNet
 {
     /// <summary>
     /// Additional import used to add new 

@@ -44,11 +44,15 @@ namespace PeNet.Test
         }
 
         [Fact]
-        public void AddImport_ToExistingImpDesc_64BitExecutable_ThrowsException()
+        public void AddImport_ToExistingImpDesc_64BitExecutable()
         {
             var peFile = new PeFile(@"Binaries/add-import.exe");
             var ai = new AdditionalImport("ADVAPI32.dll", new List<string> { "RegCloseKey" });
             Assert.Throws<ArgumentException>(() => peFile.AddImports(new List<AdditionalImport> { ai }));
+
+            Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i =>
+            i.DLL == "ADVAPI32.dll"
+            && i.Name == "RegCloseKey"));
         }
 
         [Fact]
