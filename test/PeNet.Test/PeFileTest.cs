@@ -1,7 +1,5 @@
 ﻿using PeNet.FileParser;
-using PeNet.Header.Pe;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -11,81 +9,6 @@ namespace PeNet.Test
 {
     public class PeFileTest
     {
-        [Fact]
-        public void AddImport_ToNotExistingImpDesc_64BitExecutable()
-        {
-            var peFile = new PeFile(@"Binaries/add-import.exe");
-            peFile.AddImport("gdi32.dll", "StartPage");
-
-            Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i =>
-                i.DLL == "gdi32.dll"
-                && i.Name == "StartPage"));
-        }
-
-        [Fact]
-        public void AddImport_ToNotExistingImpDescMultiple_64BitExecutable()
-        {
-            var peFile = new PeFile(@"Binaries/add-import.exe");
-            var ai1 = new AdditionalImport("gdi32.dll", new List<string> { "StartPage", "EndDoc" });
-            var ai2 = new AdditionalImport("api-ms-win-core-errorhandling-l1-1-0.dll", new List<string> { "SetUnhandledExceptionFilter" });
-            peFile.AddImports(new List<AdditionalImport> { ai1, ai2 });
-
-            Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i =>
-                i.DLL == "gdi32.dll"
-                && i.Name == "StartPage"));
-
-            Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i =>
-                i.DLL == "gdi32.dll"
-                && i.Name == "EndDoc"));
-
-            Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i =>
-                i.DLL == "api-ms-win-core-errorhandling-l1-1-0.dll"
-                && i.Name == "SetUnhandledExceptionFilter"));
-        }
-
-        [Fact]
-        public void AddImport_ToExistingImpDesc_64BitExecutable()
-        {
-            var peFile = new PeFile(@"Binaries/add-import.exe");
-            var ai = new AdditionalImport("ADVAPI32.dll", new List<string> { "RegCloseKey" });
-            Assert.Throws<ArgumentException>(() => peFile.AddImports(new List<AdditionalImport> { ai }));
-
-            Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i =>
-            i.DLL == "ADVAPI32.dll"
-            && i.Name == "RegCloseKey"));
-        }
-
-        [Fact]
-        public void AddSection_NewSectionAtEndOfFile()
-        {
-            var peFile = new PeFile(@"Binaries/add-section.exe");
-
-            // Before adding the new section
-            Assert.Equal(27_648, peFile.RawFile.Length);
-            Assert.Equal(6, peFile.ImageNtHeaders.FileHeader.NumberOfSections);
-            Assert.Equal(0xb000u, peFile.ImageNtHeaders.OptionalHeader.SizeOfImage);
-            Assert.Equal(6, peFile.ImageSectionHeaders.Length);
-            
-
-            peFile.AddSection(".newSec", 100, (ScnCharacteristicsType)0x40000040);
-
-            // After adding the new section
-            Assert.Equal(27_748, peFile.RawFile.Length);
-            Assert.Equal(7, peFile.ImageNtHeaders.FileHeader.NumberOfSections);
-            Assert.Equal(0xc000u, peFile.ImageNtHeaders.OptionalHeader.SizeOfImage);
-            Assert.Equal(7, peFile.ImageSectionHeaders.Length);
-        }
-
-        [Fact]
-        public void RemoveSection_SectionRemoved()
-        {
-            var peFile = new PeFile(@"Binaries/remove-section.exe");
-            peFile.RemoveSection(".rsrc");
-
-            Assert.Equal(5, peFile.ImageSectionHeaders.Length);
-            Assert.False(peFile.ImageSectionHeaders.ToList().Exists(s => s.Name == ".rsrc"));
-        }
-
         [Fact]
         public void ExportedFunctions_WithForwardedFunctions_ParsedForwardedFunctions()
         {
