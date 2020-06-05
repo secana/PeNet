@@ -107,5 +107,13 @@ namespace PeNet.FileParser
         /// <param name="offset">Offset of the range to remove.</param>
         /// <param name="length">Length of the range to remove.</param>
         void RemoveRange(long offset, long length);
+
+        /// <summary>
+        /// Appends the given bytes to the current raw file. The
+        /// file growths by the size of the given span. 
+        /// </summary>
+        /// <param name="bytes">Bytes to append.</param>
+        /// <returns>Raw start address of the appended bytes.</returns>
+        int AppendBytes(Span<byte> bytes);
     }
 }

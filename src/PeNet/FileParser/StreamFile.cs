@@ -151,5 +151,10 @@ namespace PeNet.FileParser
             _stream.Dispose();
             _stream = new MemoryStream(_buff.ToArray());
         }
+
+        public int AppendBytes(Span<byte> bytes)
+        {
+            throw new NotImplementedException("This features is not available for stream files.");
+        }
     }
 }

@@ -18,6 +18,12 @@
     <ProjectReference Include="..\..\src\PeNet\PeNet.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Binaries\add-import.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Binaries\add-section.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Binaries\arm_binary.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

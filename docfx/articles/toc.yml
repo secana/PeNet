@@ -10,3 +10,7 @@
   href: export.md
 - name: PDB and Debug Info
   href: pdb.md
+- name: Sections
+  href: sections.md
+- name: Imports
+  href: imports.md

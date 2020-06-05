@@ -110,5 +110,14 @@ namespace PeNet.FileParser
             x.RemoveRange((int) offset, (int) length);
             _buff = x.ToArray();
         }
+
+        public int AppendBytes(Span<byte> bytes)
+        {
+            var oldLength = _buff.Length;
+            Array.Resize(ref _buff, _buff.Length + bytes.Length);
+            Array.Copy(bytes.ToArray(), 0, _buff, oldLength, bytes.Length);
+
+            return oldLength;
+        }
     }
 }

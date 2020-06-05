@@ -10,19 +10,6 @@ namespace PeNet.Test
     public class PeFileTest
     {
         [Fact]
-        public void RemoveSection_SectionRemoved()
-        {
-            var peFile = new PeFile(@"Binaries/pidgin2.exe");
-            peFile.RemoveSection(".rsrc");
-
-            File.WriteAllBytes("tmp.exe", peFile.RawFile.ToArray());
-            var pefile2 = new PeFile("tmp.exe");
-
-            Assert.Equal(8, pefile2.ImageSectionHeaders.Length);
-            Assert.False(pefile2.ImageSectionHeaders.ToList().Exists(s => s.Name == ".rsrc"));
-        }
-
-        [Fact]
         public void ExportedFunctions_WithForwardedFunctions_ParsedForwardedFunctions()
         {
             var peFile = new PeFile(@"Binaries/win_test.dll");
