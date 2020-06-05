@@ -7,6 +7,54 @@ references:
   commentId: N:PeNet
   fullName: PeNet
   nameWithType: PeNet
+- uid: PeNet.AdditionalImport
+  name: AdditionalImport
+  href: api/PeNet.AdditionalImport.html
+  commentId: T:PeNet.AdditionalImport
+  fullName: PeNet.AdditionalImport
+  nameWithType: AdditionalImport
+- uid: PeNet.AdditionalImport.#ctor(System.String,List{System.String})
+  name: AdditionalImport(String, List<String>)
+  href: api/PeNet.AdditionalImport.html#PeNet_AdditionalImport__ctor_System_String_List_System_String__
+  commentId: M:PeNet.AdditionalImport.#ctor(System.String,List{System.String})
+  name.vb: AdditionalImport(String, List(Of String))
+  fullName: PeNet.AdditionalImport.AdditionalImport(System.String, List<System.String>)
+  fullName.vb: PeNet.AdditionalImport.AdditionalImport(System.String, List(Of System.String))
+  nameWithType: AdditionalImport.AdditionalImport(String, List<String>)
+  nameWithType.vb: AdditionalImport.AdditionalImport(String, List(Of String))
+- uid: PeNet.AdditionalImport.#ctor*
+  name: AdditionalImport
+  href: api/PeNet.AdditionalImport.html#PeNet_AdditionalImport__ctor_
+  commentId: Overload:PeNet.AdditionalImport.#ctor
+  isSpec: "True"
+  fullName: PeNet.AdditionalImport.AdditionalImport
+  nameWithType: AdditionalImport.AdditionalImport
+- uid: PeNet.AdditionalImport.Functions
+  name: Functions
+  href: api/PeNet.AdditionalImport.html#PeNet_AdditionalImport_Functions
+  commentId: P:PeNet.AdditionalImport.Functions
+  fullName: PeNet.AdditionalImport.Functions
+  nameWithType: AdditionalImport.Functions
+- uid: PeNet.AdditionalImport.Functions*
+  name: Functions
+  href: api/PeNet.AdditionalImport.html#PeNet_AdditionalImport_Functions_
+  commentId: Overload:PeNet.AdditionalImport.Functions
+  isSpec: "True"
+  fullName: PeNet.AdditionalImport.Functions
+  nameWithType: AdditionalImport.Functions
+- uid: PeNet.AdditionalImport.Module
+  name: Module
+  href: api/PeNet.AdditionalImport.html#PeNet_AdditionalImport_Module
+  commentId: P:PeNet.AdditionalImport.Module
+  fullName: PeNet.AdditionalImport.Module
+  nameWithType: AdditionalImport.Module
+- uid: PeNet.AdditionalImport.Module*
+  name: Module
+  href: api/PeNet.AdditionalImport.html#PeNet_AdditionalImport_Module_
+  commentId: Overload:PeNet.AdditionalImport.Module
+  isSpec: "True"
+  fullName: PeNet.AdditionalImport.Module
+  nameWithType: AdditionalImport.Module
 - uid: PeNet.ExtensionMethods
   name: ExtensionMethods
   href: api/PeNet.ExtensionMethods.html
@@ -39,6 +87,31 @@ references:
   isSpec: "True"
   fullName: PeNet.ExtensionMethods.Is64Bit
   nameWithType: ExtensionMethods.Is64Bit
+- uid: PeNet.ExtensionMethods.OffsetToRva(System.UInt32,ICollection{PeNet.Header.Pe.ImageSectionHeader})
+  name: OffsetToRva(UInt32, ICollection<ImageSectionHeader>)
+  href: api/PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_OffsetToRva_System_UInt32_ICollection_PeNet_Header_Pe_ImageSectionHeader__
+  commentId: M:PeNet.ExtensionMethods.OffsetToRva(System.UInt32,ICollection{PeNet.Header.Pe.ImageSectionHeader})
+  name.vb: OffsetToRva(UInt32, ICollection(Of ImageSectionHeader))
+  fullName: PeNet.ExtensionMethods.OffsetToRva(System.UInt32, ICollection<PeNet.Header.Pe.ImageSectionHeader>)
+  fullName.vb: PeNet.ExtensionMethods.OffsetToRva(System.UInt32, ICollection(Of PeNet.Header.Pe.ImageSectionHeader))
+  nameWithType: ExtensionMethods.OffsetToRva(UInt32, ICollection<ImageSectionHeader>)
+  nameWithType.vb: ExtensionMethods.OffsetToRva(UInt32, ICollection(Of ImageSectionHeader))
+- uid: PeNet.ExtensionMethods.OffsetToRva(System.UInt64,ICollection{PeNet.Header.Pe.ImageSectionHeader})
+  name: OffsetToRva(UInt64, ICollection<ImageSectionHeader>)
+  href: api/PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_OffsetToRva_System_UInt64_ICollection_PeNet_Header_Pe_ImageSectionHeader__
+  commentId: M:PeNet.ExtensionMethods.OffsetToRva(System.UInt64,ICollection{PeNet.Header.Pe.ImageSectionHeader})
+  name.vb: OffsetToRva(UInt64, ICollection(Of ImageSectionHeader))
+  fullName: PeNet.ExtensionMethods.OffsetToRva(System.UInt64, ICollection<PeNet.Header.Pe.ImageSectionHeader>)
+  fullName.vb: PeNet.ExtensionMethods.OffsetToRva(System.UInt64, ICollection(Of PeNet.Header.Pe.ImageSectionHeader))
+  nameWithType: ExtensionMethods.OffsetToRva(UInt64, ICollection<ImageSectionHeader>)
+  nameWithType.vb: ExtensionMethods.OffsetToRva(UInt64, ICollection(Of ImageSectionHeader))
+- uid: PeNet.ExtensionMethods.OffsetToRva*
+  name: OffsetToRva
+  href: api/PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_OffsetToRva_
+  commentId: Overload:PeNet.ExtensionMethods.OffsetToRva
+  isSpec: "True"
+  fullName: PeNet.ExtensionMethods.OffsetToRva
+  nameWithType: ExtensionMethods.OffsetToRva
 - uid: PeNet.ExtensionMethods.PaddingBytes(System.Int32,System.Int32)
   name: PaddingBytes(Int32, Int32)
   href: api/PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_PaddingBytes_System_Int32_System_Int32_
@@ -233,6 +306,22 @@ references:
   isSpec: "True"
   fullName: PeNet.FileParser.BufferFile.BufferFile
   nameWithType: BufferFile.BufferFile
+- uid: PeNet.FileParser.BufferFile.AppendBytes(Span{System.Byte})
+  name: AppendBytes(Span<Byte>)
+  href: api/PeNet.FileParser.BufferFile.html#PeNet_FileParser_BufferFile_AppendBytes_Span_System_Byte__
+  commentId: M:PeNet.FileParser.BufferFile.AppendBytes(Span{System.Byte})
+  name.vb: AppendBytes(Span(Of Byte))
+  fullName: PeNet.FileParser.BufferFile.AppendBytes(Span<System.Byte>)
+  fullName.vb: PeNet.FileParser.BufferFile.AppendBytes(Span(Of System.Byte))
+  nameWithType: BufferFile.AppendBytes(Span<Byte>)
+  nameWithType.vb: BufferFile.AppendBytes(Span(Of Byte))
+- uid: PeNet.FileParser.BufferFile.AppendBytes*
+  name: AppendBytes
+  href: api/PeNet.FileParser.BufferFile.html#PeNet_FileParser_BufferFile_AppendBytes_
+  commentId: Overload:PeNet.FileParser.BufferFile.AppendBytes
+  isSpec: "True"
+  fullName: PeNet.FileParser.BufferFile.AppendBytes
+  nameWithType: BufferFile.AppendBytes
 - uid: PeNet.FileParser.BufferFile.AsSpan(System.Int64,System.Int64)
   name: AsSpan(Int64, Int64)
   href: api/PeNet.FileParser.BufferFile.html#PeNet_FileParser_BufferFile_AsSpan_System_Int64_System_Int64_
@@ -437,6 +526,22 @@ references:
   commentId: T:PeNet.FileParser.IRawFile
   fullName: PeNet.FileParser.IRawFile
   nameWithType: IRawFile
+- uid: PeNet.FileParser.IRawFile.AppendBytes(Span{System.Byte})
+  name: AppendBytes(Span<Byte>)
+  href: api/PeNet.FileParser.IRawFile.html#PeNet_FileParser_IRawFile_AppendBytes_Span_System_Byte__
+  commentId: M:PeNet.FileParser.IRawFile.AppendBytes(Span{System.Byte})
+  name.vb: AppendBytes(Span(Of Byte))
+  fullName: PeNet.FileParser.IRawFile.AppendBytes(Span<System.Byte>)
+  fullName.vb: PeNet.FileParser.IRawFile.AppendBytes(Span(Of System.Byte))
+  nameWithType: IRawFile.AppendBytes(Span<Byte>)
+  nameWithType.vb: IRawFile.AppendBytes(Span(Of Byte))
+- uid: PeNet.FileParser.IRawFile.AppendBytes*
+  name: AppendBytes
+  href: api/PeNet.FileParser.IRawFile.html#PeNet_FileParser_IRawFile_AppendBytes_
+  commentId: Overload:PeNet.FileParser.IRawFile.AppendBytes
+  isSpec: "True"
+  fullName: PeNet.FileParser.IRawFile.AppendBytes
+  nameWithType: IRawFile.AppendBytes
 - uid: PeNet.FileParser.IRawFile.AsSpan(System.Int64,System.Int64)
   name: AsSpan(Int64, Int64)
   href: api/PeNet.FileParser.IRawFile.html#PeNet_FileParser_IRawFile_AsSpan_System_Int64_System_Int64_
@@ -654,6 +759,22 @@ references:
   isSpec: "True"
   fullName: PeNet.FileParser.MMFile.MMFile
   nameWithType: MMFile.MMFile
+- uid: PeNet.FileParser.MMFile.AppendBytes(Span{System.Byte})
+  name: AppendBytes(Span<Byte>)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_AppendBytes_Span_System_Byte__
+  commentId: M:PeNet.FileParser.MMFile.AppendBytes(Span{System.Byte})
+  name.vb: AppendBytes(Span(Of Byte))
+  fullName: PeNet.FileParser.MMFile.AppendBytes(Span<System.Byte>)
+  fullName.vb: PeNet.FileParser.MMFile.AppendBytes(Span(Of System.Byte))
+  nameWithType: MMFile.AppendBytes(Span<Byte>)
+  nameWithType.vb: MMFile.AppendBytes(Span(Of Byte))
+- uid: PeNet.FileParser.MMFile.AppendBytes*
+  name: AppendBytes
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_AppendBytes_
+  commentId: Overload:PeNet.FileParser.MMFile.AppendBytes
+  isSpec: "True"
+  fullName: PeNet.FileParser.MMFile.AppendBytes
+  nameWithType: MMFile.AppendBytes
 - uid: PeNet.FileParser.MMFile.AsSpan(System.Int64,System.Int64)
   name: AsSpan(Int64, Int64)
   href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_AsSpan_System_Int64_System_Int64_
@@ -884,6 +1005,22 @@ references:
   isSpec: "True"
   fullName: PeNet.FileParser.StreamFile.StreamFile
   nameWithType: StreamFile.StreamFile
+- uid: PeNet.FileParser.StreamFile.AppendBytes(Span{System.Byte})
+  name: AppendBytes(Span<Byte>)
+  href: api/PeNet.FileParser.StreamFile.html#PeNet_FileParser_StreamFile_AppendBytes_Span_System_Byte__
+  commentId: M:PeNet.FileParser.StreamFile.AppendBytes(Span{System.Byte})
+  name.vb: AppendBytes(Span(Of Byte))
+  fullName: PeNet.FileParser.StreamFile.AppendBytes(Span<System.Byte>)
+  fullName.vb: PeNet.FileParser.StreamFile.AppendBytes(Span(Of System.Byte))
+  nameWithType: StreamFile.AppendBytes(Span<Byte>)
+  nameWithType.vb: StreamFile.AppendBytes(Span(Of Byte))
+- uid: PeNet.FileParser.StreamFile.AppendBytes*
+  name: AppendBytes
+  href: api/PeNet.FileParser.StreamFile.html#PeNet_FileParser_StreamFile_AppendBytes_
+  commentId: Overload:PeNet.FileParser.StreamFile.AppendBytes
+  isSpec: "True"
+  fullName: PeNet.FileParser.StreamFile.AppendBytes
+  nameWithType: StreamFile.AppendBytes
 - uid: PeNet.FileParser.StreamFile.AsSpan(System.Int64,System.Int64)
   name: AsSpan(Int64, Int64)
   href: api/PeNet.FileParser.StreamFile.html#PeNet_FileParser_StreamFile_AsSpan_System_Int64_System_Int64_
@@ -11034,6 +11171,48 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.PeFile
   nameWithType: PeFile.PeFile
+- uid: PeNet.PeFile.AddImport(System.String,System.String)
+  name: AddImport(String, String)
+  href: api/PeNet.PeFile.html#PeNet_PeFile_AddImport_System_String_System_String_
+  commentId: M:PeNet.PeFile.AddImport(System.String,System.String)
+  fullName: PeNet.PeFile.AddImport(System.String, System.String)
+  nameWithType: PeFile.AddImport(String, String)
+- uid: PeNet.PeFile.AddImport*
+  name: AddImport
+  href: api/PeNet.PeFile.html#PeNet_PeFile_AddImport_
+  commentId: Overload:PeNet.PeFile.AddImport
+  isSpec: "True"
+  fullName: PeNet.PeFile.AddImport
+  nameWithType: PeFile.AddImport
+- uid: PeNet.PeFile.AddImports(List{PeNet.AdditionalImport})
+  name: AddImports(List<AdditionalImport>)
+  href: api/PeNet.PeFile.html#PeNet_PeFile_AddImports_List_PeNet_AdditionalImport__
+  commentId: M:PeNet.PeFile.AddImports(List{PeNet.AdditionalImport})
+  name.vb: AddImports(List(Of AdditionalImport))
+  fullName: PeNet.PeFile.AddImports(List<PeNet.AdditionalImport>)
+  fullName.vb: PeNet.PeFile.AddImports(List(Of PeNet.AdditionalImport))
+  nameWithType: PeFile.AddImports(List<AdditionalImport>)
+  nameWithType.vb: PeFile.AddImports(List(Of AdditionalImport))
+- uid: PeNet.PeFile.AddImports*
+  name: AddImports
+  href: api/PeNet.PeFile.html#PeNet_PeFile_AddImports_
+  commentId: Overload:PeNet.PeFile.AddImports
+  isSpec: "True"
+  fullName: PeNet.PeFile.AddImports
+  nameWithType: PeFile.AddImports
+- uid: PeNet.PeFile.AddSection(System.String,System.Int32,PeNet.Header.Pe.ScnCharacteristicsType)
+  name: AddSection(String, Int32, ScnCharacteristicsType)
+  href: api/PeNet.PeFile.html#PeNet_PeFile_AddSection_System_String_System_Int32_PeNet_Header_Pe_ScnCharacteristicsType_
+  commentId: M:PeNet.PeFile.AddSection(System.String,System.Int32,PeNet.Header.Pe.ScnCharacteristicsType)
+  fullName: PeNet.PeFile.AddSection(System.String, System.Int32, PeNet.Header.Pe.ScnCharacteristicsType)
+  nameWithType: PeFile.AddSection(String, Int32, ScnCharacteristicsType)
+- uid: PeNet.PeFile.AddSection*
+  name: AddSection
+  href: api/PeNet.PeFile.html#PeNet_PeFile_AddSection_
+  commentId: Overload:PeNet.PeFile.AddSection
+  isSpec: "True"
+  fullName: PeNet.PeFile.AddSection
+  nameWithType: PeFile.AddSection
 - uid: PeNet.PeFile.Authenticode
   name: Authenticode
   href: api/PeNet.PeFile.html#PeNet_PeFile_Authenticode

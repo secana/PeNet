@@ -5,11 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace PeNet
-   </title>
+    <title>Imports </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace PeNet
-   ">
+    <meta name="title" content="Imports ">
     <meta name="generator" content="docfx 2.54.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -68,27 +66,43 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="PeNet">
-  
-  <h1 id="PeNet" data-uid="PeNet" class="text-break">Namespace PeNet
-  </h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="classes">Classes
-  </h3>
-      <h4><a class="xref" href="PeNet.AdditionalImport.html">AdditionalImport</a></h4>
-      <section><p>Additional import used to add new
-imports to the PE file.</p>
-</section>
-      <h4><a class="xref" href="PeNet.ExtensionMethods.html">ExtensionMethods</a></h4>
-      <section><p>Extensions method to work make the work with buffers
-and addresses easier.</p>
-</section>
-      <h4><a class="xref" href="PeNet.PeFile.html">PeFile</a></h4>
-      <section><p>This class represents a Portable Executable (PE) file and makes the different
-header and properties accessible.</p>
-</section>
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="imports">Imports</h1>
+
+<p>You can access the imported functions and also add imports to the PE file.</p>
+<h2 id="access-import-descriptors">Access Import Descriptors</h2>
+<p>The following code snipped shows how to access the <code>IMAGE_IMPORT_DESCRIPTOR</code>, <code>IMAGE_BOUND_IMPORT_DESCRIPTOR</code> and <code>IMAGE_DELAY_IMPORT_DESCRIPTOR</code> arrays.</p>
+<pre><code class="lang-csharp">var peFile = new PeFile(&quot;myapp.exe&quot;);
+
+var idescs = peFile.ImageImportDescriptors;
+var bdescs = peFile.ImageBoundImportDescriptor;
+var ddescs = peFile.ImageDelayImportDescriptor;
+</code></pre>
+<h2 id="access-imported-functions">Access imported functions</h2>
+<p>As a shortcut, it's possible to access the imported functions sorted by the module/DLL they are imported from.</p>
+<pre><code class="lang-csharp">var peFile = new PeFile(&quot;myapp.exe&quot;);
+
+// Print all imported modules with their corresponding functions.
+foreach(var imp in peFile.ImportedFunctions)
+{
+    Console.WriteLine($&quot;{imp.DLL} - {imp.Name} - {imp.Hint} - {imp.IATOffset}&quot;);
+}
+</code></pre>
+<h2 id="add-imports">Add Imports</h2>
+<p>It is also possible to add new imports to the PE file. If the PE file is signed, the signature will be invalid afterwards.</p>
+<p>To add only <strong>one import</strong>, use the code below.</p>
+<pre><code class="lang-csharp">var peFile = new PeFile(&quot;myapp.exe&quot;);
+peFile.AddImport(&quot;gdi32.dll&quot;, &quot;StartPage&quot;);
+</code></pre>
+<p>If you intend to add <strong>multiple imports</strong> from either the same module or different modules, use the function below.</p>
+<pre><code class="lang-csharp">var peFile = new PeFile(&quot;myapp.exe&quot;);
+
+var ai1 = new AdditionalImport(&quot;gdi32.dll&quot;, new List&lt;string&gt; { &quot;StartPage&quot; });
+var ai2 = new AdditionalImport(&quot;ADVAPI32.dll&quot;, new List&lt;string&gt; { &quot;RegCloseKey&quot; });
+var importList = new List&lt;AdditionalImport&gt; {ai1, ai2};
+
+peFile.AddImports(importList);
+</code></pre>
 </article>
           </div>
           
@@ -96,6 +110,9 @@ header and properties accessible.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/secana/PeNet/blob/master/docfx/articles/imports.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

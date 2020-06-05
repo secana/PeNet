@@ -5,11 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace PeNet
-   </title>
+    <title>Sections </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace PeNet
-   ">
+    <meta name="title" content="Sections ">
     <meta name="generator" content="docfx 2.54.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -68,27 +66,36 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="PeNet">
-  
-  <h1 id="PeNet" data-uid="PeNet" class="text-break">Namespace PeNet
-  </h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="classes">Classes
-  </h3>
-      <h4><a class="xref" href="PeNet.AdditionalImport.html">AdditionalImport</a></h4>
-      <section><p>Additional import used to add new
-imports to the PE file.</p>
-</section>
-      <h4><a class="xref" href="PeNet.ExtensionMethods.html">ExtensionMethods</a></h4>
-      <section><p>Extensions method to work make the work with buffers
-and addresses easier.</p>
-</section>
-      <h4><a class="xref" href="PeNet.PeFile.html">PeFile</a></h4>
-      <section><p>This class represents a Portable Executable (PE) file and makes the different
-header and properties accessible.</p>
-</section>
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="sections">Sections</h1>
+
+<p>You can not only access the sections in the PE file but also add and remove section.</p>
+<h2 id="access-sections">Access sections</h2>
+<p>Access the section table entries.</p>
+<pre><code class="lang-csharp">var peFile = new PeFile(&quot;myapp.exe&quot;);
+
+// Get array with all section table entries.
+var sections = peFile.ImageSectionHeaders;
+</code></pre>
+<h2 id="add-section">Add section</h2>
+<p>Adds a new section at the end of the file.</p>
+<pre><code class="lang-csharp">var peFile = new PeFile(&quot;myapp.exe&quot;);
+
+// Add a new section with the name &quot;.name&quot;, the size 100 and section characteristics.
+// Section names have a max. length of 8 characters.
+peFile.AddSection(&quot;.name&quot;, 100, (ScnCharacteristicsType)0x40000040);
+</code></pre>
+<h2 id="remove-section">Remove section</h2>
+<pre><code class="lang-csharp">var peFile = new PeFile(&quot;myapp.exe&quot;);
+
+// Remove the resource section from the section table and the content
+// of the section from the file.
+peFile.RemoveSection(&quot;.rsrc&quot;);
+
+// Alternatively you can only remove the section from the section table
+// and keep the content of the section in the file.
+peFile.RemoveSection(&quot;.rsrc&quot;, false);
+</code></pre>
 </article>
           </div>
           
@@ -96,6 +103,9 @@ header and properties accessible.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/secana/PeNet/blob/master/docfx/articles/sections.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

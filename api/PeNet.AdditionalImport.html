@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class ImageImportByName
+    <title>Class AdditionalImport
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class ImageImportByName
+    <meta name="title" content="Class AdditionalImport
    ">
     <meta name="generator" content="docfx 2.54.0.0">
     
@@ -68,52 +68,43 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="PeNet.Header.Pe.ImageImportByName">
+            <article class="content wrap" id="_content" data-uid="PeNet.AdditionalImport">
   
   
-  <h1 id="PeNet_Header_Pe_ImageImportByName" data-uid="PeNet.Header.Pe.ImageImportByName" class="text-break">Class ImageImportByName
+  <h1 id="PeNet_AdditionalImport" data-uid="PeNet.AdditionalImport" class="text-break">Class AdditionalImport
   </h1>
-  <div class="markdown level0 summary"><p>The ImageImportByName structure is used to
-describes imports of functions or symbols by their name.
-The AddressOfData in the ImageThunkData from the
-ImageImportDescriptor points to it.</p>
+  <div class="markdown level0 summary"><p>Additional import used to add new
+imports to the PE file.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><a class="xref" href="PeNet.Header.AbstractStructure.html">AbstractStructure</a></div>
-    <div class="level2"><span class="xref">ImageImportByName</span></div>
+    <div class="level1"><span class="xref">AdditionalImport</span></div>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="PeNet.Header.AbstractStructure.html#PeNet_Header_AbstractStructure_ToString">AbstractStructure.ToString()</a>
-    </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="PeNet.Header.Pe.html">PeNet.Header.Pe</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="PeNet.html">PeNet</a></h6>
   <h6><strong>Assembly</strong>: PeNet.dll</h6>
-  <h5 id="PeNet_Header_Pe_ImageImportByName_syntax">Syntax</h5>
+  <h5 id="PeNet_AdditionalImport_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ImageImportByName : AbstractStructure</code></pre>
+    <pre><code class="lang-csharp hljs">public class AdditionalImport : object</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageImportByName__ctor_PeNet_FileParser_IRawFile_System_UInt32_.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageImportByName.%23ctor(PeNet.FileParser.IRawFile%2CSystem.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_AdditionalImport__ctor_System_String_List_System_String__.md&amp;value=---%0Auid%3A%20PeNet.AdditionalImport.%23ctor(System.String%2CList%7BSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageImportByName.cs/#L20">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Editor/AdditionalImport.cs/#L26">View Source</a>
   </span>
-  <a id="PeNet_Header_Pe_ImageImportByName__ctor_" data-uid="PeNet.Header.Pe.ImageImportByName.#ctor*"></a>
-  <h4 id="PeNet_Header_Pe_ImageImportByName__ctor_PeNet_FileParser_IRawFile_System_UInt32_" data-uid="PeNet.Header.Pe.ImageImportByName.#ctor(PeNet.FileParser.IRawFile,System.UInt32)">ImageImportByName(IRawFile, UInt32)</h4>
-  <div class="markdown level1 summary"><p>Create new ImageImportByName object.</p>
+  <a id="PeNet_AdditionalImport__ctor_" data-uid="PeNet.AdditionalImport.#ctor*"></a>
+  <h4 id="PeNet_AdditionalImport__ctor_System_String_List_System_String__" data-uid="PeNet.AdditionalImport.#ctor(System.String,List{System.String})">AdditionalImport(String, List&lt;String&gt;)</h4>
+  <div class="markdown level1 summary"><p>Create new instance.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ImageImportByName(IRawFile peFile, uint offset)</code></pre>
+    <pre><code class="lang-csharp hljs">public AdditionalImport(string module, List&lt;string&gt; funcs)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -126,15 +117,15 @@ ImageImportDescriptor points to it.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.FileParser.IRawFile.html">IRawFile</a></td>
-        <td><span class="parametername">peFile</span></td>
-        <td><p>A PE file.</p>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">module</span></td>
+        <td><p>Module name to add the imports from, e.g. &quot;kernel32.dll&quot; or &quot;HAL.dll&quot;.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.UInt32</span></td>
-        <td><span class="parametername">offset</span></td>
-        <td><p>Raw offset of the ImageImportByName.</p>
+        <td><span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">funcs</span></td>
+        <td><p>List with functions names to import from the module.</p>
 </td>
       </tr>
     </tbody>
@@ -143,19 +134,19 @@ ImageImportDescriptor points to it.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageImportByName_Hint.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageImportByName.Hint%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_AdditionalImport_Functions.md&amp;value=---%0Auid%3A%20PeNet.AdditionalImport.Functions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageImportByName.cs/#L28">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Editor/AdditionalImport.cs/#L19">View Source</a>
   </span>
-  <a id="PeNet_Header_Pe_ImageImportByName_Hint_" data-uid="PeNet.Header.Pe.ImageImportByName.Hint*"></a>
-  <h4 id="PeNet_Header_Pe_ImageImportByName_Hint" data-uid="PeNet.Header.Pe.ImageImportByName.Hint">Hint</h4>
-  <div class="markdown level1 summary"><p>Hint.</p>
+  <a id="PeNet_AdditionalImport_Functions_" data-uid="PeNet.AdditionalImport.Functions*"></a>
+  <h4 id="PeNet_AdditionalImport_Functions" data-uid="PeNet.AdditionalImport.Functions">Functions</h4>
+  <div class="markdown level1 summary"><p>List with functions names to import from the module.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ushort Hint { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;string&gt; Functions { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -167,26 +158,26 @@ ImageImportDescriptor points to it.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.UInt16</span></td>
+        <td><span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageImportByName_Name.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageImportByName.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_AdditionalImport_Module.md&amp;value=---%0Auid%3A%20PeNet.AdditionalImport.Module%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageImportByName.cs/#L37">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Editor/AdditionalImport.cs/#L14">View Source</a>
   </span>
-  <a id="PeNet_Header_Pe_ImageImportByName_Name_" data-uid="PeNet.Header.Pe.ImageImportByName.Name*"></a>
-  <h4 id="PeNet_Header_Pe_ImageImportByName_Name" data-uid="PeNet.Header.Pe.ImageImportByName.Name">Name</h4>
-  <div class="markdown level1 summary"><p>Name of the function to import as a C-string (null terminated).</p>
+  <a id="PeNet_AdditionalImport_Module_" data-uid="PeNet.AdditionalImport.Module*"></a>
+  <h4 id="PeNet_AdditionalImport_Module" data-uid="PeNet.AdditionalImport.Module">Module</h4>
+  <div class="markdown level1 summary"><p>Module name to add the imports from, e.g. &quot;kernel32.dll&quot; or &quot;HAL.dll&quot;.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string Module { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -211,10 +202,10 @@ ImageImportDescriptor points to it.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageImportByName.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageImportByName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_AdditionalImport.md&amp;value=---%0Auid%3A%20PeNet.AdditionalImport%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageImportByName.cs/#L13" class="contribution-link">View Source</a>
+                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Editor/AdditionalImport.cs/#L9" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -5,11 +5,23 @@
   "files": [
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.AdditionalImport.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.AdditionalImport.html",
+          "hash": "QdaWRbh88kxI/hX5/TJijA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/PeNet.ExtensionMethods.yml",
       "output": {
         ".html": {
           "relative_path": "api/PeNet.ExtensionMethods.html",
-          "hash": "0tcsT/o2wmB7QZBoTqgIVA=="
+          "hash": "DxY2pDcXq6OVYymPMTlFLw=="
         }
       },
       "is_incremental": false,
@@ -21,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.FileParser.BufferFile.html",
-          "hash": "Xbo91Gr14kF8wwkOH9jgiA=="
+          "hash": "rw3jyJ3dZ6gI/nY8ZErydA=="
         }
       },
       "is_incremental": false,
@@ -33,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.FileParser.IRawFile.html",
-          "hash": "q7fGzxTUkYIRWfCJn9cYxg=="
+          "hash": "GC/KJiJhznatPq7+O7+oiA=="
         }
       },
       "is_incremental": false,
@@ -45,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.FileParser.MMFile.html",
-          "hash": "C/vAnIyZwnmYmZnW7K5m7g=="
+          "hash": "0bqgYAYkAMUwGa4u6V56EQ=="
         }
       },
       "is_incremental": false,
@@ -57,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.FileParser.StreamFile.html",
-          "hash": "4+2K0npkRhr8f9kUpTdF2w=="
+          "hash": "5aTXnwbLZVDNe4pzXTFJBg=="
         }
       },
       "is_incremental": false,
@@ -1005,7 +1017,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageImportByName.html",
-          "hash": "JhG062T9DOmQdGeAgwtLtw=="
+          "hash": "/HHc8tO6v2I9AJrJemDECQ=="
         }
       },
       "is_incremental": false,
@@ -1113,7 +1125,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageSectionHeader.html",
-          "hash": "kbbG/kWmCfMFPBDkq5/EAA=="
+          "hash": "0lNzmnO5fiUWoLdlVyw8IQ=="
         }
       },
       "is_incremental": false,
@@ -1221,7 +1233,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ScnCharacteristicsType.html",
-          "hash": "x0Gs9qq6aW9Ottf0GZIOXA=="
+          "hash": "VYAFIl2gpSmmuy5XZMLKYg=="
         }
       },
       "is_incremental": false,
@@ -1449,7 +1461,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.PeFile.html",
-          "hash": "AnfAwMuSMbYdCGi4YoNmiQ=="
+          "hash": "+jZl07OFKVkNwEj4s3XTZw=="
         }
       },
       "is_incremental": false,
@@ -1461,7 +1473,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.html",
-          "hash": "RGC6bMMhiabgY7sEKm/qpw=="
+          "hash": "l8UEV7iZMU0XzrGE0BcbgA=="
         }
       },
       "is_incremental": false,
@@ -1485,7 +1497,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "N7NBREJTOc1pgbGM8Vt7AQ=="
+          "hash": "uP92i/Qjpm1W5meiwfXYVQ=="
         }
       },
       "is_incremental": false,
@@ -1529,6 +1541,18 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "articles/imports.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/imports.html",
+          "hash": "q4P7qJHZWu0dTxcKCNoaug=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "articles/intro.md",
       "output": {
         ".html": {
@@ -1564,12 +1588,24 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "articles/sections.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/sections.html",
+          "hash": "f6mXPLXREqM9w5Zp8Z3tRQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "articles/toc.yml",
       "output": {
         ".html": {
           "relative_path": "articles/toc.html",
-          "hash": "b4YKFsSYbJ1gV8mUkLaasA=="
+          "hash": "qVEP22ciZlSuIFWrVkR/1g=="
         }
       },
       "is_incremental": false,
@@ -1614,13 +1650,13 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 8,
+          "total_file_count": 10,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 122,
+          "total_file_count": 123,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
