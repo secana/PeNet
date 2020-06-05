@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Xunit;
 
@@ -44,7 +45,9 @@ namespace PeNet.Test.Editor
         {
             var peFile = new PeFile(@"Binaries/add-import.exe");
             var ai = new AdditionalImport("ADVAPI32.dll", new List<string> { "RegCloseKey" });
-            Assert.Throws<ArgumentException>(() => peFile.AddImports(new List<AdditionalImport> { ai }));
+
+            peFile.AddImports(new List<AdditionalImport> { ai });
+            File.WriteAllBytes("test.exe", peFile.RawFile.ToArray());
 
             Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i =>
             i.DLL == "ADVAPI32.dll"

@@ -145,38 +145,15 @@ namespace PeNet
                 paIdesc += (uint)sizeOfImpDesc;
             }
 
-            void AddImportToImpDesc(AdditionalImport ai)
-            {
-                //var correspondingImpDesc = ImageImportDescriptors.First(id => RawFile.ReadAsciiString(id.Name.RvaToOffset(ImageSectionHeaders)).ToLower() == ai.Module.ToLower());
-
-                //int getSizeOfThunkArray(byte[] thunkArray)
-                //{
-                //    while(true)
-                //    {
-                //        var thunk = thunkArray.
-                //    }
-                //}
-
-                //// copy the thunk data to the free space to be able to add more entries.
-                //var paThunkArray = correspondingImpDesc.FirstThunk.RvaToOffset(ImageSectionHeaders);
-                //var idescSpan = RawFile.AsSpan(paThunkArray, RawFile.Length - paThunkArray);
-                //var sizeOfThunkDataArray = getSizeOfThunkArray(idescSpan);
-
-            }
-
-            bool impDescExists(string module)
-                => ImportedFunctions.Select(i => i.DLL.ToLower()).Contains(module.ToLower());
-
             var paIdesc = newImportRva.RvaToOffset(ImageSectionHeaders) + ImageImportDescriptors!.Length * sizeOfImpDesc;
             var tmpOffset = paAdditionalSpace;
-            foreach (var ai in additionalImports)
-            {
-                if (impDescExists(ai.Module))
-                    AddImportToImpDesc(ai);
-                else
-                    AddImportWithNewImpDesc(ref tmpOffset, ref paIdesc, ai);
-            }
 
+            // Add new imports
+            foreach(var ai in additionalImports)
+            {
+                AddImportWithNewImpDesc(ref tmpOffset, ref paIdesc, ai);
+            }
+ 
             // End with zero filled idesc
             new ImageImportDescriptor(RawFile, paIdesc)
             {
@@ -186,6 +163,7 @@ namespace PeNet
                 ForwarderChain = 0,
                 TimeDateStamp = 0
             };
+
 
             // Reparse imports
             _dataDirectoryParsers.ReparseImportDescriptors(ImageSectionHeaders);
