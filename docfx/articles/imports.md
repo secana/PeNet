@@ -32,8 +32,6 @@ foreach(var imp in peFile.ImportedFunctions)
 
 It is also possible to add new imports to the PE file. If the PE file is signed, the signature will be invalid afterwards.
 
-Remark: At the moment it's only possible to add new **imports from modules/DLLs which are not imported** already.
-
 To add only **one import**, use the code below.
 
 ```csharp
