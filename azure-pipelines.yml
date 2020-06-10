@@ -35,7 +35,7 @@ jobs:
 
 - job: WindowsBuildAndDeploy
   displayName: Windows CI/CD
-  dependsOn: 'LinuxTest'
+#  dependsOn: 'LinuxTest'
   pool:
     vmImage: 'windows-latest'
   variables:
