@@ -21,25 +21,15 @@ namespace PeNet.Header.Net
                 if (typeRefs is null || MdsStream is null) return null;
 
                 var noNamespace = typeRefs
-                    .Where(t => string.IsNullOrEmpty(MdsStream.GetStringAtIndex(t.TypeNamespace)))
+                    .OrderBy(t => MdsStream.GetStringAtIndex(t.TypeNamespace))
+                    .ThenBy(t => MdsStream.GetStringAtIndex(t.TypeName))
                     .Select(t => string.Join("-",
                         MdsStream.GetStringAtIndex(t.TypeNamespace),
                         MdsStream.GetStringAtIndex(t.TypeName)
                     ))
-                    .OrderBy(t => t)
                     .ToList();
 
-                var withNamespace = typeRefs
-                    .Where(t => !string.IsNullOrEmpty(MdsStream.GetStringAtIndex(t.TypeNamespace)))
-                    .Select(t => string.Join("-",
-                        MdsStream.GetStringAtIndex(t.TypeNamespace),
-                        MdsStream.GetStringAtIndex(t.TypeName)
-                    ))
-                    .OrderBy(t => t)
-                    .ToList();
-
-                var allNamespaces = noNamespace.Concat(withNamespace);
-                var typeRefsAsString = string.Join(",", allNamespaces);
+                var typeRefsAsString = string.Join(",", noNamespace);
 
                 using var sha256 = new SHA256Managed();
                 var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(typeRefsAsString));

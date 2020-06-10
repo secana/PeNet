@@ -6,10 +6,10 @@ namespace PeNet.Test.Header.Net
     public class TypeRefHashTest
     {
         [Theory]
-        [InlineData(@"Binaries/NetCoreConsole.dll", "684f53132ca9be3869bfe1afff7e18566d388c457234958064c95978f21ace99")]
-        [InlineData(@"Binaries/NetFrameworkConsole.exe", "042eb0c6bbbeea6662be43239b1c340839e0a0d7f12dfbd03d5822f3e5020b90")]
-        [InlineData(@"Binaries/osx_vb_netcore.dll", "bff778f71cc7e3f900bd404369d0493bc33dc8cb01853cb4fbc32b14d20a2940")]
-        [InlineData(@"Binaries/arm_dotnet_binary.dll", "c97419457f48a4e48b38c59e218de5adcf335f24cb6ea33391742a489c428447")]
+        [InlineData(@"./Binaries/NetCoreConsole.dll", "9b435fef12d55da7073890330a9a4d7f6e02194aa63e6093429db574407458ba")]
+        [InlineData(@"./Binaries/NetFrameworkConsole.exe", "c4bc255f816ae338fba805256b078bb023d339d2b80dc84a21444367539038cb")]
+        [InlineData(@"./Binaries/osx_vb_netcore.dll", "5fda416c838f34364173ed8c3cd7181dad676aaf7e8b2b37e54953405462f42d")]
+        [InlineData(@"./Binaries/arm_dotnet_binary.dll", "d633db771449e2c37e1689a8c291a4f4646ce156652a9dad5f67394c0d92a8c4")]
         public void DotNetFile_ReturnsCorrectTypeRefHash(string file, string hash)
         {
             var peFile = new PeFile(file);
@@ -18,9 +18,9 @@ namespace PeNet.Test.Header.Net
         }
 
         [Theory]
-        [InlineData(@"Binaries/krnl_test.sys")]
-        [InlineData(@"Binaries/No_SEH.exe")]
-        [InlineData(@"Binaries/win_test.dll")]
+        [InlineData(@"./Binaries/krnl_test.sys")]
+        [InlineData(@"./Binaries/No_SEH.exe")]
+        [InlineData(@"./Binaries/win_test.dll")]
         public void NotDotNetFile_ReturnsNull(string file)
         {
             var peFile = new PeFile(file);
