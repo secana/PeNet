@@ -12,30 +12,30 @@ trigger:
     - '*'
 
 jobs:
-#- job: LinuxTest
-#  displayName: Linux Tests
-#  pool:
-#    vmImage: 'ubuntu-latest'
-#  variables:
-#    buildConfiguration: 'Release'
-#
-#  steps:
-#  - task: UseDotNet@2 
-#    displayName: "Use .NET Core 3.x"
-#    inputs:
-#      version: '3.x'
-#      packageType: sdk
-#
-#  - task: DotNetCoreCLI@2
-#    displayName: 'Run Unit-Tests'
-#    inputs: 
-#      command: test
-#      projects: '**/*Test/*.csproj'
-#      arguments: '--configuration $(buildConfiguration)'
+- job: LinuxTest
+  displayName: Linux Tests
+  pool:
+    vmImage: 'ubuntu-latest'
+  variables:
+    buildConfiguration: 'Release'
+
+  steps:
+  - task: UseDotNet@2 
+    displayName: "Use .NET Core 3.x"
+    inputs:
+      version: '3.x'
+      packageType: sdk
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Run Unit-Tests'
+    inputs: 
+      command: test
+      projects: '**/*Test/*.csproj'
+      arguments: '--configuration $(buildConfiguration)'
 
 - job: WindowsBuildAndDeploy
   displayName: Windows CI/CD
-#  dependsOn: 'LinuxTest'
+  dependsOn: 'LinuxTest'
   pool:
     vmImage: 'windows-latest'
   variables:
