@@ -406,6 +406,12 @@ references:
   commentId: M:PeNet.FileParser.BufferFile.ReadUnicodeString(System.Int64)
   fullName: PeNet.FileParser.BufferFile.ReadUnicodeString(System.Int64)
   nameWithType: BufferFile.ReadUnicodeString(Int64)
+- uid: PeNet.FileParser.BufferFile.ReadUnicodeString(System.Int64,System.Int64)
+  name: ReadUnicodeString(Int64, Int64)
+  href: api/PeNet.FileParser.BufferFile.html#PeNet_FileParser_BufferFile_ReadUnicodeString_System_Int64_System_Int64_
+  commentId: M:PeNet.FileParser.BufferFile.ReadUnicodeString(System.Int64,System.Int64)
+  fullName: PeNet.FileParser.BufferFile.ReadUnicodeString(System.Int64, System.Int64)
+  nameWithType: BufferFile.ReadUnicodeString(Int64, Int64)
 - uid: PeNet.FileParser.BufferFile.ReadUnicodeString*
   name: ReadUnicodeString
   href: api/PeNet.FileParser.BufferFile.html#PeNet_FileParser_BufferFile_ReadUnicodeString_
@@ -626,6 +632,12 @@ references:
   commentId: M:PeNet.FileParser.IRawFile.ReadUnicodeString(System.Int64)
   fullName: PeNet.FileParser.IRawFile.ReadUnicodeString(System.Int64)
   nameWithType: IRawFile.ReadUnicodeString(Int64)
+- uid: PeNet.FileParser.IRawFile.ReadUnicodeString(System.Int64,System.Int64)
+  name: ReadUnicodeString(Int64, Int64)
+  href: api/PeNet.FileParser.IRawFile.html#PeNet_FileParser_IRawFile_ReadUnicodeString_System_Int64_System_Int64_
+  commentId: M:PeNet.FileParser.IRawFile.ReadUnicodeString(System.Int64,System.Int64)
+  fullName: PeNet.FileParser.IRawFile.ReadUnicodeString(System.Int64, System.Int64)
+  nameWithType: IRawFile.ReadUnicodeString(Int64, Int64)
 - uid: PeNet.FileParser.IRawFile.ReadUnicodeString*
   name: ReadUnicodeString
   href: api/PeNet.FileParser.IRawFile.html#PeNet_FileParser_IRawFile_ReadUnicodeString_
@@ -872,6 +884,12 @@ references:
   commentId: M:PeNet.FileParser.MMFile.ReadUnicodeString(System.Int64)
   fullName: PeNet.FileParser.MMFile.ReadUnicodeString(System.Int64)
   nameWithType: MMFile.ReadUnicodeString(Int64)
+- uid: PeNet.FileParser.MMFile.ReadUnicodeString(System.Int64,System.Int64)
+  name: ReadUnicodeString(Int64, Int64)
+  href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ReadUnicodeString_System_Int64_System_Int64_
+  commentId: M:PeNet.FileParser.MMFile.ReadUnicodeString(System.Int64,System.Int64)
+  fullName: PeNet.FileParser.MMFile.ReadUnicodeString(System.Int64, System.Int64)
+  nameWithType: MMFile.ReadUnicodeString(Int64, Int64)
 - uid: PeNet.FileParser.MMFile.ReadUnicodeString*
   name: ReadUnicodeString
   href: api/PeNet.FileParser.MMFile.html#PeNet_FileParser_MMFile_ReadUnicodeString_
@@ -1118,6 +1136,12 @@ references:
   commentId: M:PeNet.FileParser.StreamFile.ReadUnicodeString(System.Int64)
   fullName: PeNet.FileParser.StreamFile.ReadUnicodeString(System.Int64)
   nameWithType: StreamFile.ReadUnicodeString(Int64)
+- uid: PeNet.FileParser.StreamFile.ReadUnicodeString(System.Int64,System.Int64)
+  name: ReadUnicodeString(Int64, Int64)
+  href: api/PeNet.FileParser.StreamFile.html#PeNet_FileParser_StreamFile_ReadUnicodeString_System_Int64_System_Int64_
+  commentId: M:PeNet.FileParser.StreamFile.ReadUnicodeString(System.Int64,System.Int64)
+  fullName: PeNet.FileParser.StreamFile.ReadUnicodeString(System.Int64, System.Int64)
+  nameWithType: StreamFile.ReadUnicodeString(Int64, Int64)
 - uid: PeNet.FileParser.StreamFile.ReadUnicodeString*
   name: ReadUnicodeString
   href: api/PeNet.FileParser.StreamFile.html#PeNet_FileParser_StreamFile_ReadUnicodeString_
