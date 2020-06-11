@@ -26,6 +26,11 @@ namespace PeNet.FileParser
 
         public long Length { private set; get; }
 
+        public int AppendBytes(Span<byte> bytes)
+        {
+            throw new NotImplementedException("This features is not available for memory mapped files.");
+        }
+
         public Span<byte> AsSpan(long offset, long length)
         {
             return new Span<byte>(ptr + offset, (int) length);
@@ -93,6 +98,15 @@ namespace PeNet.FileParser
             return Encoding.Unicode.GetString(bytes);
         }
 
+        public string ReadUnicodeString(long offset, long length)
+        {
+            int size = (int) length * 2;
+            var bytes = new byte[size];
+
+            _va.ReadArray(offset, bytes, 0, size);
+            return Encoding.Unicode.GetString(bytes);
+        }
+        
         public ushort ReadUShort(long offset)
             => _va.ReadUInt16(offset);
 

@@ -1,4 +1,6 @@
 ﻿using PeNet.FileParser;
+using System;
+using System.Text;
 
 namespace PeNet.Header.Pe
 {
@@ -32,6 +34,15 @@ namespace PeNet.Header.Pe
         /// <summary>
         ///     Name of the function to import as a C-string (null terminated).
         /// </summary>
-        public string Name => PeFile.ReadAsciiString(Offset + 0x2);
+        public string Name
+        {
+            get => PeFile.ReadAsciiString(Offset + 0x2);
+            set {
+                var source = Encoding.ASCII.GetBytes(value);
+                var dest = new byte[source.Length + 1];
+                Array.Copy(source, dest, source.Length);
+                PeFile.WriteBytes(Offset + 0x2, dest);
+            }
+        }
     }
 }

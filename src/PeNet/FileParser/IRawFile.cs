@@ -68,6 +68,14 @@ namespace PeNet.FileParser
         string ReadUnicodeString(long offset);
 
         /// <summary>
+        /// Read an unicode (two byte per char) string at a given offset of a given length.
+        /// </summary>
+        /// <param name="offset">Start offset of the string.</param>
+        /// <param name="length">Number of unicode chars to read.</param>
+        /// <returns>Parsed unicode string.</returns>
+        string ReadUnicodeString(long offset, long length);
+
+        /// <summary>
         /// Read a ASCII (zero-terminated, one byte per character) string at a given offset.
         /// </summary>
         /// <param name="offset">Start offset of the string.</param>
@@ -107,5 +115,13 @@ namespace PeNet.FileParser
         /// <param name="offset">Offset of the range to remove.</param>
         /// <param name="length">Length of the range to remove.</param>
         void RemoveRange(long offset, long length);
+
+        /// <summary>
+        /// Appends the given bytes to the current raw file. The
+        /// file growths by the size of the given span. 
+        /// </summary>
+        /// <param name="bytes">Bytes to append.</param>
+        /// <returns>Raw start address of the appended bytes.</returns>
+        int AppendBytes(Span<byte> bytes);
     }
 }

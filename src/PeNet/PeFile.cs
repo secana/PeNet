@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -21,7 +22,7 @@ namespace PeNet
     ///     This class represents a Portable Executable (PE) file and makes the different
     ///     header and properties accessible.
     /// </summary>
-    public class PeFile
+    public partial class PeFile
     {
         private readonly DataDirectoryParsers _dataDirectoryParsers;
         private readonly NativeStructureParsers _nativeStructureParsers;
@@ -260,75 +261,7 @@ namespace PeNet
         /// </summary>
         public ImageSectionHeader[]? ImageSectionHeaders => _nativeStructureParsers.ImageSectionHeaders;
 
-        /// <summary>
-        /// Remove a section from the PE file.
-        /// </summary>
-        /// <param name="name">Name of the section to remove.</param>
-        /// <param name="removeContent">Flag if the content should be removed or only the section header entry.</param>
-        public void RemoveSection(string name, bool removeContent = true)
-        {
-            var sectionToRemove = ImageSectionHeaders.First(s => s.Name == name);
-
-            // Remove section from list of sections
-            var newSections = ImageSectionHeaders.Where(s => s.Name != name).ToArray();
-
-            // Change number of sections in the file header
-            ImageNtHeaders!.FileHeader.NumberOfSections--;
-
-            if (removeContent)
-            {
-                // Reloc the physical address of all sections
-                foreach (var s in newSections)
-                {
-                    if (s.PointerToRawData > sectionToRemove.PointerToRawData)
-                    {
-                        s.PointerToRawData -= sectionToRemove.SizeOfRawData;
-                    }
-                }
-
-                // Remove section content
-                RawFile.RemoveRange(sectionToRemove.PointerToRawData, sectionToRemove.SizeOfRawData);
-            }
-
-            // Fix virtual size
-            for (var i = 1; i < newSections.Count(); i++)
-            {
-                if(newSections[i - 1].VirtualAddress < sectionToRemove.VirtualAddress)
-                {
-                    newSections[i - 1].VirtualSize = newSections[i].VirtualAddress - newSections[i - 1].VirtualAddress;
-                }
-            }
-
-            // Replace old section headers with new section headers
-            var sectionHeaderOffset = ImageDosHeader!.E_lfanew + ImageNtHeaders!.FileHeader.SizeOfOptionalHeader + 0x18;
-            var sizeOfSection = 0x28;
-            var newRawSections = new byte[newSections.Count() * sizeOfSection];
-            for (var i = 0; i < newSections.Count(); i++)
-            {
-                Array.Copy(newSections[i].ToArray(), 0, newRawSections, i * sizeOfSection, sizeOfSection);
-            }
-
-            // Null the data directory entry if any available
-            var de = ImageNtHeaders
-                .OptionalHeader
-                .DataDirectory
-                .FirstOrDefault(d => d.VirtualAddress == sectionToRemove.VirtualAddress
-                    && d.Size == sectionToRemove.VirtualSize);
-
-            if (de != null)
-            {
-                de.Size = 0;
-                de.VirtualAddress = 0;
-            }
-
-            // Null the old section headers
-            RawFile.WriteBytes(sectionHeaderOffset, new byte[ImageSectionHeaders.Count() * sizeOfSection]);
-
-            // Write the new sections headers
-            RawFile.WriteBytes(sectionHeaderOffset, newRawSections);
-
-            
-        }
+       
 
         /// <summary>
         ///     Access the ImageExportDirectory of the PE file.

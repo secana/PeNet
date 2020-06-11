@@ -8,7 +8,7 @@ namespace PeNet.HeaderParser.Pe
         private readonly IRawFile _peFile;
         private readonly ImageDosHeaderParser _imageDosHeaderParser;
         private readonly ImageNtHeadersParser? _imageNtHeadersParser;
-        private readonly ImageSectionHeadersParser? _imageSectionHeadersParser;
+        private ImageSectionHeadersParser? _imageSectionHeadersParser;
 
         internal NativeStructureParsers(IRawFile peFile)
         {
@@ -23,7 +23,6 @@ namespace PeNet.HeaderParser.Pe
         public ImageDosHeader? ImageDosHeader => _imageDosHeaderParser.GetParserTarget();
         public ImageNtHeaders? ImageNtHeaders => _imageNtHeadersParser?.GetParserTarget();
         public ImageSectionHeader[]? ImageSectionHeaders => _imageSectionHeadersParser?.GetParserTarget();
-
 
         private ImageSectionHeadersParser? InitImageSectionHeadersParser()
         {
@@ -41,6 +40,11 @@ namespace PeNet.HeaderParser.Pe
                 ImageNtHeaders.FileHeader.NumberOfSections, 
                 ImageNtHeaders.OptionalHeader.ImageBase
                 );
+        }
+
+        internal void ReparseSectionHeaders()
+        {
+            _imageSectionHeadersParser = InitImageSectionHeadersParser();
         }
 
         private ImageNtHeadersParser? InitNtHeadersParser()

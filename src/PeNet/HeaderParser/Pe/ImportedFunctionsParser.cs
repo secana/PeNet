@@ -80,9 +80,7 @@ namespace PeNet.HeaderParser.Pe
             return impFuncs.ToArray();
         }
 
-        private bool IsModuleNameTooLong(string dllName)
-        {
-            return dllName.Length > 256;
-        }
+        private bool IsModuleNameTooLong(string dllName) 
+            => dllName.Length > 256;
     }
 }

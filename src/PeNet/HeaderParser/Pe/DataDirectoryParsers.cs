@@ -13,15 +13,15 @@ namespace PeNet.HeaderParser.Pe
         private readonly ImageDataDirectory[] _dataDirectories;
 
         private readonly bool _is32Bit;
-        private readonly ImageSectionHeader[] _sectionHeaders;
+        private ImageSectionHeader[] _sectionHeaders;
         private readonly ExportedFunctionsParser _exportedFunctionsParser;
         private readonly ImageBaseRelocationsParser? _imageBaseRelocationsParser;
         private readonly ImageDebugDirectoryParser? _imageDebugDirectoryParser;
         private readonly ImageBoundImportDescriptorParser? _imageBoundImportDescriptorParser;
         private readonly ImageExportDirectoriesParser? _imageExportDirectoriesParser;
-        private readonly ImageImportDescriptorsParser? _imageImportDescriptorsParser;
+        private ImageImportDescriptorsParser? _imageImportDescriptorsParser;
         private readonly ImageResourceDirectoryParser? _imageResourceDirectoryParser;
-        private readonly ImportedFunctionsParser _importedFunctionsParser;
+        private ImportedFunctionsParser _importedFunctionsParser;
         private readonly RuntimeFunctionsParser? _runtimeFunctionsParser;
         private readonly WinCertificateParser? _winCertificateParser;
         private readonly ImageTlsDirectoryParser? _imageTlsDirectoryParser;
@@ -75,6 +75,17 @@ namespace PeNet.HeaderParser.Pe
         public ImageLoadConfigDirectory? ImageLoadConfigDirectory => _imageLoadConfigDirectoryParser?.GetParserTarget();
         public ImageCor20Header? ImageComDescriptor => _imageCor20HeaderParser?.GetParserTarget();
         public Resources? Resources => _resourcesParser?.GetParserTarget();
+
+        internal void ReparseImportDescriptors(ImageSectionHeader[] sectionHeaders)
+        {
+            _sectionHeaders = sectionHeaders;
+            _imageImportDescriptorsParser = InitImageImportDescriptorsParser();
+        }
+
+        internal void ReparseImportedFunctions()
+        {
+            _importedFunctionsParser = InitImportedFunctionsParser();
+        }
 
         private ResourcesParser? InitResourcesParser()
         {

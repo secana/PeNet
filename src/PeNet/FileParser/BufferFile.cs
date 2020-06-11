@@ -52,6 +52,12 @@ namespace PeNet.FileParser
             return Encoding.Unicode.GetString(bytes);
         }
 
+        public string ReadUnicodeString(long offset, long length)
+        {
+            var bytes = _buff.AsSpan((int) offset, (int) length * 2);
+            return Encoding.Unicode.GetString(bytes);
+        }
+        
         public byte ReadByte(long offset) => _buff[offset];
 
         public uint ReadUInt(long offset)
@@ -109,6 +115,15 @@ namespace PeNet.FileParser
             var x = _buff.ToList();
             x.RemoveRange((int) offset, (int) length);
             _buff = x.ToArray();
+        }
+
+        public int AppendBytes(Span<byte> bytes)
+        {
+            var oldLength = _buff.Length;
+            Array.Resize(ref _buff, _buff.Length + bytes.Length);
+            Array.Copy(bytes.ToArray(), 0, _buff, oldLength, bytes.Length);
+
+            return oldLength;
         }
     }
 }

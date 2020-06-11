@@ -33,7 +33,7 @@ namespace PeNet.Header.Pe
         /// </summary>
         public string NameString
         {
-            get => PeFile.ReadUnicodeString(Offset + 2);
+            get => PeFile.ReadUnicodeString(Offset + 2, Length);
         }
     }
 }

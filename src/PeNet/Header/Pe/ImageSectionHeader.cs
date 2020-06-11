@@ -40,6 +40,8 @@ namespace PeNet.Header.Pe
             set
             {
                 var bytes = Encoding.UTF8.GetBytes(value);
+                if (bytes.Length > 8)
+                    throw new ArgumentOutOfRangeException("Section name has to be at max. 8 bytes.");
                 PeFile.WriteBytes(Offset, bytes);
             }
         }
