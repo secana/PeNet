@@ -742,7 +742,24 @@
             108, // l
             0,
             100, // d
-            0
+            0,
+            
+            // 2nd resource name
+            0x06,// Length
+            0x00,
+            
+            83,  // S
+            0,
+            101, // e
+            0,
+            99,  // c
+            0,
+            111, // o
+            0,
+            110, // n
+            0,
+            100, // d
+            0,
         };
 
         public static readonly byte[] RawResourceDataEntry =

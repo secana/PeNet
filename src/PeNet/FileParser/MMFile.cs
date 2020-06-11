@@ -98,6 +98,15 @@ namespace PeNet.FileParser
             return Encoding.Unicode.GetString(bytes);
         }
 
+        public string ReadUnicodeString(long offset, long length)
+        {
+            int size = (int) length * 2;
+            var bytes = new byte[size];
+
+            _va.ReadArray(offset, bytes, 0, size);
+            return Encoding.Unicode.GetString(bytes);
+        }
+        
         public ushort ReadUShort(long offset)
             => _va.ReadUInt16(offset);
 
