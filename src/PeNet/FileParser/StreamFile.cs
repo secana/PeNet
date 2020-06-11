@@ -67,6 +67,22 @@ namespace PeNet.FileParser
             return Encoding.Unicode.GetString(chars.ToArray());
         }
 
+        public string ReadUnicodeString(long offset, long length)
+        {
+            _stream.Seek(offset, SeekOrigin.Begin);
+            var chars = new List<byte>();
+            for (var i = 1; i <= length; i++)
+            {
+                var b1 = (byte) _stream.ReadByte();
+                var b2 = (byte) _stream.ReadByte();
+
+                chars.Add(b1);
+                chars.Add(b2);
+            }
+
+            return Encoding.Unicode.GetString(chars.ToArray());
+        }
+        
         public byte ReadByte(long offset)
         {
             _stream.Seek(offset, SeekOrigin.Begin);
