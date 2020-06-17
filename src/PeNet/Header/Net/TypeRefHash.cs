@@ -15,12 +15,22 @@ namespace PeNet.Header.Net
 
         public string? ComputeHash()
         {
+            static string GetSha256(string typeRefsAsString)
+            {
+                using var sha256 = new SHA256Managed();
+                var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(typeRefsAsString));
+                var stringBuilder = new StringBuilder();
+                foreach (var b in bytes)
+                    stringBuilder.AppendFormat("{0:x2}", b);
+                return stringBuilder.ToString();
+            }
+
+            var typeRefs = MdtHdr?.Tables.TypeRef;
+            if (typeRefs is null || MdsStream is null) return null;
+
             try
             {
-                var typeRefs = MdtHdr?.Tables.TypeRef;
-                if (typeRefs is null || MdsStream is null) return null;
-
-                var noNamespace = typeRefs
+                var namespacesAndTypes = typeRefs
                     .OrderBy(t => MdsStream.GetStringAtIndex(t.TypeNamespace))
                     .ThenBy(t => MdsStream.GetStringAtIndex(t.TypeName))
                     .Select(t => string.Join("-",
@@ -29,22 +39,10 @@ namespace PeNet.Header.Net
                     ))
                     .ToList();
 
-                var typeRefsAsString = string.Join(",", noNamespace);
-
-                using var sha256 = new SHA256Managed();
-                var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(typeRefsAsString));
-                var stringBuilder = new StringBuilder();
-                foreach (var b in bytes)
-                {
-                    stringBuilder.AppendFormat("{0:x2}", b);
-                }
-
-                return stringBuilder.ToString();
+                var typeRefsAsString = string.Join(",", namespacesAndTypes);
+                return GetSha256(typeRefsAsString);
             }
-            catch (Exception)
-            {
-                return null;
-            }
+            catch (Exception) { return null; }
         }
     }
 }
