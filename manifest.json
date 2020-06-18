@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.AdditionalImport.html",
-          "hash": "QdaWRbh88kxI/hX5/TJijA=="
+          "hash": "gKOySuZsko0XyXtiC7aZ1Q=="
         }
       },
       "is_incremental": false,
@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.ExtensionMethods.html",
-          "hash": "DxY2pDcXq6OVYymPMTlFLw=="
+          "hash": "A/TC7ruhLmd+poGh1dJjfg=="
         }
       },
       "is_incremental": false,
@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.FileParser.BufferFile.html",
-          "hash": "cblDbPar4zB8+3s9RHFhrg=="
+          "hash": "OQqAnQomCmi/5JmzkTct3Q=="
         }
       },
       "is_incremental": false,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.FileParser.IRawFile.html",
-          "hash": "7dE+hLbTYs9yA0OJij6SCA=="
+          "hash": "tSdG+x46lxV32brKxrHnKw=="
         }
       },
       "is_incremental": false,
@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.FileParser.MMFile.html",
-          "hash": "w4svJdPZF0X2nxm6Dj4wKQ=="
+          "hash": "CQWdl3uE74anyfH6mHEIHg=="
         }
       },
       "is_incremental": false,
@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.FileParser.StreamFile.html",
-          "hash": "CDMnpI1DIQL7q0mZwaRn+g=="
+          "hash": "QUCGsowgvYKazaITxQDqnQ=="
         }
       },
       "is_incremental": false,
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.FileParser.html",
-          "hash": "zNOlW7Ey2kM7IVGeL35Fuw=="
+          "hash": "19OAAr8I4SZamE4ovMfaOA=="
         }
       },
       "is_incremental": false,
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.AbstractStructure.html",
-          "hash": "Du8dyYUR54JBYknONlP87w=="
+          "hash": "cbxB9A8fBNyVWtpX6nx5CQ=="
         }
       },
       "is_incremental": false,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Authenticode.AuthenticodeInfo.html",
-          "hash": "XC97H0QUyi20aXrTA/8NjA=="
+          "hash": "tF0cZa/yGAuSib0iwo/TLg=="
         }
       },
       "is_incremental": false,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Authenticode.ContentInfo.html",
-          "hash": "/AFXQfcfpLDs2l7IUO4G2w=="
+          "hash": "AM9cwlkT7Ea1B6eT2j2rDQ=="
         }
       },
       "is_incremental": false,
@@ -129,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Authenticode.CrlUrlList.html",
-          "hash": "laCTzq+U97GIKw2kD3iYhw=="
+          "hash": "yDSzoEjo0lPcV5qxMGLDJg=="
         }
       },
       "is_incremental": false,
@@ -141,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Authenticode.SignedData.html",
-          "hash": "tJ4JtBdbGv3VdllBTWyDzA=="
+          "hash": "x2y1c03xuaa1Pxpa/Vc0+w=="
         }
       },
       "is_incremental": false,
@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Authenticode.html",
-          "hash": "GC7I7RiSpKPRB5NIgsu8pQ=="
+          "hash": "s1uIzIqft3DC3LsM9dLHag=="
         }
       },
       "is_incremental": false,
@@ -165,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.ImpHash.ImportHash.html",
-          "hash": "I37T0Hum2GwyIvqDZGoANg=="
+          "hash": "GJIvsetlCYIQ6KDGF/VKrQ=="
         }
       },
       "is_incremental": false,
@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.ImpHash.html",
-          "hash": "RlN2e5DCmg7xJNcgU8/Nlw=="
+          "hash": "2So5E3lkK2IZmMluYeTBaA=="
         }
       },
       "is_incremental": false,
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.HeapSizes.html",
-          "hash": "H11mHARQid+AN8BjDKbT1Q=="
+          "hash": "j0c2Ofz3fngCncjmPPPfFw=="
         }
       },
       "is_incremental": false,
@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.IMetaDataTablesHdr.html",
-          "hash": "h1KpWaFkd+eMbOooTn6/ug=="
+          "hash": "ZS1hAzP+Yabsp7PkkRhjlg=="
         }
       },
       "is_incremental": false,
@@ -213,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.Index.html",
-          "hash": "RqudVGWX8t1NscPXyAPJLg=="
+          "hash": "DvboAVfZoyomZTPXebto4w=="
         }
       },
       "is_incremental": false,
@@ -225,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.IndexSize.html",
-          "hash": "tO+Sfb51ykXvx1WwDKZcCg=="
+          "hash": "zvuL+XciT/MTF6uygBhxIA=="
         }
       },
       "is_incremental": false,
@@ -237,7 +237,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MaskValidType.html",
-          "hash": "57K/aHCc54aJawGJNYi9NA=="
+          "hash": "NGhDIIrlx2bhQiFfBQTaBg=="
         }
       },
       "is_incremental": false,
@@ -249,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataHdr.html",
-          "hash": "31bf1uoB3VvP8d3H0xQ4OQ=="
+          "hash": "CIudCWeNTfJR4eqU+EBsXg=="
         }
       },
       "is_incremental": false,
@@ -261,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataStreamGuid.html",
-          "hash": "2v7FHNzKlrvclwBnbXNe1g=="
+          "hash": "jUmRGmld+IJuZQx5OKEUhQ=="
         }
       },
       "is_incremental": false,
@@ -273,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataStreamHdr.html",
-          "hash": "pvqpJ7SzQ7SFR1pAO3tQGA=="
+          "hash": "M7tbTrb74NMM6vXLvHh4OA=="
         }
       },
       "is_incremental": false,
@@ -285,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataStreamString.html",
-          "hash": "6VRdjJlc3R+2RLL0pIK//g=="
+          "hash": "dMWIo487qLnE8Ig4tOsgZA=="
         }
       },
       "is_incremental": false,
@@ -297,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataStreamUs.html",
-          "hash": "Bm37bT2ApQ+4X4MP2CcpgA=="
+          "hash": "8Mxyo6FLCgrafrf8JL6txw=="
         }
       },
       "is_incremental": false,
@@ -309,7 +309,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.AbstractTable.html",
-          "hash": "Bd/dNdrexpts5kLv/5gT5g=="
+          "hash": "lOevL7NrgCzG9TTOlfsz6g=="
         }
       },
       "is_incremental": false,
@@ -321,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.Assembly.html",
-          "hash": "Pvzj481EdRg61l6dM6tVuw=="
+          "hash": "PB2h4jw1PMb7gilCDGZg0A=="
         }
       },
       "is_incremental": false,
@@ -333,7 +333,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.AssemblyOS.html",
-          "hash": "LirkOsZL5Ocaummeu7axTA=="
+          "hash": "BI7tj+vCSlcJMkUj9MyBUA=="
         }
       },
       "is_incremental": false,
@@ -345,7 +345,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.AssemblyProcessor.html",
-          "hash": "s0A7BFL+zZ0P6yVf5tiD9Q=="
+          "hash": "OGVSWgAkxZphZXJKgha+/g=="
         }
       },
       "is_incremental": false,
@@ -357,7 +357,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.AssemblyRef.html",
-          "hash": "JC5nD4UMCPvnpYJCFxLl+A=="
+          "hash": "UQwLPxYTLDprz15D/LDGNg=="
         }
       },
       "is_incremental": false,
@@ -369,7 +369,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.AssemblyRefOS.html",
-          "hash": "B2eQC9yKnXVaU9IMLltA4w=="
+          "hash": "up7mWB05PfaPdpTh2ikfkA=="
         }
       },
       "is_incremental": false,
@@ -381,7 +381,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.AssemblyRefProcessor.html",
-          "hash": "pQS2teIFQZtnD+D96SC80g=="
+          "hash": "H0PfYG+fMRpYKW/bX0iqSQ=="
         }
       },
       "is_incremental": false,
@@ -393,7 +393,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.ClassLayout.html",
-          "hash": "MHINOu2CPqtzFtVRvuf7tQ=="
+          "hash": "utDGdms79uN7TRuOn7/VtQ=="
         }
       },
       "is_incremental": false,
@@ -405,7 +405,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.Constant.html",
-          "hash": "cPtHV+YZqH9cUHUoxKOzHw=="
+          "hash": "tC2HrGF3yXlgO/kGujoFhA=="
         }
       },
       "is_incremental": false,
@@ -417,7 +417,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.CustomAttribute.html",
-          "hash": "90RxoUyaAvghdVrC6QX9sg=="
+          "hash": "EKRy/qkCDPKOERdHGUvCcg=="
         }
       },
       "is_incremental": false,
@@ -429,7 +429,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.DeclSecurity.html",
-          "hash": "agIHynmnAE2wu8H1MuhqBw=="
+          "hash": "1/9nGsuggtNVQtCUET3H6g=="
         }
       },
       "is_incremental": false,
@@ -441,7 +441,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.Event.html",
-          "hash": "Vt4cGrclnUePWLr84mnt2A=="
+          "hash": "EPwMrMYGK77D7sJ+f/PkOA=="
         }
       },
       "is_incremental": false,
@@ -453,7 +453,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.EventMap.html",
-          "hash": "wabuR65CZzT4iOr7argniw=="
+          "hash": "ayS2gfBgYWkELxVs4Y0Y2w=="
         }
       },
       "is_incremental": false,
@@ -465,7 +465,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.ExportedType.html",
-          "hash": "0bcB+C2tiUyRZsjSySUTDw=="
+          "hash": "l4kQbeh/QuFRtn0q8Z+jTQ=="
         }
       },
       "is_incremental": false,
@@ -477,7 +477,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.Field.html",
-          "hash": "xecyWQnLTdH3RYCT+w/Chg=="
+          "hash": "2nL0uag2FJrjy9RxqSVHIw=="
         }
       },
       "is_incremental": false,
@@ -489,7 +489,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.FieldLayout.html",
-          "hash": "qxQpV+Lf8HXXX/F4WQKkwA=="
+          "hash": "tft/TscyrDicXnPx1TQdXw=="
         }
       },
       "is_incremental": false,
@@ -501,7 +501,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.FieldMarshal.html",
-          "hash": "0xezSxc++ckpmm09Lp6V9A=="
+          "hash": "0ERWCJPAd4Ud9KfRhMYCXQ=="
         }
       },
       "is_incremental": false,
@@ -513,7 +513,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.FieldRVA.html",
-          "hash": "xfGxHpoYZMtIQh3SB9axsQ=="
+          "hash": "5UJJL2CzMJtPo8UmGTesxw=="
         }
       },
       "is_incremental": false,
@@ -525,7 +525,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.File.html",
-          "hash": "opGKO7V+efsblTuv+xGKUw=="
+          "hash": "DCUSxAT7f+4urDarc1LW5g=="
         }
       },
       "is_incremental": false,
@@ -537,7 +537,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.GenericParam.html",
-          "hash": "66+EWlqI8yOTLDtIIYMPDQ=="
+          "hash": "CiP41FNKRHC7Rx0m8jI/LA=="
         }
       },
       "is_incremental": false,
@@ -549,7 +549,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.GenericParamConstraint.html",
-          "hash": "ES7DbQ4ejZUofYLf12TpPw=="
+          "hash": "L1+jux+OoW+EwRt6PCWULg=="
         }
       },
       "is_incremental": false,
@@ -561,7 +561,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.ImplMap.html",
-          "hash": "JpJ6g1RRS6+8cSa2YqgFsQ=="
+          "hash": "X4chOI1gUpYL8R3Ig0C1mg=="
         }
       },
       "is_incremental": false,
@@ -573,7 +573,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.InterfaceImpl.html",
-          "hash": "2hu6qPRGO4voNO2f/sp16A=="
+          "hash": "4v/RZfr5uXeAQ9y40+VdMQ=="
         }
       },
       "is_incremental": false,
@@ -585,7 +585,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.ManifestResource.html",
-          "hash": "ZPZcY+uQ+G82Qv/lZguSWQ=="
+          "hash": "dUUlu+UaAX1oTJFfcKPrzg=="
         }
       },
       "is_incremental": false,
@@ -597,7 +597,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.MemberRef.html",
-          "hash": "velBet1C1MahHLFjwXX+OA=="
+          "hash": "oRaL5AlROJRHa3DsPrMOmg=="
         }
       },
       "is_incremental": false,
@@ -609,7 +609,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.MethodDef.html",
-          "hash": "HzUhDn5Wi8gAEa1EW8GMCA=="
+          "hash": "1sBCE6Zzddkzj5BD0dQZcA=="
         }
       },
       "is_incremental": false,
@@ -621,7 +621,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.MethodImpl.html",
-          "hash": "XATddmTiBoQW7iYoHZ6QbA=="
+          "hash": "rdJ4BMiePRhu0CDepVyxEg=="
         }
       },
       "is_incremental": false,
@@ -633,7 +633,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.MethodSemantics.html",
-          "hash": "LuHeAhqhv+sw4Dgx308WsA=="
+          "hash": "mX5QPv+l9IojsaUJfFxarw=="
         }
       },
       "is_incremental": false,
@@ -645,7 +645,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.Module.html",
-          "hash": "zglo7wB8T7L8RYeffeMvpQ=="
+          "hash": "20yMedFel6jrQXoP83gzcw=="
         }
       },
       "is_incremental": false,
@@ -657,7 +657,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.ModuleRef.html",
-          "hash": "890EiUf40Q0dhoTxJjrg4w=="
+          "hash": "6LeTdtYwufXnTXfqE244xw=="
         }
       },
       "is_incremental": false,
@@ -669,7 +669,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.NestedClass.html",
-          "hash": "RdGkpLGzeU9oxdrDM/Mk2w=="
+          "hash": "0FvQOKWpASxDhleEvH46oQ=="
         }
       },
       "is_incremental": false,
@@ -681,7 +681,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.Param.html",
-          "hash": "+vM0ZgkV98+TM2b5gtuQ/A=="
+          "hash": "kNyfbiIf+G0KYjYreZtIGg=="
         }
       },
       "is_incremental": false,
@@ -693,7 +693,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.Property.html",
-          "hash": "pCBnawe3b+Php56TL20HCQ=="
+          "hash": "Kk1a/uBP/E2H6ASXg1y6tw=="
         }
       },
       "is_incremental": false,
@@ -705,7 +705,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.PropertyMap.html",
-          "hash": "Pw8DosZ5uDVVLK+8icScRw=="
+          "hash": "6u6as93dDi1kY7s/eh8YJA=="
         }
       },
       "is_incremental": false,
@@ -717,7 +717,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.StandAloneSig.html",
-          "hash": "0D35eGemLPBNcdx6Ke+sdg=="
+          "hash": "pZboJV45o8GQ0uxxuSnGuw=="
         }
       },
       "is_incremental": false,
@@ -729,7 +729,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.Tables.html",
-          "hash": "tkg238A+R3acMra06GWE7g=="
+          "hash": "IOZuXWaOLzuYLdhf5KXThA=="
         }
       },
       "is_incremental": false,
@@ -741,7 +741,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.TypeDef.html",
-          "hash": "2OUk+GQVD7ub9jECk8fvdA=="
+          "hash": "/D6jW9i0rYVzIEIfWPDniw=="
         }
       },
       "is_incremental": false,
@@ -753,7 +753,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.TypeRef.html",
-          "hash": "+cUWW91GEUfRfBmUxottVA=="
+          "hash": "WdVdisy6qcw0CjrXUJY/Kg=="
         }
       },
       "is_incremental": false,
@@ -765,7 +765,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.TypeSpec.html",
-          "hash": "ukkeG3+9FB17Zc87hK7Udg=="
+          "hash": "B5ckQG/OP7r7LrGAbaj6KQ=="
         }
       },
       "is_incremental": false,
@@ -777,7 +777,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTables.html",
-          "hash": "sBIZNCVHUI1cEacROj7oBw=="
+          "hash": "P32qKB1ppx/1IY0TWQcO2Q=="
         }
       },
       "is_incremental": false,
@@ -789,7 +789,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.html",
-          "hash": "bH5BTXplhWKIZ6GzTVeimg=="
+          "hash": "A2ydJtYNWlqq/bUU52m9vQ=="
         }
       },
       "is_incremental": false,
@@ -801,7 +801,19 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.MetaDataTablesHdr.html",
-          "hash": "vCqtpYfORvsRpKW7BvKYdQ=="
+          "hash": "heJzEH26OC399cNdRMGdLg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.TypeRefHash.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.TypeRefHash.html",
+          "hash": "0my1KQucJudQH0v/Xg5aqQ=="
         }
       },
       "is_incremental": false,
@@ -813,7 +825,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Net.html",
-          "hash": "wNeEZx76cPW6ymn7qsk2Fw=="
+          "hash": "uAo/XRV0f4LMVLj12LPmoQ=="
         }
       },
       "is_incremental": false,
@@ -825,7 +837,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ComFlagsType.html",
-          "hash": "TeCOP2eXXsFxXghDJXevuA=="
+          "hash": "uO0xI2BijxpQKj4UxbzA/g=="
         }
       },
       "is_incremental": false,
@@ -837,7 +849,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.Copyright.html",
-          "hash": "jvZeceTk5fxWm9syAUi8Sg=="
+          "hash": "PWEr2kVgVYigHmN7YfYy0g=="
         }
       },
       "is_incremental": false,
@@ -849,7 +861,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.DataDirectoryType.html",
-          "hash": "rbnOyhJtGa9jFbOYnFXtiw=="
+          "hash": "Irq/nJozS3t8LECQV0fW3Q=="
         }
       },
       "is_incremental": false,
@@ -861,7 +873,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.DllCharacteristicsType.html",
-          "hash": "l2vG15MxS2E7xOcgad+8KA=="
+          "hash": "MkQLdSGbOFoWeHQCt3fTww=="
         }
       },
       "is_incremental": false,
@@ -873,7 +885,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ExportFunction.html",
-          "hash": "nntLKYr661VNlWZ2Cm5jig=="
+          "hash": "iwqC9BRDWvL48fuokUrrRA=="
         }
       },
       "is_incremental": false,
@@ -885,7 +897,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.FileCharacteristicsType.html",
-          "hash": "jDl5UM0o31UejpPor7BPng=="
+          "hash": "942DZSzccAsDH9hHVh4V3Q=="
         }
       },
       "is_incremental": false,
@@ -897,7 +909,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageBaseRelocation.TypeOffset.html",
-          "hash": "Hv3dzkI2K0VRGtySqKYbcA=="
+          "hash": "F1ZyJr5nIXPvTjF9Ub+4tg=="
         }
       },
       "is_incremental": false,
@@ -909,7 +921,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageBaseRelocation.html",
-          "hash": "pp2IUjGVpXC1e59XU5EhNw=="
+          "hash": "P0zm8GwJm9yQs1lbIi2b7w=="
         }
       },
       "is_incremental": false,
@@ -921,7 +933,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageBoundImportDescriptor.html",
-          "hash": "sEBaliRhM+4J44Pk4RJncA=="
+          "hash": "ZCiI4+CaoxXH4dcNC1aYpw=="
         }
       },
       "is_incremental": false,
@@ -933,7 +945,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageCor20Header.html",
-          "hash": "ViHn9MXz8tqvx8ixffIlCQ=="
+          "hash": "yViERCPmCDAQJvfRdYcnug=="
         }
       },
       "is_incremental": false,
@@ -945,7 +957,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageDataDirectory.html",
-          "hash": "CBdJBVZZEpYgRFKMXMBbNA=="
+          "hash": "T8AdGTwW1Dpfjz8w3MoY3g=="
         }
       },
       "is_incremental": false,
@@ -957,7 +969,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageDebugDirectory.html",
-          "hash": "bs7scyMQVpHtH37VhYIdKQ=="
+          "hash": "cCWdqtZBBv1cj1klEZK06g=="
         }
       },
       "is_incremental": false,
@@ -969,7 +981,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageDelayImportDescriptor.html",
-          "hash": "TqwgpJMptiNexXRnIRVdNg=="
+          "hash": "95UBFXllPN7gvfgTLXhZQQ=="
         }
       },
       "is_incremental": false,
@@ -981,7 +993,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageDosHeader.html",
-          "hash": "nNicUxUJ0nSmCuuOdPviiw=="
+          "hash": "3sEi7+zC4ibTMNoOz6WvGA=="
         }
       },
       "is_incremental": false,
@@ -993,7 +1005,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageExportDirectory.html",
-          "hash": "DtdBP0Ys99kRcgDn9489hQ=="
+          "hash": "7N/pLERnvBkKos9XUsdNJA=="
         }
       },
       "is_incremental": false,
@@ -1005,7 +1017,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageFileHeader.html",
-          "hash": "uNijwXJEZz3ZV5qmvj+e4A=="
+          "hash": "JEtYNekADme+4Lo6/WDICA=="
         }
       },
       "is_incremental": false,
@@ -1017,7 +1029,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageImportByName.html",
-          "hash": "/HHc8tO6v2I9AJrJemDECQ=="
+          "hash": "zRqL97mjGNzbPXILBOyyWA=="
         }
       },
       "is_incremental": false,
@@ -1029,7 +1041,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageImportDescriptor.html",
-          "hash": "uKZNZGvtATWNd9/DVA1uUQ=="
+          "hash": "Qe83R5SxIKIw+YS2givOgw=="
         }
       },
       "is_incremental": false,
@@ -1041,7 +1053,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageLoadConfigDirectory.html",
-          "hash": "Xo6Ylnds2OgXNDMyVbfjmQ=="
+          "hash": "g7aN8wKI7AlC2YbnBQnwyQ=="
         }
       },
       "is_incremental": false,
@@ -1053,7 +1065,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageNtHeaders.html",
-          "hash": "fwpSSXKkmEHjm5MDcsSNRQ=="
+          "hash": "gjfFoCjwbZOMZv/UeWLfQA=="
         }
       },
       "is_incremental": false,
@@ -1065,7 +1077,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageOptionalHeader.html",
-          "hash": "WN0kfsBCGy+tOL0tsiL6FQ=="
+          "hash": "tR0h+INgg3aGoawaxR5nZw=="
         }
       },
       "is_incremental": false,
@@ -1077,7 +1089,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageResourceDataEntry.html",
-          "hash": "NGE2ZyXHBf1BJcfuApjj4A=="
+          "hash": "90pI5JqVuu3XNUmFGUhK0A=="
         }
       },
       "is_incremental": false,
@@ -1089,7 +1101,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageResourceDirStringU.html",
-          "hash": "7cOOrtNo/G2U4nct+8/Haw=="
+          "hash": "Gt/NdJiJXnZ6Tnb1lPa/6g=="
         }
       },
       "is_incremental": false,
@@ -1101,7 +1113,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageResourceDirectory.html",
-          "hash": "IZm+13imbN0cemNxRfwZlA=="
+          "hash": "h7FUq3e7mPqZjUEOwLD0pA=="
         }
       },
       "is_incremental": false,
@@ -1113,7 +1125,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageResourceDirectoryEntry.html",
-          "hash": "lt5AWxq3+ExVpbfh9nPiNw=="
+          "hash": "IxinyxBeB+DietwtAPnmMw=="
         }
       },
       "is_incremental": false,
@@ -1125,7 +1137,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageSectionHeader.html",
-          "hash": "0lNzmnO5fiUWoLdlVyw8IQ=="
+          "hash": "D0Ai9EMKV9rogA4PKQmL5A=="
         }
       },
       "is_incremental": false,
@@ -1137,7 +1149,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageThunkData.html",
-          "hash": "7eAwZgB0F47E2p2xYTBSlw=="
+          "hash": "lEyDiSxIi4TcUne4VAJ+fA=="
         }
       },
       "is_incremental": false,
@@ -1149,7 +1161,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageTlsCallback.html",
-          "hash": "v7QBzBnZs+nvYkIMV/dnLw=="
+          "hash": "a43N7dldDsZxO/HeMH2RUw=="
         }
       },
       "is_incremental": false,
@@ -1161,7 +1173,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageTlsDirectory.html",
-          "hash": "afTnzvQs+xqXriT+zSHiKA=="
+          "hash": "fkefKhB2MEsdbHUe+XpH+g=="
         }
       },
       "is_incremental": false,
@@ -1173,7 +1185,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImportFunction.html",
-          "hash": "tI3s8nOBeIaAVQoy+olUhw=="
+          "hash": "tXmMRkqUkCCeNyLt5h8zkw=="
         }
       },
       "is_incremental": false,
@@ -1185,7 +1197,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.MachineType.html",
-          "hash": "GcNxvKtr6ybtH4wdwKPIEw=="
+          "hash": "g9WyWpTIQouSfbNk4YTVWg=="
         }
       },
       "is_incremental": false,
@@ -1197,7 +1209,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.MagicType.html",
-          "hash": "rL81/km4hhTW/RQ6rfryUg=="
+          "hash": "AZExcJm2Q8rQgNJUJALISg=="
         }
       },
       "is_incremental": false,
@@ -1209,7 +1221,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ResourceGroupIdType.html",
-          "hash": "x+d4OpfmB3KLvZDbeFdX0w=="
+          "hash": "m4AdLmP48SoJ9qQtOZDY1w=="
         }
       },
       "is_incremental": false,
@@ -1221,7 +1233,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.RuntimeFunction.html",
-          "hash": "FPUcvA2wnTIEr1mDGtXu8Q=="
+          "hash": "+A8Efy/7KzSalo5tjdcmuw=="
         }
       },
       "is_incremental": false,
@@ -1233,7 +1245,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ScnCharacteristicsType.html",
-          "hash": "VYAFIl2gpSmmuy5XZMLKYg=="
+          "hash": "+mJI9a9LfbwSUolKZHSMAA=="
         }
       },
       "is_incremental": false,
@@ -1245,7 +1257,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.SubsystemType.html",
-          "hash": "r04DKBel7kpgAbHA6PCHhw=="
+          "hash": "tT0R3pMEO7m19TWYWIAiDA=="
         }
       },
       "is_incremental": false,
@@ -1257,7 +1269,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.UnwindCode.html",
-          "hash": "HXygEHaotoIISlUZ0GtpZw=="
+          "hash": "e7tQHHjMtNxcOsuN6nXcuA=="
         }
       },
       "is_incremental": false,
@@ -1269,7 +1281,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.UnwindInfo.html",
-          "hash": "Wb6DDWyM2vCcl8oT4Fu+uA=="
+          "hash": "od3CanbEcyWUaoCxk8ZRRw=="
         }
       },
       "is_incremental": false,
@@ -1281,7 +1293,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.UnwindOpType.html",
-          "hash": "e2ErL5W89uq01ZOaWwlP/w=="
+          "hash": "f6gF04BYeJ8dsfiNz7OuPg=="
         }
       },
       "is_incremental": false,
@@ -1293,7 +1305,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.WinCertificate.html",
-          "hash": "tH54qBzAM+XIQiMX+EsJLA=="
+          "hash": "hvLUmDWCcTX3Wb7i+Wx7Bw=="
         }
       },
       "is_incremental": false,
@@ -1305,7 +1317,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.WinCertificateType.html",
-          "hash": "mO9mej5/TfgGE95M1RJJyg=="
+          "hash": "mj9VRmFdTEMocxjRHuRRDQ=="
         }
       },
       "is_incremental": false,
@@ -1317,7 +1329,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.html",
-          "hash": "ZuqByxf0EiZ3RXL0kuRcig=="
+          "hash": "iGkwGd4HIBtONtbN+DQSng=="
         }
       },
       "is_incremental": false,
@@ -1329,7 +1341,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Resource.CvInfoPdb70.html",
-          "hash": "Id5GGhsoBpcKHrxa/e590A=="
+          "hash": "KPNVNT8Cs9ZQG83xIx6mzg=="
         }
       },
       "is_incremental": false,
@@ -1341,7 +1353,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Resource.Resources.html",
-          "hash": "sP9EIVmA992lDsBFkcvUew=="
+          "hash": "OlP0eagoHBnY/VcwTkzQzA=="
         }
       },
       "is_incremental": false,
@@ -1353,7 +1365,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Resource.StringFileInfo.html",
-          "hash": "ytvgoBSB81ATmMr1inHJ1g=="
+          "hash": "iXO181HXbXNVNBsttVTipw=="
         }
       },
       "is_incremental": false,
@@ -1365,7 +1377,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Resource.StringTable.html",
-          "hash": "AZK83gMpntkhgLrlKcbwLA=="
+          "hash": "hnSsYTI+iiT1P2OlkTKc1Q=="
         }
       },
       "is_incremental": false,
@@ -1377,7 +1389,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Resource.TString.html",
-          "hash": "ylc4cgsCQXF67xhBIPuJFA=="
+          "hash": "2tRADt2mhnAVzmsqbTZxeg=="
         }
       },
       "is_incremental": false,
@@ -1389,7 +1401,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Resource.Var.html",
-          "hash": "kMbZyHZj1nS4yhmgVpjDXQ=="
+          "hash": "uNA/kzj7Uchs0fQ+7TASUw=="
         }
       },
       "is_incremental": false,
@@ -1401,7 +1413,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Resource.VarFileInfo.html",
-          "hash": "zFcCIPEsxuBiNjotAQfhaw=="
+          "hash": "bv8fD/6Z/+6CL0lREAllnQ=="
         }
       },
       "is_incremental": false,
@@ -1413,7 +1425,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Resource.VsFixedFileInfo.html",
-          "hash": "k35tdzhLJVxdeC5UJbrvfQ=="
+          "hash": "hNpBYJ58RbIQQ3osfv+e/w=="
         }
       },
       "is_incremental": false,
@@ -1425,7 +1437,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Resource.VsVersionInfo.html",
-          "hash": "BG/Q2kg9yrA7uITIECBUQw=="
+          "hash": "f3wSKp/f1y6/oKViDYA9nA=="
         }
       },
       "is_incremental": false,
@@ -1437,7 +1449,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Resource.html",
-          "hash": "hfILII3fVN9w8fAnWrlW6A=="
+          "hash": "LWC3omWAzdg7Zp3HrUJt8w=="
         }
       },
       "is_incremental": false,
@@ -1449,7 +1461,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.html",
-          "hash": "XHlzNU8vM8vdIq2Li3FI3w=="
+          "hash": "8rxf/4rz1mQRvVG4jfRu8A=="
         }
       },
       "is_incremental": false,
@@ -1461,7 +1473,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.PeFile.html",
-          "hash": "+jZl07OFKVkNwEj4s3XTZw=="
+          "hash": "M3dcPix1pxvjoUne0UfjtQ=="
         }
       },
       "is_incremental": false,
@@ -1473,7 +1485,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.html",
-          "hash": "l8UEV7iZMU0XzrGE0BcbgA=="
+          "hash": "QiVW2Axu7uqqwqM5nnygQQ=="
         }
       },
       "is_incremental": false,
@@ -1485,7 +1497,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "MC+sUAZwnIrfeXbKAA8Vig=="
+          "hash": "fZR94uQb75gbGUuMM+cYZg=="
         }
       },
       "is_incremental": false,
@@ -1497,7 +1509,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "uP92i/Qjpm1W5meiwfXYVQ=="
+          "hash": "iOOSw4T6qv83hjJ0Rno6vA=="
         }
       },
       "is_incremental": false,
@@ -1509,7 +1521,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/export.html",
-          "hash": "NLYhTd/s8N2dU+bbtdkjSQ=="
+          "hash": "LPkTu+I3zWZetjgjR0MDNg=="
         }
       },
       "is_incremental": false,
@@ -1521,7 +1533,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/filehash.html",
-          "hash": "TJJFDechOgoJGzJFKrQPNA=="
+          "hash": "qMRQMBevgH4OgnXSXvt34w=="
         }
       },
       "is_incremental": false,
@@ -1533,7 +1545,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/imphash.html",
-          "hash": "rVOXaKh2T46QOFTCF0uGzg=="
+          "hash": "di85nAk58xbIAVgibFBIiQ=="
         }
       },
       "is_incremental": false,
@@ -1545,7 +1557,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/imports.html",
-          "hash": "q4P7qJHZWu0dTxcKCNoaug=="
+          "hash": "qpdP8DgOaJhuKSvFP7PHoQ=="
         }
       },
       "is_incremental": false,
@@ -1557,7 +1569,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "hl8F+3vWRAzlBCdLW8Gg8g=="
+          "hash": "GmKy/cinrRT8fwdxV3EnfQ=="
         }
       },
       "is_incremental": false,
@@ -1569,7 +1581,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/parseroptions.html",
-          "hash": "T4d6XsvLVKcDNuofhIdQVw=="
+          "hash": "AuQdcY1tYKwxJrfu4bYhqg=="
         }
       },
       "is_incremental": false,
@@ -1581,7 +1593,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/pdb.html",
-          "hash": "dJEGoV0J16xW30xbFPuNng=="
+          "hash": "UA8qRWtWyDd2BPjzTYEHkQ=="
         }
       },
       "is_incremental": false,
@@ -1593,7 +1605,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/sections.html",
-          "hash": "f6mXPLXREqM9w5Zp8Z3tRQ=="
+          "hash": "sjuVFxXjwnmymn01GZidxw=="
         }
       },
       "is_incremental": false,
@@ -1605,7 +1617,19 @@
       "output": {
         ".html": {
           "relative_path": "articles/toc.html",
-          "hash": "qVEP22ciZlSuIFWrVkR/1g=="
+          "hash": "u3DeXXdM5YS4KJSJCnxhZg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/typerefhash.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/typerefhash.html",
+          "hash": "uOggIDqIi/8EUPdvsqCyng=="
         }
       },
       "is_incremental": false,
@@ -1617,7 +1641,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "PwJvkdSRVoFntOtF+uZdOA=="
+          "hash": "u1+LgVgzAIg5z1xCY3ECCw=="
         }
       },
       "is_incremental": false,
@@ -1650,13 +1674,13 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 10,
+          "total_file_count": 11,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 123,
+          "total_file_count": 124,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

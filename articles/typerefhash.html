@@ -5,11 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace PeNet.FileParser
-   </title>
+    <title>TypeRefHash </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace PeNet.FileParser
-   ">
+    <meta name="title" content="TypeRefHash ">
     <meta name="generator" content="docfx 2.55.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -68,27 +66,21 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="PeNet.FileParser">
-  
-  <h1 id="PeNet_FileParser" data-uid="PeNet.FileParser" class="text-break">Namespace PeNet.FileParser
-  </h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="classes">Classes
-  </h3>
-      <h4><a class="xref" href="PeNet.FileParser.BufferFile.html">BufferFile</a></h4>
-      <section></section>
-      <h4><a class="xref" href="PeNet.FileParser.MMFile.html">MMFile</a></h4>
-      <section><p>Parse the PE file as a memory mapped file.
-This is useful for large files.</p>
-</section>
-      <h4><a class="xref" href="PeNet.FileParser.StreamFile.html">StreamFile</a></h4>
-      <section></section>
-    <h3 id="interfaces">Interfaces
-  </h3>
-      <h4><a class="xref" href="PeNet.FileParser.IRawFile.html">IRawFile</a></h4>
-      <section></section>
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="typerefhash">TypeRefHash</h1>
+
+<p>The TypeRefHash (TRH) is a hash similar to the ImpHash, but for .NET samples where the ImpHash does not work.
+It is calculated over the imported .NET namespaces and types and can be used to identify malware families which share code.</p>
+<pre><code class="lang-csharp">var peFile = new PeFile(file);
+
+// get the TRH as a hex-string.
+var trh = peFile.TypeRefHash;
+
+Console.WriteLine(trh);
+// prints for example the TRH:
+// &gt; d633db771449e2c37e1689a8c291a4f4646ce156652a9dad5f67394c0d92a8c4
+</code></pre>
+<p>For more information on the TRH see: G DATA BLOG</p>
 </article>
           </div>
           
@@ -96,6 +88,9 @@ This is useful for large files.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/secana/PeNet/blob/master/docfx/articles/typerefhash.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

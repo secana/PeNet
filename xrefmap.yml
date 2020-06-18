@@ -5439,6 +5439,64 @@ references:
   isSpec: "True"
   fullName: PeNet.Header.Net.MetaDataTablesHdr.Tables
   nameWithType: MetaDataTablesHdr.Tables
+- uid: PeNet.Header.Net.TypeRefHash
+  name: TypeRefHash
+  href: api/PeNet.Header.Net.TypeRefHash.html
+  commentId: T:PeNet.Header.Net.TypeRefHash
+  fullName: PeNet.Header.Net.TypeRefHash
+  nameWithType: TypeRefHash
+- uid: PeNet.Header.Net.TypeRefHash.#ctor(PeNet.Header.Net.MetaDataTablesHdr,PeNet.Header.Net.MetaDataStreamString)
+  name: TypeRefHash(MetaDataTablesHdr, MetaDataStreamString)
+  href: api/PeNet.Header.Net.TypeRefHash.html#PeNet_Header_Net_TypeRefHash__ctor_PeNet_Header_Net_MetaDataTablesHdr_PeNet_Header_Net_MetaDataStreamString_
+  commentId: M:PeNet.Header.Net.TypeRefHash.#ctor(PeNet.Header.Net.MetaDataTablesHdr,PeNet.Header.Net.MetaDataStreamString)
+  fullName: PeNet.Header.Net.TypeRefHash.TypeRefHash(PeNet.Header.Net.MetaDataTablesHdr, PeNet.Header.Net.MetaDataStreamString)
+  nameWithType: TypeRefHash.TypeRefHash(MetaDataTablesHdr, MetaDataStreamString)
+- uid: PeNet.Header.Net.TypeRefHash.#ctor*
+  name: TypeRefHash
+  href: api/PeNet.Header.Net.TypeRefHash.html#PeNet_Header_Net_TypeRefHash__ctor_
+  commentId: Overload:PeNet.Header.Net.TypeRefHash.#ctor
+  isSpec: "True"
+  fullName: PeNet.Header.Net.TypeRefHash.TypeRefHash
+  nameWithType: TypeRefHash.TypeRefHash
+- uid: PeNet.Header.Net.TypeRefHash.ComputeHash
+  name: ComputeHash()
+  href: api/PeNet.Header.Net.TypeRefHash.html#PeNet_Header_Net_TypeRefHash_ComputeHash
+  commentId: M:PeNet.Header.Net.TypeRefHash.ComputeHash
+  fullName: PeNet.Header.Net.TypeRefHash.ComputeHash()
+  nameWithType: TypeRefHash.ComputeHash()
+- uid: PeNet.Header.Net.TypeRefHash.ComputeHash*
+  name: ComputeHash
+  href: api/PeNet.Header.Net.TypeRefHash.html#PeNet_Header_Net_TypeRefHash_ComputeHash_
+  commentId: Overload:PeNet.Header.Net.TypeRefHash.ComputeHash
+  isSpec: "True"
+  fullName: PeNet.Header.Net.TypeRefHash.ComputeHash
+  nameWithType: TypeRefHash.ComputeHash
+- uid: PeNet.Header.Net.TypeRefHash.MdsStream
+  name: MdsStream
+  href: api/PeNet.Header.Net.TypeRefHash.html#PeNet_Header_Net_TypeRefHash_MdsStream
+  commentId: P:PeNet.Header.Net.TypeRefHash.MdsStream
+  fullName: PeNet.Header.Net.TypeRefHash.MdsStream
+  nameWithType: TypeRefHash.MdsStream
+- uid: PeNet.Header.Net.TypeRefHash.MdsStream*
+  name: MdsStream
+  href: api/PeNet.Header.Net.TypeRefHash.html#PeNet_Header_Net_TypeRefHash_MdsStream_
+  commentId: Overload:PeNet.Header.Net.TypeRefHash.MdsStream
+  isSpec: "True"
+  fullName: PeNet.Header.Net.TypeRefHash.MdsStream
+  nameWithType: TypeRefHash.MdsStream
+- uid: PeNet.Header.Net.TypeRefHash.MdtHdr
+  name: MdtHdr
+  href: api/PeNet.Header.Net.TypeRefHash.html#PeNet_Header_Net_TypeRefHash_MdtHdr
+  commentId: P:PeNet.Header.Net.TypeRefHash.MdtHdr
+  fullName: PeNet.Header.Net.TypeRefHash.MdtHdr
+  nameWithType: TypeRefHash.MdtHdr
+- uid: PeNet.Header.Net.TypeRefHash.MdtHdr*
+  name: MdtHdr
+  href: api/PeNet.Header.Net.TypeRefHash.html#PeNet_Header_Net_TypeRefHash_MdtHdr_
+  commentId: Overload:PeNet.Header.Net.TypeRefHash.MdtHdr
+  isSpec: "True"
+  fullName: PeNet.Header.Net.TypeRefHash.MdtHdr
+  nameWithType: TypeRefHash.MdtHdr
 - uid: PeNet.Header.Pe
   name: PeNet.Header.Pe
   href: api/PeNet.Header.Pe.html
@@ -11895,6 +11953,19 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.TryParse
   nameWithType: PeFile.TryParse
+- uid: PeNet.PeFile.TypeRefHash
+  name: TypeRefHash
+  href: api/PeNet.PeFile.html#PeNet_PeFile_TypeRefHash
+  commentId: P:PeNet.PeFile.TypeRefHash
+  fullName: PeNet.PeFile.TypeRefHash
+  nameWithType: PeFile.TypeRefHash
+- uid: PeNet.PeFile.TypeRefHash*
+  name: TypeRefHash
+  href: api/PeNet.PeFile.html#PeNet_PeFile_TypeRefHash_
+  commentId: Overload:PeNet.PeFile.TypeRefHash
+  isSpec: "True"
+  fullName: PeNet.PeFile.TypeRefHash
+  nameWithType: PeFile.TypeRefHash
 - uid: PeNet.PeFile.WinCertificate
   name: WinCertificate
   href: api/PeNet.PeFile.html#PeNet_PeFile_WinCertificate
