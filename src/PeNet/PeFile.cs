@@ -36,6 +36,7 @@ namespace PeNet
         public IRawFile RawFile { get; }
 
         private string? _impHash;
+        private string? _typeRefHash;
         private string? _md5;
         private string? _sha1;
         private string? _sha256;
@@ -398,6 +399,14 @@ namespace PeNet
         /// </summary>
         public string? ImpHash
             => _impHash ??= new ImportHash(ImportedFunctions)?.ImpHash;
+
+        /// <summary>
+        ///     Compute the TypeRefHash for .NET PE files.
+        ///     If not available, return null.
+        /// </summary>
+        public string? TypeRefHash
+            => _typeRefHash ??=
+                IsDotNet ? new TypeRefHash(MetaDataStreamTablesHeader, MetaDataStreamString).ComputeHash() : null;
 
         /// <summary>
         ///     The Version ID of each module
