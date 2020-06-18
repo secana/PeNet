@@ -4,6 +4,8 @@
   href: parseroptions.md
 - name: Import Hash
   href: imphash.md
+- name: TypeRefHash
+  href: typerefhash.md
 - name: File Hashes
   href: filehash.md
 - name: Export Data
