@@ -14,4 +14,4 @@ Console.WriteLine(trh);
 // > d633db771449e2c37e1689a8c291a4f4646ce156652a9dad5f67394c0d92a8c4
 ```
 
-For more information on the TRH see: G DATA BLOG
+For more information on the TRH see: [Introducing the TypeRefHash (TRH)](https://www.gdatasoftware.com/blog/2020/06/36164-introducing-the-typerefhash-trh)
