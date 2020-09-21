@@ -30,26 +30,20 @@ namespace PeNet
             if (ImageNtHeaders is null || ImageSectionHeaders is null)
                 throw new Exception("NT Headers and Section Headers must not be null.");
 
-            var sizeOfImpDesc = 0x14;
+            const int sizeOfImpDesc = 0x14;
             var sizeOfThunkData = Is32Bit ? 4 : 8;
             var numAddImpDescs = additionalImports.Count();
             var importRva = ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].VirtualAddress;
             var importSize = ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].Size;
 
-            ImageSectionHeader getImportSection()
-                => ImageSectionHeaders.First(sh => sh.VirtualAddress + sh.VirtualSize >= importRva);
+            int EstimateAdditionalNeededSpace()
+                => (int)(additionalImports.Select(ai => ai.Functions).Count() * 64 + importSize);
 
-
-            var impSection = getImportSection();
-
-            int estimateAdditionalNeededSpace()
-                => (int)(additionalImports.Select(ai => ai.Functions).Count() * 64 + importSize); // Better a bit too much...
-
-            var additionalSpace = estimateAdditionalNeededSpace();
+            var newUnalignedRawSecSize = EstimateAdditionalNeededSpace();
 
             // First copy the current import descriptor array to the start of the new section to have enough space to
             // add additional import descriptors.
-            AddSection(".addImp", (int)(impSection!.SizeOfRawData + additionalSpace), (ScnCharacteristicsType)0xC0000000);
+            AddSection(".addImp", (int)(newUnalignedRawSecSize), (ScnCharacteristicsType)0xC0000000);
             var newImpSec = ImageSectionHeaders.First(sh => sh.Name == ".addImp");
             var oldImpDescBytes = RawFile.AsSpan(importRva.RvaToOffset(ImageSectionHeaders), importSize);
             RawFile.WriteBytes(newImpSec.PointerToRawData, oldImpDescBytes);

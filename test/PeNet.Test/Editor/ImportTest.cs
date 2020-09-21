@@ -9,6 +9,17 @@ namespace PeNet.Test.Editor
     public class ImportTest
     {
         [Fact]
+        public void AddImport_RDataSection()
+        {
+            var peFile = new PeFile(@"Binaries/chrome_elf.dll");
+            peFile.AddImport("gdi32.dll", "StartPage");
+
+            Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i =>
+                i.DLL == "gdi32.dll"
+                && i.Name == "StartPage"));
+        }
+
+        [Fact]
         public void AddImport_ToNotExistingImpDesc_64BitExecutable()
         {
             var peFile = new PeFile(@"Binaries/add-import.exe");
@@ -47,7 +58,6 @@ namespace PeNet.Test.Editor
             var ai = new AdditionalImport("ADVAPI32.dll", new List<string> { "RegCloseKey" });
 
             peFile.AddImports(new List<AdditionalImport> { ai });
-            File.WriteAllBytes("test.exe", peFile.RawFile.ToArray());
 
             Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i =>
             i.DLL == "ADVAPI32.dll"

@@ -10,23 +10,23 @@ namespace PeNet
         /// Add a new section to the PE file.
         /// </summary>
         /// <param name="name">Name of the section to add. At max. 8 characters.</param>
-        /// <param name="size">Size in bytes of the new section.</param>
+        /// <param name="unalignedSize">Size in bytes of the new section.</param>
         /// <param name="characteristics">Section characteristics.</param>
-        public void AddSection(string name, int size, ScnCharacteristicsType characteristics)
+        public void AddSection(string name, int unalignedSize, ScnCharacteristicsType characteristics)
         {
             if (ImageNtHeaders is null)
                 throw new Exception("IMAGE_NT_HEADERS must not be null.");
             if (ImageDosHeader is null)
                 throw new Exception("IMAGE_DOS_HEADER must not be null");
 
-            uint getNewSizeOfImage()
+            uint GetNewSizeOfImage()
             {
-                var factor = size / (double)ImageNtHeaders.OptionalHeader.SectionAlignment;
+                var factor = unalignedSize / (double)ImageNtHeaders.OptionalHeader.SectionAlignment;
                 var additionalSize = (uint)Math.Ceiling(factor) * ImageNtHeaders!.OptionalHeader.SectionAlignment;
                 return ImageNtHeaders.OptionalHeader.SizeOfImage + additionalSize;
             }
 
-            uint getNewSecHeaderOffset()
+            uint GetNewSecHeaderOffset()
             {
                 var sizeOfSection = 0x28;
                 var x = (uint)ImageNtHeaders!.FileHeader.SizeOfOptionalHeader + 0x18;
@@ -34,39 +34,48 @@ namespace PeNet
                 return (uint)(startOfSectionHeader + (ImageNtHeaders.FileHeader.NumberOfSections * sizeOfSection));
             }
 
-            uint getNewSecVA()
+            uint GetNewSecVa()
             {
-                var lastSec = ImageSectionHeaders.OrderByDescending(sh => sh.VirtualAddress).First();
+                var lastSec      = ImageSectionHeaders!.OrderByDescending(sh => sh.VirtualAddress).First();
                 var vaLastSecEnd = lastSec.VirtualAddress + lastSec.VirtualSize;
-                var factor = vaLastSecEnd / (double)ImageNtHeaders.OptionalHeader.SectionAlignment;
+                var factor       = vaLastSecEnd / (double)ImageNtHeaders.OptionalHeader.SectionAlignment;
                 return (uint)(Math.Ceiling(factor) * ImageNtHeaders.OptionalHeader.SectionAlignment);
             }
 
+            uint GetNewRawSecSize()
+            {
+                var factor = unalignedSize / (double)ImageNtHeaders!.OptionalHeader.FileAlignment;
+                return (uint) (Math.Ceiling(factor) * ImageNtHeaders!.OptionalHeader.FileAlignment);
+            }
+
+            // New raw section size, aligned to FileAlignment
+            var newRawSectionSize = GetNewRawSecSize();
 
 
             // Append new section to end of file
-            var paNewSec = RawFile.AppendBytes(new Byte[size]);
+            RawFile.AppendBytes(new byte[newRawSectionSize]);
+            var paNewSec = ImageSectionHeaders!.Last().PointerToRawData + ImageSectionHeaders!.Last().SizeOfRawData;
 
             // Add new entry in section table
-            var newSection = new ImageSectionHeader(RawFile, getNewSecHeaderOffset(), ImageNtHeaders.OptionalHeader.ImageBase)
+            var newSection = new ImageSectionHeader(RawFile, GetNewSecHeaderOffset(), ImageNtHeaders.OptionalHeader.ImageBase)
             {
-                Name = name,
-                VirtualSize = (uint)size,
-                VirtualAddress = getNewSecVA(),
-                SizeOfRawData = (uint)size,
-                PointerToRawData = (uint)paNewSec,
+                Name                 = name,
+                VirtualSize          = (uint)newRawSectionSize,
+                VirtualAddress       = GetNewSecVa(),
+                SizeOfRawData        = newRawSectionSize,
+                PointerToRawData     = paNewSec,
                 PointerToRelocations = 0,
                 PointerToLinenumbers = 0,
-                NumberOfRelocations = 0,
-                NumberOfLinenumbers = 0,
-                Characteristics = characteristics
+                NumberOfRelocations  = 0,
+                NumberOfLinenumbers  = 0,
+                Characteristics      = characteristics
             };
 
             // Increase number of sections
             ImageNtHeaders.FileHeader.NumberOfSections = (ushort)(ImageNtHeaders.FileHeader.NumberOfSections + 1);
 
             // Adjust image size by image alignment
-            ImageNtHeaders.OptionalHeader.SizeOfImage = getNewSizeOfImage();
+            ImageNtHeaders.OptionalHeader.SizeOfImage = GetNewSizeOfImage();
 
             // Reparse section headers
             _nativeStructureParsers.ReparseSectionHeaders();
