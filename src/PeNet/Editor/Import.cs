@@ -30,22 +30,22 @@ namespace PeNet
             if (ImageNtHeaders is null || ImageSectionHeaders is null)
                 throw new Exception("NT Headers and Section Headers must not be null.");
 
-            var sizeOfImpDesc = 0x14;
+            const int sizeOfImpDesc = 0x14;
             var sizeOfThunkData = Is32Bit ? 4 : 8;
             var numAddImpDescs = additionalImports.Count();
             var importRva = ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].VirtualAddress;
             var importSize = ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].Size;
 
-            ImageSectionHeader getImportSection()
+            ImageSectionHeader GetImportSection()
                 => ImageSectionHeaders.First(sh => sh.VirtualAddress + sh.VirtualSize >= importRva);
 
 
-            var impSection = getImportSection();
+            var impSection = GetImportSection();
 
-            int estimateAdditionalNeededSpace()
+            int EstimateAdditionalNeededSpace()
                 => (int)(additionalImports.Select(ai => ai.Functions).Count() * 64 + importSize); // Better a bit too much...
 
-            var additionalSpace = estimateAdditionalNeededSpace();
+            var additionalSpace = EstimateAdditionalNeededSpace();
 
             // First copy the current import descriptor array to the start of the new section to have enough space to
             // add additional import descriptors.
