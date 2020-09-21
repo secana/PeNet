@@ -36,9 +36,9 @@ namespace PeNet
 
             uint GetNewSecVa()
             {
-                var lastSec = ImageSectionHeaders.OrderByDescending(sh => sh.VirtualAddress).First();
+                var lastSec      = ImageSectionHeaders!.OrderByDescending(sh => sh.VirtualAddress).First();
                 var vaLastSecEnd = lastSec.VirtualAddress + lastSec.VirtualSize;
-                var factor = vaLastSecEnd / (double)ImageNtHeaders.OptionalHeader.SectionAlignment;
+                var factor       = vaLastSecEnd / (double)ImageNtHeaders.OptionalHeader.SectionAlignment;
                 return (uint)(Math.Ceiling(factor) * ImageNtHeaders.OptionalHeader.SectionAlignment);
             }
 
@@ -53,17 +53,17 @@ namespace PeNet
 
 
             // Append new section to end of file
-            RawFile.AppendBytes(new Byte[newRawSectionSize]);
-            var paNewSec = ImageSectionHeaders.Last().PointerToRawData + ImageSectionHeaders.Last().SizeOfRawData;
+            RawFile.AppendBytes(new byte[newRawSectionSize]);
+            var paNewSec = ImageSectionHeaders!.Last().PointerToRawData + ImageSectionHeaders!.Last().SizeOfRawData;
 
             // Add new entry in section table
             var newSection = new ImageSectionHeader(RawFile, GetNewSecHeaderOffset(), ImageNtHeaders.OptionalHeader.ImageBase)
             {
                 Name                 = name,
-                VirtualSize          = (uint)unalignedSize,
+                VirtualSize          = (uint)newRawSectionSize,
                 VirtualAddress       = GetNewSecVa(),
-                SizeOfRawData        = (uint)newRawSectionSize,
-                PointerToRawData     = (uint)paNewSec,
+                SizeOfRawData        = newRawSectionSize,
+                PointerToRawData     = paNewSec,
                 PointerToRelocations = 0,
                 PointerToLinenumbers = 0,
                 NumberOfRelocations  = 0,
