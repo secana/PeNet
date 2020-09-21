@@ -14,8 +14,6 @@ namespace PeNet.Test.Editor
             var peFile = new PeFile(@"Binaries/chrome_elf.dll");
             peFile.AddImport("gdi32.dll", "StartPage");
 
-            File.WriteAllBytes("patched-chrome_elf.dll", peFile.RawFile.ToArray());
-
             Assert.NotNull(peFile.ImportedFunctions.FirstOrDefault(i =>
                 i.DLL == "gdi32.dll"
                 && i.Name == "StartPage"));
