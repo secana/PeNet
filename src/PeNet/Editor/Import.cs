@@ -36,12 +36,6 @@ namespace PeNet
             var importRva = ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].VirtualAddress;
             var importSize = ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].Size;
 
-            ImageSectionHeader GetImportSection()
-                => ImageSectionHeaders.First(sh => sh.VirtualAddress + sh.VirtualSize >= importRva);
-
-
-            //var impSection = GetImportSection();
-
             int EstimateAdditionalNeededSpace()
                 => (int)(additionalImports.Select(ai => ai.Functions).Count() * 64 + importSize);
 
