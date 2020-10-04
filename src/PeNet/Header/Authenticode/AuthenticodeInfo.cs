@@ -27,7 +27,7 @@ namespace PeNet.Header.Authenticode
         {
             _peFile = peFile;
 
-            _contentInfo = _peFile.WinCertificate == null 
+            _contentInfo = _peFile.WinCertificate == null
                 ? null : new ContentInfo(_peFile.WinCertificate.BCertificate);
 
             SignerSerialNumber = GetSigningSerialNumber();
@@ -44,23 +44,29 @@ namespace PeNet.Header.Authenticode
                 return null;
             }
 
-            var pkcs7 = _peFile.WinCertificate.BCertificate;
+            var pkcs7 = _peFile.WinCertificate.BCertificate.ToArray();
 
             // Workaround since the X509Certificate2 class does not return
-            // the signing certificate in the PKCS7 byte array but crashes on Linux 
+            // the signing certificate in the PKCS7 byte array but crashes on Linux and macOS
             // when using .Net Core.
             // Under Windows with .Net Core the class works as intended.
             // See issue: https://github.com/dotnet/corefx/issues/25828
-            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? 
-                new X509Certificate2(pkcs7.ToArray()) : GetSigningCertificateNonWindows(_peFile);
+            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
+                new X509Certificate2(pkcs7) : GetSigningCertificateNonWindows(pkcs7);
         }
 
-        private X509Certificate2 GetSigningCertificateNonWindows(PeFile peFile)
+        private X509Certificate2 GetSigningCertificateNonWindows(byte[] pkcs7)
         {
-            var collection = new X509Certificate2Collection();
-            collection.Import(peFile.WinCertificate?.BCertificate.ToArray());
-            return collection.Cast<X509Certificate2>().FirstOrDefault(cert =>
-                string.Equals(cert.SerialNumber, SignerSerialNumber, StringComparison.CurrentCultureIgnoreCase));
+            // See https://github.com/dotnet/runtime/issues/15073#issuecomment-374787612
+            var signedCms = new SignedCms();
+            signedCms.Decode(pkcs7);
+            var signerInfos = signedCms.SignerInfos.Cast<SignerInfo>().Where(si => string.Equals(si.Certificate.SerialNumber, SignerSerialNumber, StringComparison.CurrentCultureIgnoreCase)).ToList();
+            if (signerInfos.Count == 1)
+            {
+                return signerInfos[0].Certificate;
+            }
+            var numberOfSignerInfos = signerInfos.Count == 0 ? "none" : signerInfos.Count.ToString();
+            throw new CryptographicException($"Expected to find one certificate with serial number '{SignerSerialNumber}' but found {numberOfSignerInfos}.");
         }
 
         private bool VerifySignature()
