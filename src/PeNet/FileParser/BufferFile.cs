@@ -1,127 +1,77 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace PeNet.FileParser
 {
     public class BufferFile : IRawFile
     {
-        private byte[] _buff;
+        private Memory<byte> _buffer;
 
-        public long Length => _buff.Length;
+        public long Length => _buffer.Length;
 
-        public BufferFile(byte[] file) 
-            => (_buff) = (file);
+        public BufferFile(byte[] file) => _buffer = file;
 
         public string ReadAsciiString(long offset)
         {
-            static int GetCStringLength(IReadOnlyList<byte> buff, int stringOffset)
-            {
-                var currentOffset = stringOffset;
-                var currentLength = 0;
-                while (buff[currentOffset] != 0x00)
-                {
-                    currentLength++;
-                    currentOffset++;
-                }
-                return currentLength;
-            }
+            var nullTerminator = byte.MinValue;
 
-            var length = GetCStringLength(_buff, (int) offset);
-            var tmp = _buff.AsSpan((int)offset, length);
-            return Encoding.ASCII.GetString(tmp);
+            var stringLength = _buffer.Span.Slice((int) offset).IndexOf(nullTerminator);
+
+            return Encoding.ASCII.GetString(_buffer.Span.Slice((int) offset, stringLength));
         }
 
-        public Span<byte> AsSpan(long offset, long length) 
-            => _buff.AsSpan((int) offset, (int) length);
+        public Span<byte> AsSpan(long offset, long length) => _buffer.Span.Slice((int) offset, (int) length);
 
         public string ReadUnicodeString(long offset)
         {
-            var size = 1;
-            for (var i = offset; i < _buff.Length - 1; i++)
-            {
-                if (_buff[i] == 0 && _buff[i + 1] == 0)
-                {
-                    break;
-                }
-                size++;
-            }
+            Span<byte> nullTerminator = stackalloc byte[] {byte.MinValue, byte.MinValue};
 
-            var bytes = _buff.AsSpan((int) offset, size);
-            return Encoding.Unicode.GetString(bytes);
+            var stringLength = _buffer.Span.Slice((int) offset).IndexOf(nullTerminator) + 1;
+
+            return Encoding.Unicode.GetString(_buffer.Span.Slice((int) offset, stringLength));
         }
 
-        public string ReadUnicodeString(long offset, long length)
-        {
-            var bytes = _buff.AsSpan((int) offset, (int) length * 2);
-            return Encoding.Unicode.GetString(bytes);
-        }
-        
-        public byte ReadByte(long offset) => _buff[offset];
+        public string ReadUnicodeString(long offset, long length) => Encoding.Unicode.GetString(_buffer.Span.Slice((int) offset, (int) length * 2));
 
-        public uint ReadUInt(long offset)
-            => BitConverter.ToUInt32(_buff, (int) offset);
+        public byte ReadByte(long offset) => _buffer.Span[(int) offset];
 
-        public ulong ReadULong(long offset)
-            => BitConverter.ToUInt64(_buff, (int) offset);
+        public uint ReadUInt(long offset) => MemoryMarshal.Read<uint>(_buffer.Span.Slice((int) offset));
 
-        public ushort ReadUShort(long offset)
-            => BitConverter.ToUInt16(_buff, (int) offset);
+        public ulong ReadULong(long offset) => MemoryMarshal.Read<ulong>(_buffer.Span.Slice((int) offset));
 
-        public void WriteByte(long offset, byte value)
-        {
-            _buff[offset] = value;
-        }
+        public ushort ReadUShort(long offset) => MemoryMarshal.Read<ushort>(_buffer.Span.Slice((int) offset));
 
-        public void WriteBytes(long offset, Span<byte> bytes)
-        {
-            Array.Copy(bytes.ToArray(), 0, _buff, offset, bytes.Length);
-        }
+        public void WriteByte(long offset, byte value) => _buffer.Span[(int) offset] = value;
 
-        public void WriteUInt(long offset, uint value)
-        {
-            var x = BitConverter.GetBytes(value);
-            _buff[offset] = x[0];
-            _buff[offset + 1] = x[1];
-            _buff[offset + 2] = x[2];
-            _buff[offset + 3] = x[3];
-        }
+        public void WriteBytes(long offset, Span<byte> bytes) => bytes.CopyTo(_buffer.Span.Slice((int) offset));
 
-        public void WriteULong(long offset, ulong value)
-        {
-            var x = BitConverter.GetBytes(value);
-            _buff[offset] = x[0];
-            _buff[offset + 1] = x[1];
-            _buff[offset + 2] = x[2];
-            _buff[offset + 3] = x[3];
-            _buff[offset + 4] = x[4];
-            _buff[offset + 5] = x[5];
-            _buff[offset + 6] = x[6];
-            _buff[offset + 7] = x[7];
-        }
+        public void WriteUInt(long offset, uint value) => MemoryMarshal.Write(_buffer.Span.Slice((int) offset), ref value);
 
-        public void WriteUShort(long offset, ushort value)
-        {
-            var x = BitConverter.GetBytes(value);
-            _buff[offset] = x[0];
-            _buff[offset + 1] = x[1];
-        }
+        public void WriteULong(long offset, ulong value) => MemoryMarshal.Write(_buffer.Span.Slice((int) offset), ref value);
 
-        public byte[] ToArray() => _buff;
+        public void WriteUShort(long offset, ushort value) => MemoryMarshal.Write(_buffer.Span.Slice((int) offset), ref value);
+
+        public byte[] ToArray() => _buffer.ToArray();
 
         public void RemoveRange(long offset, long length)
         {
-            var x = _buff.ToList();
-            x.RemoveRange((int) offset, (int) length);
-            _buff = x.ToArray();
+            var newBuffer = new Memory<byte>(new byte[_buffer.Length - length]);
+
+            _buffer.Slice(0, (int) offset).CopyTo(newBuffer);
+            _buffer.Slice((int) (offset + length)).CopyTo(newBuffer.Slice((int) offset));
+
+            _buffer = newBuffer;
         }
 
         public int AppendBytes(Span<byte> bytes)
         {
-            var oldLength = _buff.Length;
-            Array.Resize(ref _buff, _buff.Length + bytes.Length);
-            Array.Copy(bytes.ToArray(), 0, _buff, oldLength, bytes.Length);
+            var oldLength = _buffer.Length;
+
+            var newBuffer = new Memory<byte>(new byte[_buffer.Length + bytes.Length]);
+            _buffer.CopyTo(newBuffer);
+            bytes.CopyTo(newBuffer.Span.Slice(oldLength));
+            _buffer = newBuffer;
 
             return oldLength;
         }
