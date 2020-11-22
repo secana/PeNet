@@ -32,8 +32,8 @@ namespace PeNet.HeaderParser.Pe
 
         public DataDirectoryParsers(
             IRawFile peFile,
-            IEnumerable<ImageDataDirectory>? dataDirectories,
-            IEnumerable<ImageSectionHeader>? sectionHeaders,
+            IEnumerable<ImageDataDirectory> dataDirectories,
+            IEnumerable<ImageSectionHeader> sectionHeaders,
             bool is32Bit
             )
         {
@@ -134,7 +134,7 @@ namespace PeNet.HeaderParser.Pe
                 : null;
 
         private ImportedFunctionsParser InitImportedFunctionsParser()
-            => new ImportedFunctionsParser(
+            => new(
                 _peFile,
                 ImageImportDescriptors,
                 _sectionHeaders,
@@ -143,7 +143,7 @@ namespace PeNet.HeaderParser.Pe
                 );
 
         private ExportedFunctionsParser InitExportFunctionParser()
-            => new ExportedFunctionsParser(
+            => new(
                 _peFile,
                 ImageExportDirectories,
                 _sectionHeaders,

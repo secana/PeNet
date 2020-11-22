@@ -88,7 +88,7 @@ namespace PeNet
         /// <param name="removeContent">Flag if the content should be removed or only the section header entry.</param>
         public void RemoveSection(string name, bool removeContent = true)
         {
-            var sectionToRemove = ImageSectionHeaders.First(s => s.Name == name);
+            var sectionToRemove = (ImageSectionHeaders ?? throw new InvalidOperationException("ImageSectionHeaders must not be null.")).First(s => s.Name == name);
 
             // Remove section from list of sections
             var newSections = ImageSectionHeaders.Where(s => s.Name != name).ToArray();
@@ -112,7 +112,7 @@ namespace PeNet
             }
 
             // Fix virtual size
-            for (var i = 1; i < newSections.Count(); i++)
+            for (var i = 1; i < newSections.Length; i++)
             {
                 if (newSections[i - 1].VirtualAddress < sectionToRemove.VirtualAddress)
                 {
@@ -123,8 +123,8 @@ namespace PeNet
             // Replace old section headers with new section headers
             var sectionHeaderOffset = ImageDosHeader!.E_lfanew + ImageNtHeaders!.FileHeader.SizeOfOptionalHeader + 0x18;
             var sizeOfSection = 0x28;
-            var newRawSections = new byte[newSections.Count() * sizeOfSection];
-            for (var i = 0; i < newSections.Count(); i++)
+            var newRawSections = new byte[newSections.Length * sizeOfSection];
+            for (var i = 0; i < newSections.Length; i++)
             {
                 Array.Copy(newSections[i].ToArray(), 0, newRawSections, i * sizeOfSection, sizeOfSection);
             }
@@ -143,7 +143,7 @@ namespace PeNet
             }
 
             // Null the old section headers
-            RawFile.WriteBytes(sectionHeaderOffset, new byte[ImageSectionHeaders.Count() * sizeOfSection]);
+            RawFile.WriteBytes(sectionHeaderOffset, new byte[ImageSectionHeaders.Length * sizeOfSection]);
 
             // Write the new sections headers
             RawFile.WriteBytes(sectionHeaderOffset, newRawSections);

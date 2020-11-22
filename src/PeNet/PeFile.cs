@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -24,10 +23,10 @@ namespace PeNet
     /// </summary>
     public partial class PeFile
     {
-        private readonly DataDirectoryParsers _dataDirectoryParsers;
+        private readonly DataDirectoryParsers?  _dataDirectoryParsers;
         private readonly NativeStructureParsers _nativeStructureParsers;
         private readonly DotNetStructureParsers _dotNetStructureParsers;
-        private readonly AuthenticodeParser _authenticodeParser;
+        private readonly AuthenticodeParser     _authenticodeParser;
 
 
         /// <summary>
@@ -49,12 +48,14 @@ namespace PeNet
 
             _nativeStructureParsers = new NativeStructureParsers(RawFile);
 
-            _dataDirectoryParsers = new DataDirectoryParsers(
-                RawFile,
-                ImageNtHeaders?.OptionalHeader?.DataDirectory,
-                ImageSectionHeaders,
-                Is32Bit
-                );
+            if (ImageNtHeaders?.OptionalHeader?.DataDirectory != null)
+                if (ImageSectionHeaders != null)
+                    _dataDirectoryParsers = new DataDirectoryParsers(
+                        RawFile,
+                        ImageNtHeaders.OptionalHeader.DataDirectory,
+                        ImageSectionHeaders,
+                        Is32Bit
+                    );
 
             _dotNetStructureParsers = new DotNetStructureParsers(
                 RawFile,
@@ -185,8 +186,7 @@ namespace PeNet
         ///     Returns true if the PE file is a system driver
         ///     based on the Subsytem = 0x1 value in the Optional Header.
         /// </summary>
-        public bool IsDriver => ImageNtHeaders?.OptionalHeader.Subsystem == SubsystemType.Native
-                                && ImportedFunctions.FirstOrDefault(i => i.DLL == "ntoskrnl.exe") != null;
+        public bool IsDriver => ImportedFunctions != null && ImageNtHeaders?.OptionalHeader.Subsystem == SubsystemType.Native && ImportedFunctions.FirstOrDefault(i => i.DLL == "ntoskrnl.exe") != null;
 
         /// <summary>
         ///     Returns true if the PE file is signed. It
@@ -216,7 +216,7 @@ namespace PeNet
         /// <param name="useOnlineCRL">If true, uses online certificate revocation lists, else on the local CRL.</param>
         /// <param name="excludeRoot">True if the root certificate should not be validated. False if the whole chain should be validated.</param>
         /// <returns>True if cert chain is valid and from a trusted CA.</returns>
-        public bool HasValidCertChain(X509Certificate2? cert, TimeSpan urlRetrievalTimeout, bool useOnlineCRL = true, bool excludeRoot = true)
+        public static bool HasValidCertChain(X509Certificate2? cert, TimeSpan urlRetrievalTimeout, bool useOnlineCRL = true, bool excludeRoot = true)
         {
             using var chain = new X509Chain
             {
@@ -228,7 +228,7 @@ namespace PeNet
                     VerificationFlags   = X509VerificationFlags.NoFlag
                 }
             };
-            return chain.Build(cert);
+            return cert != null && chain.Build(cert);
         }
 
         /// <summary>
@@ -266,77 +266,77 @@ namespace PeNet
         /// <summary>
         ///     Access the ImageExportDirectory of the PE file.
         /// </summary>
-        public ImageExportDirectory? ImageExportDirectory => _dataDirectoryParsers.ImageExportDirectories;
+        public ImageExportDirectory? ImageExportDirectory => _dataDirectoryParsers?.ImageExportDirectories;
 
         /// <summary>
         ///     Access the ImageImportDescriptor array of the PE file.
         /// </summary>
-        public ImageImportDescriptor[]? ImageImportDescriptors => _dataDirectoryParsers.ImageImportDescriptors;
+        public ImageImportDescriptor[]? ImageImportDescriptors => _dataDirectoryParsers?.ImageImportDescriptors;
 
         /// <summary>
         ///     Access the ImageBaseRelocation array of the PE file.
         /// </summary>
-        public ImageBaseRelocation[]? ImageRelocationDirectory => _dataDirectoryParsers.ImageBaseRelocations;
+        public ImageBaseRelocation[]? ImageRelocationDirectory => _dataDirectoryParsers?.ImageBaseRelocations;
 
         /// <summary>
         ///     Access the ImageDebugDirectory of the PE file.
         /// </summary>
-        public ImageDebugDirectory[]? ImageDebugDirectory => _dataDirectoryParsers.ImageDebugDirectory;
+        public ImageDebugDirectory[]? ImageDebugDirectory => _dataDirectoryParsers?.ImageDebugDirectory;
 
         /// <summary>
         ///     Access the exported functions as an array of parsed objects.
         /// </summary>
-        public ExportFunction[]? ExportedFunctions => _dataDirectoryParsers.ExportFunctions;
+        public ExportFunction[]? ExportedFunctions => _dataDirectoryParsers?.ExportFunctions;
 
         /// <summary>
         ///     Access the imported functions as an array of parsed objects.
         /// </summary>
-        public ImportFunction[]? ImportedFunctions => _dataDirectoryParsers.ImportFunctions;
+        public ImportFunction[]? ImportedFunctions => _dataDirectoryParsers?.ImportFunctions;
 
         /// <summary>
         ///     Access the ImageResourceDirectory of the PE file.
         /// </summary>
-        public ImageResourceDirectory? ImageResourceDirectory => _dataDirectoryParsers.ImageResourceDirectory;
+        public ImageResourceDirectory? ImageResourceDirectory => _dataDirectoryParsers?.ImageResourceDirectory;
 
         /// <summary>
         ///     Access resources of the PE file.
         /// </summary>
-        public Resources? Resources => _dataDirectoryParsers.Resources;
+        public Resources? Resources => _dataDirectoryParsers?.Resources;
 
         /// <summary>
         ///     Access the array of RuntimeFunction from the Exception header.
         /// </summary>
-        public RuntimeFunction[]? ExceptionDirectory => _dataDirectoryParsers.RuntimeFunctions;
+        public RuntimeFunction[]? ExceptionDirectory => _dataDirectoryParsers?.RuntimeFunctions;
 
         /// <summary>
         ///     Access the WinCertificate from the Security header.
         /// </summary>
-        public WinCertificate? WinCertificate => _dataDirectoryParsers.WinCertificate;
+        public WinCertificate? WinCertificate => _dataDirectoryParsers?.WinCertificate;
 
         /// <summary>
         /// Access the IMAGE_BOUND_IMPORT_DESCRIPTOR form the data directory.
         /// </summary>
-        public ImageBoundImportDescriptor? ImageBoundImportDescriptor => _dataDirectoryParsers.ImageBoundImportDescriptor;
+        public ImageBoundImportDescriptor? ImageBoundImportDescriptor => _dataDirectoryParsers?.ImageBoundImportDescriptor;
 
         /// <summary>
         /// Access the IMAGE_TLS_DIRECTORY from the data directory.
         /// </summary>
-        public ImageTlsDirectory? ImageTlsDirectory => _dataDirectoryParsers.ImageTlsDirectory;
+        public ImageTlsDirectory? ImageTlsDirectory => _dataDirectoryParsers?.ImageTlsDirectory;
 
         /// <summary>
         /// Access the ImageDelayImportDirectory from the data directory.
         /// </summary>
-        public ImageDelayImportDescriptor? ImageDelayImportDescriptor => _dataDirectoryParsers.ImageDelayImportDescriptor;
+        public ImageDelayImportDescriptor? ImageDelayImportDescriptor => _dataDirectoryParsers?.ImageDelayImportDescriptor;
 
         /// <summary>
         /// Access the ImageLoadConfigDirectory from the data directory.
         /// </summary>
-        public ImageLoadConfigDirectory? ImageLoadConfigDirectory => _dataDirectoryParsers.ImageLoadConfigDirectory;
+        public ImageLoadConfigDirectory? ImageLoadConfigDirectory => _dataDirectoryParsers?.ImageLoadConfigDirectory;
 
         /// <summary>
         /// Access the ImageCor20Header (COM Descriptor/CLI) from the data directory.
         /// </summary>
-        public ImageCor20Header? ImageComDescriptor => _dataDirectoryParsers.ImageComDescriptor;
+        public ImageCor20Header? ImageComDescriptor => _dataDirectoryParsers?.ImageComDescriptor;
 
         /// <summary>
         ///     Signing X509 certificate if the binary was signed with
@@ -377,21 +377,21 @@ namespace PeNet
         /// <summary>
         ///     The SHA-256 hash sum of the binary.
         /// </summary>
-        public string Sha256
-            => _sha256 ??= ComputeHash(RawFile, HashAlgorithmName.SHA256, 32);
+        public string? Sha256
+            => _sha256 ??= ComputeHash(HashAlgorithmName.SHA256, 32);
 
 
         /// <summary>
         ///     The SHA-1 hash sum of the binary.
         /// </summary>
-        public string Sha1
-            => _sha1 ??= ComputeHash(RawFile, HashAlgorithmName.SHA1, 20);
+        public string? Sha1
+            => _sha1 ??= ComputeHash(HashAlgorithmName.SHA1, 20);
 
         /// <summary>
         ///     The MD5 of hash sum of the binary.
         /// </summary>
-        public string Md5
-            => _md5 ??= ComputeHash(RawFile, HashAlgorithmName.MD5, 16);
+        public string? Md5
+            => _md5 ??= ComputeHash(HashAlgorithmName.MD5, 16);
 
         /// <summary>
         ///     The Import Hash of the binary if any imports are
@@ -507,17 +507,19 @@ namespace PeNet
             return buf[1] == 0x5a && buf[0] == 0x4d; // MZ Header
         }
 
-        private string ComputeHash(IRawFile peFile, HashAlgorithmName hashAlg, int hashLength)
+        private string? ComputeHash(HashAlgorithmName hashAlg, int hashLength)
         {
-            using var ha = HashAlgorithm.Create(hashAlg.Name);
+            if (hashAlg.Name == null) return null;
+            using var  ha   = HashAlgorithm.Create(hashAlg.Name);
             Span<byte> hash = stackalloc byte[hashLength];
-            ha.TryComputeHash(RawFile.AsSpan(0, RawFile.Length), hash, out int _);
+            if (ha != null) ha.TryComputeHash(RawFile.AsSpan(0, RawFile.Length), hash, out int _);
 
             var sBuilder = new StringBuilder();
             foreach (var t in hash)
                 sBuilder.Append(t.ToString("x2"));
 
             return sBuilder.ToString();
+
         }
     }
 }

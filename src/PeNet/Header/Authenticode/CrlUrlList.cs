@@ -33,11 +33,10 @@ namespace PeNet.Header.Authenticode
         public CrlUrlList(X509Certificate2 cert)
         {
             Urls = new List<string>();
-            if (cert == null) return;
 
             foreach (var ext in cert.Extensions)
             {
-                if (ext.Oid.Value == "2.5.29.31")
+                if (ext.Oid?.Value == "2.5.29.31")
                 {
                     ParseCrls(ext.RawData);
                 }
@@ -105,7 +104,7 @@ namespace PeNet.Header.Authenticode
             }
         }
 
-        private bool IsValidUri(string uri)
+        private static bool IsValidUri(string uri)
         {
             return Uri.TryCreate(uri, UriKind.Absolute, out var uriResult)
                    && (uriResult.Scheme == Uri.UriSchemeHttp

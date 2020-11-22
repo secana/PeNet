@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using PeNet.FileParser;
@@ -51,12 +52,12 @@ namespace PeNet.Header
                     if(p.GetValue(obj, null) == null)
                         continue;
 
-                    foreach(var entry in (IEnumerable) p.GetValue(obj, null))
+                    foreach (var entry in (p.GetValue(obj, null) as IEnumerable)!)
                     {
-                        if(entry.GetType().IsSubclassOf(typeof(AbstractStructure)) == false)
+                        if (entry.GetType().IsSubclassOf(typeof(AbstractStructure)) == false)
                             continue;
 
-                        sb.Append(entry.ToString());
+                        sb.Append(entry);
                     }
                 }
                 else

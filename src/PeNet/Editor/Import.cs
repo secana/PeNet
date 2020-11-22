@@ -27,12 +27,12 @@ namespace PeNet
         /// <param name="additionalImports">List with additional imports.</param>
         public void AddImports(List<AdditionalImport> additionalImports)
         {
-            if (ImageNtHeaders is null || ImageSectionHeaders is null)
-                throw new Exception("NT Headers and Section Headers must not be null.");
+            if (ImageNtHeaders is null || ImageSectionHeaders is null || _dataDirectoryParsers is null)
+                throw new Exception("NT Headers, Section Headers and Data Directory must not be null.");
 
             const int sizeOfImpDesc = 0x14;
             var sizeOfThunkData = Is32Bit ? 4 : 8;
-            var numAddImpDescs = additionalImports.Count();
+            var numAddImpDescs = additionalImports.Count;
             var importRva = ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].VirtualAddress;
             var importSize = ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].Size;
 
@@ -103,7 +103,7 @@ namespace PeNet
 
                 foreach (var adr in adrList)
                 {
-                    new ImageThunkData(RawFile, offset, Is64Bit)
+                    _ = new ImageThunkData(RawFile, offset, Is64Bit)
                     {
                         AddressOfData = adr.OffsetToRva(ImageSectionHeaders!)
                     };
@@ -112,7 +112,7 @@ namespace PeNet
                 }
 
                 // End array with empty thunk data
-                new ImageThunkData(RawFile, offset, Is64Bit)
+                _ = new ImageThunkData(RawFile, offset, Is64Bit)
                 {
                     AddressOfData = 0
                 };
@@ -128,7 +128,7 @@ namespace PeNet
                 var funcAdrs = AddImpByNames(ref tmpOffset, ai.Functions);
                 var thunkAdrs = AddThunkDatas(ref tmpOffset, funcAdrs);
 
-                new ImageImportDescriptor(RawFile, paIdesc)
+                _ = new ImageImportDescriptor(RawFile, paIdesc)
                 {
                     Name = paName.OffsetToRva(ImageSectionHeaders),
                     OriginalFirstThunk = 0,
@@ -147,9 +147,9 @@ namespace PeNet
             {
                 AddImportWithNewImpDesc(ref tmpOffset, ref paIdesc, ai);
             }
- 
+
             // End with zero filled idesc
-            new ImageImportDescriptor(RawFile, paIdesc)
+            _ = new ImageImportDescriptor(RawFile, paIdesc)
             {
                 Name = 0,
                 OriginalFirstThunk = 0,

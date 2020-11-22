@@ -9,7 +9,7 @@ namespace PeNet.FileParser
     /// Parse the PE file as a memory mapped file.
     /// This is useful for large files.
     /// </summary>
-    unsafe public class MMFile : IRawFile, IDisposable
+    public unsafe class MMFile : IRawFile, IDisposable
     {
         private const int MaxStackAlloc = 1024;
         private readonly MemoryMappedFile _mmf;
@@ -41,6 +41,7 @@ namespace PeNet.FileParser
             _va.SafeMemoryMappedViewHandle.ReleasePointer();
             _va.Dispose();
             _mmf.Dispose();
+            GC.SuppressFinalize(this);
         }
 
         public string ReadAsciiString(long offset)

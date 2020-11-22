@@ -10,8 +10,8 @@ using PeNet.Header.Pe;
 
 namespace PeNet.Header.Authenticode
 
-    // References:
-    // a.	http://www.cs.auckland.ac.nz/~pgut001/pubs/authenticode.txt
+// References:
+// a.	http://www.cs.auckland.ac.nz/~pgut001/pubs/authenticode.txt
 {
     public class AuthenticodeInfo
     {
@@ -55,12 +55,12 @@ namespace PeNet.Header.Authenticode
                 new X509Certificate2(pkcs7) : GetSigningCertificateNonWindows(pkcs7);
         }
 
-        private X509Certificate2 GetSigningCertificateNonWindows(byte[] pkcs7)
+        private X509Certificate2? GetSigningCertificateNonWindows(byte[] pkcs7)
         {
             // See https://github.com/dotnet/runtime/issues/15073#issuecomment-374787612
             var signedCms = new SignedCms();
             signedCms.Decode(pkcs7);
-            var signerInfos = signedCms.SignerInfos.Cast<SignerInfo>().Where(si => string.Equals(si.Certificate.SerialNumber, SignerSerialNumber, StringComparison.CurrentCultureIgnoreCase)).ToList();
+            var signerInfos = signedCms.SignerInfos.Cast<SignerInfo>().Where(si => string.Equals(si.Certificate?.SerialNumber, SignerSerialNumber, StringComparison.CurrentCultureIgnoreCase)).ToList();
             if (signerInfos.Count == 1)
             {
                 return signerInfos[0].Certificate;
@@ -72,14 +72,16 @@ namespace PeNet.Header.Authenticode
         private bool VerifySignature()
         {
             var signedCms = new SignedCms();
-            signedCms.Decode(_peFile.WinCertificate?.BCertificate.ToArray());
+            var bCert = _peFile.WinCertificate?.BCertificate.ToArray();
+            if (bCert is null) return false;
+            signedCms.Decode(bCert);
 
             try
             {
                 // Throws an exception if the signature is invalid.
                 signedCms.CheckSignature(true);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
@@ -113,7 +115,7 @@ namespace PeNet.Header.Authenticode
                     return false;
             }
             var hash = ComputeAuthenticodeHashFromPeFile(hashAlgorithm);
-            return SignedHash.SequenceEqual(hash);
+            return hash != null && SignedHash.SequenceEqual(hash);
         }
 
         private byte[]? GetSignedHash()
@@ -143,10 +145,10 @@ namespace PeNet.Header.Authenticode
             var asn1 = _contentInfo?.Content;
             if (asn1 is null) return null;
             var x = (Asn1Integer)asn1.Nodes[0].Nodes[4].Nodes[0].Nodes[1].Nodes[1]; // ASN.1 Path to signer serial number: /1/0/4/0/1/1
-            return x.Value.ToHexString().Substring(2).ToUpper();
+            return x.Value.ToHexString()[2..].ToUpper();
         }
 
-        private IEnumerable<byte> ComputeAuthenticodeHashFromPeFile(HashAlgorithm hash)
+        private IEnumerable<byte>? ComputeAuthenticodeHashFromPeFile(HashAlgorithm hash)
         {
             var buff = _peFile.RawFile.ToArray();
 
