@@ -21,9 +21,9 @@ jobs:
 
   steps:
   - task: UseDotNet@2 
-    displayName: "Use .NET Core 3.x"
+    displayName: "Use .NET Core 5.x"
     inputs:
-      version: '3.x'
+      version: '5.x'
       packageType: sdk
 
   - task: DotNetCoreCLI@2
@@ -51,9 +51,9 @@ jobs:
     condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
 
   - task: UseDotNet@2 
-    displayName: "Use .NET Core 3.x"
+    displayName: "Use .NET Core 5.x"
     inputs:
-      version: '3.x'
+      version: '5.x'
       packageType: sdk
 
   - task: DotNetCoreCLI@2
