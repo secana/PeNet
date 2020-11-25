@@ -52,7 +52,16 @@ namespace PeNet.Header.Pe
         ///     The certificate.
         /// </summary>
         public Span<byte> BCertificate
-            => PeFile.AsSpan(Offset + 0x8, DwLength - 8);
+        {
+            get
+            {
+                if (Offset + 0x8 > PeFile.Length || Offset + DwLength > PeFile.Length)
+                {
+                    throw new IndexOutOfRangeException("BCertificate not in PE file range.");
+                }
+                return PeFile.AsSpan(Offset + 0x8, DwLength - 8);
+            }
+        }
     }
 
     /// <summary>

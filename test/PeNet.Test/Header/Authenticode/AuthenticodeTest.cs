@@ -8,6 +8,17 @@ namespace PeNet.Test.Header.Authenticode
     public class AuthenticodeTest
     {
         [Fact]
+        public void GetAuthenticodeInfo_BCertificateOutOfRange_WithBuffer()
+        {
+            var peFile = new PeFile(@"./Binaries/DRWUI.exe");
+
+            Assert.Equal((uint)0x82C200, peFile.ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Security].VirtualAddress);
+            Assert.Equal((uint)0x1428, peFile.ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Security].Size);
+            Assert.Null(peFile.Pkcs7);
+            Assert.Null(peFile.Authenticode);
+        }
+
+        [Fact]
         public void GetAuthenticodeInfo_FromDotnetX64Binary_WithBuffer()
         {
             var peFile = new PeFile(@"./Binaries/dotnet_x64.dll");
