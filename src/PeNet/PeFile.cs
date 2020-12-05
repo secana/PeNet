@@ -522,10 +522,11 @@ namespace PeNet
             {
                 case HashAlg.Md5:
                 {
-                    var alg = new Org.BouncyCastle.Crypto.Digests.MD5Digest();
-                    hash = new byte[alg.GetDigestSize()];
-                    alg.BlockUpdate(RawFile.ToArray(), 0, (int)RawFile.Length);
-                    alg.DoFinal(hash, 0);
+                    //var alg = new Org.BouncyCastle.Crypto.Digests.MD5Digest();
+                    //hash = new byte[alg.GetDigestSize()];
+                    //alg.BlockUpdate(RawFile.ToArray(), 0, (int)RawFile.Length);
+                    //alg.DoFinal(hash, 0);
+                    return Crypto.Hash.Md5(RawFile.AsSpan(0, RawFile.Length));
                     break;
                 }
                 case HashAlg.Sha1:
