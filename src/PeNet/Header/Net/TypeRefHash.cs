@@ -17,10 +17,16 @@ namespace PeNet.Header.Net
         {
             static string GetSha256(string typeRefsAsString)
             {
-                using var sha256 = new SHA256Managed();
-                var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(typeRefsAsString));
+                //using var sha256 = new SHA256Managed();
+                //var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(typeRefsAsString));
+                var input = Encoding.UTF8.GetBytes(typeRefsAsString);
+                var alg   = new Org.BouncyCastle.Crypto.Digests.Sha256Digest();
+                var hash = new byte[alg.GetDigestSize()];
+                alg.BlockUpdate(input, 0, input.Length);
+                alg.DoFinal(hash, 0);
+
                 var stringBuilder = new StringBuilder();
-                foreach (var b in bytes)
+                foreach (var b in hash)
                     stringBuilder.AppendFormat("{0:x2}", b);
                 return stringBuilder.ToString();
             }

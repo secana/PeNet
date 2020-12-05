@@ -14,6 +14,7 @@ using PeNet.Header.Resource;
 using PeNet.HeaderParser.Authenticode;
 using PeNet.HeaderParser.Net;
 using PeNet.HeaderParser.Pe;
+using Org.BouncyCastle;
 
 namespace PeNet
 {
@@ -378,20 +379,20 @@ namespace PeNet
         ///     The SHA-256 hash sum of the binary.
         /// </summary>
         public string? Sha256
-            => _sha256 ??= ComputeHash(HashAlgorithmName.SHA256, 32);
+            => _sha256 ??= ComputeHash(HashAlg.Sha256);
 
 
         /// <summary>
         ///     The SHA-1 hash sum of the binary.
         /// </summary>
         public string? Sha1
-            => _sha1 ??= ComputeHash(HashAlgorithmName.SHA1, 20);
+            => _sha1 ??= ComputeHash(HashAlg.Sha1);
 
         /// <summary>
         ///     The MD5 of hash sum of the binary.
         /// </summary>
         public string? Md5
-            => _md5 ??= ComputeHash(HashAlgorithmName.MD5, 16);
+            => _md5 ??= ComputeHash(HashAlg.Md5);
 
         /// <summary>
         ///     The Import Hash of the binary if any imports are
@@ -507,12 +508,47 @@ namespace PeNet
             return buf[1] == 0x5a && buf[0] == 0x4d; // MZ Header
         }
 
-        private string? ComputeHash(HashAlgorithmName hashAlg, int hashLength)
+        private enum HashAlg
         {
-            if (hashAlg.Name == null) return null;
-            using var  ha   = HashAlgorithm.Create(hashAlg.Name);
-            Span<byte> hash = stackalloc byte[hashLength];
-            if (ha != null) ha.TryComputeHash(RawFile.AsSpan(0, RawFile.Length), hash, out int _);
+            Md5,
+            Sha1,
+            Sha256
+        }
+
+        private string? ComputeHash(HashAlg hashAlg)
+        {
+            var hash = new byte[0];
+            switch (hashAlg)
+            {
+                case HashAlg.Md5:
+                {
+                    var alg = new Org.BouncyCastle.Crypto.Digests.MD5Digest();
+                    hash = new byte[alg.GetDigestSize()];
+                    alg.BlockUpdate(RawFile.ToArray(), 0, (int)RawFile.Length);
+                    alg.DoFinal(hash, 0);
+                    break;
+                }
+                case HashAlg.Sha1:
+                {
+                    var alg = new Org.BouncyCastle.Crypto.Digests.Sha1Digest();
+                    hash = new byte[alg.GetDigestSize()];
+                    alg.BlockUpdate(RawFile.ToArray(), 0, (int)RawFile.Length);
+                    alg.DoFinal(hash, 0);
+                    break;
+                }
+                case HashAlg.Sha256:
+                {
+                    var alg = new Org.BouncyCastle.Crypto.Digests.Sha256Digest();
+                    hash = new byte[alg.GetDigestSize()];
+                    alg.BlockUpdate(RawFile.ToArray(), 0, (int)RawFile.Length);
+                    alg.DoFinal(hash, 0);
+                    break;
+                }
+            }
+
+            //using var  ha   = HashAlgorithm.Create(hashAlg.Name);
+            //Span<byte> hash = stackalloc byte[hashLength];
+            //if (ha != null) ha.TryComputeHash(RawFile.AsSpan(0, RawFile.Length), hash, out int _);
 
             var sBuilder = new StringBuilder();
             foreach (var t in hash)

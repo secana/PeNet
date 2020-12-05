@@ -51,9 +51,13 @@ namespace PeNet.Header.ImpHash
             // Concatenate all imports to one string separated by ','.
             var imports = string.Join(",", list);
 
-            var md5 = MD5.Create();
+            //var md5 = MD5.Create();
             var inputBytes = Encoding.ASCII.GetBytes(imports);
-            var hash = md5.ComputeHash(inputBytes);
+            var alg        = new Org.BouncyCastle.Crypto.Digests.MD5Digest();
+            var hash = new byte[alg.GetDigestSize()];
+            alg.BlockUpdate(inputBytes, 0, inputBytes.Length);
+            alg.DoFinal(hash, 0);
+            //var hash = md5.ComputeHash(inputBytes);
             var sb = new StringBuilder();
             foreach (var t in hash)
             {
