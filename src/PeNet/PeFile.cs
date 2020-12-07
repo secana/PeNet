@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using PeNet.FileParser;
 using PeNet.Header.Authenticode;
 using PeNet.Header.ImpHash;
@@ -14,6 +12,7 @@ using PeNet.Header.Resource;
 using PeNet.HeaderParser.Authenticode;
 using PeNet.HeaderParser.Net;
 using PeNet.HeaderParser.Pe;
+using PeNet.Crypto;
 
 namespace PeNet
 {
@@ -23,10 +22,10 @@ namespace PeNet
     /// </summary>
     public partial class PeFile
     {
-        private readonly DataDirectoryParsers?  _dataDirectoryParsers;
+        private readonly DataDirectoryParsers? _dataDirectoryParsers;
         private readonly NativeStructureParsers _nativeStructureParsers;
         private readonly DotNetStructureParsers _dotNetStructureParsers;
-        private readonly AuthenticodeParser     _authenticodeParser;
+        private readonly AuthenticodeParser _authenticodeParser;
 
 
         /// <summary>
@@ -61,7 +60,7 @@ namespace PeNet
                 RawFile,
                 ImageComDescriptor,
                 ImageSectionHeaders
-                );
+            );
 
             _authenticodeParser = new AuthenticodeParser(this);
         }
@@ -72,7 +71,8 @@ namespace PeNet
         /// <param name="buff">A PE file a byte array.</param>
         public PeFile(byte[] buff)
             : this(new BufferFile(buff))
-        { }
+        {
+        }
 
         /// <summary>
         ///     Create a new PeFile object.
@@ -80,7 +80,8 @@ namespace PeNet
         /// <param name="peFile">Path to a PE file.</param>
         public PeFile(string peFile)
             : this(File.ReadAllBytes(peFile))
-        { }
+        {
+        }
 
         /// <summary>
         ///     Create a new PeFile object.
@@ -88,7 +89,8 @@ namespace PeNet
         /// <param name="peFile">Stream containing a PE file.</param>
         public PeFile(Stream peFile)
             : this(new StreamFile(peFile))
-        { }
+        {
+        }
 
         /// <summary>
         /// Try to parse the PE file. Reads the whole file content into memory.
@@ -114,8 +116,14 @@ namespace PeNet
             if (!IsPeFile(buff))
                 return false;
 
-            try { peFile = new PeFile(buff); }
-            catch { return false; }
+            try
+            {
+                peFile = new PeFile(buff);
+            }
+            catch
+            {
+                return false;
+            }
 
             return true;
         }
@@ -134,8 +142,14 @@ namespace PeNet
             if (!IsPeFile(file))
                 return false;
 
-            try { peFile = new PeFile(file); }
-            catch { return false; }
+            try
+            {
+                peFile = new PeFile(file);
+            }
+            catch
+            {
+                return false;
+            }
 
             return true;
         }
@@ -154,8 +168,14 @@ namespace PeNet
             if (!IsPeFile(file))
                 return false;
 
-            try { peFile = new PeFile(file); }
-            catch { return false; }
+            try
+            {
+                peFile = new PeFile(file);
+            }
+            catch
+            {
+                return false;
+            }
 
             return true;
         }
@@ -186,7 +206,9 @@ namespace PeNet
         ///     Returns true if the PE file is a system driver
         ///     based on the Subsytem = 0x1 value in the Optional Header.
         /// </summary>
-        public bool IsDriver => ImportedFunctions != null && ImageNtHeaders?.OptionalHeader.Subsystem == SubsystemType.Native && ImportedFunctions.FirstOrDefault(i => i.DLL == "ntoskrnl.exe") != null;
+        public bool IsDriver => ImportedFunctions != null &&
+                                ImageNtHeaders?.OptionalHeader.Subsystem == SubsystemType.Native &&
+                                ImportedFunctions.FirstOrDefault(i => i.DLL == "ntoskrnl.exe") != null;
 
         /// <summary>
         ///     Returns true if the PE file is signed. It
@@ -206,7 +228,7 @@ namespace PeNet
         /// <returns>True if cert chain is valid and from a trusted CA.</returns>
         public bool HasValidCertChain(bool useOnlineCrl)
             => Authenticode?.SigningCertificate != null
-                   && HasValidCertChain(Authenticode.SigningCertificate, new TimeSpan(0, 0, 0, 10), useOnlineCrl);
+               && HasValidCertChain(Authenticode.SigningCertificate, new TimeSpan(0, 0, 0, 10), useOnlineCrl);
 
         /// <summary>
         ///     Checks if cert is from a trusted CA with a valid certificate chain.
@@ -216,7 +238,8 @@ namespace PeNet
         /// <param name="useOnlineCRL">If true, uses online certificate revocation lists, else on the local CRL.</param>
         /// <param name="excludeRoot">True if the root certificate should not be validated. False if the whole chain should be validated.</param>
         /// <returns>True if cert chain is valid and from a trusted CA.</returns>
-        public static bool HasValidCertChain(X509Certificate2? cert, TimeSpan urlRetrievalTimeout, bool useOnlineCRL = true, bool excludeRoot = true)
+        public static bool HasValidCertChain(X509Certificate2? cert, TimeSpan urlRetrievalTimeout,
+            bool useOnlineCRL = true, bool excludeRoot = true)
         {
             using var chain = new X509Chain
             {
@@ -245,7 +268,7 @@ namespace PeNet
         ///     Returns true if the PE file is x32.
         /// </summary>
         public bool Is32Bit => RawFile.Is32Bit();
-                               
+
         /// <summary>
         ///     Access the ImageDosHeader of the PE file.
         /// </summary>
@@ -261,7 +284,7 @@ namespace PeNet
         /// </summary>
         public ImageSectionHeader[]? ImageSectionHeaders => _nativeStructureParsers.ImageSectionHeaders;
 
-       
+
 
         /// <summary>
         ///     Access the ImageExportDirectory of the PE file.
@@ -316,7 +339,8 @@ namespace PeNet
         /// <summary>
         /// Access the IMAGE_BOUND_IMPORT_DESCRIPTOR form the data directory.
         /// </summary>
-        public ImageBoundImportDescriptor? ImageBoundImportDescriptor => _dataDirectoryParsers?.ImageBoundImportDescriptor;
+        public ImageBoundImportDescriptor? ImageBoundImportDescriptor =>
+            _dataDirectoryParsers?.ImageBoundImportDescriptor;
 
         /// <summary>
         /// Access the IMAGE_TLS_DIRECTORY from the data directory.
@@ -326,7 +350,8 @@ namespace PeNet
         /// <summary>
         /// Access the ImageDelayImportDirectory from the data directory.
         /// </summary>
-        public ImageDelayImportDescriptor? ImageDelayImportDescriptor => _dataDirectoryParsers?.ImageDelayImportDescriptor;
+        public ImageDelayImportDescriptor? ImageDelayImportDescriptor =>
+            _dataDirectoryParsers?.ImageDelayImportDescriptor;
 
         /// <summary>
         /// Access the ImageLoadConfigDirectory from the data directory.
@@ -378,20 +403,20 @@ namespace PeNet
         ///     The SHA-256 hash sum of the binary.
         /// </summary>
         public string? Sha256
-            => _sha256 ??= ComputeHash(HashAlgorithmName.SHA256, 32);
+            => _sha256 ??= Hash.ComputeHash(RawFile.AsSpan(0, RawFile.Length), Algorithm.Sha256);
 
 
         /// <summary>
         ///     The SHA-1 hash sum of the binary.
         /// </summary>
         public string? Sha1
-            => _sha1 ??= ComputeHash(HashAlgorithmName.SHA1, 20);
+            => _sha1 ??= Hash.ComputeHash(RawFile.AsSpan(0, RawFile.Length), Algorithm.Sha1);
 
         /// <summary>
         ///     The MD5 of hash sum of the binary.
         /// </summary>
         public string? Md5
-            => _md5 ??= ComputeHash(HashAlgorithmName.MD5, 16);
+            => _md5 ??= Hash.ComputeHash(RawFile.AsSpan(0, RawFile.Length), Algorithm.Md5);
 
         /// <summary>
         ///     The Import Hash of the binary if any imports are
@@ -505,21 +530,6 @@ namespace PeNet
                 return false;
 
             return buf[1] == 0x5a && buf[0] == 0x4d; // MZ Header
-        }
-
-        private string? ComputeHash(HashAlgorithmName hashAlg, int hashLength)
-        {
-            if (hashAlg.Name == null) return null;
-            using var  ha   = HashAlgorithm.Create(hashAlg.Name);
-            Span<byte> hash = stackalloc byte[hashLength];
-            if (ha != null) ha.TryComputeHash(RawFile.AsSpan(0, RawFile.Length), hash, out int _);
-
-            var sBuilder = new StringBuilder();
-            foreach (var t in hash)
-                sBuilder.Append(t.ToString("x2"));
-
-            return sBuilder.ToString();
-
         }
     }
 }

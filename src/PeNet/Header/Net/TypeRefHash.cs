@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
+using PeNet.Crypto;
 
 namespace PeNet.Header.Net
 {
@@ -17,12 +17,8 @@ namespace PeNet.Header.Net
         {
             static string GetSha256(string typeRefsAsString)
             {
-                using var sha256 = new SHA256Managed();
-                var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(typeRefsAsString));
-                var stringBuilder = new StringBuilder();
-                foreach (var b in bytes)
-                    stringBuilder.AppendFormat("{0:x2}", b);
-                return stringBuilder.ToString();
+                var input = Encoding.UTF8.GetBytes(typeRefsAsString);
+                return Hash.ComputeHash(input, Algorithm.Sha256);
             }
 
             var typeRefs = MdtHdr?.Tables.TypeRef;
