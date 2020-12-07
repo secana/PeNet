@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Security.Cryptography;
 using System.Text;
+using PeNet.Crypto;
 using PeNet.Header.Pe;
 
 namespace PeNet.Header.ImpHash
@@ -34,7 +34,7 @@ namespace PeNet.Header.ImpHash
         public string? ImpHash { get; }
 
 
-        private string? ComputeImpHash(ICollection<ImportFunction> importedFunctions)
+        private static string? ComputeImpHash(ICollection<ImportFunction> importedFunctions)
         {
             if (importedFunctions == null || importedFunctions.Count == 0)
                 return null;
@@ -53,20 +53,10 @@ namespace PeNet.Header.ImpHash
 
             //var md5 = MD5.Create();
             var inputBytes = Encoding.ASCII.GetBytes(imports);
-            var alg        = new Org.BouncyCastle.Crypto.Digests.MD5Digest();
-            var hash = new byte[alg.GetDigestSize()];
-            alg.BlockUpdate(inputBytes, 0, inputBytes.Length);
-            alg.DoFinal(hash, 0);
-            //var hash = md5.ComputeHash(inputBytes);
-            var sb = new StringBuilder();
-            foreach (var t in hash)
-            {
-                sb.Append(t.ToString("x2"));
-            }
-            return sb.ToString();
+            return Hash.ComputeHash(inputBytes, Algorithm.Md5);
         }
 
-        private string FormatLibraryName(string libraryName)
+        private static string FormatLibraryName(string libraryName)
         {
             var exts = new List<string> {"ocx", "sys", "dll"};
             var parts = libraryName.ToLower().Split('.');
@@ -92,7 +82,7 @@ namespace PeNet.Header.ImpHash
             return libName;
         }
 
-        private string FormatFunctionName(ImportFunction impFunc)
+        private static string FormatFunctionName(ImportFunction impFunc)
         {
             var tmp = "";
             if (impFunc.Name == null) // Import by ordinal

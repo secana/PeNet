@@ -1,22 +1,34 @@
 ﻿using System;
-using System.Text;
 
 namespace PeNet.Crypto
 {
-
-    internal class Md5 : AbsHash
+    // For reference see: https://github.com/bcgit/bc-csharp/blob/master/crypto/src/crypto/digests/MD5Digest.cs
+    internal sealed class Md5 : Hash
     {
-        private const int DigestLength = 16;
-
+        protected override int DigestLength { get; } = 16;
         private uint _h1, _h2, _h3, _h4;
-
         private readonly uint[] _x = new uint[16];
         private int _xOff;
+        private const int S11 = 7;
+        private const int S12 = 12;
+        private const int S13 = 17;
+        private const int S14 = 22;
+        private const int S21 = 5;
+        private const int S22 = 9;
+        private const int S23 = 14;
+        private const int S24 = 20;
+        private const int S31 = 4;
+        private const int S32 = 11;
+        private const int S33 = 16;
+        private const int S34 = 23;
+        private const int S41 = 6;
+        private const int S42 = 10;
+        private const int S43 = 15;
+        private const int S44 = 21;
 
+        public Md5() => Reset();
 
-        internal override void ProcessWord(
-            Span<byte> input,
-            int inOff)
+        protected override void ProcessWord(Span<byte> input, int inOff)
         {
             _x[_xOff] = Pack.LE_To_UInt32(input, inOff);
 
@@ -26,8 +38,7 @@ namespace PeNet.Crypto
             }
         }
 
-        internal override void ProcessLength(
-            long bitLength)
+        protected override void ProcessLength(long bitLength)
         {
             if (_xOff > 14)
             {
@@ -46,9 +57,7 @@ namespace PeNet.Crypto
             _x[15] = (uint)((ulong)bitLength >> 32);
         }
 
-        public override int DoFinal(
-            Span<byte> output,
-            int outOff)
+        protected override void DoFinal(Span<byte> output, int outOff)
         {
             Finish();
 
@@ -58,27 +67,9 @@ namespace PeNet.Crypto
             Pack.UInt32_To_LE(_h4, output, outOff + 12);
 
             Reset();
-
-            return DigestLength;
         }
 
-        public override string Compute(Span<byte> input)
-        {
-            Span<byte> hash = stackalloc byte[DigestLength];
-            BlockUpdate(input, 0, input.Length);
-            DoFinal(hash, 0);
-
-            var sBuilder = new StringBuilder();
-            foreach (var t in hash)
-                sBuilder.Append(t.ToString("x2"));
-
-            return sBuilder.ToString();
-        }
-
-        /**
-        * reset the chaining variables to the IV values.
-        */
-        public override void Reset()
+        protected override void Reset()
         {
             base.Reset();
 
@@ -95,93 +86,19 @@ namespace PeNet.Crypto
             }
         }
 
-        //
-        // round 1 left rotates
-        //
-        private const int S11 = 7;
-        private const int S12 = 12;
-        private const int S13 = 17;
-        private const int S14 = 22;
+        private static uint RotateLeft(uint x, int n) => (x << n) | (x >> (32 - n));
+        private static uint F(uint u, uint v, uint w) => (u & v) | (~u & w);
+        private static uint G(uint u, uint v, uint w) => (u & w) | (v & ~w);
+        private static uint H(uint u, uint v, uint w) => u ^ v ^ w;
+        private static uint K(uint u, uint v, uint w) => v ^ (u | ~w);
 
-        //
-        // round 2 left rotates
-        //
-        private const int S21 = 5;
-        private const int S22 = 9;
-        private const int S23 = 14;
-        private const int S24 = 20;
-
-        //
-        // round 3 left rotates
-        //
-        private const int S31 = 4;
-        private const int S32 = 11;
-        private const int S33 = 16;
-        private const int S34 = 23;
-
-        //
-        // round 4 left rotates
-        //
-        private const int S41 = 6;
-        private const int S42 = 10;
-        private const int S43 = 15;
-        private const int S44 = 21;
-
-        /*
-        * rotate int x left n bits.
-        */
-        private static uint RotateLeft(
-            uint x,
-            int n)
-        {
-            return (x << n) | (x >> (32 - n));
-        }
-
-        /*
-        * F, G, H and I are the basic MD5 functions.
-        */
-        private static uint F(
-            uint u,
-            uint v,
-            uint w)
-        {
-            return (u & v) | (~u & w);
-        }
-
-        private static uint G(
-            uint u,
-            uint v,
-            uint w)
-        {
-            return (u & w) | (v & ~w);
-        }
-
-        private static uint H(
-            uint u,
-            uint v,
-            uint w)
-        {
-            return u ^ v ^ w;
-        }
-
-        private static uint K(
-            uint u,
-            uint v,
-            uint w)
-        {
-            return v ^ (u | ~w);
-        }
-
-        internal override void ProcessBlock()
+        protected override void ProcessBlock()
         {
             var a = _h1;
             var b = _h2;
             var c = _h3;
             var d = _h4;
 
-            //
-            // Round 1 - F cycle, 16 times.
-            //
             a = RotateLeft((a + F(b, c, d) + _x[0] + 0xd76aa478), S11) + b;
             d = RotateLeft((d + F(a, b, c) + _x[1] + 0xe8c7b756), S12) + a;
             c = RotateLeft((c + F(d, a, b) + _x[2] + 0x242070db), S13) + d;
@@ -199,9 +116,6 @@ namespace PeNet.Crypto
             c = RotateLeft((c + F(d, a, b) + _x[14] + 0xa679438e), S13) + d;
             b = RotateLeft((b + F(c, d, a) + _x[15] + 0x49b40821), S14) + c;
 
-            //
-            // Round 2 - G cycle, 16 times.
-            //
             a = RotateLeft((a + G(b, c, d) + _x[1] + 0xf61e2562), S21) + b;
             d = RotateLeft((d + G(a, b, c) + _x[6] + 0xc040b340), S22) + a;
             c = RotateLeft((c + G(d, a, b) + _x[11] + 0x265e5a51), S23) + d;
@@ -219,9 +133,6 @@ namespace PeNet.Crypto
             c = RotateLeft((c + G(d, a, b) + _x[7] + 0x676f02d9), S23) + d;
             b = RotateLeft((b + G(c, d, a) + _x[12] + 0x8d2a4c8a), S24) + c;
 
-            //
-            // Round 3 - H cycle, 16 times.
-            //
             a = RotateLeft((a + H(b, c, d) + _x[5] + 0xfffa3942), S31) + b;
             d = RotateLeft((d + H(a, b, c) + _x[8] + 0x8771f681), S32) + a;
             c = RotateLeft((c + H(d, a, b) + _x[11] + 0x6d9d6122), S33) + d;
@@ -239,9 +150,6 @@ namespace PeNet.Crypto
             c = RotateLeft((c + H(d, a, b) + _x[15] + 0x1fa27cf8), S33) + d;
             b = RotateLeft((b + H(c, d, a) + _x[2] + 0xc4ac5665), S34) + c;
 
-            //
-            // Round 4 - K cycle, 16 times.
-            //
             a = RotateLeft((a + K(b, c, d) + _x[0] + 0xf4292244), S41) + b;
             d = RotateLeft((d + K(a, b, c) + _x[7] + 0x432aff97), S42) + a;
             c = RotateLeft((c + K(d, a, b) + _x[14] + 0xab9423a7), S43) + d;
