@@ -55,6 +55,115 @@ references:
   isSpec: "True"
   fullName: PeNet.AdditionalImport.Module
   nameWithType: AdditionalImport.Module
+- uid: PeNet.Crypto
+  name: PeNet.Crypto
+  href: api/PeNet.Crypto.html
+  commentId: N:PeNet.Crypto
+  fullName: PeNet.Crypto
+  nameWithType: PeNet.Crypto
+- uid: PeNet.Crypto.Hash
+  name: Hash
+  href: api/PeNet.Crypto.Hash.html
+  commentId: T:PeNet.Crypto.Hash
+  fullName: PeNet.Crypto.Hash
+  nameWithType: Hash
+- uid: PeNet.Crypto.Hash.DigestLength
+  name: DigestLength
+  href: api/PeNet.Crypto.Hash.html#PeNet_Crypto_Hash_DigestLength
+  commentId: P:PeNet.Crypto.Hash.DigestLength
+  fullName: PeNet.Crypto.Hash.DigestLength
+  nameWithType: Hash.DigestLength
+- uid: PeNet.Crypto.Hash.DigestLength*
+  name: DigestLength
+  href: api/PeNet.Crypto.Hash.html#PeNet_Crypto_Hash_DigestLength_
+  commentId: Overload:PeNet.Crypto.Hash.DigestLength
+  isSpec: "True"
+  fullName: PeNet.Crypto.Hash.DigestLength
+  nameWithType: Hash.DigestLength
+- uid: PeNet.Crypto.Hash.DoFinal(Span{System.Byte},System.Int32)
+  name: DoFinal(Span<Byte>, Int32)
+  href: api/PeNet.Crypto.Hash.html#PeNet_Crypto_Hash_DoFinal_Span_System_Byte__System_Int32_
+  commentId: M:PeNet.Crypto.Hash.DoFinal(Span{System.Byte},System.Int32)
+  name.vb: DoFinal(Span(Of Byte), Int32)
+  fullName: PeNet.Crypto.Hash.DoFinal(Span<System.Byte>, System.Int32)
+  fullName.vb: PeNet.Crypto.Hash.DoFinal(Span(Of System.Byte), System.Int32)
+  nameWithType: Hash.DoFinal(Span<Byte>, Int32)
+  nameWithType.vb: Hash.DoFinal(Span(Of Byte), Int32)
+- uid: PeNet.Crypto.Hash.DoFinal*
+  name: DoFinal
+  href: api/PeNet.Crypto.Hash.html#PeNet_Crypto_Hash_DoFinal_
+  commentId: Overload:PeNet.Crypto.Hash.DoFinal
+  isSpec: "True"
+  fullName: PeNet.Crypto.Hash.DoFinal
+  nameWithType: Hash.DoFinal
+- uid: PeNet.Crypto.Hash.Finish
+  name: Finish()
+  href: api/PeNet.Crypto.Hash.html#PeNet_Crypto_Hash_Finish
+  commentId: M:PeNet.Crypto.Hash.Finish
+  fullName: PeNet.Crypto.Hash.Finish()
+  nameWithType: Hash.Finish()
+- uid: PeNet.Crypto.Hash.Finish*
+  name: Finish
+  href: api/PeNet.Crypto.Hash.html#PeNet_Crypto_Hash_Finish_
+  commentId: Overload:PeNet.Crypto.Hash.Finish
+  isSpec: "True"
+  fullName: PeNet.Crypto.Hash.Finish
+  nameWithType: Hash.Finish
+- uid: PeNet.Crypto.Hash.ProcessBlock
+  name: ProcessBlock()
+  href: api/PeNet.Crypto.Hash.html#PeNet_Crypto_Hash_ProcessBlock
+  commentId: M:PeNet.Crypto.Hash.ProcessBlock
+  fullName: PeNet.Crypto.Hash.ProcessBlock()
+  nameWithType: Hash.ProcessBlock()
+- uid: PeNet.Crypto.Hash.ProcessBlock*
+  name: ProcessBlock
+  href: api/PeNet.Crypto.Hash.html#PeNet_Crypto_Hash_ProcessBlock_
+  commentId: Overload:PeNet.Crypto.Hash.ProcessBlock
+  isSpec: "True"
+  fullName: PeNet.Crypto.Hash.ProcessBlock
+  nameWithType: Hash.ProcessBlock
+- uid: PeNet.Crypto.Hash.ProcessLength(System.Int64)
+  name: ProcessLength(Int64)
+  href: api/PeNet.Crypto.Hash.html#PeNet_Crypto_Hash_ProcessLength_System_Int64_
+  commentId: M:PeNet.Crypto.Hash.ProcessLength(System.Int64)
+  fullName: PeNet.Crypto.Hash.ProcessLength(System.Int64)
+  nameWithType: Hash.ProcessLength(Int64)
+- uid: PeNet.Crypto.Hash.ProcessLength*
+  name: ProcessLength
+  href: api/PeNet.Crypto.Hash.html#PeNet_Crypto_Hash_ProcessLength_
+  commentId: Overload:PeNet.Crypto.Hash.ProcessLength
+  isSpec: "True"
+  fullName: PeNet.Crypto.Hash.ProcessLength
+  nameWithType: Hash.ProcessLength
+- uid: PeNet.Crypto.Hash.ProcessWord(Span{System.Byte},System.Int32)
+  name: ProcessWord(Span<Byte>, Int32)
+  href: api/PeNet.Crypto.Hash.html#PeNet_Crypto_Hash_ProcessWord_Span_System_Byte__System_Int32_
+  commentId: M:PeNet.Crypto.Hash.ProcessWord(Span{System.Byte},System.Int32)
+  name.vb: ProcessWord(Span(Of Byte), Int32)
+  fullName: PeNet.Crypto.Hash.ProcessWord(Span<System.Byte>, System.Int32)
+  fullName.vb: PeNet.Crypto.Hash.ProcessWord(Span(Of System.Byte), System.Int32)
+  nameWithType: Hash.ProcessWord(Span<Byte>, Int32)
+  nameWithType.vb: Hash.ProcessWord(Span(Of Byte), Int32)
+- uid: PeNet.Crypto.Hash.ProcessWord*
+  name: ProcessWord
+  href: api/PeNet.Crypto.Hash.html#PeNet_Crypto_Hash_ProcessWord_
+  commentId: Overload:PeNet.Crypto.Hash.ProcessWord
+  isSpec: "True"
+  fullName: PeNet.Crypto.Hash.ProcessWord
+  nameWithType: Hash.ProcessWord
+- uid: PeNet.Crypto.Hash.Reset
+  name: Reset()
+  href: api/PeNet.Crypto.Hash.html#PeNet_Crypto_Hash_Reset
+  commentId: M:PeNet.Crypto.Hash.Reset
+  fullName: PeNet.Crypto.Hash.Reset()
+  nameWithType: Hash.Reset()
+- uid: PeNet.Crypto.Hash.Reset*
+  name: Reset
+  href: api/PeNet.Crypto.Hash.html#PeNet_Crypto_Hash_Reset_
+  commentId: Overload:PeNet.Crypto.Hash.Reset
+  isSpec: "True"
+  fullName: PeNet.Crypto.Hash.Reset
+  nameWithType: Hash.Reset
 - uid: PeNet.ExtensionMethods
   name: ExtensionMethods
   href: api/PeNet.ExtensionMethods.html

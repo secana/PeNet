@@ -17,6 +17,30 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Crypto.Hash.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Crypto.Hash.html",
+          "hash": "2ERZDopQ2ubj5dm6CPSnsQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Crypto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Crypto.html",
+          "hash": "zxCe29SNwOkcunsvO0eoCw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/PeNet.ExtensionMethods.yml",
       "output": {
         ".html": {
@@ -93,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.AbstractStructure.html",
-          "hash": "SNPA909bdznu4wga2shVOA=="
+          "hash": "s/5eL57/zlZcWeRhiUxcCg=="
         }
       },
       "is_incremental": false,
@@ -1473,7 +1497,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.PeFile.html",
-          "hash": "niwiYX9OsNxYHCYQjuNcLA=="
+          "hash": "dHiqicdvmuhCHfDf2dFpfQ=="
         }
       },
       "is_incremental": false,
@@ -1509,7 +1533,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "iOOSw4T6qv83hjJ0Rno6vA=="
+          "hash": "nRLvWsLNsi+IxZR5GF5Igg=="
         }
       },
       "is_incremental": false,
@@ -1680,7 +1704,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 124,
+          "total_file_count": 126,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
