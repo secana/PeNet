@@ -148,7 +148,7 @@ namespace PeNet.Header.Authenticode
             return x.Value.ToHexString()[2..].ToUpper();
         }
 
-        private IEnumerable<byte>? ComputeAuthenticodeHashFromPeFile(HashAlgorithm hash)
+        public IEnumerable<byte>? ComputeAuthenticodeHashFromPeFile(HashAlgorithm hash)
         {
             var buff = _peFile.RawFile.ToArray();
 
