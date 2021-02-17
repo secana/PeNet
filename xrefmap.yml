@@ -1428,6 +1428,19 @@ references:
   isSpec: "True"
   fullName: PeNet.Header.Authenticode.AuthenticodeInfo.AuthenticodeInfo
   nameWithType: AuthenticodeInfo.AuthenticodeInfo
+- uid: PeNet.Header.Authenticode.AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile(HashAlgorithm)
+  name: ComputeAuthenticodeHashFromPeFile(HashAlgorithm)
+  href: api/PeNet.Header.Authenticode.AuthenticodeInfo.html#PeNet_Header_Authenticode_AuthenticodeInfo_ComputeAuthenticodeHashFromPeFile_HashAlgorithm_
+  commentId: M:PeNet.Header.Authenticode.AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile(HashAlgorithm)
+  fullName: PeNet.Header.Authenticode.AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile(HashAlgorithm)
+  nameWithType: AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile(HashAlgorithm)
+- uid: PeNet.Header.Authenticode.AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile*
+  name: ComputeAuthenticodeHashFromPeFile
+  href: api/PeNet.Header.Authenticode.AuthenticodeInfo.html#PeNet_Header_Authenticode_AuthenticodeInfo_ComputeAuthenticodeHashFromPeFile_
+  commentId: Overload:PeNet.Header.Authenticode.AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile
+  isSpec: "True"
+  fullName: PeNet.Header.Authenticode.AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile
+  nameWithType: AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile
 - uid: PeNet.Header.Authenticode.AuthenticodeInfo.IsAuthenticodeValid
   name: IsAuthenticodeValid
   href: api/PeNet.Header.Authenticode.AuthenticodeInfo.html#PeNet_Header_Authenticode_AuthenticodeInfo_IsAuthenticodeValid
