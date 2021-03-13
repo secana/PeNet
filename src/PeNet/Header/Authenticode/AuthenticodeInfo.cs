@@ -177,9 +177,16 @@ namespace PeNet.Header.Authenticode
             hash.TransformBlock(buff, offset, length, new byte[length], 0);
 
             // 8-13. Hash everything between end of header and certificate
-            var sizeOfHeaders = Convert.ToInt32(_peFile.ImageNtHeaders?.OptionalHeader.SizeOfHeaders);
-            length = Convert.ToInt32(_peFile.WinCertificate?.Offset) - sizeOfHeaders;
-            hash.TransformBlock(buff, sizeOfHeaders, length, new byte[length], 0);
+            offset = Convert.ToInt32(_peFile.ImageNtHeaders?.OptionalHeader.SizeOfHeaders);
+
+            if (_peFile.WinCertificate is not null)
+            {
+                length = Convert.ToInt32(_peFile.WinCertificate?.Offset) - offset;
+                hash.TransformBlock(buff, offset, length, new byte[length], 0);
+
+                // Move offset right beyond the Certificate Table
+                offset += length + Convert.ToInt32(certificateTable?.Size);
+            }
 
             // 14. Create a value called FILE_SIZE, which is not part of the signature. 
             // Set this value to the image’s file size, acquired from the underlying file system. 
@@ -190,8 +197,6 @@ namespace PeNet.Header.Authenticode
             // in the second ULONG value in the Certificate Table entry (32 bit: offset 132, 64 bit: offset 148) in Optional Header Data Directories.
             // 14. Hash everything from the end of the certificate to the end of the file.
             var fileSize = buff.Length;
-            var sizeOfAttributeCertificateTable = Convert.ToInt32(certificateTable?.Size);
-            offset = sizeOfAttributeCertificateTable + Convert.ToInt32(_peFile.WinCertificate?.Offset);
             if (fileSize > offset)
             {
                 length = fileSize - offset;
