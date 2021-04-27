@@ -36,14 +36,18 @@ namespace PeNet
             var importRva = ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].VirtualAddress;
             var importSize = ImageNtHeaders.OptionalHeader.DataDirectory[(int)DataDirectoryType.Import].Size;
 
-            int EstimateAdditionalNeededSpace()
-                => (int)(additionalImports.Select(ai => ai.Functions).Count() * 64 + importSize);
+            ImageSectionHeader GetImportSection()
+                => ImageSectionHeaders.First(sh => sh.VirtualAddress + sh.VirtualSize >= importRva);
 
+            int EstimateAdditionalNeededSpace()
+                => additionalImports.Select(ai => ai.Functions).Count() * 64;
+
+            var impSection = GetImportSection();
             var newUnalignedRawSecSize = EstimateAdditionalNeededSpace();
 
             // First copy the current import descriptor array to the start of the new section to have enough space to
             // add additional import descriptors.
-            AddSection(".addImp", (int)(newUnalignedRawSecSize), (ScnCharacteristicsType)0xC0000000);
+            AddSection(".addImp", (int)(impSection!.SizeOfRawData + newUnalignedRawSecSize), (ScnCharacteristicsType)0xC0000000);
             var newImpSec = ImageSectionHeaders.First(sh => sh.Name == ".addImp");
             var oldImpDescBytes = RawFile.AsSpan(importRva.RvaToOffset(ImageSectionHeaders), importSize);
             RawFile.WriteBytes(newImpSec.PointerToRawData, oldImpDescBytes);
