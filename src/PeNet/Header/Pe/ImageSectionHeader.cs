@@ -30,12 +30,12 @@ namespace PeNet.Header.Pe
         /// <summary>
         /// The section name as a string.
         /// </summary>
-        public string Name 
+        public unsafe string Name 
         { 
             get 
             {
                 var s = PeFile.AsSpan(Offset, 8);
-                return Encoding.UTF8.GetString(s).TrimEnd((char)0);
+                fixed(byte* ptr = s) return Encoding.UTF8.GetString(ptr, s.Length).TrimEnd((char)0);
             }
             set
             {

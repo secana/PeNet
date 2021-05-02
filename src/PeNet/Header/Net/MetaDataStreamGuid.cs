@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using PeNet.FileParser;
 
 namespace PeNet.Header.Net
@@ -50,7 +51,10 @@ namespace PeNet.Header.Net
 
             for (var i = Offset; i < Offset + _size; i += 16)
             {
-                guidsAndIndicies.Add(new Tuple<Guid, uint>(new Guid(PeFile.AsSpan(i, 16)), (uint) guidsAndIndicies.Count + 1));
+                var span = PeFile.AsSpan(i, 16);
+                var sspan = MemoryMarshal.Cast<byte, short>(span);
+                var guid = new Guid(MemoryMarshal.Cast<byte, int>(span)[0], sspan[2], span[3], span[8], span[9], span[10], span[11], span[12], span[13], span[14], span[15]);
+                guidsAndIndicies.Add(new Tuple<Guid, uint>(guid, (uint) guidsAndIndicies.Count + 1));
             }
 
             return guidsAndIndicies;

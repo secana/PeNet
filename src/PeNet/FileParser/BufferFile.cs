@@ -12,27 +12,33 @@ namespace PeNet.FileParser
 
         public BufferFile(byte[] file) => _buffer = file;
 
-        public string ReadAsciiString(long offset)
+        public unsafe string ReadAsciiString(long offset)
         {
             var nullTerminator = byte.MinValue;
 
             var stringLength = _buffer.Span[(int)offset..].IndexOf(nullTerminator);
 
-            return Encoding.ASCII.GetString(_buffer.Span.Slice((int) offset, stringLength));
+            var span = _buffer.Span.Slice((int)offset, stringLength);
+            fixed(byte* ptr = span) return Encoding.ASCII.GetString(ptr, span.Length);
         }
 
         public Span<byte> AsSpan(long offset, long length) => _buffer.Span.Slice((int) offset, (int) length);
 
-        public string ReadUnicodeString(long offset)
+        public unsafe string ReadUnicodeString(long offset)
         {
             Span<byte> nullTerminator = stackalloc byte[] {byte.MinValue, byte.MinValue};
 
             var stringLength = _buffer.Span[(int)offset..].IndexOf(nullTerminator) + 1;
 
-            return Encoding.Unicode.GetString(_buffer.Span.Slice((int) offset, stringLength));
+            var span = _buffer.Span.Slice((int)offset, stringLength);
+            fixed(byte* ptr = span) return Encoding.Unicode.GetString(ptr, span.Length);
         }
 
-        public string ReadUnicodeString(long offset, long length) => Encoding.Unicode.GetString(_buffer.Span.Slice((int) offset, (int) length * 2));
+        public unsafe string ReadUnicodeString(long offset, long length)
+        {
+            var span = _buffer.Span.Slice((int)offset, (int)length * 2);
+            fixed(byte* ptr = span) return Encoding.Unicode.GetString(ptr, span.Length);
+        }
 
         public byte ReadByte(long offset) => _buffer.Span[(int) offset];
 
