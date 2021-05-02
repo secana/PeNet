@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using PeNet.FileParser;
 using PeNet.Header.Pe;
@@ -314,5 +315,11 @@ namespace PeNet
         /// <returns>True, if 32 bit.</returns>
         public static bool Is32Bit(this IRawFile peFile)
             => peFile.ReadUShort(peFile.ReadUInt(0x3c) + 0x18) == (ushort) MagicType.Bit32;
+
+        internal static Guid ToGuid(this Span<byte> span)
+        {
+            var sspan = MemoryMarshal.Cast<byte, short>(span);
+            return new Guid(MemoryMarshal.Cast<byte, int>(span)[0], sspan[2], span[3], span[8], span[9], span[10], span[11], span[12], span[13], span[14], span[15]);
+        }
     }
 }

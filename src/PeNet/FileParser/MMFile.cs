@@ -60,9 +60,10 @@ namespace PeNet.FileParser
 
             var length = GetCStringLength(_va, offset);
 
-            var tmp = length > MaxStackAlloc
-                ? new char[length]
-                : stackalloc char[length];
+            var tmp = //length > MaxStackAlloc ?
+                new char[length]
+                //: stackalloc char[length]
+                ;
 
             for (var i = 0; i < length; i++)
             {

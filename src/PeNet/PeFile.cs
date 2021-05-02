@@ -497,7 +497,25 @@ namespace PeNet
         {
             Span<byte> buffer = stackalloc byte[2];
             file.Seek(0, SeekOrigin.Begin);
-            file.Read(buffer);
+            int b = file.ReadByte();
+            if (b == -1)
+            {
+                buffer = buffer.Slice(0, 0);
+            }
+            else
+            {
+                buffer[0] = unchecked((byte)b);
+                b = file.ReadByte();
+                if (b == -1)
+                {
+                    buffer = buffer.Slice(0, 1);
+                }
+                else
+                {
+                    buffer[1] = unchecked((byte)b);
+                    b = file.ReadByte();
+                }
+            }
             return IsPeFile(buffer);
         }
 

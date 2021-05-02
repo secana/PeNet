@@ -10,11 +10,17 @@ namespace PeNet.FileParser
     {
         private const int MaxStackAlloc = 1024;
         private Stream _stream;
+        private BinaryReader _reader;
+        private BinaryWriter _writer;
 
         public long Length => _stream.Length;
 
-        public StreamFile(Stream file) 
-            => (_stream) = (file);
+        public StreamFile(Stream file)
+        {
+            _stream = file;
+            _reader = new BinaryReader(_stream);
+            _writer = new BinaryWriter(_stream);
+        }
 
         public string ReadAsciiString(long offset)
         {
@@ -31,20 +37,21 @@ namespace PeNet.FileParser
 
             var length = GetCStringLength(_stream, (int)offset);
 
-            var tmp = length > MaxStackAlloc
-                ? new byte[length]
-                : stackalloc byte[length];
+            var tmp = //length > MaxStackAlloc ?
+                new byte[length]
+                //: stackalloc byte[length]
+                ;
 
             _stream.Seek(offset, SeekOrigin.Begin);
-            _stream.Read(tmp);
+            _stream.Read(tmp, 0, length);
             return Encoding.ASCII.GetString(tmp);
         }
 
         public Span<byte> AsSpan(long offset, long length)
         {
-            Span<byte> s = new byte[(int)length]; 
+            var s = new byte[length]; 
             _stream.Seek(offset, SeekOrigin.Begin);
-            _stream.Read(s);
+            _stream.Read(s, 0, s.Length);
             return s;
         }
 
@@ -91,26 +98,20 @@ namespace PeNet.FileParser
 
         public uint ReadUInt(long offset)
         {
-            Span<byte> s = stackalloc byte[4];
             _stream.Seek(offset, SeekOrigin.Begin);
-            _stream.Read(s);
-            return BitConverter.ToUInt32(s);
+            return _reader.ReadUInt32();
         }
 
         public ulong ReadULong(long offset)
         {
-            Span<byte> s = stackalloc byte[8];
             _stream.Seek(offset, SeekOrigin.Begin);
-            _stream.Read(s);
-            return BitConverter.ToUInt64(s);
+            return _reader.ReadUInt64();
         }
 
         public ushort ReadUShort(long offset)
         {
-            Span<byte> s = stackalloc byte[2];
             _stream.Seek(offset, SeekOrigin.Begin);
-            _stream.Read(s);
-            return BitConverter.ToUInt16(s);
+            return _reader.ReadUInt16();
         }
 
         public byte[] ToArray()
@@ -130,28 +131,25 @@ namespace PeNet.FileParser
         public void WriteBytes(long offset, Span<byte> bytes)
         {
             _stream.Seek(offset, SeekOrigin.Begin);
-            _stream.Write(bytes);
+            foreach(var b in bytes) _stream.WriteByte(b);
         }
 
         public void WriteUInt(long offset, uint value)
         {
-            Span<byte> s = BitConverter.GetBytes(value);
             _stream.Seek(offset, SeekOrigin.Begin);
-            _stream.Write(s);
+            _writer.Write(value);
         }
 
         public void WriteULong(long offset, ulong value)
         {
-            Span<byte> s = BitConverter.GetBytes(value);
             _stream.Seek(offset, SeekOrigin.Begin);
-            _stream.Write(s);
+            _writer.Write(value);
         }
 
         public void WriteUShort(long offset, ushort value)
         {
-            Span<byte> s = BitConverter.GetBytes(value);
             _stream.Seek(offset, SeekOrigin.Begin);
-            _stream.Write(s);
+            _writer.Write(value);
         }
 
         public void Dispose()
