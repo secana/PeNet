@@ -78,8 +78,13 @@ namespace PeNet.Header.Resource
 
             while (currentOffset < Offset + WLength)
             {
-                children.Add(new StringTable(PeFile, currentOffset));
-                currentOffset += children.Last().WLength;
+                var st = new StringTable(PeFile, currentOffset);
+                
+                if (st.WLength == 0)
+                    break;
+                
+                currentOffset += st.WLength;
+                children.Add(st);
             }
 
             return children.ToArray();
