@@ -38,7 +38,7 @@ namespace PeNet.Header.Net
         {
             try
             {
-                return peFile.MetaDataStreamTablesHeader?.Tables?.Module?.Select(m =>
+                return peFile.MetaDataStreamTablesHeader?.Tables.Module?.Select(m =>
                         peFile.MetaDataStreamGuid?.GetGuidAtIndex(m.Mvid) ?? Guid.Empty)
                     .Where(g => g != Guid.Empty)
                     .ToList() ?? new List<Guid>();
@@ -68,14 +68,13 @@ namespace PeNet.Header.Net
                 var blobIndexSize = new HeapSizes(peFile.MetaDataStreamTablesHeader.HeapSizes).Blob;
 
                 // 1. find the index of "GuidAttribute" in the TypeRef table
-                var typeRefTable = peFile?.MetaDataStreamTablesHeader?.Tables?.TypeRef;
+                var typeRefTable = peFile.MetaDataStreamTablesHeader?.Tables.TypeRef;
                 var stringsStream = peFile?.MetaDataStreamString;
 
                 var typeRefTableIndex = 1; // .NET metadata tables are 1-based...
                 for (; typeRefTableIndex <= typeRefTable?.Count; typeRefTableIndex++)
                 {
-                    var typeRefTableRow = typeRefTable?[typeRefTableIndex - 1]; // ...but .NET arrays are 0-based.
-                    if (typeRefTableRow is null) return null;
+                    var typeRefTableRow = typeRefTable[typeRefTableIndex - 1]; // ...but .NET arrays are 0-based.
                     if ("GuidAttribute" == stringsStream?.GetStringAtIndex(typeRefTableRow.TypeName)
                         && "System.Runtime.InteropServices" ==
                         stringsStream?.GetStringAtIndex(typeRefTableRow.TypeNamespace))
@@ -89,11 +88,11 @@ namespace PeNet.Header.Net
                     // we found the TypeRef for "GuidAttribute"!
 
                     // 2. now find the row in the MemberRef table that points to this TypeRef
-                    var memberRefTable = peFile?.MetaDataStreamTablesHeader?.Tables?.MemberRef;
+                    var memberRefTable = peFile?.MetaDataStreamTablesHeader?.Tables.MemberRef;
                     var memberRefTableIndex = 1;
                     for (; memberRefTableIndex <= memberRefTable?.Count; memberRefTableIndex++)
                     {
-                        var memberRefTableRow = memberRefTable?[memberRefTableIndex - 1];
+                        var memberRefTableRow = memberRefTable[memberRefTableIndex - 1];
                         if ((memberRefTableRow?.Class & 0x7) == 0x1 // parent is a TypeRef
                             && (memberRefTableRow?.Class >> 3) == typeRefTableIndex)
                         {
@@ -113,7 +112,7 @@ namespace PeNet.Header.Net
                         foreach (var row in customAttributeTable)
                         {
                             if ((row.Type & 0x7) == 0x3 // parent is a MemberRef
-                                && (row.Type >> 3) == memberRefTableIndex)
+                                && row.Type >> 3 == memberRefTableIndex)
                             {
                                 // we found the CustomAttribute matching the MemberRef for the TypeRef for "GuidAttribute"!
 
