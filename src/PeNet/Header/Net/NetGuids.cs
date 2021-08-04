@@ -69,7 +69,7 @@ namespace PeNet.Header.Net
 
                 // 1. find the index of "GuidAttribute" in the TypeRef table
                 var typeRefTable = peFile.MetaDataStreamTablesHeader?.Tables.TypeRef;
-                var stringsStream = peFile?.MetaDataStreamString;
+                var stringsStream = peFile.MetaDataStreamString;
 
                 var typeRefTableIndex = 1; // .NET metadata tables are 1-based...
                 for (; typeRefTableIndex <= typeRefTable?.Count; typeRefTableIndex++)
@@ -83,7 +83,7 @@ namespace PeNet.Header.Net
                     }
                 }
 
-                if (typeRefTableIndex < typeRefTable?.Count)
+                if (typeRefTableIndex <= typeRefTable?.Count)
                 {
                     // we found the TypeRef for "GuidAttribute"!
 
@@ -100,7 +100,7 @@ namespace PeNet.Header.Net
                         }
                     }
 
-                    if (memberRefTableIndex < memberRefTable?.Count)
+                    if (memberRefTableIndex <= memberRefTable?.Count)
                     {
                         // we found the MemberRef for the TypeRef for "GuidAttribute"!
 
