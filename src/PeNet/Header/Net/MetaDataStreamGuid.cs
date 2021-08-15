@@ -50,7 +50,11 @@ namespace PeNet.Header.Net
 
             for (var i = Offset; i < Offset + _size; i += 16)
             {
+#if NET48
+                guidsAndIndicies.Add(new Tuple<Guid, uint>(new Guid(PeFile.AsSpan(i, 16).ToArray()), (uint)guidsAndIndicies.Count + 1));
+#else
                 guidsAndIndicies.Add(new Tuple<Guid, uint>(new Guid(PeFile.AsSpan(i, 16)), (uint) guidsAndIndicies.Count + 1));
+#endif
             }
 
             return guidsAndIndicies;

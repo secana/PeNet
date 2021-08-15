@@ -1,0 +1,28 @@
+
+using System;
+using System.IO;
+using System.Text;
+
+namespace PeNet
+{
+	public static class NET48_Helpers
+	{
+        public static unsafe string GetString(this Encoding encoding, Span<byte> span)
+        {
+            return Encoding.ASCII.GetString((byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref span[0]), span.Length);
+        }
+
+        public static int Read(this Stream stream, Span<byte> span)
+        {
+            byte[] buffer = new byte[span.Length];
+            int ret = stream.Read(buffer, 0, buffer.Length);
+            ((Span<byte>)buffer).CopyTo(span);
+            return ret;
+        }
+
+        public static void Write(this Stream stream, Span<byte> span)
+        {
+            stream.Write(span.ToArray(), 0, span.Length);
+        }
+	}
+}

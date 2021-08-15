@@ -94,7 +94,11 @@ namespace PeNet.FileParser
             Span<byte> s = stackalloc byte[4];
             _stream.Seek(offset, SeekOrigin.Begin);
             _stream.Read(s);
+#if NET48
+            return BitConverter.ToUInt32(s.ToArray(), 0);
+#else
             return BitConverter.ToUInt32(s);
+#endif
         }
 
         public ulong ReadULong(long offset)
@@ -102,7 +106,11 @@ namespace PeNet.FileParser
             Span<byte> s = stackalloc byte[8];
             _stream.Seek(offset, SeekOrigin.Begin);
             _stream.Read(s);
+#if NET48
+            return BitConverter.ToUInt64(s.ToArray(), 0);
+#else
             return BitConverter.ToUInt64(s);
+#endif
         }
 
         public ushort ReadUShort(long offset)
@@ -110,7 +118,11 @@ namespace PeNet.FileParser
             Span<byte> s = stackalloc byte[2];
             _stream.Seek(offset, SeekOrigin.Begin);
             _stream.Read(s);
+#if NET48
+            return BitConverter.ToUInt16(s.ToArray(), 0);
+#else
             return BitConverter.ToUInt16(s);
+#endif
         }
 
         public byte[] ToArray()

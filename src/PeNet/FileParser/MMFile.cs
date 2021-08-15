@@ -68,8 +68,11 @@ namespace PeNet.FileParser
             {
                 tmp[i] = (char)_va.ReadByte(offset + i);
             }
-
+#if NET48
+            return new string((char*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref tmp[0]));
+#else
             return new string(tmp);
+#endif
         }
 
         public byte ReadByte(long offset)
