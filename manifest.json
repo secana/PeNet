@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.FileParser.BufferFile.html",
-          "hash": "o5pZwZaLVBhkuBZeBDePupLn58KMW+39Urp9KHLsX3o="
+          "hash": "1A8+Et7Is3j4lPo/3oBmGZsxIJoeI1jxQEtUFzXpfgU="
         }
       },
       "is_incremental": false,
@@ -1389,7 +1389,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Resource.StringFileInfo.html",
-          "hash": "JlSJl0fwbWLx13oCr+6jtBRqSYbZx4JeDDUzfeyKiTY="
+          "hash": "ZmnzOy6L8C6x3Y3zUfdU6jipLGXG4DtGTscBRXpgEpk="
         }
       },
       "is_incremental": false,
