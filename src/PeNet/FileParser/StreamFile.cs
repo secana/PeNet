@@ -94,7 +94,7 @@ namespace PeNet.FileParser
             Span<byte> s = stackalloc byte[4];
             _stream.Seek(offset, SeekOrigin.Begin);
             _stream.Read(s);
-#if NET48
+#if NET48 || NETSTANDARD2_0
             return BitConverter.ToUInt32(s.ToArray(), 0);
 #else
             return BitConverter.ToUInt32(s);
@@ -106,7 +106,7 @@ namespace PeNet.FileParser
             Span<byte> s = stackalloc byte[8];
             _stream.Seek(offset, SeekOrigin.Begin);
             _stream.Read(s);
-#if NET48
+#if NET48 || NETSTANDARD2_0
             return BitConverter.ToUInt64(s.ToArray(), 0);
 #else
             return BitConverter.ToUInt64(s);
@@ -118,7 +118,7 @@ namespace PeNet.FileParser
             Span<byte> s = stackalloc byte[2];
             _stream.Seek(offset, SeekOrigin.Begin);
             _stream.Read(s);
-#if NET48
+#if NET48 || NETSTANDARD2_0
             return BitConverter.ToUInt16(s.ToArray(), 0);
 #else
             return BitConverter.ToUInt16(s);

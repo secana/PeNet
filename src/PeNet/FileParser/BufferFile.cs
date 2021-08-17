@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PeNet.FileParser
 {
-#if !NET48
+#if !NET48 && !NETSTANDARD2_0
     public class BufferFile : IRawFile
     {
         private Memory<byte> _buffer;

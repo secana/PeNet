@@ -68,7 +68,7 @@ namespace PeNet.FileParser
             {
                 tmp[i] = (char)_va.ReadByte(offset + i);
             }
-#if NET48
+#if NET48 || NETSTANDARD2_0
             return new string((char*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref tmp[0]));
 #else
             return new string(tmp);

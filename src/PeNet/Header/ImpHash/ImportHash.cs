@@ -62,7 +62,7 @@ namespace PeNet.Header.ImpHash
             var parts = libraryName.ToLower().Split('.');
             var libName = "";
 
-#if NET48
+#if NET48 || NETSTANDARD2_0
             if (parts.Length > 1 && exts.Contains(parts[parts.Length - 1]))
 #else
             if (parts.Length > 1 && exts.Contains(parts[^1]))
