@@ -147,8 +147,13 @@ namespace PeNet.Header.Resource
             while (currentOffset < Offset + WLength)
             {
                 currentOffset += currentOffset.PaddingBytes(32);
-                children.Add(new TString(PeFile, currentOffset));
-                currentOffset += children.Last().WLength;
+
+                var ts = new TString(PeFile, currentOffset);
+                if (ts.WLength == 0)
+                    break;
+
+                currentOffset += ts.WLength;
+                children.Add(ts);
             }
 
             return children.ToArray();

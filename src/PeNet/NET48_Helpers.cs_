@@ -9,7 +9,7 @@ namespace PeNet
 	{
         public static unsafe string GetString(this Encoding encoding, Span<byte> span)
         {
-            return Encoding.ASCII.GetString((byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref span[0]), span.Length);
+            return encoding.GetString((byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref span[0]), span.Length);
         }
 
         public static int Read(this Stream stream, Span<byte> span)

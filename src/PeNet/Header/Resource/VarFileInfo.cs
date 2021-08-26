@@ -79,8 +79,12 @@ namespace PeNet.Header.Resource
 
             while (currentOffset < Offset + WLength)
             {
-                values.Add(new Var(PeFile, currentOffset));
-                currentOffset += values.Last().WLength;
+                var v = new Var(PeFile, currentOffset);
+                if (v.WLength == 0)
+                    break;
+
+                currentOffset += v.WLength;
+                values.Add(v);
             }
 
             return values.ToArray();
