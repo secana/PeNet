@@ -59,9 +59,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net48|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-  
+
   <ItemGroup>
-    <PackageReference Include="PeNet.Asn1" Version="1.5.1" />
+    <PackageReference Include="PeNet.Asn1" Version="1.6.1" />
     <PackageReference Include="System.Security.Cryptography.Pkcs" Version="5.0.1" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
