@@ -8,13 +8,14 @@ namespace PeNet.Header.Resource
     /// </summary>
     public class CvInfoPdb70 : AbstractStructure
     {
-        public CvInfoPdb70(IRawFile peFile, uint offset) 
+        public CvInfoPdb70(IRawFile peFile, uint offset)
             : base(peFile, offset)
         {
         }
 
         /// <summary>
         /// Codeview signature.
+        /// Typically 0x53445352 = 'RSDS'
         /// </summary>
         public uint CvSignature
         {
@@ -37,7 +38,8 @@ namespace PeNet.Header.Resource
         }
 
         /// <summary>
-        /// PDB Age
+        /// PDB Age is the iteration of the PDB. The first iteration is 1. 
+        /// The iteration is incremented each time the PDB content is augmented.
         /// </summary>
         public uint Age
         {
