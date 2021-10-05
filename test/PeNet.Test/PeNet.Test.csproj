@@ -66,6 +66,9 @@
     <None Update="Binaries\remove-section.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Binaries\TestCetCompatAndEhCont.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Header\Authenticode\pidgin.pkcs7">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
