@@ -893,6 +893,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.DebugDirectoryType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.DebugDirectoryType.html",
+          "hash": "nysttqFzNGEcfWUf2huca166Z+3NZjurKrRYKVVkQzw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/PeNet.Header.Pe.DllCharacteristicsType.yml",
       "output": {
         ".html": {
@@ -910,6 +922,18 @@
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ExportFunction.html",
           "hash": "LC+MXl+uwY0K6laPDseldp+RqOiTdcqvNJi6OjOUJ0g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ExtendedDllCharacteristicsType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ExtendedDllCharacteristicsType.html",
+          "hash": "/mZcN/ocV35YDnrme21Cx7wP4RldzmplUHMrPguqK/4="
         }
       },
       "is_incremental": false,
@@ -993,7 +1017,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageDebugDirectory.html",
-          "hash": "AHHxmAdUMdRe57zUvM+o66YSZZrEHaQMB/G2gCGEXss="
+          "hash": "4/KUHiWVlt7fYzoZnviMrrpRkAhDpQOKxiUeW0Uc17Q="
         }
       },
       "is_incremental": false,
@@ -1353,7 +1377,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.html",
-          "hash": "EsYBEftDh+2jbJMLTrhzl1k7hozJMJ2KZ2/q2+aM+6k="
+          "hash": "1aQiXGleFW6BbZlVU/EM/ch8j9v5QDyFcebIuoHu1Hk="
         }
       },
       "is_incremental": false,
@@ -1365,7 +1389,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Resource.CvInfoPdb70.html",
-          "hash": "oA9QaJ0J+4Z8m1856Rfx+Nf9ELh+sQ34236CNAwJZ9s="
+          "hash": "2pMdesXDE9NT3BTGf1oLSh3Zr5AjOIWRhZJXSDu8MDE="
         }
       },
       "is_incremental": false,
@@ -1533,7 +1557,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "qGYhOZAe9gdL7rm1yyI47o+UOOxXFYNvj1h52cItsJo="
+          "hash": "dqICqgXnqnFmiOnPZc7RPbqmJZZnZ4GmZZIBhFjQkg0="
         }
       },
       "is_incremental": false,
@@ -1704,7 +1728,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 126,
+          "total_file_count": 128,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

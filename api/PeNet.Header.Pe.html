@@ -205,9 +205,19 @@ used to sign the binary.</p>
       <section><p>The data directory indices used to resolve
 which directory is which.</p>
 </section>
+      <h4><a class="xref" href="PeNet.Header.Pe.DebugDirectoryType.html">DebugDirectoryType</a></h4>
+      <section><p>An image has potentially multiple entries of ImageDebugDirectory.
+This is the &quot;Type&quot; of an entry.
+Main source is winnt.h
+See <a href="https://docs.microsoft.com/en-us/windows/win32/debug/pe-format#debug-type">https://docs.microsoft.com/en-us/windows/win32/debug/pe-format#debug-type</a>
+and <a href="https://docs.microsoft.com/en-us/dotnet/api/system.reflection.portableexecutable.debugdirectoryentrytype?view=net-5.0">https://docs.microsoft.com/en-us/dotnet/api/system.reflection.portableexecutable.debugdirectoryentrytype?view=net-5.0</a></p>
+</section>
       <h4><a class="xref" href="PeNet.Header.Pe.DllCharacteristicsType.html">DllCharacteristicsType</a></h4>
       <section><p>Constants for the Optional header DllCharacteristics
 property.</p>
+</section>
+      <h4><a class="xref" href="PeNet.Header.Pe.ExtendedDllCharacteristicsType.html">ExtendedDllCharacteristicsType</a></h4>
+      <section><p>Possible bit-field values when ImageDebugDirectory.Type is DebugDirectoryType.ExtendedDllCharacteristics</p>
 </section>
       <h4><a class="xref" href="PeNet.Header.Pe.FileCharacteristicsType.html">FileCharacteristicsType</a></h4>
       <section><p>File characteristics from the file header.</p>

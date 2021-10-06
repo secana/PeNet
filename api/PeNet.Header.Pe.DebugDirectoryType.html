@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Enum DebugDirectoryType
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Enum DebugDirectoryType
+   ">
+    <meta name="generator" content="docfx 2.58.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="PeNet.Header.Pe.DebugDirectoryType">
+  
+  
+  <h1 id="PeNet_Header_Pe_DebugDirectoryType" data-uid="PeNet.Header.Pe.DebugDirectoryType" class="text-break">Enum DebugDirectoryType
+  </h1>
+  <div class="markdown level0 summary"><p>An image has potentially multiple entries of ImageDebugDirectory.
+This is the &quot;Type&quot; of an entry.
+Main source is winnt.h
+See <a href="https://docs.microsoft.com/en-us/windows/win32/debug/pe-format#debug-type">https://docs.microsoft.com/en-us/windows/win32/debug/pe-format#debug-type</a>
+and <a href="https://docs.microsoft.com/en-us/dotnet/api/system.reflection.portableexecutable.debugdirectoryentrytype?view=net-5.0">https://docs.microsoft.com/en-us/dotnet/api/system.reflection.portableexecutable.debugdirectoryentrytype?view=net-5.0</a></p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="PeNet.Header.Pe.html">PeNet.Header.Pe</a></h6>
+  <h6><strong>Assembly</strong>: PeNet.dll</h6>
+  <h5 id="PeNet_Header_Pe_DebugDirectoryType_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public enum DebugDirectoryType : uint</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    <thead>
+    <tbody>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_Borland">Borland</td>
+        <td><p>Reserved for Borland.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_Clsid">Clsid</td>
+        <td><p>Reserved.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_CodeView">CodeView</td>
+        <td><p>Associated PDB file description. For more information, see the specification:
+<a href="https://github.com/dotnet/runtime/blob/master/docs/design/specs/PE-COFF.md#codeview-debug-directory-entry-type-2">https://github.com/dotnet/runtime/blob/master/docs/design/specs/PE-COFF.md#codeview-debug-directory-entry-type-2</a></p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_Coff">Coff</td>
+        <td><p>The COFF debug information (line numbers, symbol table, and string table).
+This type of debug information is also pointed to by fields in the file headers.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_EmbeddedPortablePdb">EmbeddedPortablePdb</td>
+        <td><p>The entry points to a blob containing Embedded Portable PDB. The Embedded Portable PDB blob has the following format:</p>
+<ul>
+<li>blob ::= uncompressed-size data</li>
+<li>Data spans the remainder of the blob and contains a Deflate-compressed Portable PDB.
+For more information, see the specification:
+<a href="https://github.com/dotnet/runtime/blob/master/docs/design/specs/PE-COFF.md#embedded-portable-pdb-debug-directory-entry-type-17">https://github.com/dotnet/runtime/blob/master/docs/design/specs/PE-COFF.md#embedded-portable-pdb-debug-directory-entry-type-17</a></li>
+</ul>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_Exception">Exception</td>
+        <td><p>A copy of .pdata section.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_ExtendedDllCharacteristics">ExtendedDllCharacteristics</td>
+        <td><p>Extended DLL characteristics bits.
+Raw data points to 4 bytes of type ExtendedDllCharacteristicsType</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_Fixup">Fixup</td>
+        <td><p>Reserved.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_FramePointerOmission">FramePointerOmission</td>
+        <td><p>The frame pointer omission (FPO) information.
+This information tells the debugger how to interpret nonstandard stack frames,
+which use the EBP register for a purpose other than as a frame pointer.
+Check winnt.h for struct FPO_DATA</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_Iltcg">Iltcg</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_Misc">Misc</td>
+        <td><p>The location of DBG file.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_Mpx">Mpx</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_OMapFromSource">OMapFromSource</td>
+        <td><p>The mapping from an RVA in source image to an RVA in image.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_OMapToSource">OMapToSource</td>
+        <td><p>The mapping from an RVA in image to an RVA in source image.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_PdbChecksum">PdbChecksum</td>
+        <td><p>The entry stores a crypto hash of the content of the symbol file the PE/COFF
+file was built with. The hash can be used to validate that a given PDB file
+was built with the PE/COFF file and not altered in any way.
+More than one entry can be present if multiple PDBs were produced during the
+build of the PE/COFF file (for example, private and public symbols).
+For more information, see the specification:
+<a href="https://github.com/dotnet/runtime/blob/master/docs/design/specs/PE-COFF.md#pdb-checksum-debug-directory-entry-type-19">https://github.com/dotnet/runtime/blob/master/docs/design/specs/PE-COFF.md#pdb-checksum-debug-directory-entry-type-19</a></p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_Pogo">Pogo</td>
+        <td><p>Profile guided optimization (aka PGO)</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_Reproducible">Reproducible</td>
+        <td><p>The presence of this entry indicates a deterministic PE/COFF file.
+The tool that produced the deterministic PE/COFF file guarantees that
+the entire content of the file is based solely on documented inputs given
+to the tool (such as source files, resource files, and compiler options)
+rather than ambient environment variables (such as the current time,
+the operating system, and the bitness of the process running the tool).
+The value of field TimeDateStamp in COFF File Header of a deterministic
+PE/COFF file does not indicate the date and time when the file was produced
+and should not be interpreted that way. Instead, the value of the field is
+derived from a hash of the file content.
+The algorithm to calculate this value is an implementation detail of the tool
+that produced the file. The debug directory entry of type Reproducible must
+have all fields, except for Type zeroed.
+For more information, see the specification:
+<a href="https://github.com/dotnet/runtime/blob/master/docs/design/specs/PE-COFF.md#deterministic-debug-directory-entry-type-16">https://github.com/dotnet/runtime/blob/master/docs/design/specs/PE-COFF.md#deterministic-debug-directory-entry-type-16</a></p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_Reserved10">Reserved10</td>
+        <td><p>Reserved.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_Reserved18">Reserved18</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_Unknown">Unknown</td>
+        <td><p>An unknown value that should be ignored by all tools.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="PeNet_Header_Pe_DebugDirectoryType_VcFeature">VcFeature</td>
+        <td><p>5 uint values which &quot;dumpbin /headers abc.exe&quot; dumps as e.g.:
+Counts: Pre-VC++ 11.00=0, C/C++=28, /GS=28, /sdl=1, guardN=27</p>
+</td>
+      </tr>
+    </tbody>
+  </thead></thead></table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_DebugDirectoryType.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.DebugDirectoryType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageDebugDirectory.cs/#L146" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
