@@ -8609,7 +8609,14 @@ references:
 - uid: PeNet.Header.Pe.ImageResourceDirectory.DirectoryEntries
   name: DirectoryEntries
   href: api/PeNet.Header.Pe.ImageResourceDirectory.html#PeNet_Header_Pe_ImageResourceDirectory_DirectoryEntries
-  commentId: F:PeNet.Header.Pe.ImageResourceDirectory.DirectoryEntries
+  commentId: P:PeNet.Header.Pe.ImageResourceDirectory.DirectoryEntries
+  fullName: PeNet.Header.Pe.ImageResourceDirectory.DirectoryEntries
+  nameWithType: ImageResourceDirectory.DirectoryEntries
+- uid: PeNet.Header.Pe.ImageResourceDirectory.DirectoryEntries*
+  name: DirectoryEntries
+  href: api/PeNet.Header.Pe.ImageResourceDirectory.html#PeNet_Header_Pe_ImageResourceDirectory_DirectoryEntries_
+  commentId: Overload:PeNet.Header.Pe.ImageResourceDirectory.DirectoryEntries
+  isSpec: "True"
   fullName: PeNet.Header.Pe.ImageResourceDirectory.DirectoryEntries
   nameWithType: ImageResourceDirectory.DirectoryEntries
 - uid: PeNet.Header.Pe.ImageResourceDirectory.MajorVersion
