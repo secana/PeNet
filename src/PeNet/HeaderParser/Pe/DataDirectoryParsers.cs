@@ -167,7 +167,7 @@ namespace PeNet.HeaderParser.Pe
         private ImageResourceDirectoryParser? InitImageResourceDirectoryParser()
             => _dataDirectories[(int)DataDirectoryType.Resource].VirtualAddress
                 .TryRvaToOffset(_sectionHeaders, out var offset)
-                ? new ImageResourceDirectoryParser(_peFile, offset)
+                ? new ImageResourceDirectoryParser(_peFile, offset, _dataDirectories[(long)DataDirectoryType.Resource].Size)
                 : null;
 
         private ImageBaseRelocationsParser? InitImageBaseRelocationsParser()

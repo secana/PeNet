@@ -1,13 +1,17 @@
-﻿using PeNet.FileParser;
+﻿using System.Linq;
+using PeNet.FileParser;
 using PeNet.Header.Pe;
 
 namespace PeNet.HeaderParser.Pe
 {
     internal class ImageResourceDirectoryParser : SafeParser<ImageResourceDirectory>
     {
-        internal ImageResourceDirectoryParser(IRawFile peFile, long offset)
+        private long _resourceDirSize;
+        
+        internal ImageResourceDirectoryParser(IRawFile peFile, long offset, long size)
             : base(peFile, offset)
         {
+            _resourceDirSize = size;
         }
 
         protected override ImageResourceDirectory? ParseTarget()
@@ -18,9 +22,15 @@ namespace PeNet.HeaderParser.Pe
             // Parse the root directory.
             var root = new ImageResourceDirectory(PeFile, Offset, Offset);
 
-            if (root.DirectoryEntries is null)
+            // Check if the number of entries is bigger than it the resource directory
+            // and thus cannot be parsed correctly.
+            // 10 byte is the minimal size of an entry.
+            if ((root.NumberOfIdEntries + root.NumberOfNameEntries) * 10 >= _resourceDirSize)
                 return root;
 
+            if (root.DirectoryEntries is null)
+                return root;
+            
             // Parse the second stage (type)
             foreach (var de in root.DirectoryEntries)
             {
@@ -32,7 +42,7 @@ namespace PeNet.HeaderParser.Pe
                     Offset + de.OffsetToDirectory,
                     Offset
                 );
-
+                
                 var sndLevel = de?.ResourceDirectory?.DirectoryEntries;
                 if(sndLevel is null)
                     continue;

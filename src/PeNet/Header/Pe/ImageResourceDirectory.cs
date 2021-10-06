@@ -10,10 +10,25 @@ namespace PeNet.Header.Pe
     /// </summary>
     public class ImageResourceDirectory : AbstractStructure
     {
+        private bool _entriesParsed = false;
+        private readonly long _resourceDirOffset;
+        private List<ImageResourceDirectoryEntry?>? _directoryEntries = null;
+
         /// <summary>
         ///     Array with the different directory entries.
         /// </summary>
-        public readonly List<ImageResourceDirectoryEntry?>? DirectoryEntries;
+        public List<ImageResourceDirectoryEntry?>? DirectoryEntries
+        {
+            get
+            {
+                if (_entriesParsed)
+                    return _directoryEntries;
+
+                _entriesParsed = true;
+                _directoryEntries = ParseDirectoryEntries(_resourceDirOffset);
+                return _directoryEntries;
+            }
+        }
 
         /// <summary>
         ///     Create a new ImageResourceDirectory object.
@@ -24,7 +39,7 @@ namespace PeNet.Header.Pe
         public ImageResourceDirectory(IRawFile peFile, long offset, long resourceDirOffset)
             : base(peFile, offset)
         {
-            DirectoryEntries = ParseDirectoryEntries(resourceDirOffset);
+            _resourceDirOffset = resourceDirOffset;
         }
 
         /// <summary>
