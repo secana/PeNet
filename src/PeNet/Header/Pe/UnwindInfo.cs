@@ -10,7 +10,7 @@ namespace PeNet.Header.Pe
     /// </summary>
     public class UnwindInfo : AbstractStructure
     {
-        private const int SizeOfUnwindCode = 0x4;
+        private const int SizeOfUnwindCode = 0x2;
 
         /// <summary>
         ///     Create a new UnwindInfo object.
@@ -54,6 +54,14 @@ namespace PeNet.Header.Pe
         }
 
         /// <summary>
+        ///     The count of UNWINDE_CODE slots allocated in PE file.
+        ///     For alignment purposes, this number is always even, so the final entry
+        ///     is potentially unused. In that case, the number is one longer than
+        ///     indicated by the <see cref="CountOfCodes"/> field.
+        /// </summary>
+        public int EvenCountOfCodes => (CountOfCodes + 1) / 2 * 2;
+
+        /// <summary>
         ///     Frame register.
         /// </summary>
         public byte FrameRegister => (byte) (PeFile.ReadByte(Offset + 0x3) >> 4);
@@ -75,12 +83,12 @@ namespace PeNet.Header.Pe
         {
             get
             {
-                var off = (uint) (Offset + 0x4 + SizeOfUnwindCode*CountOfCodes);
+                var off = (uint) (Offset + 0x4 + SizeOfUnwindCode*EvenCountOfCodes);
                 return PeFile.ReadUInt(off);
             }
             set
             {
-                var off = (uint) (Offset + 0x4 + SizeOfUnwindCode*CountOfCodes);
+                var off = (uint) (Offset + 0x4 + SizeOfUnwindCode*EvenCountOfCodes);
                 PeFile.WriteUInt(off, value);
             }
         }
