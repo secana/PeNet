@@ -10300,6 +10300,19 @@ references:
   isSpec: "True"
   fullName: PeNet.Header.Pe.UnwindInfo.CountOfCodes
   nameWithType: UnwindInfo.CountOfCodes
+- uid: PeNet.Header.Pe.UnwindInfo.EvenCountOfCodes
+  name: EvenCountOfCodes
+  href: api/PeNet.Header.Pe.UnwindInfo.html#PeNet_Header_Pe_UnwindInfo_EvenCountOfCodes
+  commentId: P:PeNet.Header.Pe.UnwindInfo.EvenCountOfCodes
+  fullName: PeNet.Header.Pe.UnwindInfo.EvenCountOfCodes
+  nameWithType: UnwindInfo.EvenCountOfCodes
+- uid: PeNet.Header.Pe.UnwindInfo.EvenCountOfCodes*
+  name: EvenCountOfCodes
+  href: api/PeNet.Header.Pe.UnwindInfo.html#PeNet_Header_Pe_UnwindInfo_EvenCountOfCodes_
+  commentId: Overload:PeNet.Header.Pe.UnwindInfo.EvenCountOfCodes
+  isSpec: "True"
+  fullName: PeNet.Header.Pe.UnwindInfo.EvenCountOfCodes
+  nameWithType: UnwindInfo.EvenCountOfCodes
 - uid: PeNet.Header.Pe.UnwindInfo.ExceptionHandler
   name: ExceptionHandler
   href: api/PeNet.Header.Pe.UnwindInfo.html#PeNet_Header_Pe_UnwindInfo_ExceptionHandler
