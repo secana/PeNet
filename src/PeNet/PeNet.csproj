@@ -61,7 +61,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PeNet.Asn1" Version="1.6.2" />
+    <PackageReference Include="PeNet.Asn1" Version="2.0.0" />
     <PackageReference Include="System.Security.Cryptography.Pkcs" Version="5.0.1" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
