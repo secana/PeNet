@@ -255,7 +255,7 @@ namespace PeNet
         /// <returns>The hex string value as a long.</returns>
         public static long ToIntFromHexString(this string hexString)
         {
-            return (long) new Int64Converter().ConvertFromString(hexString);
+            return (long) (new Int64Converter().ConvertFromString(hexString) ?? throw new InvalidOperationException());
         }
 
         /// <summary>
