@@ -196,7 +196,10 @@ namespace PeNet.Header.Net
                 if (((ulong)MaskValid & (1UL << i)) != 0)
                 {
                     tables[i].RowCount = PeFile.ReadUInt(startOfTableDefinitions + (uint)cnt * 4);
-                    tables[i].Name = names[cnt];
+                    if (cnt < names.Count)
+                    {
+                        tables[i].Name = names[cnt];;
+                    }
                     cnt++;
                 }
             }
