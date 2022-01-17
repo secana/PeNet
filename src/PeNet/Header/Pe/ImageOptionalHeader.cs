@@ -258,8 +258,11 @@ namespace PeNet.Header.Pe
         /// <summary>
         ///     The subsystem required to run the image e.g., Windows GUI, XBOX etc.
         /// </summary>
-        public SubsystemType Subsystem 
-            => (SubsystemType) PeFile.ReadUShort(Offset + 0x44);
+        public SubsystemType Subsystem
+        {
+            get => (SubsystemType) PeFile.ReadUShort(Offset + 0x44);
+            set => PeFile.WriteUShort(Offset + 0x44, (ushort) value);
+        }
 
         /// <summary>
         /// Subsystem resolved to a readable string.
