@@ -9,7 +9,7 @@ namespace PeNet.Header.Net
     public interface IMetaDataTablesHdr
     {
         /// <summary>
-        /// The size the indexes into the streams have. 
+        /// The size the indexes into the streams have.
         /// Bit 0 (0x01) set: Indexes into #String are 4 bytes wide.
         /// Bit 1 (0x02) set: Indexes into #GUID heap are 4 bytes wide.
         /// Bit 2 (0x04) set: Indexes into #Blob heap are 4 bytes wide.
@@ -35,7 +35,7 @@ namespace PeNet.Header.Net
 
         /// <summary>
         /// Represents an table definition entry from the list
-        /// of available tables in the Meta Data Tables Header 
+        /// of available tables in the Meta Data Tables Header
         /// in the .Net header of an assembly.
         /// </summary>
         public struct MetaDataTableInfo
@@ -99,7 +99,7 @@ namespace PeNet.Header.Net
         }
 
         /// <summary>
-        /// The size the indexes into the streams have. 
+        /// The size the indexes into the streams have.
         /// Bit 0 (0x01) set: Indexes into #String are 4 bytes wide.
         /// Bit 1 (0x02) set: Indexes into #GUID heap are 4 bytes wide.
         /// Bit 2 (0x04) set: Indexes into #Blob heap are 4 bytes wide.
@@ -121,7 +121,7 @@ namespace PeNet.Header.Net
         }
 
         /// <summary>
-        /// Bit mask which shows, which tables are present in the .Net assembly. 
+        /// Bit mask which shows, which tables are present in the .Net assembly.
         /// Maximal 64 tables can be present, but most tables are not defined such that
         /// the high bits of the mask are always 0.
         /// </summary>
@@ -138,12 +138,60 @@ namespace PeNet.Header.Net
             => ResolveMaskValid(MaskValid);
 
         /// <summary>
-        /// Bit mask which shows, which tables are sorted. 
+        /// Bit mask which shows, which tables are sorted.
         /// </summary>
         public ulong MaskSorted
         {
             get => PeFile.ReadULong(Offset + 0x10);
             set => PeFile.WriteULong(Offset + 0x10, value);
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the tables stream header contains an additional 32-bits after the table
+        /// row counts.
+        /// </summary>
+        /// <remarks>
+        /// This is an undocumented feature of the CLR.
+        /// See also: https://github.com/dotnet/runtime/blob/ce2165d8084cca98b95f5d8ff9386759bfd8c722/src/coreclr/md/runtime/metamodel.cpp#L290
+        /// </remarks>
+        public bool HasExtraData => (HeapSizes & 0x40) != 0;
+
+        /// <summary>
+        /// When present in the PE file, gets or sets the extra 32-bits stored after the table row counts.
+        /// </summary>
+        /// <remarks>
+        /// This is an undocumented feature of the CLR.
+        /// See also: https://github.com/dotnet/runtime/blob/ce2165d8084cca98b95f5d8ff9386759bfd8c722/src/coreclr/md/runtime/metamodel.cpp#L290
+        /// </remarks>
+        public uint? ExtraData
+        {
+            get
+            {
+                if (HasExtraData)
+                {
+                    int tablesCount = HammingWeight((ulong) MaskValid);
+                    return PeFile.ReadUInt(Offset + 24 + tablesCount * sizeof(uint));
+                }
+
+                return null;
+            }
+            set
+            {
+                if (value is null)
+                {
+                    // Mark the extra data as not present.
+                    HeapSizes &= unchecked((byte) ~0x40);
+                }
+                else
+                {
+                    // Mark the extra data as present.
+                    HeapSizes |= unchecked((byte) ~0x40);
+
+                    // Write the extra data.
+                    int tablesCount = HammingWeight((ulong) MaskValid);
+                    PeFile.WriteUInt(Offset + 24 + tablesCount * sizeof(uint), value.Value);
+                }
+            }
         }
 
         /// <summary>
@@ -314,11 +362,16 @@ namespace PeNet.Header.Net
             var tableInfo = TableDefinitions[(int)token];
             var rows = new List<T?>();
 
+            int extraDataSize = HasExtraData
+                ? sizeof(uint)
+                : 0;
+
             if (tableInfo.RowCount != 0)
             {
                 for (var i = 0u; i < tableInfo.RowCount; i++)
                 {
-                    rows.Add(Activator.CreateInstance(typeof(T), PeFile, tablesOffset + tableInfo.Offset + tableInfo.BytesPerRow * i, heapSizes, indexSizes) as T);
+                    var tableOffset = tablesOffset + extraDataSize + tableInfo.Offset + tableInfo.BytesPerRow * i;
+                    rows.Add(Activator.CreateInstance(typeof(T), PeFile, tableOffset, heapSizes, indexSizes) as T);
                 }
             }
 

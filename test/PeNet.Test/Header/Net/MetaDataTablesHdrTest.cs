@@ -28,6 +28,8 @@ namespace PeNet.Test.Header.Net
             var tablesStream = peFile.MetaDataStreamTablesHeader!;
             var stringsStream = peFile.MetaDataStreamString!;
 
+            Assert.False(tablesStream.HasExtraData);
+            Assert.Null(tablesStream.ExtraData);
             Assert.Equal("HelloWorld.exe", stringsStream.GetStringAtIndex(tablesStream.Tables.Module![0].Name));
         }
 
@@ -38,6 +40,8 @@ namespace PeNet.Test.Header.Net
             var tablesStream = peFile.MetaDataStreamTablesHeader!;
             var stringsStream = peFile.MetaDataStreamString!;
 
+            Assert.True(tablesStream.HasExtraData);
+            Assert.Equal(12345678u, tablesStream.ExtraData);
             Assert.Equal("HelloWorld.exe", stringsStream.GetStringAtIndex(tablesStream.Tables.Module![0].Name));
         }
     }
