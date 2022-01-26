@@ -4,7 +4,7 @@ using Xunit;
 
 namespace PeNet.Test.Header.Net
 {
-    
+
     public class MetaDataTablesHdrTest
     {
         [Fact]
@@ -19,6 +19,26 @@ namespace PeNet.Test.Header.Net
             Assert.Equal((byte) 0x99, metaDataTablesHdr.Reserved2);
             Assert.Equal(0xffffffffffffffff, (ulong) metaDataTablesHdr.MaskValid);
             Assert.Equal(0xaa99887766554433, metaDataTablesHdr.MaskSorted);
+        }
+
+        [Fact]
+        public void ReadMetaDataTablesHdrWithoutExtraData()
+        {
+            var peFile = new PeFile("./Binaries/HelloWorld.exe");
+            var tablesStream = peFile.MetaDataStreamTablesHeader!;
+            var stringsStream = peFile.MetaDataStreamString!;
+
+            Assert.Equal("HelloWorld.exe", stringsStream.GetStringAtIndex(tablesStream.Tables.Module![0].Name));
+        }
+
+        [Fact]
+        public void ReadMetaDataTablesHdrWithExtraData()
+        {
+            var peFile = new PeFile("./Binaries/HelloWorld.TablesStream.ExtraData.exe");
+            var tablesStream = peFile.MetaDataStreamTablesHeader!;
+            var stringsStream = peFile.MetaDataStreamString!;
+
+            Assert.Equal("HelloWorld.exe", stringsStream.GetStringAtIndex(tablesStream.Tables.Module![0].Name));
         }
     }
 }
