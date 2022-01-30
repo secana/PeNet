@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class MetaDataTablesHdr
    ">
-    <meta name="generator" content="docfx 2.58.9.0">
+    <meta name="generator" content="docfx 2.59.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -106,7 +106,7 @@ data tables in the .Net assembly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Net_MetaDataTablesHdr__ctor_PeNet_FileParser_IRawFile_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.Header.Net.MetaDataTablesHdr.%23ctor(PeNet.FileParser.IRawFile%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L69">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L72">View Source</a>
   </span>
   <a id="PeNet_Header_Net_MetaDataTablesHdr__ctor_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.#ctor*"></a>
   <h4 id="PeNet_Header_Net_MetaDataTablesHdr__ctor_PeNet_FileParser_IRawFile_System_Int64_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.#ctor(PeNet.FileParser.IRawFile,System.Int64)">MetaDataTablesHdr(IRawFile, Int64)</h4>
@@ -145,18 +145,91 @@ data tables in the .Net assembly.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Net_MetaDataTablesHdr_ExtraData.md&amp;value=---%0Auid%3A%20PeNet.Header.Net.MetaDataTablesHdr.ExtraData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L173">View Source</a>
+  </span>
+  <a id="PeNet_Header_Net_MetaDataTablesHdr_ExtraData_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.ExtraData*"></a>
+  <h4 id="PeNet_Header_Net_MetaDataTablesHdr_ExtraData" data-uid="PeNet.Header.Net.MetaDataTablesHdr.ExtraData">ExtraData</h4>
+  <div class="markdown level1 summary"><p>When present in the PE file, gets or sets the extra 32-bits stored after the table row counts.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint? ExtraData { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.UInt32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="PeNet_Header_Net_MetaDataTablesHdr_ExtraData_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This is an undocumented feature of the CLR.
+See also: <a href="https://github.com/dotnet/runtime/blob/ce2165d8084cca98b95f5d8ff9386759bfd8c722/src/coreclr/md/runtime/metamodel.cpp#L290">https://github.com/dotnet/runtime/blob/ce2165d8084cca98b95f5d8ff9386759bfd8c722/src/coreclr/md/runtime/metamodel.cpp#L290</a></p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Net_MetaDataTablesHdr_HasExtraData.md&amp;value=---%0Auid%3A%20PeNet.Header.Net.MetaDataTablesHdr.HasExtraData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L164">View Source</a>
+  </span>
+  <a id="PeNet_Header_Net_MetaDataTablesHdr_HasExtraData_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.HasExtraData*"></a>
+  <h4 id="PeNet_Header_Net_MetaDataTablesHdr_HasExtraData" data-uid="PeNet.Header.Net.MetaDataTablesHdr.HasExtraData">HasExtraData</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the tables stream header contains an additional 32-bits after the table
+row counts.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasExtraData { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="PeNet_Header_Net_MetaDataTablesHdr_HasExtraData_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This is an undocumented feature of the CLR.
+See also: <a href="https://github.com/dotnet/runtime/blob/ce2165d8084cca98b95f5d8ff9386759bfd8c722/src/coreclr/md/runtime/metamodel.cpp#L290">https://github.com/dotnet/runtime/blob/ce2165d8084cca98b95f5d8ff9386759bfd8c722/src/coreclr/md/runtime/metamodel.cpp#L290</a></p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Net_MetaDataTablesHdr_HeapSizes.md&amp;value=---%0Auid%3A%20PeNet.Header.Net.MetaDataTablesHdr.HeapSizes%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L108">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L115">View Source</a>
   </span>
   <a id="PeNet_Header_Net_MetaDataTablesHdr_HeapSizes_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.HeapSizes*"></a>
   <h4 id="PeNet_Header_Net_MetaDataTablesHdr_HeapSizes" data-uid="PeNet.Header.Net.MetaDataTablesHdr.HeapSizes">HeapSizes</h4>
-  <div class="markdown level1 summary"><p>The size the indexes into the streams have.
+  <div class="markdown level1 summary"><p>The first 3 bits indicate the size of indexes into the streams.
 Bit 0 (0x01) set: Indexes into #String are 4 bytes wide.
 Bit 1 (0x02) set: Indexes into #GUID heap are 4 bytes wide.
 Bit 2 (0x04) set: Indexes into #Blob heap are 4 bytes wide.
 If bit not set: indexes into heap is 2 bytes wide.</p>
+<p>The remainder bits are undocumented, but exist in the current implementation of the CLR.
+Bit 4 (0x40) set: Indicates that 4 extra bytes are stored in the tables stream header.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -183,7 +256,7 @@ If bit not set: indexes into heap is 2 bytes wide.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Net_MetaDataTablesHdr_MajorVersion.md&amp;value=---%0Auid%3A%20PeNet.Header.Net.MetaDataTablesHdr.MajorVersion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L86">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L90">View Source</a>
   </span>
   <a id="PeNet_Header_Net_MetaDataTablesHdr_MajorVersion_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.MajorVersion*"></a>
   <h4 id="PeNet_Header_Net_MetaDataTablesHdr_MajorVersion" data-uid="PeNet.Header.Net.MetaDataTablesHdr.MajorVersion">MajorVersion</h4>
@@ -214,7 +287,7 @@ If bit not set: indexes into heap is 2 bytes wide.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Net_MetaDataTablesHdr_MaskSorted.md&amp;value=---%0Auid%3A%20PeNet.Header.Net.MetaDataTablesHdr.MaskSorted%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L143">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L150">View Source</a>
   </span>
   <a id="PeNet_Header_Net_MetaDataTablesHdr_MaskSorted_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.MaskSorted*"></a>
   <h4 id="PeNet_Header_Net_MetaDataTablesHdr_MaskSorted" data-uid="PeNet.Header.Net.MetaDataTablesHdr.MaskSorted">MaskSorted</h4>
@@ -245,7 +318,7 @@ If bit not set: indexes into heap is 2 bytes wide.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Net_MetaDataTablesHdr_MaskValid.md&amp;value=---%0Auid%3A%20PeNet.Header.Net.MetaDataTablesHdr.MaskValid%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L128">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L135">View Source</a>
   </span>
   <a id="PeNet_Header_Net_MetaDataTablesHdr_MaskValid_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.MaskValid*"></a>
   <h4 id="PeNet_Header_Net_MetaDataTablesHdr_MaskValid" data-uid="PeNet.Header.Net.MetaDataTablesHdr.MaskValid">MaskValid</h4>
@@ -278,7 +351,7 @@ the high bits of the mask are always 0.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Net_MetaDataTablesHdr_MaskValidResolved.md&amp;value=---%0Auid%3A%20PeNet.Header.Net.MetaDataTablesHdr.MaskValidResolved%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L137">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L144">View Source</a>
   </span>
   <a id="PeNet_Header_Net_MetaDataTablesHdr_MaskValidResolved_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.MaskValidResolved*"></a>
   <h4 id="PeNet_Header_Net_MetaDataTablesHdr_MaskValidResolved" data-uid="PeNet.Header.Net.MetaDataTablesHdr.MaskValidResolved">MaskValidResolved</h4>
@@ -309,7 +382,7 @@ the high bits of the mask are always 0.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Net_MetaDataTablesHdr_MinorVersion.md&amp;value=---%0Auid%3A%20PeNet.Header.Net.MetaDataTablesHdr.MinorVersion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L95">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L99">View Source</a>
   </span>
   <a id="PeNet_Header_Net_MetaDataTablesHdr_MinorVersion_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.MinorVersion*"></a>
   <h4 id="PeNet_Header_Net_MetaDataTablesHdr_MinorVersion" data-uid="PeNet.Header.Net.MetaDataTablesHdr.MinorVersion">MinorVersion</h4>
@@ -340,7 +413,7 @@ the high bits of the mask are always 0.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Net_MetaDataTablesHdr_Reserved1.md&amp;value=---%0Auid%3A%20PeNet.Header.Net.MetaDataTablesHdr.Reserved1%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L77">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L81">View Source</a>
   </span>
   <a id="PeNet_Header_Net_MetaDataTablesHdr_Reserved1_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.Reserved1*"></a>
   <h4 id="PeNet_Header_Net_MetaDataTablesHdr_Reserved1" data-uid="PeNet.Header.Net.MetaDataTablesHdr.Reserved1">Reserved1</h4>
@@ -371,7 +444,7 @@ the high bits of the mask are always 0.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Net_MetaDataTablesHdr_Reserved2.md&amp;value=---%0Auid%3A%20PeNet.Header.Net.MetaDataTablesHdr.Reserved2%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L117">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L124">View Source</a>
   </span>
   <a id="PeNet_Header_Net_MetaDataTablesHdr_Reserved2_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.Reserved2*"></a>
   <h4 id="PeNet_Header_Net_MetaDataTablesHdr_Reserved2" data-uid="PeNet.Header.Net.MetaDataTablesHdr.Reserved2">Reserved2</h4>
@@ -402,7 +475,7 @@ the high bits of the mask are always 0.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Net_MetaDataTablesHdr_TableDefinitions.md&amp;value=---%0Auid%3A%20PeNet.Header.Net.MetaDataTablesHdr.TableDefinitions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L153">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L209">View Source</a>
   </span>
   <a id="PeNet_Header_Net_MetaDataTablesHdr_TableDefinitions_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.TableDefinitions*"></a>
   <h4 id="PeNet_Header_Net_MetaDataTablesHdr_TableDefinitions" data-uid="PeNet.Header.Net.MetaDataTablesHdr.TableDefinitions">TableDefinitions</h4>
@@ -434,7 +507,7 @@ with the name and number of rows of the table.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Net_MetaDataTablesHdr_Tables.md&amp;value=---%0Auid%3A%20PeNet.Header.Net.MetaDataTablesHdr.Tables%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L168">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L224">View Source</a>
   </span>
   <a id="PeNet_Header_Net_MetaDataTablesHdr_Tables_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.Tables*"></a>
   <h4 id="PeNet_Header_Net_MetaDataTablesHdr_Tables" data-uid="PeNet.Header.Net.MetaDataTablesHdr.Tables">Tables</h4>
@@ -467,7 +540,7 @@ with the name and number of rows of the table.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Net_MetaDataTablesHdr_ResolveMaskValid_PeNet_Header_Net_MaskValidType_.md&amp;value=---%0Auid%3A%20PeNet.Header.Net.MetaDataTablesHdr.ResolveMaskValid(PeNet.Header.Net.MaskValidType)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L350">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Net/MetaDataTablesHdr.cs/#L411">View Source</a>
   </span>
   <a id="PeNet_Header_Net_MetaDataTablesHdr_ResolveMaskValid_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.ResolveMaskValid*"></a>
   <h4 id="PeNet_Header_Net_MetaDataTablesHdr_ResolveMaskValid_PeNet_Header_Net_MaskValidType_" data-uid="PeNet.Header.Net.MetaDataTablesHdr.ResolveMaskValid(PeNet.Header.Net.MaskValidType)">ResolveMaskValid(MaskValidType)</h4>

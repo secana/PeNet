@@ -1725,6 +1725,19 @@ references:
   isSpec: "True"
   fullName: PeNet.Header.Net.HeapSizes.Guid
   nameWithType: HeapSizes.Guid
+- uid: PeNet.Header.Net.HeapSizes.HasExtraData
+  name: HasExtraData
+  href: api/PeNet.Header.Net.HeapSizes.html#PeNet_Header_Net_HeapSizes_HasExtraData
+  commentId: P:PeNet.Header.Net.HeapSizes.HasExtraData
+  fullName: PeNet.Header.Net.HeapSizes.HasExtraData
+  nameWithType: HeapSizes.HasExtraData
+- uid: PeNet.Header.Net.HeapSizes.HasExtraData*
+  name: HasExtraData
+  href: api/PeNet.Header.Net.HeapSizes.html#PeNet_Header_Net_HeapSizes_HasExtraData_
+  commentId: Overload:PeNet.Header.Net.HeapSizes.HasExtraData
+  isSpec: "True"
+  fullName: PeNet.Header.Net.HeapSizes.HasExtraData
+  nameWithType: HeapSizes.HasExtraData
 - uid: PeNet.Header.Net.HeapSizes.String
   name: String
   href: api/PeNet.Header.Net.HeapSizes.html#PeNet_Header_Net_HeapSizes_String
@@ -5360,6 +5373,32 @@ references:
   isSpec: "True"
   fullName: PeNet.Header.Net.MetaDataTablesHdr.MetaDataTablesHdr
   nameWithType: MetaDataTablesHdr.MetaDataTablesHdr
+- uid: PeNet.Header.Net.MetaDataTablesHdr.ExtraData
+  name: ExtraData
+  href: api/PeNet.Header.Net.MetaDataTablesHdr.html#PeNet_Header_Net_MetaDataTablesHdr_ExtraData
+  commentId: P:PeNet.Header.Net.MetaDataTablesHdr.ExtraData
+  fullName: PeNet.Header.Net.MetaDataTablesHdr.ExtraData
+  nameWithType: MetaDataTablesHdr.ExtraData
+- uid: PeNet.Header.Net.MetaDataTablesHdr.ExtraData*
+  name: ExtraData
+  href: api/PeNet.Header.Net.MetaDataTablesHdr.html#PeNet_Header_Net_MetaDataTablesHdr_ExtraData_
+  commentId: Overload:PeNet.Header.Net.MetaDataTablesHdr.ExtraData
+  isSpec: "True"
+  fullName: PeNet.Header.Net.MetaDataTablesHdr.ExtraData
+  nameWithType: MetaDataTablesHdr.ExtraData
+- uid: PeNet.Header.Net.MetaDataTablesHdr.HasExtraData
+  name: HasExtraData
+  href: api/PeNet.Header.Net.MetaDataTablesHdr.html#PeNet_Header_Net_MetaDataTablesHdr_HasExtraData
+  commentId: P:PeNet.Header.Net.MetaDataTablesHdr.HasExtraData
+  fullName: PeNet.Header.Net.MetaDataTablesHdr.HasExtraData
+  nameWithType: MetaDataTablesHdr.HasExtraData
+- uid: PeNet.Header.Net.MetaDataTablesHdr.HasExtraData*
+  name: HasExtraData
+  href: api/PeNet.Header.Net.MetaDataTablesHdr.html#PeNet_Header_Net_MetaDataTablesHdr_HasExtraData_
+  commentId: Overload:PeNet.Header.Net.MetaDataTablesHdr.HasExtraData
+  isSpec: "True"
+  fullName: PeNet.Header.Net.MetaDataTablesHdr.HasExtraData
+  nameWithType: MetaDataTablesHdr.HasExtraData
 - uid: PeNet.Header.Net.MetaDataTablesHdr.HeapSizes
   name: HeapSizes
   href: api/PeNet.Header.Net.MetaDataTablesHdr.html#PeNet_Header_Net_MetaDataTablesHdr_HeapSizes
