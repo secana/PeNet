@@ -98,9 +98,6 @@ namespace PeNet.Header.Pe
 
         private List<ImageResourceDirectoryEntry?>? ParseDirectoryEntries(long resourceDirOffset)
         {
-            if (SanityCheckFailed())
-                return null;
-
             var numEntries = NumberOfIdEntries + NumberOfNameEntries;
 
             List<ImageResourceDirectoryEntry?> entries = new List<ImageResourceDirectoryEntry?>(numEntries);
@@ -119,25 +116,6 @@ namespace PeNet.Header.Pe
             }
 
             return entries;
-        }
-
-        private bool SanityCheckFailed()
-        {
-            // There exists the case that only some second/third stage directories are valid and others
-            // are not. For this case try to parse at least the valid ones. In that case
-            // accessing properties throws an "IndexOutOfRange" exception.
-            // Example (malicious!): 9d5eb5ac899764d5ed30cc93df8d645e598e2cbce53ae7bb081ded2c38286d1e
-            try
-            {
-                if (NumberOfIdEntries + NumberOfNameEntries >= 1000)
-                    return true;
-            }
-            catch (Exception)
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }
