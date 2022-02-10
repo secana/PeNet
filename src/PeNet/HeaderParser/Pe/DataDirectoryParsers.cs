@@ -89,18 +89,25 @@ namespace PeNet.HeaderParser.Pe
 
         private ResourcesParser? InitResourcesParser()
         {
-            var vsVersionOffset = ImageResourceDirectory
-                ?.DirectoryEntries?.FirstOrDefault(e => e?.ID == (int)ResourceGroupIdType.Version) // Root
-                ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Type
-                ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Name
-                ?.ResourceDataEntry?.OffsetToData; // Language
+            try
+            {
+                var vsVersionOffset = ImageResourceDirectory
+                    ?.DirectoryEntries?.FirstOrDefault(e => e?.ID == (int) ResourceGroupIdType.Version) // Root
+                    ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Type
+                    ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Name
+                    ?.ResourceDataEntry?.OffsetToData; // Language
 
-            if (vsVersionOffset is null)
+                if (vsVersionOffset is null)
+                    return null;
+
+                return vsVersionOffset.Value.TryRvaToOffset(_sectionHeaders, out var offset)
+                    ? new ResourcesParser(_peFile, 0, offset)
+                    : null;
+            }
+            catch
+            {
                 return null;
-
-            return vsVersionOffset.Value.TryRvaToOffset(_sectionHeaders, out var offset)
-                ? new ResourcesParser(_peFile, 0, offset)
-                : null;
+            }
         }
 
         private ImageCor20HeaderParser? InitImageComDescriptorParser()
