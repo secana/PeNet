@@ -91,16 +91,18 @@ namespace PeNet.HeaderParser.Pe
         {
             try
             {
-                var vsVersionOffset = ImageResourceDirectory
-                    ?.DirectoryEntries?.FirstOrDefault(e => e?.ID == (int) ResourceGroupIdType.Version) // Root
+                var resourceDataEntry = ImageResourceDirectory
+                    ?.DirectoryEntries?.FirstOrDefault(e => e?.ID == (int)ResourceGroupIdType.Version) // Root
                     ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Type
                     ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Name
-                    ?.ResourceDataEntry?.OffsetToData; // Language
+                    ?.ResourceDataEntry;
 
-                if (vsVersionOffset is null)
+                if (resourceDataEntry is null || resourceDataEntry.Offset >= resourceDataEntry.PeFile.Length)
                     return null;
 
-                return vsVersionOffset.Value.TryRvaToOffset(_sectionHeaders, out var offset)
+                uint vsVersionOffset = resourceDataEntry.OffsetToData; // Language
+
+                return vsVersionOffset.TryRvaToOffset(_sectionHeaders, out var offset)
                     ? new ResourcesParser(_peFile, 0, offset)
                     : null;
             }
