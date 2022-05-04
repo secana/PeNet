@@ -74,9 +74,8 @@ namespace PeNet.Header.Net
                 var typeRefTableIndex = 1; // .NET metadata tables are 1-based...
                 for (; typeRefTableIndex <= typeRefTable?.Count; typeRefTableIndex++)
                 {
-                    var typeRefTableRow = typeRefTable[typeRefTableIndex - 1]; // ...but .NET arrays are 0-based.
-                    if ("GuidAttribute" == stringsStream?.GetStringAtIndex(typeRefTableRow.TypeName)
-                        && "System.Runtime.InteropServices" ==
+                    var typeRefTableRow = typeRefTable?[typeRefTableIndex - 1]; // ...but .NET arrays are 0-based.
+                    if (typeRefTableRow != null && "GuidAttribute" == stringsStream?.GetStringAtIndex(typeRefTableRow.TypeName) && "System.Runtime.InteropServices" ==
                         stringsStream?.GetStringAtIndex(typeRefTableRow.TypeNamespace))
                     {
                         break;
@@ -92,7 +91,7 @@ namespace PeNet.Header.Net
                     var memberRefTableIndex = 1;
                     for (; memberRefTableIndex <= memberRefTable?.Count; memberRefTableIndex++)
                     {
-                        var memberRefTableRow = memberRefTable[memberRefTableIndex - 1];
+                        var memberRefTableRow = memberRefTable?[memberRefTableIndex - 1];
                         if ((memberRefTableRow?.Class & 0x7) == 0x1 // parent is a TypeRef
                             && (memberRefTableRow?.Class >> 3) == typeRefTableIndex)
                         {
