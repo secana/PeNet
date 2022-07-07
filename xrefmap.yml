@@ -8619,12 +8619,12 @@ references:
   commentId: T:PeNet.Header.Pe.ImageResourceDirectory
   fullName: PeNet.Header.Pe.ImageResourceDirectory
   nameWithType: ImageResourceDirectory
-- uid: PeNet.Header.Pe.ImageResourceDirectory.#ctor(PeNet.FileParser.IRawFile,System.Int64,System.Int64)
-  name: ImageResourceDirectory(IRawFile, Int64, Int64)
-  href: api/PeNet.Header.Pe.ImageResourceDirectory.html#PeNet_Header_Pe_ImageResourceDirectory__ctor_PeNet_FileParser_IRawFile_System_Int64_System_Int64_
-  commentId: M:PeNet.Header.Pe.ImageResourceDirectory.#ctor(PeNet.FileParser.IRawFile,System.Int64,System.Int64)
-  fullName: PeNet.Header.Pe.ImageResourceDirectory.ImageResourceDirectory(PeNet.FileParser.IRawFile, System.Int64, System.Int64)
-  nameWithType: ImageResourceDirectory.ImageResourceDirectory(IRawFile, Int64, Int64)
+- uid: PeNet.Header.Pe.ImageResourceDirectory.#ctor(PeNet.FileParser.IRawFile,System.Int64,System.Int64,System.Int64)
+  name: ImageResourceDirectory(IRawFile, Int64, Int64, Int64)
+  href: api/PeNet.Header.Pe.ImageResourceDirectory.html#PeNet_Header_Pe_ImageResourceDirectory__ctor_PeNet_FileParser_IRawFile_System_Int64_System_Int64_System_Int64_
+  commentId: M:PeNet.Header.Pe.ImageResourceDirectory.#ctor(PeNet.FileParser.IRawFile,System.Int64,System.Int64,System.Int64)
+  fullName: PeNet.Header.Pe.ImageResourceDirectory.ImageResourceDirectory(PeNet.FileParser.IRawFile, System.Int64, System.Int64, System.Int64)
+  nameWithType: ImageResourceDirectory.ImageResourceDirectory(IRawFile, Int64, Int64, Int64)
 - uid: PeNet.Header.Pe.ImageResourceDirectory.#ctor*
   name: ImageResourceDirectory
   href: api/PeNet.Header.Pe.ImageResourceDirectory.html#PeNet_Header_Pe_ImageResourceDirectory__ctor_
