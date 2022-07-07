@@ -10,6 +10,17 @@ namespace PeNet.Test
     public class PeFileTest
     {
         [Fact]
+        public void FOO()
+        {
+            var sample =
+                "/home/hausi/Downloads/malware/bfeccf51854b2c80643e6b27f3d6b4489152fbbbc8f747a3e00995aa3cdc7017";
+            
+            var peFile = new PeFile(sample);
+
+            var resource = peFile.Resources;
+        }
+    
+        [Fact]
         public void ExportedFunctions_WithForwardedFunctions_ParsedForwardedFunctions()
         {
             var peFile = new PeFile(@"Binaries/win_test.dll");

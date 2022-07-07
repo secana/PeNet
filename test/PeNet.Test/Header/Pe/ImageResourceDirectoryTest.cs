@@ -10,7 +10,7 @@ namespace PeNet.Test.Header.Pe
         [Fact]
         public void ImageResourceDirectoryConstructorWorks_Test()
         {
-            var resourceDirectory = new ImageResourceDirectory(new BufferFile(RawStructures.RawResourceDirectory), 2, 2);
+            var resourceDirectory = new ImageResourceDirectory(new BufferFile(RawStructures.RawResourceDirectory), 2, 2, RawStructures.RawResourceDirectory.Length);
             Assert.Equal((uint) 0x33221100, resourceDirectory.Characteristics);
             Assert.Equal((uint) 0x77665544, resourceDirectory.TimeDateStamp);
             Assert.Equal((ushort) 0x9988, resourceDirectory.MajorVersion);
@@ -18,9 +18,9 @@ namespace PeNet.Test.Header.Pe
             Assert.Equal((ushort) 0x0001, resourceDirectory.NumberOfNameEntries);
             Assert.Equal((ushort) 0x0001, resourceDirectory.NumberOfIdEntries);
             Assert.Equal((uint) 0x44332211, resourceDirectory.DirectoryEntries[0].Name);
-            Assert.Equal(0x88776655, resourceDirectory.DirectoryEntries[0].OffsetToData);
+            Assert.Equal((uint) 0x00000011, resourceDirectory.DirectoryEntries[0].OffsetToData);
             Assert.Equal((uint) 0x44332222 & 0xFFFF, resourceDirectory.DirectoryEntries[1].ID);
-            Assert.Equal(0x88776622, resourceDirectory.DirectoryEntries[1].OffsetToData);
+            Assert.Equal((uint) 0x00000022, resourceDirectory.DirectoryEntries[1].OffsetToData);
         }
     }
 }

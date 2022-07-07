@@ -13,6 +13,7 @@ namespace PeNet.Header.Pe
         private bool _entriesParsed = false;
         private readonly long _resourceDirOffset;
         private List<ImageResourceDirectoryEntry?>? _directoryEntries = null;
+        private readonly long _resourceDirLength;
 
         /// <summary>
         ///     Array with the different directory entries.
@@ -36,10 +37,11 @@ namespace PeNet.Header.Pe
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Raw offset to the resource directory.</param>
         /// <param name="resourceDirOffset">Raw offset to the resource directory entries.</param>
-        public ImageResourceDirectory(IRawFile peFile, long offset, long resourceDirOffset)
+        public ImageResourceDirectory(IRawFile peFile, long offset, long resourceDirOffset, long resourceDirLength)
             : base(peFile, offset)
         {
             _resourceDirOffset = resourceDirOffset;
+            _resourceDirLength = resourceDirLength;
         }
 
         /// <summary>
@@ -100,22 +102,44 @@ namespace PeNet.Header.Pe
         {
             var numEntries = NumberOfIdEntries + NumberOfNameEntries;
 
-            List<ImageResourceDirectoryEntry?> entries = new List<ImageResourceDirectoryEntry?>(numEntries);
+            var entries = new List<ImageResourceDirectoryEntry?>(numEntries);
 
             for (var index = 0; index < numEntries; index++)
             {
                 try
                 {
-                    entries.Add(new ImageResourceDirectoryEntry(PeFile, (uint)index * 8 + Offset + 16,
-                        resourceDirOffset));
+                    var entry = new ImageResourceDirectoryEntry(PeFile, (uint) index * 8 + Offset + 16,
+                        resourceDirOffset);
+                    
+                    if(SanityCheckFailed(entry))
+                        break;
+                    entries.Add(entry);
                 }
                 catch (IndexOutOfRangeException)
                 {
-                    entries[index] = null;
+                    break;
                 }
             }
 
             return entries;
         }
+        
+        bool SanityCheckFailed(ImageResourceDirectoryEntry? rd)
+        {
+            if (rd == null)
+                return true;
+        
+            if(rd.IsNamedEntry && rd.NameResolved == null ) 
+                return true;
+
+            if (rd.IsNamedEntry && rd.NameResolved == "unknown")
+                return true;
+            
+            if(rd.OffsetToDirectory > _resourceDirLength)
+                return true;
+
+            return false;
+        }
     }
+    
 }

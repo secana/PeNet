@@ -697,10 +697,10 @@
             0x22,
             0x33,
             0x44,
-            0x55, // OffsetToData
-            0x66,
-            0x77,
-            0x88,
+            0x11, // OffsetToData
+            0x00,
+            0x00,
+            0x00,
 
             // Id entry
             0x22, // Name/Id
@@ -708,9 +708,9 @@
             0x33,
             0x44,
             0x22, // OffsetToData
-            0x66,
-            0x77,
-            0x88
+            0x00,
+            0x00,
+            0x00,
         };
 
         public static readonly byte[] RawResourceDirStringU =
