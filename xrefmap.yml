@@ -5483,6 +5483,19 @@ references:
   isSpec: "True"
   fullName: PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.BytesPerRow
   nameWithType: MetaDataTablesHdr.MetaDataTableInfo.BytesPerRow
+- uid: PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.IsInvalid
+  name: IsInvalid
+  href: api/PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.html#PeNet_Header_Net_MetaDataTablesHdr_MetaDataTableInfo_IsInvalid
+  commentId: P:PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.IsInvalid
+  fullName: PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.IsInvalid
+  nameWithType: MetaDataTablesHdr.MetaDataTableInfo.IsInvalid
+- uid: PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.IsInvalid*
+  name: IsInvalid
+  href: api/PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.html#PeNet_Header_Net_MetaDataTablesHdr_MetaDataTableInfo_IsInvalid_
+  commentId: Overload:PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.IsInvalid
+  isSpec: "True"
+  fullName: PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.IsInvalid
+  nameWithType: MetaDataTablesHdr.MetaDataTableInfo.IsInvalid
 - uid: PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.Name
   name: Name
   href: api/PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.html#PeNet_Header_Net_MetaDataTablesHdr_MetaDataTableInfo_Name
