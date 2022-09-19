@@ -52,8 +52,14 @@ namespace PeNet.FileParser
         {
             _stream.Seek(offset, SeekOrigin.Begin);
             var chars = new List<byte>();
+            var sLen = _stream.Length - offset < 0 ? offset - _stream.Length: _stream.Length - offset;
+            
             while(true)
             {
+                if (sLen == chars.Count || sLen == chars.Count-1) {
+                    break;
+                }
+                
                 var b1 = (byte) _stream.ReadByte();
                 var b2 = (byte) _stream.ReadByte();
 
