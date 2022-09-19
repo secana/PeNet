@@ -120,13 +120,10 @@ namespace PeNet.Header.Net
                 {Index.CustomAttributeType, new CodedIndex(tables, Unused, Unused, (byte)MetadataToken.MethodDef, (byte)MetadataToken.MemberReference, Unused)},
                 {Index.ResolutionScope, new CodedIndex(tables, (byte)MetadataToken.Module, (byte)MetadataToken.ModuleReference, (byte)MetadataToken.AssemblyReference, (byte)MetadataToken.TypeReference)},
                 {Index.TypeOrMethodDef, new CodedIndex(tables, (byte)MetadataToken.TypeDef, (byte)MetadataToken.MethodDef)}
-
             };
         }
-    
 
         private readonly Dictionary<Index, IMetaDataIndex> _index;
-
         public uint this[Index index] => _index[index].Size;
     }
 

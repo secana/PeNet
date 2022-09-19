@@ -22,7 +22,7 @@ namespace PeNet.Header.Net
             }
 
             var typeRefs = MdtHdr?.Tables.TypeRef;
-            if (typeRefs is null || MdsStream is null) return null;
+            if (typeRefs is null || MdsStream is null || MdtHdr?.TableDefinitions[(int)MetadataToken.TypeReference].IsInvalid == true) return null;
 
             try
             {

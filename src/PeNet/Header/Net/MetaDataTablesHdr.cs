@@ -59,9 +59,15 @@ namespace PeNet.Header.Net
             public uint Offset { get; set; }
 
             /// <summary>
-            /// Byter per row in the table.
+            /// Byte per row in the table.
             /// </summary>
             public uint BytesPerRow { get; set; }
+            
+            /// <summary>
+            /// Set if the table is invalid for some reason and cannot be parsed
+            /// correctly.
+            /// </summary>
+            public bool IsInvalid { internal set; get; }
         }
 
         /// <summary>
@@ -257,6 +263,14 @@ namespace PeNet.Header.Net
                         tables[i].Name = names[cnt];;
                     }
                     cnt++;
+                    
+                    // Sanity check: The row count cannot be larger than the
+                    // remaining size of the PeFile
+                    if(tables[i].RowCount > PeFile.Length - startOfTableDefinitions) {
+                        tables[i].RowCount = 0; 
+                        // Set flag to indicate invalid table
+                        tables[i].IsInvalid = true;
+                    }
                 }
             }
 
