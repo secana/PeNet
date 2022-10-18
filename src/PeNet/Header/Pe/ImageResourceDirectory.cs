@@ -10,9 +10,9 @@ namespace PeNet.Header.Pe
     /// </summary>
     public class ImageResourceDirectory : AbstractStructure
     {
-        private bool _entriesParsed = false;
+        private bool _entriesParsed;
         private readonly long _resourceDirOffset;
-        private List<ImageResourceDirectoryEntry?>? _directoryEntries = null;
+        private List<ImageResourceDirectoryEntry?>? _directoryEntries;
         private readonly long _resourceDirLength;
 
         /// <summary>
@@ -35,14 +35,22 @@ namespace PeNet.Header.Pe
         ///     Create a new ImageResourceDirectory object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
+        /// <param name="parent">An ImageResourceDirectoryEntry</param>
         /// <param name="offset">Raw offset to the resource directory.</param>
         /// <param name="resourceDirOffset">Raw offset to the resource directory entries.</param>
-        public ImageResourceDirectory(IRawFile peFile, long offset, long resourceDirOffset, long resourceDirLength)
+        /// <param name="resourceDirLength">Length of the resource directory entries.</param>
+        public ImageResourceDirectory(IRawFile peFile, ImageResourceDirectoryEntry? parent, long offset, long resourceDirOffset, long resourceDirLength)
             : base(peFile, offset)
         {
+            Parent = parent;
             _resourceDirOffset = resourceDirOffset;
             _resourceDirLength = resourceDirLength;
         }
+
+        /// <summary>
+        ///     Backwards connection to the parent.
+        /// </summary>
+        public ImageResourceDirectoryEntry? Parent { get; }
 
         /// <summary>
         ///     Characteristics.
@@ -98,7 +106,7 @@ namespace PeNet.Header.Pe
             set => PeFile.WriteUShort(Offset + 0xe, value);
         }
 
-        private List<ImageResourceDirectoryEntry?>? ParseDirectoryEntries(long resourceDirOffset)
+        private List<ImageResourceDirectoryEntry?> ParseDirectoryEntries(long resourceDirOffset)
         {
             var numEntries = NumberOfIdEntries + NumberOfNameEntries;
 
@@ -108,9 +116,9 @@ namespace PeNet.Header.Pe
             {
                 try
                 {
-                    var entry = new ImageResourceDirectoryEntry(PeFile, (uint) index * 8 + Offset + 16,
+                    var entry = new ImageResourceDirectoryEntry(PeFile, this, (uint) index * 8 + Offset + 16,
                         resourceDirOffset);
-                    
+
                     if(SanityCheckFailed(entry))
                         break;
                     entries.Add(entry);
@@ -123,23 +131,23 @@ namespace PeNet.Header.Pe
 
             return entries;
         }
-        
+
         bool SanityCheckFailed(ImageResourceDirectoryEntry? rd)
         {
             if (rd == null)
                 return true;
-        
-            if(rd.IsNamedEntry && rd.NameResolved == null ) 
+
+            if(rd.IsNamedEntry && rd.NameResolved == null )
                 return true;
 
             if (rd.IsNamedEntry && rd.NameResolved == "unknown")
                 return true;
-            
+
             if(rd.OffsetToDirectory > _resourceDirLength)
                 return true;
 
             return false;
         }
     }
-    
+
 }

@@ -132,7 +132,7 @@ namespace PeNet
         /// <summary>
         /// Try to parse the PE file.
         /// </summary>
-        /// <param name="buff">Stream containing a possible PE file.</param>
+        /// <param name="file">Stream containing a possible PE file.</param>
         /// <param name="peFile">Parsed PE file or Null.</param>
         /// <returns>True if parable PE file and false if not.</returns>
         public static bool TryParse(Stream file, out PeFile? peFile)
@@ -158,7 +158,7 @@ namespace PeNet
         /// Try to parse the PE file. Best option for large files,
         /// as a memory mapped file is used.
         /// </summary>
-        /// <param name="buff">Memory mapped file containing a possible PE file.</param>
+        /// <param name="file">Memory mapped file containing a possible PE file.</param>
         /// <param name="peFile">Parsed PE file or Null.</param>
         /// <returns>True if parable PE file and false if not.</returns>
         public static bool TryParse(MMFile file, out PeFile? peFile)
@@ -185,7 +185,7 @@ namespace PeNet
         ///     File Header is set.
         /// </summary>
         public bool IsDll
-            => ImageNtHeaders?.FileHeader?.Characteristics.HasFlag(FileCharacteristicsType.Dll) ?? false;
+            => ImageNtHeaders?.FileHeader.Characteristics.HasFlag(FileCharacteristicsType.Dll) ?? false;
 
 
         /// <summary>
@@ -471,6 +471,31 @@ namespace PeNet
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        ///     Reads the location of the Icons from the ResourceDirectory in PeFile
+        ///     and collect the corresponding bytes in an array.
+        /// </summary>
+        /// <returns>A byte array with Icons, an empty array if no Icons are included.</returns>
+        public IEnumerable<byte[]> Icons()
+        {
+            return (Resources?.Icons ?? Array.Empty<Icon>())
+                .Select(i => i.AsSpan().ToArray());
+        }
+
+        /// <summary>
+        ///     Reads the corresponding IDs from GroupIconDirectoryEntry.
+        ///     Collects the Icons corresponding to the IDs as byte array.
+        /// </summary>
+        /// <returns>An array of byte arrays with Icons corresponding to the individual GroupIcons, an empty array if no GroupIcons are included.</returns>
+        public IEnumerable<IEnumerable<byte[]>> GroupIcons()
+        {
+            return (Resources?.GroupIconDirectories ?? Array.Empty<GroupIconDirectory>())
+                .Select(dir => (dir.DirectoryEntries ?? Array.Empty<GroupIconDirectoryEntry>())
+                    .Select(iconEntry => iconEntry.AssociatedIcon(this))
+                    .Where(icon => icon is not null)
+                    .Select(icon => icon!.AsSpan().ToArray()));
         }
 
         /// <summary>

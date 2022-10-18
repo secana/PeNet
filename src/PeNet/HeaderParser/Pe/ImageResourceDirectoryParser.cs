@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using PeNet.FileParser;
+﻿using PeNet.FileParser;
 using PeNet.Header.Pe;
 
 namespace PeNet.HeaderParser.Pe
@@ -7,7 +6,7 @@ namespace PeNet.HeaderParser.Pe
     internal class ImageResourceDirectoryParser : SafeParser<ImageResourceDirectory>
     {
         private long _resourceDirSize;
-        
+
         internal ImageResourceDirectoryParser(IRawFile peFile, long offset, long size)
             : base(peFile, offset)
         {
@@ -20,7 +19,7 @@ namespace PeNet.HeaderParser.Pe
                 return null;
 
             // Parse the root directory.
-            var root = new ImageResourceDirectory(PeFile, Offset, Offset, _resourceDirSize);
+            var root = new ImageResourceDirectory(PeFile, null, Offset, Offset, _resourceDirSize);
 
             // Check if the number of entries is bigger than the resource directory
             // and thus cannot be parsed correctly.
@@ -40,11 +39,12 @@ namespace PeNet.HeaderParser.Pe
 
                 de!.ResourceDirectory = new ImageResourceDirectory(
                     PeFile,
+                    de,
                     Offset + de.OffsetToDirectory,
                     Offset,
                     _resourceDirSize
                 );
-                
+
                 var sndLevel = de?.ResourceDirectory?.DirectoryEntries;
                 if(sndLevel is null)
                     continue;
@@ -54,6 +54,7 @@ namespace PeNet.HeaderParser.Pe
                 {
                     de2!.ResourceDirectory = new ImageResourceDirectory(
                         PeFile,
+                        de2,
                         Offset + de2.OffsetToDirectory,
                         Offset,
                         _resourceDirSize
@@ -62,12 +63,12 @@ namespace PeNet.HeaderParser.Pe
                     var thrdLevel = de2?.ResourceDirectory?.DirectoryEntries;
                     if(thrdLevel is null)
                         continue;
-                    
-             
+
+
                     // Parse the forth stage (language) with the data.
                     foreach (var de3 in thrdLevel)
                     {
-                        de3!.ResourceDataEntry = new ImageResourceDataEntry(PeFile,
+                        de3!.ResourceDataEntry = new ImageResourceDataEntry(PeFile, de3,
                             Offset + de3.OffsetToData);
                     }
                 }

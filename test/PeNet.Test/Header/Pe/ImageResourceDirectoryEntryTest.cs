@@ -4,31 +4,37 @@ using Xunit;
 
 namespace PeNet.Test.Header.Pe
 {
-    
+
     public class ImageResourceDirectoryEntryTest
     {
         [Fact]
-        public void ResourceDirectroyEntryByNameConstructorWorks_Test()
+        public void ResourceDirectoryEntryByNameConstructorWorks_Test()
         {
-            var resourceDirectroyEntry =
-                new ImageResourceDirectoryEntry(new BufferFile(RawStructures.RawResourceDirectoryEntryByName), 2, 2);
+            var fakeParent = new ImageResourceDirectory(null, null, 0, 0, 0);
 
-            Assert.True(resourceDirectroyEntry.IsNamedEntry);
-            Assert.False(resourceDirectroyEntry.IsIdEntry);
-            Assert.Equal(0x80332211, resourceDirectroyEntry.Name);
-            Assert.Equal((uint) 0x55443322, resourceDirectroyEntry.OffsetToData);
+            var resourceDirectoryEntry =
+                new ImageResourceDirectoryEntry(new BufferFile(RawStructures.RawResourceDirectoryEntryByName), fakeParent, 2, 2);
+
+            Assert.True(resourceDirectoryEntry.IsNamedEntry);
+            Assert.False(resourceDirectoryEntry.IsIdEntry);
+            Assert.Equal(0x80332211, resourceDirectoryEntry.Name);
+            Assert.Equal((uint) 0x55443322, resourceDirectoryEntry.OffsetToData);
+            Assert.Equal(fakeParent, resourceDirectoryEntry.Parent);
         }
 
         [Fact]
-        public void ResourceDirectroyEntryByIdConstructorWorks_Test()
+        public void ResourceDirectoryEntryByIdConstructorWorks_Test()
         {
-            var resourceDirectroyEntry =
-                new ImageResourceDirectoryEntry(new BufferFile(RawStructures.RawResourceDirectoryEntryById), 2, 2);
+            var fakeParent = new ImageResourceDirectory(null, null, 0, 0, 0);
 
-            Assert.True(resourceDirectroyEntry.IsIdEntry);
-            Assert.False(resourceDirectroyEntry.IsNamedEntry);
-            Assert.Equal((uint) 0x00332211 & 0xFFFF, resourceDirectroyEntry.ID);
-            Assert.Equal((uint) 0x55443322, resourceDirectroyEntry.OffsetToData);
+            var resourceDirectoryEntry =
+                new ImageResourceDirectoryEntry(new BufferFile(RawStructures.RawResourceDirectoryEntryById), fakeParent, 2, 2);
+
+            Assert.True(resourceDirectoryEntry.IsIdEntry);
+            Assert.False(resourceDirectoryEntry.IsNamedEntry);
+            Assert.Equal((uint) 0x00332211 & 0xFFFF, resourceDirectoryEntry.ID);
+            Assert.Equal((uint) 0x55443322, resourceDirectoryEntry.OffsetToData);
+            Assert.Equal(fakeParent, resourceDirectoryEntry.Parent);
         }
     }
 }

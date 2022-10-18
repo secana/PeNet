@@ -12,11 +12,18 @@ namespace PeNet.Header.Pe
         ///     Construct a ImageResourceDataEntry at a given offset.
         /// </summary>
         /// <param name="peFile">PE file.</param>
+        /// <param name="parent">ImageResourceDirectoryEntry</param>
         /// <param name="offset">Offset to the structure in the file.</param>
-        public ImageResourceDataEntry(IRawFile peFile, long offset)
+        public ImageResourceDataEntry(IRawFile peFile, ImageResourceDirectoryEntry parent, long offset)
             : base(peFile, offset)
         {
+            Parent = parent;
         }
+
+        /// <summary>
+        ///     Backwards connection to the parent.
+        /// </summary>
+        public ImageResourceDirectoryEntry Parent { get; }
 
         /// <summary>
         ///     Offset to the data of the resource.
