@@ -247,7 +247,7 @@ namespace PeNet.Test
         {
             var buff = File.ReadAllBytes(file);
             var peFile = new PeFile(buff);
-            
+
             peFile.RemoveSection(".rsrc", removeContent);
             var actual = peFile.Sha256;
 

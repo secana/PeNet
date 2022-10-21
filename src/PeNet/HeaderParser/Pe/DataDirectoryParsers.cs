@@ -91,25 +91,31 @@ namespace PeNet.HeaderParser.Pe
         {
             try
             {
-                var resourceDataEntry = ImageResourceDirectory
-                    ?.DirectoryEntries?.FirstOrDefault(e => e?.ID == (int)ResourceGroupIdType.Version) // Root
-                    ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Type
-                    ?.ResourceDirectory?.DirectoryEntries?.FirstOrDefault() // Name
-                    ?.ResourceDataEntry;
+                var vsVersionInfoOffsets = LocateResource(ResourceGroupIdType.Version);
+                var iconDirectoryOffsets = LocateResource(ResourceGroupIdType.Icon);
+                var groupIconDirectoryOffsets = LocateResource(ResourceGroupIdType.GroupIcon);
 
-                if (resourceDataEntry is null || resourceDataEntry.Offset >= resourceDataEntry.PeFile.Length)
-                    return null;
-
-                uint vsVersionOffset = resourceDataEntry.OffsetToData; // Language
-
-                return vsVersionOffset.TryRvaToOffset(_sectionHeaders, out var offset)
-                    ? new ResourcesParser(_peFile, 0, offset)
+                return vsVersionInfoOffsets.Length == 1
+                    ? new ResourcesParser(_peFile, 0, vsVersionInfoOffsets[0], iconDirectoryOffsets, groupIconDirectoryOffsets)
                     : null;
             }
             catch
             {
                 return null;
             }
+        }
+
+        private ResourceLocation[] LocateResource(ResourceGroupIdType type)
+        {
+            return (ImageResourceDirectory?.DirectoryEntries).OrEmpty()
+                .Where(directoryEntry => directoryEntry?.ID == (uint)type)
+                .SelectMany(entry => (entry?.ResourceDirectory?.DirectoryEntries).OrEmpty())
+                .SelectMany(entry => (entry?.ResourceDirectory?.DirectoryEntries).OrEmpty())
+                .TrySelect(entry => (entry?.ResourceDataEntry is not null, entry?.ResourceDataEntry!))
+                .Where(resource => resource.Offset < resource.PeFile.Length)
+                .TrySelect(resource => (resource.OffsetToData.TryRvaToOffset(_sectionHeaders, out var offset),
+                    new ResourceLocation(resource, offset, resource.Size1)))
+                .ToArray();
         }
 
         private ImageCor20HeaderParser? InitImageComDescriptorParser()

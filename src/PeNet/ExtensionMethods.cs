@@ -9,7 +9,7 @@ using PeNet.Header.Pe;
 namespace PeNet
 {
     /// <summary>
-    /// Extensions method to work make the work with buffers 
+    /// Extensions method to work make the work with buffers
     /// and addresses easier.
     /// </summary>
     public static class ExtensionMethods
@@ -273,7 +273,7 @@ namespace PeNet
         /// the next member.</param>
         /// <param name="alignment">Bitness of the alignment, e.g. "32".</param>
         /// <returns>Number of bytes needed to align the next structure.</returns>
-        public static uint PaddingBytes(this long offset, int alignment) 
+        public static uint PaddingBytes(this long offset, int alignment)
             => PaddingBytes((uint)offset, alignment);
 
         /// <summary>
@@ -295,7 +295,7 @@ namespace PeNet
         /// the next member.</param>
         /// <param name="alignment">Bitness of the alignment, e.g. "32".</param>
         /// <returns>Number of bytes needed to align the next structure.</returns>
-        public static uint PaddingBytes(this uint offset, int alignment) 
+        public static uint PaddingBytes(this uint offset, int alignment)
             => offset % (uint)(alignment / 8);
 
         /// <summary>
@@ -306,7 +306,6 @@ namespace PeNet
         public static bool Is64Bit(this IRawFile peFile)
             => peFile.ReadUShort(peFile.ReadUInt(0x3c) + 0x18) == (ushort) MagicType.Bit64;
 
-
         /// <summary>
         /// Check if a given file if 32 Bit
         /// </summary>
@@ -314,5 +313,28 @@ namespace PeNet
         /// <returns>True, if 32 bit.</returns>
         public static bool Is32Bit(this IRawFile peFile)
             => peFile.ReadUShort(peFile.ReadUInt(0x3c) + 0x18) == (ushort) MagicType.Bit32;
+
+        /// <summary>
+        ///     Makes an IEnumerable safe to enumerate by returning an empty enumerable in case it is null.
+        /// </summary>
+        /// <param name="enumerable">An IEnumerable.</param>
+        /// <returns>The enumerable, it it exists. An empty Enumerable if enumerable is null.</returns>
+        public static IEnumerable<T> OrEmpty<T>(this IEnumerable<T>? enumerable)
+        {
+            return enumerable ?? Enumerable.Empty<T>();
+        }
+
+        /// <summary>
+        ///     Selects the Value component of the tuple if the Success component of the tuple is true.
+        /// </summary>
+        /// <param name="source">An IEnumerable.</param>
+        /// <param name="tryFunc">A function which maps elements of source to tuples of success and a mapped value.</param>
+        /// <returns>An IEnumerable of all successful values.</returns>
+        public static IEnumerable<TOut> TrySelect<T, TOut>(this IEnumerable<T> source, Func<T, (bool Success, TOut Value)> tryFunc)
+        {
+            return source.Select(tryFunc)
+                .Where(o => o.Success)
+                .Select(o => o.Value);
+        }
     }
 }
