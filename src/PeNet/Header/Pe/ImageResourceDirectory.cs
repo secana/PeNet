@@ -35,7 +35,7 @@ namespace PeNet.Header.Pe
         ///     Create a new ImageResourceDirectory object.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
-        /// <param name="parent">An ImageResourceDirectoryEntry</param>
+        /// <param name="parent">Higher level directory entry which wraps this directory.</param>
         /// <param name="offset">Raw offset to the resource directory.</param>
         /// <param name="resourceDirOffset">Raw offset to the resource directory entries.</param>
         /// <param name="resourceDirLength">Length of the resource directory entries.</param>
@@ -49,6 +49,7 @@ namespace PeNet.Header.Pe
 
         /// <summary>
         ///     Backwards connection to the parent.
+        ///     Higher level directory entry which wraps this directory.
         /// </summary>
         public ImageResourceDirectoryEntry? Parent { get; }
 

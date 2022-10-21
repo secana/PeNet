@@ -107,22 +107,14 @@ namespace PeNet.HeaderParser.Pe
 
         private ResourceLocation[] LocateResource(ResourceGroupIdType type)
         {
-            return (ImageResourceDirectory?.DirectoryEntries ?? new List<ImageResourceDirectoryEntry?>())
+            return (ImageResourceDirectory?.DirectoryEntries).OrEmpty()
                 .Where(directoryEntry => directoryEntry?.ID == (uint)type)
-                .SelectMany(entry =>
-                    entry?.ResourceDirectory?.DirectoryEntries ?? new List<ImageResourceDirectoryEntry?>())
-                .SelectMany(entry =>
-                    entry?.ResourceDirectory?.DirectoryEntries ?? new List<ImageResourceDirectoryEntry?>())
-                .Where(entry => entry?.ResourceDataEntry is not null)
-                .Select(entry => entry!.ResourceDataEntry!)
+                .SelectMany(entry => (entry?.ResourceDirectory?.DirectoryEntries).OrEmpty())
+                .SelectMany(entry => (entry?.ResourceDirectory?.DirectoryEntries).OrEmpty())
+                .TrySelect(entry => (entry?.ResourceDataEntry is not null, entry?.ResourceDataEntry!))
                 .Where(resource => resource.Offset < resource.PeFile.Length)
-                .Select(resource =>
-                {
-                    var success = resource.OffsetToData.TryRvaToOffset(_sectionHeaders, out var offset);
-                    return (Success: success, Location: new ResourceLocation(resource, offset, resource.Size1));
-                })
-                .Where(result => result.Success)
-                .Select(result => result.Location)
+                .TrySelect(resource => (resource.OffsetToData.TryRvaToOffset(_sectionHeaders, out var offset),
+                    new ResourceLocation(resource, offset, resource.Size1)))
                 .ToArray();
         }
 

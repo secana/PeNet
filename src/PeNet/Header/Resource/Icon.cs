@@ -4,7 +4,7 @@ using PeNet.FileParser;
 namespace PeNet.Header.Resource
 {
     /// <summary>
-    /// Information about Icons.
+    ///     Information about Icons.
     /// </summary>
     public class Icon : AbstractStructure
     {
@@ -12,7 +12,7 @@ namespace PeNet.Header.Resource
         public uint Id { get; }
 
         /// <summary>
-        /// Creates a new Icon instance and sets Size and ID.
+        ///     Creates a new Icon instance and sets Size and ID.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Offset of the Icon image in the PE file.</param>
@@ -24,8 +24,9 @@ namespace PeNet.Header.Resource
             Size = size;
             Id = id;
         }
+
         /// <summary>
-        /// Byte span of the icon image.
+        ///     Byte span of the icon image.
         /// </summary>
         public Span<byte> AsSpan()
         {

@@ -4,14 +4,14 @@ using PeNet.FileParser;
 namespace PeNet.Header.Resource
 {
     /// <summary>
-    /// Information about GroupIcons.
+    ///     Information about GroupIcons.
     /// </summary>
     public class GroupIconDirectoryEntry : AbstractStructure
     {
         public const ushort Size = 0xE;
 
         /// <summary>
-        /// Create a new GroupIconDirectoryEntry instance.
+        ///     Create a new GroupIconDirectoryEntry instance.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Offset of the GroupIconDirectoryEntry structure in the PE file.</param>
@@ -21,7 +21,7 @@ namespace PeNet.Header.Resource
         }
 
         /// <summary>
-        /// Width of the corresponding icon.
+        ///     Width of the corresponding icon.
         /// </summary>
         public byte BWidth
         {
@@ -30,7 +30,7 @@ namespace PeNet.Header.Resource
         }
 
         /// <summary>
-        /// Height of the corresponding icon.
+        ///     Height of the corresponding icon.
         /// </summary>
         public byte BHeight
         {
@@ -39,7 +39,7 @@ namespace PeNet.Header.Resource
         }
 
         /// <summary>
-        /// Color count of the corresponding icon.
+        ///     Color count of the corresponding icon.
         /// </summary>
         public byte BColorCount
         {
@@ -48,7 +48,7 @@ namespace PeNet.Header.Resource
         }
 
         /// <summary>
-        /// Always zero, reserved for generators.
+        ///     Always zero, reserved for generators.
         /// </summary>
         public byte BReserved
         {
@@ -57,7 +57,7 @@ namespace PeNet.Header.Resource
         }
 
         /// <summary>
-        /// Color Planes.
+        ///     Color Planes.
         /// </summary>
         public ushort WPlanes
         {
@@ -66,7 +66,7 @@ namespace PeNet.Header.Resource
         }
 
         /// <summary>
-        /// Bits per pixel.
+        ///     Bits per pixel.
         /// </summary>
         public ushort WBitCount
         {
@@ -75,7 +75,7 @@ namespace PeNet.Header.Resource
         }
 
         /// <summary>
-        /// Byte-size of the corresponding icon.
+        ///     Byte-size of the corresponding icon.
         /// </summary>
         public uint DwBytesInRes
         {
@@ -84,7 +84,7 @@ namespace PeNet.Header.Resource
         }
 
         /// <summary>
-        /// ID of the corresponding icon.
+        ///     ID of the corresponding icon.
         /// </summary>
         public ushort NId
         {
@@ -93,13 +93,13 @@ namespace PeNet.Header.Resource
         }
 
         /// <summary>
-        /// Searching in Resources for Icon with ID of this entry.
+        ///     Searching in Resources for Icon with ID of this entry.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
-        /// <returns>Icon class object corresponding to entry ID.</returns>
+        /// <returns>Icon class object corresponding to entry ID, null if no such icon exists.</returns>
         public Icon? AssociatedIcon(PeFile peFile)
         {
-            return peFile.Resources?.Icons.First(i => i.Id == NId);
+            return peFile.Resources?.Icons?.FirstOrDefault(i => i.Id == NId);
         }
     }
 }

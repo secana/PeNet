@@ -267,54 +267,5 @@ namespace PeNet.Test
 
             Assert.Equal(is32Bit, peFile.Is32Bit);
         }
-
-        [Theory]
-        [InlineData(@"Binaries/firefox_x64.exe", 18)]
-        [InlineData(@"Binaries/firefox_x86.exe", 18)]
-        [InlineData(@"Binaries/HelloWorld.exe", 0)]
-        public void Icons_GivenPeFiles_IconsParsed(string file, int expectedIcons)
-        {
-            var peFile = new PeFile(file);
-            Assert.Equal(expectedIcons, peFile.Icons().ToArray().Length);
-        }
-
-        [Theory]
-        [InlineData(@"Binaries/firefox_x64.exe", 4, 4, 2, 2, 2, 4)]
-        [InlineData(@"Binaries/HelloWorld.exe")]
-        public void Icons_GivenPeFiles_IconsInGroupsParsed(string file, params int[] expectedIconsInGroups)
-        {
-            var peFile = new PeFile(file);
-            var groupIcons = peFile.GroupIcons().ToArray();
-            Assert.Equal(expectedIconsInGroups.Length, groupIcons.Length);
-            for (var i = 0; i < expectedIconsInGroups.Length; ++i)
-            {
-                Assert.Equal(expectedIconsInGroups[i], groupIcons[i].ToArray().Length);
-            }
-        }
-        
-        [Theory]
-        [InlineData(@"Binaries/firefox_x64.exe", @"Icons/firefox_x64_Icon1.raw")]
-        [InlineData(@"Binaries/firefox_x64.exe", @"Icons/firefox_x64_Icon18.raw")]
-        [InlineData(@"Binaries/pidgin.exe", @"Icons/pidgin_Icon1.raw")]
-        [InlineData(@"Binaries/pidgin.exe", @"Icons/pidgin_Icon5.raw")]
-        public void Icons_GivenPeFilesAndIconIncludedInPeFile_FoundIconContainsGivenIcon(string filePeFile, string fileIcon)
-        {
-            var peFile = new PeFile(filePeFile);
-            var icon = File.ReadAllBytes(fileIcon);
-            
-            Assert.Contains(icon, peFile.Icons());
-        }
-        
-        [Theory]
-        [InlineData(@"Binaries/firefox_x64.exe", @"Icons/pidgin_Icon5.raw")]
-        [InlineData(@"Binaries/pidgin.exe", @"Icons/firefox_x64_Icon1.raw")]
-        public void Icons_GivenPeFilesAndIconNotIncludedInPeFile_FoundIconDoNotContainsGivenIcon(string filePeFile, string fileIcon)
-        {
-            var peFile = new PeFile(filePeFile);
-            var icon = File.ReadAllBytes(fileIcon);
-            
-            Assert.DoesNotContain(icon, peFile.Icons());
-        }
-        
     }
 }

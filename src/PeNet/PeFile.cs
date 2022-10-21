@@ -480,7 +480,7 @@ namespace PeNet
         /// <returns>A byte array with Icons, an empty array if no Icons are included.</returns>
         public IEnumerable<byte[]> Icons()
         {
-            return (Resources?.Icons ?? Array.Empty<Icon>())
+            return (Resources?.Icons).OrEmpty()
                 .Select(i => i.AsSpan().ToArray());
         }
 
@@ -491,8 +491,8 @@ namespace PeNet
         /// <returns>An array of byte arrays with Icons corresponding to the individual GroupIcons, an empty array if no GroupIcons are included.</returns>
         public IEnumerable<IEnumerable<byte[]>> GroupIcons()
         {
-            return (Resources?.GroupIconDirectories ?? Array.Empty<GroupIconDirectory>())
-                .Select(dir => (dir.DirectoryEntries ?? Array.Empty<GroupIconDirectoryEntry>())
+            return (Resources?.GroupIconDirectories).OrEmpty()
+                .Select(dir => dir.DirectoryEntries.OrEmpty()
                     .Select(iconEntry => iconEntry.AssociatedIcon(this))
                     .Where(icon => icon is not null)
                     .Select(icon => icon!.AsSpan().ToArray()));

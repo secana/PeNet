@@ -3,7 +3,7 @@
 namespace PeNet.Header.Resource
 {
     /// <summary>
-    /// Collection of GroupIconDirectoryEntries.
+    ///     Collection of GroupIconDirectoryEntries.
     /// </summary>
     public class GroupIconDirectory : AbstractStructure
     {
@@ -11,7 +11,7 @@ namespace PeNet.Header.Resource
         private GroupIconDirectoryEntry[]? _directoryEntries;
 
         /// <summary>
-        /// Create a GroupIconDirectory instance.
+        ///     Create a GroupIconDirectory instance.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Offset of a GroupIconDirectory in the PE file.</param>
@@ -21,7 +21,7 @@ namespace PeNet.Header.Resource
         }
 
         /// <summary>
-        /// Always zero.
+        ///     Always zero.
         /// </summary>
         public ushort IdReserved
         {
@@ -30,7 +30,7 @@ namespace PeNet.Header.Resource
         }
 
         /// <summary>
-        /// Always one for icons.
+        ///     Always one for icons.
         /// </summary>
         public ushort IdType
         {
@@ -39,7 +39,7 @@ namespace PeNet.Header.Resource
         }
 
         /// <summary>
-        /// Contains the number of included GroupIconDirectoryEntries.
+        ///     Contains the number of included GroupIconDirectoryEntries.
         /// </summary>
         public ushort IdCount
         {
@@ -48,7 +48,7 @@ namespace PeNet.Header.Resource
         }
 
         /// <summary>
-        /// Array with the different directory entries. 
+        ///     Array with the different directory entries.
         /// </summary>
         public GroupIconDirectoryEntry[]? DirectoryEntries
         {
@@ -64,9 +64,10 @@ namespace PeNet.Header.Resource
 
         private GroupIconDirectoryEntry[] ParseDirectoryEntries()
         {
-            var parsedArray = new GroupIconDirectoryEntry[IdCount];
+            var numEntries = IdCount;
+            var parsedArray = new GroupIconDirectoryEntry[numEntries];
             var currentOffset = Offset + 0x6;
-            for (ushort i = 0; i < IdCount; ++i)
+            for (ushort i = 0; i < numEntries; ++i)
             {
                 parsedArray[i] = new GroupIconDirectoryEntry(PeFile, currentOffset);
                 currentOffset += GroupIconDirectoryEntry.Size;
