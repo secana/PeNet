@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class Resources
+    <title>Class Icon
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class Resources
+    <meta name="title" content="Class Icon
    ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,19 +68,19 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="PeNet.Header.Resource.Resources">
+            <article class="content wrap" id="_content" data-uid="PeNet.Header.Resource.Icon">
   
   
-  <h1 id="PeNet_Header_Resource_Resources" data-uid="PeNet.Header.Resource.Resources" class="text-break">Class Resources
+  <h1 id="PeNet_Header_Resource_Icon" data-uid="PeNet.Header.Resource.Icon" class="text-break">Class Icon
   </h1>
-  <div class="markdown level0 summary"><p>Parsed version of the Resource data directory.</p>
+  <div class="markdown level0 summary"><p>Information about Icons.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><a class="xref" href="PeNet.Header.AbstractStructure.html">AbstractStructure</a></div>
-    <div class="level2"><span class="xref">Resources</span></div>
+    <div class="level2"><span class="xref">Icon</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -90,27 +90,27 @@
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="PeNet.Header.Resource.html">PeNet.Header.Resource</a></h6>
   <h6><strong>Assembly</strong>: PeNet.dll</h6>
-  <h5 id="PeNet_Header_Resource_Resources_syntax">Syntax</h5>
+  <h5 id="PeNet_Header_Resource_Icon_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Resources : AbstractStructure</code></pre>
+    <pre><code class="lang-csharp hljs">public class Icon : AbstractStructure</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_Resources__ctor_PeNet_FileParser_IRawFile_System_Int64_PeNet_Header_Resource_ResourceLocation_PeNet_Header_Resource_ResourceLocation___PeNet_Header_Resource_ResourceLocation___.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.Resources.%23ctor(PeNet.FileParser.IRawFile%2CSystem.Int64%2CPeNet.Header.Resource.ResourceLocation%2CPeNet.Header.Resource.ResourceLocation%5B%5D%2CPeNet.Header.Resource.ResourceLocation%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_Icon__ctor_PeNet_FileParser_IRawFile_System_Int64_System_UInt32_System_UInt32_.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.Icon.%23ctor(PeNet.FileParser.IRawFile%2CSystem.Int64%2CSystem.UInt32%2CSystem.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/Resources.cs/#L77">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/Icon.cs/#L21">View Source</a>
   </span>
-  <a id="PeNet_Header_Resource_Resources__ctor_" data-uid="PeNet.Header.Resource.Resources.#ctor*"></a>
-  <h4 id="PeNet_Header_Resource_Resources__ctor_PeNet_FileParser_IRawFile_System_Int64_PeNet_Header_Resource_ResourceLocation_PeNet_Header_Resource_ResourceLocation___PeNet_Header_Resource_ResourceLocation___" data-uid="PeNet.Header.Resource.Resources.#ctor(PeNet.FileParser.IRawFile,System.Int64,PeNet.Header.Resource.ResourceLocation,PeNet.Header.Resource.ResourceLocation[],PeNet.Header.Resource.ResourceLocation[])">Resources(IRawFile, Int64, ResourceLocation, ResourceLocation[], ResourceLocation[])</h4>
-  <div class="markdown level1 summary"><p>Creates a new Resource data directory instance.</p>
+  <a id="PeNet_Header_Resource_Icon__ctor_" data-uid="PeNet.Header.Resource.Icon.#ctor*"></a>
+  <h4 id="PeNet_Header_Resource_Icon__ctor_PeNet_FileParser_IRawFile_System_Int64_System_UInt32_System_UInt32_" data-uid="PeNet.Header.Resource.Icon.#ctor(PeNet.FileParser.IRawFile,System.Int64,System.UInt32,System.UInt32)">Icon(IRawFile, Int64, UInt32, UInt32)</h4>
+  <div class="markdown level1 summary"><p>Creates a new Icon instance and sets Size and ID.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Resources(IRawFile peFile, long offset, ResourceLocation vsVersionLocation, ResourceLocation[] iconDirectoryLocations, ResourceLocation[] groupIconDirectoryLocations)</code></pre>
+    <pre><code class="lang-csharp hljs">public Icon(IRawFile peFile, long offset, uint size, uint id)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -131,25 +131,19 @@
       <tr>
         <td><span class="xref">System.Int64</span></td>
         <td><span class="parametername">offset</span></td>
-        <td><p>Offset of the resources.</p>
+        <td><p>Offset of the Icon image in the PE file.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="PeNet.Header.Resource.ResourceLocation.html">ResourceLocation</a></td>
-        <td><span class="parametername">vsVersionLocation</span></td>
-        <td><p>vsVersionLocation.</p>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>Size of the Icon image in the PE file.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="PeNet.Header.Resource.ResourceLocation.html">ResourceLocation</a>[]</td>
-        <td><span class="parametername">iconDirectoryLocations</span></td>
-        <td><p>iconDirectoryLocations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="PeNet.Header.Resource.ResourceLocation.html">ResourceLocation</a>[]</td>
-        <td><span class="parametername">groupIconDirectoryLocations</span></td>
-        <td><p>groupIconDirectoryLocations.</p>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>ID of the Icon.</p>
 </td>
       </tr>
     </tbody>
@@ -158,20 +152,18 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_Resources_GroupIconDirectories.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.Resources.GroupIconDirectories%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_Icon_Id.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.Icon.Id%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/Resources.cs/#L57">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/Icon.cs/#L12">View Source</a>
   </span>
-  <a id="PeNet_Header_Resource_Resources_GroupIconDirectories_" data-uid="PeNet.Header.Resource.Resources.GroupIconDirectories*"></a>
-  <h4 id="PeNet_Header_Resource_Resources_GroupIconDirectories" data-uid="PeNet.Header.Resource.Resources.GroupIconDirectories">GroupIconDirectories</h4>
-  <div class="markdown level1 summary"><p>Optional Resource member which contains GroupIcon information
-and a variable number of GroupIconDirectoryEntries.</p>
-</div>
+  <a id="PeNet_Header_Resource_Icon_Id_" data-uid="PeNet.Header.Resource.Icon.Id*"></a>
+  <h4 id="PeNet_Header_Resource_Icon_Id" data-uid="PeNet.Header.Resource.Icon.Id">Id</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GroupIconDirectory[] GroupIconDirectories { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public uint Id { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -183,27 +175,25 @@ and a variable number of GroupIconDirectoryEntries.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Header.Resource.GroupIconDirectory.html">GroupIconDirectory</a>[]</td>
+        <td><span class="xref">System.UInt32</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_Resources_Icons.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.Resources.Icons%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_Icon_Size.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.Icon.Size%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/Resources.cs/#L41">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/Icon.cs/#L11">View Source</a>
   </span>
-  <a id="PeNet_Header_Resource_Resources_Icons_" data-uid="PeNet.Header.Resource.Resources.Icons*"></a>
-  <h4 id="PeNet_Header_Resource_Resources_Icons" data-uid="PeNet.Header.Resource.Resources.Icons">Icons</h4>
-  <div class="markdown level1 summary"><p>Optional Resource member which contains icon information
-and icon image as bytes.</p>
-</div>
+  <a id="PeNet_Header_Resource_Icon_Size_" data-uid="PeNet.Header.Resource.Icon.Size*"></a>
+  <h4 id="PeNet_Header_Resource_Icon_Size" data-uid="PeNet.Header.Resource.Icon.Size">Size</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Icon[] Icons { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public uint Size { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -215,29 +205,30 @@ and icon image as bytes.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Header.Resource.Icon.html">Icon</a>[]</td>
+        <td><span class="xref">System.UInt32</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h3 id="methods">Methods
+  </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_Resources_VsVersionInfo.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.Resources.VsVersionInfo%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_Icon_AsSpan.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.Icon.AsSpan%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/Resources.cs/#L27">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/Icon.cs/#L31">View Source</a>
   </span>
-  <a id="PeNet_Header_Resource_Resources_VsVersionInfo_" data-uid="PeNet.Header.Resource.Resources.VsVersionInfo*"></a>
-  <h4 id="PeNet_Header_Resource_Resources_VsVersionInfo" data-uid="PeNet.Header.Resource.Resources.VsVersionInfo">VsVersionInfo</h4>
-  <div class="markdown level1 summary"><p>Optional Resource member which contains version information
-and compile time information about the binary.</p>
+  <a id="PeNet_Header_Resource_Icon_AsSpan_" data-uid="PeNet.Header.Resource.Icon.AsSpan*"></a>
+  <h4 id="PeNet_Header_Resource_Icon_AsSpan" data-uid="PeNet.Header.Resource.Icon.AsSpan">AsSpan()</h4>
+  <div class="markdown level1 summary"><p>Byte span of the icon image.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public VsVersionInfo VsVersionInfo { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Span&lt;byte&gt; AsSpan()</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -247,7 +238,7 @@ and compile time information about the binary.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Header.Resource.VsVersionInfo.html">VsVersionInfo</a></td>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -260,10 +251,10 @@ and compile time information about the binary.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_Resources.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.Resources%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_Icon.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.Icon%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/Resources.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/Icon.cs/#L9" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

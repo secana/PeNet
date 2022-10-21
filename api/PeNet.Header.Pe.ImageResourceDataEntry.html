@@ -99,19 +99,19 @@ the resources in the PE file like version info, strings etc.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageResourceDataEntry__ctor_PeNet_FileParser_IRawFile_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageResourceDataEntry.%23ctor(PeNet.FileParser.IRawFile%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageResourceDataEntry__ctor_PeNet_FileParser_IRawFile_PeNet_Header_Pe_ImageResourceDirectoryEntry_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageResourceDataEntry.%23ctor(PeNet.FileParser.IRawFile%2CPeNet.Header.Pe.ImageResourceDirectoryEntry%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageResourceDataEntry.cs/#L16">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageResourceDataEntry.cs/#L17">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageResourceDataEntry__ctor_" data-uid="PeNet.Header.Pe.ImageResourceDataEntry.#ctor*"></a>
-  <h4 id="PeNet_Header_Pe_ImageResourceDataEntry__ctor_PeNet_FileParser_IRawFile_System_Int64_" data-uid="PeNet.Header.Pe.ImageResourceDataEntry.#ctor(PeNet.FileParser.IRawFile,System.Int64)">ImageResourceDataEntry(IRawFile, Int64)</h4>
+  <h4 id="PeNet_Header_Pe_ImageResourceDataEntry__ctor_PeNet_FileParser_IRawFile_PeNet_Header_Pe_ImageResourceDirectoryEntry_System_Int64_" data-uid="PeNet.Header.Pe.ImageResourceDataEntry.#ctor(PeNet.FileParser.IRawFile,PeNet.Header.Pe.ImageResourceDirectoryEntry,System.Int64)">ImageResourceDataEntry(IRawFile, ImageResourceDirectoryEntry, Int64)</h4>
   <div class="markdown level1 summary"><p>Construct a ImageResourceDataEntry at a given offset.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ImageResourceDataEntry(IRawFile peFile, long offset)</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageResourceDataEntry(IRawFile peFile, ImageResourceDirectoryEntry parent, long offset)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -130,6 +130,12 @@ the resources in the PE file like version info, strings etc.</p>
 </td>
       </tr>
       <tr>
+        <td><a class="xref" href="PeNet.Header.Pe.ImageResourceDirectoryEntry.html">ImageResourceDirectoryEntry</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>ImageResourceDirectoryEntry in which this entry resides.</p>
+</td>
+      </tr>
+      <tr>
         <td><span class="xref">System.Int64</span></td>
         <td><span class="parametername">offset</span></td>
         <td><p>Offset to the structure in the file.</p>
@@ -144,7 +150,7 @@ the resources in the PE file like version info, strings etc.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageResourceDataEntry_CodePage.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageResourceDataEntry.CodePage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageResourceDataEntry.cs/#L42">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageResourceDataEntry.cs/#L50">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageResourceDataEntry_CodePage_" data-uid="PeNet.Header.Pe.ImageResourceDataEntry.CodePage*"></a>
   <h4 id="PeNet_Header_Pe_ImageResourceDataEntry_CodePage" data-uid="PeNet.Header.Pe.ImageResourceDataEntry.CodePage">CodePage</h4>
@@ -175,7 +181,7 @@ the resources in the PE file like version info, strings etc.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageResourceDataEntry_OffsetToData.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageResourceDataEntry.OffsetToData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageResourceDataEntry.cs/#L24">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageResourceDataEntry.cs/#L32">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageResourceDataEntry_OffsetToData_" data-uid="PeNet.Header.Pe.ImageResourceDataEntry.OffsetToData*"></a>
   <h4 id="PeNet_Header_Pe_ImageResourceDataEntry_OffsetToData" data-uid="PeNet.Header.Pe.ImageResourceDataEntry.OffsetToData">OffsetToData</h4>
@@ -203,10 +209,42 @@ the resources in the PE file like version info, strings etc.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageResourceDataEntry_Parent.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageResourceDataEntry.Parent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageResourceDataEntry.cs/#L27">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageResourceDataEntry_Parent_" data-uid="PeNet.Header.Pe.ImageResourceDataEntry.Parent*"></a>
+  <h4 id="PeNet_Header_Pe_ImageResourceDataEntry_Parent" data-uid="PeNet.Header.Pe.ImageResourceDataEntry.Parent">Parent</h4>
+  <div class="markdown level1 summary"><p>Backwards connection to the parent.
+ImageResourceDirectoryEntry in which this entry resides.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ImageResourceDirectoryEntry Parent { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="PeNet.Header.Pe.ImageResourceDirectoryEntry.html">ImageResourceDirectoryEntry</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageResourceDataEntry_Reserved.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageResourceDataEntry.Reserved%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageResourceDataEntry.cs/#L51">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageResourceDataEntry.cs/#L59">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageResourceDataEntry_Reserved_" data-uid="PeNet.Header.Pe.ImageResourceDataEntry.Reserved*"></a>
   <h4 id="PeNet_Header_Pe_ImageResourceDataEntry_Reserved" data-uid="PeNet.Header.Pe.ImageResourceDataEntry.Reserved">Reserved</h4>
@@ -237,7 +275,7 @@ the resources in the PE file like version info, strings etc.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageResourceDataEntry_Size1.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageResourceDataEntry.Size1%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageResourceDataEntry.cs/#L33">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageResourceDataEntry.cs/#L41">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageResourceDataEntry_Size1_" data-uid="PeNet.Header.Pe.ImageResourceDataEntry.Size1*"></a>
   <h4 id="PeNet_Header_Pe_ImageResourceDataEntry_Size1" data-uid="PeNet.Header.Pe.ImageResourceDataEntry.Size1">Size1</h4>

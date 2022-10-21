@@ -95,7 +95,7 @@ and addresses easier.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_Is32Bit_PeNet_FileParser_IRawFile_.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.Is32Bit(PeNet.FileParser.IRawFile)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L315">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L314">View Source</a>
   </span>
   <a id="PeNet_ExtensionMethods_Is32Bit_" data-uid="PeNet.ExtensionMethods.Is32Bit*"></a>
   <h4 id="PeNet_ExtensionMethods_Is32Bit_PeNet_FileParser_IRawFile_" data-uid="PeNet.ExtensionMethods.Is32Bit(PeNet.FileParser.IRawFile)">Is32Bit(IRawFile)</h4>
@@ -299,6 +299,71 @@ and addresses easier.</p>
         <td><span class="xref">System.UInt64</span></td>
         <td><p>Relative Virtual Address</p>
 </td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_OrEmpty__1_System_Nullable_IEnumerable___0___.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.OrEmpty%60%601(System.Nullable%7BIEnumerable%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L322">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_OrEmpty_" data-uid="PeNet.ExtensionMethods.OrEmpty*"></a>
+  <h4 id="PeNet_ExtensionMethods_OrEmpty__1_System_Nullable_IEnumerable___0___" data-uid="PeNet.ExtensionMethods.OrEmpty``1(System.Nullable{IEnumerable{``0}})">OrEmpty&lt;T&gt;(Nullable&lt;IEnumerable&lt;T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Makes an IEnumerable safe to enumerate by returning an empty enumerable in case it is null.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;T&gt; OrEmpty&lt;T&gt;(this IEnumerable&lt;T&gt;? enumerable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">IEnumerable</span>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>An IEnumerable.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><p>The enumerable, it it exists. An empty Enumerable if enumerable is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -1058,6 +1123,81 @@ every byte is separated by an whitespace.</p>
         <td><span class="xref">System.Boolean</span></td>
         <td><p>True if mapping was successful, false if not.</p>
 </td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_ExtensionMethods_TrySelect__2_IEnumerable___0__Func___0_System_ValueTuple_System_Boolean___1___.md&amp;value=---%0Auid%3A%20PeNet.ExtensionMethods.TrySelect%60%602(IEnumerable%7B%60%600%7D%2CFunc%7B%60%600%2CSystem.ValueTuple%7BSystem.Boolean%2C%60%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/ExtensionMethods.cs/#L333">View Source</a>
+  </span>
+  <a id="PeNet_ExtensionMethods_TrySelect_" data-uid="PeNet.ExtensionMethods.TrySelect*"></a>
+  <h4 id="PeNet_ExtensionMethods_TrySelect__2_IEnumerable___0__Func___0_System_ValueTuple_System_Boolean___1___" data-uid="PeNet.ExtensionMethods.TrySelect``2(IEnumerable{``0},Func{``0,System.ValueTuple{System.Boolean,``1}})">TrySelect&lt;T, TOut&gt;(IEnumerable&lt;T&gt;, Func&lt;T, (Boolean Success, TOut Value)&gt;)</h4>
+  <div class="markdown level1 summary"><p>Selects the Value component of the tuple if the Success component of the tuple is true.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;TOut&gt; TrySelect&lt;T, TOut&gt;(this IEnumerable&lt;T&gt; source, Func&lt;T, (bool Success, TOut Value)&gt; tryFunc)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>An IEnumerable.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Boolean</span>, TOut&gt;&gt;</td>
+        <td><span class="parametername">tryFunc</span></td>
+        <td><p>A function which maps elements of source to tuples of success and a mapped value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;TOut&gt;</td>
+        <td><p>An IEnumerable of all successful values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TOut</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>

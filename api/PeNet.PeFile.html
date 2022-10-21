@@ -1726,6 +1726,39 @@ certificate if any is present.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_GroupIcons.md&amp;value=---%0Auid%3A%20PeNet.PeFile.GroupIcons%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L492">View Source</a>
+  </span>
+  <a id="PeNet_PeFile_GroupIcons_" data-uid="PeNet.PeFile.GroupIcons*"></a>
+  <h4 id="PeNet_PeFile_GroupIcons" data-uid="PeNet.PeFile.GroupIcons">GroupIcons()</h4>
+  <div class="markdown level1 summary"><p>Reads the corresponding IDs from GroupIconDirectoryEntry.
+Collects the Icons corresponding to the IDs as byte array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;IEnumerable&lt;byte[]&gt;&gt; GroupIcons()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<span class="xref">IEnumerable</span>&lt;<span class="xref">System.Byte</span>[]&gt;&gt;</td>
+        <td><p>An array of byte arrays with Icons corresponding to the individual GroupIcons, an empty array if no GroupIcons are included.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_HasValidCertChain_System_Boolean_.md&amp;value=---%0Auid%3A%20PeNet.PeFile.HasValidCertChain(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -1844,10 +1877,43 @@ certificate if any is present.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_Icons.md&amp;value=---%0Auid%3A%20PeNet.PeFile.Icons%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L481">View Source</a>
+  </span>
+  <a id="PeNet_PeFile_Icons_" data-uid="PeNet.PeFile.Icons*"></a>
+  <h4 id="PeNet_PeFile_Icons" data-uid="PeNet.PeFile.Icons">Icons()</h4>
+  <div class="markdown level1 summary"><p>Reads the location of the Icons from the ResourceDirectory in PeFile
+and collect the corresponding bytes in an array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;byte[]&gt; Icons()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<span class="xref">System.Byte</span>[]&gt;</td>
+        <td><p>A byte array with Icons, an empty array if no Icons are included.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsPeFile_PeNet_FileParser_MMFile_.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsPeFile(PeNet.FileParser.MMFile)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L511">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L536">View Source</a>
   </span>
   <a id="PeNet_PeFile_IsPeFile_" data-uid="PeNet.PeFile.IsPeFile*"></a>
   <h4 id="PeNet_PeFile_IsPeFile_PeNet_FileParser_MMFile_" data-uid="PeNet.PeFile.IsPeFile(PeNet.FileParser.MMFile)">IsPeFile(MMFile)</h4>
@@ -1899,7 +1965,7 @@ in all other parts.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsPeFile_Span_System_Byte__.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsPeFile(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L527">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L552">View Source</a>
   </span>
   <a id="PeNet_PeFile_IsPeFile_" data-uid="PeNet.PeFile.IsPeFile*"></a>
   <h4 id="PeNet_PeFile_IsPeFile_Span_System_Byte__" data-uid="PeNet.PeFile.IsPeFile(Span{System.Byte})">IsPeFile(Span&lt;Byte&gt;)</h4>
@@ -1951,7 +2017,7 @@ in all other parts.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsPeFile_Stream_.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsPeFile(Stream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L496">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L521">View Source</a>
   </span>
   <a id="PeNet_PeFile_IsPeFile_" data-uid="PeNet.PeFile.IsPeFile*"></a>
   <h4 id="PeNet_PeFile_IsPeFile_Stream_" data-uid="PeNet.PeFile.IsPeFile(Stream)">IsPeFile(Stream)</h4>
@@ -2003,7 +2069,7 @@ in all other parts.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_PeFile_IsPeFile_System_String_.md&amp;value=---%0Auid%3A%20PeNet.PeFile.IsPeFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L483">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/PeFile.cs/#L508">View Source</a>
   </span>
   <a id="PeNet_PeFile_IsPeFile_" data-uid="PeNet.PeFile.IsPeFile*"></a>
   <h4 id="PeNet_PeFile_IsPeFile_System_String_" data-uid="PeNet.PeFile.IsPeFile(System.String)">IsPeFile(String)</h4>
@@ -2120,7 +2186,8 @@ as a memory mapped file is used.</p>
       <tr>
         <td><a class="xref" href="PeNet.FileParser.MMFile.html">MMFile</a></td>
         <td><span class="parametername">file</span></td>
-        <td></td>
+        <td><p>Memory mapped file containing a possible PE file.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="PeNet.PeFile.html">PeFile</a></td>
@@ -2175,7 +2242,8 @@ as a memory mapped file is used.</p>
       <tr>
         <td><span class="xref">Stream</span></td>
         <td><span class="parametername">file</span></td>
-        <td></td>
+        <td><p>Stream containing a possible PE file.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="PeNet.PeFile.html">PeFile</a></td>
