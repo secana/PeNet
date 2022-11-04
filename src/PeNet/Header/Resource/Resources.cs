@@ -45,7 +45,7 @@ namespace PeNet.Header.Resource
                 if (_iconsParsed) return _icons;
                 _iconsParsed = true;
                 return _icons ??= _iconDirectoryLocations
-                    .Select(location => new Icon(PeFile, location.Offset, location.Size, location.Resource.Parent.Parent.Parent?.ID ?? uint.MaxValue))
+                    .Select(location => new Icon(PeFile, location.Offset, location.Size, location.Resource.Parent.Parent.Parent?.ID ?? uint.MaxValue, this))
                     .ToArray();
             }
         }

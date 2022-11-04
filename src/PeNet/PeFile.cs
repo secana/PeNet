@@ -478,24 +478,57 @@ namespace PeNet
         ///     and collect the corresponding bytes in an array.
         /// </summary>
         /// <returns>A byte array with Icons, an empty array if no Icons are included.</returns>
-        public IEnumerable<byte[]> Icons()
+        public IEnumerable<byte[]> IconsAsRaw()
         {
             return (Resources?.Icons).OrEmpty()
                 .Select(i => i.AsSpan().ToArray());
+        }
+        
+        /// <summary>
+        ///     Reads the location of the Icons from the ResourceDirectory in PeFile,
+        ///     and collect the corresponding bytes in an array
+        ///     and adds an ICO-Header to the bytes.
+        /// </summary>
+        /// <returns>
+        ///     A byte array with Icons with .ICO-Header,
+        ///     an empty array
+        ///         if no Icons are included or
+        ///         if no GroupIconDirectoryEntry with associated icon exists.
+        /// </returns>
+        public IEnumerable<byte[]> IconsAsICO()
+        {
+            return (Resources?.Icons).OrEmpty()
+                .Select(i => i.AsICO().OrEmpty().ToArray());
         }
 
         /// <summary>
         ///     Reads the corresponding IDs from GroupIconDirectoryEntry.
         ///     Collects the Icons corresponding to the IDs as byte array.
+        ///     Adds an ICO-Header to each Icon byte array.
         /// </summary>
-        /// <returns>An array of byte arrays with Icons corresponding to the individual GroupIcons, an empty array if no GroupIcons are included.</returns>
-        public IEnumerable<IEnumerable<byte[]>> GroupIcons()
+        /// <returns>An array of byte arrays with Icons with .ICO-Header corresponding to the individual GroupIcons, an empty array if no GroupIcons are included.</returns>
+        public IEnumerable<IEnumerable<byte[]>> GroupIconsAsRaw()
         {
             return (Resources?.GroupIconDirectories).OrEmpty()
                 .Select(dir => dir.DirectoryEntries.OrEmpty()
                     .Select(iconEntry => iconEntry.AssociatedIcon(this))
                     .Where(icon => icon is not null)
                     .Select(icon => icon!.AsSpan().ToArray()));
+        }
+        
+        /// <summary>
+        ///     Reads the corresponding IDs from GroupIconDirectoryEntry.
+        ///     Collects the Icons corresponding to the IDs as byte array.
+        /// </summary>
+        /// <returns>An array of byte arrays with Icons corresponding to the individual GroupIcons, an empty array if no GroupIcons are included.</returns>
+        public IEnumerable<IEnumerable<byte[]>> GroupIconsAsICO()
+        {
+            return (Resources?.GroupIconDirectories).OrEmpty()
+                .Select(dir => dir.DirectoryEntries.OrEmpty()
+                    .Select(iconEntry => iconEntry.AssociatedIcon(this))
+                    .Where(icon => icon is not null)
+                    .Where(icon => icon!.AsICO() is not null)
+                    .Select(icon => icon!.AsICO()!));
         }
 
         /// <summary>
