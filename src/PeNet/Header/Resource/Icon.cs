@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using PeNet.FileParser;
 
 namespace PeNet.Header.Resource
@@ -14,11 +11,12 @@ namespace PeNet.Header.Resource
     {
         public uint Size { get; }
         public uint Id { get; }
-        public Resources Parent { get; }
+        private Resources Parent { get; }
         private GroupIconDirectoryEntry? AssociatedGroupIconDirectoryEntry { get; }
 
-        private const uint ICOHeaderSize = 22;
-        private static byte[] PNGHeader = { 137, 80, 78, 71, 13, 10, 26, 10 }; //TODO:Hex
+        private const uint IcoHeaderSize = 6;
+        private const uint IcoDirectorySize = 16;
+        private static readonly byte[] PNGHeader = { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A };
 
         /// <summary>
         ///     Creates a new Icon instance and sets Size and ID.
@@ -40,132 +38,68 @@ namespace PeNet.Header.Resource
         /// <summary>
         ///     Byte span of the icon image.
         /// </summary>
-        public Span<byte> AsSpan()
+        public Span<byte> AsRawSpan()
         {
             return PeFile.AsSpan(Offset, Size);
         }
 
+        private bool IsPng => AsRawSpan().Slice(0, 8).SequenceEqual(PNGHeader);
+        private bool IsIco => !IsPng && AssociatedGroupIconDirectoryEntry is not null && !AsRawSpan().IsEmpty;
+
         /// <summary>
         ///     Adding .ICO-Header to the bytes of the icon image.
+        ///     Reference: https://docs.fileformat.com/image/ico/
         /// </summary>
         /// <returns>Bytes of the icon image as .ICO file.</returns>
-        public byte[]? AsICO()
+        public byte[]? AsIco()
         {
-            if (AssociatedGroupIconDirectoryEntry == null) return null;
-            var iconBytes = AsSpan().ToArray();
-            if (iconBytes == null) return null;
+            var raw = AsRawSpan();
+            if (IsPng) return raw.ToArray(); // TODO: CFF does not use an additional header for .PNG. But this would not break anything.
+            if (!IsIco) return null;
 
-            if (iconBytes.Take(8).SequenceEqual(PNGHeader)) return iconBytes; // TODO: CFF does not use an additional header for .PNG. But this would not break anything.
+            var header = GenerateIcoHeader();
+            var directory = GenerateIcoDirectory();
+            var icoBytes = new byte[header.Length + directory.Length + raw.Length];
 
-            var iconICOBytes = new byte[ICOHeaderSize + iconBytes.Length];
-            SetICOHeader(iconICOBytes);
-            
-            iconBytes.CopyTo(iconICOBytes, ICOHeaderSize);
-            return iconICOBytes;
+            icoBytes.WriteBytes(0, header);
+            icoBytes.WriteBytes(header.Length, directory);
+            icoBytes.WriteBytes(header.Length + directory.Length, raw);
+            return icoBytes;
         }
 
-        /// <summary>
-        ///     Setting .ICO-Header with data from the associated GroupIconDirectoryEntry.
-        ///     According to the structure described in :https://en.wikipedia.org/wiki/ICO_(file_format)
-        /// </summary>
-        /// <param name="iconICOBytes">Byte array to process.</param>
-        private void SetICOHeader(IList<byte> iconICOBytes)
+        private static byte[] GenerateIcoHeader()
         {
-            SetIconDirectoryStructure(iconICOBytes);
-            SetIconDirectoryEntryStructure(iconICOBytes);
+            var header = new byte[IcoHeaderSize];
+            header.WriteBytes(0, ((ushort) 0).LittleEndianBytes().AsSpan());
+            header.WriteBytes(2, ((ushort) 1).LittleEndianBytes().AsSpan());
+            header.WriteBytes(4, ((ushort) 1).LittleEndianBytes().AsSpan());
+            return header;
         }
 
-        /// <summary>
-        ///     Setting bytes in IconDirectoryStructure.
-        /// </summary>
-        /// <param name="iconICOBytes">Byte array to process.</param>
-        private static void SetIconDirectoryStructure(IList<byte> iconICOBytes)
+        private byte[] GenerateIcoDirectory()
         {
-            iconICOBytes[0] = 0x00; //Res
-            iconICOBytes[1] = 0x00;
+            var directory = new byte[IcoDirectorySize];
+            directory[0] = AssociatedGroupIconDirectoryEntry!.BWidth; //Width
+            directory[1] = AssociatedGroupIconDirectoryEntry!.BHeight; //Height
 
-            iconICOBytes[2] = 0x01; //Type .ICO
-            iconICOBytes[3] = 0x00;
-
-            iconICOBytes[4] = 0x01; //Num. of Icons in File (=1)
-            iconICOBytes[5] = 0x00;
-        }
-
-        /// <summary>
-        ///     Setting bytes in IconDirectoryEntryStructure.
-        /// </summary>
-        /// <param name="iconICOBytes">Byte array to process.</param>
-        private void SetIconDirectoryEntryStructure(IList<byte> iconICOBytes)
-        {
-            SetIconDirectoryEntryStructureDimensions(iconICOBytes);
-            SetIconDirectoryEntryStructureColorInfos(iconICOBytes);
-            SetIconDirectoryEntryStructureSize(iconICOBytes);
-            SetIconDirectoryEntryStructureOffsetToImage(iconICOBytes);
-        }
-
-        /// <summary>
-        ///     Setting bytes associated with the Width and Height of the image in IconDirectoryEntryStructure.
-        /// </summary>
-        /// <param name="iconICOBytes">Byte array to process.</param>
-        private void SetIconDirectoryEntryStructureDimensions(IList<byte> iconICOBytes)
-        {
-            iconICOBytes[6] = AssociatedGroupIconDirectoryEntry!.BWidth; //Width
-            iconICOBytes[7] = AssociatedGroupIconDirectoryEntry!.BHeight; //Height 
-        }
-
-        /// <summary>
-        ///     Setting bytes associated with color information of the image in IconDirectoryEntryStructure.
-        /// </summary>
-        /// <param name="iconICOBytes">Byte array to process.</param>
-        private void SetIconDirectoryEntryStructureColorInfos(IList<byte> iconICOBytes)
-        {
             //Information not included in the GroupIconDirectoryEntry, only in the image byte array for .BMP. By default 0x00.
-            iconICOBytes[8] = AsSpan()[32];                                             //Number of Colors in color palette
+            directory[2] = AsRawSpan()[32]; //Number of Colors in color palette
+            directory[3] = 0x00; //Res
 
-            iconICOBytes[9] = 0x00;                                                     //Res
+            directory.WriteBytes(4, AssociatedGroupIconDirectoryEntry!.WPlanes.LittleEndianBytes());
+            directory.WriteBytes(6, AssociatedGroupIconDirectoryEntry!.WBitCount.LittleEndianBytes());
 
-            iconICOBytes[10] = (byte)AssociatedGroupIconDirectoryEntry!.WPlanes;        //Color planes (=1 for .BMP) 
-            iconICOBytes[11] = (byte)(AssociatedGroupIconDirectoryEntry!.WPlanes >> 8);
+            directory.WriteBytes(8, AssociatedGroupIconDirectoryEntry!.DwBytesInRes.LittleEndianBytes());
 
-            iconICOBytes[12] = (byte)AssociatedGroupIconDirectoryEntry!.WBitCount;      //Bit per Pixel  
-            iconICOBytes[13] = (byte)(AssociatedGroupIconDirectoryEntry!.WBitCount >> 8);
+            directory.WriteBytes(12, (IcoHeaderSize + IcoDirectorySize).LittleEndianBytes());
+            return directory;
         }
 
-        /// <summary>
-        ///     Setting bytes associated with the Size of the image in IconDirectoryEntryStructure.
-        /// </summary>
-        /// <param name="iconICOBytes">Byte array to process.</param>
-        private void SetIconDirectoryEntryStructureSize(IList<byte> iconICOBytes)
-        {
-            iconICOBytes[14] = (byte)AssociatedGroupIconDirectoryEntry!.DwBytesInRes;           //Size    
-            iconICOBytes[15] = (byte)(AssociatedGroupIconDirectoryEntry!.DwBytesInRes >> 8);
-            iconICOBytes[16] = (byte)(AssociatedGroupIconDirectoryEntry!.DwBytesInRes >> 16);
-            iconICOBytes[17] = (byte)(AssociatedGroupIconDirectoryEntry!.DwBytesInRes >> 24);
-        }
-
-        /// <summary>
-        ///     Setting bytes associated with the Offset to the image in IconDirectoryEntryStructure.
-        /// </summary>
-        /// <param name="iconICOBytes">Byte array to process.</param>
-        private void SetIconDirectoryEntryStructureOffsetToImage(IList<byte> iconICOBytes)
-        {
-            iconICOBytes[18] = (byte)(ICOHeaderSize >> 0); // Offset to icon image bytes
-            iconICOBytes[19] = (byte)(ICOHeaderSize >> 8);
-            iconICOBytes[20] = (byte)(ICOHeaderSize >> 16);
-            iconICOBytes[21] = (byte)(ICOHeaderSize >> 24);
-        }
-
-        /// <summary>
-        ///     Searching for the associated GroupIconDirectoryEntry.
-        /// </summary>
-        /// <returns>GroupIconDirectoryEntry with same nId as the Id of the icon.</returns>
-        public GroupIconDirectoryEntry? GetAssociatedGroupIconDirectoryEntry()
+        private GroupIconDirectoryEntry? GetAssociatedGroupIconDirectoryEntry()
         {
             return Parent.GroupIconDirectories?
-                .Where(groupIconsDirectory => groupIconsDirectory.DirectoryEntries?
-                    .Where(groupIconsDirectoryEntry => groupIconsDirectoryEntry.NId == Id).Count() != 0)
-                .First().DirectoryEntries?
-                .First(groupIconsDirectoryEntry => groupIconsDirectoryEntry?.NId == Id);
+                .SelectMany(groupIconDirectory => groupIconDirectory.DirectoryEntries.OrEmpty())
+                .First(groupIconDirectoryEntry => groupIconDirectoryEntry.NId == Id);
         }
     }
 }

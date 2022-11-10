@@ -336,5 +336,41 @@ namespace PeNet
                 .Where(o => o.Success)
                 .Select(o => o.Value);
         }
+
+        /// <summary>
+        ///     Converts a ushort to a 2 element byte array in little endian order
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>The converted byte array</returns>
+        public static byte[] LittleEndianBytes(this ushort input)
+        {
+            var bytes = BitConverter.GetBytes(input);
+            if (!BitConverter.IsLittleEndian) Array.Reverse(bytes);
+            return bytes;
+        }
+
+        /// <summary>
+        ///     Converts a uint to a 4 element byte array in little endian order
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>The converted byte array</returns>
+        public static byte[] LittleEndianBytes(this uint input)
+        {
+            var bytes = BitConverter.GetBytes(input);
+            if (!BitConverter.IsLittleEndian) Array.Reverse(bytes);
+            return bytes;
+        }
+
+        /// <summary>
+        ///     Copies the contents of a span to an array, starting at a given offset
+        /// </summary>
+        /// <param name="destination">The array to save the data</param>
+        /// <param name="offset">The offset within the array from where the content should be written</param>
+        /// <param name="source">The span to copy</param>
+        /// <typeparam name="T">The content type of the array and span, respectively</typeparam>
+        public static void WriteBytes<T>(this T[] destination, int offset, Span<T> source)
+        {
+            source.CopyTo(new Span<T>(destination, offset, source.Length));
+        }
     }
 }
