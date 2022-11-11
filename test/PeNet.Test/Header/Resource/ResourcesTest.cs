@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using PeNet.Header.Resource;
 using Xunit;
 
 namespace PeNet.Test.Header.Resource
@@ -173,69 +171,19 @@ namespace PeNet.Test.Header.Resource
         [InlineData(@"Binaries/firefox_x86.exe", 18)]
         [InlineData(@"Binaries/HelloWorld.exe", 0)]
         [InlineData(@"Binaries/chrome_elf.dll", 0)]
-        public void IconsAsRaw_GivenPeFiles_IconsParsed(string file, int expectedIcons)
+        public void Icons_GivenPeFiles_IconsParsed(string file, int expectedIcons)
         {
             var peFile = new PeFile(file);
-            Assert.Equal(expectedIcons, peFile.IconsAsRaw().ToArray().Length);
+            Assert.Equal(expectedIcons, peFile.Icons().ToArray().Length);
         }
 
         [Theory]
         [InlineData(@"Binaries/firefox_x64.exe", 4, 4, 2, 2, 2, 4)]
         [InlineData(@"Binaries/HelloWorld.exe")]
-        public void IconsAsRaw_GivenPeFiles_IconsInGroupsParsed(string file, params int[] expectedIconsInGroups)
+        public void Icons_GivenPeFiles_IconsInGroupsParsed(string file, params int[] expectedIconsInGroups)
         {
             var peFile = new PeFile(file);
-            var groupIcons = peFile.GroupIconsAsRaw().ToArray();
-            Assert.Equal(expectedIconsInGroups.Length, groupIcons.Length);
-            for (var i = 0; i < expectedIconsInGroups.Length; ++i)
-            {
-                Assert.Equal(expectedIconsInGroups[i], groupIcons[i].ToArray().Length);
-            }
-        }
-
-        [Theory]
-        [InlineData(@"Binaries/firefox_x64.exe", @"Icons/firefox_x64.exe/raw")]
-        [InlineData(@"Binaries/pidgin.exe", @"Icons/pidgin.exe/raw")]
-        public void IconsAsRaw_GivenPeFilesAndIconIncludedInPeFile_FoundIconContainsGivenIcon(string filePeFile, string iconDirectory)
-        {
-            var peFile = new PeFile(filePeFile);
-
-            foreach (var iconFile in Directory.EnumerateFiles(iconDirectory))
-            {
-                var icon = File.ReadAllBytes(iconFile);
-                Assert.Contains(icon, peFile.IconsAsRaw());
-            }
-        }
-
-        [Theory]
-        [InlineData(@"Binaries/firefox_x64.exe", @"Icons/pidgin.exe/raw/Icon5.raw")]
-        [InlineData(@"Binaries/pidgin.exe", @"Icons/firefox_x64.exe/raw/Icon1.raw")]
-        public void IconsAsRaw_GivenPeFilesAndIconNotIncludedInPeFile_FoundIconDoNotContainsGivenIcon(string filePeFile, string fileIcon)
-        {
-            var peFile = new PeFile(filePeFile);
-            var icon = File.ReadAllBytes(fileIcon);
-
-            Assert.DoesNotContain(icon, peFile.IconsAsRaw());
-        }
-        
-        [Theory]
-        [InlineData(@"Binaries/firefox_x64.exe", 18)]
-        [InlineData(@"Binaries/firefox_x86.exe", 18)]
-        [InlineData(@"Binaries/HelloWorld.exe", 0)]
-        [InlineData(@"Binaries/chrome_elf.dll", 0)]
-        public void IconsAsICO_GivenPeFiles_IconsParsed(string file, int expectedIcons)
-        {
-            var peFile = new PeFile(file);
-            Assert.Equal(expectedIcons, peFile.IconsAsICO().ToArray().Length);
-        }
-        
-        [Theory]
-        [InlineData(@"Binaries/firefox_x64.exe", 4, 4, 2, 2, 2, 4)]
-        [InlineData(@"Binaries/HelloWorld.exe")]
-        public void IconsAsICO_GivenPeFiles_IconsInGroupsParsed(string file, params int[] expectedIconsInGroups)
-        {
-            var peFile = new PeFile(file);
-            var groupIcons = peFile.GroupIconsAsICO().ToArray();
+            var groupIcons = peFile.GroupIcons().ToArray();
             Assert.Equal(expectedIconsInGroups.Length, groupIcons.Length);
             for (var i = 0; i < expectedIconsInGroups.Length; ++i)
             {
@@ -246,15 +194,15 @@ namespace PeNet.Test.Header.Resource
         [Theory]
         [InlineData(@"Binaries/firefox_x64.exe", @"Icons/firefox_x64.exe/ico")]
         [InlineData(@"Binaries/pidgin.exe", @"Icons/pidgin.exe/ico")]
-        public void IconsAsICO_GivenPeFilesAndIconIncludedInPeFile_FoundIconContainsGivenIcon(string filePeFile,
+        public void Icons_GivenPeFilesAndIconIncludedInPeFile_FoundIconContainsGivenIcon(string filePeFile,
             string iconDirectory)
         {
             var peFile = new PeFile(filePeFile);
-            
+
             foreach (var iconFile in Directory.EnumerateFiles(iconDirectory))
             {
                 var icon = File.ReadAllBytes(iconFile);
-                Assert.Contains(icon, peFile.IconsAsICO());
+                Assert.Contains(icon, peFile.Icons());
             }
         }
 
@@ -266,9 +214,7 @@ namespace PeNet.Test.Header.Resource
             var peFile = new PeFile(filePeFile);
             var icon = File.ReadAllBytes(fileIcon);
 
-            Assert.DoesNotContain(icon, peFile.IconsAsICO());
+            Assert.DoesNotContain(icon, peFile.Icons());
         }
-        
-        
     }
 }
