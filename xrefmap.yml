@@ -196,6 +196,25 @@ references:
   isSpec: "True"
   fullName: PeNet.ExtensionMethods.Is64Bit
   nameWithType: ExtensionMethods.Is64Bit
+- uid: PeNet.ExtensionMethods.LittleEndianBytes(System.UInt16)
+  name: LittleEndianBytes(UInt16)
+  href: api/PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_LittleEndianBytes_System_UInt16_
+  commentId: M:PeNet.ExtensionMethods.LittleEndianBytes(System.UInt16)
+  fullName: PeNet.ExtensionMethods.LittleEndianBytes(System.UInt16)
+  nameWithType: ExtensionMethods.LittleEndianBytes(UInt16)
+- uid: PeNet.ExtensionMethods.LittleEndianBytes(System.UInt32)
+  name: LittleEndianBytes(UInt32)
+  href: api/PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_LittleEndianBytes_System_UInt32_
+  commentId: M:PeNet.ExtensionMethods.LittleEndianBytes(System.UInt32)
+  fullName: PeNet.ExtensionMethods.LittleEndianBytes(System.UInt32)
+  nameWithType: ExtensionMethods.LittleEndianBytes(UInt32)
+- uid: PeNet.ExtensionMethods.LittleEndianBytes*
+  name: LittleEndianBytes
+  href: api/PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_LittleEndianBytes_
+  commentId: Overload:PeNet.ExtensionMethods.LittleEndianBytes
+  isSpec: "True"
+  fullName: PeNet.ExtensionMethods.LittleEndianBytes
+  nameWithType: ExtensionMethods.LittleEndianBytes
 - uid: PeNet.ExtensionMethods.OffsetToRva(System.UInt32,ICollection{PeNet.Header.Pe.ImageSectionHeader})
   name: OffsetToRva(UInt32, ICollection<ImageSectionHeader>)
   href: api/PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_OffsetToRva_System_UInt32_ICollection_PeNet_Header_Pe_ImageSectionHeader__
@@ -419,6 +438,22 @@ references:
   isSpec: "True"
   fullName: PeNet.ExtensionMethods.VaToOffset
   nameWithType: ExtensionMethods.VaToOffset
+- uid: PeNet.ExtensionMethods.WriteBytes*
+  name: WriteBytes
+  href: api/PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_WriteBytes_
+  commentId: Overload:PeNet.ExtensionMethods.WriteBytes
+  isSpec: "True"
+  fullName: PeNet.ExtensionMethods.WriteBytes
+  nameWithType: ExtensionMethods.WriteBytes
+- uid: PeNet.ExtensionMethods.WriteBytes``1(``0[],System.Int32,Span{``0})
+  name: WriteBytes<T>(T[], Int32, Span<T>)
+  href: api/PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_WriteBytes__1___0___System_Int32_Span___0__
+  commentId: M:PeNet.ExtensionMethods.WriteBytes``1(``0[],System.Int32,Span{``0})
+  name.vb: WriteBytes(Of T)(T(), Int32, Span(Of T))
+  fullName: PeNet.ExtensionMethods.WriteBytes<T>(T[], System.Int32, Span<T>)
+  fullName.vb: PeNet.ExtensionMethods.WriteBytes(Of T)(T(), System.Int32, Span(Of T))
+  nameWithType: ExtensionMethods.WriteBytes<T>(T[], Int32, Span<T>)
+  nameWithType.vb: ExtensionMethods.WriteBytes(Of T)(T(), Int32, Span(Of T))
 - uid: PeNet.FileParser
   name: PeNet.FileParser
   href: api/PeNet.FileParser.html
@@ -10997,12 +11032,12 @@ references:
   commentId: T:PeNet.Header.Resource.Icon
   fullName: PeNet.Header.Resource.Icon
   nameWithType: Icon
-- uid: PeNet.Header.Resource.Icon.#ctor(PeNet.FileParser.IRawFile,System.Int64,System.UInt32,System.UInt32)
-  name: Icon(IRawFile, Int64, UInt32, UInt32)
-  href: api/PeNet.Header.Resource.Icon.html#PeNet_Header_Resource_Icon__ctor_PeNet_FileParser_IRawFile_System_Int64_System_UInt32_System_UInt32_
-  commentId: M:PeNet.Header.Resource.Icon.#ctor(PeNet.FileParser.IRawFile,System.Int64,System.UInt32,System.UInt32)
-  fullName: PeNet.Header.Resource.Icon.Icon(PeNet.FileParser.IRawFile, System.Int64, System.UInt32, System.UInt32)
-  nameWithType: Icon.Icon(IRawFile, Int64, UInt32, UInt32)
+- uid: PeNet.Header.Resource.Icon.#ctor(PeNet.FileParser.IRawFile,System.Int64,System.UInt32,System.UInt32,PeNet.Header.Resource.Resources)
+  name: Icon(IRawFile, Int64, UInt32, UInt32, Resources)
+  href: api/PeNet.Header.Resource.Icon.html#PeNet_Header_Resource_Icon__ctor_PeNet_FileParser_IRawFile_System_Int64_System_UInt32_System_UInt32_PeNet_Header_Resource_Resources_
+  commentId: M:PeNet.Header.Resource.Icon.#ctor(PeNet.FileParser.IRawFile,System.Int64,System.UInt32,System.UInt32,PeNet.Header.Resource.Resources)
+  fullName: PeNet.Header.Resource.Icon.Icon(PeNet.FileParser.IRawFile, System.Int64, System.UInt32, System.UInt32, PeNet.Header.Resource.Resources)
+  nameWithType: Icon.Icon(IRawFile, Int64, UInt32, UInt32, Resources)
 - uid: PeNet.Header.Resource.Icon.#ctor*
   name: Icon
   href: api/PeNet.Header.Resource.Icon.html#PeNet_Header_Resource_Icon__ctor_
@@ -11010,19 +11045,32 @@ references:
   isSpec: "True"
   fullName: PeNet.Header.Resource.Icon.Icon
   nameWithType: Icon.Icon
-- uid: PeNet.Header.Resource.Icon.AsSpan
-  name: AsSpan()
-  href: api/PeNet.Header.Resource.Icon.html#PeNet_Header_Resource_Icon_AsSpan
-  commentId: M:PeNet.Header.Resource.Icon.AsSpan
-  fullName: PeNet.Header.Resource.Icon.AsSpan()
-  nameWithType: Icon.AsSpan()
-- uid: PeNet.Header.Resource.Icon.AsSpan*
-  name: AsSpan
-  href: api/PeNet.Header.Resource.Icon.html#PeNet_Header_Resource_Icon_AsSpan_
-  commentId: Overload:PeNet.Header.Resource.Icon.AsSpan
+- uid: PeNet.Header.Resource.Icon.AsIco
+  name: AsIco()
+  href: api/PeNet.Header.Resource.Icon.html#PeNet_Header_Resource_Icon_AsIco
+  commentId: M:PeNet.Header.Resource.Icon.AsIco
+  fullName: PeNet.Header.Resource.Icon.AsIco()
+  nameWithType: Icon.AsIco()
+- uid: PeNet.Header.Resource.Icon.AsIco*
+  name: AsIco
+  href: api/PeNet.Header.Resource.Icon.html#PeNet_Header_Resource_Icon_AsIco_
+  commentId: Overload:PeNet.Header.Resource.Icon.AsIco
   isSpec: "True"
-  fullName: PeNet.Header.Resource.Icon.AsSpan
-  nameWithType: Icon.AsSpan
+  fullName: PeNet.Header.Resource.Icon.AsIco
+  nameWithType: Icon.AsIco
+- uid: PeNet.Header.Resource.Icon.AsRawSpan
+  name: AsRawSpan()
+  href: api/PeNet.Header.Resource.Icon.html#PeNet_Header_Resource_Icon_AsRawSpan
+  commentId: M:PeNet.Header.Resource.Icon.AsRawSpan
+  fullName: PeNet.Header.Resource.Icon.AsRawSpan()
+  nameWithType: Icon.AsRawSpan()
+- uid: PeNet.Header.Resource.Icon.AsRawSpan*
+  name: AsRawSpan
+  href: api/PeNet.Header.Resource.Icon.html#PeNet_Header_Resource_Icon_AsRawSpan_
+  commentId: Overload:PeNet.Header.Resource.Icon.AsRawSpan
+  isSpec: "True"
+  fullName: PeNet.Header.Resource.Icon.AsRawSpan
+  nameWithType: Icon.AsRawSpan
 - uid: PeNet.Header.Resource.Icon.Id
   name: Id
   href: api/PeNet.Header.Resource.Icon.html#PeNet_Header_Resource_Icon_Id
