@@ -192,9 +192,10 @@ namespace PeNet.Test.Header.Resource
         }
 
         [Theory]
-        [InlineData(@"Binaries/firefox_x64.exe", @"Icons/firefox_x64.exe")]
-        [InlineData(@"Binaries/pidgin.exe", @"Icons/pidgin.exe")]
-        public void Icons_GivenPeFilesAndIconIncludedInPeFile_FoundIconContainsGivenIcon(string filePeFile, string iconDirectory)
+        [InlineData(@"Binaries/firefox_x64.exe", @"Icons/firefox_x64.exe/ico")]
+        [InlineData(@"Binaries/pidgin.exe", @"Icons/pidgin.exe/ico")]
+        public void Icons_GivenPeFilesAndIconIncludedInPeFile_FoundIconContainsGivenIcon(string filePeFile,
+            string iconDirectory)
         {
             var peFile = new PeFile(filePeFile);
 
@@ -206,9 +207,9 @@ namespace PeNet.Test.Header.Resource
         }
 
         [Theory]
-        [InlineData(@"Binaries/firefox_x64.exe", @"Icons/pidgin.exe/Icon5.raw")]
-        [InlineData(@"Binaries/pidgin.exe", @"Icons/firefox_x64.exe/Icon1.raw")]
-        public void Icons_GivenPeFilesAndIconNotIncludedInPeFile_FoundIconDoNotContainsGivenIcon(string filePeFile, string fileIcon)
+        [InlineData(@"Binaries/firefox_x64.exe", @"Icons/pidgin.exe/ico/Icon5.ico")]
+        [InlineData(@"Binaries/pidgin.exe", @"Icons/firefox_x64.exe/ico/Icon1.ico")]
+        public void ICOIcons_GivenPeFilesAndIconNotIncludedInPeFile_FoundIconDoNotContainsGivenIcon(string filePeFile, string fileIcon)
         {
             var peFile = new PeFile(filePeFile);
             var icon = File.ReadAllBytes(fileIcon);

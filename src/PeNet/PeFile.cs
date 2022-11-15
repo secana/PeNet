@@ -474,14 +474,21 @@ namespace PeNet
         }
 
         /// <summary>
-        ///     Reads the location of the Icons from the ResourceDirectory in PeFile
-        ///     and collect the corresponding bytes in an array.
+        ///     Reads the location of the Icons from the ResourceDirectory in PeFile,
+        ///     and collect the corresponding bytes in an array
+        ///     and adds an ICO-Header to the bytes.
         /// </summary>
-        /// <returns>A byte array with Icons, an empty array if no Icons are included.</returns>
+        /// <returns>
+        ///     A byte array with Icons with .ICO-Header,
+        ///     an empty array
+        ///         if no Icons are included or
+        ///         if no GroupIconDirectoryEntry with associated icon exists.
+        /// </returns>
         public IEnumerable<byte[]> Icons()
         {
             return (Resources?.Icons).OrEmpty()
-                .Select(i => i.AsSpan().ToArray());
+                .Select(i => i.AsIco())
+                .OfType<byte[]>();
         }
 
         /// <summary>
@@ -495,7 +502,8 @@ namespace PeNet
                 .Select(dir => dir.DirectoryEntries.OrEmpty()
                     .Select(iconEntry => iconEntry.AssociatedIcon(this))
                     .Where(icon => icon is not null)
-                    .Select(icon => icon!.AsSpan().ToArray()));
+                    .Select(icon => icon!.AsIco())
+                    .OfType<byte[]>());
         }
 
         /// <summary>
