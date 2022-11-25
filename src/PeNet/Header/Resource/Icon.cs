@@ -99,7 +99,7 @@ namespace PeNet.Header.Resource
         {
             return Parent.GroupIconDirectories?
                 .SelectMany(groupIconDirectory => groupIconDirectory.DirectoryEntries.OrEmpty())
-                .First(groupIconDirectoryEntry => groupIconDirectoryEntry.NId == Id);
+                .FirstOrDefault(groupIconDirectoryEntry => groupIconDirectoryEntry.NId == Id);
         }
     }
 }

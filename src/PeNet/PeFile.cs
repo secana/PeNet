@@ -500,7 +500,7 @@ namespace PeNet
         {
             return (Resources?.GroupIconDirectories).OrEmpty()
                 .Select(dir => dir.DirectoryEntries.OrEmpty()
-                    .Select(iconEntry => iconEntry.AssociatedIcon(this))
+                    .SelectMany(iconEntry => iconEntry.AssociatedIcon(this).OrEmpty())
                     .Where(icon => icon is not null)
                     .Select(icon => icon!.AsIco())
                     .OfType<byte[]>());

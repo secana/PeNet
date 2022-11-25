@@ -216,5 +216,73 @@ namespace PeNet.Test.Header.Resource
 
             Assert.DoesNotContain(icon, peFile.Icons());
         }
+
+        //TODO: P1 : Extract Icons without corresponding IconGroupEntry
+        [Theory]
+        [InlineData(@"Binaries/pidgin_with_one_icon_without_IconGroupDirectoryEntry.exe", 10)]
+        public void ICOIcons_GivenPeFileWithIconWithoutIconGroupDirectoryEntry_AllIconsAreExtracted(string filePeFile, int numberOfIcons)
+        {
+            var peFile = new PeFile(filePeFile);
+
+            var extractedIcons = peFile.Icons();
+            
+            Assert.Equal(numberOfIcons, extractedIcons.Count());
+        }
+        
+        [Theory]
+        [InlineData(@"Binaries/pidgin_without_groupIconDirectory.exe", 9)]
+        public void ICOIcons_GivenPeFileWithoutIconGroupDirectory_AllIconsAreExtracted(string filePeFile, int numberOfIcons)
+        {
+            var peFile = new PeFile(filePeFile);
+
+            var extractedIcons = peFile.Icons();
+            
+            Assert.Equal(numberOfIcons, extractedIcons.Count());
+        }
+        
+        //TODO: P2 : IconGroupEntry without corresponding icon
+        [Theory]
+        [InlineData(@"Binaries/pidgin_with_iconGroupEntry_without_icon.exe", 0, 8)]
+        public void ICOIcons_GivenPeFileWithIconGroupDirectoryEntryReferenceToNonExistingIcon_EmptyReferenceIsIgnored(string filePeFile, int iconGroupNumber, int numberOfIcons)
+        {
+            var peFile = new PeFile(filePeFile);
+
+            var extractedIconGroups = peFile.GroupIcons().ToList();
+            
+            Assert.Equal(8, extractedIconGroups[iconGroupNumber].Count());
+        }
+
+        //TODO: P3 : Icon included in multiple IconGroupEntries
+        [Theory]
+        [InlineData(@"Binaries/pidgin_with_double_iconGroupEntries.exe",new[] { 0, 0 },new[] { 1, 0 })]
+        public void
+            ICOIcons_GivenPeFileWithIconWithMultipleCorrespondingIconGroupEntries_IconIncludedInAllCorrespondingIconGroups(
+                string filePeFile, int[] iconPositionOne, int[] iconPositionTwo)
+        {
+            var peFile = new PeFile(filePeFile);
+            
+            var extractedIconGroups = peFile.GroupIcons().ToList();
+
+            Assert.Equal(extractedIconGroups[iconPositionOne[0]].ToList()[iconPositionOne[1]],
+                extractedIconGroups[iconPositionTwo[0]].ToList()[iconPositionTwo[1]]);
+        }
+
+        //TODO: P4 : IconGroupEntry with ID to which has multiple corresponding icons
+        [Theory]
+        [InlineData(@"Binaries/pidgin_two_icons_with_same_id.exe", 0,10)]
+        public void
+            ICOIcons_GivenPeFileWithMultipleIconsWithTheSameId_AllIconsWithSameIdAreIncludedInCorrespondingIconGroup(
+                string filePeFile, int iconGroupNumberWithIdWithMultipleCorrespondingIcons, int numberOfIconsInCorrespondingIconGroup)
+        {
+            var peFile = new PeFile(filePeFile);
+            
+            var extractedIconGroups = peFile.GroupIcons().ToList();
+            
+            Assert.Equal(numberOfIconsInCorrespondingIconGroup, extractedIconGroups[iconGroupNumberWithIdWithMultipleCorrespondingIcons].Count());
+        }
+        
+        //TODO: P5 : Create IconHeader independent from IconGroupEntry
+        
+        //TODO: P6 : ??? Function to query whether P1-4 have occurred ???
     }
 }
