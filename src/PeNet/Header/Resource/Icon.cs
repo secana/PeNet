@@ -68,9 +68,9 @@ namespace PeNet.Header.Resource
         private static byte[] GenerateIcoHeader()
         {
             var header = new byte[IcoHeaderSize];
-            header.WriteBytes(0, ((ushort) 0).LittleEndianBytes().AsSpan());
-            header.WriteBytes(2, ((ushort) 1).LittleEndianBytes().AsSpan());
-            header.WriteBytes(4, ((ushort) 1).LittleEndianBytes().AsSpan());
+            header.WriteBytes(0, ((ushort)0).LittleEndianBytes().AsSpan());
+            header.WriteBytes(2, ((ushort)1).LittleEndianBytes().AsSpan());
+            header.WriteBytes(4, ((ushort)1).LittleEndianBytes().AsSpan());
             return header;
         }
 
@@ -82,15 +82,15 @@ namespace PeNet.Header.Resource
 
             directory[2] = AsRawSpan()[32];     //Number of Colors in color palette
             directory[3] = 0x00;                //Res
-            
+
             directory[4] = AsRawSpan()[12];     //Color planes (=1 for .BMP as done by CFF) (Can be set to =0 without problem)
             directory[5] = 0x00;
-            
+
             directory[6] = AsRawSpan()[14];     //Bit per Pixel  
             directory[7] = 0x00;
 
             directory.WriteBytes(8, ((uint)AsRawSpan().Length).LittleEndianBytes());            //Size
-            
+
             directory.WriteBytes(12, (IcoHeaderSize + IcoDirectorySize).LittleEndianBytes());   //Offset
             return directory;
         }
