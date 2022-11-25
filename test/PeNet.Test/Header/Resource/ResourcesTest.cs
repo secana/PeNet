@@ -280,9 +280,11 @@ namespace PeNet.Test.Header.Resource
             
             Assert.Equal(numberOfIconsInCorrespondingIconGroup, extractedIconGroups[iconGroupNumberWithIdWithMultipleCorrespondingIcons].Count());
         }
-        
-        //TODO: P5 : Create IconHeader independent from IconGroupEntry
+
+        //TODO: P5 : Create IconHeader independent from IconGroupEntry (Tested in tests for P1)
         
         //TODO: P6 : ??? Function to query whether P1-4 have occurred ???
+        
+        //TODO: P7 : Handling of Icons of Invalid format? ---> Returns invalid byte array
     }
 }
