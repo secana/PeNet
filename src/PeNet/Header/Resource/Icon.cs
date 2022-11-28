@@ -78,7 +78,7 @@ namespace PeNet.Header.Resource
         {
             var directory = new byte[IcoDirectorySize];
             directory[0] = AsRawSpan()[4];      //Width
-            directory[1] = AsRawSpan()[4];      //Height (Icons are all time squared)
+            directory[1] = AsRawSpan()[4];      //Height (Icons are always square. In BMP-Headers, the height value is twice the width value.)
 
             directory[2] = AsRawSpan()[32];     //Number of Colors in color palette
             directory[3] = 0x00;                //Res
