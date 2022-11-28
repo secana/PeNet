@@ -241,13 +241,13 @@ namespace PeNet.Test.Header.Resource
 
         [Theory]
         [InlineData(@"Binaries/pidgin_with_iconGroupEntry_without_icon.exe", 0, 8)]
-        public void ICOIcons_GivenPeFileWithIconGroupDirectoryEntryReferenceToNonExistingIcon_EmptyReferenceIsIgnored(string filePeFile, int iconGroupNumber)
+        public void ICOIcons_GivenPeFileWithIconGroupDirectoryEntryReferenceToNonExistingIcon_EmptyReferenceIsIgnored(string filePeFile, int iconGroupNumber, int numberOfNonEmptyReferences)
         {
             var peFile = new PeFile(filePeFile);
 
             var extractedIconGroups = peFile.GroupIcons().ToList();
 
-            Assert.Equal(8, extractedIconGroups[iconGroupNumber].Count());
+            Assert.Equal(numberOfNonEmptyReferences, extractedIconGroups[iconGroupNumber].Count());
         }
 
         [Theory]
