@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using PeNet.FileParser;
 
 namespace PeNet.Header.Resource
@@ -52,7 +51,7 @@ namespace PeNet.Header.Resource
         public byte[]? AsIco()
         {
             var raw = AsRawSpan();
-            if (IsPng) return raw.ToArray(); // TODO: CFF does not use an additional header for .PNG. But this would not break anything.
+            if (IsPng) return raw.ToArray(); // No additional header is needed for .PNG.
             if (!IsIco) return null;
 
             var header = GenerateIcoHeader();
@@ -78,8 +77,8 @@ namespace PeNet.Header.Resource
         {
             var directory = new byte[IcoDirectorySize];
             directory[0] = AsRawSpan()[4];      //Width
-            directory[1] = AsRawSpan()[4];      //Height (Icons are always square. In BMP-Headers, the height value is twice the width value.)
-
+            directory[1] = AsRawSpan()[4];      //Height (Icons are always square)// We can't take the height value of the BITMAPINFOHEADER, as this also takes the opacity mask of the image into account.
+            
             directory[2] = AsRawSpan()[32];     //Number of Colors in color palette
             directory[3] = 0x00;                //Res
 

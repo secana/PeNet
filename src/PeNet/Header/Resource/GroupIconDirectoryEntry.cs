@@ -97,8 +97,8 @@ namespace PeNet.Header.Resource
         ///     Searching in Resources for Icon with ID of this entry.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
-        /// <returns>Icon class object corresponding to entry ID, null if no such icon exists.</returns>
-        public IEnumerable<Icon>? AssociatedIcon(PeFile peFile)
+        /// <returns>All icon class object corresponding to entry ID, null if no such icon exists.</returns>
+        public IEnumerable<Icon>? AssociatedIcons(PeFile peFile)
         {
             return peFile.Resources?.Icons?.Where(i => i.Id == NId);
         }
