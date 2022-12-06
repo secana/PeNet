@@ -292,7 +292,7 @@ namespace PeNet.Test.Header.Resource
         }
 
         [Theory]
-        [InlineData(@"Binaries/pidgin_manipulated_Icons.exe", 11)]
+        [InlineData(@"Binaries/pidgin_manipulated_Icons.exe", 13)]
         public void
             ICOIcons_GivenPeFileWithManipulatedIcons_PeFileIsParsed(
                 string filePeFile, int numberOfValidIcons)

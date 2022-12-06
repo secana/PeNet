@@ -40,8 +40,8 @@ namespace PeNet.Header.Resource
             return PeFile.AsSpan(Offset, Size);
         }
 
+        private bool IsToShort => AsRawSpan().IsEmpty || AsRawSpan().Length < 40;
         private bool IsPng => AsRawSpan().Slice(0, 8).SequenceEqual(PNGHeader);
-        private bool IsIco => !IsPng && !AsRawSpan().IsEmpty;
 
         /// <summary>
         ///     Adding .ICO-Header to the bytes of the icon image.
@@ -51,8 +51,8 @@ namespace PeNet.Header.Resource
         public byte[]? AsIco()
         {
             var raw = AsRawSpan();
+            if (IsToShort) return null;
             if (IsPng) return raw.ToArray(); // No additional header is needed for .PNG.
-            if (!IsIco) return null;
 
             var header = GenerateIcoHeader();
             var directory = GenerateIcoDirectory();
