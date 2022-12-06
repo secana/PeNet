@@ -10903,19 +10903,19 @@ references:
   isSpec: "True"
   fullName: PeNet.Header.Resource.GroupIconDirectoryEntry.GroupIconDirectoryEntry
   nameWithType: GroupIconDirectoryEntry.GroupIconDirectoryEntry
-- uid: PeNet.Header.Resource.GroupIconDirectoryEntry.AssociatedIcon(PeNet.PeFile)
-  name: AssociatedIcon(PeFile)
-  href: api/PeNet.Header.Resource.GroupIconDirectoryEntry.html#PeNet_Header_Resource_GroupIconDirectoryEntry_AssociatedIcon_PeNet_PeFile_
-  commentId: M:PeNet.Header.Resource.GroupIconDirectoryEntry.AssociatedIcon(PeNet.PeFile)
-  fullName: PeNet.Header.Resource.GroupIconDirectoryEntry.AssociatedIcon(PeNet.PeFile)
-  nameWithType: GroupIconDirectoryEntry.AssociatedIcon(PeFile)
-- uid: PeNet.Header.Resource.GroupIconDirectoryEntry.AssociatedIcon*
-  name: AssociatedIcon
-  href: api/PeNet.Header.Resource.GroupIconDirectoryEntry.html#PeNet_Header_Resource_GroupIconDirectoryEntry_AssociatedIcon_
-  commentId: Overload:PeNet.Header.Resource.GroupIconDirectoryEntry.AssociatedIcon
+- uid: PeNet.Header.Resource.GroupIconDirectoryEntry.AssociatedIcons(PeNet.PeFile)
+  name: AssociatedIcons(PeFile)
+  href: api/PeNet.Header.Resource.GroupIconDirectoryEntry.html#PeNet_Header_Resource_GroupIconDirectoryEntry_AssociatedIcons_PeNet_PeFile_
+  commentId: M:PeNet.Header.Resource.GroupIconDirectoryEntry.AssociatedIcons(PeNet.PeFile)
+  fullName: PeNet.Header.Resource.GroupIconDirectoryEntry.AssociatedIcons(PeNet.PeFile)
+  nameWithType: GroupIconDirectoryEntry.AssociatedIcons(PeFile)
+- uid: PeNet.Header.Resource.GroupIconDirectoryEntry.AssociatedIcons*
+  name: AssociatedIcons
+  href: api/PeNet.Header.Resource.GroupIconDirectoryEntry.html#PeNet_Header_Resource_GroupIconDirectoryEntry_AssociatedIcons_
+  commentId: Overload:PeNet.Header.Resource.GroupIconDirectoryEntry.AssociatedIcons
   isSpec: "True"
-  fullName: PeNet.Header.Resource.GroupIconDirectoryEntry.AssociatedIcon
-  nameWithType: GroupIconDirectoryEntry.AssociatedIcon
+  fullName: PeNet.Header.Resource.GroupIconDirectoryEntry.AssociatedIcons
+  nameWithType: GroupIconDirectoryEntry.AssociatedIcons
 - uid: PeNet.Header.Resource.GroupIconDirectoryEntry.BColorCount
   name: BColorCount
   href: api/PeNet.Header.Resource.GroupIconDirectoryEntry.html#PeNet_Header_Resource_GroupIconDirectoryEntry_BColorCount
