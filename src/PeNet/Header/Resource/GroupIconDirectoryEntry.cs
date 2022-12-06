@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using PeNet.FileParser;
 
 namespace PeNet.Header.Resource
@@ -96,10 +97,10 @@ namespace PeNet.Header.Resource
         ///     Searching in Resources for Icon with ID of this entry.
         /// </summary>
         /// <param name="peFile">A PE file.</param>
-        /// <returns>Icon class object corresponding to entry ID, null if no such icon exists.</returns>
-        public Icon? AssociatedIcon(PeFile peFile)
+        /// <returns>All icon class object corresponding to entry ID, null if no such icon exists.</returns>
+        public IEnumerable<Icon>? AssociatedIcons(PeFile peFile)
         {
-            return peFile.Resources?.Icons?.FirstOrDefault(i => i.Id == NId);
+            return peFile.Resources?.Icons?.Where(i => i.Id == NId);
         }
     }
 }

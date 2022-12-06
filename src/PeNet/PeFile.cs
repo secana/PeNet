@@ -475,14 +475,13 @@ namespace PeNet
 
         /// <summary>
         ///     Reads the location of the Icons from the ResourceDirectory in PeFile,
-        ///     and collect the corresponding bytes in an array
-        ///     and adds an ICO-Header to the bytes.
+        ///     collects the corresponding bytes in an enumerable
+        ///     and adds an ICO-Header to the bytes of each icon.
+        ///     This does not depend on the icon having a group icon directory entry.
         /// </summary>
         /// <returns>
-        ///     A byte array with Icons with .ICO-Header,
-        ///     an empty array
-        ///         if no Icons are included or
-        ///         if no GroupIconDirectoryEntry with associated icon exists.
+        ///     An enumerable of icon byte arrays with an ICO-Header,
+        ///     an empty enumerable if no Icons are included.
         /// </returns>
         public IEnumerable<byte[]> Icons()
         {
@@ -495,12 +494,15 @@ namespace PeNet
         ///     Reads the corresponding IDs from GroupIconDirectoryEntry.
         ///     Collects the Icons corresponding to the IDs as byte array.
         /// </summary>
-        /// <returns>An array of byte arrays with Icons corresponding to the individual GroupIcons, an empty array if no GroupIcons are included.</returns>
+        /// <returns>
+        ///     An enumerable of enumerable of byte arrays with icons corresponding to the individual GroupIcons,
+        ///     an empty enumerable if no GroupIcons or only empty GroupIcons are included.
+        /// </returns>
         public IEnumerable<IEnumerable<byte[]>> GroupIcons()
         {
             return (Resources?.GroupIconDirectories).OrEmpty()
                 .Select(dir => dir.DirectoryEntries.OrEmpty()
-                    .Select(iconEntry => iconEntry.AssociatedIcon(this))
+                    .SelectMany(iconEntry => iconEntry.AssociatedIcons(this).OrEmpty())
                     .Where(icon => icon is not null)
                     .Select(icon => icon!.AsIco())
                     .OfType<byte[]>());

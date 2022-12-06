@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using PeNet.FileParser;
 
 namespace PeNet.Header.Resource
@@ -12,7 +11,6 @@ namespace PeNet.Header.Resource
         public uint Size { get; }
         public uint Id { get; }
         private Resources Parent { get; }
-        private GroupIconDirectoryEntry? AssociatedGroupIconDirectoryEntry { get; }
 
         private const uint IcoHeaderSize = 6;
         private const uint IcoDirectorySize = 16;
@@ -32,7 +30,6 @@ namespace PeNet.Header.Resource
             Size = size;
             Id = id;
             Parent = parent;
-            AssociatedGroupIconDirectoryEntry = GetAssociatedGroupIconDirectoryEntry();
         }
 
         /// <summary>
@@ -44,7 +41,7 @@ namespace PeNet.Header.Resource
         }
 
         private bool IsPng => AsRawSpan().Slice(0, 8).SequenceEqual(PNGHeader);
-        private bool IsIco => !IsPng && AssociatedGroupIconDirectoryEntry is not null && !AsRawSpan().IsEmpty;
+        private bool IsIco => !IsPng && !AsRawSpan().IsEmpty;
 
         /// <summary>
         ///     Adding .ICO-Header to the bytes of the icon image.
@@ -54,7 +51,7 @@ namespace PeNet.Header.Resource
         public byte[]? AsIco()
         {
             var raw = AsRawSpan();
-            if (IsPng) return raw.ToArray(); // TODO: CFF does not use an additional header for .PNG. But this would not break anything.
+            if (IsPng) return raw.ToArray(); // No additional header is needed for .PNG.
             if (!IsIco) return null;
 
             var header = GenerateIcoHeader();
@@ -70,36 +67,31 @@ namespace PeNet.Header.Resource
         private static byte[] GenerateIcoHeader()
         {
             var header = new byte[IcoHeaderSize];
-            header.WriteBytes(0, ((ushort) 0).LittleEndianBytes().AsSpan());
-            header.WriteBytes(2, ((ushort) 1).LittleEndianBytes().AsSpan());
-            header.WriteBytes(4, ((ushort) 1).LittleEndianBytes().AsSpan());
+            header.WriteBytes(0, ((ushort)0).LittleEndianBytes().AsSpan());
+            header.WriteBytes(2, ((ushort)1).LittleEndianBytes().AsSpan());
+            header.WriteBytes(4, ((ushort)1).LittleEndianBytes().AsSpan());
             return header;
         }
 
         private byte[] GenerateIcoDirectory()
         {
             var directory = new byte[IcoDirectorySize];
-            directory[0] = AssociatedGroupIconDirectoryEntry!.BWidth; //Width
-            directory[1] = AssociatedGroupIconDirectoryEntry!.BHeight; //Height
+            directory[0] = AsRawSpan()[4];      //Width
+            directory[1] = AsRawSpan()[4];      //Height (Icons are always square)// We can't take the height value of the BITMAPINFOHEADER, as this also takes the opacity mask of the image into account.
+            
+            directory[2] = AsRawSpan()[32];     //Number of Colors in color palette
+            directory[3] = 0x00;                //Res
 
-            //Information not included in the GroupIconDirectoryEntry, only in the image byte array for .BMP. By default 0x00.
-            directory[2] = AsRawSpan()[32]; //Number of Colors in color palette
-            directory[3] = 0x00; //Res
+            directory[4] = AsRawSpan()[12];     //Color planes (=1 for .BMP as done by CFF) (Can be set to =0 without problem)
+            directory[5] = 0x00;
 
-            directory.WriteBytes(4, AssociatedGroupIconDirectoryEntry!.WPlanes.LittleEndianBytes());
-            directory.WriteBytes(6, AssociatedGroupIconDirectoryEntry!.WBitCount.LittleEndianBytes());
+            directory[6] = AsRawSpan()[14];     //Bit per Pixel  
+            directory[7] = 0x00;
 
-            directory.WriteBytes(8, AssociatedGroupIconDirectoryEntry!.DwBytesInRes.LittleEndianBytes());
+            directory.WriteBytes(8, ((uint)AsRawSpan().Length).LittleEndianBytes());            //Size
 
-            directory.WriteBytes(12, (IcoHeaderSize + IcoDirectorySize).LittleEndianBytes());
+            directory.WriteBytes(12, (IcoHeaderSize + IcoDirectorySize).LittleEndianBytes());   //Offset
             return directory;
-        }
-
-        private GroupIconDirectoryEntry? GetAssociatedGroupIconDirectoryEntry()
-        {
-            return Parent.GroupIconDirectories?
-                .SelectMany(groupIconDirectory => groupIconDirectory.DirectoryEntries.OrEmpty())
-                .First(groupIconDirectoryEntry => groupIconDirectoryEntry.NId == Id);
         }
     }
 }

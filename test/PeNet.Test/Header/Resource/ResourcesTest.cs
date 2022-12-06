@@ -12,38 +12,38 @@ namespace PeNet.Test.Header.Resource
             var peFile = new PeFile("./Binaries/firefox_invalid_x64.exe");
             var vsVersionInfo = peFile.Resources.VsVersionInfo;
 
-            Assert.Equal((ushort) 0x03E8, vsVersionInfo.WLength);
-            Assert.Equal((ushort) 0x0034, vsVersionInfo.WValueLength);
-            Assert.Equal((ushort) 0x0000, vsVersionInfo.WType);
+            Assert.Equal((ushort)0x03E8, vsVersionInfo.WLength);
+            Assert.Equal((ushort)0x0034, vsVersionInfo.WValueLength);
+            Assert.Equal((ushort)0x0000, vsVersionInfo.WType);
             Assert.Equal("VS_VERSION_INFO", vsVersionInfo.SzKey);
 
             Assert.Equal(0xFEEF04BD, vsVersionInfo.VsFixedFileInfo.DwSignature);
-            Assert.Equal((uint) 0x00010000, vsVersionInfo.VsFixedFileInfo.DwStrucVersion);
-            Assert.Equal((uint) 0x00390000, vsVersionInfo.VsFixedFileInfo.DwFileVersionMS);
-            Assert.Equal((uint) 0x00021995, vsVersionInfo.VsFixedFileInfo.DwFileVersionLS);
-            Assert.Equal((uint) 0x00390000, vsVersionInfo.VsFixedFileInfo.DwProductVersionMS);
-            Assert.Equal((uint) 0x00020000, vsVersionInfo.VsFixedFileInfo.DwProductVersionLS);
-            Assert.Equal((uint) 0x0000003F, vsVersionInfo.VsFixedFileInfo.DwFileFlagsMask);
-            Assert.Equal((uint) 0x00000000, vsVersionInfo.VsFixedFileInfo.DwFileFlags);
-            Assert.Equal((uint) 0x00000004, vsVersionInfo.VsFixedFileInfo.DwFileOS);
-            Assert.Equal((uint) 0x00000002, vsVersionInfo.VsFixedFileInfo.DwFileType);
-            Assert.Equal((uint) 0x00000000, vsVersionInfo.VsFixedFileInfo.DwFileSubType);
-            Assert.Equal((uint) 0x00000000, vsVersionInfo.VsFixedFileInfo.DwFileDateMS);
-            Assert.Equal((uint) 0x00000000, vsVersionInfo.VsFixedFileInfo.DwFileDateLS);
+            Assert.Equal((uint)0x00010000, vsVersionInfo.VsFixedFileInfo.DwStrucVersion);
+            Assert.Equal((uint)0x00390000, vsVersionInfo.VsFixedFileInfo.DwFileVersionMS);
+            Assert.Equal((uint)0x00021995, vsVersionInfo.VsFixedFileInfo.DwFileVersionLS);
+            Assert.Equal((uint)0x00390000, vsVersionInfo.VsFixedFileInfo.DwProductVersionMS);
+            Assert.Equal((uint)0x00020000, vsVersionInfo.VsFixedFileInfo.DwProductVersionLS);
+            Assert.Equal((uint)0x0000003F, vsVersionInfo.VsFixedFileInfo.DwFileFlagsMask);
+            Assert.Equal((uint)0x00000000, vsVersionInfo.VsFixedFileInfo.DwFileFlags);
+            Assert.Equal((uint)0x00000004, vsVersionInfo.VsFixedFileInfo.DwFileOS);
+            Assert.Equal((uint)0x00000002, vsVersionInfo.VsFixedFileInfo.DwFileType);
+            Assert.Equal((uint)0x00000000, vsVersionInfo.VsFixedFileInfo.DwFileSubType);
+            Assert.Equal((uint)0x00000000, vsVersionInfo.VsFixedFileInfo.DwFileDateMS);
+            Assert.Equal((uint)0x00000000, vsVersionInfo.VsFixedFileInfo.DwFileDateLS);
 
-            Assert.Equal((ushort) 0x0346, vsVersionInfo.StringFileInfo.WLength);
-            Assert.Equal((ushort) 0x0000, vsVersionInfo.StringFileInfo.WValueLength);
-            Assert.Equal((ushort) 0x0001, vsVersionInfo.StringFileInfo.WType);
+            Assert.Equal((ushort)0x0346, vsVersionInfo.StringFileInfo.WLength);
+            Assert.Equal((ushort)0x0000, vsVersionInfo.StringFileInfo.WValueLength);
+            Assert.Equal((ushort)0x0001, vsVersionInfo.StringFileInfo.WType);
             Assert.Equal("StringFileInfo", vsVersionInfo.StringFileInfo.SzKey);
 
-            Assert.Equal((ushort) 0x0322, vsVersionInfo.StringFileInfo.StringTable[0].WLength);
-            Assert.Equal((ushort) 0x0000, vsVersionInfo.StringFileInfo.StringTable[0].WValueLength);
-            Assert.Equal((ushort) 0x0001, vsVersionInfo.StringFileInfo.StringTable[0].WType);
+            Assert.Equal((ushort)0x0322, vsVersionInfo.StringFileInfo.StringTable[0].WLength);
+            Assert.Equal((ushort)0x0000, vsVersionInfo.StringFileInfo.StringTable[0].WValueLength);
+            Assert.Equal((ushort)0x0001, vsVersionInfo.StringFileInfo.StringTable[0].WType);
             Assert.Equal("000004b0", vsVersionInfo.StringFileInfo.StringTable[0].SzKey);
 
-            Assert.Equal((ushort) 0x0018, vsVersionInfo.StringFileInfo.StringTable[0].String[0].WLength);
-            Assert.Equal((ushort) 0x0000, vsVersionInfo.StringFileInfo.StringTable[0].String[0].WValueLength);
-            Assert.Equal((ushort) 0x0001, vsVersionInfo.StringFileInfo.StringTable[0].String[0].WType);
+            Assert.Equal((ushort)0x0018, vsVersionInfo.StringFileInfo.StringTable[0].String[0].WLength);
+            Assert.Equal((ushort)0x0000, vsVersionInfo.StringFileInfo.StringTable[0].String[0].WValueLength);
+            Assert.Equal((ushort)0x0001, vsVersionInfo.StringFileInfo.StringTable[0].String[0].WType);
             Assert.Equal("Comments", vsVersionInfo.StringFileInfo.StringTable[0].String[0].SzKey);
 
 
@@ -73,16 +73,16 @@ namespace PeNet.Test.Header.Resource
             Assert.Equal("firefox.exe", vsVersionInfo.StringFileInfo.StringTable[0].OriginalFilename);
             Assert.Equal("Firefox", vsVersionInfo.StringFileInfo.StringTable[0].ProductName);
 
-            Assert.Equal((ushort) 0x0044, vsVersionInfo.VarFileInfo.WLength);
-            Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.WValueLength);
-            Assert.Equal((ushort) 0x0001, vsVersionInfo.VarFileInfo.WType);
+            Assert.Equal((ushort)0x0044, vsVersionInfo.VarFileInfo.WLength);
+            Assert.Equal((ushort)0x0000, vsVersionInfo.VarFileInfo.WValueLength);
+            Assert.Equal((ushort)0x0001, vsVersionInfo.VarFileInfo.WType);
             Assert.Equal("VarFileInfo", vsVersionInfo.VarFileInfo.SzKey);
 
-            Assert.Equal((ushort) 0x0024, vsVersionInfo.VarFileInfo.Children[0].WLength);
-            Assert.Equal((ushort) 0x0004, vsVersionInfo.VarFileInfo.Children[0].WValueLength);
-            Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.Children[0].WType);
+            Assert.Equal((ushort)0x0024, vsVersionInfo.VarFileInfo.Children[0].WLength);
+            Assert.Equal((ushort)0x0004, vsVersionInfo.VarFileInfo.Children[0].WValueLength);
+            Assert.Equal((ushort)0x0000, vsVersionInfo.VarFileInfo.Children[0].WType);
             Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].SzKey);
-            Assert.Equal((uint) 0x04b00000, vsVersionInfo.VarFileInfo.Children[0].Value[0]);
+            Assert.Equal((uint)0x04b00000, vsVersionInfo.VarFileInfo.Children[0].Value[0]);
         }
 
         [Fact]
@@ -128,22 +128,22 @@ namespace PeNet.Test.Header.Resource
 
             // ... more String entries ...
 
-            Assert.Equal((ushort) 0x0034, vsVersionInfo.StringFileInfo.StringTable[0].String[7].WLength);
-            Assert.Equal((ushort) 0x0008, vsVersionInfo.StringFileInfo.StringTable[0].String[7].WValueLength);
-            Assert.Equal((ushort) 0x0001, vsVersionInfo.StringFileInfo.StringTable[0].String[7].WType);
+            Assert.Equal((ushort)0x0034, vsVersionInfo.StringFileInfo.StringTable[0].String[7].WLength);
+            Assert.Equal((ushort)0x0008, vsVersionInfo.StringFileInfo.StringTable[0].String[7].WValueLength);
+            Assert.Equal((ushort)0x0001, vsVersionInfo.StringFileInfo.StringTable[0].String[7].WType);
             Assert.Equal("ProductVersion", vsVersionInfo.StringFileInfo.StringTable[0].String[7].SzKey);
             Assert.Equal("2.10.11", vsVersionInfo.StringFileInfo.StringTable[0].String[7].Value);
 
-            Assert.Equal((ushort) 0x0044, vsVersionInfo.VarFileInfo.WLength);
-            Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.WValueLength);
-            Assert.Equal((ushort) 0x0001, vsVersionInfo.VarFileInfo.WType);
+            Assert.Equal((ushort)0x0044, vsVersionInfo.VarFileInfo.WLength);
+            Assert.Equal((ushort)0x0000, vsVersionInfo.VarFileInfo.WValueLength);
+            Assert.Equal((ushort)0x0001, vsVersionInfo.VarFileInfo.WType);
             Assert.Equal("VarFileInfo", vsVersionInfo.VarFileInfo.SzKey);
 
-            Assert.Equal((ushort) 0x0024, vsVersionInfo.VarFileInfo.Children[0].WLength);
-            Assert.Equal((ushort) 0x0004, vsVersionInfo.VarFileInfo.Children[0].WValueLength);
-            Assert.Equal((ushort) 0x0000, vsVersionInfo.VarFileInfo.Children[0].WType);
+            Assert.Equal((ushort)0x0024, vsVersionInfo.VarFileInfo.Children[0].WLength);
+            Assert.Equal((ushort)0x0004, vsVersionInfo.VarFileInfo.Children[0].WValueLength);
+            Assert.Equal((ushort)0x0000, vsVersionInfo.VarFileInfo.Children[0].WType);
             Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].SzKey);
-            Assert.Equal((uint) 0x04b00409, vsVersionInfo.VarFileInfo.Children[0].Value[0]);
+            Assert.Equal((uint)0x04b00409, vsVersionInfo.VarFileInfo.Children[0].Value[0]);
         }
 
         [Fact]
@@ -215,6 +215,66 @@ namespace PeNet.Test.Header.Resource
             var icon = File.ReadAllBytes(fileIcon);
 
             Assert.DoesNotContain(icon, peFile.Icons());
+        }
+
+        [Theory]
+        [InlineData(@"Binaries/pidgin_with_one_icon_without_IconGroupDirectoryEntry.exe", 10)]
+        public void ICOIcons_GivenPeFileWithIconWithoutIconGroupDirectoryEntry_AllIconsAreExtracted(string filePeFile, int numberOfIcons)
+        {
+            var peFile = new PeFile(filePeFile);
+
+            var extractedIcons = peFile.Icons();
+
+            Assert.Equal(numberOfIcons, extractedIcons.Count());
+        }
+
+        [Theory]
+        [InlineData(@"Binaries/pidgin_without_groupIconDirectory.exe", 9)]
+        public void ICOIcons_GivenPeFileWithoutIconGroupDirectory_AllIconsAreExtracted(string filePeFile, int numberOfIcons)
+        {
+            var peFile = new PeFile(filePeFile);
+
+            var extractedIcons = peFile.Icons();
+
+            Assert.Equal(numberOfIcons, extractedIcons.Count());
+        }
+
+        [Theory]
+        [InlineData(@"Binaries/pidgin_with_iconGroupEntry_without_icon.exe", 0, 8)]
+        public void ICOIcons_GivenPeFileWithIconGroupDirectoryEntryReferenceToNonExistingIcon_EmptyReferenceIsIgnored(string filePeFile, int iconGroupNumber, int numberOfNonEmptyReferences)
+        {
+            var peFile = new PeFile(filePeFile);
+
+            var extractedIconGroups = peFile.GroupIcons().ToList();
+
+            Assert.Equal(numberOfNonEmptyReferences, extractedIconGroups[iconGroupNumber].Count());
+        }
+
+        [Theory]
+        [InlineData(@"Binaries/pidgin_with_double_iconGroupEntries.exe", new[] { 0, 0 }, new[] { 1, 0 })]
+        public void
+            ICOIcons_GivenPeFileWithIconWithMultipleCorrespondingIconGroupEntries_IconIncludedInAllCorrespondingIconGroups(
+                string filePeFile, int[] iconPositionOne, int[] iconPositionTwo)
+        {
+            var peFile = new PeFile(filePeFile);
+
+            var extractedIconGroups = peFile.GroupIcons().ToList();
+
+            Assert.Equal(extractedIconGroups[iconPositionOne[0]].ToList()[iconPositionOne[1]],
+                extractedIconGroups[iconPositionTwo[0]].ToList()[iconPositionTwo[1]]);
+        }
+
+        [Theory]
+        [InlineData(@"Binaries/pidgin_two_icons_with_same_id.exe", 0, 10)]
+        public void
+            ICOIcons_GivenPeFileWithMultipleIconsWithTheSameId_AllIconsWithSameIdAreIncludedInCorrespondingIconGroup(
+                string filePeFile, int iconGroupNumberWithIdWithMultipleCorrespondingIcons, int numberOfIconsInCorrespondingIconGroup)
+        {
+            var peFile = new PeFile(filePeFile);
+
+            var extractedIconGroups = peFile.GroupIcons().ToList();
+
+            Assert.Equal(numberOfIconsInCorrespondingIconGroup, extractedIconGroups[iconGroupNumberWithIdWithMultipleCorrespondingIcons].Count());
         }
     }
 }
