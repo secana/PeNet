@@ -1,4 +1,5 @@
-﻿using PeNet.FileParser;
+﻿using System.Collections.Generic;
+using PeNet.FileParser;
 
 namespace PeNet.Header.Resource
 {
@@ -8,7 +9,7 @@ namespace PeNet.Header.Resource
     public class GroupIconDirectory : AbstractStructure
     {
         private bool _entriesParsed;
-        private GroupIconDirectoryEntry[]? _directoryEntries;
+        private List<GroupIconDirectoryEntry> _directoryEntries;
 
         /// <summary>
         ///     Create a GroupIconDirectory instance.
@@ -18,6 +19,7 @@ namespace PeNet.Header.Resource
         public GroupIconDirectory(IRawFile peFile, long offset)
             : base(peFile, offset)
         {
+            _directoryEntries = DirectoryEntries;
         }
 
         /// <summary>
@@ -50,7 +52,7 @@ namespace PeNet.Header.Resource
         /// <summary>
         ///     Array with the different directory entries.
         /// </summary>
-        public GroupIconDirectoryEntry[]? DirectoryEntries
+        public List<GroupIconDirectoryEntry> DirectoryEntries
         {
             get
             {
@@ -62,14 +64,16 @@ namespace PeNet.Header.Resource
             }
         }
 
-        private GroupIconDirectoryEntry[] ParseDirectoryEntries()
+        private List<GroupIconDirectoryEntry> ParseDirectoryEntries()
         {
             var numEntries = IdCount;
-            var parsedArray = new GroupIconDirectoryEntry[numEntries];
+            var parsedArray = new List<GroupIconDirectoryEntry>();
             var currentOffset = Offset + 0x6;
             for (ushort i = 0; i < numEntries; ++i)
             {
-                parsedArray[i] = new GroupIconDirectoryEntry(PeFile, currentOffset);
+                if (currentOffset + GroupIconDirectoryEntry.Size <= PeFile.Length)
+                    
+                    parsedArray.Add(new GroupIconDirectoryEntry(PeFile, currentOffset));
                 currentOffset += GroupIconDirectoryEntry.Size;
             }
 
