@@ -10,8 +10,8 @@ namespace PeNet.Header.Resource
     public class GroupIconDirectory : AbstractStructure
     {
         private bool _entriesParsed;
-        private long _sizeInByte;
-        private List<GroupIconDirectoryEntry> _directoryEntries;
+        private readonly long _sizeInBytes;
+        private List<GroupIconDirectoryEntry>? _directoryEntries;
 
         /// <summary>
         ///     Create a GroupIconDirectory instance.
@@ -21,8 +21,7 @@ namespace PeNet.Header.Resource
         public GroupIconDirectory(IRawFile peFile, ResourceLocation location)
             : base(peFile, location.Offset)
         {
-            _sizeInByte = location.Size;
-            _directoryEntries = DirectoryEntries;
+            _sizeInBytes = location.Size;
         }
 
         /// <summary>
@@ -55,12 +54,12 @@ namespace PeNet.Header.Resource
         /// <summary>
         ///     Array with the different directory entries.
         /// </summary>
-        public List<GroupIconDirectoryEntry> DirectoryEntries
+        public IEnumerable<GroupIconDirectoryEntry> DirectoryEntries
         {
             get
             {
                 if (_entriesParsed)
-                    return _directoryEntries;
+                    return _directoryEntries.OrEmpty();
 
                 _entriesParsed = true;
                 return _directoryEntries = ParseDirectoryEntries();
@@ -71,10 +70,10 @@ namespace PeNet.Header.Resource
         {
             var numEntries = IdCount;
             var currentOffset = Offset + 0x6;
-            var endPoint = Math.Min(PeFile.Length, Offset + _sizeInByte);
-            if (currentOffset + numEntries * GroupIconDirectoryEntry.Size > endPoint) 
+            var maxOffset = Math.Min(PeFile.Length, Offset + _sizeInBytes);
+            if (currentOffset + numEntries * GroupIconDirectoryEntry.Size > maxOffset)
             {   // Max number of GroupIconDirectoryEntry that fit into the GroupIconDirectory frame.
-                numEntries = (ushort)((endPoint - currentOffset) / GroupIconDirectoryEntry.Size);
+                numEntries = (ushort)((maxOffset - currentOffset) / GroupIconDirectoryEntry.Size);
             }
             var parsedArray = new List<GroupIconDirectoryEntry>();
             for (ushort i = 0; i < numEntries; ++i)
