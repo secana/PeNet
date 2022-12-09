@@ -278,8 +278,8 @@ namespace PeNet.Test.Header.Resource
         }
         
         [Theory]
-        [InlineData(@"Binaries/pidgin_manipulated_GroupIconDirectory.exe",9,0,2,9)]
-        [InlineData(@"Binaries/pidgin_manipulated_GroupIconDirectory_withNullIcon.exe",9,0,9,9,0)]
+        [InlineData(@"Binaries/pidgin_manipulated_GroupIconDirectory.exe",9,0,2,9,0)]
+        [InlineData(@"Binaries/pidgin_manipulated_GroupIconDirectory_withNullIcon.exe",9,0,2,9,0)]
         public void
             ICOIcons_GivenPeFileWithManipulatedGroupIconDirectory_PeFileIsParsed(
                 string filePeFile, params int[] numberOfIconsPerGroup)
