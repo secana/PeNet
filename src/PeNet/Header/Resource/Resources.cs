@@ -61,7 +61,7 @@ namespace PeNet.Header.Resource
                 if (_groupIconDirectoriesParsed) return _groupIconDirectories;
                 _groupIconDirectoriesParsed = true;
                 return _groupIconDirectories ??= _groupIconDirectoryLocations
-                    .Select(location => new GroupIconDirectory(PeFile, location.Offset))
+                    .Select(location => new GroupIconDirectory(PeFile, location))
                     .ToArray();
             }
         }

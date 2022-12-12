@@ -276,5 +276,32 @@ namespace PeNet.Test.Header.Resource
 
             Assert.Equal(numberOfIconsInCorrespondingIconGroup, extractedIconGroups[iconGroupNumberWithIdWithMultipleCorrespondingIcons].Count());
         }
+        
+        [Theory]
+        [InlineData(@"Binaries/pidgin_manipulated_GroupIconDirectory.exe",9,0,2,9,0)]
+        [InlineData(@"Binaries/pidgin_manipulated_GroupIconDirectory_withNullIcon.exe",9,0,2,9,0)]
+        public void
+            ICOIcons_GivenPeFileWithManipulatedGroupIconDirectory_PeFileIsParsed(
+                string filePeFile, params int[] numberOfIconsPerGroup)
+        {
+            var peFile = new PeFile(filePeFile);
+
+            var extractedGroupIcons = peFile.GroupIcons().ToList();
+            
+            Assert.True(numberOfIconsPerGroup.SequenceEqual(extractedGroupIcons.Select(x => x.Count())));
+        }
+
+        [Theory]
+        [InlineData(@"Binaries/pidgin_manipulated_Icons.exe", 13)]
+        public void
+            ICOIcons_GivenPeFileWithManipulatedIcons_PeFileIsParsed(
+                string filePeFile, int numberOfValidIcons)
+        {
+            var peFile = new PeFile(filePeFile);
+
+            var extractedIcons = peFile.Icons().ToList();
+            
+            Assert.Equal(numberOfValidIcons, extractedIcons.Count);
+        }
     }
 }
