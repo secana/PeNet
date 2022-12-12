@@ -98,19 +98,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_GroupIconDirectory__ctor_PeNet_FileParser_IRawFile_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.GroupIconDirectory.%23ctor(PeNet.FileParser.IRawFile%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_GroupIconDirectory__ctor_PeNet_FileParser_IRawFile_PeNet_Header_Resource_ResourceLocation_.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.GroupIconDirectory.%23ctor(PeNet.FileParser.IRawFile%2CPeNet.Header.Resource.ResourceLocation)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/GroupIconDirectory.cs/#L18">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/GroupIconDirectory.cs/#L21">View Source</a>
   </span>
   <a id="PeNet_Header_Resource_GroupIconDirectory__ctor_" data-uid="PeNet.Header.Resource.GroupIconDirectory.#ctor*"></a>
-  <h4 id="PeNet_Header_Resource_GroupIconDirectory__ctor_PeNet_FileParser_IRawFile_System_Int64_" data-uid="PeNet.Header.Resource.GroupIconDirectory.#ctor(PeNet.FileParser.IRawFile,System.Int64)">GroupIconDirectory(IRawFile, Int64)</h4>
+  <h4 id="PeNet_Header_Resource_GroupIconDirectory__ctor_PeNet_FileParser_IRawFile_PeNet_Header_Resource_ResourceLocation_" data-uid="PeNet.Header.Resource.GroupIconDirectory.#ctor(PeNet.FileParser.IRawFile,PeNet.Header.Resource.ResourceLocation)">GroupIconDirectory(IRawFile, ResourceLocation)</h4>
   <div class="markdown level1 summary"><p>Create a GroupIconDirectory instance.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GroupIconDirectory(IRawFile peFile, long offset)</code></pre>
+    <pre><code class="lang-csharp hljs">public GroupIconDirectory(IRawFile peFile, ResourceLocation location)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -129,10 +129,9 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
-        <td><span class="parametername">offset</span></td>
-        <td><p>Offset of a GroupIconDirectory in the PE file.</p>
-</td>
+        <td><a class="xref" href="PeNet.Header.Resource.ResourceLocation.html">ResourceLocation</a></td>
+        <td><span class="parametername">location</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -143,7 +142,7 @@
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_GroupIconDirectory_DirectoryEntries.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.GroupIconDirectory.DirectoryEntries%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/GroupIconDirectory.cs/#L53">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/GroupIconDirectory.cs/#L57">View Source</a>
   </span>
   <a id="PeNet_Header_Resource_GroupIconDirectory_DirectoryEntries_" data-uid="PeNet.Header.Resource.GroupIconDirectory.DirectoryEntries*"></a>
   <h4 id="PeNet_Header_Resource_GroupIconDirectory_DirectoryEntries" data-uid="PeNet.Header.Resource.GroupIconDirectory.DirectoryEntries">DirectoryEntries</h4>
@@ -152,7 +151,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GroupIconDirectoryEntry[] DirectoryEntries { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;GroupIconDirectoryEntry&gt; DirectoryEntries { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -164,7 +163,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="PeNet.Header.Resource.GroupIconDirectoryEntry.html">GroupIconDirectoryEntry</a>[]</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="PeNet.Header.Resource.GroupIconDirectoryEntry.html">GroupIconDirectoryEntry</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -174,7 +173,7 @@
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_GroupIconDirectory_IdCount.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.GroupIconDirectory.IdCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/GroupIconDirectory.cs/#L44">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/GroupIconDirectory.cs/#L48">View Source</a>
   </span>
   <a id="PeNet_Header_Resource_GroupIconDirectory_IdCount_" data-uid="PeNet.Header.Resource.GroupIconDirectory.IdCount*"></a>
   <h4 id="PeNet_Header_Resource_GroupIconDirectory_IdCount" data-uid="PeNet.Header.Resource.GroupIconDirectory.IdCount">IdCount</h4>
@@ -205,7 +204,7 @@
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_GroupIconDirectory_IdReserved.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.GroupIconDirectory.IdReserved%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/GroupIconDirectory.cs/#L26">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/GroupIconDirectory.cs/#L30">View Source</a>
   </span>
   <a id="PeNet_Header_Resource_GroupIconDirectory_IdReserved_" data-uid="PeNet.Header.Resource.GroupIconDirectory.IdReserved*"></a>
   <h4 id="PeNet_Header_Resource_GroupIconDirectory_IdReserved" data-uid="PeNet.Header.Resource.GroupIconDirectory.IdReserved">IdReserved</h4>
@@ -236,7 +235,7 @@
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_GroupIconDirectory_IdType.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.GroupIconDirectory.IdType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/GroupIconDirectory.cs/#L35">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/GroupIconDirectory.cs/#L39">View Source</a>
   </span>
   <a id="PeNet_Header_Resource_GroupIconDirectory_IdType_" data-uid="PeNet.Header.Resource.GroupIconDirectory.IdType*"></a>
   <h4 id="PeNet_Header_Resource_GroupIconDirectory_IdType" data-uid="PeNet.Header.Resource.GroupIconDirectory.IdType">IdType</h4>
@@ -273,7 +272,7 @@
                     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Resource_GroupIconDirectory.md&amp;value=---%0Auid%3A%20PeNet.Header.Resource.GroupIconDirectory%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/GroupIconDirectory.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Resource/GroupIconDirectory.cs/#L10" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -10819,12 +10819,12 @@ references:
   commentId: T:PeNet.Header.Resource.GroupIconDirectory
   fullName: PeNet.Header.Resource.GroupIconDirectory
   nameWithType: GroupIconDirectory
-- uid: PeNet.Header.Resource.GroupIconDirectory.#ctor(PeNet.FileParser.IRawFile,System.Int64)
-  name: GroupIconDirectory(IRawFile, Int64)
-  href: api/PeNet.Header.Resource.GroupIconDirectory.html#PeNet_Header_Resource_GroupIconDirectory__ctor_PeNet_FileParser_IRawFile_System_Int64_
-  commentId: M:PeNet.Header.Resource.GroupIconDirectory.#ctor(PeNet.FileParser.IRawFile,System.Int64)
-  fullName: PeNet.Header.Resource.GroupIconDirectory.GroupIconDirectory(PeNet.FileParser.IRawFile, System.Int64)
-  nameWithType: GroupIconDirectory.GroupIconDirectory(IRawFile, Int64)
+- uid: PeNet.Header.Resource.GroupIconDirectory.#ctor(PeNet.FileParser.IRawFile,PeNet.Header.Resource.ResourceLocation)
+  name: GroupIconDirectory(IRawFile, ResourceLocation)
+  href: api/PeNet.Header.Resource.GroupIconDirectory.html#PeNet_Header_Resource_GroupIconDirectory__ctor_PeNet_FileParser_IRawFile_PeNet_Header_Resource_ResourceLocation_
+  commentId: M:PeNet.Header.Resource.GroupIconDirectory.#ctor(PeNet.FileParser.IRawFile,PeNet.Header.Resource.ResourceLocation)
+  fullName: PeNet.Header.Resource.GroupIconDirectory.GroupIconDirectory(PeNet.FileParser.IRawFile, PeNet.Header.Resource.ResourceLocation)
+  nameWithType: GroupIconDirectory.GroupIconDirectory(IRawFile, ResourceLocation)
 - uid: PeNet.Header.Resource.GroupIconDirectory.#ctor*
   name: GroupIconDirectory
   href: api/PeNet.Header.Resource.GroupIconDirectory.html#PeNet_Header_Resource_GroupIconDirectory__ctor_
