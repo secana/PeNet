@@ -241,6 +241,9 @@ namespace PeNet
         public static bool HasValidCertChain(X509Certificate2? cert, TimeSpan urlRetrievalTimeout,
             bool useOnlineCRL = true, bool excludeRoot = true)
         {
+            if (cert == null)
+                return false;
+
             using var chain = new X509Chain
             {
                 ChainPolicy =
@@ -251,7 +254,7 @@ namespace PeNet
                     VerificationFlags   = X509VerificationFlags.NoFlag
                 }
             };
-            return cert != null && chain.Build(cert);
+            return chain.Build(cert);
         }
 
         /// <summary>

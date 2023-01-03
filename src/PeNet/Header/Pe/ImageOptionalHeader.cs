@@ -29,12 +29,11 @@ namespace PeNet.Header.Pe
 
             DataDirectory = new ImageDataDirectory[16];
 
+            var dataDirOffset = _is64Bit ? 0x70 : 0x60;
+
             for (uint i = 0; i < 16; i++)
             {
-                if (!_is64Bit)
-                    DataDirectory[i] = new ImageDataDirectory(peFile, offset + 0x60 + i*0x8);
-                else
-                    DataDirectory[i] = new ImageDataDirectory(peFile, offset + 0x70 + i*0x8);
+                DataDirectory[i] = new ImageDataDirectory(peFile, offset + dataDirOffset + i*0x8);
             }
         }
 

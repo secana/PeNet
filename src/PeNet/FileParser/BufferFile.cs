@@ -59,7 +59,7 @@ namespace PeNet.FileParser
         {
             var newBuffer = new Memory<byte>(new byte[_buffer.Length - length]);
 
-            _buffer.Slice(0, (int) offset).CopyTo(newBuffer);
+            _buffer[..(int)offset].CopyTo(newBuffer);
             _buffer[(int)(offset + length)..].CopyTo(newBuffer[(int)offset..]);
 
             _buffer = newBuffer;
