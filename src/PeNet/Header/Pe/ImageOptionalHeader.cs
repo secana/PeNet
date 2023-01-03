@@ -440,6 +440,11 @@ namespace PeNet.Header.Pe
     public enum DllCharacteristicsType : ushort
     {
         /// <summary>
+        ///     Image can handle a high entropy 64-bit virtual address space.
+        /// </summary>
+        HighEntropyVA = 0x20,
+
+        /// <summary>
         ///     DLL can be relocated at load time.
         /// </summary>
         DynamicBase = 0x40,
@@ -470,9 +475,19 @@ namespace PeNet.Header.Pe
         NoBind = 0x800,
 
         /// <summary>
+        ///     Image must execute in an AppContainer.
+        /// </summary>
+        AppContainer = 0x1000,
+
+        /// <summary>
         ///     Image is a WDM driver.
         /// </summary>
         WdmDriver = 0x2000,
+
+        /// <summary>
+        ///     Image supports Control Flow Guard.
+        /// </summary>
+        GuardCF = 0x4000,
 
         /// <summary>
         ///     Terminal server aware.
