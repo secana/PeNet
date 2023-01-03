@@ -467,7 +467,7 @@ namespace PeNet.Header.Pe
         /// <summary>
         ///     Do not bind the image.
         /// </summary>
-        NoBind,
+        NoBind = 0x800,
 
         /// <summary>
         ///     Image is a WDM driver.
