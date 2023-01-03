@@ -208,7 +208,7 @@ namespace PeNet
         /// </summary>
         public bool IsDriver => ImportedFunctions != null &&
                                 ImageNtHeaders?.OptionalHeader.Subsystem == SubsystemType.Native &&
-                                ImportedFunctions.FirstOrDefault(i => i.DLL == "ntoskrnl.exe") != null;
+                                ImportedFunctions.Any(i => i.DLL == "ntoskrnl.exe");
 
         /// <summary>
         ///     Returns true if the PE file is signed. It
@@ -228,7 +228,7 @@ namespace PeNet
         /// <returns>True if cert chain is valid and from a trusted CA.</returns>
         public bool HasValidCertChain(bool useOnlineCrl)
             => Authenticode?.SigningCertificate != null
-               && HasValidCertChain(Authenticode.SigningCertificate, new TimeSpan(0, 0, 0, 10), useOnlineCrl);
+               && HasValidCertChain(Authenticode.SigningCertificate, TimeSpan.FromSeconds(10), useOnlineCrl);
 
         /// <summary>
         ///     Checks if cert is from a trusted CA with a valid certificate chain.
