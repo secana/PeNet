@@ -6058,6 +6058,12 @@ references:
   commentId: T:PeNet.Header.Pe.DllCharacteristicsType
   fullName: PeNet.Header.Pe.DllCharacteristicsType
   nameWithType: DllCharacteristicsType
+- uid: PeNet.Header.Pe.DllCharacteristicsType.AppContainer
+  name: AppContainer
+  href: api/PeNet.Header.Pe.DllCharacteristicsType.html#PeNet_Header_Pe_DllCharacteristicsType_AppContainer
+  commentId: F:PeNet.Header.Pe.DllCharacteristicsType.AppContainer
+  fullName: PeNet.Header.Pe.DllCharacteristicsType.AppContainer
+  nameWithType: DllCharacteristicsType.AppContainer
 - uid: PeNet.Header.Pe.DllCharacteristicsType.DynamicBase
   name: DynamicBase
   href: api/PeNet.Header.Pe.DllCharacteristicsType.html#PeNet_Header_Pe_DllCharacteristicsType_DynamicBase
@@ -6070,6 +6076,18 @@ references:
   commentId: F:PeNet.Header.Pe.DllCharacteristicsType.ForceIntegrity
   fullName: PeNet.Header.Pe.DllCharacteristicsType.ForceIntegrity
   nameWithType: DllCharacteristicsType.ForceIntegrity
+- uid: PeNet.Header.Pe.DllCharacteristicsType.GuardCF
+  name: GuardCF
+  href: api/PeNet.Header.Pe.DllCharacteristicsType.html#PeNet_Header_Pe_DllCharacteristicsType_GuardCF
+  commentId: F:PeNet.Header.Pe.DllCharacteristicsType.GuardCF
+  fullName: PeNet.Header.Pe.DllCharacteristicsType.GuardCF
+  nameWithType: DllCharacteristicsType.GuardCF
+- uid: PeNet.Header.Pe.DllCharacteristicsType.HighEntropyVA
+  name: HighEntropyVA
+  href: api/PeNet.Header.Pe.DllCharacteristicsType.html#PeNet_Header_Pe_DllCharacteristicsType_HighEntropyVA
+  commentId: F:PeNet.Header.Pe.DllCharacteristicsType.HighEntropyVA
+  fullName: PeNet.Header.Pe.DllCharacteristicsType.HighEntropyVA
+  nameWithType: DllCharacteristicsType.HighEntropyVA
 - uid: PeNet.Header.Pe.DllCharacteristicsType.NoBind
   name: NoBind
   href: api/PeNet.Header.Pe.DllCharacteristicsType.html#PeNet_Header_Pe_DllCharacteristicsType_NoBind
@@ -9651,6 +9669,18 @@ references:
   commentId: F:PeNet.Header.Pe.MachineType.LinuxDotnet64
   fullName: PeNet.Header.Pe.MachineType.LinuxDotnet64
   nameWithType: MachineType.LinuxDotnet64
+- uid: PeNet.Header.Pe.MachineType.LoongArch32
+  name: LoongArch32
+  href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_LoongArch32
+  commentId: F:PeNet.Header.Pe.MachineType.LoongArch32
+  fullName: PeNet.Header.Pe.MachineType.LoongArch32
+  nameWithType: MachineType.LoongArch32
+- uid: PeNet.Header.Pe.MachineType.LoongArch64
+  name: LoongArch64
+  href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_LoongArch64
+  commentId: F:PeNet.Header.Pe.MachineType.LoongArch64
+  fullName: PeNet.Header.Pe.MachineType.LoongArch64
+  nameWithType: MachineType.LoongArch64
 - uid: PeNet.Header.Pe.MachineType.M32R
   name: M32R
   href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_M32R
@@ -9741,6 +9771,24 @@ references:
   commentId: F:PeNet.Header.Pe.MachineType.R4000
   fullName: PeNet.Header.Pe.MachineType.R4000
   nameWithType: MachineType.R4000
+- uid: PeNet.Header.Pe.MachineType.RiscV128
+  name: RiscV128
+  href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_RiscV128
+  commentId: F:PeNet.Header.Pe.MachineType.RiscV128
+  fullName: PeNet.Header.Pe.MachineType.RiscV128
+  nameWithType: MachineType.RiscV128
+- uid: PeNet.Header.Pe.MachineType.RiscV32
+  name: RiscV32
+  href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_RiscV32
+  commentId: F:PeNet.Header.Pe.MachineType.RiscV32
+  fullName: PeNet.Header.Pe.MachineType.RiscV32
+  nameWithType: MachineType.RiscV32
+- uid: PeNet.Header.Pe.MachineType.RiscV64
+  name: RiscV64
+  href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_RiscV64
+  commentId: F:PeNet.Header.Pe.MachineType.RiscV64
+  fullName: PeNet.Header.Pe.MachineType.RiscV64
+  nameWithType: MachineType.RiscV64
 - uid: PeNet.Header.Pe.MachineType.Sh3
   name: Sh3
   href: api/PeNet.Header.Pe.MachineType.html#PeNet_Header_Pe_MachineType_Sh3
@@ -10307,6 +10355,12 @@ references:
   commentId: F:PeNet.Header.Pe.SubsystemType.Native
   fullName: PeNet.Header.Pe.SubsystemType.Native
   nameWithType: SubsystemType.Native
+- uid: PeNet.Header.Pe.SubsystemType.NativeWindows
+  name: NativeWindows
+  href: api/PeNet.Header.Pe.SubsystemType.html#PeNet_Header_Pe_SubsystemType_NativeWindows
+  commentId: F:PeNet.Header.Pe.SubsystemType.NativeWindows
+  fullName: PeNet.Header.Pe.SubsystemType.NativeWindows
+  nameWithType: SubsystemType.NativeWindows
 - uid: PeNet.Header.Pe.SubsystemType.Os2Cui
   name: Os2Cui
   href: api/PeNet.Header.Pe.SubsystemType.html#PeNet_Header_Pe_SubsystemType_Os2Cui
