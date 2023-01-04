@@ -42,7 +42,7 @@ namespace PeNet.Header.Resource
 
         
         private bool IsPng => AsRawSpan().Length >= 8 && AsRawSpan().Slice(0, 8).SequenceEqual(PNGHeader);
-        private bool IsTooShort => AsRawSpan().IsEmpty || AsRawSpan().Length < 32;
+        private bool IsTooShort => AsRawSpan().IsEmpty || AsRawSpan().Length <= 32;
 
         /// <summary>
         ///     Adding .ICO-Header to the bytes of the icon image.
