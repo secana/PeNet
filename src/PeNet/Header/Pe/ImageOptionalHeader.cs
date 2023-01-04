@@ -29,12 +29,11 @@ namespace PeNet.Header.Pe
 
             DataDirectory = new ImageDataDirectory[16];
 
+            var dataDirOffset = _is64Bit ? 0x70 : 0x60;
+
             for (uint i = 0; i < 16; i++)
             {
-                if (!_is64Bit)
-                    DataDirectory[i] = new ImageDataDirectory(peFile, offset + 0x60 + i*0x8);
-                else
-                    DataDirectory[i] = new ImageDataDirectory(peFile, offset + 0x70 + i*0x8);
+                DataDirectory[i] = new ImageDataDirectory(peFile, offset + dataDirOffset + i*0x8);
             }
         }
 
@@ -400,6 +399,7 @@ namespace PeNet.Header.Pe
                 SubsystemType.WindowsCui => "Windows CUI",
                 SubsystemType.Os2Cui => "OS/2 CUI",
                 SubsystemType.PosixCui => "POSIX CUI",
+                SubsystemType.NativeWindows => "Native Windows",
                 SubsystemType.WindowsCeGui => "Windows CE CUI",
                 SubsystemType.EfiApplication => "EFI application",
                 SubsystemType.EfiBootServiceDriver => "EFI boot service driver",
@@ -422,6 +422,7 @@ namespace PeNet.Header.Pe
         WindowsCui = 3,
         Os2Cui = 5,
         PosixCui = 7,
+        NativeWindows = 8,
         WindowsCeGui = 9,
         EfiApplication = 10,
         EfiBootServiceDriver = 11,
@@ -438,6 +439,11 @@ namespace PeNet.Header.Pe
     [Flags]
     public enum DllCharacteristicsType : ushort
     {
+        /// <summary>
+        ///     Image can handle a high entropy 64-bit virtual address space.
+        /// </summary>
+        HighEntropyVA = 0x20,
+
         /// <summary>
         ///     DLL can be relocated at load time.
         /// </summary>
@@ -466,12 +472,22 @@ namespace PeNet.Header.Pe
         /// <summary>
         ///     Do not bind the image.
         /// </summary>
-        NoBind,
+        NoBind = 0x800,
+
+        /// <summary>
+        ///     Image must execute in an AppContainer.
+        /// </summary>
+        AppContainer = 0x1000,
 
         /// <summary>
         ///     Image is a WDM driver.
         /// </summary>
         WdmDriver = 0x2000,
+
+        /// <summary>
+        ///     Image supports Control Flow Guard.
+        /// </summary>
+        GuardCF = 0x4000,
 
         /// <summary>
         ///     Terminal server aware.

@@ -438,6 +438,31 @@ namespace PeNet.Header.Pe
         ///     a WOW64 guest
         /// </summary>
         TargetHost = 0x0001,
+        
+        /// <summary>
+        ///     RISC-V 32-bit address space
+        /// </summary>
+        RiscV32 = 0x5032,
+        
+        /// <summary>
+        ///     RISC-V 64-bit address space
+        /// </summary>
+        RiscV64 = 0x5064,
+        
+        /// <summary>
+        ///     RISC-V 128-bit address space
+        /// </summary>
+        RiscV128 = 0x5128,
+
+        /// <summary>
+        ///     LoongArch 32-bit processor family
+        /// </summary>
+        LoongArch32 = 0x6232,
+
+        /// <summary>
+        ///     LoongArch 64-bit processor family
+        /// </summary>
+        LoongArch64 = 0x6264,
 
         /// <summary>
         /// Defined by .NET
