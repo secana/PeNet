@@ -25,12 +25,12 @@ namespace PeNet.Header.Pe
         /// <summary>
         ///     Version
         /// </summary>
-        public byte Version => (byte) (PeFile.ReadByte(Offset) >> 5);
+        public byte Version => (byte) (PeFile.ReadByte(Offset) & 0x1F);
 
         /// <summary>
         ///     Flags
         /// </summary>
-        public byte Flags => (byte) (PeFile.ReadByte(Offset) & 0x1F);
+        public byte Flags => (byte) (PeFile.ReadByte(Offset) >> 5);
 
         /// <summary>
         ///     Size of prolog.

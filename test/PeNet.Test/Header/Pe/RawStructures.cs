@@ -516,7 +516,7 @@
         {
             0xff, // Junk
             0xff,
-            0x32, // Version/Flags 3:5
+            0x32, // Flags/Version 3:5
 
             0x33, // SizeOfProlog
 
