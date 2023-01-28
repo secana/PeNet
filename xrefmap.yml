@@ -12226,19 +12226,19 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.AddSection
   nameWithType: PeFile.AddSection
-- uid: PeNet.PeFile.Authenticode
-  name: Authenticode
-  href: api/PeNet.PeFile.html#PeNet_PeFile_Authenticode
-  commentId: P:PeNet.PeFile.Authenticode
-  fullName: PeNet.PeFile.Authenticode
-  nameWithType: PeFile.Authenticode
-- uid: PeNet.PeFile.Authenticode*
-  name: Authenticode
-  href: api/PeNet.PeFile.html#PeNet_PeFile_Authenticode_
-  commentId: Overload:PeNet.PeFile.Authenticode
+- uid: PeNet.PeFile.AuthenticodeInfo
+  name: AuthenticodeInfo
+  href: api/PeNet.PeFile.html#PeNet_PeFile_AuthenticodeInfo
+  commentId: P:PeNet.PeFile.AuthenticodeInfo
+  fullName: PeNet.PeFile.AuthenticodeInfo
+  nameWithType: PeFile.AuthenticodeInfo
+- uid: PeNet.PeFile.AuthenticodeInfo*
+  name: AuthenticodeInfo
+  href: api/PeNet.PeFile.html#PeNet_PeFile_AuthenticodeInfo_
+  commentId: Overload:PeNet.PeFile.AuthenticodeInfo
   isSpec: "True"
-  fullName: PeNet.PeFile.Authenticode
-  nameWithType: PeFile.Authenticode
+  fullName: PeNet.PeFile.AuthenticodeInfo
+  nameWithType: PeFile.AuthenticodeInfo
 - uid: PeNet.PeFile.ClrComTypeLibId
   name: ClrComTypeLibId
   href: api/PeNet.PeFile.html#PeNet_PeFile_ClrComTypeLibId
@@ -12330,41 +12330,41 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.GroupIcons
   nameWithType: PeFile.GroupIcons
-- uid: PeNet.PeFile.HasValidCertChain(System.Boolean)
-  name: HasValidCertChain(Boolean)
-  href: api/PeNet.PeFile.html#PeNet_PeFile_HasValidCertChain_System_Boolean_
-  commentId: M:PeNet.PeFile.HasValidCertChain(System.Boolean)
-  fullName: PeNet.PeFile.HasValidCertChain(System.Boolean)
-  nameWithType: PeFile.HasValidCertChain(Boolean)
-- uid: PeNet.PeFile.HasValidCertChain(System.Nullable{X509Certificate2},TimeSpan,System.Boolean,System.Boolean)
-  name: HasValidCertChain(Nullable<X509Certificate2>, TimeSpan, Boolean, Boolean)
-  href: api/PeNet.PeFile.html#PeNet_PeFile_HasValidCertChain_System_Nullable_X509Certificate2__TimeSpan_System_Boolean_System_Boolean_
-  commentId: M:PeNet.PeFile.HasValidCertChain(System.Nullable{X509Certificate2},TimeSpan,System.Boolean,System.Boolean)
-  name.vb: HasValidCertChain(Nullable(Of X509Certificate2), TimeSpan, Boolean, Boolean)
-  fullName: PeNet.PeFile.HasValidCertChain(System.Nullable<X509Certificate2>, TimeSpan, System.Boolean, System.Boolean)
-  fullName.vb: PeNet.PeFile.HasValidCertChain(System.Nullable(Of X509Certificate2), TimeSpan, System.Boolean, System.Boolean)
-  nameWithType: PeFile.HasValidCertChain(Nullable<X509Certificate2>, TimeSpan, Boolean, Boolean)
-  nameWithType.vb: PeFile.HasValidCertChain(Nullable(Of X509Certificate2), TimeSpan, Boolean, Boolean)
-- uid: PeNet.PeFile.HasValidCertChain*
-  name: HasValidCertChain
-  href: api/PeNet.PeFile.html#PeNet_PeFile_HasValidCertChain_
-  commentId: Overload:PeNet.PeFile.HasValidCertChain
+- uid: PeNet.PeFile.HasValidAuthenticodeCertChain(System.Boolean)
+  name: HasValidAuthenticodeCertChain(Boolean)
+  href: api/PeNet.PeFile.html#PeNet_PeFile_HasValidAuthenticodeCertChain_System_Boolean_
+  commentId: M:PeNet.PeFile.HasValidAuthenticodeCertChain(System.Boolean)
+  fullName: PeNet.PeFile.HasValidAuthenticodeCertChain(System.Boolean)
+  nameWithType: PeFile.HasValidAuthenticodeCertChain(Boolean)
+- uid: PeNet.PeFile.HasValidAuthenticodeCertChain(System.Nullable{X509Certificate2},TimeSpan,System.Boolean,System.Boolean)
+  name: HasValidAuthenticodeCertChain(Nullable<X509Certificate2>, TimeSpan, Boolean, Boolean)
+  href: api/PeNet.PeFile.html#PeNet_PeFile_HasValidAuthenticodeCertChain_System_Nullable_X509Certificate2__TimeSpan_System_Boolean_System_Boolean_
+  commentId: M:PeNet.PeFile.HasValidAuthenticodeCertChain(System.Nullable{X509Certificate2},TimeSpan,System.Boolean,System.Boolean)
+  name.vb: HasValidAuthenticodeCertChain(Nullable(Of X509Certificate2), TimeSpan, Boolean, Boolean)
+  fullName: PeNet.PeFile.HasValidAuthenticodeCertChain(System.Nullable<X509Certificate2>, TimeSpan, System.Boolean, System.Boolean)
+  fullName.vb: PeNet.PeFile.HasValidAuthenticodeCertChain(System.Nullable(Of X509Certificate2), TimeSpan, System.Boolean, System.Boolean)
+  nameWithType: PeFile.HasValidAuthenticodeCertChain(Nullable<X509Certificate2>, TimeSpan, Boolean, Boolean)
+  nameWithType.vb: PeFile.HasValidAuthenticodeCertChain(Nullable(Of X509Certificate2), TimeSpan, Boolean, Boolean)
+- uid: PeNet.PeFile.HasValidAuthenticodeCertChain*
+  name: HasValidAuthenticodeCertChain
+  href: api/PeNet.PeFile.html#PeNet_PeFile_HasValidAuthenticodeCertChain_
+  commentId: Overload:PeNet.PeFile.HasValidAuthenticodeCertChain
   isSpec: "True"
-  fullName: PeNet.PeFile.HasValidCertChain
-  nameWithType: PeFile.HasValidCertChain
-- uid: PeNet.PeFile.HasValidSignature
-  name: HasValidSignature
-  href: api/PeNet.PeFile.html#PeNet_PeFile_HasValidSignature
-  commentId: P:PeNet.PeFile.HasValidSignature
-  fullName: PeNet.PeFile.HasValidSignature
-  nameWithType: PeFile.HasValidSignature
-- uid: PeNet.PeFile.HasValidSignature*
-  name: HasValidSignature
-  href: api/PeNet.PeFile.html#PeNet_PeFile_HasValidSignature_
-  commentId: Overload:PeNet.PeFile.HasValidSignature
+  fullName: PeNet.PeFile.HasValidAuthenticodeCertChain
+  nameWithType: PeFile.HasValidAuthenticodeCertChain
+- uid: PeNet.PeFile.HasValidAuthenticodeSignature
+  name: HasValidAuthenticodeSignature
+  href: api/PeNet.PeFile.html#PeNet_PeFile_HasValidAuthenticodeSignature
+  commentId: P:PeNet.PeFile.HasValidAuthenticodeSignature
+  fullName: PeNet.PeFile.HasValidAuthenticodeSignature
+  nameWithType: PeFile.HasValidAuthenticodeSignature
+- uid: PeNet.PeFile.HasValidAuthenticodeSignature*
+  name: HasValidAuthenticodeSignature
+  href: api/PeNet.PeFile.html#PeNet_PeFile_HasValidAuthenticodeSignature_
+  commentId: Overload:PeNet.PeFile.HasValidAuthenticodeSignature
   isSpec: "True"
-  fullName: PeNet.PeFile.HasValidSignature
-  nameWithType: PeFile.HasValidSignature
+  fullName: PeNet.PeFile.HasValidAuthenticodeSignature
+  nameWithType: PeFile.HasValidAuthenticodeSignature
 - uid: PeNet.PeFile.Icons
   name: Icons()
   href: api/PeNet.PeFile.html#PeNet_PeFile_Icons
@@ -12599,6 +12599,19 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.Is64Bit
   nameWithType: PeFile.Is64Bit
+- uid: PeNet.PeFile.IsAuthenticodeSigned
+  name: IsAuthenticodeSigned
+  href: api/PeNet.PeFile.html#PeNet_PeFile_IsAuthenticodeSigned
+  commentId: P:PeNet.PeFile.IsAuthenticodeSigned
+  fullName: PeNet.PeFile.IsAuthenticodeSigned
+  nameWithType: PeFile.IsAuthenticodeSigned
+- uid: PeNet.PeFile.IsAuthenticodeSigned*
+  name: IsAuthenticodeSigned
+  href: api/PeNet.PeFile.html#PeNet_PeFile_IsAuthenticodeSigned_
+  commentId: Overload:PeNet.PeFile.IsAuthenticodeSigned
+  isSpec: "True"
+  fullName: PeNet.PeFile.IsAuthenticodeSigned
+  nameWithType: PeFile.IsAuthenticodeSigned
 - uid: PeNet.PeFile.IsDll
   name: IsDll
   href: api/PeNet.PeFile.html#PeNet_PeFile_IsDll
@@ -12685,19 +12698,19 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.IsPeFile
   nameWithType: PeFile.IsPeFile
-- uid: PeNet.PeFile.IsSigned
-  name: IsSigned
-  href: api/PeNet.PeFile.html#PeNet_PeFile_IsSigned
-  commentId: P:PeNet.PeFile.IsSigned
-  fullName: PeNet.PeFile.IsSigned
-  nameWithType: PeFile.IsSigned
-- uid: PeNet.PeFile.IsSigned*
-  name: IsSigned
-  href: api/PeNet.PeFile.html#PeNet_PeFile_IsSigned_
-  commentId: Overload:PeNet.PeFile.IsSigned
+- uid: PeNet.PeFile.IsTrustedAuthenticodeSignature
+  name: IsTrustedAuthenticodeSignature
+  href: api/PeNet.PeFile.html#PeNet_PeFile_IsTrustedAuthenticodeSignature
+  commentId: P:PeNet.PeFile.IsTrustedAuthenticodeSignature
+  fullName: PeNet.PeFile.IsTrustedAuthenticodeSignature
+  nameWithType: PeFile.IsTrustedAuthenticodeSignature
+- uid: PeNet.PeFile.IsTrustedAuthenticodeSignature*
+  name: IsTrustedAuthenticodeSignature
+  href: api/PeNet.PeFile.html#PeNet_PeFile_IsTrustedAuthenticodeSignature_
+  commentId: Overload:PeNet.PeFile.IsTrustedAuthenticodeSignature
   isSpec: "True"
-  fullName: PeNet.PeFile.IsSigned
-  nameWithType: PeFile.IsSigned
+  fullName: PeNet.PeFile.IsTrustedAuthenticodeSignature
+  nameWithType: PeFile.IsTrustedAuthenticodeSignature
 - uid: PeNet.PeFile.Md5
   name: Md5
   href: api/PeNet.PeFile.html#PeNet_PeFile_Md5
@@ -12789,19 +12802,6 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.MetaDataStreamUs
   nameWithType: PeFile.MetaDataStreamUs
-- uid: PeNet.PeFile.Pkcs7
-  name: Pkcs7
-  href: api/PeNet.PeFile.html#PeNet_PeFile_Pkcs7
-  commentId: P:PeNet.PeFile.Pkcs7
-  fullName: PeNet.PeFile.Pkcs7
-  nameWithType: PeFile.Pkcs7
-- uid: PeNet.PeFile.Pkcs7*
-  name: Pkcs7
-  href: api/PeNet.PeFile.html#PeNet_PeFile_Pkcs7_
-  commentId: Overload:PeNet.PeFile.Pkcs7
-  isSpec: "True"
-  fullName: PeNet.PeFile.Pkcs7
-  nameWithType: PeFile.Pkcs7
 - uid: PeNet.PeFile.RawFile
   name: RawFile
   href: api/PeNet.PeFile.html#PeNet_PeFile_RawFile
@@ -12867,6 +12867,19 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.Sha256
   nameWithType: PeFile.Sha256
+- uid: PeNet.PeFile.SigningAuthenticodeCertificate
+  name: SigningAuthenticodeCertificate
+  href: api/PeNet.PeFile.html#PeNet_PeFile_SigningAuthenticodeCertificate
+  commentId: P:PeNet.PeFile.SigningAuthenticodeCertificate
+  fullName: PeNet.PeFile.SigningAuthenticodeCertificate
+  nameWithType: PeFile.SigningAuthenticodeCertificate
+- uid: PeNet.PeFile.SigningAuthenticodeCertificate*
+  name: SigningAuthenticodeCertificate
+  href: api/PeNet.PeFile.html#PeNet_PeFile_SigningAuthenticodeCertificate_
+  commentId: Overload:PeNet.PeFile.SigningAuthenticodeCertificate
+  isSpec: "True"
+  fullName: PeNet.PeFile.SigningAuthenticodeCertificate
+  nameWithType: PeFile.SigningAuthenticodeCertificate
 - uid: PeNet.PeFile.TryParse(PeNet.FileParser.MMFile,PeNet.PeFile@)
   name: TryParse(MMFile, out PeFile)
   href: api/PeNet.PeFile.html#PeNet_PeFile_TryParse_PeNet_FileParser_MMFile_PeNet_PeFile__
