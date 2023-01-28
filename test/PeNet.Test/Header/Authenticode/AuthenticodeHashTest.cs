@@ -36,7 +36,7 @@ namespace PeNet.Test.Header.Authenticode
         {
             var peFile = new PeFile(file);
             var hash = System.Security.Cryptography.SHA1.Create();
-            var bytes = peFile.Authenticode.ComputeAuthenticodeHashFromPeFile(hash);
+            var bytes = peFile.AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile(hash);
             var digest = bytes.ToList().ToHexString().Substring(2);
             
             Assert.Equal(expected, digest);

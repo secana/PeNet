@@ -214,21 +214,30 @@ namespace PeNet
         ///     Returns true if the PE file is signed. It
         ///     does not check if the signature is valid!
         /// </summary>
-        public bool IsSigned => Pkcs7 != null;
+        public bool IsAuthenticodeSigned => SigningAuthenticodeCertificate != null;
 
         /// <summary>
-        ///     Returns true if the PE file signature is valid signed.
+        ///     Returns true if the PE file signature is valid.
+        ///     It does not check if the signature is trusted based on the installed
+        ///     certificates on the system.
         /// </summary>
-        public bool HasValidSignature => Authenticode?.IsAuthenticodeValid ?? false;
+        public bool HasValidAuthenticodeSignature => AuthenticodeInfo?.IsAuthenticodeValid ?? false;
+
+
+        /// <summary>
+        ///     Returns true of the PE file signature is trusted based on the installed
+        ///     certificates on the system.
+        /// </summary>
+        public bool IsTrustedAuthenticodeSignature => AuthenticodeInfo?.SigningCertificate?.Verify() ?? false;
 
         /// <summary>
         ///     Checks if cert is from a trusted CA with a valid certificate chain.
         /// </summary>
         /// <param name="useOnlineCrl">Check certificate chain online or offline.</param>
         /// <returns>True if cert chain is valid and from a trusted CA.</returns>
-        public bool HasValidCertChain(bool useOnlineCrl)
-            => Authenticode?.SigningCertificate != null
-               && HasValidCertChain(Authenticode.SigningCertificate, TimeSpan.FromSeconds(10), useOnlineCrl);
+        public bool HasValidAuthenticodeCertChain(bool useOnlineCrl)
+            => AuthenticodeInfo?.SigningCertificate != null
+               && HasValidAuthenticodeCertChain(AuthenticodeInfo.SigningCertificate, TimeSpan.FromSeconds(10), useOnlineCrl);
 
         /// <summary>
         ///     Checks if cert is from a trusted CA with a valid certificate chain.
@@ -238,7 +247,7 @@ namespace PeNet
         /// <param name="useOnlineCRL">If true, uses online certificate revocation lists, else on the local CRL.</param>
         /// <param name="excludeRoot">True if the root certificate should not be validated. False if the whole chain should be validated.</param>
         /// <returns>True if cert chain is valid and from a trusted CA.</returns>
-        public static bool HasValidCertChain(X509Certificate2? cert, TimeSpan urlRetrievalTimeout,
+        public static bool HasValidAuthenticodeCertChain(X509Certificate2? cert, TimeSpan urlRetrievalTimeout,
             bool useOnlineCRL = true, bool excludeRoot = true)
         {
             if (cert == null)
@@ -260,7 +269,7 @@ namespace PeNet
         /// <summary>
         /// Information about a possible Authenticode binary signature.
         /// </summary>
-        public AuthenticodeInfo? Authenticode => _authenticodeParser.ParseTarget();
+        public AuthenticodeInfo? AuthenticodeInfo => _authenticodeParser.ParseTarget();
 
         /// <summary>
         ///     Returns true if the PE file is x64.
@@ -367,9 +376,9 @@ namespace PeNet
         public ImageCor20Header? ImageComDescriptor => _dataDirectoryParsers?.ImageComDescriptor;
 
         /// <summary>
-        ///     Signing X509 certificate if the binary was signed with
+        ///     Signing X509 Authenticode certificate the binary was signed with
         /// </summary>
-        public X509Certificate2? Pkcs7 => Authenticode?.SigningCertificate;
+        public X509Certificate2? SigningAuthenticodeCertificate => AuthenticodeInfo?.SigningCertificate;
 
         /// <summary>
         ///     Access the MetaDataHdr from the COM/CLI header.
@@ -463,12 +472,12 @@ namespace PeNet
         /// <returns>Certificate Revocation List information or null if binary is not signed.</returns>
         public CrlUrlList? GetCrlUrlList()
         {
-            if (Pkcs7 == null)
+            if (SigningAuthenticodeCertificate == null)
                 return null;
 
             try
             {
-                return new CrlUrlList(Pkcs7);
+                return new CrlUrlList(SigningAuthenticodeCertificate);
             }
             catch (Exception)
             {

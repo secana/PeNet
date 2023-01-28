@@ -26,7 +26,7 @@ namespace PeNet.Header.Authenticode
         public AuthenticodeInfo(PeFile peFile)
         {
             _peFile = peFile;
-
+            
             _contentInfo = _peFile.WinCertificate == null
                 ? null : new ContentInfo(_peFile.WinCertificate.BCertificate);
 

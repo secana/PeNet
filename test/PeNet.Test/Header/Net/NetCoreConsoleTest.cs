@@ -20,7 +20,7 @@ namespace PeNet.Test.Header.Net
         [Fact]
         public void IsSignatureValid()
         {
-            Assert.False(_peFile.HasValidSignature);
+            Assert.False(_peFile.HasValidAuthenticodeSignature);
         }
 
         [Fact]

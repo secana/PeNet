@@ -226,7 +226,7 @@ namespace PeNet.Test
             Skip.IfNot(RuntimeInformation.IsOSPlatform(OSPlatform.Windows));
 
             var peFile = new PeFile(file);
-            Assert.Equal(expected, peFile.IsSigned);
+            Assert.Equal(expected, peFile.IsAuthenticodeSigned);
         }
 
         [SkippableTheory]
@@ -237,7 +237,7 @@ namespace PeNet.Test
             Skip.IfNot(RuntimeInformation.IsOSPlatform(OSPlatform.Windows));
 
             var peFile = new PeFile(file);
-            Assert.Equal(expected, peFile.HasValidCertChain(online));
+            Assert.Equal(expected, peFile.HasValidAuthenticodeCertChain(online));
         }
 
         [Theory]
