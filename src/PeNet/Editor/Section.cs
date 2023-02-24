@@ -12,7 +12,7 @@ namespace PeNet
         /// <param name="name">Name of the section to add. At max. 8 characters.</param>
         /// <param name="unalignedSize">Size in bytes of the new section.</param>
         /// <param name="characteristics">Section characteristics.</param>
-        public void AddSection(string name, int unalignedSize, ScnCharacteristicsType characteristics)
+        public void AddSection(string name, byte[] unalignedSize, ScnCharacteristicsType characteristics)
         {
             if (ImageNtHeaders is null)
                 throw new Exception("IMAGE_NT_HEADERS must not be null.");
@@ -21,7 +21,7 @@ namespace PeNet
 
             uint GetNewSizeOfImage()
             {
-                var factor = unalignedSize / (double)ImageNtHeaders.OptionalHeader.SectionAlignment;
+                var factor = unalignedSize.Length / (double)ImageNtHeaders.OptionalHeader.SectionAlignment;
                 var additionalSize = (uint)Math.Ceiling(factor) * ImageNtHeaders!.OptionalHeader.SectionAlignment;
                 return ImageNtHeaders.OptionalHeader.SizeOfImage + additionalSize;
             }
@@ -36,16 +36,16 @@ namespace PeNet
 
             uint GetNewSecVa()
             {
-                var lastSec      = ImageSectionHeaders!.OrderByDescending(sh => sh.VirtualAddress).First();
+                var lastSec = ImageSectionHeaders!.OrderByDescending(sh => sh.VirtualAddress).First();
                 var vaLastSecEnd = lastSec.VirtualAddress + lastSec.VirtualSize;
-                var factor       = vaLastSecEnd / (double)ImageNtHeaders.OptionalHeader.SectionAlignment;
+                var factor = vaLastSecEnd / (double)ImageNtHeaders.OptionalHeader.SectionAlignment;
                 return (uint)(Math.Ceiling(factor) * ImageNtHeaders.OptionalHeader.SectionAlignment);
             }
 
             uint GetNewRawSecSize()
             {
-                var factor = unalignedSize / (double)ImageNtHeaders!.OptionalHeader.FileAlignment;
-                return (uint) (Math.Ceiling(factor) * ImageNtHeaders!.OptionalHeader.FileAlignment);
+                var factor = unalignedSize.Length / (double)ImageNtHeaders!.OptionalHeader.FileAlignment;
+                return (uint)(Math.Ceiling(factor) * ImageNtHeaders!.OptionalHeader.FileAlignment);
             }
 
             // New raw section size, aligned to FileAlignment
@@ -53,22 +53,24 @@ namespace PeNet
 
 
             // Append new section to end of file
-            RawFile.AppendBytes(new byte[newRawSectionSize]);
+            RawFile.AppendBytes(unalignedSize);
+            // IMAGE_SECTION_HEADER SizeOfRawData必须是 OptionalHeader  FileAlighment整数倍
+            RawFile.AppendBytes(new byte[newRawSectionSize - unalignedSize.Length]);
             var paNewSec = ImageSectionHeaders!.Last().PointerToRawData + ImageSectionHeaders!.Last().SizeOfRawData;
 
             // Add new entry in section table
             var newSection = new ImageSectionHeader(RawFile, GetNewSecHeaderOffset(), ImageNtHeaders.OptionalHeader.ImageBase)
             {
-                Name                 = name,
-                VirtualSize          = (uint)newRawSectionSize,
-                VirtualAddress       = GetNewSecVa(),
-                SizeOfRawData        = newRawSectionSize,
-                PointerToRawData     = paNewSec,
+                Name = name,
+                VirtualSize = (uint)newRawSectionSize,
+                VirtualAddress = GetNewSecVa(),
+                SizeOfRawData = newRawSectionSize,
+                PointerToRawData = paNewSec,
                 PointerToRelocations = 0,
                 PointerToLinenumbers = 0,
-                NumberOfRelocations  = 0,
-                NumberOfLinenumbers  = 0,
-                Characteristics      = characteristics
+                NumberOfRelocations = 0,
+                NumberOfLinenumbers = 0,
+                Characteristics = characteristics
             };
 
             // Increase number of sections
@@ -79,6 +81,12 @@ namespace PeNet
 
             // Reparse section headers
             _nativeStructureParsers.ReparseSectionHeaders();
+        }
+
+
+        public void AddSection(string name, int unalignedSize, ScnCharacteristicsType characteristics)
+        {
+            AddSection(name, new byte[unalignedSize], characteristics);
         }
 
         /// <summary>
