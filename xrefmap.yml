@@ -12213,6 +12213,15 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.AddImports
   nameWithType: PeFile.AddImports
+- uid: PeNet.PeFile.AddSection(System.String,System.Byte[],PeNet.Header.Pe.ScnCharacteristicsType)
+  name: AddSection(String, Byte[], ScnCharacteristicsType)
+  href: api/PeNet.PeFile.html#PeNet_PeFile_AddSection_System_String_System_Byte___PeNet_Header_Pe_ScnCharacteristicsType_
+  commentId: M:PeNet.PeFile.AddSection(System.String,System.Byte[],PeNet.Header.Pe.ScnCharacteristicsType)
+  name.vb: AddSection(String, Byte(), ScnCharacteristicsType)
+  fullName: PeNet.PeFile.AddSection(System.String, System.Byte[], PeNet.Header.Pe.ScnCharacteristicsType)
+  fullName.vb: PeNet.PeFile.AddSection(System.String, System.Byte(), PeNet.Header.Pe.ScnCharacteristicsType)
+  nameWithType: PeFile.AddSection(String, Byte[], ScnCharacteristicsType)
+  nameWithType.vb: PeFile.AddSection(String, Byte(), ScnCharacteristicsType)
 - uid: PeNet.PeFile.AddSection(System.String,System.Int32,PeNet.Header.Pe.ScnCharacteristicsType)
   name: AddSection(String, Int32, ScnCharacteristicsType)
   href: api/PeNet.PeFile.html#PeNet_PeFile_AddSection_System_String_System_Int32_PeNet_Header_Pe_ScnCharacteristicsType_
