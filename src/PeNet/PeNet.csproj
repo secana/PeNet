@@ -10,6 +10,14 @@
     <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
   </PropertyGroup>
 
+  <PropertyGroup Condition="!$(TargetFramework.StartsWith(net4)) and !$(TargetFramework.StartsWith(netstandard))">
+    <!-- These 4 properties can be replaced with the umbrella property IsAotCompatible=true in .NET SDK 8. -->
+    <EnableAotAnalyzer>true</EnableAotAnalyzer>
+    <EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+    <IsTrimmable>true</IsTrimmable>
+  </PropertyGroup>
+
   <PropertyGroup>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
