@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using PeNet.FileParser;
 using PeNet.Header.Net.MetaDataTables;
@@ -374,7 +375,8 @@ namespace PeNet.Header.Net
             return tables;
         }
 
-        private List<T> ParseTable<T>(MetadataToken token)
+        private List<T> ParseTable<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(
+            MetadataToken token)
             where T : AbstractTable
         {
             var heapSizes = new HeapSizes(HeapSizes);
@@ -425,7 +427,12 @@ namespace PeNet.Header.Net
         public static List<string> ResolveMaskValid(MaskValidType maskValid)
         {
             var st = new List<string>();
-            foreach (var flag in (MaskValidType[])Enum.GetValues(typeof(MaskValidType)))
+#if NET5_0_OR_GREATER
+            var values = Enum.GetValues<MaskValidType>();
+#else
+            var values = (MaskValidType[])Enum.GetValues(typeof(MaskValidType));
+#endif
+            foreach (var flag in values)
             {
                 if ((maskValid & flag) == flag)
                 {
