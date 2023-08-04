@@ -32,40 +32,5 @@ namespace PeNet.Header
             PeFile = peFile;
             Offset = offset;
         }
-
-        /// <summary>
-        /// Create a printable string representation of the object.
-        /// </summary>
-        /// <returns>String containing all property-value pairs.</returns>
-        public override string ToString()
-        {
-            var obj = this;
-            var properties = obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            var sb = new StringBuilder();
-            sb.Append($"{obj.GetType().Name}\n");
-
-            foreach (var p in properties)
-            {
-                if (p.PropertyType.IsArray)
-                {
-                    if(p.GetValue(obj, null) == null)
-                        continue;
-
-                    foreach (var entry in (p.GetValue(obj, null) as IEnumerable)!)
-                    {
-                        if (entry.GetType().IsSubclassOf(typeof(AbstractStructure)) == false)
-                            continue;
-
-                        sb.Append(entry);
-                    }
-                }
-                else
-                {
-                    sb.AppendFormat("{0}: {1}\n", p.Name, p.GetValue(obj, null));
-                }
-            }
-
-            return sb.ToString();
-        }
     }
 }
