@@ -1457,19 +1457,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Header.AbstractStructure.AbstractStructure
   nameWithType: AbstractStructure.AbstractStructure
-- uid: PeNet.Header.AbstractStructure.ToString
-  name: ToString()
-  href: api/PeNet.Header.AbstractStructure.html#PeNet_Header_AbstractStructure_ToString
-  commentId: M:PeNet.Header.AbstractStructure.ToString
-  fullName: PeNet.Header.AbstractStructure.ToString()
-  nameWithType: AbstractStructure.ToString()
-- uid: PeNet.Header.AbstractStructure.ToString*
-  name: ToString
-  href: api/PeNet.Header.AbstractStructure.html#PeNet_Header_AbstractStructure_ToString_
-  commentId: Overload:PeNet.Header.AbstractStructure.ToString
-  isSpec: "True"
-  fullName: PeNet.Header.AbstractStructure.ToString
-  nameWithType: AbstractStructure.ToString
 - uid: PeNet.Header.Authenticode
   name: PeNet.Header.Authenticode
   href: api/PeNet.Header.Authenticode.html
