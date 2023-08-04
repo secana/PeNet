@@ -106,7 +106,12 @@ namespace PeNet.Header.Pe
         public static List<string> ResolveFileCharacteristics(FileCharacteristicsType characteristics)
         {
             var st = new List<string>();
-            foreach (var flag in (FileCharacteristicsType[])Enum.GetValues(typeof(FileCharacteristicsType)))
+#if NET5_0_OR_GREATER
+            var values = Enum.GetValues<FileCharacteristicsType>();
+#else
+            var values = (FileCharacteristicsType[])Enum.GetValues(typeof(FileCharacteristicsType));
+#endif
+            foreach (var flag in values)
             {
                 if ((characteristics & flag) == flag)
                 {

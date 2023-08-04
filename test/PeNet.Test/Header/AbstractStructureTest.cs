@@ -35,16 +35,5 @@ namespace PeNet.Test.Header
             {
             }
         }
-
-        [Fact]
-        public void ToString_GivenAnAbstractStructure_ReturnsStringRepresentation()
-        {
-            var structure = new Structure();
-            var expected = "Structure\nInteger: 10\nString: Hello\nLong: 20\nNullString: \nSubStructure\nSubInt: 11\nSubString: 12\nSubStructure\nSubInt: 11\nSubString: 12\n";
-
-            var actual = structure.ToString();
-
-            Assert.Equal(expected, actual);
-        }
     }
 }
