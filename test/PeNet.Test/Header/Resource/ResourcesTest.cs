@@ -165,6 +165,16 @@ namespace PeNet.Test.Header.Resource
             Assert.Equal("firefox.exe", vsVersionInfo.StringFileInfo.StringTable[0].OriginalFilename);
             Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].SzKey);
         }
+        
+        [Fact]
+        public void Resources_GivenPeFileWithTwoVersionInfos_VsVersionInfoSetToFirstOne()
+        {
+            var peFile = new PeFile("./Binaries/pidgin_with_additional_firefox_version_entry.exe");
+            var vsVersionInfo = peFile.Resources.VsVersionInfo;
+            
+            Assert.Equal("pidgin.exe", vsVersionInfo.StringFileInfo.StringTable[0].OriginalFilename);
+            Assert.Equal("Translation", vsVersionInfo.VarFileInfo.Children[0].SzKey);
+        }
 
         [Theory]
         [InlineData(@"Binaries/firefox_x64.exe", 18)]
