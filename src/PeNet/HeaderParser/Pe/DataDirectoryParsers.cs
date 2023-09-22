@@ -91,12 +91,12 @@ namespace PeNet.HeaderParser.Pe
         {
             try
             {
-                var vsVersionInfoOffsets = LocateResource(ResourceGroupIdType.Version);
+                var vsVersionInfoOffsets = LocateResource(ResourceGroupIdType.Version).FirstOrDefault();
                 var iconDirectoryOffsets = LocateResource(ResourceGroupIdType.Icon);
                 var groupIconDirectoryOffsets = LocateResource(ResourceGroupIdType.GroupIcon);
 
-                return vsVersionInfoOffsets.Length == 1
-                    ? new ResourcesParser(_peFile, 0, vsVersionInfoOffsets[0], iconDirectoryOffsets, groupIconDirectoryOffsets)
+                return vsVersionInfoOffsets is not null
+                    ? new ResourcesParser(_peFile, 0, vsVersionInfoOffsets, iconDirectoryOffsets, groupIconDirectoryOffsets)
                     : null;
             }
             catch
