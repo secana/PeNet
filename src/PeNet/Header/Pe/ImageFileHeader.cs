@@ -173,6 +173,9 @@ namespace PeNet.Header.Pe
                 MachineType.NetBSDDotnet32 => "NetBSD .NET x86",
                 MachineType.SunDotnet64 => "Sun .NET x64",
                 MachineType.SunDotnet32 => "Sun .NET x86",
+                MachineType.RiscV32 => "RISC-V 32-bit address space",
+                MachineType.RiscV64 => "RISC-V 64-bit address space",
+                MachineType.RiscV128 => "RISC-V 128-bit address space",
 
                 _ => "unknown"
             };
