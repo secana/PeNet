@@ -9884,12 +9884,12 @@ references:
   commentId: F:PeNet.Header.Pe.ResourceGroupIdType.Accelerator
   fullName: PeNet.Header.Pe.ResourceGroupIdType.Accelerator
   nameWithType: ResourceGroupIdType.Accelerator
-- uid: PeNet.Header.Pe.ResourceGroupIdType.AnimatedCurser
-  name: AnimatedCurser
-  href: api/PeNet.Header.Pe.ResourceGroupIdType.html#PeNet_Header_Pe_ResourceGroupIdType_AnimatedCurser
-  commentId: F:PeNet.Header.Pe.ResourceGroupIdType.AnimatedCurser
-  fullName: PeNet.Header.Pe.ResourceGroupIdType.AnimatedCurser
-  nameWithType: ResourceGroupIdType.AnimatedCurser
+- uid: PeNet.Header.Pe.ResourceGroupIdType.AnimatedCursor
+  name: AnimatedCursor
+  href: api/PeNet.Header.Pe.ResourceGroupIdType.html#PeNet_Header_Pe_ResourceGroupIdType_AnimatedCursor
+  commentId: F:PeNet.Header.Pe.ResourceGroupIdType.AnimatedCursor
+  fullName: PeNet.Header.Pe.ResourceGroupIdType.AnimatedCursor
+  nameWithType: ResourceGroupIdType.AnimatedCursor
 - uid: PeNet.Header.Pe.ResourceGroupIdType.AnimatedIcon
   name: AnimatedIcon
   href: api/PeNet.Header.Pe.ResourceGroupIdType.html#PeNet_Header_Pe_ResourceGroupIdType_AnimatedIcon
@@ -9920,12 +9920,12 @@ references:
   commentId: F:PeNet.Header.Pe.ResourceGroupIdType.DlgInclude
   fullName: PeNet.Header.Pe.ResourceGroupIdType.DlgInclude
   nameWithType: ResourceGroupIdType.DlgInclude
-- uid: PeNet.Header.Pe.ResourceGroupIdType.Fonst
-  name: Fonst
-  href: api/PeNet.Header.Pe.ResourceGroupIdType.html#PeNet_Header_Pe_ResourceGroupIdType_Fonst
-  commentId: F:PeNet.Header.Pe.ResourceGroupIdType.Fonst
-  fullName: PeNet.Header.Pe.ResourceGroupIdType.Fonst
-  nameWithType: ResourceGroupIdType.Fonst
+- uid: PeNet.Header.Pe.ResourceGroupIdType.Font
+  name: Font
+  href: api/PeNet.Header.Pe.ResourceGroupIdType.html#PeNet_Header_Pe_ResourceGroupIdType_Font
+  commentId: F:PeNet.Header.Pe.ResourceGroupIdType.Font
+  fullName: PeNet.Header.Pe.ResourceGroupIdType.Font
+  nameWithType: ResourceGroupIdType.Font
 - uid: PeNet.Header.Pe.ResourceGroupIdType.FontDirectory
   name: FontDirectory
   href: api/PeNet.Header.Pe.ResourceGroupIdType.html#PeNet_Header_Pe_ResourceGroupIdType_FontDirectory
