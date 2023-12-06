@@ -10,6 +10,17 @@ namespace PeNet.Test
     public class PeFileTest
     {
         [Fact]
+        public void ResourceEntry_IsIdEntry_HasNameUnknown()
+        {
+            var peFile = new PeFile(@"Binaries/VB40032.DLL");
+            var de = peFile.ImageResourceDirectory?.DirectoryEntries?[6];
+
+            Assert.Equal((uint) 12, de!.ID);
+            Assert.Equal((uint) 1101, de.ResourceDirectory!.DirectoryEntries![0]!.ID);
+            Assert.Equal("unknown", de.NameResolved);
+        }
+
+        [Fact]
         public void ExportedFunctions_WithForwardedFunctions_ParsedForwardedFunctions()
         {
             var peFile = new PeFile(@"Binaries/win_test.dll");

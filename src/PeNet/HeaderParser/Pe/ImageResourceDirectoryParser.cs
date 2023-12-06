@@ -33,10 +33,6 @@ namespace PeNet.HeaderParser.Pe
             // Parse the second stage (type)
             foreach (var de in root.DirectoryEntries)
             {
-                // This check only applies to the second level.
-                if (de!.IsIdEntry && de.NameResolved == "unknown")
-                   continue;
-
                 de!.ResourceDirectory = new ImageResourceDirectory(
                     PeFile,
                     de,
