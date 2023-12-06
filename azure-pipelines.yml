@@ -21,9 +21,9 @@ jobs:
 
   steps:
   - task: UseDotNet@2 
-    displayName: "Use .NET 7.x"
+    displayName: "Use .NET 8.x"
     inputs:
-      version: '7.x'
+      version: '8.x'
       packageType: sdk
 
   - task: DotNetCoreCLI@2
@@ -51,9 +51,9 @@ jobs:
     condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
 
   - task: UseDotNet@2 
-    displayName: "Use .NET 7.x"
+    displayName: "Use .NET 8.x"
     inputs:
-      version: '7.x'
+      version: '8.x'
       packageType: sdk
 
   - task: DotNetCoreCLI@2
