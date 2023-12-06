@@ -143,7 +143,7 @@ namespace PeNet.Header.Pe
                 (uint)ResourceGroupIdType.Dialog => "Dialog",
                 (uint)ResourceGroupIdType.String => "String",
                 (uint)ResourceGroupIdType.FontDirectory => "FontDirectory",
-                (uint)ResourceGroupIdType.Fonst => "Fonst",
+                (uint)ResourceGroupIdType.Font => "Fonst",
                 (uint)ResourceGroupIdType.Accelerator => "Accelerator",
                 (uint)ResourceGroupIdType.RcData => "RcData",
                 (uint)ResourceGroupIdType.MessageTable => "MessageTable",
@@ -152,7 +152,7 @@ namespace PeNet.Header.Pe
                 (uint)ResourceGroupIdType.DlgInclude => "DlgInclude",
                 (uint)ResourceGroupIdType.PlugAndPlay => "PlugAndPlay",
                 (uint)ResourceGroupIdType.VXD => "VXD",
-                (uint)ResourceGroupIdType.AnimatedCurser => "AnimatedCurser",
+                (uint)ResourceGroupIdType.AnimatedCursor => "AnimatedCursor",
                 (uint)ResourceGroupIdType.AnimatedIcon => "AnimatedIcon",
                 (uint)ResourceGroupIdType.HTML => "HTML",
                 (uint)ResourceGroupIdType.Manifest => "Manifest",
@@ -203,9 +203,9 @@ namespace PeNet.Header.Pe
         FontDirectory = 7,
 
         /// <summary>
-        ///     Fonst resource.
+        ///     Font resource.
         /// </summary>
-        Fonst = 8,
+        Font = 8,
 
         /// <summary>
         ///     Accelerator resource.
@@ -250,7 +250,7 @@ namespace PeNet.Header.Pe
         /// <summary>
         ///     Animated Cursor resource.
         /// </summary>
-        AnimatedCurser = 21,
+        AnimatedCursor = 21,
 
         /// <summary>
         ///     Animated Icon resource.
