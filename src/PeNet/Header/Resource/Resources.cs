@@ -10,7 +10,7 @@ namespace PeNet.Header.Resource
     {
         private bool _vsVersionInfoParsed;
         private VsVersionInfo? _vsVersionInfo;
-        private readonly ResourceLocation _vsVersionLocation;
+        private readonly ResourceLocation? _vsVersionLocation;
 
         private bool _iconsParsed;
         private Icon[]? _icons;
@@ -30,7 +30,10 @@ namespace PeNet.Header.Resource
             {
                 if (_vsVersionInfoParsed) return _vsVersionInfo;
                 _vsVersionInfoParsed = true;
-                return _vsVersionInfo ??= new VsVersionInfo(PeFile, _vsVersionLocation.Offset);
+                if (_vsVersionLocation != null)
+                    return _vsVersionInfo ??= new VsVersionInfo(PeFile, _vsVersionLocation.Offset);
+                else
+                    return null;
             }
         }
 
@@ -74,7 +77,7 @@ namespace PeNet.Header.Resource
         /// <param name="vsVersionLocation">vsVersionLocation.</param>
         /// <param name="iconDirectoryLocations">iconDirectoryLocations.</param>
         /// <param name="groupIconDirectoryLocations">groupIconDirectoryLocations.</param>
-        public Resources(IRawFile peFile, long offset, ResourceLocation vsVersionLocation, ResourceLocation[] iconDirectoryLocations, ResourceLocation[] groupIconDirectoryLocations)
+        public Resources(IRawFile peFile, long offset, ResourceLocation? vsVersionLocation, ResourceLocation[] iconDirectoryLocations, ResourceLocation[] groupIconDirectoryLocations)
             : base(peFile, offset)
         {
             _vsVersionLocation = vsVersionLocation;

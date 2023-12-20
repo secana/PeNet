@@ -5,11 +5,11 @@ namespace PeNet.HeaderParser.Resource
 {
     internal class ResourcesParser : SafeParser<Resources>
     {
-        private readonly ResourceLocation _vsVersionLocation;
+        private readonly ResourceLocation? _vsVersionLocation;
         private readonly ResourceLocation[] _iconDirectoryLocations;
         private readonly ResourceLocation[] _groupIconDirectoryLocations;
 
-        public ResourcesParser(IRawFile peFile, uint offset, ResourceLocation vsVersionLocation, ResourceLocation[] iconDirectoryLocations, ResourceLocation[] groupIconDirectoryLocations) : base(peFile, offset)
+        public ResourcesParser(IRawFile peFile, uint offset, ResourceLocation? vsVersionLocation, ResourceLocation[] iconDirectoryLocations, ResourceLocation[] groupIconDirectoryLocations) : base(peFile, offset)
         {
             _vsVersionLocation = vsVersionLocation;
             _iconDirectoryLocations = iconDirectoryLocations;

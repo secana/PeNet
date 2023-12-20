@@ -95,7 +95,7 @@ namespace PeNet.HeaderParser.Pe
                 var iconDirectoryOffsets = LocateResource(ResourceGroupIdType.Icon);
                 var groupIconDirectoryOffsets = LocateResource(ResourceGroupIdType.GroupIcon);
 
-                return vsVersionInfoOffsets is not null
+                return vsVersionInfoOffsets is not null || iconDirectoryOffsets.Length > 0 || groupIconDirectoryOffsets.Length > 0
                     ? new ResourcesParser(_peFile, 0, vsVersionInfoOffsets, iconDirectoryOffsets, groupIconDirectoryOffsets)
                     : null;
             }
