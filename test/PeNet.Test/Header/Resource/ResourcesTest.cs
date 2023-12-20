@@ -290,6 +290,7 @@ namespace PeNet.Test.Header.Resource
         [Theory]
         [InlineData(@"Binaries/pidgin_manipulated_GroupIconDirectory.exe",9,0,2,9,0)]
         [InlineData(@"Binaries/pidgin_manipulated_GroupIconDirectory_withNullIcon.exe",9,0,2,9,0)]
+        [InlineData(@"Binaries/filezilla_dll_without_Version.dll",5)]
         public void
             ICOIcons_GivenPeFileWithManipulatedGroupIconDirectory_PeFileIsParsed(
                 string filePeFile, params int[] numberOfIconsPerGroup)
