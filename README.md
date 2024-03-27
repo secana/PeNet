@@ -3,6 +3,7 @@
 [![NuGet](https://img.shields.io/nuget/dt/PeNet.svg)](https://www.nuget.org/packages/PeNet/)
 [![Build](https://img.shields.io/azure-devops/build/secana/PeNet/2.svg)](https://dev.azure.com/secana/PeNet/_build?definitionId=2)
 [![Test](https://img.shields.io/azure-devops/tests/secana/PeNet/2.svg)](https://dev.azure.com/secana/PeNet/_build?definitionId=2)
+[![BuiltWithDot.Net shield](https://builtwithdot.net/project/492/penet-csharp-net-standard-file-parser/badge)](https://builtwithdot.net/project/492/penet-csharp-net-standard-file-parser)
 
 ![PeNet Logo](https://raw.githubusercontent.com/secana/PeNet/master/resource/linkedin_banner_image_2.png "PeNet - PE analysis made easy")
 PeNet is a parser for Windows Portable Executable headers. It completely written in C# and does not rely on any native Windows APIs.
