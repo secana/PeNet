@@ -29,7 +29,7 @@ namespace PeNet
 
 
         /// <summary>
-        ///     The PE binary .
+        ///     The PE binary.
         /// </summary>
         public IRawFile RawFile { get; }
 
@@ -46,6 +46,10 @@ namespace PeNet
             RawFile = peFile;
 
             _nativeStructureParsers = new NativeStructureParsers(RawFile);
+
+            if (_nativeStructureParsers.ImageNtHeaders?.Signature
+               != 0x4550) // "PE\0\0" == 0x4550
+                throw new Exception("Not a PE file");
 
             if (ImageNtHeaders?.OptionalHeader?.DataDirectory != null)
                 if (ImageSectionHeaders != null)
