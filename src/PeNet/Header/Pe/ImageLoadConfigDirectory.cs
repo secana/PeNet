@@ -1,4 +1,6 @@
 ﻿using PeNet.FileParser;
+using System;
+using System.Runtime.InteropServices;
 
 namespace PeNet.Header.Pe
 {
@@ -6,8 +8,9 @@ namespace PeNet.Header.Pe
     /// The ImageLoadConfigDirectory hold information
     /// important to load the PE file correctly.
     /// </summary>
-    public class ImageLoadConfigDirectory : AbstractStructure
+    public class ImageLoadConfigDirectory : AbstractStructure, IDisposable
     {
+        private IntPtr _ptr;
         private readonly bool _is64Bit;
 
         /// <summary>
@@ -20,6 +23,36 @@ namespace PeNet.Header.Pe
             : base(peFile, offset)
         {
             _is64Bit = is64Bit;
+            int size = (int)PeFile.ReadUInt(offset);
+            _ptr = Marshal.AllocHGlobal(size);
+            if(_ptr != IntPtr.Zero)
+            {
+                Marshal.Copy(PeFile.ToArray(), (int)offset, _ptr, size);
+            }
+        }
+
+        ~ImageLoadConfigDirectory()
+        {
+            this.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
+        public void Dispose()
+        {
+            if (_ptr != IntPtr.Zero)
+            {
+                Marshal.FreeHGlobal(_ptr);
+            }
+        }
+
+        public IMAGE_LOAD_CONFIG_DIRECTORY64 LoadConfig64
+        {
+            get => Marshal.PtrToStructure<IMAGE_LOAD_CONFIG_DIRECTORY64>(_ptr);
+        }
+
+        public IMAGE_LOAD_CONFIG_DIRECTORY32 LoadConfig
+        {
+            get => Marshal.PtrToStructure<IMAGE_LOAD_CONFIG_DIRECTORY32>(_ptr);
         }
 
         /// <summary>
@@ -357,5 +390,374 @@ namespace PeNet.Header.Pe
                     PeFile.WriteUInt(Offset + 0x58, value);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        public IMAGE_LOAD_CONFIG_CODE_INTEGRITY CodeIntegrity
+        {
+            get => _is64Bit ? LoadConfig64.CodeIntegrity : LoadConfig.CodeIntegrity;
+        }
+
+
+    }
+    /// <summary>
+    /// https://github.com/dahall/Vanara/blob/3da05fe4d87bc5de96527fad5c9b7e6058690deb/PInvoke/DbgHelp/WinNT.cs#L1013
+    /// Undocumented
+    /// </summary>
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct IMAGE_LOAD_CONFIG_CODE_INTEGRITY
+    {
+        /// <summary>Flags to indicate if CI information is available, etc.</summary>
+        public ushort Flags;
+
+        /// <summary>0xFFFF means not available</summary>
+        public ushort Catalog;
+
+        /// <summary/>
+        public uint CatalogOffset;
+
+        /// <summary>Additional bitmask to be defined later</summary>
+        public uint Reserved;
+    }
+    /// <summary>
+    /// https://github.com/dahall/Vanara/blob/3da05fe4d87bc5de96527fad5c9b7e6058690deb/PInvoke/DbgHelp/WinNT.cs#L1244
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+    public struct IMAGE_LOAD_CONFIG_DIRECTORY64
+    {
+        /// <summary>The size of the structure. For Windows XP, the size must be specified as 64 for x86 images.</summary>
+        public uint Size;
+
+        /// <summary>
+        /// The date and time stamp value. The value is represented in the number of seconds elapsed since midnight (00:00:00), January
+        /// 1, 1970, Universal Coordinated Time, according to the system clock. The time stamp can be printed using the C run-time (CRT)
+        /// function <c>ctime</c>.
+        /// </summary>
+        public uint TimeDateStamp;
+
+        /// <summary>The major version number.</summary>
+        public ushort MajorVersion;
+
+        /// <summary>The minor version number.</summary>
+        public ushort MinorVersion;
+
+        /// <summary>The global flags that control system behavior. For more information, see Gflags.exe.</summary>
+        public uint GlobalFlagsClear;
+
+        /// <summary>The global flags that control system behavior. For more information, see Gflags.exe.</summary>
+        public uint GlobalFlagsSet;
+
+        /// <summary>The critical section default time-out value.</summary>
+        public uint CriticalSectionDefaultTimeout;
+
+        /// <summary>
+        /// The size of the minimum block that must be freed before it is freed (de-committed), in bytes. This value is advisory.
+        /// </summary>
+        public ulong DeCommitFreeBlockThreshold;
+
+        /// <summary>
+        /// The size of the minimum total memory that must be freed in the process heap before it is freed (de-committed), in bytes.
+        /// This value is advisory.
+        /// </summary>
+        public ulong DeCommitTotalFreeThreshold;
+
+        /// <summary>
+        /// The VA of a list of addresses where the LOCK prefix is used. These will be replaced by NOP on single-processor systems. This
+        /// member is available only for x86.
+        /// </summary>
+        public ulong LockPrefixTable;
+
+        /// <summary>The maximum allocation size, in bytes. This member is obsolete and is used only for debugging purposes.</summary>
+        public ulong MaximumAllocationSize;
+
+        /// <summary>The maximum block size that can be allocated from heap segments, in bytes.</summary>
+        public ulong VirtualMemoryThreshold;
+
+        /// <summary>
+        /// The process affinity mask. For more information, see GetProcessAffinityMask. This member is available only for .exe files.
+        /// </summary>
+        public ulong ProcessAffinityMask;
+
+        /// <summary>The process heap flags. For more information, see HeapCreate.</summary>
+        public uint ProcessHeapFlags;
+
+        /// <summary>The service pack version.</summary>
+        public ushort CSDVersion;
+
+        /// <summary/>
+        public ushort DependentLoadFlags;
+
+        /// <summary>Reserved for use by the system.</summary>
+        public ulong EditList;
+
+        /// <summary>A pointer to a cookie that is used by Visual C++ or GS implementation.</summary>
+        public ulong SecurityCookie;
+
+        /// <summary>
+        /// The VA of the sorted table of RVAs of each valid, unique handler in the image. This member is available only for x86.
+        /// </summary>
+        public ulong SEHandlerTable;
+
+        /// <summary>The count of unique handlers in the table. This member is available only for x86.</summary>
+        public ulong SEHandlerCount;
+
+        /// <summary/>
+        public ulong GuardCFCheckFunctionPointer;
+
+        /// <summary/>
+        public ulong GuardCFDispatchFunctionPointer;
+
+        /// <summary/>
+        public ulong GuardCFFunctionTable;
+
+        /// <summary/>
+        public ulong GuardCFFunctionCount;
+
+        /// <summary/>
+        public uint GuardFlags;
+
+        /// <summary/>
+        public IMAGE_LOAD_CONFIG_CODE_INTEGRITY CodeIntegrity;
+
+        /// <summary/>
+        public ulong GuardAddressTakenIatEntryTable;
+
+        /// <summary/>
+        public ulong GuardAddressTakenIatEntryCount;
+
+        /// <summary/>
+        public ulong GuardLongJumpTargetTable;
+
+        /// <summary/>
+        public ulong GuardLongJumpTargetCount;
+
+        /// <summary/>
+        public ulong DynamicValueRelocTable;
+
+        /// <summary/>
+        public ulong CHPEMetadataPointer;
+
+        /// <summary/>
+        public ulong GuardRFFailureRoutine;
+
+        /// <summary/>
+        public ulong GuardRFFailureRoutineFunctionPointer;
+
+        /// <summary/>
+        public uint DynamicValueRelocTableOffset;
+
+        /// <summary/>
+        public ushort DynamicValueRelocTableSection;
+
+        /// <summary/>
+        public ushort Reserved2;
+
+        /// <summary/>
+        public ulong GuardRFVerifyStackPointerFunctionPointer;
+
+        /// <summary/>
+        public uint HotPatchTableOffset;
+
+        /// <summary/>
+        public uint Reserved3;
+
+        /// <summary/>
+        public ulong EnclaveConfigurationPointer;
+
+        /// <summary/>
+        public ulong VolatileMetadataPointer;
+
+        /// <summary/>
+        public ulong GuardEHContinuationTable;
+
+        /// <summary/>
+        public ulong GuardEHContinuationCount;
+
+        /// <summary/>
+        public ulong GuardXFGCheckFunctionPointer;   //VA
+
+        /// <summary/>
+        public ulong GuardXFGDispatchFunctionPointer; //VA
+
+        /// <summary/>
+        public ulong GuardXFGTableDispatchFunctionPointer; //VA
+
+        /// <summary/>
+        public ulong CastGuardOsDeterminedFailureMode; //VA
+
+        /// <summary/>
+        public ulong GuardMemcpyFunctionPointer;     //VA
+    }
+
+    /// <summary>
+    /// https://github.com/dahall/Vanara/blob/3da05fe4d87bc5de96527fad5c9b7e6058690deb/PInvoke/DbgHelp/WinNT.cs#L1052
+    /// </summary>
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+    public struct IMAGE_LOAD_CONFIG_DIRECTORY32
+    {
+        /// <summary>The size of the structure. For Windows XP, the size must be specified as 64 for x86 images.</summary>
+        public uint Size;
+
+        /// <summary>
+        /// The date and time stamp value. The value is represented in the number of seconds elapsed since midnight (00:00:00), January
+        /// 1, 1970, Universal Coordinated Time, according to the system clock. The time stamp can be printed using the C run-time (CRT)
+        /// function <c>ctime</c>.
+        /// </summary>
+        public uint TimeDateStamp;
+
+        /// <summary>The major version number.</summary>
+        public ushort MajorVersion;
+
+        /// <summary>The minor version number.</summary>
+        public ushort MinorVersion;
+
+        /// <summary>The global flags that control system behavior. For more information, see Gflags.exe.</summary>
+        public uint GlobalFlagsClear;
+
+        /// <summary>The global flags that control system behavior. For more information, see Gflags.exe.</summary>
+        public uint GlobalFlagsSet;
+
+        /// <summary>The critical section default time-out value.</summary>
+        public uint CriticalSectionDefaultTimeout;
+
+        /// <summary>
+        /// The size of the minimum block that must be freed before it is freed (de-committed), in bytes. This value is advisory.
+        /// </summary>
+        public uint DeCommitFreeBlockThreshold;
+
+        /// <summary>
+        /// The size of the minimum total memory that must be freed in the process heap before it is freed (de-committed), in bytes.
+        /// This value is advisory.
+        /// </summary>
+        public uint DeCommitTotalFreeThreshold;
+
+        /// <summary>
+        /// The VA of a list of addresses where the LOCK prefix is used. These will be replaced by NOP on single-processor systems. This
+        /// member is available only for x86.
+        /// </summary>
+        public uint LockPrefixTable;
+
+        /// <summary>The maximum allocation size, in bytes. This member is obsolete and is used only for debugging purposes.</summary>
+        public uint MaximumAllocationSize;
+
+        /// <summary>The maximum block size that can be allocated from heap segments, in bytes.</summary>
+        public uint VirtualMemoryThreshold;
+
+        /// <summary>The process heap flags. For more information, see HeapCreate.</summary>
+        public uint ProcessHeapFlags;
+
+        /// <summary>
+        /// The process affinity mask. For more information, see GetProcessAffinityMask. This member is available only for .exe files.
+        /// </summary>
+        public uint ProcessAffinityMask;
+
+        /// <summary>The service pack version.</summary>
+        public ushort CSDVersion;
+
+        /// <summary/>
+        public ushort DependentLoadFlags;
+
+        /// <summary>Reserved for use by the system.</summary>
+        public uint EditList;
+
+        /// <summary>A pointer to a cookie that is used by Visual C++ or GS implementation.</summary>
+        public uint SecurityCookie;
+
+        /// <summary>
+        /// The VA of the sorted table of RVAs of each valid, unique handler in the image. This member is available only for x86.
+        /// </summary>
+        public uint SEHandlerTable;
+
+        /// <summary>The count of unique handlers in the table. This member is available only for x86.</summary>
+        public uint SEHandlerCount;
+
+        /// <summary/>
+        public uint GuardCFCheckFunctionPointer;
+
+        /// <summary/>
+        public uint GuardCFDispatchFunctionPointer;
+
+        /// <summary/>
+        public uint GuardCFFunctionTable;
+
+        /// <summary/>
+        public uint GuardCFFunctionCount;
+
+        /// <summary/>
+        public uint GuardFlags;
+
+        /// <summary/>
+        public IMAGE_LOAD_CONFIG_CODE_INTEGRITY CodeIntegrity;
+
+        /// <summary/>
+        public uint GuardAddressTakenIatEntryTable;
+
+        /// <summary/>
+        public uint GuardAddressTakenIatEntryCount;
+
+        /// <summary/>
+        public uint GuardLongJumpTargetTable;
+
+        /// <summary/>
+        public uint GuardLongJumpTargetCount;
+
+        /// <summary/>
+        public uint DynamicValueRelocTable;
+
+        /// <summary/>
+        public uint CHPEMetadataPointer;
+
+        /// <summary/>
+        public uint GuardRFFailureRoutine;
+
+        /// <summary/>
+        public uint GuardRFFailureRoutineFunctionPointer;
+
+        /// <summary/>
+        public uint DynamicValueRelocTableOffset;
+
+        /// <summary/>
+        public ushort DynamicValueRelocTableSection;
+
+        /// <summary/>
+        public ushort Reserved2;
+
+        /// <summary/>
+        public uint GuardRFVerifyStackPointerFunctionPointer;
+
+        /// <summary/>
+        public uint HotPatchTableOffset;
+
+        /// <summary/>
+        public uint Reserved3;
+
+        /// <summary/>
+        public uint EnclaveConfigurationPointer;
+
+        /// <summary/>
+        public uint VolatileMetadataPointer;
+
+        /// <summary/>
+        public uint GuardEHContinuationTable;
+
+        /// <summary/>
+        public uint GuardEHContinuationCount;
+
+        /// <summary/>
+        public uint GuardXFGCheckFunctionPointer;   // VA
+
+        /// <summary/>
+        public uint GuardXFGDispatchFunctionPointer; // VA
+
+        /// <summary/>
+        public uint GuardXFGTableDispatchFunctionPointer; // VA
+
+        /// <summary/>
+        public uint CastGuardOsDeterminedFailureMode; // VA
+
+        /// <summary/>
+        public uint GuardMemcpyFunctionPointer;     // VA
     }
 }
