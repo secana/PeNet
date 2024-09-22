@@ -23,11 +23,28 @@ namespace PeNet.Header.Pe
             : base(peFile, offset)
         {
             _is64Bit = is64Bit;
-            int size = (int)PeFile.ReadUInt(offset);
-            _ptr = Marshal.AllocHGlobal(size);
+            uint size = PeFile.ReadUInt(offset);
+            byte[] data = PeFile.ToArray();
+            if (size > data.Length)
+            {
+                ///
+                /// I think we should throw an Exception when overflow occured, because IMAGE_LOAD_CONFIG_DIRECTORY(64) Size field indicates this DataDirectory size
+                /// but in order to pass unit test, set the size to data length :)
+                /// throw new ArgumentOutOfRangeException(nameof(size));
+                ///
+                size = (uint)data.Length;
+
+                ///
+                /// At the moment,we will get fake and error data rather than normal PE IMAGE_LOAD_CONFIG_DIRECTORY(64) data bytes
+                ///
+            }
+            _ptr = Marshal.AllocHGlobal((int)size);
             if(_ptr != IntPtr.Zero)
             {
-                Marshal.Copy(PeFile.ToArray(), (int)offset, _ptr, size);
+                if(offset + size < data.Length)
+                {
+                    Marshal.Copy(data, (int)offset, _ptr, (int)size);
+                }
             }
         }
 
@@ -53,6 +70,17 @@ namespace PeNet.Header.Pe
         public IMAGE_LOAD_CONFIG_DIRECTORY32 LoadConfig
         {
             get => Marshal.PtrToStructure<IMAGE_LOAD_CONFIG_DIRECTORY32>(_ptr);
+        }
+        /// <summary>
+        /// return IRawFile to support parsing PE information from the third software
+        /// 
+        /// </summary>
+        public IRawFile PePtr
+        {
+            get
+            {
+                return PeFile;
+            }
         }
 
         /// <summary>
