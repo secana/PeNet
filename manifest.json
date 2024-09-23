@@ -953,6 +953,42 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_CODE_INTEGRITY.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_CODE_INTEGRITY.html",
+          "hash": "h68swgIfg00d7JrxuhFI9+3Pv3w0cA9oZTrxopDVtMw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY32.html",
+          "hash": "PQCqn+55iyQ8Eyyf32Wfgdu/ppdwW1fcYURaF+1FEH0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY64.html",
+          "hash": "iM9p1lLNRmkMoBPFnAd8nq+61rmhKg41g/AjldR+goo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/PeNet.Header.Pe.ImageBaseRelocation.TypeOffset.yml",
       "output": {
         ".html": {
@@ -1101,7 +1137,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.ImageLoadConfigDirectory.html",
-          "hash": "K21dDQUgFU3+GhMCe43R1W0A+PO4StBv3zup3XrTY9A="
+          "hash": "gtaVDA2gpQE0fDYffc0YNsZqRydkzz/rabsUAvjRz7M="
         }
       },
       "is_incremental": false,
@@ -1377,7 +1413,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.Header.Pe.html",
-          "hash": "aD7DVQTLoqq4ATnlftkKRV1AqATQYy1bmIB0hpP9RnI="
+          "hash": "4mE7GKRY642t4YEbuiCrTR4rdmEBJLS3fjA6EGw3gY8="
         }
       },
       "is_incremental": false,
@@ -1605,7 +1641,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "PX2lcY2I8h9hDyDVjMbi8WgxY7PFEshrUlG/EOQFEKI="
+          "hash": "da7Ms/xHYE0CMvI+kWJZ2OOEKQ9HM0djUR0xuOayBCI="
         }
       },
       "is_incremental": false,
@@ -1767,7 +1803,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 132,
+          "total_file_count": 135,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

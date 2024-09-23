@@ -83,6 +83,10 @@ important to load the PE file correctly.</p>
     <div class="level1"><a class="xref" href="PeNet.Header.AbstractStructure.html">AbstractStructure</a></div>
     <div class="level2"><span class="xref">ImageLoadConfigDirectory</span></div>
   </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">IDisposable</span></div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="PeNet.Header.Pe.html">PeNet.Header.Pe</a></h6>
   <h6><strong>Assembly</strong>: PeNet.dll</h6>
   <h5 id="PeNet_Header_Pe_ImageLoadConfigDirectory_syntax">Syntax</h5>
@@ -96,7 +100,7 @@ important to load the PE file correctly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory__ctor_PeNet_FileParser_IRawFile_System_Int64_System_Boolean_.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.%23ctor(PeNet.FileParser.IRawFile%2CSystem.Int64%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L19">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L22">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory__ctor_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.#ctor*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory__ctor_PeNet_FileParser_IRawFile_System_Int64_System_Boolean_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.#ctor(PeNet.FileParser.IRawFile,System.Int64,System.Boolean)">ImageLoadConfigDirectory(IRawFile, Int64, Boolean)</h4>
@@ -141,10 +145,40 @@ important to load the PE file correctly.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_CodeIntegrity.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.CodeIntegrity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L424">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_CodeIntegrity_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.CodeIntegrity*"></a>
+  <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_CodeIntegrity" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.CodeIntegrity">CodeIntegrity</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMAGE_LOAD_CONFIG_CODE_INTEGRITY CodeIntegrity { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="PeNet.Header.Pe.IMAGE_LOAD_CONFIG_CODE_INTEGRITY.html">IMAGE_LOAD_CONFIG_CODE_INTEGRITY</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_CriticalSectionDefaultTimeout.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.CriticalSectionDefaultTimeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L83">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L144">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_CriticalSectionDefaultTimeout_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.CriticalSectionDefaultTimeout*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_CriticalSectionDefaultTimeout" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.CriticalSectionDefaultTimeout">CriticalSectionDefaultTimeout</h4>
@@ -175,7 +209,7 @@ important to load the PE file correctly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_CSDVersion.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.CSDVersion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L198">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L259">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_CSDVersion_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.CSDVersion*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_CSDVersion" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.CSDVersion">CSDVersion</h4>
@@ -206,7 +240,7 @@ important to load the PE file correctly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_DeCommitFreeBlockThreshold.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.DeCommitFreeBlockThreshold%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L92">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L153">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_DeCommitFreeBlockThreshold_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.DeCommitFreeBlockThreshold*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_DeCommitFreeBlockThreshold" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.DeCommitFreeBlockThreshold">DeCommitFreeBlockThreshold</h4>
@@ -237,7 +271,7 @@ important to load the PE file correctly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_DeCommitTotalFreeThreshold.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.DeCommitTotalFreeThreshold%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L107">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L168">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_DeCommitTotalFreeThreshold_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.DeCommitTotalFreeThreshold*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_DeCommitTotalFreeThreshold" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.DeCommitTotalFreeThreshold">DeCommitTotalFreeThreshold</h4>
@@ -268,7 +302,7 @@ important to load the PE file correctly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_EditList.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.EditList%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L228">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L289">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_EditList_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.EditList*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_EditList" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.EditList">EditList</h4>
@@ -299,7 +333,7 @@ important to load the PE file correctly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_GlobalFlagsClear.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.GlobalFlagsClear%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L65">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L126">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_GlobalFlagsClear_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.GlobalFlagsClear*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_GlobalFlagsClear" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.GlobalFlagsClear">GlobalFlagsClear</h4>
@@ -330,7 +364,7 @@ important to load the PE file correctly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_GlobalFlagsSet.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.GlobalFlagsSet%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L74">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L135">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_GlobalFlagsSet_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.GlobalFlagsSet*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_GlobalFlagsSet" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.GlobalFlagsSet">GlobalFlagsSet</h4>
@@ -361,7 +395,7 @@ important to load the PE file correctly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_GuardCFCheckFunctionPointer.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.GuardCFCheckFunctionPointer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L289">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L350">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_GuardCFCheckFunctionPointer_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.GuardCFCheckFunctionPointer*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_GuardCFCheckFunctionPointer" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.GuardCFCheckFunctionPointer">GuardCFCheckFunctionPointer</h4>
@@ -392,7 +426,7 @@ important to load the PE file correctly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_GuardCFFunctionCount.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.GuardCFFunctionCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L334">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L395">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_GuardCFFunctionCount_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.GuardCFFunctionCount*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_GuardCFFunctionCount" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.GuardCFFunctionCount">GuardCFFunctionCount</h4>
@@ -423,7 +457,7 @@ important to load the PE file correctly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_GuardCFFunctionTable.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.GuardCFFunctionTable%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L319">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L380">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_GuardCFFunctionTable_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.GuardCFFunctionTable*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_GuardCFFunctionTable" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.GuardCFFunctionTable">GuardCFFunctionTable</h4>
@@ -454,7 +488,7 @@ important to load the PE file correctly.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_GuardFlags.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.GuardFlags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L349">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L410">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_GuardFlags_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.GuardFlags*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_GuardFlags" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.GuardFlags">GuardFlags</h4>
@@ -482,10 +516,70 @@ important to load the PE file correctly.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_LoadConfig.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.LoadConfig%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L70">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_LoadConfig_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.LoadConfig*"></a>
+  <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_LoadConfig" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.LoadConfig">LoadConfig</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMAGE_LOAD_CONFIG_DIRECTORY32 LoadConfig { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY32.html">IMAGE_LOAD_CONFIG_DIRECTORY32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_LoadConfig64.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.LoadConfig64%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L65">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_LoadConfig64_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.LoadConfig64*"></a>
+  <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_LoadConfig64" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.LoadConfig64">LoadConfig64</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMAGE_LOAD_CONFIG_DIRECTORY64 LoadConfig64 { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY64.html">IMAGE_LOAD_CONFIG_DIRECTORY64</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_LockPrefixTable.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.LockPrefixTable%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L123">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L184">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_LockPrefixTable_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.LockPrefixTable*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_LockPrefixTable" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.LockPrefixTable">LockPrefixTable</h4>
@@ -517,7 +611,7 @@ Will be replaced by NOP instructions on single-processor systems. Only available
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_MajorVesion.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.MajorVesion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L47">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L108">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_MajorVesion_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.MajorVesion*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_MajorVesion" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.MajorVesion">MajorVesion</h4>
@@ -548,7 +642,7 @@ Will be replaced by NOP instructions on single-processor systems. Only available
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_MaximumAllocationSize.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.MaximumAllocationSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L138">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L199">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_MaximumAllocationSize_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.MaximumAllocationSize*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_MaximumAllocationSize" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.MaximumAllocationSize">MaximumAllocationSize</h4>
@@ -579,7 +673,7 @@ Will be replaced by NOP instructions on single-processor systems. Only available
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_MinorVersion.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.MinorVersion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L56">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L117">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_MinorVersion_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.MinorVersion*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_MinorVersion" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.MinorVersion">MinorVersion</h4>
@@ -607,10 +701,41 @@ Will be replaced by NOP instructions on single-processor systems. Only available
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_PePtr.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.PePtr%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L78">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_PePtr_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.PePtr*"></a>
+  <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_PePtr" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.PePtr">PePtr</h4>
+  <div class="markdown level1 summary"><p>return IRawFile to support parsing PE information from the third software</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRawFile PePtr { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="PeNet.FileParser.IRawFile.html">IRawFile</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_ProcessAffinityMask.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.ProcessAffinityMask%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L168">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L229">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_ProcessAffinityMask_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.ProcessAffinityMask*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_ProcessAffinityMask" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.ProcessAffinityMask">ProcessAffinityMask</h4>
@@ -641,7 +766,7 @@ Will be replaced by NOP instructions on single-processor systems. Only available
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_ProcessHeapFlags.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.ProcessHeapFlags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L183">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L244">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_ProcessHeapFlags_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.ProcessHeapFlags*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_ProcessHeapFlags" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.ProcessHeapFlags">ProcessHeapFlags</h4>
@@ -672,7 +797,7 @@ Will be replaced by NOP instructions on single-processor systems. Only available
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_Reserved1.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.Reserved1%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L213">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L274">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_Reserved1_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.Reserved1*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_Reserved1" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.Reserved1">Reserved1</h4>
@@ -703,7 +828,7 @@ Will be replaced by NOP instructions on single-processor systems. Only available
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_Reserved2.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.Reserved2%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L304">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L365">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_Reserved2_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.Reserved2*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_Reserved2" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.Reserved2">Reserved2</h4>
@@ -734,7 +859,7 @@ Will be replaced by NOP instructions on single-processor systems. Only available
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_SecurityCoockie.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.SecurityCoockie%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L243">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L304">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_SecurityCoockie_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.SecurityCoockie*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_SecurityCoockie" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.SecurityCoockie">SecurityCoockie</h4>
@@ -765,7 +890,7 @@ Will be replaced by NOP instructions on single-processor systems. Only available
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_SEHandlerCount.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.SEHandlerCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L274">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L335">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_SEHandlerCount_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.SEHandlerCount*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_SEHandlerCount" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.SEHandlerCount">SEHandlerCount</h4>
@@ -796,7 +921,7 @@ Will be replaced by NOP instructions on single-processor systems. Only available
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_SEHandlerTable.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.SEHandlerTable%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L259">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L320">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_SEHandlerTable_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.SEHandlerTable*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_SEHandlerTable" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.SEHandlerTable">SEHandlerTable</h4>
@@ -828,7 +953,7 @@ Only available on x86.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_Size.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.Size%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L28">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L89">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_Size_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.Size*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_Size" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.Size">Size</h4>
@@ -859,7 +984,7 @@ Only available on x86.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_TimeDateStamp.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.TimeDateStamp%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L38">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L99">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_TimeDateStamp_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.TimeDateStamp*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_TimeDateStamp" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.TimeDateStamp">TimeDateStamp</h4>
@@ -891,7 +1016,7 @@ in UCT.</p>
     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_VirtualMemoryThreshold.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.VirtualMemoryThreshold%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L153">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L214">View Source</a>
   </span>
   <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_VirtualMemoryThreshold_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.VirtualMemoryThreshold*"></a>
   <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_VirtualMemoryThreshold" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.VirtualMemoryThreshold">VirtualMemoryThreshold</h4>
@@ -917,6 +1042,42 @@ in UCT.</p>
       </tr>
     </tbody>
   </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_Dispose.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L57">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_Dispose_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.Dispose*"></a>
+  <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_Dispose" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory_Finalize.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory.Finalize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L51">View Source</a>
+  </span>
+  <a id="PeNet_Header_Pe_ImageLoadConfigDirectory_Finalize_" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.Finalize*"></a>
+  <h4 id="PeNet_Header_Pe_ImageLoadConfigDirectory_Finalize" data-uid="PeNet.Header.Pe.ImageLoadConfigDirectory.Finalize">Finalize()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">IDisposable</span>
+  </div>
 </article>
           </div>
           
@@ -928,7 +1089,7 @@ in UCT.</p>
                     <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_Header_Pe_ImageLoadConfigDirectory.md&amp;value=---%0Auid%3A%20PeNet.Header.Pe.ImageLoadConfigDirectory%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/Header/Pe/ImageLoadConfigDirectory.cs/#L11" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
