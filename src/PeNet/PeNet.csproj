@@ -49,8 +49,8 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(IsDotNetFramework)' == 'true' ">
-    <PackageReference Include="System.Memory" Version="4.5.5" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
+    <PackageReference Include="System.Memory" Version="4.6.0" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.0" />
     <Compile Include="NET48_Helpers.cs_">
       <Link>NET48_Helpers.cs</Link>
     </Compile>
