@@ -1,17 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net6.0;net7;net8;net48;netstandard2</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net8;net48;netstandard2</TargetFrameworks>
     <Version>0.0.0</Version>
     <Nullable>enable</Nullable>
     <LangVersion>12</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <WarningsAsErrors>CS8600;CS8602;CS8603;CS8625;CS8618;CS8604;CS8601</WarningsAsErrors>
-    <IsDotNetFramework Condition=" $(TargetFramework.StartsWith(net4)) or $(TargetFramework.Equals(netstandard2)) ">true</IsDotNetFramework>
+    <IsDotNetFramework
+      Condition=" $(TargetFramework.StartsWith(net4)) or $(TargetFramework.Equals(netstandard2)) ">
+      true</IsDotNetFramework>
     <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
   </PropertyGroup>
 
-  <PropertyGroup Condition="!$(TargetFramework.StartsWith(net4)) and !$(TargetFramework.StartsWith(netstandard))">
-    <!-- These 4 properties can be replaced with the umbrella property IsAotCompatible=true in .NET SDK 8. -->
+  <PropertyGroup
+    Condition="!$(TargetFramework.StartsWith(net4)) and !$(TargetFramework.StartsWith(netstandard))">
+    <!-- These 4 properties can be replaced with the umbrella property IsAotCompatible=true in .NET
+    SDK 8. -->
     <EnableAotAnalyzer>true</EnableAotAnalyzer>
     <EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
@@ -29,7 +33,8 @@
   <PropertyGroup>
     <Authors>Stefan Hausotte</Authors>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <Description>PeNet is a Windows PE (Portable Executable) parser written in C#. It parses all PE header structures for x32 and x64.</Description>
+    <Description>PeNet is a Windows PE (Portable Executable) parser written in C#. It parses all PE
+      header structures for x32 and x64.</Description>
     <Copyright>2017 @ Stefan Hausotte</Copyright>
     <RepositoryUrl>https://github.com/secana/PeNet</RepositoryUrl>
     <PackageTags>PE Header Portable Executable</PackageTags>
