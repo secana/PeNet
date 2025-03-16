@@ -12839,6 +12839,60 @@ references:
   isSpec: "True"
   fullName: PeNet.Header.Resource.VsVersionInfo.WValueLength
   nameWithType: VsVersionInfo.WValueLength
+- uid: PeNet.NET48_Helpers
+  name: NET48_Helpers
+  href: api/PeNet.NET48_Helpers.html
+  commentId: T:PeNet.NET48_Helpers
+  fullName: PeNet.NET48_Helpers
+  nameWithType: NET48_Helpers
+- uid: PeNet.NET48_Helpers.GetString(Encoding,Span{System.Byte})
+  name: GetString(Encoding, Span<Byte>)
+  href: api/PeNet.NET48_Helpers.html#PeNet_NET48_Helpers_GetString_Encoding_Span_System_Byte__
+  commentId: M:PeNet.NET48_Helpers.GetString(Encoding,Span{System.Byte})
+  name.vb: GetString(Encoding, Span(Of Byte))
+  fullName: PeNet.NET48_Helpers.GetString(Encoding, Span<System.Byte>)
+  fullName.vb: PeNet.NET48_Helpers.GetString(Encoding, Span(Of System.Byte))
+  nameWithType: NET48_Helpers.GetString(Encoding, Span<Byte>)
+  nameWithType.vb: NET48_Helpers.GetString(Encoding, Span(Of Byte))
+- uid: PeNet.NET48_Helpers.GetString*
+  name: GetString
+  href: api/PeNet.NET48_Helpers.html#PeNet_NET48_Helpers_GetString_
+  commentId: Overload:PeNet.NET48_Helpers.GetString
+  isSpec: "True"
+  fullName: PeNet.NET48_Helpers.GetString
+  nameWithType: NET48_Helpers.GetString
+- uid: PeNet.NET48_Helpers.Read(Stream,Span{System.Byte})
+  name: Read(Stream, Span<Byte>)
+  href: api/PeNet.NET48_Helpers.html#PeNet_NET48_Helpers_Read_Stream_Span_System_Byte__
+  commentId: M:PeNet.NET48_Helpers.Read(Stream,Span{System.Byte})
+  name.vb: Read(Stream, Span(Of Byte))
+  fullName: PeNet.NET48_Helpers.Read(Stream, Span<System.Byte>)
+  fullName.vb: PeNet.NET48_Helpers.Read(Stream, Span(Of System.Byte))
+  nameWithType: NET48_Helpers.Read(Stream, Span<Byte>)
+  nameWithType.vb: NET48_Helpers.Read(Stream, Span(Of Byte))
+- uid: PeNet.NET48_Helpers.Read*
+  name: Read
+  href: api/PeNet.NET48_Helpers.html#PeNet_NET48_Helpers_Read_
+  commentId: Overload:PeNet.NET48_Helpers.Read
+  isSpec: "True"
+  fullName: PeNet.NET48_Helpers.Read
+  nameWithType: NET48_Helpers.Read
+- uid: PeNet.NET48_Helpers.Write(Stream,Span{System.Byte})
+  name: Write(Stream, Span<Byte>)
+  href: api/PeNet.NET48_Helpers.html#PeNet_NET48_Helpers_Write_Stream_Span_System_Byte__
+  commentId: M:PeNet.NET48_Helpers.Write(Stream,Span{System.Byte})
+  name.vb: Write(Stream, Span(Of Byte))
+  fullName: PeNet.NET48_Helpers.Write(Stream, Span<System.Byte>)
+  fullName.vb: PeNet.NET48_Helpers.Write(Stream, Span(Of System.Byte))
+  nameWithType: NET48_Helpers.Write(Stream, Span<Byte>)
+  nameWithType.vb: NET48_Helpers.Write(Stream, Span(Of Byte))
+- uid: PeNet.NET48_Helpers.Write*
+  name: Write
+  href: api/PeNet.NET48_Helpers.html#PeNet_NET48_Helpers_Write_
+  commentId: Overload:PeNet.NET48_Helpers.Write
+  isSpec: "True"
+  fullName: PeNet.NET48_Helpers.Write
+  nameWithType: NET48_Helpers.Write
 - uid: PeNet.PeFile
   name: PeFile
   href: api/PeNet.PeFile.html

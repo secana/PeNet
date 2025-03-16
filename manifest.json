@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.FileParser.MMFile.html",
-          "hash": "9GB7yAvcw8rV44HvPbErFkBW4KWuohcpY9Vjf2hKC/M="
+          "hash": "5iyaBXx2LZ4OJmrkuRd4CckPHdA7U+Zz16VLlEXSKAc="
         }
       },
       "is_incremental": false,
@@ -1601,6 +1601,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.NET48_Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.NET48_Helpers.html",
+          "hash": "F8hsCXC68pfNnu40p9VybvI5MV08ZqVkpbohj44qXjU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/PeNet.PeFile.yml",
       "output": {
         ".html": {
@@ -1617,7 +1629,7 @@
       "output": {
         ".html": {
           "relative_path": "api/PeNet.html",
-          "hash": "kSmdF1sUciGvmH+QjqpqKnQg1WrqCBtWTjsiDZcjTnk="
+          "hash": "SESoMtyX6x9lFZakyc1f/DYuW0oYydQC2yE4pC0TU74="
         }
       },
       "is_incremental": false,
@@ -1641,7 +1653,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "da7Ms/xHYE0CMvI+kWJZ2OOEKQ9HM0djUR0xuOayBCI="
+          "hash": "aMJKiDNk4KIYVcCW3tCdmXYvvsrU7DY/xlIYKkvU+CI="
         }
       },
       "is_incremental": false,
@@ -1803,7 +1815,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 135,
+          "total_file_count": 136,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
