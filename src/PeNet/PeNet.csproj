@@ -6,14 +6,12 @@
     <LangVersion>12</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <WarningsAsErrors>CS8600;CS8602;CS8603;CS8625;CS8618;CS8604;CS8601</WarningsAsErrors>
-    <IsDotNetFramework
-      Condition=" $(TargetFramework.StartsWith(net4)) or $(TargetFramework.Equals(netstandard2)) ">
-      true</IsDotNetFramework>
+    <IsDotNetFramework Condition=" '$(TargetFramework)' != 'net8'">true</IsDotNetFramework>
     <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
   </PropertyGroup>
 
   <PropertyGroup
-    Condition="!$(TargetFramework.StartsWith(net4)) and !$(TargetFramework.StartsWith(netstandard))">
+    Condition="'$(IsDotNetFramework)' != 'true'">
     <!-- These 4 properties can be replaced with the umbrella property IsAotCompatible=true in .NET
     SDK 8. -->
     <EnableAotAnalyzer>true</EnableAotAnalyzer>
