@@ -37,10 +37,19 @@ namespace PeNet
             static ImageSectionHeader? GetSectionForRva(ICollection<ImageSectionHeader> sh, ulong relVirAdr)
             {
                 ImageSectionHeader? sec = null;
+                uint secSize;
+
+                // There is at least one linker (Watcom, cough, cough) that sets .edata, .reloc and
+                // .rsrc (and possibly others) VirtualSize to 0, which will cause RvaToOffset
+                // to fail for RVA-s that fall within these sections. We try to patch this up by using
+                // SizeOfRawData instead of VirtualSize in such cases
+
                 for (var i = 0; i < sh.Count; i++)
                 {
+                    secSize = (sh.ElementAt(i).VirtualSize == 0) ? sh.ElementAt(i).SizeOfRawData : sh.ElementAt(i).VirtualSize;
+
                     if (relVirAdr >= sh.ElementAt(i).VirtualAddress
-                        && relVirAdr < sh.ElementAt(i).VirtualAddress + sh.ElementAt(i).VirtualSize)
+                        && relVirAdr < sh.ElementAt(i).VirtualAddress + secSize)
                     {
                         sec = sh.ElementAt(i);
                     }
@@ -51,8 +60,10 @@ namespace PeNet
 
                 for (var i = sh.Count - 1; i >= 0; i--)
                 {
+                    secSize = (sh.ElementAt(i).VirtualSize == 0) ? sh.ElementAt(i).SizeOfRawData : sh.ElementAt(i).VirtualSize;
+
                     if (relVirAdr >= sh.ElementAt(i).VirtualAddress &&
-                        relVirAdr <= sh.ElementAt(i).VirtualAddress + sh.ElementAt(i).VirtualSize)
+                        relVirAdr <= sh.ElementAt(i).VirtualAddress + secSize)
                     {
                         sec = sh.ElementAt(i);
                     }
