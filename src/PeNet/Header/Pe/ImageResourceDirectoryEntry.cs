@@ -143,11 +143,12 @@ namespace PeNet.Header.Pe
                 (uint)ResourceGroupIdType.Dialog => "Dialog",
                 (uint)ResourceGroupIdType.String => "String",
                 (uint)ResourceGroupIdType.FontDirectory => "FontDirectory",
-                (uint)ResourceGroupIdType.Font => "Fonst",
+                (uint)ResourceGroupIdType.Font => "Font",
                 (uint)ResourceGroupIdType.Accelerator => "Accelerator",
                 (uint)ResourceGroupIdType.RcData => "RcData",
                 (uint)ResourceGroupIdType.MessageTable => "MessageTable",
                 (uint)ResourceGroupIdType.GroupIcon => "GroupIcon",
+                (uint)ResourceGroupIdType.GroupCursor => "GroupCursor",
                 (uint)ResourceGroupIdType.Version => "Version",
                 (uint)ResourceGroupIdType.DlgInclude => "DlgInclude",
                 (uint)ResourceGroupIdType.PlugAndPlay => "PlugAndPlay",
@@ -221,6 +222,11 @@ namespace PeNet.Header.Pe
         ///     Message Table resource.
         /// </summary>
         MessageTable = 11,
+
+        /// <summary>
+        ///     Group Cursor resource.
+        /// </summary>
+        GroupCursor = 12,
 
         /// <summary>
         ///     Group Icon resource.

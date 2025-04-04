@@ -12,11 +12,11 @@ namespace PeNet.Test
         [Fact]
         public void ResourceEntry_IsIdEntry_HasNameUnknown()
         {
-            var peFile = new PeFile(@"Binaries/VB40032.DLL");
+            var peFile = new PeFile(@"Binaries/VB40032_2.DLL");
             var de = peFile.ImageResourceDirectory?.DirectoryEntries?[6];
 
-            Assert.Equal((uint) 12, de!.ID);
-            Assert.Equal((uint) 1101, de.ResourceDirectory!.DirectoryEntries![0]!.ID);
+            Assert.Equal((uint) 13, de!.ID);
+            Assert.Equal((uint) 3592, de.ResourceDirectory!.DirectoryEntries![0]!.ID);
             Assert.Equal("unknown", de.NameResolved);
         }
 
