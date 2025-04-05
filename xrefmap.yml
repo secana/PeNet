@@ -10640,6 +10640,12 @@ references:
   commentId: F:PeNet.Header.Pe.ResourceGroupIdType.FontDirectory
   fullName: PeNet.Header.Pe.ResourceGroupIdType.FontDirectory
   nameWithType: ResourceGroupIdType.FontDirectory
+- uid: PeNet.Header.Pe.ResourceGroupIdType.GroupCursor
+  name: GroupCursor
+  href: api/PeNet.Header.Pe.ResourceGroupIdType.html#PeNet_Header_Pe_ResourceGroupIdType_GroupCursor
+  commentId: F:PeNet.Header.Pe.ResourceGroupIdType.GroupCursor
+  fullName: PeNet.Header.Pe.ResourceGroupIdType.GroupCursor
+  nameWithType: ResourceGroupIdType.GroupCursor
 - uid: PeNet.Header.Pe.ResourceGroupIdType.GroupIcon
   name: GroupIcon
   href: api/PeNet.Header.Pe.ResourceGroupIdType.html#PeNet_Header_Pe_ResourceGroupIdType_GroupIcon
