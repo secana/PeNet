@@ -24,7 +24,7 @@
     <None Update="Binaries\VB40032.DLL">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Binaries\VB40032_2.DLL">
+    <None Update="Binaries\VB40032-2.DLL">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>	  
     <None Update="Binaries\add-import.exe">
