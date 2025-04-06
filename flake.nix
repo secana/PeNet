@@ -1,16 +1,21 @@
 {
-  description = "Development shell for .NET 8.0";
+  description = "A flake for a .NET 8.0 development environment";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs }: {
-    devShells.default = nixpkgs.lib.mkShell {
-      buildInputs = [
-        (nixpkgs.dotnetCorePackages.sdk_8_0)
-      ];
-    };
-  };
+  outputs = { self, nixpkgs, flake-utils }: flake-utils.lib.eachDefaultSystem (system:
+    let
+      pkgs = import nixpkgs { inherit system; };
+    in
+    {
+      devShells.default = pkgs.mkShell {
+        buildInputs = [
+          pkgs.dotnet-sdk_8
+        ];
+      };
+    }
+  );
 }
-      
