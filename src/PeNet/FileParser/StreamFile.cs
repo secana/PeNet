@@ -20,13 +20,24 @@ namespace PeNet.FileParser
         {
             static int GetCStringLength(Stream stream, int stringOffset)
             {
-                stream.Seek(stringOffset, SeekOrigin.Begin);
-                var currentLength = 0;
-                while (stream.ReadByte() != 0x00)
+                if(stringOffset < stream.Length)
                 {
-                    currentLength++;
+                    stream.Seek(stringOffset, SeekOrigin.Begin);
+                    var currentLength = 0;
+                    while (stream.ReadByte() != 0x00)
+                    {
+                        currentLength++;
+                        if((currentLength + stringOffset) >= stream.Length)
+                        {
+                            return 0;
+                        }
+                    }
+                    return currentLength;
                 }
-                return currentLength;
+                else
+                {
+                    return 0;
+                }
             }
 
             var length = GetCStringLength(_stream, (int)offset);
