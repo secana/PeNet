@@ -71,7 +71,7 @@ namespace PeNet.HeaderParser.Pe
         public ImportFunction[]? ImportFunctions => _importedFunctionsParser.GetParserTarget();
         public ImageBoundImportDescriptor? ImageBoundImportDescriptor => _imageBoundImportDescriptorParser?.GetParserTarget();
         public ImageTlsDirectory? ImageTlsDirectory => _imageTlsDirectoryParser?.GetParserTarget();
-        public ImageDelayImportDescriptor? ImageDelayImportDescriptor => _imageDelayImportDescriptorParser?.GetParserTarget();
+        public ImageDelayImportDescriptor[]? ImageDelayImportDescriptors => _imageDelayImportDescriptorParser?.GetParserTarget();
         public ImageLoadConfigDirectory? ImageLoadConfigDirectory => _imageLoadConfigDirectoryParser?.GetParserTarget();
         public ImageCor20Header? ImageComDescriptor => _imageCor20HeaderParser?.GetParserTarget();
         public Resources? Resources => _resourcesParser?.GetParserTarget();

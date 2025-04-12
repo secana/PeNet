@@ -366,8 +366,8 @@ namespace PeNet
         /// <summary>
         /// Access the ImageDelayImportDirectory from the data directory.
         /// </summary>
-        public ImageDelayImportDescriptor? ImageDelayImportDescriptor =>
-            _dataDirectoryParsers?.ImageDelayImportDescriptor;
+        public ImageDelayImportDescriptor[]? ImageDelayImportDescriptors =>
+            _dataDirectoryParsers?.ImageDelayImportDescriptors;
 
         /// <summary>
         /// Access the ImageLoadConfigDirectory from the data directory.
