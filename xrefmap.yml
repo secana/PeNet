@@ -13181,19 +13181,19 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.ImageDebugDirectory
   nameWithType: PeFile.ImageDebugDirectory
-- uid: PeNet.PeFile.ImageDelayImportDescriptor
-  name: ImageDelayImportDescriptor
-  href: api/PeNet.PeFile.html#PeNet_PeFile_ImageDelayImportDescriptor
-  commentId: P:PeNet.PeFile.ImageDelayImportDescriptor
-  fullName: PeNet.PeFile.ImageDelayImportDescriptor
-  nameWithType: PeFile.ImageDelayImportDescriptor
-- uid: PeNet.PeFile.ImageDelayImportDescriptor*
-  name: ImageDelayImportDescriptor
-  href: api/PeNet.PeFile.html#PeNet_PeFile_ImageDelayImportDescriptor_
-  commentId: Overload:PeNet.PeFile.ImageDelayImportDescriptor
+- uid: PeNet.PeFile.ImageDelayImportDescriptors
+  name: ImageDelayImportDescriptors
+  href: api/PeNet.PeFile.html#PeNet_PeFile_ImageDelayImportDescriptors
+  commentId: P:PeNet.PeFile.ImageDelayImportDescriptors
+  fullName: PeNet.PeFile.ImageDelayImportDescriptors
+  nameWithType: PeFile.ImageDelayImportDescriptors
+- uid: PeNet.PeFile.ImageDelayImportDescriptors*
+  name: ImageDelayImportDescriptors
+  href: api/PeNet.PeFile.html#PeNet_PeFile_ImageDelayImportDescriptors_
+  commentId: Overload:PeNet.PeFile.ImageDelayImportDescriptors
   isSpec: "True"
-  fullName: PeNet.PeFile.ImageDelayImportDescriptor
-  nameWithType: PeFile.ImageDelayImportDescriptor
+  fullName: PeNet.PeFile.ImageDelayImportDescriptors
+  nameWithType: PeFile.ImageDelayImportDescriptors
 - uid: PeNet.PeFile.ImageDosHeader
   name: ImageDosHeader
   href: api/PeNet.PeFile.html#PeNet_PeFile_ImageDosHeader
