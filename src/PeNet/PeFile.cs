@@ -333,6 +333,11 @@ namespace PeNet
         public ImportFunction[]? ImportedFunctions => _dataDirectoryParsers?.ImportFunctions;
 
         /// <summary>
+        ///     Access the delay imported functions as an array of parsed objects.
+        /// </summary>
+        public ImportFunction[]? DelayImportedFunctions => _dataDirectoryParsers?.DelayImportFunctions;
+        
+        /// <summary>
         ///     Access the ImageResourceDirectory of the PE file.
         /// </summary>
         public ImageResourceDirectory? ImageResourceDirectory => _dataDirectoryParsers?.ImageResourceDirectory;

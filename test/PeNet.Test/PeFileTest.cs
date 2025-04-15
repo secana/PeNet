@@ -21,6 +21,16 @@ namespace PeNet.Test
         }
 
         [Fact]
+        public void ImportedFunction_DelayImport_ParsedDelayImports()
+        {
+            var peFile = new PeFile(@"Binaries/chrome_elf.dll");
+
+            Assert.NotNull(peFile.DelayImportedFunctions.FirstOrDefault(
+                i => i.DLL == "WINMM.dll" &&
+                i.Name == "timeGetTime"));
+        }
+
+        [Fact]
         public void ExportedFunctions_WithForwardedFunctions_ParsedForwardedFunctions()
         {
             var peFile = new PeFile(@"Binaries/win_test.dll");
