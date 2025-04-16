@@ -22,6 +22,7 @@ namespace PeNet.HeaderParser.Pe
         private ImageImportDescriptorsParser? _imageImportDescriptorsParser;
         private readonly ImageResourceDirectoryParser? _imageResourceDirectoryParser;
         private ImportedFunctionsParser _importedFunctionsParser;
+        private readonly DelayImportedFunctionsParser _delayImportedFunctionsParser;
         private readonly RuntimeFunctionsParser? _runtimeFunctionsParser;
         private readonly WinCertificateParser? _winCertificateParser;
         private readonly ImageTlsDirectoryParser? _imageTlsDirectoryParser;
@@ -46,15 +47,16 @@ namespace PeNet.HeaderParser.Pe
             _imageExportDirectoriesParser = InitImageExportDirectoryParser();
             _runtimeFunctionsParser = InitRuntimeFunctionsParser();
             _imageImportDescriptorsParser = InitImageImportDescriptorsParser();
+            _imageDelayImportDescriptorParser = InitImageDelayImportDescriptorParser();
             _imageBaseRelocationsParser = InitImageBaseRelocationsParser();
             _imageResourceDirectoryParser = InitImageResourceDirectoryParser();
             _imageDebugDirectoryParser = InitImageDebugDirectoryParser();
             _winCertificateParser = InitWinCertificateParser();
             _exportedFunctionsParser = InitExportFunctionParser();
             _importedFunctionsParser = InitImportedFunctionsParser();
+            _delayImportedFunctionsParser = InitDelayImportedFunctionsParser();
             _imageBoundImportDescriptorParser = InitBoundImportDescriptorParser();
             _imageTlsDirectoryParser = InitImageTlsDirectoryParser();
-            _imageDelayImportDescriptorParser = InitImageDelayImportDescriptorParser();
             _imageLoadConfigDirectoryParser = InitImageLoadConfigDirectoryParser();
             _imageCor20HeaderParser = InitImageComDescriptorParser();
             _resourcesParser = InitResourcesParser();
@@ -69,6 +71,7 @@ namespace PeNet.HeaderParser.Pe
         public RuntimeFunction[]? RuntimeFunctions => _runtimeFunctionsParser?.GetParserTarget();
         public ExportFunction[]? ExportFunctions => _exportedFunctionsParser.GetParserTarget();
         public ImportFunction[]? ImportFunctions => _importedFunctionsParser.GetParserTarget();
+        public ImportFunction[]? DelayImportFunctions => _delayImportedFunctionsParser?.GetParserTarget();
         public ImageBoundImportDescriptor? ImageBoundImportDescriptor => _imageBoundImportDescriptorParser?.GetParserTarget();
         public ImageTlsDirectory? ImageTlsDirectory => _imageTlsDirectoryParser?.GetParserTarget();
         public ImageDelayImportDescriptor[]? ImageDelayImportDescriptors => _imageDelayImportDescriptorParser?.GetParserTarget();
@@ -152,6 +155,15 @@ namespace PeNet.HeaderParser.Pe
             => new(
                 _peFile,
                 ImageImportDescriptors,
+                _sectionHeaders,
+                _dataDirectories,
+                !_is32Bit
+                );
+
+        private DelayImportedFunctionsParser InitDelayImportedFunctionsParser()
+            => new(
+                _peFile,
+                ImageDelayImportDescriptors,
                 _sectionHeaders,
                 _dataDirectories,
                 !_is32Bit
