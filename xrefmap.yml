@@ -13029,6 +13029,19 @@ references:
   isSpec: "True"
   fullName: PeNet.PeFile.ClrModuleVersionIds
   nameWithType: PeFile.ClrModuleVersionIds
+- uid: PeNet.PeFile.DelayImportedFunctions
+  name: DelayImportedFunctions
+  href: api/PeNet.PeFile.html#PeNet_PeFile_DelayImportedFunctions
+  commentId: P:PeNet.PeFile.DelayImportedFunctions
+  fullName: PeNet.PeFile.DelayImportedFunctions
+  nameWithType: PeFile.DelayImportedFunctions
+- uid: PeNet.PeFile.DelayImportedFunctions*
+  name: DelayImportedFunctions
+  href: api/PeNet.PeFile.html#PeNet_PeFile_DelayImportedFunctions_
+  commentId: Overload:PeNet.PeFile.DelayImportedFunctions
+  isSpec: "True"
+  fullName: PeNet.PeFile.DelayImportedFunctions
+  nameWithType: PeFile.DelayImportedFunctions
 - uid: PeNet.PeFile.ExceptionDirectory
   name: ExceptionDirectory
   href: api/PeNet.PeFile.html#PeNet_PeFile_ExceptionDirectory
