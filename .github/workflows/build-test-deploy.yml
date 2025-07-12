@@ -2,87 +2,94 @@ name: Build, Test and Deploy
 
 on:
   push:
-    branches: [ '*' ]
-    tags: [ '*' ]
+    branches: ["*"]
+    tags: ["*"]
   pull_request:
-    branches: [ '*' ]
+    branches: ["*"]
 
 jobs:
   linux-test:
     name: Linux Tests
     runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.x'
-    
-    - name: Run Unit Tests
-      run: dotnet test **/*Test/*.csproj --configuration Release
 
-  windows-build-deploy:
-    name: Windows CI/CD
-    needs: linux-test
-    runs-on: windows-latest
-    
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0 # Required for tag detection
-    
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.x'
-    
-    - name: Get version from tag
-      if: startsWith(github.ref, 'refs/tags/v')
-      shell: pwsh
-      run: |
-        $version = $env:GITHUB_REF -replace 'refs/tags/v',''
-        echo "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Append
-    
-    - name: Update project version
-      if: startsWith(github.ref, 'refs/tags/v')
-      shell: pwsh
-      run: |
-        ((Get-Content -path .\src\PeNet\PeNet.csproj -Raw) -replace '0.0.0',$env:VERSION) | Set-Content -Path .\src\PeNet\PeNet.csproj
-    
-      run: dotnet test **/*test/**/*.csproj --collect "Code coverage"
-    
-    - name: Install DocFX
-      run: choco install docfx -y
-    
-    - name: Build Documentation Meta-Data
-      run: docfx metadata
-      working-directory: ./docfx
-    
-    - name: Build Documentation
-      run: docfx build
-      working-directory: ./docfx
-    
-    - name: Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        branch: gh-pages
-        folder: docs
-        clean: false
-        commit-message: 'Automated gh-pages update'
-        git-config-name: github-actions
-        git-config-email: github-actions@penet.org
-        token: ${{ secrets.GITHUB_TOKEN }}
-    
-    - name: Pack NuGet Package
-      run: dotnet pack **/src/**/*.csproj --configuration Release --output ${{ github.workspace }}/packages
-    
-    - name: Publish NuGet Package
-      if: startsWith(github.ref, 'refs/tags/v')
-      run: |
-        foreach($file in Get-ChildItem -Path "${{ github.workspace }}/packages" -Filter "*.nupkg") {
-            dotnet nuget push $file.FullName --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
-        }
-      shell: pwsh
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.x"
+
+      - name: Run Unit Tests
+        run: dotnet test **/*Test/*.csproj --configuration Release
+
+  windows-test:
+    name: Windows Tests
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.x"
+
+      - name: Run Unit Tests with Coverage
+        run: dotnet test **/*test/**/*.csproj --collect "Code coverage" --configuration Release
+
+  deploy:
+    name: Build Documentation and Deploy
+    needs: [linux-test, windows-test]
+    runs-on: windows-latest
+    if: success() && startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required for tag detection
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.x"
+
+      - name: Get version from tag
+        shell: pwsh
+        run: |
+          $version = $env:GITHUB_REF -replace 'refs/tags/v',''
+          echo "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Update project version
+        shell: pwsh
+        run: |
+          ((Get-Content -path .\src\PeNet\PeNet.csproj -Raw) -replace '0.0.0',$env:VERSION) | Set-Content -Path .\src\PeNet\PeNet.csproj
+
+      - name: Install DocFX
+        run: choco install docfx -y
+
+      - name: Build Documentation Meta-Data
+        run: docfx metadata
+        working-directory: ./docfx
+
+      - name: Build Documentation
+        run: docfx build
+        working-directory: ./docfx
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: docs
+          clean: false
+          commit-message: "Automated gh-pages update for ${{ github.ref_name }}"
+          git-config-name: github-actions
+          git-config-email: github-actions@penet.org
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to NuGet
+        uses: rohith/publish-nuget@v2
+        with:
+          PROJECT_FILE_PATH: src/PeNet/PeNet.csproj
+          NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
+          INCLUDE_SYMBOLS: true
