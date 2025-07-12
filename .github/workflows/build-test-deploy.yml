@@ -51,7 +51,6 @@ jobs:
       run: |
         ((Get-Content -path .\src\PeNet\PeNet.csproj -Raw) -replace '0.0.0',$env:VERSION) | Set-Content -Path .\src\PeNet\PeNet.csproj
     
-    - name: Run Unit Tests with Coverage
       run: dotnet test **/*test/**/*.csproj --collect "Code coverage"
     
     - name: Install DocFX
