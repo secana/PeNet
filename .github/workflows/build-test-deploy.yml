@@ -21,7 +21,7 @@ jobs:
           dotnet-version: "8.x"
 
       - name: Run Unit Tests
-        run: dotnet test **/*Test/*.csproj --configuration Release
+        run: dotnet test --configuration Release
 
   windows-test:
     name: Windows Tests
@@ -36,7 +36,7 @@ jobs:
           dotnet-version: "8.x"
 
       - name: Run Unit Tests with Coverage
-        run: dotnet test **/*test/**/*.csproj --collect "Code coverage" --configuration Release
+        run: dotnet test --collect "Code coverage" --configuration Release
 
   deploy:
     name: Build Documentation and Deploy
