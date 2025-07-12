@@ -52,7 +52,7 @@ jobs:
         ((Get-Content -path .\src\PeNet\PeNet.csproj -Raw) -replace '0.0.0',$env:VERSION) | Set-Content -Path .\src\PeNet\PeNet.csproj
     
     - name: Run Unit Tests with Coverage
-      run: dotnet test **/*test/*.csproj --configuration Release --collect "Code coverage"
+      run: dotnet test **/*test/**/*.csproj --collect "Code coverage"
     
     - name: Install DocFX
       run: choco install docfx -y
@@ -78,7 +78,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Pack NuGet Package
-      run: dotnet pack **\src\**\*.csproj --configuration Release --output ${{ github.workspace }}/packages
+      run: dotnet pack **/src/**/*.csproj --configuration Release --output ${{ github.workspace }}/packages
     
     - name: Publish NuGet Package
       if: startsWith(github.ref, 'refs/tags/v')
