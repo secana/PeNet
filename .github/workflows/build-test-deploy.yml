@@ -2,10 +2,14 @@ name: Build, Test and Deploy
 
 on:
   push:
-    branches: ["*"]
-    tags: ["*"]
+    branches:
+      - main
   pull_request:
-    branches: ["*"]
+    branches:
+      - main
+  release:
+    types:
+      - published
 
 jobs:
   linux-test:
@@ -42,7 +46,9 @@ jobs:
     name: Build Documentation and Deploy
     needs: [linux-test, windows-test]
     runs-on: windows-latest
-    if: success() && startsWith(github.ref, 'refs/tags/v')
+    if: github.event_name == 'release'
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4

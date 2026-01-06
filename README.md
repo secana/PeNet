@@ -17,11 +17,4 @@ For an overview of *PeNet* or to analyze PE files go to: [penet.io](http://penet
 
 ## Continuous Integration
 
-The project is automatically build, tested and released with an [Azure Pipeline](https://dev.azure.com/secana/PeNet).
-
-To release a new version, push a tagged commit. For example:
-
- ```powershell
- git tag -a v2.0.0 -m 'Release version 2.0.0'
- git push origin v2.0.0
- ```
+To release a new version, create a new Github Release. The CI/CD pipeline will automatically create a new NuGet package and upload it to [NuGet.org](https://www.nuget.org/packages/PeNet/).
