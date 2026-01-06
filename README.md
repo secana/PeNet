@@ -15,11 +15,8 @@ The API reference can be found here: [PeNet Documentation & API Reference](http:
 
 For an overview of *PeNet* or to analyze PE files go to: [penet.io](http://penet.io)
 
-## Continuous Integration
+## Continous Integration
 
-To release a new version, push a tagged commit. For example:
+To release a new version, create a new Github Release. The CI/CD pipeline will automatically create a new NuGet package and upload it to [NuGet.org](https://www.nuget.org/packages/PeNet/).
 
- ```powershell
- git tag -a v2.0.0 -m 'Release version 2.0.0'
- git push origin v2.0.0
  ```
