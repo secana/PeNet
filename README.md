@@ -15,8 +15,6 @@ The API reference can be found here: [PeNet Documentation & API Reference](http:
 
 For an overview of *PeNet* or to analyze PE files go to: [penet.io](http://penet.io)
 
-## Continous Integration
+## Continuous Integration
 
 To release a new version, create a new Github Release. The CI/CD pipeline will automatically create a new NuGet package and upload it to [NuGet.org](https://www.nuget.org/packages/PeNet/).
-
- ```
