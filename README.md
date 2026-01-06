@@ -17,8 +17,6 @@ For an overview of *PeNet* or to analyze PE files go to: [penet.io](http://penet
 
 ## Continuous Integration
 
-The project is automatically build, tested and released with an [Azure Pipeline](https://dev.azure.com/secana/PeNet).
-
 To release a new version, push a tagged commit. For example:
 
  ```powershell
