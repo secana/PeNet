@@ -52,7 +52,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(IsDotNetFramework)' == 'true' ">
-    <PackageReference Include="System.Memory" Version="4.6.0" />
+    <PackageReference Include="System.Memory" Version="4.6.3" />
     <Compile Include="NET48_Helpers.cs_">
       <Link>NET48_Helpers.cs</Link>
     </Compile>
