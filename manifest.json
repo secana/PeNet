@@ -1,18 +1,1918 @@
 {
-  "homepages": [],
-  "source_base_path": "D:/a/1/s/docfx",
+  "source_base_path": "/home/runner/work/PeNet/PeNet/docfx",
   "xrefmap": "xrefmap.yml",
   "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.AdditionalImport.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.AdditionalImport.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.AdditionalImport",
+      "Summary": "<p sourcefile=\"api/PeNet.AdditionalImport.yml\" sourcestartlinenumber=\"1\">Additional import used to add new\nimports to the PE file.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Crypto.Hash.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Crypto.Hash.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Crypto.Hash",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Crypto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Crypto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Crypto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.ExtensionMethods.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.ExtensionMethods.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.ExtensionMethods",
+      "Summary": "<p sourcefile=\"api/PeNet.ExtensionMethods.yml\" sourcestartlinenumber=\"1\">Extensions method to work make the work with buffers\nand addresses easier.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.FileParser.BufferFile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.FileParser.BufferFile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.FileParser.BufferFile",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.FileParser.IRawFile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.FileParser.IRawFile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.FileParser.IRawFile",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.FileParser.MMFile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.FileParser.MMFile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.FileParser.MMFile",
+      "Summary": "<p sourcefile=\"api/PeNet.FileParser.MMFile.yml\" sourcestartlinenumber=\"1\">Parse the PE file as a memory mapped file.\nThis is useful for large files.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.FileParser.StreamFile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.FileParser.StreamFile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.FileParser.StreamFile",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.FileParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.FileParser.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.FileParser",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.AbstractStructure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.AbstractStructure.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.AbstractStructure",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.AbstractStructure.yml\" sourcestartlinenumber=\"1\">Abstract class for a Windows structure.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Authenticode.AuthenticodeInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Authenticode.AuthenticodeInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Authenticode.AuthenticodeInfo",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Authenticode.ContentInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Authenticode.ContentInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Authenticode.ContentInfo",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Authenticode.CrlUrlList.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Authenticode.CrlUrlList.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Authenticode.CrlUrlList",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Authenticode.CrlUrlList.yml\" sourcestartlinenumber=\"1\">This class parses the Certificate Revocation Lists\nof a signing certificate. It provides access to all\nCRL URLs in the certificate.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Authenticode.SignedData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Authenticode.SignedData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Authenticode.SignedData",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Authenticode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Authenticode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Authenticode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.ImpHash.ImportHash.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.ImpHash.ImportHash.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.ImpHash.ImportHash",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.ImpHash.ImportHash.yml\" sourcestartlinenumber=\"1\">Mandiant’s imphash convention requires the following:\nResolving ordinals to function names when they appear.\nConverting both DLL names and function names to all lowercase.\nRemoving the file extensions from imported module names.\nBuilding and storing the lowercased strings in an ordered list.\nGenerating the MD5 hash of the ordered list.\noleaut32, ws2_32 and wsock32 can resolve ordinals to functions names.\nThe implementation is equal to the python module &quot;pefile&quot; 1.2.10-139\n<a href=\"https://code.google.com/p/pefile/\" sourcefile=\"api/PeNet.Header.ImpHash.ImportHash.yml\" sourcestartlinenumber=\"9\">https://code.google.com/p/pefile/</a></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.ImpHash.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.ImpHash.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.ImpHash",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.HeapSizes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.HeapSizes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.HeapSizes",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Net.HeapSizes.yml\" sourcestartlinenumber=\"1\">Size of the meta data heaps.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.IMetaDataTablesHdr.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.IMetaDataTablesHdr.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.IMetaDataTablesHdr",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.Index.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.Index.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.Index",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.IndexSize.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.IndexSize.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.IndexSize",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MaskValidType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MaskValidType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MaskValidType",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Net.MaskValidType.yml\" sourcestartlinenumber=\"1\">MaskValid flags from the MetaDataTablesHdr.\nThe flags show, which tables are present.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataHdr.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataHdr.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataHdr",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Net.MetaDataHdr.yml\" sourcestartlinenumber=\"1\">The Meta Data Header is part of the .Net/CLI (COM+ 2) header and is reachable\nfrom the .Net/CLI (COM+2) header ImageCor20Header. It contains information\nabout embedded streams (sections) in the .Net assembly.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataStreamGuid.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataStreamGuid.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataStreamGuid",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Net.MetaDataStreamGuid.yml\" sourcestartlinenumber=\"1\">Represents the &quot;GUID&quot; meta data stream from the .Net header which\ncontains all application GUIDs to idenfitfy different assembly versions.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataStreamHdr.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataStreamHdr.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataStreamHdr",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Net.MetaDataStreamHdr.yml\" sourcestartlinenumber=\"1\">The Meta Data Stream Header contains information about data streams (sections)\nin a .Net assembly.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataStreamString.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataStreamString.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataStreamString",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Net.MetaDataStreamString.yml\" sourcestartlinenumber=\"1\">Represents the &quot;String&quot; meta data stream from the .Net header which\ncontains all application interal strings.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataStreamUs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataStreamUs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataStreamUs",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Net.MetaDataStreamUs.yml\" sourcestartlinenumber=\"1\">Represents the &quot;US&quot; (user string) meta data stream from the .Net header which\ncontains all application internal strings.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.AbstractTable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.AbstractTable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.AbstractTable",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.Assembly.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.Assembly.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.Assembly",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.AssemblyOS.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.AssemblyOS.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.AssemblyOS",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.AssemblyProcessor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.AssemblyProcessor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.AssemblyProcessor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.AssemblyRef.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.AssemblyRef.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.AssemblyRef",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.AssemblyRefOS.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.AssemblyRefOS.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.AssemblyRefOS",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.AssemblyRefProcessor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.AssemblyRefProcessor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.AssemblyRefProcessor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.ClassLayout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.ClassLayout.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.ClassLayout",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.Constant.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.Constant.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.Constant",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.CustomAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.CustomAttribute.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.CustomAttribute",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.DeclSecurity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.DeclSecurity.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.DeclSecurity",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.Event.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.Event.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.Event",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.EventMap.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.EventMap.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.EventMap",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.ExportedType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.ExportedType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.ExportedType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.Field.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.Field.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.Field",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.FieldLayout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.FieldLayout.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.FieldLayout",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.FieldMarshal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.FieldMarshal.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.FieldMarshal",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.FieldRVA.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.FieldRVA.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.FieldRVA",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.File.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.File.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.File",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.GenericParam.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.GenericParam.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.GenericParam",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.GenericParamConstraint.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.GenericParamConstraint.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.GenericParamConstraint",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.ImplMap.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.ImplMap.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.ImplMap",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.InterfaceImpl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.InterfaceImpl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.InterfaceImpl",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.ManifestResource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.ManifestResource.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.ManifestResource",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.MemberRef.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.MemberRef.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.MemberRef",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.MethodDef.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.MethodDef.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.MethodDef",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.MethodImpl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.MethodImpl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.MethodImpl",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.MethodSemantics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.MethodSemantics.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.MethodSemantics",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.Module.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.Module.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.Module",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.ModuleRef.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.ModuleRef.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.ModuleRef",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.NestedClass.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.NestedClass.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.NestedClass",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.Param.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.Param.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.Param",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.Property.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.Property.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.Property",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.PropertyMap.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.PropertyMap.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.PropertyMap",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.StandAloneSig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.StandAloneSig.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.StandAloneSig",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.Tables.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.Tables.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.Tables",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.TypeDef.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.TypeDef.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.TypeDef",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.TypeRef.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.TypeRef.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.TypeRef",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.TypeSpec.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.TypeSpec.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables.TypeSpec",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTables.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTables.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTables",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Net.MetaDataTablesHdr.MetaDataTableInfo.yml\" sourcestartlinenumber=\"1\">Represents an table definition entry from the list\nof available tables in the Meta Data Tables Header\nin the .Net header of an assembly.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.MetaDataTablesHdr.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.MetaDataTablesHdr.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.MetaDataTablesHdr",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Net.MetaDataTablesHdr.yml\" sourcestartlinenumber=\"1\">The Meta Data Tables Header contains information about all present\ndata tables in the .Net assembly.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.TypeRefHash.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.TypeRefHash.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net.TypeRefHash",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Net.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Net.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Net",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ComFlagsType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ComFlagsType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ComFlagsType",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ComFlagsType.yml\" sourcestartlinenumber=\"1\">ImageCor20Header Flags</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.Copyright.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.Copyright.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.Copyright",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.Copyright.yml\" sourcestartlinenumber=\"1\">The copyright ASCII (not 0-terminated) string of the PE file\nif any is given.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.DataDirectoryType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.DataDirectoryType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.DataDirectoryType",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.DataDirectoryType.yml\" sourcestartlinenumber=\"1\">The data directory indices used to resolve\nwhich directory is which.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.DebugDirectoryType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.DebugDirectoryType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.DebugDirectoryType",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.DebugDirectoryType.yml\" sourcestartlinenumber=\"1\">An image has potentially multiple entries of ImageDebugDirectory.\nThis is the &quot;Type&quot; of an entry.\nMain source is winnt.h\nSee <a href=\"https://docs.microsoft.com/en-us/windows/win32/debug/pe-format#debug-type\" sourcefile=\"api/PeNet.Header.Pe.DebugDirectoryType.yml\" sourcestartlinenumber=\"4\">https://docs.microsoft.com/en-us/windows/win32/debug/pe-format#debug-type</a>\nand <a href=\"https://docs.microsoft.com/en-us/dotnet/api/system.reflection.portableexecutable.debugdirectoryentrytype?view=net-5.0\" sourcefile=\"api/PeNet.Header.Pe.DebugDirectoryType.yml\" sourcestartlinenumber=\"5\">https://docs.microsoft.com/en-us/dotnet/api/system.reflection.portableexecutable.debugdirectoryentrytype?view=net-5.0</a></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.DllCharacteristicsType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.DllCharacteristicsType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.DllCharacteristicsType",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.DllCharacteristicsType.yml\" sourcestartlinenumber=\"1\">Constants for the Optional header DllCharacteristics\nproperty.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ExportFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ExportFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ExportFunction",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ExportFunction.yml\" sourcestartlinenumber=\"1\">Represents an exported function.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ExtendedDllCharacteristicsType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ExtendedDllCharacteristicsType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ExtendedDllCharacteristicsType",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ExtendedDllCharacteristicsType.yml\" sourcestartlinenumber=\"1\">Possible bit-field values when ImageDebugDirectory.Type is DebugDirectoryType.ExtendedDllCharacteristics</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.FileCharacteristicsType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.FileCharacteristicsType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.FileCharacteristicsType",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.FileCharacteristicsType.yml\" sourcestartlinenumber=\"1\">File characteristics from the file header.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_CODE_INTEGRITY.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_CODE_INTEGRITY.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.IMAGE_LOAD_CONFIG_CODE_INTEGRITY",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_CODE_INTEGRITY.yml\" sourcestartlinenumber=\"1\"><a href=\"https://github.com/dahall/Vanara/blob/3da05fe4d87bc5de96527fad5c9b7e6058690deb/PInvoke/DbgHelp/WinNT.cs#L1013\" sourcefile=\"api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_CODE_INTEGRITY.yml\" sourcestartlinenumber=\"1\">https://github.com/dahall/Vanara/blob/3da05fe4d87bc5de96527fad5c9b7e6058690deb/PInvoke/DbgHelp/WinNT.cs#L1013</a>\nUndocumented</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY32.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY32",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY32.yml\" sourcestartlinenumber=\"1\"><a href=\"https://github.com/dahall/Vanara/blob/3da05fe4d87bc5de96527fad5c9b7e6058690deb/PInvoke/DbgHelp/WinNT.cs#L1052\" sourcefile=\"api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY32.yml\" sourcestartlinenumber=\"1\">https://github.com/dahall/Vanara/blob/3da05fe4d87bc5de96527fad5c9b7e6058690deb/PInvoke/DbgHelp/WinNT.cs#L1052</a></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY64.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY64",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY64.yml\" sourcestartlinenumber=\"1\"><a href=\"https://github.com/dahall/Vanara/blob/3da05fe4d87bc5de96527fad5c9b7e6058690deb/PInvoke/DbgHelp/WinNT.cs#L1244\" sourcefile=\"api/PeNet.Header.Pe.IMAGE_LOAD_CONFIG_DIRECTORY64.yml\" sourcestartlinenumber=\"1\">https://github.com/dahall/Vanara/blob/3da05fe4d87bc5de96527fad5c9b7e6058690deb/PInvoke/DbgHelp/WinNT.cs#L1244</a></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageBaseRelocation.TypeOffset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageBaseRelocation.TypeOffset.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageBaseRelocation.TypeOffset",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageBaseRelocation.TypeOffset.yml\" sourcestartlinenumber=\"1\">Represents the type and offset in an\nImageBaseRelocation structure.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageBaseRelocation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageBaseRelocation.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageBaseRelocation",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageBaseRelocation.yml\" sourcestartlinenumber=\"1\">The ImageBaseRelocation structure holds information needed to relocate\nthe image to another virtual address.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageBoundImportDescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageBoundImportDescriptor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageBoundImportDescriptor",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageBoundImportDescriptor.yml\" sourcestartlinenumber=\"1\">Bound import descriptor.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageCor20Header.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageCor20Header.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageCor20Header",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageCor20Header.yml\" sourcestartlinenumber=\"1\">COM+ 2.0 (CLI) Header\n<a href=\"https://www.codeproject.com/Articles/12585/The-NET-File-Format\" sourcefile=\"api/PeNet.Header.Pe.ImageCor20Header.yml\" sourcestartlinenumber=\"2\">https://www.codeproject.com/Articles/12585/The-NET-File-Format</a></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageDataDirectory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageDataDirectory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageDataDirectory",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageDataDirectory.yml\" sourcestartlinenumber=\"1\">The ImageDataDirectory struct represents the data directory,</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageDebugDirectory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageDebugDirectory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageDebugDirectory",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageDebugDirectory.yml\" sourcestartlinenumber=\"1\">The ImageDebugDirectory hold debug information\nabout the PE file.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageDelayImportDescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageDelayImportDescriptor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageDelayImportDescriptor",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageDelayImportDescriptor.yml\" sourcestartlinenumber=\"1\">The ImageDelayImportDirectory describes delayed imports.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageDosHeader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageDosHeader.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageDosHeader",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageDosHeader.yml\" sourcestartlinenumber=\"1\">The ImageDosHeader with which every PE file starts.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageExportDirectory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageExportDirectory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageExportDirectory",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageExportDirectory.yml\" sourcestartlinenumber=\"1\">The export directory contains all exported function, symbols etc.\nwhich can be used by other module.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageFileHeader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageFileHeader.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageFileHeader",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageFileHeader.yml\" sourcestartlinenumber=\"1\">The File header contains information about the structure\nand properties of the PE file.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageImportByName.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageImportByName.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageImportByName",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageImportByName.yml\" sourcestartlinenumber=\"1\">The ImageImportByName structure is used to\ndescribes imports of functions or symbols by their name.\nThe AddressOfData in the ImageThunkData from the\nImageImportDescriptor points to it.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageImportDescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageImportDescriptor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageImportDescriptor",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageImportDescriptor.yml\" sourcestartlinenumber=\"1\">The ImageImportDescriptors are contained in the Import Directory\nand holds all the information about function and symbol imports.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageLoadConfigDirectory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageLoadConfigDirectory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageLoadConfigDirectory",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageLoadConfigDirectory.yml\" sourcestartlinenumber=\"1\">The ImageLoadConfigDirectory holds information\nimportant to load the PE file correctly.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageNtHeaders.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageNtHeaders.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageNtHeaders",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageNtHeaders.yml\" sourcestartlinenumber=\"1\">The NT header is the main header for modern Windows applications.\nIt contains the file header and the optional header.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageOptionalHeader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageOptionalHeader.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageOptionalHeader",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageOptionalHeader.yml\" sourcestartlinenumber=\"1\">Represents the optional header in\nthe NT header.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageResourceDataEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageResourceDataEntry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageResourceDataEntry",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageResourceDataEntry.yml\" sourcestartlinenumber=\"1\">The ImageResourceDataEntry points to the data of\nthe resources in the PE file like version info, strings etc.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageResourceDirStringU.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageResourceDirStringU.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageResourceDirStringU",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageResourceDirStringU.yml\" sourcestartlinenumber=\"1\">Represents a Unicode string used for resource names\nin the resource section.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageResourceDirectory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageResourceDirectory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageResourceDirectory",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageResourceDirectory.yml\" sourcestartlinenumber=\"1\">The resource directory contains icons, mouse pointer, string\nlanguage files etc. which are used by the application.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageResourceDirectoryEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageResourceDirectoryEntry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageResourceDirectoryEntry",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageResourceDirectoryEntry.yml\" sourcestartlinenumber=\"1\">The resource directory entry represents one entry (e.g. icon)\nin a resource directory.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageSectionHeader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageSectionHeader.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageSectionHeader",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageSectionHeader.yml\" sourcestartlinenumber=\"1\">Represents the section header for one section.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageThunkData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageThunkData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageThunkData",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageThunkData.yml\" sourcestartlinenumber=\"1\">The thunk data is used by for the imports\nin the import section.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageTlsCallback.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageTlsCallback.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageTlsCallback",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageTlsCallback.yml\" sourcestartlinenumber=\"1\">Thread Local Storage callback.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImageTlsDirectory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImageTlsDirectory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImageTlsDirectory",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImageTlsDirectory.yml\" sourcestartlinenumber=\"1\">Thread Local Storage Directory.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ImportFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ImportFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ImportFunction",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ImportFunction.yml\" sourcestartlinenumber=\"1\">Represents an imported function.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.MachineType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.MachineType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.MachineType",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.MachineType.yml\" sourcestartlinenumber=\"1\">ImageFileHeader machine constants which define\nfor which CPU type the PE file is.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.MagicType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.MagicType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.MagicType",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.MagicType.yml\" sourcestartlinenumber=\"1\">Constants for the Optional header magic property.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ResourceGroupIdType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ResourceGroupIdType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ResourceGroupIdType",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ResourceGroupIdType.yml\" sourcestartlinenumber=\"1\">Mapping from Resources Group ID to a meaningful\nstring. Used for ID resources (opposite to named resource).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.RuntimeFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.RuntimeFunction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.RuntimeFunction",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.RuntimeFunction.yml\" sourcestartlinenumber=\"1\">The runtime function struct is represents\na function in the exception header for x64\napplications.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.ScnCharacteristicsType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.ScnCharacteristicsType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.ScnCharacteristicsType",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.ScnCharacteristicsType.yml\" sourcestartlinenumber=\"1\">The SectionFlags enumeration lists all possible flags which can\nbe set in the section characteristics.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.SubsystemType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.SubsystemType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.SubsystemType",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.SubsystemType.yml\" sourcestartlinenumber=\"1\">Subsystem of the image.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.UnwindCode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.UnwindCode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.UnwindCode",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.UnwindCode.yml\" sourcestartlinenumber=\"1\">The UnwindCode is a struct in\nthe UnwindInfo used to describe\nexception handling in x64 applications\nand to walk the stack.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.UnwindInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.UnwindInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.UnwindInfo",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.UnwindInfo.yml\" sourcestartlinenumber=\"1\">The UnwindInfo is used for x64 exception\nhandling and to unwind the stack. It is\npointed to by the RuntimeFunction struct.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.UnwindOpType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.UnwindOpType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.UnwindOpType",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.UnwindOpType.yml\" sourcestartlinenumber=\"1\">UnwindOp Codes for the unwind information\nused to walk the stack in x64 applications.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.WinCertificate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.WinCertificate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.WinCertificate",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.WinCertificate.yml\" sourcestartlinenumber=\"1\">The WinCertificate the information\nin the security directory of the PE file.\nIt contains information about any certificates\nused to sign the binary.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.WinCertificateType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.WinCertificateType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe.WinCertificateType",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Pe.WinCertificateType.yml\" sourcestartlinenumber=\"1\">WinCertificate wCertificateType constants.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Pe.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Pe.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Pe",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Resource.CvInfoPdb70.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Resource.CvInfoPdb70.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Resource.CvInfoPdb70",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Resource.CvInfoPdb70.yml\" sourcestartlinenumber=\"1\">Codeview PDB information from the Debug directory.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Resource.GroupIconDirectory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Resource.GroupIconDirectory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Resource.GroupIconDirectory",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Resource.GroupIconDirectory.yml\" sourcestartlinenumber=\"1\">Collection of GroupIconDirectoryEntries.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Resource.GroupIconDirectoryEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Resource.GroupIconDirectoryEntry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Resource.GroupIconDirectoryEntry",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Resource.GroupIconDirectoryEntry.yml\" sourcestartlinenumber=\"1\">Information about GroupIcons.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Resource.Icon.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Resource.Icon.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Resource.Icon",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Resource.Icon.yml\" sourcestartlinenumber=\"1\">Information about Icons.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Resource.ResourceLocation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Resource.ResourceLocation.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Resource.ResourceLocation",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Resource.ResourceLocation.yml\" sourcestartlinenumber=\"1\">Record to handel location information.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Resource.Resources.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Resource.Resources.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Resource.Resources",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Resource.Resources.yml\" sourcestartlinenumber=\"1\">Parsed version of the Resource data directory.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Resource.StringFileInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Resource.StringFileInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Resource.StringFileInfo",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Resource.StringFileInfo.yml\" sourcestartlinenumber=\"1\">Describes the data representation in a file-version resource.\nInformation about different languages and codes pages is contained in\nthis structure.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Resource.StringTable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Resource.StringTable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Resource.StringTable",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Resource.StringTable.yml\" sourcestartlinenumber=\"1\">One ore more StringTable structures, where each tables szKey indicates\nthe language and code page for displaying the text in the StringTable.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Resource.TString.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Resource.TString.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Resource.TString",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Resource.TString.yml\" sourcestartlinenumber=\"1\">Contains a string that describes specifics of a file. For example\nthe version, copyright information or original file name.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Resource.Var.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Resource.Var.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Resource.Var",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Resource.Var.yml\" sourcestartlinenumber=\"1\">Usually a list of languages that the\napplication or DLL supports.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Resource.VarFileInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Resource.VarFileInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Resource.VarFileInfo",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Resource.VarFileInfo.yml\" sourcestartlinenumber=\"1\">Information about the file not dependent on any language and code page\ncombination.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Resource.VsFixedFileInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Resource.VsFixedFileInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Resource.VsFixedFileInfo",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Resource.VsFixedFileInfo.yml\" sourcestartlinenumber=\"1\">Language and code page independent version information about the PE file.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Resource.VsVersionInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Resource.VsVersionInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Resource.VsVersionInfo",
+      "Summary": "<p sourcefile=\"api/PeNet.Header.Resource.VsVersionInfo.yml\" sourcestartlinenumber=\"1\">Optional Resource member which contains version information\nand compile time information about the PE file.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.Resource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.Resource.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header.Resource",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.Header.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.Header.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.Header",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.PeFile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.PeFile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet.PeFile",
+      "Summary": "<p sourcefile=\"api/PeNet.PeFile.yml\" sourcestartlinenumber=\"1\">This class represents a Portable Executable (PE) file and makes the different\nheader and properties accessible.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PeNet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PeNet.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PeNet",
+      "Summary": null
+    },
     {
       "type": "Conceptual",
       "source_relative_path": "api/index.md",
       "output": {
         ".html": {
-          "relative_path": "api/index.html",
-          "hash": "olBkzhFQDPUt/RiNx541tVQYiybwJcSZ073QXDPhaZA="
+          "relative_path": "api/index.html"
         }
       },
-      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
       "version": ""
     },
     {
@@ -20,11 +1920,9 @@
       "source_relative_path": "articles/filehash.md",
       "output": {
         ".html": {
-          "relative_path": "articles/filehash.html",
-          "hash": "O4PXQcJPfedbbCe7b4vV48L1R50Kj8KtHp1d7F0AaRQ="
+          "relative_path": "articles/filehash.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -32,11 +1930,9 @@
       "source_relative_path": "articles/imphash.md",
       "output": {
         ".html": {
-          "relative_path": "articles/imphash.html",
-          "hash": "Nr6hFYD6SpmiwOWKwduWEM1lsC0iXStOEj0i+iu2f5o="
+          "relative_path": "articles/imphash.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -44,11 +1940,9 @@
       "source_relative_path": "articles/imports.md",
       "output": {
         ".html": {
-          "relative_path": "articles/imports.html",
-          "hash": "fjPgIZ+5QGJiqKzRIKPZVtP2+84jvde92KEFclfYSJk="
+          "relative_path": "articles/imports.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -56,11 +1950,9 @@
       "source_relative_path": "articles/intro.md",
       "output": {
         ".html": {
-          "relative_path": "articles/intro.html",
-          "hash": "cDUnFWb30q6gjBZTWIrma/Ph1/SWF3INkTLxKQmPmtc="
+          "relative_path": "articles/intro.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -68,11 +1960,9 @@
       "source_relative_path": "articles/parseroptions.md",
       "output": {
         ".html": {
-          "relative_path": "articles/parseroptions.html",
-          "hash": "BgvDzAfEcb12r1RHLh245oTSMvWTSkFF5K1CJW7mgOM="
+          "relative_path": "articles/parseroptions.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -80,11 +1970,9 @@
       "source_relative_path": "articles/pdb.md",
       "output": {
         ".html": {
-          "relative_path": "articles/pdb.html",
-          "hash": "oQjUuMzvK9V95rV3w2RzjdCLG5F+accPvyMXJ7ns0d8="
+          "relative_path": "articles/pdb.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -92,26 +1980,22 @@
       "source_relative_path": "articles/sections.md",
       "output": {
         ".html": {
-          "relative_path": "articles/sections.html",
-          "hash": "DIXWUFEmPXmqYE++N2Af7pDxh35eJ8Jqc9WFZzqMlaM="
+          "relative_path": "articles/sections.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
       "type": "Toc",
       "source_relative_path": "articles/toc.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/toc.html",
-          "hash": "FYxNDrhcKYK7Q2OTnYsMa3267APJIvRdMh8peid3AEU="
+          "relative_path": "articles/toc.html"
+        },
+        ".json": {
+          "relative_path": "articles/toc.json"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -119,11 +2003,9 @@
       "source_relative_path": "articles/typerefhash.md",
       "output": {
         ".html": {
-          "relative_path": "articles/typerefhash.html",
-          "hash": "3efYnibRvJN2i8QLZQ4SL12o/nTumxEOLNSDE+Qk/zM="
+          "relative_path": "articles/typerefhash.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -131,11 +2013,9 @@
       "source_relative_path": "index.md",
       "output": {
         ".html": {
-          "relative_path": "index.html",
-          "hash": "CRbJXVDgMfvGDcuRWcQefws0uKbw1uqiI0sZT1SxBmI="
+          "relative_path": "index.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -143,52 +2023,15 @@
       "source_relative_path": "toc.yml",
       "output": {
         ".html": {
-          "relative_path": "toc.html",
-          "hash": "4TEgJl9AhuPIoP9weFbgLuRejAX7WRouRdNP0UiX0nY="
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
         }
       },
-      "is_incremental": false,
       "version": ""
     }
   ],
-  "incremental_info": [
-    {
-      "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
-        "incrementalPhase": "build",
-        "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "NoAvailableBuildCache"
-      },
-      "processors": {
-        "ConceptualDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 10,
-          "skipped_file_count": 0
-        },
-        "TocDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build",
-          "total_file_count": 0,
-          "skipped_file_count": 0
-        }
-      }
-    },
-    {
-      "status": {
-        "can_incremental": false,
-        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
-        "incrementalPhase": "postProcessing",
-        "total_file_count": 0,
-        "skipped_file_count": 0
-      },
-      "processors": {}
-    }
-  ],
-  "version_info": {},
   "groups": [
     {
       "xrefmap": "xrefmap.yml"

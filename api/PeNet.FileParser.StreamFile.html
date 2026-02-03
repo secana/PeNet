@@ -1,23 +1,21 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
-  
+
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class StreamFile
-   </title>
-    <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class StreamFile
-   ">
-    <meta name="generator" content="docfx 2.59.4.0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class StreamFile </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class StreamFile ">
     
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../styles/docfx.css">
-    <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="../toc.html">
-    <meta property="docfx:tocrel" content="toc.html">
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
     
     
     
@@ -25,7 +23,7 @@
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -35,7 +33,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../index.html">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
@@ -49,7 +47,7 @@
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -59,7 +57,7 @@
         </div>
       </header>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
           <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
           <div class="sidetoggle collapse" id="sidetoggle">
@@ -69,47 +67,71 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="PeNet.FileParser.StreamFile">
-  
-  
-  <h1 id="PeNet_FileParser_StreamFile" data-uid="PeNet.FileParser.StreamFile" class="text-break">Class StreamFile
-  </h1>
+
+
+
+  <h1 id="PeNet_FileParser_StreamFile" data-uid="PeNet.FileParser.StreamFile" class="text-break">Class StreamFile</h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><span class="xref">StreamFile</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="PeNet.FileParser.IRawFile.html">IRawFile</a></div>
-    <div><span class="xref">IDisposable</span></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="PeNet.FileParser.html">PeNet.FileParser</a></h6>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="PeNet.html">PeNet</a>.<a class="xref" href="PeNet.FileParser.html">FileParser</a></h6>
   <h6><strong>Assembly</strong>: PeNet.dll</h6>
   <h5 id="PeNet_FileParser_StreamFile_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class StreamFile : object, IRawFile</code></pre>
+    <pre><code class="lang-csharp hljs">public class StreamFile : IRawFile, IDisposable</code></pre>
   </div>
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile__ctor_Stream_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.%23ctor(Stream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile__ctor_System_IO_Stream_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.%23ctor(System.IO.Stream)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L16">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L16">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile__ctor_" data-uid="PeNet.FileParser.StreamFile.#ctor*"></a>
-  <h4 id="PeNet_FileParser_StreamFile__ctor_Stream_" data-uid="PeNet.FileParser.StreamFile.#ctor(Stream)">StreamFile(Stream)</h4>
+  <h4 id="PeNet_FileParser_StreamFile__ctor_System_IO_Stream_" data-uid="PeNet.FileParser.StreamFile.#ctor(System.IO.Stream)">StreamFile(Stream)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public StreamFile(Stream file)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -119,31 +141,33 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Stream</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
         <td><span class="parametername">file</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_Length.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.Length%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_Length.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.Length%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L14">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L14">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_Length_" data-uid="PeNet.FileParser.StreamFile.Length*"></a>
   <h4 id="PeNet_FileParser_StreamFile_Length" data-uid="PeNet.FileParser.StreamFile.Length">Length</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Get the length of the unerlying PE file
+in bytes.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public long Length { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -152,30 +176,32 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_AppendBytes_Span_System_Byte__.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.AppendBytes(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_AppendBytes_System_Span_System_Byte__.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.AppendBytes(System.Span%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L200">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L188">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_AppendBytes_" data-uid="PeNet.FileParser.StreamFile.AppendBytes*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_AppendBytes_Span_System_Byte__" data-uid="PeNet.FileParser.StreamFile.AppendBytes(Span{System.Byte})">AppendBytes(Span&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="PeNet_FileParser_StreamFile_AppendBytes_System_Span_System_Byte__" data-uid="PeNet.FileParser.StreamFile.AppendBytes(System.Span{System.Byte})">AppendBytes(Span&lt;byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Appends the given bytes to the current raw file. The
+file growths by the size of the given span.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public int AppendBytes(Span&lt;byte&gt; bytes)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -185,14 +211,15 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">bytes</span></td>
-        <td></td>
+        <td><p>Bytes to append.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -201,28 +228,30 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Raw start address of the appended bytes.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_AsSpan_System_Int64_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.AsSpan(System.Int64%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_AsSpan_System_Int64_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.AsSpan(System.Int64%2CSystem.Int64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L54">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L54">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_AsSpan_" data-uid="PeNet.FileParser.StreamFile.AsSpan*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_AsSpan_System_Int64_System_Int64_" data-uid="PeNet.FileParser.StreamFile.AsSpan(System.Int64,System.Int64)">AsSpan(Int64, Int64)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="PeNet_FileParser_StreamFile_AsSpan_System_Int64_System_Int64_" data-uid="PeNet.FileParser.StreamFile.AsSpan(System.Int64,System.Int64)">AsSpan(long, long)</h4>
+  <div class="markdown level1 summary"><p>Get a Span from the underlying file.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Span&lt;byte&gt; AsSpan(long offset, long length)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -232,19 +261,21 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Start offset of the span.</p>
+</td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td><span class="parametername">length</span></td>
-        <td></td>
+        <td><p>Length of the span in byte.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -253,43 +284,45 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_Dispose.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_Dispose.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.Dispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L186">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L174">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_Dispose_" data-uid="PeNet.FileParser.StreamFile.Dispose*"></a>
   <h4 id="PeNet_FileParser_StreamFile_Dispose" data-uid="PeNet.FileParser.StreamFile.Dispose">Dispose()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadAsciiString_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadAsciiString(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadAsciiString_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadAsciiString(System.Int64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L19">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L19">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_ReadAsciiString_" data-uid="PeNet.FileParser.StreamFile.ReadAsciiString*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_ReadAsciiString_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadAsciiString(System.Int64)">ReadAsciiString(Int64)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="PeNet_FileParser_StreamFile_ReadAsciiString_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadAsciiString(System.Int64)">ReadAsciiString(long)</h4>
+  <div class="markdown level1 summary"><p>Read a ASCII (zero-terminated, one byte per character) string at a given offset.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string ReadAsciiString(long offset)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -299,14 +332,15 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Start offset of the string.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -315,28 +349,30 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>Parsed C string.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadByte_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadByte(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadByte_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadByte(System.Int64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L103">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L103">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_ReadByte_" data-uid="PeNet.FileParser.StreamFile.ReadByte*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_ReadByte_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadByte(System.Int64)">ReadByte(Int64)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="PeNet_FileParser_StreamFile_ReadByte_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadByte(System.Int64)">ReadByte(long)</h4>
+  <div class="markdown level1 summary"><p>Read a byte at the given offset.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public byte ReadByte(long offset)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -346,14 +382,15 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Offset to read from.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -362,28 +399,30 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Byte</span></td>
-        <td></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></td>
+        <td><p>Byte at given offset.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadUInt_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadUInt(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadUInt_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadUInt(System.Int64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L109">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L109">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_ReadUInt_" data-uid="PeNet.FileParser.StreamFile.ReadUInt*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_ReadUInt_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadUInt(System.Int64)">ReadUInt(Int64)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="PeNet_FileParser_StreamFile_ReadUInt_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadUInt(System.Int64)">ReadUInt(long)</h4>
+  <div class="markdown level1 summary"><p>Read an unsigned integer (four bytes) at the given offset.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public uint ReadUInt(long offset)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -393,14 +432,15 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Offset to read from.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -409,28 +449,30 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.UInt32</span></td>
-        <td></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
+        <td><p>UInt at given offset.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadULong_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadULong(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadULong_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadULong(System.Int64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L121">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L117">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_ReadULong_" data-uid="PeNet.FileParser.StreamFile.ReadULong*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_ReadULong_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadULong(System.Int64)">ReadULong(Int64)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="PeNet_FileParser_StreamFile_ReadULong_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadULong(System.Int64)">ReadULong(long)</h4>
+  <div class="markdown level1 summary"><p>Read an unsigned long (eight bytes) at the given offset.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ulong ReadULong(long offset)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -440,14 +482,15 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Offset to read from.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -456,127 +499,30 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.UInt64</span></td>
-        <td></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></td>
+        <td><p>ULong at given offset.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadUnicodeString_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadUnicodeString(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadUShort_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadUShort(System.Int64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L62">View Source</a>
-  </span>
-  <a id="PeNet_FileParser_StreamFile_ReadUnicodeString_" data-uid="PeNet.FileParser.StreamFile.ReadUnicodeString*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_ReadUnicodeString_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadUnicodeString(System.Int64)">ReadUnicodeString(Int64)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ReadUnicodeString(long offset)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int64</span></td>
-        <td><span class="parametername">offset</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadUnicodeString_System_Int64_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadUnicodeString(System.Int64%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L87">View Source</a>
-  </span>
-  <a id="PeNet_FileParser_StreamFile_ReadUnicodeString_" data-uid="PeNet.FileParser.StreamFile.ReadUnicodeString*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_ReadUnicodeString_System_Int64_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadUnicodeString(System.Int64,System.Int64)">ReadUnicodeString(Int64, Int64)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ReadUnicodeString(long offset, long length)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int64</span></td>
-        <td><span class="parametername">offset</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int64</span></td>
-        <td><span class="parametername">length</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadUShort_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadUShort(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L133">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L125">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_ReadUShort_" data-uid="PeNet.FileParser.StreamFile.ReadUShort*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_ReadUShort_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadUShort(System.Int64)">ReadUShort(Int64)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="PeNet_FileParser_StreamFile_ReadUShort_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadUShort(System.Int64)">ReadUShort(long)</h4>
+  <div class="markdown level1 summary"><p>Read an unsigned short (two bytes) at the given offset.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ushort ReadUShort(long offset)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -586,14 +532,15 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Offset to read from.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -602,28 +549,136 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.UInt16</span></td>
-        <td></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></td>
+        <td><p>UShort at given offset.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_RemoveRange_System_Int64_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.RemoveRange(System.Int64%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadUnicodeString_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadUnicodeString(System.Int64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L191">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L62">View Source</a>
+  </span>
+  <a id="PeNet_FileParser_StreamFile_ReadUnicodeString_" data-uid="PeNet.FileParser.StreamFile.ReadUnicodeString*"></a>
+  <h4 id="PeNet_FileParser_StreamFile_ReadUnicodeString_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadUnicodeString(System.Int64)">ReadUnicodeString(long)</h4>
+  <div class="markdown level1 summary"><p>Read an unicode (two byte per char) string at a given offset.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ReadUnicodeString(long offset)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>Start offset of the string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>Parsed unicode string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_ReadUnicodeString_System_Int64_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ReadUnicodeString(System.Int64%2CSystem.Int64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L87">View Source</a>
+  </span>
+  <a id="PeNet_FileParser_StreamFile_ReadUnicodeString_" data-uid="PeNet.FileParser.StreamFile.ReadUnicodeString*"></a>
+  <h4 id="PeNet_FileParser_StreamFile_ReadUnicodeString_System_Int64_System_Int64_" data-uid="PeNet.FileParser.StreamFile.ReadUnicodeString(System.Int64,System.Int64)">ReadUnicodeString(long, long)</h4>
+  <div class="markdown level1 summary"><p>Read an unicode (two byte per char) string at a given offset of a given length.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ReadUnicodeString(long offset, long length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>Start offset of the string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>Number of unicode chars to read.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>Parsed unicode string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_RemoveRange_System_Int64_System_Int64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.RemoveRange(System.Int64%2CSystem.Int64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L179">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_RemoveRange_" data-uid="PeNet.FileParser.StreamFile.RemoveRange*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_RemoveRange_System_Int64_System_Int64_" data-uid="PeNet.FileParser.StreamFile.RemoveRange(System.Int64,System.Int64)">RemoveRange(Int64, Int64)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="PeNet_FileParser_StreamFile_RemoveRange_System_Int64_System_Int64_" data-uid="PeNet.FileParser.StreamFile.RemoveRange(System.Int64,System.Int64)">RemoveRange(long, long)</h4>
+  <div class="markdown level1 summary"><p>Remove a byte range from the underlying file.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void RemoveRange(long offset, long length)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -633,34 +688,37 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Offset of the range to remove.</p>
+</td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td><span class="parametername">length</span></td>
-        <td></td>
+        <td><p>Length of the range to remove.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_ToArray.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ToArray%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_ToArray.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.ToArray%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L145">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L133">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_ToArray_" data-uid="PeNet.FileParser.StreamFile.ToArray*"></a>
   <h4 id="PeNet_FileParser_StreamFile_ToArray" data-uid="PeNet.FileParser.StreamFile.ToArray">ToArray()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Get the underlying file as a byte array.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public byte[] ToArray()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -669,28 +727,30 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Byte</span>[]</td>
-        <td></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
+        <td><p>Byte array representation fo the file.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_WriteByte_System_Int64_System_Byte_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.WriteByte(System.Int64%2CSystem.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_WriteByte_System_Int64_System_Byte_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.WriteByte(System.Int64%2CSystem.Byte)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L153">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L141">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_WriteByte_" data-uid="PeNet.FileParser.StreamFile.WriteByte*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_WriteByte_System_Int64_System_Byte_" data-uid="PeNet.FileParser.StreamFile.WriteByte(System.Int64,System.Byte)">WriteByte(Int64, Byte)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="PeNet_FileParser_StreamFile_WriteByte_System_Int64_System_Byte_" data-uid="PeNet.FileParser.StreamFile.WriteByte(System.Int64,System.Byte)">WriteByte(long, byte)</h4>
+  <div class="markdown level1 summary"><p>Write a byte at a given offset.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void WriteByte(long offset, byte value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -700,34 +760,37 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Offset to write to.</p>
+</td>
       </tr>
       <tr>
-        <td><span class="xref">System.Byte</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>Byte value to write.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_WriteBytes_System_Int64_Span_System_Byte__.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.WriteBytes(System.Int64%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_WriteBytes_System_Int64_System_Span_System_Byte__.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.WriteBytes(System.Int64%2CSystem.Span%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L159">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L147">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_WriteBytes_" data-uid="PeNet.FileParser.StreamFile.WriteBytes*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_WriteBytes_System_Int64_Span_System_Byte__" data-uid="PeNet.FileParser.StreamFile.WriteBytes(System.Int64,Span{System.Byte})">WriteBytes(Int64, Span&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="PeNet_FileParser_StreamFile_WriteBytes_System_Int64_System_Span_System_Byte__" data-uid="PeNet.FileParser.StreamFile.WriteBytes(System.Int64,System.Span{System.Byte})">WriteBytes(long, Span&lt;byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Write a byte sequence to a given offset.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void WriteBytes(long offset, Span&lt;byte&gt; bytes)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -737,34 +800,37 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Start offset to write to.</p>
+</td>
       </tr>
       <tr>
-        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">bytes</span></td>
-        <td></td>
+        <td><p>Byte sequence to write.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_WriteUInt_System_Int64_System_UInt32_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.WriteUInt(System.Int64%2CSystem.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_WriteUInt_System_Int64_System_UInt32_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.WriteUInt(System.Int64%2CSystem.UInt32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L165">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L153">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_WriteUInt_" data-uid="PeNet.FileParser.StreamFile.WriteUInt*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_WriteUInt_System_Int64_System_UInt32_" data-uid="PeNet.FileParser.StreamFile.WriteUInt(System.Int64,System.UInt32)">WriteUInt(Int64, UInt32)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="PeNet_FileParser_StreamFile_WriteUInt_System_Int64_System_UInt32_" data-uid="PeNet.FileParser.StreamFile.WriteUInt(System.Int64,System.UInt32)">WriteUInt(long, uint)</h4>
+  <div class="markdown level1 summary"><p>Write a uint at a given offset.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void WriteUInt(long offset, uint value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -774,34 +840,37 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Offset to write to.</p>
+</td>
       </tr>
       <tr>
-        <td><span class="xref">System.UInt32</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>UInt value to write.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_WriteULong_System_Int64_System_UInt64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.WriteULong(System.Int64%2CSystem.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_WriteULong_System_Int64_System_UInt64_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.WriteULong(System.Int64%2CSystem.UInt64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L172">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L160">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_WriteULong_" data-uid="PeNet.FileParser.StreamFile.WriteULong*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_WriteULong_System_Int64_System_UInt64_" data-uid="PeNet.FileParser.StreamFile.WriteULong(System.Int64,System.UInt64)">WriteULong(Int64, UInt64)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="PeNet_FileParser_StreamFile_WriteULong_System_Int64_System_UInt64_" data-uid="PeNet.FileParser.StreamFile.WriteULong(System.Int64,System.UInt64)">WriteULong(long, ulong)</h4>
+  <div class="markdown level1 summary"><p>Write a ulong at a given offset.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void WriteULong(long offset, ulong value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -811,34 +880,37 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Offset to write to.</p>
+</td>
       </tr>
       <tr>
-        <td><span class="xref">System.UInt64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>ULong value to write.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile_WriteUShort_System_Int64_System_UInt16_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.WriteUShort(System.Int64%2CSystem.UInt16)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile_WriteUShort_System_Int64_System_UInt16_.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile.WriteUShort(System.Int64%2CSystem.UInt16)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L179">View Source</a>
+    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L167">View Source</a>
   </span>
   <a id="PeNet_FileParser_StreamFile_WriteUShort_" data-uid="PeNet.FileParser.StreamFile.WriteUShort*"></a>
-  <h4 id="PeNet_FileParser_StreamFile_WriteUShort_System_Int64_System_UInt16_" data-uid="PeNet.FileParser.StreamFile.WriteUShort(System.Int64,System.UInt16)">WriteUShort(Int64, UInt16)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="PeNet_FileParser_StreamFile_WriteUShort_System_Int64_System_UInt16_" data-uid="PeNet.FileParser.StreamFile.WriteUShort(System.Int64,System.UInt16)">WriteUShort(long, ushort)</h4>
+  <div class="markdown level1 summary"><p>Write a ushort at a given offset.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
+  <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void WriteUShort(long offset, ushort value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -848,14 +920,16 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Offset to write to.</p>
+</td>
       </tr>
       <tr>
-        <td><span class="xref">System.UInt16</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>UShort value to write.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -864,32 +938,40 @@
       <a class="xref" href="PeNet.FileParser.IRawFile.html">IRawFile</a>
   </div>
   <div>
-      <span class="xref">IDisposable</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_Is32Bit_PeNet_FileParser_IRawFile_">ExtensionMethods.Is32Bit(IRawFile)</a>
+  </div>
+  <div>
+      <a class="xref" href="PeNet.ExtensionMethods.html#PeNet_ExtensionMethods_Is64Bit_PeNet_FileParser_IRawFile_">ExtensionMethods.Is64Bit(IRawFile)</a>
+  </div>
+
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/secana/PeNet/new/master/apiSpec/new?filename=PeNet_FileParser_StreamFile.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/secana/PeNet/new/v6.0.0/apiSpec/new?filename=PeNet_FileParser_StreamFile.md&amp;value=---%0Auid%3A%20PeNet.FileParser.StreamFile%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/secana/PeNet/blob/master/src/PeNet/FileParser/StreamFile.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/secana/PeNet/blob/v6.0.0/src/PeNet/FileParser/StreamFile.cs/#L9" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
+                <h5>In this article</h5>
                 <div></div>
               </nav>
             </div>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -897,14 +979,14 @@
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            
-            <span>Generated by <strong>DocFX</strong></span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
           </div>
         </div>
       </footer>
     </div>
-    
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../styles/docfx.js"></script>
     <script type="text/javascript" src="../styles/main.js"></script>
   </body>
