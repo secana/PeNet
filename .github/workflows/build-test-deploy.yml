@@ -45,7 +45,7 @@ jobs:
   deploy:
     name: Build Documentation and Deploy
     needs: [linux-test, windows-test]
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     if: github.event_name == 'release'
     permissions:
       contents: write
@@ -61,18 +61,16 @@ jobs:
           dotnet-version: "10.x"
 
       - name: Get version from tag
-        shell: pwsh
         run: |
-          $version = $env:GITHUB_REF -replace 'refs/tags/v',''
-          echo "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Append
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Update project version
-        shell: pwsh
         run: |
-          ((Get-Content -path .\src\PeNet\PeNet.csproj -Raw) -replace '0.0.0',$env:VERSION) | Set-Content -Path .\src\PeNet\PeNet.csproj
+          sed -i "s/0.0.0/$VERSION/g" src/PeNet/PeNet.csproj
 
       - name: Install DocFX
-        run: choco install docfx -y
+        run: dotnet tool install -g docfx
 
       - name: Build Documentation Meta-Data
         run: docfx metadata
