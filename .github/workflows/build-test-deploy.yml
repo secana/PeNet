@@ -94,9 +94,10 @@ jobs:
           git-config-email: github-actions@penet.org
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build and Pack
+        run: |
+          dotnet build src/PeNet/PeNet.csproj -c Release
+          dotnet pack src/PeNet/PeNet.csproj -c Release --no-build -o ./artifacts
+
       - name: Publish to NuGet
-        uses: rohith/publish-nuget@v2
-        with:
-          PROJECT_FILE_PATH: src/PeNet/PeNet.csproj
-          NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          INCLUDE_SYMBOLS: true
+        run: dotnet nuget push ./artifacts/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate
