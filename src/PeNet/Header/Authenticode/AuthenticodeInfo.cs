@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.Pkcs;
 using System.Security.Cryptography.X509Certificates;
@@ -45,17 +44,10 @@ namespace PeNet.Header.Authenticode
             }
 
             var pkcs7 = _peFile.WinCertificate.BCertificate.ToArray();
-
-            // Workaround since the X509Certificate2 class does not return
-            // the signing certificate in the PKCS7 byte array but crashes on Linux and macOS
-            // when using .Net Core.
-            // Under Windows with .Net Core the class works as intended.
-            // See issue: https://github.com/dotnet/corefx/issues/25828
-            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
-                X509CertificateLoader.LoadCertificate(pkcs7) : GetSigningCertificateNonWindows(pkcs7);
+            return GetSigningCertificateFromPkcs7(pkcs7);
         }
 
-        private X509Certificate2? GetSigningCertificateNonWindows(byte[] pkcs7)
+        private X509Certificate2? GetSigningCertificateFromPkcs7(byte[] pkcs7)
         {
             // See https://github.com/dotnet/runtime/issues/15073#issuecomment-374787612
             var signedCms = new SignedCms();
