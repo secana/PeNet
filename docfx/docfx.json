@@ -16,7 +16,7 @@
       "disableDefaultFilter": false,
       "properties": 
       {
-        "TargetFramework": "netstandard2.0"
+        "TargetFramework": "net10.0"
       }
     }
   ],

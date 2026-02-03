@@ -69,6 +69,9 @@ jobs:
         run: |
           sed -i "s/0.0.0/$VERSION/g" src/PeNet/PeNet.csproj
 
+      - name: Clean build artifacts
+        run: dotnet clean && rm -rf src/PeNet/obj src/PeNet/bin
+
       - name: Install DocFX
         run: dotnet tool install -g docfx
 
