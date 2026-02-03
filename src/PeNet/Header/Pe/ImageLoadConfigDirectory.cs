@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 namespace PeNet.Header.Pe
 {
     /// <summary>
-    /// The ImageLoadConfigDirectory hold information
+    /// The ImageLoadConfigDirectory holds information
     /// important to load the PE file correctly.
     /// </summary>
     public class ImageLoadConfigDirectory : AbstractStructure, IDisposable
@@ -27,17 +27,10 @@ namespace PeNet.Header.Pe
             byte[] data = PeFile.ToArray();
             if (size > data.Length)
             {
-                ///
-                /// I think we should throw an Exception when overflow occured, because IMAGE_LOAD_CONFIG_DIRECTORY(64) Size field indicates this DataDirectory size
-                /// but in order to pass unit test, set the size to data length :)
-                /// throw new ArgumentOutOfRangeException(nameof(size));
-                ///
+                // Ideally throw an exception when overflow occurred, but set size to data length to handle malformed files gracefully.
                 size = (uint)data.Length;
 
-                ///
-                /// At the moment,we will get fake and error data rather than normal PE IMAGE_LOAD_CONFIG_DIRECTORY(64) data bytes
-                ///
-            }
+                            }
             _ptr = Marshal.AllocHGlobal((int)size);
             if(_ptr != IntPtr.Zero)
             {
@@ -48,18 +41,49 @@ namespace PeNet.Header.Pe
             }
         }
 
-        ~ImageLoadConfigDirectory()
-        {
-            this.Dispose();
-            GC.SuppressFinalize(this);
-        }
+        ~ImageLoadConfigDirectory() => Dispose();
 
         public void Dispose()
         {
             if (_ptr != IntPtr.Zero)
             {
                 Marshal.FreeHGlobal(_ptr);
+                _ptr = IntPtr.Zero;
             }
+            GC.SuppressFinalize(this);
+        }
+
+        private ulong ReadSize(long offset64, long offset32)
+            => _is64Bit ? PeFile.ReadULong(Offset + offset64) : PeFile.ReadUInt(Offset + offset32);
+
+        private void WriteSize(long offset64, long offset32, ulong value)
+        {
+            if (_is64Bit)
+                PeFile.WriteULong(Offset + offset64, value);
+            else
+                PeFile.WriteUInt(Offset + offset32, (uint)value);
+        }
+
+        private uint ReadUInt32(long offset64, long offset32)
+            => _is64Bit ? PeFile.ReadUInt(Offset + offset64) : PeFile.ReadUInt(Offset + offset32);
+
+        private void WriteUInt32(long offset64, long offset32, uint value)
+        {
+            if (_is64Bit)
+                PeFile.WriteUInt(Offset + offset64, value);
+            else
+                PeFile.WriteUInt(Offset + offset32, value);
+        }
+
+        private ushort ReadUInt16(long offset64, long offset32)
+            => _is64Bit ? PeFile.ReadUShort(Offset + offset64) : PeFile.ReadUShort(Offset + offset32);
+
+        private void WriteUInt16(long offset64, long offset32, ushort value)
+        {
+            if (_is64Bit)
+                PeFile.WriteUShort(Offset + offset64, value);
+            else
+                PeFile.WriteUShort(Offset + offset32, value);
         }
 
         public IMAGE_LOAD_CONFIG_DIRECTORY64 LoadConfig64
@@ -84,7 +108,7 @@ namespace PeNet.Header.Pe
         }
 
         /// <summary>
-        /// SIze of the ImageLoadConfigDirectory structure.
+        /// Size of the ImageLoadConfigDirectory structure.
         /// </summary>
         public uint Size
         {
@@ -105,7 +129,7 @@ namespace PeNet.Header.Pe
         /// <summary>
         /// Major version number.
         /// </summary>
-        public ushort MajorVesion
+        public ushort MajorVersion
         {
             get => PeFile.ReadUShort(Offset + 0x8);
             set => PeFile.WriteUShort(Offset + 0x8, value);
@@ -121,7 +145,7 @@ namespace PeNet.Header.Pe
         }
 
         /// <summary>
-        /// GLobal flags to control system behavior.
+        /// Global flags to control system behavior.
         /// </summary>
         public uint GlobalFlagsClear
         {
@@ -152,29 +176,17 @@ namespace PeNet.Header.Pe
         /// </summary>
         public ulong DeCommitFreeBlockThreshold
         {
-            get => _is64Bit ? PeFile.ReadULong(Offset + 0x18) : PeFile.ReadUInt(Offset + 0x18);
-            set
-            {
-                if (_is64Bit)
-                    PeFile.WriteULong(Offset + 0x18, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x18, (uint) value);
-            }
+            get => ReadSize(0x18, 0x18);
+            set => WriteSize(0x18, 0x18, value);
         }
 
         /// <summary>
-        /// SIze of the minimum total heap memory that has to be freed before it is freed in bytes.
+        /// Size of the minimum total heap memory that has to be freed before it is freed in bytes.
         /// </summary>
         public ulong DeCommitTotalFreeThreshold
         {
-            get => _is64Bit ? PeFile.ReadULong(Offset + 0x20) : PeFile.ReadUInt(Offset + 0x1c);
-            set
-            {
-                if(_is64Bit)
-                    PeFile.WriteULong(Offset + 0x20, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x1C, (uint) value);
-            }
+            get => ReadSize(0x20, 0x1c);
+            set => WriteSize(0x20, 0x1c, value);
         }
 
         /// <summary>
@@ -183,14 +195,8 @@ namespace PeNet.Header.Pe
         /// </summary>
         public ulong LockPrefixTable
         {
-            get => _is64Bit ? PeFile.ReadULong(Offset + 0x28) : PeFile.ReadUInt(Offset + 0x20);
-            set
-            {
-                if (_is64Bit)
-                    PeFile.WriteULong(Offset + 0x28, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x20, (uint) value);
-            }
+            get => ReadSize(0x28, 0x20);
+            set => WriteSize(0x28, 0x20, value);
         }
 
         /// <summary>
@@ -198,14 +204,8 @@ namespace PeNet.Header.Pe
         /// </summary>
         public ulong MaximumAllocationSize
         {
-            get => _is64Bit ? PeFile.ReadULong(Offset + 0x30) : PeFile.ReadUInt(Offset + 0x24);
-            set
-            {
-                if(_is64Bit)
-                    PeFile.WriteULong(Offset + 0x30, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x24, (uint) value);
-            }
+            get => ReadSize(0x30, 0x24);
+            set => WriteSize(0x30, 0x24, value);
         }
 
         /// <summary>
@@ -213,14 +213,8 @@ namespace PeNet.Header.Pe
         /// </summary>
         public ulong VirtualMemoryThreshold
         {
-            get => _is64Bit ? PeFile.ReadULong(Offset + 0x38) : PeFile.ReadUInt(Offset + 0x28);
-            set
-            {
-                if(_is64Bit)
-                    PeFile.WriteULong(Offset + 0x38, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x28, (uint) value);
-            }
+            get => ReadSize(0x38, 0x28);
+            set => WriteSize(0x38, 0x28, value);
         }
 
         /// <summary>
@@ -228,14 +222,8 @@ namespace PeNet.Header.Pe
         /// </summary>
         public ulong ProcessAffinityMask
         {
-            get => _is64Bit ? PeFile.ReadULong(Offset + 0x40) : PeFile.ReadUInt(Offset + 0x30);
-            set
-            {
-                if(_is64Bit)
-                    PeFile.WriteULong(Offset + 0x40, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x30, (uint) value);
-            }
+            get => ReadSize(0x40, 0x30);
+            set => WriteSize(0x40, 0x30, value);
         }
 
         /// <summary>
@@ -243,14 +231,8 @@ namespace PeNet.Header.Pe
         /// </summary>
         public uint ProcessHeapFlags
         {
-            get => _is64Bit ? PeFile.ReadUInt(Offset + 0x48) : PeFile.ReadUInt(Offset + 0x2C);
-            set
-            {
-                if(_is64Bit)
-                    PeFile.WriteUInt(Offset + 0x48, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x2C, value);
-            }
+            get => ReadUInt32(0x48, 0x2C);
+            set => WriteUInt32(0x48, 0x2C, value);
         }
 
         /// <summary>
@@ -258,14 +240,8 @@ namespace PeNet.Header.Pe
         /// </summary>
         public ushort CSDVersion
         {
-            get => _is64Bit ? PeFile.ReadUShort(Offset + 0x4C) : PeFile.ReadUShort(Offset + 0x34);
-            set
-            {
-                if(_is64Bit)
-                    PeFile.WriteUShort(Offset + 0x4C, value);
-                else
-                    PeFile.WriteUShort(Offset + 0x34, value);
-            }
+            get => ReadUInt16(0x4C, 0x34);
+            set => WriteUInt16(0x4C, 0x34, value);
         }
 
         /// <summary>
@@ -273,14 +249,8 @@ namespace PeNet.Header.Pe
         /// </summary>
         public ushort Reserved1
         {
-            get => _is64Bit ? PeFile.ReadUShort(Offset + 0x4E) : PeFile.ReadUShort(Offset + 0x36);
-            set
-            {
-                if(_is64Bit)
-                    PeFile.WriteUShort(Offset + 0x4E, value);
-                else
-                    PeFile.WriteUShort(Offset + 0x36, value);
-            }
+            get => ReadUInt16(0x4E, 0x36);
+            set => WriteUInt16(0x4E, 0x36, value);
         }
 
         /// <summary>
@@ -288,29 +258,17 @@ namespace PeNet.Header.Pe
         /// </summary>
         public ulong EditList
         {
-            get => _is64Bit ? PeFile.ReadULong(Offset + 0x50) : PeFile.ReadUInt(Offset + 0x38);
-            set
-            {
-                if (_is64Bit)
-                    PeFile.WriteULong(Offset + 0x50, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x38, (uint) value);
-            }
+            get => ReadSize(0x50, 0x38);
+            set => WriteSize(0x50, 0x38, value);
         }
 
         /// <summary>
         /// Pointer to a cookie used by Visual C++ or GS implementation.
         /// </summary>
-        public ulong SecurityCoockie
+        public ulong SecurityCookie
         {
-            get => _is64Bit ? PeFile.ReadULong(Offset + 0x58) : PeFile.ReadUInt(Offset + 0x3C);
-            set
-            {
-                if (_is64Bit)
-                    PeFile.WriteULong(Offset + 0x58, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x3C, (uint) value);
-            }
+            get => ReadSize(0x58, 0x3C);
+            set => WriteSize(0x58, 0x3C, value);
         }
 
         /// <summary>
@@ -319,14 +277,8 @@ namespace PeNet.Header.Pe
         /// </summary>
         public ulong SEHandlerTable
         {
-            get => _is64Bit ? PeFile.ReadULong(Offset + 0x60) : PeFile.ReadUInt(Offset + 0x40);
-            set
-            {
-                if(_is64Bit)
-                    PeFile.WriteULong(Offset + 0x60, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x40, (uint) value);
-            }
+            get => ReadSize(0x60, 0x40);
+            set => WriteSize(0x60, 0x40, value);
         }
 
         /// <summary>
@@ -334,14 +286,8 @@ namespace PeNet.Header.Pe
         /// </summary>
         public ulong SEHandlerCount
         {
-            get => _is64Bit ? PeFile.ReadULong(Offset + 0x68) : PeFile.ReadUInt(Offset + 0x44);
-            set
-            {
-                if(_is64Bit)
-                    PeFile.WriteULong(Offset + 0x68, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x44, (uint) value);
-            }
+            get => ReadSize(0x68, 0x44);
+            set => WriteSize(0x68, 0x44, value);
         }
 
         /// <summary>
@@ -349,14 +295,8 @@ namespace PeNet.Header.Pe
         /// </summary>
         public ulong GuardCFCheckFunctionPointer
         {
-            get => _is64Bit ? PeFile.ReadULong(Offset + 0x70) : PeFile.ReadUInt(Offset + 0x48);
-            set
-            {
-                if(_is64Bit)
-                    PeFile.WriteULong(Offset + 0x70, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x4C, (uint) value);
-            }
+            get => ReadSize(0x70, 0x48);
+            set => WriteSize(0x70, 0x48, value);
         }
 
         /// <summary>
@@ -364,14 +304,8 @@ namespace PeNet.Header.Pe
         /// </summary>
         public ulong Reserved2
         {
-            get => _is64Bit ? PeFile.ReadULong(Offset + 0x78) : PeFile.ReadUInt(Offset + 0x4C);
-            set
-            {
-                if(_is64Bit)
-                    PeFile.WriteULong(Offset + 0x78, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x4C, (uint) value);
-            }
+            get => ReadSize(0x78, 0x4C);
+            set => WriteSize(0x78, 0x4C, value);
         }
 
         /// <summary>
@@ -379,14 +313,8 @@ namespace PeNet.Header.Pe
         /// </summary>
         public ulong GuardCFFunctionTable
         {
-            get => _is64Bit ? PeFile.ReadULong(Offset + 0x80) : PeFile.ReadUInt(Offset + 0x50);
-            set
-            {
-                if(_is64Bit)
-                    PeFile.WriteULong(Offset + 0x80, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x50, (uint) value);
-            }
+            get => ReadSize(0x80, 0x50);
+            set => WriteSize(0x80, 0x50, value);
         }
 
         /// <summary>
@@ -394,14 +322,8 @@ namespace PeNet.Header.Pe
         /// </summary>
         public ulong GuardCFFunctionCount
         {
-            get => _is64Bit ? PeFile.ReadULong(Offset + 0x88) : PeFile.ReadUInt(Offset + 0x54);
-            set
-            {
-                if(_is64Bit)
-                    PeFile.WriteULong(Offset + 0x88, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x54, (uint) value);
-            }
+            get => ReadSize(0x88, 0x54);
+            set => WriteSize(0x88, 0x54, value);
         }
 
         /// <summary>
@@ -409,17 +331,11 @@ namespace PeNet.Header.Pe
         /// </summary>
         public uint GuardFlags
         {
-            get => _is64Bit ? PeFile.ReadUInt(Offset + 0x90) : PeFile.ReadUInt(Offset + 0x58);
-            set
-            {
-                if(_is64Bit)
-                    PeFile.WriteUInt(Offset + 0x90, value);
-                else
-                    PeFile.WriteUInt(Offset + 0x58, value);
-            }
+            get => ReadUInt32(0x90, 0x58);
+            set => WriteUInt32(0x90, 0x58, value);
         }
         /// <summary>
-        /// 
+        /// Code integrity information.
         /// </summary>
         public IMAGE_LOAD_CONFIG_CODE_INTEGRITY CodeIntegrity
         {
@@ -442,7 +358,6 @@ namespace PeNet.Header.Pe
         /// <summary>0xFFFF means not available</summary>
         public ushort Catalog;
 
-        /// <summary/>
         public uint CatalogOffset;
 
         /// <summary>Additional bitmask to be defined later</summary>
@@ -513,7 +428,6 @@ namespace PeNet.Header.Pe
         /// <summary>The service pack version.</summary>
         public ushort CSDVersion;
 
-        /// <summary/>
         public ushort DependentLoadFlags;
 
         /// <summary>Reserved for use by the system.</summary>
@@ -530,91 +444,62 @@ namespace PeNet.Header.Pe
         /// <summary>The count of unique handlers in the table. This member is available only for x86.</summary>
         public ulong SEHandlerCount;
 
-        /// <summary/>
         public ulong GuardCFCheckFunctionPointer;
 
-        /// <summary/>
         public ulong GuardCFDispatchFunctionPointer;
 
-        /// <summary/>
         public ulong GuardCFFunctionTable;
 
-        /// <summary/>
         public ulong GuardCFFunctionCount;
 
-        /// <summary/>
         public uint GuardFlags;
 
-        /// <summary/>
         public IMAGE_LOAD_CONFIG_CODE_INTEGRITY CodeIntegrity;
 
-        /// <summary/>
         public ulong GuardAddressTakenIatEntryTable;
 
-        /// <summary/>
         public ulong GuardAddressTakenIatEntryCount;
 
-        /// <summary/>
         public ulong GuardLongJumpTargetTable;
 
-        /// <summary/>
         public ulong GuardLongJumpTargetCount;
 
-        /// <summary/>
         public ulong DynamicValueRelocTable;
 
-        /// <summary/>
         public ulong CHPEMetadataPointer;
 
-        /// <summary/>
         public ulong GuardRFFailureRoutine;
 
-        /// <summary/>
         public ulong GuardRFFailureRoutineFunctionPointer;
 
-        /// <summary/>
         public uint DynamicValueRelocTableOffset;
 
-        /// <summary/>
         public ushort DynamicValueRelocTableSection;
 
-        /// <summary/>
         public ushort Reserved2;
 
-        /// <summary/>
         public ulong GuardRFVerifyStackPointerFunctionPointer;
 
-        /// <summary/>
         public uint HotPatchTableOffset;
 
-        /// <summary/>
         public uint Reserved3;
 
-        /// <summary/>
         public ulong EnclaveConfigurationPointer;
 
-        /// <summary/>
         public ulong VolatileMetadataPointer;
 
-        /// <summary/>
         public ulong GuardEHContinuationTable;
 
-        /// <summary/>
         public ulong GuardEHContinuationCount;
 
-        /// <summary/>
         public ulong GuardXFGCheckFunctionPointer;   //VA
 
-        /// <summary/>
         public ulong GuardXFGDispatchFunctionPointer; //VA
 
-        /// <summary/>
         public ulong GuardXFGTableDispatchFunctionPointer; //VA
 
-        /// <summary/>
         public ulong CastGuardOsDeterminedFailureMode; //VA
 
-        /// <summary/>
         public ulong GuardMemcpyFunctionPointer;     //VA
     }
 
@@ -684,7 +569,6 @@ namespace PeNet.Header.Pe
         /// <summary>The service pack version.</summary>
         public ushort CSDVersion;
 
-        /// <summary/>
         public ushort DependentLoadFlags;
 
         /// <summary>Reserved for use by the system.</summary>
@@ -701,91 +585,62 @@ namespace PeNet.Header.Pe
         /// <summary>The count of unique handlers in the table. This member is available only for x86.</summary>
         public uint SEHandlerCount;
 
-        /// <summary/>
         public uint GuardCFCheckFunctionPointer;
 
-        /// <summary/>
         public uint GuardCFDispatchFunctionPointer;
 
-        /// <summary/>
         public uint GuardCFFunctionTable;
 
-        /// <summary/>
         public uint GuardCFFunctionCount;
 
-        /// <summary/>
         public uint GuardFlags;
 
-        /// <summary/>
         public IMAGE_LOAD_CONFIG_CODE_INTEGRITY CodeIntegrity;
 
-        /// <summary/>
         public uint GuardAddressTakenIatEntryTable;
 
-        /// <summary/>
         public uint GuardAddressTakenIatEntryCount;
 
-        /// <summary/>
         public uint GuardLongJumpTargetTable;
 
-        /// <summary/>
         public uint GuardLongJumpTargetCount;
 
-        /// <summary/>
         public uint DynamicValueRelocTable;
 
-        /// <summary/>
         public uint CHPEMetadataPointer;
 
-        /// <summary/>
         public uint GuardRFFailureRoutine;
 
-        /// <summary/>
         public uint GuardRFFailureRoutineFunctionPointer;
 
-        /// <summary/>
         public uint DynamicValueRelocTableOffset;
 
-        /// <summary/>
         public ushort DynamicValueRelocTableSection;
 
-        /// <summary/>
         public ushort Reserved2;
 
-        /// <summary/>
         public uint GuardRFVerifyStackPointerFunctionPointer;
 
-        /// <summary/>
         public uint HotPatchTableOffset;
 
-        /// <summary/>
         public uint Reserved3;
 
-        /// <summary/>
         public uint EnclaveConfigurationPointer;
 
-        /// <summary/>
         public uint VolatileMetadataPointer;
 
-        /// <summary/>
         public uint GuardEHContinuationTable;
 
-        /// <summary/>
         public uint GuardEHContinuationCount;
 
-        /// <summary/>
         public uint GuardXFGCheckFunctionPointer;   // VA
 
-        /// <summary/>
         public uint GuardXFGDispatchFunctionPointer; // VA
 
-        /// <summary/>
         public uint GuardXFGTableDispatchFunctionPointer; // VA
 
-        /// <summary/>
         public uint CastGuardOsDeterminedFailureMode; // VA
 
-        /// <summary/>
         public uint GuardMemcpyFunctionPointer;     // VA
     }
 }

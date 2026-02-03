@@ -68,14 +68,7 @@ namespace PeNet.FileParser
             {
                 tmp[i] = (char)_va.ReadByte(offset + i);
             }
-#if NET48 || NETSTANDARD2_0
-            fixed (char* ptr = tmp)
-            {
-                return new string(ptr);
-            }
-#else
-            return new string(tmp);
-#endif
+return new string(tmp);
         }
 
         public byte ReadByte(long offset)

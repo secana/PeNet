@@ -52,7 +52,7 @@ namespace PeNet.Header.Authenticode
             // Under Windows with .Net Core the class works as intended.
             // See issue: https://github.com/dotnet/corefx/issues/25828
             return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
-                new X509Certificate2(pkcs7) : GetSigningCertificateNonWindows(pkcs7);
+                X509CertificateLoader.LoadCertificate(pkcs7) : GetSigningCertificateNonWindows(pkcs7);
         }
 
         private X509Certificate2? GetSigningCertificateNonWindows(byte[] pkcs7)
@@ -145,11 +145,7 @@ namespace PeNet.Header.Authenticode
             var asn1 = _contentInfo?.Content;
             if (asn1 is null) return null;
             var x = (Asn1Integer)asn1.Nodes[0].Nodes[4].Nodes[0].Nodes[1].Nodes[1]; // ASN.1 Path to signer serial number: /1/0/4/0/1/1
-#if NET48 || NETSTANDARD2_0
-            return x.Value.ToHexString().Substring(2).ToUpper();
-#else
-            return x.Value.ToHexString()[2..].ToUpper();
-#endif
+return x.Value.ToHexString()[2..].ToUpper();
         }
 
         public IEnumerable<byte>? ComputeAuthenticodeHashFromPeFile(HashAlgorithm hash)

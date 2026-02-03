@@ -1,5 +1,5 @@
 {
-  description = "A flake for a .NET 8.0 development environment";
+  description = "A flake for a .NET 10.0 development environment";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -13,7 +13,7 @@
     {
       devShells.default = pkgs.mkShell {
         buildInputs = [
-          pkgs.dotnet-sdk_8
+          pkgs.dotnet-sdk_10
         ];
       };
     }

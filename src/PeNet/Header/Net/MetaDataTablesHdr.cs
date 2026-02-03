@@ -427,11 +427,7 @@ namespace PeNet.Header.Net
         public static List<string> ResolveMaskValid(MaskValidType maskValid)
         {
             var st = new List<string>();
-#if NET5_0_OR_GREATER
-            var values = Enum.GetValues<MaskValidType>();
-#else
-            var values = (MaskValidType[])Enum.GetValues(typeof(MaskValidType));
-#endif
+var values = Enum.GetValues<MaskValidType>();
             foreach (var flag in values)
             {
                 if ((maskValid & flag) == flag)

@@ -148,11 +148,7 @@ namespace PeNet.Header.Pe
         public static List<string> ResolveCharacteristics(ScnCharacteristicsType sectionFlags)
         {
             var st = new List<string>();
-#if NET5_0_OR_GREATER
-            var values = Enum.GetValues<ScnCharacteristicsType>();
-#else
-            var values = (ScnCharacteristicsType[])Enum.GetValues(typeof(ScnCharacteristicsType));
-#endif
+var values = Enum.GetValues<ScnCharacteristicsType>();
             foreach (var flag in values)
             {
                 if ((sectionFlags & flag) == flag)

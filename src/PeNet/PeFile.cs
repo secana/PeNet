@@ -553,7 +553,7 @@ namespace PeNet
         {
             Span<byte> buffer = stackalloc byte[2];
             file.Seek(0, SeekOrigin.Begin);
-            file.Read(buffer);
+            file.ReadExactly(buffer);
             return IsPeFile(buffer);
         }
 

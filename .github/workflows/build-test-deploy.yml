@@ -22,7 +22,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: "8.x"
+          dotnet-version: "10.x"
 
       - name: Run Unit Tests
         run: dotnet test --configuration Release
@@ -37,7 +37,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: "8.x"
+          dotnet-version: "10.x"
 
       - name: Run Unit Tests with Coverage
         run: dotnet test --collect "Code coverage" --configuration Release
@@ -58,7 +58,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: "8.x"
+          dotnet-version: "10.x"
 
       - name: Get version from tag
         shell: pwsh

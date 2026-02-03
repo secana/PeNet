@@ -18,7 +18,7 @@ namespace PeNet.Test.Header.Pe
 
             Assert.Equal((uint) 0x33221100, imageLoadConfigDirectory.Size);
             Assert.Equal((uint) 0x77665544, imageLoadConfigDirectory.TimeDateStamp);
-            Assert.Equal((ushort) 0x9988, imageLoadConfigDirectory.MajorVesion);
+            Assert.Equal((ushort) 0x9988, imageLoadConfigDirectory.MajorVersion);
             Assert.Equal((ushort) 0xbbaa, imageLoadConfigDirectory.MinorVersion);
             Assert.Equal((uint) 0xffeeddcc, imageLoadConfigDirectory.GlobalFlagsClear);
             Assert.Equal((uint) 0x44332211, imageLoadConfigDirectory.GlobalFlagsSet);
@@ -33,7 +33,7 @@ namespace PeNet.Test.Header.Pe
             Assert.Equal((ushort) 0x8877, imageLoadConfigDirectory.CSDVersion);
             Assert.Equal((ushort) 0xaa99, imageLoadConfigDirectory.Reserved1);
             Assert.Equal((uint) 0xffddccbb, imageLoadConfigDirectory.EditList);
-            Assert.Equal((uint) 0x77665544, imageLoadConfigDirectory.SecurityCoockie);
+            Assert.Equal((uint) 0x77665544, imageLoadConfigDirectory.SecurityCookie);
             Assert.Equal((uint) 0xbbaa9988, imageLoadConfigDirectory.SEHandlerTable);
             Assert.Equal((uint) 0xffeeddcc, imageLoadConfigDirectory.SEHandlerCount);
             Assert.Equal((uint) 0x88776655, imageLoadConfigDirectory.GuardCFCheckFunctionPointer);
@@ -54,7 +54,7 @@ namespace PeNet.Test.Header.Pe
 
             Assert.Equal((uint)0x33221100, imageLoadConfigDirectory.Size);
             Assert.Equal((uint)0x77665544, imageLoadConfigDirectory.TimeDateStamp);
-            Assert.Equal((ushort)0x9988, imageLoadConfigDirectory.MajorVesion);
+            Assert.Equal((ushort)0x9988, imageLoadConfigDirectory.MajorVersion);
             Assert.Equal((ushort)0xbbaa, imageLoadConfigDirectory.MinorVersion);
             Assert.Equal((uint)0xffeeddcc, imageLoadConfigDirectory.GlobalFlagsClear);
             Assert.Equal((uint)0x44332211, imageLoadConfigDirectory.GlobalFlagsSet);
@@ -69,7 +69,7 @@ namespace PeNet.Test.Header.Pe
             Assert.Equal((ushort)0x8877, imageLoadConfigDirectory.CSDVersion);
             Assert.Equal((ushort)0xaa99, imageLoadConfigDirectory.Reserved1);
             Assert.Equal((ulong)0xddccbbaaffddccbb, imageLoadConfigDirectory.EditList);
-            Assert.Equal((ulong)0xddccbbaa77665544, imageLoadConfigDirectory.SecurityCoockie);
+            Assert.Equal((ulong)0xddccbbaa77665544, imageLoadConfigDirectory.SecurityCookie);
             Assert.Equal((ulong)0xddccbbaabbaa9988, imageLoadConfigDirectory.SEHandlerTable);
             Assert.Equal((ulong)0xddccbbaaffeeddcc, imageLoadConfigDirectory.SEHandlerCount);
             Assert.Equal((ulong)0xddccbbaa88776655, imageLoadConfigDirectory.GuardCFCheckFunctionPointer);

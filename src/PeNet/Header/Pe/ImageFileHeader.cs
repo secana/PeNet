@@ -106,11 +106,7 @@ namespace PeNet.Header.Pe
         public static List<string> ResolveFileCharacteristics(FileCharacteristicsType characteristics)
         {
             var st = new List<string>();
-#if NET5_0_OR_GREATER
-            var values = Enum.GetValues<FileCharacteristicsType>();
-#else
-            var values = (FileCharacteristicsType[])Enum.GetValues(typeof(FileCharacteristicsType));
-#endif
+var values = Enum.GetValues<FileCharacteristicsType>();
             foreach (var flag in values)
             {
                 if ((characteristics & flag) == flag)
@@ -121,6 +117,58 @@ namespace PeNet.Header.Pe
             return st;
         }
 
+        private static readonly Dictionary<MachineType, string> MachineNames = new()
+        {
+            { MachineType.I386, "Intel 386" },
+            { MachineType.I860, "Intel i860" },
+            { MachineType.R3000, "MIPS R3000" },
+            { MachineType.R4000, "MIPS little endian (R4000)" },
+            { MachineType.R10000, "MIPS R10000" },
+            { MachineType.Wcemipsv2, "MIPS little endian WCI v2" },
+            { MachineType.OldAlpha, "old Alpha AXP" },
+            { MachineType.Alpha, "Alpha AXP" },
+            { MachineType.Sh3, "Hitachi SH3" },
+            { MachineType.Sh3Dsp, "Hitachi SH3 DSP" },
+            { MachineType.Sh3E, "Hitachi SH3E" },
+            { MachineType.Sh4, "Hitachi SH4" },
+            { MachineType.Sh5, "Hitachi SH5" },
+            { MachineType.Arm, "ARM little endian" },
+            { MachineType.Thumb, "Thumb" },
+            { MachineType.Am33, "Matsushita AM33" },
+            { MachineType.PowerPc, "PowerPC little endian" },
+            { MachineType.PowerPcFp, "PowerPC with floating point support" },
+            { MachineType.Ia64, "Intel IA64" },
+            { MachineType.Mips16, "MIPS16" },
+            { MachineType.M68K, "Motorola 68000 series" },
+            { MachineType.Alpha64, "Alpha AXP 64-bit" },
+            { MachineType.MipsFpu, "MIPS with FPU" },
+            { MachineType.TriCore, "Tricore" },
+            { MachineType.Cef, "CEF" },
+            { MachineType.MipsFpu16, "MIPS16 with FPU" },
+            { MachineType.Ebc, "EFI Byte Code" },
+            { MachineType.Amd64, "AMD64" },
+            { MachineType.M32R, "Mitsubishi M32R little endian" },
+            { MachineType.Cee, "clr pure MSIL" },
+            { MachineType.Arm64, "ARM64 Little-Endian" },
+            { MachineType.ArmNt, "ARM Thumb-2 Little-Endian" },
+            { MachineType.TargetHost, "Interacts with the host and not a WOW64 guest" },
+            { MachineType.LinuxDotnet64, "Linux .NET x64" },
+            { MachineType.LinuxDotnet32, "Linux .NET x86" },
+            { MachineType.OsXDotnet64, "Mac OS .NET x64" },
+            { MachineType.OsXDotnet32, "Mac OS .NET x86" },
+            { MachineType.FreeBSDDotnet64, "FreeBSD .NET x64" },
+            { MachineType.FreeBSDDotnet32, "FreeBSD .NET x86" },
+            { MachineType.NetBSDDotnet64, "NetBSD .NET x64" },
+            { MachineType.NetBSDDotnet32, "NetBSD .NET x86" },
+            { MachineType.SunDotnet64, "Sun .NET x64" },
+            { MachineType.SunDotnet32, "Sun .NET x86" },
+            { MachineType.RiscV32, "RISC-V 32-bit address space" },
+            { MachineType.RiscV64, "RISC-V 64-bit address space" },
+            { MachineType.RiscV128, "RISC-V 128-bit address space" },
+            { MachineType.LoongArch32, "LoongArch 32-bit processor family" },
+            { MachineType.LoongArch64, "LoongArch 64-bit processor family" }
+        };
+
         /// <summary>
         ///     Resolves the target machine number to a string containing
         ///     the name of the target machine.
@@ -128,57 +176,7 @@ namespace PeNet.Header.Pe
         /// <param name="targetMachine">Target machine value from the COFF header.</param>
         /// <returns>Name of the target machine as string.</returns>
         public static string ResolveMachine(MachineType targetMachine)
-            => targetMachine switch
-            {
-                MachineType.I386 => "Intel 386",
-                MachineType.I860 => "Intel i860",
-                MachineType.R3000 => "MIPS R3000",
-                MachineType.R4000 => "MIPS little endian (R4000)",
-                MachineType.R10000 => "MIPS R10000",
-                MachineType.Wcemipsv2 => "MIPS little endian WCI v2",
-                MachineType.OldAlpha => "old Alpha AXP",
-                MachineType.Alpha => "Alpha AXP",
-                MachineType.Sh3 => "Hitachi SH3",
-                MachineType.Sh3Dsp => "Hitachi SH3 DSP",
-                MachineType.Sh3E => "Hitachi SH3E",
-                MachineType.Sh4 => "Hitachi SH4",
-                MachineType.Sh5 => "Hitachi SH5",
-                MachineType.Arm => "ARM little endian",
-                MachineType.Thumb => "Thumb",
-                MachineType.Am33 => "Matsushita AM33",
-                MachineType.PowerPc => "PowerPC little endian",
-                MachineType.PowerPcFp => "PowerPC with floating point support",
-                MachineType.Ia64 => "Intel IA64",
-                MachineType.Mips16 => "MIPS16",
-                MachineType.M68K => "Motorola 68000 series",
-                MachineType.Alpha64 => "Alpha AXP 64-bit",
-                MachineType.MipsFpu => "MIPS with FPU",
-                MachineType.TriCore => "Tricore",
-                MachineType.Cef => "CEF",
-                MachineType.MipsFpu16 => "MIPS16 with FPU",
-                MachineType.Ebc => "EFI Byte Code",
-                MachineType.Amd64 => "AMD64",
-                MachineType.M32R => "Mitsubishi M32R little endian",
-                MachineType.Cee => "clr pure MSIL",
-                MachineType.Arm64 => "ARM64 Little-Endian",
-                MachineType.ArmNt => "ARM Thumb-2 Little-Endian",
-                MachineType.TargetHost => "Interacts with the host and not a WOW64 guest",
-                MachineType.LinuxDotnet64 => "Linux .NET x64",
-                MachineType.LinuxDotnet32 => "Linux .NET x86",
-                MachineType.OsXDotnet64 => "Mac OS .NET x64",
-                MachineType.OsXDotnet32 => "Mac OS .NET x86",
-                MachineType.FreeBSDDotnet64 => "FreeBSD .NET x64",
-                MachineType.FreeBSDDotnet32 => "FreeBSD .NET x86",
-                MachineType.NetBSDDotnet64 => "NetBSD .NET x64",
-                MachineType.NetBSDDotnet32 => "NetBSD .NET x86",
-                MachineType.SunDotnet64 => "Sun .NET x64",
-                MachineType.SunDotnet32 => "Sun .NET x86",
-                MachineType.RiscV32 => "RISC-V 32-bit address space",
-                MachineType.RiscV64 => "RISC-V 64-bit address space",
-                MachineType.RiscV128 => "RISC-V 128-bit address space",
-
-                _ => "unknown"
-            };
+            => MachineNames.TryGetValue(targetMachine, out var name) ? name : "unknown";
     }
 
     /// <summary>
@@ -208,7 +206,7 @@ namespace PeNet.Header.Pe
         LocalSymsStripped = 0x08,
 
         /// <summary>
-        ///     (OBSOLTETE) Aggressively trim the working set.
+        ///     (OBSOLETE) Aggressively trim the working set.
         /// </summary>
         AggresiveWsTrim = 0x10,
 
@@ -218,7 +216,7 @@ namespace PeNet.Header.Pe
         LargeAddressAware = 0x20,
 
         /// <summary>
-        ///     (OBSOLTETE) Bytes of word are reversed.
+        ///     (OBSOLETE) Bytes of word are reversed.
         /// </summary>
         BytesReversedLo = 0x80,
 
@@ -432,7 +430,7 @@ namespace PeNet.Header.Pe
         Cee = 0xc0ee,
 
         /// <summary>
-        ///     File header -> machine (CPU): ARM65 Little-Endian
+        ///     File header -> machine (CPU): ARM64 Little-Endian
         /// </summary>
         Arm64 = 0xAA64,
 

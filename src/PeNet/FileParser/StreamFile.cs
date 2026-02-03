@@ -47,15 +47,15 @@ namespace PeNet.FileParser
                 : stackalloc byte[length];
 
             _stream.Seek(offset, SeekOrigin.Begin);
-            _stream.Read(tmp);
+            _stream.ReadExactly(tmp);
             return Encoding.ASCII.GetString(tmp);
         }
 
         public Span<byte> AsSpan(long offset, long length)
         {
-            Span<byte> s = new byte[(int)length]; 
+            Span<byte> s = new byte[(int)length];
             _stream.Seek(offset, SeekOrigin.Begin);
-            _stream.Read(s);
+            _stream.ReadExactly(s);
             return s;
         }
 
@@ -110,36 +110,24 @@ namespace PeNet.FileParser
         {
             Span<byte> s = stackalloc byte[4];
             _stream.Seek(offset, SeekOrigin.Begin);
-            _stream.Read(s);
-#if NET48 || NETSTANDARD2_0
-            return BitConverter.ToUInt32(s.ToArray(), 0);
-#else
+            _stream.ReadExactly(s);
             return BitConverter.ToUInt32(s);
-#endif
         }
 
         public ulong ReadULong(long offset)
         {
             Span<byte> s = stackalloc byte[8];
             _stream.Seek(offset, SeekOrigin.Begin);
-            _stream.Read(s);
-#if NET48 || NETSTANDARD2_0
-            return BitConverter.ToUInt64(s.ToArray(), 0);
-#else
+            _stream.ReadExactly(s);
             return BitConverter.ToUInt64(s);
-#endif
         }
 
         public ushort ReadUShort(long offset)
         {
             Span<byte> s = stackalloc byte[2];
             _stream.Seek(offset, SeekOrigin.Begin);
-            _stream.Read(s);
-#if NET48 || NETSTANDARD2_0
-            return BitConverter.ToUInt16(s.ToArray(), 0);
-#else
+            _stream.ReadExactly(s);
             return BitConverter.ToUInt16(s);
-#endif
         }
 
         public byte[] ToArray()
