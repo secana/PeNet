@@ -33,7 +33,7 @@
   <ItemGroup>
     <PackageReference Include="PeNet.Asn1" Version="2.0.2" />
     <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.2" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.102" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\resource\icon.png" Pack="true" PackagePath="\" />
