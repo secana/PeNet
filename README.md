@@ -13,7 +13,7 @@ Furthermore it supports the creation of Import Hashes (ImpHash), which is a feat
 
 The API reference can be found here: [PeNet Documentation & API Reference](http://secana.github.io/PeNet).
 
-For an overview of *PeNet* or to analyze PE files go to: [penet.io](http://penet.io)
+For an overview of *PeNet* or to analyze PE files go to: [penet web](http://penet.secana.org)
 
 ## Continuous Integration
 
