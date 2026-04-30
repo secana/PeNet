@@ -1769,6 +1769,19 @@ references:
   isSpec: "True"
   fullName: PeNet.Header.Authenticode.AuthenticodeInfo.SigningCertificate
   nameWithType: AuthenticodeInfo.SigningCertificate
+- uid: PeNet.Header.Authenticode.AuthenticodeInfo.SigningTimestamp
+  name: SigningTimestamp
+  href: api/PeNet.Header.Authenticode.AuthenticodeInfo.html#PeNet_Header_Authenticode_AuthenticodeInfo_SigningTimestamp
+  commentId: P:PeNet.Header.Authenticode.AuthenticodeInfo.SigningTimestamp
+  fullName: PeNet.Header.Authenticode.AuthenticodeInfo.SigningTimestamp
+  nameWithType: AuthenticodeInfo.SigningTimestamp
+- uid: PeNet.Header.Authenticode.AuthenticodeInfo.SigningTimestamp*
+  name: SigningTimestamp
+  href: api/PeNet.Header.Authenticode.AuthenticodeInfo.html#PeNet_Header_Authenticode_AuthenticodeInfo_SigningTimestamp_
+  commentId: Overload:PeNet.Header.Authenticode.AuthenticodeInfo.SigningTimestamp
+  isSpec: "True"
+  fullName: PeNet.Header.Authenticode.AuthenticodeInfo.SigningTimestamp
+  nameWithType: AuthenticodeInfo.SigningTimestamp
 - uid: PeNet.Header.Authenticode.ContentInfo
   name: ContentInfo
   href: api/PeNet.Header.Authenticode.ContentInfo.html
