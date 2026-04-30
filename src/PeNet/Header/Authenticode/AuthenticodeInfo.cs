@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Formats.Asn1;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Cryptography.Pkcs;
@@ -16,11 +17,13 @@ namespace PeNet.Header.Authenticode
     {
         private readonly PeFile _peFile;
         private readonly ContentInfo? _contentInfo;
+        private readonly SignedCms? _signedCms;
 
         public string? SignerSerialNumber { get; }
         public byte[]? SignedHash { get; }
         public bool IsAuthenticodeValid { get; }
         public X509Certificate2? SigningCertificate { get; }
+        public DateTimeOffset? SigningTimestamp { get; }
 
         public AuthenticodeInfo(PeFile peFile)
         {
@@ -29,10 +32,30 @@ namespace PeNet.Header.Authenticode
             _contentInfo = _peFile.WinCertificate == null
                 ? null : new ContentInfo(_peFile.WinCertificate.BCertificate);
 
+            _signedCms = DecodeCms();
+
             SignerSerialNumber = GetSigningSerialNumber();
             SignedHash = GetSignedHash();
             IsAuthenticodeValid = VerifyHash() && VerifySignature();
             SigningCertificate = GetSigningCertificate();
+            SigningTimestamp = GetSigningTimestamp();
+        }
+
+        private SignedCms? DecodeCms()
+        {
+            if (_peFile.WinCertificate is null)
+                return null;
+
+            try
+            {
+                var cms = new SignedCms();
+                cms.Decode(_peFile.WinCertificate.BCertificate.ToArray());
+                return cms;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         private X509Certificate2? GetSigningCertificate()
@@ -43,16 +66,10 @@ namespace PeNet.Header.Authenticode
                 return null;
             }
 
-            var pkcs7 = _peFile.WinCertificate.BCertificate.ToArray();
-            return GetSigningCertificateFromPkcs7(pkcs7);
-        }
+            if (_signedCms is null)
+                return null;
 
-        private X509Certificate2? GetSigningCertificateFromPkcs7(byte[] pkcs7)
-        {
-            // See https://github.com/dotnet/runtime/issues/15073#issuecomment-374787612
-            var signedCms = new SignedCms();
-            signedCms.Decode(pkcs7);
-            var signerInfos = signedCms.SignerInfos.Cast<SignerInfo>().Where(si => string.Equals(si.Certificate?.SerialNumber, SignerSerialNumber, StringComparison.CurrentCultureIgnoreCase)).ToList();
+            var signerInfos = _signedCms.SignerInfos.Cast<SignerInfo>().Where(si => string.Equals(si.Certificate?.SerialNumber, SignerSerialNumber, StringComparison.CurrentCultureIgnoreCase)).ToList();
             if (signerInfos.Count == 1)
             {
                 return signerInfos[0].Certificate;
@@ -61,17 +78,98 @@ namespace PeNet.Header.Authenticode
             throw new CryptographicException($"Expected to find one certificate with serial number '{SignerSerialNumber}' but found {numberOfSignerInfos}.");
         }
 
+        private DateTimeOffset? GetSigningTimestamp()
+        {
+            if (_signedCms is null)
+                return null;
+
+            foreach (var signerInfo in _signedCms.SignerInfos)
+            {
+                foreach (var unsignedAttribute in signerInfo.UnsignedAttributes)
+                {
+                    // RFC 3161 timestamp counter-signature
+                    if (unsignedAttribute.Oid.Value == "1.3.6.1.4.1.311.3.3.1")
+                    {
+                        var timestamp = GetTimestampFromRfc3161(unsignedAttribute);
+                        if (timestamp.HasValue)
+                            return timestamp;
+                    }
+                }
+
+                // Legacy Authenticode counter-signature via CounterSignerInfos
+                var legacyTimestamp = GetTimestampFromCounterSignerInfos(signerInfo);
+                if (legacyTimestamp.HasValue)
+                    return legacyTimestamp;
+            }
+
+            return null;
+        }
+
+        private static DateTimeOffset? GetTimestampFromRfc3161(CryptographicAttributeObject unsignedAttribute)
+        {
+            if (unsignedAttribute.Values.Count == 0)
+                return null;
+
+            try
+            {
+                var timestampCms = new SignedCms();
+                timestampCms.Decode(unsignedAttribute.Values[0].RawData);
+
+                var tstInfo = timestampCms.ContentInfo.Content;
+                if (tstInfo is null || tstInfo.Length == 0)
+                    return null;
+
+                var reader = new AsnReader(tstInfo, AsnEncodingRules.DER);
+                var sequenceReader = reader.ReadSequence();
+                sequenceReader.ReadInteger();           // version
+                sequenceReader.ReadObjectIdentifier(); // policy
+                sequenceReader.ReadSequence();         // messageImprint
+                sequenceReader.ReadInteger();           // serialNumber
+                var genTime = sequenceReader.ReadGeneralizedTime(); // genTime
+
+                return genTime;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private static DateTimeOffset? GetTimestampFromCounterSignerInfos(SignerInfo signerInfo)
+        {
+            try
+            {
+                foreach (var counterSigner in signerInfo.CounterSignerInfos)
+                {
+                    foreach (var signedAttr in counterSigner.SignedAttributes)
+                    {
+                        if (signedAttr.Oid.Value == "1.2.840.113549.1.9.5") // signing-time
+                        {
+                            if (signedAttr.Values.Count > 0)
+                            {
+                                var signingTime = (Pkcs9SigningTime)signedAttr.Values[0];
+                                return new DateTimeOffset(signingTime.SigningTime);
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+            return null;
+        }
+
         private bool VerifySignature()
         {
-            var signedCms = new SignedCms();
-            var bCert = _peFile.WinCertificate?.BCertificate.ToArray();
-            if (bCert is null) return false;
-            signedCms.Decode(bCert);
+            if (_signedCms is null) return false;
 
             try
             {
                 // Throws an exception if the signature is invalid.
-                signedCms.CheckSignature(true);
+                _signedCms.CheckSignature(true);
             }
             catch (Exception)
             {
@@ -137,7 +235,7 @@ namespace PeNet.Header.Authenticode
             var asn1 = _contentInfo?.Content;
             if (asn1 is null) return null;
             var x = (Asn1Integer)asn1.Nodes[0].Nodes[4].Nodes[0].Nodes[1].Nodes[1]; // ASN.1 Path to signer serial number: /1/0/4/0/1/1
-return x.Value.ToHexString()[2..].ToUpper();
+            return x.Value.ToHexString()[2..].ToUpper();
         }
 
         public IEnumerable<byte>? ComputeAuthenticodeHashFromPeFile(HashAlgorithm hash)
