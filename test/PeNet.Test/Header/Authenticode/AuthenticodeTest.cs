@@ -147,6 +147,29 @@ namespace PeNet.Test.Header.Authenticode
         }
 
         [Fact]
+        public void SigningTimestamp_SignedBinary_ReturnsTimestamp()
+        {
+            var peFile = new PeFile(@"./Binaries/pidgin.exe");
+            Assert.NotNull(peFile.AuthenticodeInfo);
+            Assert.NotNull(peFile.AuthenticodeInfo.SigningTimestamp);
+        }
+
+        [Fact]
+        public void SigningTimestamp_UnsignedBinary_ReturnsNull()
+        {
+            var peFile = new PeFile(@"./Binaries/TLSCallback_x86.exe");
+            Assert.Null(peFile.AuthenticodeInfo?.SigningTimestamp);
+        }
+
+        [Fact]
+        public void SigningTimestamp_LegacyCounterSignature_ReturnsTimestamp()
+        {
+            var peFile = new PeFile(@"./Binaries/old_firefox_x86.exe");
+            Assert.NotNull(peFile.AuthenticodeInfo);
+            Assert.NotNull(peFile.AuthenticodeInfo.SigningTimestamp);
+        }
+
+        [Fact]
         public void IsSignatureValid_UnsigendBinary_ReturnsFalse()
         {
             var peFile = new PeFile(@"./Binaries/TLSCallback_x86.exe");
