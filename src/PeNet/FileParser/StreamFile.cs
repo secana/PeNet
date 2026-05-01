@@ -1,7 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace PeNet.FileParser
@@ -9,7 +8,7 @@ namespace PeNet.FileParser
     public class StreamFile : IRawFile, IDisposable
     {
         private const int MaxStackAlloc = 1024;
-        private Stream _stream;
+        private readonly Stream _stream;
 
         public long Length => _stream.Length;
 
@@ -178,16 +177,36 @@ namespace PeNet.FileParser
 
         public void RemoveRange(long offset, long length)
         {
-            var _buff = this.ToArray();
-            var x = _buff.ToList();
-            x.RemoveRange((int) offset, (int) length);
-            _stream.Dispose();
-            _stream = new MemoryStream(_buff.ToArray());
+            // Shift bytes after the removed range backwards in-place
+            var afterOffset = offset + length;
+            var remaining = _stream.Length - afterOffset;
+
+            Span<byte> buffer = stackalloc byte[MaxStackAlloc];
+            var bytesLeft = remaining;
+            var readPos = afterOffset;
+            var writePos = offset;
+
+            while (bytesLeft > 0)
+            {
+                var toRead = (int)Math.Min(bytesLeft, buffer.Length);
+                _stream.Seek(readPos, SeekOrigin.Begin);
+                _stream.ReadExactly(buffer[..toRead]);
+                _stream.Seek(writePos, SeekOrigin.Begin);
+                _stream.Write(buffer[..toRead]);
+                readPos += toRead;
+                writePos += toRead;
+                bytesLeft -= toRead;
+            }
+
+            _stream.SetLength(_stream.Length - length);
         }
 
         public int AppendBytes(Span<byte> bytes)
         {
-            throw new NotImplementedException("This features is not available for stream files.");
+            var startOffset = (int)_stream.Length;
+            _stream.Seek(0, SeekOrigin.End);
+            _stream.Write(bytes);
+            return startOffset;
         }
     }
 }

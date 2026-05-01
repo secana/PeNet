@@ -1,4 +1,4 @@
-﻿using PeNet.FileParser;
+using PeNet.FileParser;
 using System;
 using System.Runtime.InteropServices;
 
@@ -19,24 +19,27 @@ namespace PeNet.Header.Pe
         /// <param name="peFile">A PE file.</param>
         /// <param name="offset">Offset of the structure in the buffer.</param>
         /// <param name="is64Bit">Flag if the PE file is 64 Bit.</param>
-        public ImageLoadConfigDirectory(IRawFile peFile, long offset, bool is64Bit) 
+        public ImageLoadConfigDirectory(IRawFile peFile, long offset, bool is64Bit)
             : base(peFile, offset)
         {
             _is64Bit = is64Bit;
             uint size = PeFile.ReadUInt(offset);
-            byte[] data = PeFile.ToArray();
-            if (size > data.Length)
+            long fileLength = PeFile.Length;
+            if (size > fileLength)
             {
                 // Ideally throw an exception when overflow occurred, but set size to data length to handle malformed files gracefully.
-                size = (uint)data.Length;
-
-                            }
+                size = (uint)fileLength;
+            }
             _ptr = Marshal.AllocHGlobal((int)size);
             if(_ptr != IntPtr.Zero)
             {
-                if(offset + size < data.Length)
+                if (offset + size < fileLength)
                 {
-                    Marshal.Copy(data, (int)offset, _ptr, (int)size);
+                    var span = PeFile.AsSpan(offset, size);
+                    unsafe
+                    {
+                        span.CopyTo(new Span<byte>((void*)_ptr, (int)size));
+                    }
                 }
             }
         }

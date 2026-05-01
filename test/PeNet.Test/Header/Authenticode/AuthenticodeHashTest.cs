@@ -1,5 +1,6 @@
-﻿using Xunit;
+using Xunit;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace PeNet.Test.Header.Authenticode
 {
@@ -35,8 +36,7 @@ namespace PeNet.Test.Header.Authenticode
         public void AuthenticodeHash_GivenABinary_ComputesCorrectHash(string file, string expected)
         {
             var peFile = new PeFile(file);
-            var hash = System.Security.Cryptography.SHA1.Create();
-            var bytes = peFile.AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile(hash);
+            var bytes = peFile.AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile(HashAlgorithmName.SHA1);
             var digest = bytes.ToList().ToHexString().Substring(2);
             
             Assert.Equal(expected, digest);
