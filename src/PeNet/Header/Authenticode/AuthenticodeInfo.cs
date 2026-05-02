@@ -28,7 +28,7 @@ namespace PeNet.Header.Authenticode
         public AuthenticodeInfo(PeFile peFile)
         {
             _peFile = peFile;
-            
+
             _contentInfo = _peFile.WinCertificate == null
                 ? null : new ContentInfo(_peFile.WinCertificate.BCertificate);
 
@@ -49,7 +49,7 @@ namespace PeNet.Header.Authenticode
             try
             {
                 var cms = new SignedCms();
-                cms.Decode(_peFile.WinCertificate.BCertificate.ToArray());
+                cms.Decode(_peFile.WinCertificate.BCertificate);
                 return cms;
             }
             catch
@@ -183,28 +183,19 @@ namespace PeNet.Header.Authenticode
         {
             if (SignedHash == null) return false;
             // 2.  Initialize a hash algorithm context.
-            HashAlgorithm hashAlgorithm;
-            switch (SignedHash.Length)
+            var algorithmName = SignedHash.Length switch
             {
-                case 16:
-                    hashAlgorithm = MD5.Create();
-                    break;
-                case 20:
-                    hashAlgorithm = SHA1.Create();
-                    break;
-                case 32:
-                    hashAlgorithm = SHA256.Create();
-                    break;
-                case 48:
-                    hashAlgorithm = SHA384.Create();
-                    break;
-                case 64:
-                    hashAlgorithm = SHA512.Create();
-                    break;
-                default:
-                    return false;
-            }
-            var hash = ComputeAuthenticodeHashFromPeFile(hashAlgorithm);
+                16 => HashAlgorithmName.MD5,
+                20 => HashAlgorithmName.SHA1,
+                32 => HashAlgorithmName.SHA256,
+                48 => HashAlgorithmName.SHA384,
+                64 => HashAlgorithmName.SHA512,
+                _ => (HashAlgorithmName?)null
+            };
+
+            if (algorithmName is null) return false;
+
+            var hash = ComputeAuthenticodeHashFromPeFile(algorithmName.Value);
             return hash != null && SignedHash.SequenceEqual(hash);
         }
 
@@ -238,14 +229,31 @@ namespace PeNet.Header.Authenticode
             return x.Value.ToHexString()[2..].ToUpper();
         }
 
+        [Obsolete("Use ComputeAuthenticodeHashFromPeFile(HashAlgorithmName) instead.")]
         public IEnumerable<byte>? ComputeAuthenticodeHashFromPeFile(HashAlgorithm hash)
         {
-            var buff = _peFile.RawFile.ToArray();
+            var algorithmName = hash switch
+            {
+                MD5 => HashAlgorithmName.MD5,
+                SHA1 => HashAlgorithmName.SHA1,
+                SHA256 => HashAlgorithmName.SHA256,
+                SHA384 => HashAlgorithmName.SHA384,
+                SHA512 => HashAlgorithmName.SHA512,
+                _ => throw new ArgumentException($"Unsupported hash algorithm: {hash.GetType().Name}", nameof(hash))
+            };
+
+            return ComputeAuthenticodeHashFromPeFile(algorithmName);
+        }
+
+        public byte[]? ComputeAuthenticodeHashFromPeFile(HashAlgorithmName algorithmName)
+        {
+            using var hash = IncrementalHash.CreateHash(algorithmName);
+            var rawFile = _peFile.RawFile;
 
             // 3.  Hash the image header from its base to immediately before the start of the checksum address, 
             // as specified in Optional Header Windows-Specific Fields.
-            var offset = Convert.ToInt32(_peFile.ImageNtHeaders?.OptionalHeader.Offset) + 0x40;
-            hash.TransformBlock(buff, 0, offset, new byte[offset], 0);
+            var offset = (_peFile.ImageNtHeaders?.OptionalHeader.Offset ?? 0L) + 0x40;
+            hash.AppendData(rawFile.AsSpan(0, offset));
 
             // 4.  Skip over the checksum, which is a 4-byte field.
             offset += 0x4;
@@ -256,26 +264,26 @@ namespace PeNet.Header.Authenticode
 
             // 5.  Hash everything from the end of the checksum field to immediately before the start of the Certificate Table entry,
             // as specified in Optional Header Data Directories.
-            var length = Convert.ToInt32(certificateTable?.Offset) - offset;
-            hash.TransformBlock(buff, offset, length, new byte[length], 0);
-            offset += length + 0x8;//end of Attribute Certificate Table addres
+            var length = (certificateTable?.Offset ?? 0L) - offset;
+            hash.AppendData(rawFile.AsSpan(offset, length));
+            offset += length + 0x8; // end of Attribute Certificate Table address
 
             // 7.  Exclude the Certificate Table entry from the calculation and 
             // hash everything from the end of the Certificate Table entry to the end of image header, 
             // including Section Table (headers). The Certificate Table entry is 8 bytes long, as specified in Optional Header Data Directories.
-            length = Convert.ToInt32(_peFile.ImageNtHeaders?.OptionalHeader.SizeOfHeaders) - offset;// end optional header
-            hash.TransformBlock(buff, offset, length, new byte[length], 0);
+            length = (_peFile.ImageNtHeaders?.OptionalHeader.SizeOfHeaders ?? 0L) - offset;
+            hash.AppendData(rawFile.AsSpan(offset, length));
 
             // 8-13. Hash everything between end of header and certificate
-            offset = Convert.ToInt32(_peFile.ImageNtHeaders?.OptionalHeader.SizeOfHeaders);
+            offset = (_peFile.ImageNtHeaders?.OptionalHeader.SizeOfHeaders ?? 0L);
 
             if (_peFile.WinCertificate is not null)
             {
-                length = Convert.ToInt32(_peFile.WinCertificate?.Offset) - offset;
-                hash.TransformBlock(buff, offset, length, new byte[length], 0);
+                length = (_peFile.WinCertificate?.Offset ?? 0L) - offset;
+                hash.AppendData(rawFile.AsSpan(offset, length));
 
                 // Move offset right beyond the Certificate Table
-                offset += length + Convert.ToInt32(certificateTable?.Size);
+                offset += length + (certificateTable?.Size ?? 0L);
             }
 
             // 14. Create a value called FILE_SIZE, which is not part of the signature. 
@@ -286,19 +294,18 @@ namespace PeNet.Header.Authenticode
             // Note: The size of Attribute Certificate Table is specified 
             // in the second ULONG value in the Certificate Table entry (32 bit: offset 132, 64 bit: offset 148) in Optional Header Data Directories.
             // 14. Hash everything from the end of the certificate to the end of the file.
-            var fileSize = buff.Length;
+            var fileSize = rawFile.Length;
             if (fileSize > offset)
             {
                 length = fileSize - offset;
                 if (length != 0)
                 {
-                    hash.TransformBlock(buff, offset, length, new byte[length], 0);
+                    hash.AppendData(rawFile.AsSpan(offset, length));
                 }
             }
 
             // 15. Finalize the hash algorithm context.
-            hash.TransformFinalBlock(buff, 0, 0);
-            return hash.Hash;
+            return hash.GetHashAndReset();
         }
     }
 }
