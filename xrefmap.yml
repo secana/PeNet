@@ -1710,6 +1710,12 @@ references:
   commentId: M:PeNet.Header.Authenticode.AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile(System.Security.Cryptography.HashAlgorithm)
   fullName: PeNet.Header.Authenticode.AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile(System.Security.Cryptography.HashAlgorithm)
   nameWithType: AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile(HashAlgorithm)
+- uid: PeNet.Header.Authenticode.AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile(System.Security.Cryptography.HashAlgorithmName)
+  name: ComputeAuthenticodeHashFromPeFile(HashAlgorithmName)
+  href: api/PeNet.Header.Authenticode.AuthenticodeInfo.html#PeNet_Header_Authenticode_AuthenticodeInfo_ComputeAuthenticodeHashFromPeFile_System_Security_Cryptography_HashAlgorithmName_
+  commentId: M:PeNet.Header.Authenticode.AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile(System.Security.Cryptography.HashAlgorithmName)
+  fullName: PeNet.Header.Authenticode.AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile(System.Security.Cryptography.HashAlgorithmName)
+  nameWithType: AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile(HashAlgorithmName)
 - uid: PeNet.Header.Authenticode.AuthenticodeInfo.ComputeAuthenticodeHashFromPeFile*
   name: ComputeAuthenticodeHashFromPeFile
   href: api/PeNet.Header.Authenticode.AuthenticodeInfo.html#PeNet_Header_Authenticode_AuthenticodeInfo_ComputeAuthenticodeHashFromPeFile_
