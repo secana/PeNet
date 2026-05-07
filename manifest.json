@@ -158,20 +158,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.Header.Authenticode.ContentInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.Header.Authenticode.ContentInfo.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "PeNet.Header.Authenticode.ContentInfo",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/PeNet.Header.Authenticode.CrlUrlList.yml",
       "output": {
         ".html": {
@@ -183,20 +169,6 @@
       "IsMRef": true,
       "Title": "PeNet.Header.Authenticode.CrlUrlList",
       "Summary": "<p sourcefile=\"api/PeNet.Header.Authenticode.CrlUrlList.yml\" sourcestartlinenumber=\"1\">This class parses the Certificate Revocation Lists\nof a signing certificate. It provides access to all\nCRL URLs in the certificate.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/PeNet.Header.Authenticode.SignedData.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/PeNet.Header.Authenticode.SignedData.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "PeNet.Header.Authenticode.SignedData",
-      "Summary": null
     },
     {
       "type": "ManagedReference",

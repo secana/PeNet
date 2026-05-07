@@ -1788,66 +1788,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Header.Authenticode.AuthenticodeInfo.SigningTimestamp
   nameWithType: AuthenticodeInfo.SigningTimestamp
-- uid: PeNet.Header.Authenticode.ContentInfo
-  name: ContentInfo
-  href: api/PeNet.Header.Authenticode.ContentInfo.html
-  commentId: T:PeNet.Header.Authenticode.ContentInfo
-  fullName: PeNet.Header.Authenticode.ContentInfo
-  nameWithType: ContentInfo
-- uid: PeNet.Header.Authenticode.ContentInfo.#ctor(PeNet.Asn1.Asn1Node)
-  name: ContentInfo(Asn1Node)
-  href: api/PeNet.Header.Authenticode.ContentInfo.html#PeNet_Header_Authenticode_ContentInfo__ctor_PeNet_Asn1_Asn1Node_
-  commentId: M:PeNet.Header.Authenticode.ContentInfo.#ctor(PeNet.Asn1.Asn1Node)
-  name.vb: New(Asn1Node)
-  fullName: PeNet.Header.Authenticode.ContentInfo.ContentInfo(PeNet.Asn1.Asn1Node)
-  fullName.vb: PeNet.Header.Authenticode.ContentInfo.New(PeNet.Asn1.Asn1Node)
-  nameWithType: ContentInfo.ContentInfo(Asn1Node)
-  nameWithType.vb: ContentInfo.New(Asn1Node)
-- uid: PeNet.Header.Authenticode.ContentInfo.#ctor(System.Span{System.Byte})
-  name: ContentInfo(Span<byte>)
-  href: api/PeNet.Header.Authenticode.ContentInfo.html#PeNet_Header_Authenticode_ContentInfo__ctor_System_Span_System_Byte__
-  commentId: M:PeNet.Header.Authenticode.ContentInfo.#ctor(System.Span{System.Byte})
-  name.vb: New(Span(Of Byte))
-  fullName: PeNet.Header.Authenticode.ContentInfo.ContentInfo(System.Span<byte>)
-  fullName.vb: PeNet.Header.Authenticode.ContentInfo.New(System.Span(Of Byte))
-  nameWithType: ContentInfo.ContentInfo(Span<byte>)
-  nameWithType.vb: ContentInfo.New(Span(Of Byte))
-- uid: PeNet.Header.Authenticode.ContentInfo.#ctor*
-  name: ContentInfo
-  href: api/PeNet.Header.Authenticode.ContentInfo.html#PeNet_Header_Authenticode_ContentInfo__ctor_
-  commentId: Overload:PeNet.Header.Authenticode.ContentInfo.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: PeNet.Header.Authenticode.ContentInfo.ContentInfo
-  fullName.vb: PeNet.Header.Authenticode.ContentInfo.New
-  nameWithType: ContentInfo.ContentInfo
-  nameWithType.vb: ContentInfo.New
-- uid: PeNet.Header.Authenticode.ContentInfo.Content
-  name: Content
-  href: api/PeNet.Header.Authenticode.ContentInfo.html#PeNet_Header_Authenticode_ContentInfo_Content
-  commentId: P:PeNet.Header.Authenticode.ContentInfo.Content
-  fullName: PeNet.Header.Authenticode.ContentInfo.Content
-  nameWithType: ContentInfo.Content
-- uid: PeNet.Header.Authenticode.ContentInfo.Content*
-  name: Content
-  href: api/PeNet.Header.Authenticode.ContentInfo.html#PeNet_Header_Authenticode_ContentInfo_Content_
-  commentId: Overload:PeNet.Header.Authenticode.ContentInfo.Content
-  isSpec: "True"
-  fullName: PeNet.Header.Authenticode.ContentInfo.Content
-  nameWithType: ContentInfo.Content
-- uid: PeNet.Header.Authenticode.ContentInfo.ContentType
-  name: ContentType
-  href: api/PeNet.Header.Authenticode.ContentInfo.html#PeNet_Header_Authenticode_ContentInfo_ContentType
-  commentId: P:PeNet.Header.Authenticode.ContentInfo.ContentType
-  fullName: PeNet.Header.Authenticode.ContentInfo.ContentType
-  nameWithType: ContentInfo.ContentType
-- uid: PeNet.Header.Authenticode.ContentInfo.ContentType*
-  name: ContentType
-  href: api/PeNet.Header.Authenticode.ContentInfo.html#PeNet_Header_Authenticode_ContentInfo_ContentType_
-  commentId: Overload:PeNet.Header.Authenticode.ContentInfo.ContentType
-  isSpec: "True"
-  fullName: PeNet.Header.Authenticode.ContentInfo.ContentType
-  nameWithType: ContentInfo.ContentType
 - uid: PeNet.Header.Authenticode.CrlUrlList
   name: CrlUrlList
   href: api/PeNet.Header.Authenticode.CrlUrlList.html
@@ -1908,44 +1848,6 @@ references:
   isSpec: "True"
   fullName: PeNet.Header.Authenticode.CrlUrlList.Urls
   nameWithType: CrlUrlList.Urls
-- uid: PeNet.Header.Authenticode.SignedData
-  name: SignedData
-  href: api/PeNet.Header.Authenticode.SignedData.html
-  commentId: T:PeNet.Header.Authenticode.SignedData
-  fullName: PeNet.Header.Authenticode.SignedData
-  nameWithType: SignedData
-- uid: PeNet.Header.Authenticode.SignedData.#ctor(PeNet.Asn1.Asn1Node)
-  name: SignedData(Asn1Node)
-  href: api/PeNet.Header.Authenticode.SignedData.html#PeNet_Header_Authenticode_SignedData__ctor_PeNet_Asn1_Asn1Node_
-  commentId: M:PeNet.Header.Authenticode.SignedData.#ctor(PeNet.Asn1.Asn1Node)
-  name.vb: New(Asn1Node)
-  fullName: PeNet.Header.Authenticode.SignedData.SignedData(PeNet.Asn1.Asn1Node)
-  fullName.vb: PeNet.Header.Authenticode.SignedData.New(PeNet.Asn1.Asn1Node)
-  nameWithType: SignedData.SignedData(Asn1Node)
-  nameWithType.vb: SignedData.New(Asn1Node)
-- uid: PeNet.Header.Authenticode.SignedData.#ctor*
-  name: SignedData
-  href: api/PeNet.Header.Authenticode.SignedData.html#PeNet_Header_Authenticode_SignedData__ctor_
-  commentId: Overload:PeNet.Header.Authenticode.SignedData.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: PeNet.Header.Authenticode.SignedData.SignedData
-  fullName.vb: PeNet.Header.Authenticode.SignedData.New
-  nameWithType: SignedData.SignedData
-  nameWithType.vb: SignedData.New
-- uid: PeNet.Header.Authenticode.SignedData.ContentInfo
-  name: ContentInfo
-  href: api/PeNet.Header.Authenticode.SignedData.html#PeNet_Header_Authenticode_SignedData_ContentInfo
-  commentId: P:PeNet.Header.Authenticode.SignedData.ContentInfo
-  fullName: PeNet.Header.Authenticode.SignedData.ContentInfo
-  nameWithType: SignedData.ContentInfo
-- uid: PeNet.Header.Authenticode.SignedData.ContentInfo*
-  name: ContentInfo
-  href: api/PeNet.Header.Authenticode.SignedData.html#PeNet_Header_Authenticode_SignedData_ContentInfo_
-  commentId: Overload:PeNet.Header.Authenticode.SignedData.ContentInfo
-  isSpec: "True"
-  fullName: PeNet.Header.Authenticode.SignedData.ContentInfo
-  nameWithType: SignedData.ContentInfo
 - uid: PeNet.Header.ImpHash
   name: PeNet.Header.ImpHash
   href: api/PeNet.Header.ImpHash.html
