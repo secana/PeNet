@@ -1,5 +1,5 @@
-﻿using System.IO;
-using PeNet.Asn1;
+﻿using System.Formats.Asn1;
+using System.IO;
 using PeNet.Header.Pe;
 using Xunit;
 
@@ -180,16 +180,18 @@ namespace PeNet.Test.Header.Authenticode
         public void PreventOverflow()
         {
             var cert = File.ReadAllBytes(@"./Header/Authenticode/pkcs7.bin");
-            var asn1 = Asn1Node.ReadNode(cert);
-            Assert.NotNull(asn1);
+            var reader = new AsnReader(cert, AsnEncodingRules.DER);
+            var node = reader.ReadSequence();
+            Assert.NotNull(node);
         }
 
         [Fact]
         public void Asn1ShouldSupportIa5String()
         {
             var cert = File.ReadAllBytes(@"./Header/Authenticode/pidgin.pkcs7");
-            var asn1 = Asn1Node.ReadNode(cert);
-            Assert.NotNull(asn1);
+            var reader = new AsnReader(cert, AsnEncodingRules.DER);
+            var node = reader.ReadSequence();
+            Assert.NotNull(node);
         }
     }
 }

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Cryptography.Pkcs;
 using System.Security.Cryptography.X509Certificates;
-using PeNet.Asn1;
 using PeNet.Header.Pe;
 
 namespace PeNet.Header.Authenticode
@@ -16,7 +15,6 @@ namespace PeNet.Header.Authenticode
     public class AuthenticodeInfo
     {
         private readonly PeFile _peFile;
-        private readonly ContentInfo? _contentInfo;
         private readonly SignedCms? _signedCms;
 
         public string? SignerSerialNumber { get; }
@@ -29,10 +27,12 @@ namespace PeNet.Header.Authenticode
         {
             _peFile = peFile;
 
-            _contentInfo = _peFile.WinCertificate == null
-                ? null : new ContentInfo(_peFile.WinCertificate.BCertificate);
-
             _signedCms = DecodeCms();
+
+            // If certificate data exists but cannot be decoded, signal failure
+            // so the parser returns null instead of an empty AuthenticodeInfo.
+            if (_peFile.WinCertificate is not null && _signedCms is null)
+                throw new InvalidOperationException("Failed to decode PKCS#7 signed data.");
 
             SignerSerialNumber = GetSigningSerialNumber();
             SignedHash = GetSignedHash();
@@ -201,32 +201,34 @@ namespace PeNet.Header.Authenticode
 
         private byte[]? GetSignedHash()
         {
-            if (_contentInfo?.Content is null)
+            if (_signedCms is null)
                 return null;
 
-            if (_contentInfo?.ContentType != "1.2.840.113549.1.7.2") //1.2.840.113549.1.7.2 = OID for signedData
+            // 1.3.6.1.4.1.311.2.1.4 = OID for SPC Indirect Data Content (Microsoft Authenticode)
+            if (_signedCms.ContentInfo.ContentType.Value != "1.3.6.1.4.1.311.2.1.4")
+                return null;
+
+            try
+            {
+                var reader = new AsnReader(_signedCms.ContentInfo.Content, AsnEncodingRules.DER);
+                var spcSequence = reader.ReadSequence();
+                spcSequence.ReadSequence();                    // skip SpcAttributeTypeAndOptionalValue
+                var digestInfo = spcSequence.ReadSequence();   // DigestInfo
+                digestInfo.ReadSequence();                     // skip AlgorithmIdentifier
+                return digestInfo.ReadOctetString();            // digest value
+            }
+            catch
             {
                 return null;
             }
-
-            var sd = new SignedData(_contentInfo.Content);
-            if (sd.ContentInfo.ContentType != "1.3.6.1.4.1.311.2.1.4") // 1.3.6.1.4.1.311.2.1.4 = OID for Microsoft Crypto
-            {
-                return null;
-            }
-
-            var spc = sd.ContentInfo.Content;
-            if (spc is null) return null;
-            var signedHash = (Asn1OctetString)spc.Nodes[0].Nodes[1].Nodes[1];
-            return signedHash.Data;
         }
 
         private string? GetSigningSerialNumber()
         {
-            var asn1 = _contentInfo?.Content;
-            if (asn1 is null) return null;
-            var x = (Asn1Integer)asn1.Nodes[0].Nodes[4].Nodes[0].Nodes[1].Nodes[1]; // ASN.1 Path to signer serial number: /1/0/4/0/1/1
-            return x.Value.ToHexString()[2..].ToUpper();
+            if (_signedCms is null || _signedCms.SignerInfos.Count == 0)
+                return null;
+
+            return _signedCms.SignerInfos[0].Certificate?.SerialNumber;
         }
 
         [Obsolete("Use ComputeAuthenticodeHashFromPeFile(HashAlgorithmName) instead.")]
